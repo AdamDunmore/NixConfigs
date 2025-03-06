@@ -41,9 +41,33 @@
             program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
         };
 
+        # NOTE
+        # This is not ready and will not work
+        # This is just placeholder for when its implemented
         nixosConfigurations.default = inputs.nixpkgs.lib.nixosSystem {
-            modules = [ ./nixos ];            
-                specialArgs = {};
+            modules = [ 
+                ./nixos 
+
+                inputs.home-manager.nixosModules.home-manager {
+                    home-manager = {
+                        users."${local.username}".imports = [ ./home ];
+                        backupFileExtension = "bkp";
+                        useGlobalPkgs = true;
+                        useUserPackages = true;
+                        extraSpecialArgs = {
+                                inherit pkgs;
+                                inherit inputs;
+                                inherit local;
+                        };
+                    };
+                }
+            ];            
+            specialArgs = {
+                system = local.system;
+                inherit pkgs;
+                inherit inputs;
+                inherit local;
+            };
         };
     };
 }
