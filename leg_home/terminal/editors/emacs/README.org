@@ -1,0 +1,309 @@
+#+TITLE:Adams Config
+#+AUTHOR: Adam Dunmore
+#+DESCRIPTION: My Config
+
+* Package Manager
+Runs Elpaca default installer and configures use-package
+#+begin_src emacs-lisp
+  (defvar elpaca-installer-version 0.8)
+  (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+  (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+  (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
+  (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
+				:ref nil :depth 1
+				:files (:defaults "elpaca-test.el" (:exclude "extensions"))
+				:build (:not elpaca--activate-package)))
+   (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
+	 (build (expand-file-name "elpaca/" elpaca-builds-directory))
+	 (order (cdr elpaca-order))
+	 (default-directory repo))
+    (add-to-list 'load-path (if (file-exists-p build) build repo))
+    (unless (file-exists-p repo)
+      (make-directory repo t)
+      (when (< emacs-major-version 28) (require 'subr-x))
+      (condition-case-unless-debug err
+	  (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+		    ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
+						    ,@(when-let* ((depth (plist-get order :depth)))
+							(list (format "--depth=%d" depth) "--no-single-branch"))
+						    ,(plist-get order :repo) ,repo))))
+		    ((zerop (call-process "git" nil buffer t "checkout"
+					  (or (plist-get order :ref) "--"))))
+		    (emacs (concat invocation-directory invocation-name))
+		    ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+					  "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+		    ((require 'elpaca))
+		    ((elpaca-generate-autoloads "elpaca" repo)))
+	      (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+	    (error "%s" (with-current-buffer buffer (buffer-string))))
+	((error) (warn "%s" err) (delete-directory repo 'recursive))))
+    (unless (require 'elpaca-autoloads nil t)
+      (require 'elpaca)
+      (elpaca-generate-autoloads "elpaca" repo)
+      (load "./elpaca-autoloads")))
+  (add-hook 'after-init-hook #'elpaca-process-queues)
+  (elpaca `(,@elpaca-order))
+
+  (setq package-enable-at-startup nil)
+
+  (elpaca elpaca-use-package
+      (elpaca-use-package-mode)
+  )
+#+end_src
+
+* General
+** Disables toolbar
+I dont really use the GUI so I disabled to toolbar as it looks ugly in the terminal
+#+begin_src emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+end_src
+
+** Adds line numbers
+Enables line numbers and sets them to relative for easy navigation with evil
+#+begin_src emacs-lisp
+  (global-display-line-numbers-mode 1)
+  (global-visual-line-mode t)
+  (setq display-line-numbers-type 'relative)
+#+end_src
+
+** Keybinds
+*** General Setup
+Sets up basic keybinds
+
+I use <Space> as my leader key
+f is for finding related keybinds
+t is for terminal related keybinds
+c is for comment related keybinds
+
+And I use the same keybinds for emacs windows as my wm just with the <Meta> key instead of <Super>
+#+begin_src emacs-lisp
+  (use-package general :ensure :demand t
+      :config
+      (general-evil-setup)
+
+      ; Sets up leader key
+      (general-create-definer sheev/leader
+        :states '(normal emacs visual)
+        :keymaps 'override
+        :prefix "SPC"
+      )
+
+      ; Leader Key binds
+      (sheev/leader
+        ; Find binds
+        "f" '(:ignore t :wk "Find")
+        "ff" '(consult-find :wk "Find File")
+        "fb" '(consult-buffer :wk "Find Buffer")
+        "fl" '(consult-line :wk "Find Line")
+        "fh" '(consult-org-heading :wk "Find Org Heading")
+
+        ; Terminal
+        "t" '(:ignore t :wk "Terminal")
+        "to" '(lambda () (if(get-buffer "*eat*") () (eat)) (interactive) (switch-to-buffer "*eat*") :wk "Open Terminal")
+        "tc" '(previous-buffer :wk "Close Terminal")
+        "te" '(lambda () (interactive) (switch-to-buffer "*eat*") (eat-kill-process) (kill-buffer "*eat*") :wk "Kill Terminal")
+
+        ; Comments
+        "c" '(:ignore t :wk "Comments")
+        "cc" '(comment-or-uncomment-region :wk "Toggle commented region") ;
+      )
+
+      ;Window Binds
+      (general-define-key
+        :keymaps 'override
+        "M-n" 'evil-window-new
+        "M-d" 'evil-window-delete
+        "M-<left>" 'evil-window-left
+        "M-<right>" 'evil-window-right
+        "M-<up>" 'evil-window-up
+        "M-<down>" 'evil-window-down
+        "M-S-<left>" 'evil-window-move-far-left
+        "M-S-<right>" 'evil-window-move-far-right 
+        "M-S-<up>" 'evil-window-move-very-top
+        "M-S-<down>" 'evil-window-move-very-bottom
+      )
+  )
+ #+end_src
+
+** Enables Vim Mode
+Installs and activates evil mode for VIM keybinds
+#+begin_src emacs-lisp
+  (use-package evil :ensure :demand t
+    :init
+    (evil-mode)
+  )
+#+end_src
+
+* Language Server
+** LSP Mode
+Installs LSP Mode for my language server
+#+begin_src emacs-lisp
+  (use-package lsp-mode :ensure :demand t
+    :commands (lsp lsp-deferred)
+    :init
+  )
+#+end_src
+
+** LSP UI
+LSP UI is mainly used for the info it shows about a function in the sideline
+#+begin_src emacs-lisp
+  (use-package lsp-ui :ensure :demand t
+    :config
+    (setq lsp-ui-sideline-show-hover t)
+    (setq lsp-ui-sideline-delay 0.0)
+  )
+#+end_src
+
+** Completion List
+Company shows my a list of completions that I can cycle through
+#+begin_src emacs-lisp
+  (use-package company :ensure :demand t
+    :after lsp-mode
+    :hook (lsp-mode . company-mode)
+    :bind (:map company-active-map ("<tab>" . company-complete-selection))
+	  (:map lsp-mode-map ("<tab>" . company-indent-or-complete-common))
+    :custom
+    (company-minimum-prefix-length 1)
+    (company-idle-deplay 0.0)
+  )
+#+end_src
+
+** Languages
+This is where I configure my language servers
+*** Nix
+#+begin_src emacs-lisp
+  (use-package nix-mode :ensure :demand t
+    :mode "\\.nix\\'"
+    :hook (nix-mode . lsp-deferred)
+  ) 
+#+end_src
+
+*** Typescript
+#+begin_src emacs-lisp
+  (use-package typescript-mode :ensure :demand t
+    :mode "\\.ts*\\'"
+    :hook (typescript-mode . lsp-deferred)
+    :config
+    (setq typescript-indent-level 2)
+  )
+#+end_src
+*** Rust
+#+begin_src emacs-lisp
+  (use-package rust-mode :ensure :demand t
+    :mode "\\.rs\\'"
+    :hook (rust-mode . lsp-deferred)
+  )
+#+end_src
+* Autocompletion
+** Vertico
+#+begin_src emacs-lisp
+  (use-package vertico :ensure :demand t
+    :init
+    (vertico-mode)
+  )
+#+end_src
+
+** Orderless
+#+begin_src emacs-lisp
+  (use-package orderless :ensure :demand t
+    :custom (completion-styles '(orderless))
+  )
+#+end_src
+
+** Marginalia
+#+begin_src emacs-lisp
+  (use-package marginalia :ensure :demand t
+    :init
+    (marginalia-mode)
+  )
+#+end_src
+
+* Navigation
+** Consult
+#+begin_src emacs-lisp
+  (use-package consult :ensure :demand t)
+#+end_src
+
+* Theme
+** Nord
+#+begin_src emacs-lisp
+  (use-package nord-theme :ensure :demand t
+    :config
+    (load-theme 'nord t)
+  ) 
+
+#+end_src
+** Icons
+#+begin_src emacs-lisp
+  (use-package nerd-icons :ensure :demand t
+   :custom 
+   (nerd-icons-font-family "octicon")
+  )
+#+end_src
+
+* Terminal
+#+begin_src emacs-lisp
+  (use-package eat :ensure :demand t)
+#+end_src
+
+* Org Mode
+#+begin_src emacs-lisp
+  (set-face-attribute 'org-block-begin-line nil :foreground (face-attribute 'default :background))
+  (set-face-attribute 'org-block-end-line nil :foreground (face-attribute 'default :background))
+  (set-face-attribute 'org-block nil :background "#262C38")
+
+  (custom-theme-set-faces
+    'user
+    `(org-level-1 ((t (:height 1.5))))
+    `(org-level-2 ((t (:height 1.25))))
+    `(org-level-3 ((t (:height 1.0))))
+  )
+  (use-package org)
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (use-package org-bullets :ensure :demand t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  )
+#+end_src
+
+* Dashboard
+** Dashoboard Setup
+ #+begin_src emacs-lisp
+   (use-package dashboard :ensure :demand t
+     :init
+     (setq initial-buffer-choice 'dashboard-open)
+     (setq dashboard-banner-logo-title "Sheev's Emacs")
+     (setq dashboard-center-content t)
+     (setq dashboard-display-icons-p t)
+     (setq dashboard-icon-type 'nerd-icons)
+     (setq dashboard-set-file-icons t)
+     (dashboard-setup-startup-hook)
+     (add-hook 'dashboard-mode-hook (lambda () (evil-insert-state)))
+   )
+ #+end_src
+** Dashboard LS
+#+begin_src emacs-lisp
+  (use-package dashboard-ls :ensure :demand t
+   :config
+   (setq dashboard-items '((ls-files . 5) (recents . 5)))
+   (setq dashboard-item-shortcuts '((ls-files . "d") (recents . "r")))
+  )
+#+end_src
+
+* Modeline
+** MoodLine
+#+begin_src emacs-lisp
+  (use-package mood-line :ensure :demand t
+    :config
+    (setq mood-line-glyph-alist mood-line-glyphs-unicode)
+    (setq mood-line-format (mood-line-defformat
+      :left
+      ( ( (mood-line-segment-buffer-name) . "   " ) ( (mood-line-segment-cursor-position) .  " ")  )
+      :right
+      ( ( (mood-line-segment-encoding) . "   "  ) ( (mood-line-segment-vc) . "   " ) ( (mood-line-segment-misc-info) . "   " ) )
+    ))
+    (mood-line-mode)
+  )
+#+end_src
