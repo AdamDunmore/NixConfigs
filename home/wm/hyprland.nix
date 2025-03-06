@@ -2,7 +2,7 @@
 
 let
     cfg = config.settings.home.wm.hyprland;
-    colours = import ../../../../values/colours.nix;
+    colours = import ../../values/colours.nix;
     hyprlandConfig = {
         enable = true;
         package = pkgs.hyprland;

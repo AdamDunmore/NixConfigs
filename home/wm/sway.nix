@@ -2,7 +2,7 @@
 
 let
     mod = "Mod4";
-    colours = import ../../../../values/colours.nix;
+    colours = import ../../values/colours.nix;
     cfg = config.settings.wm.sway;
     swayConfig = {
         enable = true;
