@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./editors
-    ./shell
-    ./terminals
-  ];
-}

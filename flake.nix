@@ -8,7 +8,10 @@
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+        spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+        spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
         nix-flatpak.url = "github:gmodena/nix-flatpak";
+        mnw.url = "github:Gerg-L/mnw";
     };
 
     outputs = { ... } @inputs:
@@ -36,6 +39,11 @@
         apps."${local.system}".default = {
             type = "app";
             program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
+        };
+
+        nixosConfigurations.default = inputs.nixpkgs.lib.nixosSystem {
+            modules = [ ./nixos ];            
+                specialArgs = {};
         };
     };
 }

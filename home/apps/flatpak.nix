@@ -4,6 +4,7 @@ let
 in
 with lib;
 {
+    imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
     config = mkIf (cfg == "all" || cfg == "light") {
         services.flatpak = {
             enable = true;
