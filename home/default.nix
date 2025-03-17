@@ -1,13 +1,14 @@
-{ local, ... }:
+{ local, lib, ... }:
+with lib;
 {
     config = {
-        home.username = local.username; 
-        home.homeDirectory = "/home/${local.username}";
-        home.stateVersion = local.stable_version;
+        home.username = mkForce local.username; 
+        home.homeDirectory = mkForce "/home/${local.username}";
+        home.stateVersion = mkForce local.stable_version;
     };
 
     imports = [
-        ./options.nix
+        ../options.nix
         ../settings.nix
 
         ./apps

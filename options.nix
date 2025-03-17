@@ -2,11 +2,11 @@
 
 with lib;
 {
-    options.adam = {
+    options.settings = {
         home = {
             apps = {
                 level = mkOption {
-                    type = type.enum [ "all" "light" "minimal" ];
+                    type = types.enum [ "all" "light" "minimal" ];
                     default = "minimal";
                     example = "all";
                     description = "String value for what app package to install. Possible options are 'all', 'light' or 'minimal'.";
@@ -62,20 +62,19 @@ with lib;
         };
 
         nixos = {
-            display_managers = {
-              greetd = mkEnableOption "Enable Greetd";
-              ly = mkEnableOption "Enable Ly";
-              sddm = mkEnableOption "Enable SDDM";
+            display_manager = mkOption {
+                type = types.enum [ "greetd" "ly" "sddm" ];
+                default = "greetd";
+                example = "sddm";
+                description = "String value for what display manager to use. Possible options are 'greetd', 'ly' or 'sddm'.";
+            };
+            keyboard = {
+                enable = mkEnableOption "Enable Configuring Keyboard";
+                custom_layout = mkEnableOption "Enable Custom Keyboard Layout";
+            };
+            services = {
+                syncthing = mkEnableOption "Enable Syncthing";
             };
         };
-    
-        services = {
-            syncthing = mkEnableOption "Enable Syncthing";
-        };
-
-        keyboard = {
-            enable = mkEnableOption "Enable Configuring Keyboard";
-            custom_layout = mkEnableOption "Enable Custom Keyboard Layout";
-        };
-  };
+    };
 }

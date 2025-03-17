@@ -1,13 +1,13 @@
 { pkgs, config, lib, inputs, ... }:
 
 let
-    cfg = config.adam.apps;
+    cfg = config.settings.home.apps.level;
     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
 in
 with lib;
 {
     imports = [ inputs.spicetify-nix.homeManagerModules.default ];
-    config = mkIf (cfg.light || cfg.all) {
+    config = mkIf (cfg == "light" || cfg == "all") {
 
         programs.spicetify = {
             enable = true;

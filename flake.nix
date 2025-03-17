@@ -22,7 +22,14 @@
             stable_version = "24.11";
         };
 
-        pkgs = import inputs.nixpkgs { system = local.system; config = { allowUnfree = true; }; };
+        system = local.system;
+        pkgs = import inputs.nixpkgs { 
+            inherit system; 
+            config = { 
+                allowUnfree = true; 
+            }; 
+        };
+
     in
     {
         homeConfigurations."${local.username}" = inputs.home-manager.lib.homeManagerConfiguration {
@@ -45,7 +52,7 @@
         # This is not ready and will not work
         # This is just placeholder for when its implemented
         nixosConfigurations.default = inputs.nixpkgs.lib.nixosSystem {
-            modules = [ 
+            modules = [
                 ./nixos 
 
                 inputs.home-manager.nixosModules.home-manager {
@@ -63,7 +70,7 @@
                 }
             ];            
             specialArgs = {
-                system = local.system;
+                inherit system;
                 inherit pkgs;
                 inherit inputs;
                 inherit local;

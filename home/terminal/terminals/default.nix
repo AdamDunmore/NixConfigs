@@ -2,7 +2,7 @@
 
 let
   cfg = config.settings.home.terminal.terminals;
-  colours = import ../../values/colours.nix;
+  colours = import ../../../values/colours.nix;
 
   alacrittyConfig = {
         enable = true;

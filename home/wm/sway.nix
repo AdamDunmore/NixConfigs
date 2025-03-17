@@ -3,7 +3,7 @@
 let
     mod = "Mod4";
     colours = import ../../values/colours.nix;
-    cfg = config.settings.wm.sway;
+    cfg = config.settings.home.wm.sway;
     swayConfig = {
         enable = true;
         package = pkgs.swayfx;
@@ -51,11 +51,11 @@ let
             };
 
             keybindings = {
-                "${mod}+Return" = "exec ${config.adam.terminal.terminals.default}";
+                "${mod}+Return" = "exec alacritty"; # TODO
                 "${mod}+Shift+Q" = "kill";
                 "${mod}+D" = "exec ${pkgs.wofi}/bin/wofi";
                 "${mod}+Shift+C" = "reload";
-                "${mod}+l" = "exec ${config.adam.wm.window_managers.default_locker}";
+                "${mod}+l" = "exec ${config.settings.home.wm.default_locker}";
                 "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"";
                 "${mod}+a" = "exec ${pkgs.ags}/bin/ags -t \"menu\"";
 
@@ -184,3 +184,4 @@ with lib;
     ( mkIf cfg.swaylock { programs.swaylock = swaylockConfig; }) 
   ];
 }
+

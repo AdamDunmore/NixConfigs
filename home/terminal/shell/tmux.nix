@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.settings.home.terminal.shell.tmux;
+  cfg = config.settings.home.terminal.shell.enable;
 in
 with lib;
 {

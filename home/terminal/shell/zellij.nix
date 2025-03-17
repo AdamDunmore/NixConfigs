@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.settings.home.terminal.shell.zellij;
+  cfg = config.settings.home.terminal.shell.enable;
 in
 with lib;
 {

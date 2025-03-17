@@ -1,7 +1,7 @@
 { config, ...}:
 
 let
-  cfg = config.adam.home.wm;
+  cfg = config.settings.home.wm;
 in
 {
     imports = [

@@ -2,7 +2,7 @@
 
 let
   cfg = config.settings.home.terminal.shell.enable;
-  colours = import ../../values/colours.nix;
+  colours = import ../../../values/colours.nix;
 in
 with lib;
 {
