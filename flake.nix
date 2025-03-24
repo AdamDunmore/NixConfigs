@@ -26,6 +26,9 @@
         pkgs = import inputs.nixpkgs { 
             inherit system; 
             config = { 
+                permittedInsecurePackages = [ # TODO find a cleaner solution
+                    "electron-27.3.11"
+                ];
                 allowUnfree = true; 
             }; 
         };

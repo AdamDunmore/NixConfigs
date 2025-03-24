@@ -43,6 +43,5 @@ with lib;
   config = mkMerge [
     ( mkIf cfg.alacritty { programs.alacritty = alacrittyConfig; } )
     ( mkIf cfg.kitty { programs.kitty = kittyConfig; } )
-    { home.sessionVariables = { ADAM_TERMINAL = cfg.default; }; }
   ];   
 }

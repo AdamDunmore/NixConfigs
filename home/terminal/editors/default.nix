@@ -24,6 +24,5 @@ with lib;
                 };
             };
         })
-        { home.sessionVariables = { ADAM_EDITOR = cfg.default; }; }
     ];   
 }

@@ -14,9 +14,13 @@
         networking.networkmanager.enable = true;
 
         # Downloading Nerd Font
+        # fonts.packages = with pkgs; [
+        #     (nerdfonts.override { fonts = [ "CodeNewRoman" ]; })
+        # ];
         fonts.packages = with pkgs; [
-            (nerdfonts.override { fonts = [ "CodeNewRoman" ]; })
+            nerd-fonts.code-new-roman
         ];
+
 
         #Enables Flatpak
         services.flatpak.enable = true;
