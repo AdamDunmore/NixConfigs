@@ -62,6 +62,11 @@ with lib;
         };
 
         nixos = {
+            de = {
+                gnome = mkEnableOption "Enables Gnome";
+                plasma = mkEnableOption "Enables Plasma";
+
+            };
             display_manager = mkOption {
                 type = types.enum [ "greetd" "ly" "sddm" ];
                 default = "greetd";

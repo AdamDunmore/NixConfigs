@@ -9,6 +9,7 @@
 
         ../host/hardware-configuration.nix
         
+        ./de
         ./display_managers
         ./keyboard
         ./services

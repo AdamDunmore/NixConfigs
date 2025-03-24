@@ -51,9 +51,6 @@
             program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
         };
 
-        # NOTE
-        # This is not ready and will not work
-        # This is just placeholder for when its implemented
         nixosConfigurations.default = inputs.nixpkgs.lib.nixosSystem {
             modules = [
                 ./nixos 

@@ -14,6 +14,7 @@ with lib;
         ./apps
         ./scripts
         ./terminal
+        ./theme
         ./widgets
         ./wm
     ];

@@ -44,5 +44,8 @@
             enable = true;
             wlr.enable = true;
         };
+
+        # Enables Dconf
+        programs.dconf.enable = true;
     };
 }
