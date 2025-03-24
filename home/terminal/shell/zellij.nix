@@ -2,6 +2,7 @@
 
 let
   cfg = config.settings.home.terminal.shell.enable;
+  colours = import ../../../values/colours.nix;
 in
 with lib;
 {
@@ -11,6 +12,8 @@ with lib;
             settings = {
                 default_shell = "${pkgs.zsh}/bin/zsh";
                 default_mode = "Locked";
+                pane_frames = false;
+                theme = "nord";
             };
         };
         xdg.configFile."zellij/config.kdl".text = ''
