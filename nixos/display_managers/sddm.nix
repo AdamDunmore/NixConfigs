@@ -7,7 +7,6 @@ in
   config = lib.mkIf (cfg == "sddm") {
     services.displayManager.sddm = {
       enable = true;
-      package = pkgs.sddm;
       wayland.enable = true;
       settings = {};
       # theme = "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";

@@ -26,7 +26,7 @@
             };
         };    
         nixos = {
-            display_manager = "greetd";
+            display_manager = "sddm";
             keyboard = {
                 enable = true;
                 custom_layout = true;
