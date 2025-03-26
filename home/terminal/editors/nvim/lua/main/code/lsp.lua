@@ -1,15 +1,5 @@
 local lsp_config = require('lspconfig');
-local capabilities = require('cmp_nvim_lsp').default_capabilities();
-
--- Signatures
-require('lsp_signature').setup({
-    bind = true,
-    hint_enable = true,
-    floating_window = true,
-    handler_opts = {
-        border = "rounded"
-    }
-});
+local capabilities = require('blink.cmp').get_lsp_capabilities();
 
 -- Java
 lsp_config.jdtls.setup({

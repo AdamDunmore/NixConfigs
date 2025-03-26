@@ -44,12 +44,9 @@ in
 
                     # Code #
                     nvim-treesitter.withAllGrammars
-                    nvim-cmp
+                    blink-cmp
                     luasnip
-                    cmp_luasnip
                     nvim-lspconfig
-                    cmp-nvim-lsp
-                    lsp_signature-nvim
                     nvim-comment
 
                     # Notes
