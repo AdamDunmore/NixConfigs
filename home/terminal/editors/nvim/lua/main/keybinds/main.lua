@@ -76,7 +76,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
     'n',
     '<leader>fg',
-    ":Telescope live_grep",
+    ":Telescope live_grep<CR>",
     { noremap = true, silent = true }
 );
 
