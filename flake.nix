@@ -46,11 +46,13 @@
 
         packages."${local.system}".hm_conf = inputs.self.homeConfigurations."${local.username}".activationPackage;
  
+        # sudo nix run .#default
         apps."${local.system}".default = {
             type = "app";
             program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
         };
 
+        # sudo nixos-rebuild switch --flake .#default
         nixosConfigurations.default = inputs.nixpkgs.lib.nixosSystem {
             modules = [
                 ./nixos 
@@ -75,6 +77,18 @@
                 inherit inputs;
                 inherit local;
             };
+        };
+
+        # $option = home | nixos
+        # nix flake new nix-configs -t github:AdamDunmore/NixConfigs#$option 
+        templates.home = {
+            path = ./template/home;
+            description = "A flake for Home-manager systems";
+        };
+
+        templates.nixos = {
+            path = ./template/nixos;
+            description = "A flake for Nixos systems";
         };
     };
 }

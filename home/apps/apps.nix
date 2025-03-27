@@ -23,6 +23,7 @@ with lib;
 
         (mkIf (cfg == "all" || cfg == "light") { #Light
             home.packages = (with pkgs; [
+                tidal-hifi
                 spicetify-cli
                 brave
                 firefox
