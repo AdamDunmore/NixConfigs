@@ -12,7 +12,6 @@ local file_ignore_patterns = {
 };
 
 -- Setup
---require("telescope").setup({
 telescope.setup({
     defaults = {
         file_ignore_patterns = file_ignore_patterns
@@ -58,3 +57,11 @@ local function telescope_find_files_root()
     telescope_builtin.find_files( { cwd = "~/" } );
 end
 vim.api.nvim_create_user_command("ADTelescopeFindFilesRoot", telescope_find_files_root, {});
+
+-- Autocmds
+
+-- Write file on Telescope open
+-- vim.api.nvim_create_autocmd("User", {
+--     pattern = "TelescopePreviewerLoaded",
+--     command = "write"
+-- });

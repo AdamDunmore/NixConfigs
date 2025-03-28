@@ -8,5 +8,6 @@
             pulse.enable = true;
         };
         services.pulseaudio.enable = false;
+        services.playerctld.enable = true;
     };
 }

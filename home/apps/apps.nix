@@ -51,6 +51,7 @@ with lib;
                 wofi
                 kanshi
                 xdg-desktop-portal
+                waybar-mpris
 
                 # Gnome
                 nautilus
@@ -103,6 +104,7 @@ with lib;
                 home-manager
                 sops
                 pulseaudio
+                playerctl
 
                 # Languages
                 typescript
