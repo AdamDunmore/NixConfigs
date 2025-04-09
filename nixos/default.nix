@@ -8,6 +8,7 @@
         ../settings.nix
 
         ../host/hardware-configuration.nix
+        # TODO Change to generate
         
         ./de
         ./display_managers

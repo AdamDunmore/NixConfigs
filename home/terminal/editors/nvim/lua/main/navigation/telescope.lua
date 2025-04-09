@@ -4,10 +4,7 @@ local fb_actions = telescope.extensions.file_browser.actions
 local telescope_actions = require("telescope.actions");
 
 local file_ignore_patterns = {
-    "node_modules",
-    "target",
-    "bin",
-    
+    -- "node_modules", 
     ".*%.o"
 };
 
@@ -16,7 +13,7 @@ telescope.setup({
     defaults = {
         file_ignore_patterns = file_ignore_patterns
     },
-
+   
     extensions = {
         file_browser = {
             hijack_netrw = true,
