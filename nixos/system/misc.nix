@@ -50,5 +50,8 @@
 
         # Enables Dconf
         programs.dconf.enable = true;
+
+        # Enables flakes
+        nix.settings.experimental-features = [ "nix-command" "flakes" ];
     };
 }

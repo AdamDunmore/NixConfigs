@@ -7,14 +7,13 @@
                     profile.name = "PC";
                     profile.outputs = [
                         {
-                            criteria = "LG Electronics 24EA53 ";
+                            criteria = "LG Electronics 24EA53";
                             mode = "1920x1080@60Hz";
                             position = "0,0";
                         }
 
                         {
-                            criteria = "Microstep MSI G323CV DC3M02270
-    0075";
+                            criteria = "Microstep MSI G323CV DC3M022700075";
                             mode = "1920x1080@75Hz";
                             position = "1920,0";
                         }

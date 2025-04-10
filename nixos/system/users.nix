@@ -2,7 +2,8 @@
 
 {
     config = {
-        users.users."${local.username}" = {
+        # users.users."${local.username}" = {
+        users.users.${local.username} = {
             isNormalUser = true;
             description = "";
             extraGroups = [ "networkmanager" "wheel" "audio" "dialout"];

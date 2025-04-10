@@ -16,50 +16,64 @@
 
     outputs = { ... } @inputs:
     let
+        hosts = [
+            "laptop"
+            "desktop"
+        ];
+
+        systems = [
+            "x86_64-linux"
+        ];
+
+        users = [
+            "adam"
+        ];
+
+        templates = [
+            "nixos"
+            "home"
+        ];
+
+        forEachTemplate = inputs.nixpkgs.lib.genAttrs templates; 
+        forEachSystem = inputs.nixpkgs.lib.genAttrs systems;
+        forEachHost = inputs.nixpkgs.lib.genAttrs hosts;
+        forEachUser = inputs.nixpkgs.lib.genAttrs users;
+
         local = {
             username = "adam";
             system = "x86_64-linux";
             stable_version = "24.11";
         };
 
+        pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = local.system; };
         system = local.system;
-        pkgs = import inputs.nixpkgs { 
-            inherit system; 
-            config = { 
-                permittedInsecurePackages = [ # TODO find a cleaner solution
-                    "electron-27.3.11"
-                ];
-                allowUnfree = true; 
-            }; 
-        };
-
     in
     {
-        homeConfigurations."${local.username}" = inputs.home-manager.lib.homeManagerConfiguration {
+        homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ ./home ];
             extraSpecialArgs = {
                 inherit local;
                 inherit inputs;
             };
-        };
+        });
 
-        packages."${local.system}".hm_conf = inputs.self.homeConfigurations."${local.username}".activationPackage;
- 
-        # sudo nix run .#default
-        apps."${local.system}".default = {
-            type = "app";
+        # sudo nix run .#$(host)
+        packages = forEachSystem (system: { hm_conf = inputs.self.homeConfigurations.${local.username}.activationPackage; }); 
+        apps.${local.system} = forEachHost(host: {
+            type = "app";            
             program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
-        };
+        });
 
-        # sudo nixos-rebuild switch --flake .#default
-        nixosConfigurations.default = inputs.nixpkgs.lib.nixosSystem {
+        # sudo nixos-rebuild switch --flake .#$(host)
+        nixosConfigurations = forEachHost(host: inputs.nixpkgs.lib.nixosSystem {
             modules = [
-                ./nixos 
-
+                ./nixos
+                ./nixos/host/${host}/hardware-configuration.nix
+                
                 inputs.home-manager.nixosModules.home-manager {
                     home-manager = {
-                        users."${local.username}".imports = [ ./home ];
+                        users = { ${local.username} = { imports = [ ./home ]; };};
                         backupFileExtension = "bkp";
                         useGlobalPkgs = true;
                         useUserPackages = true;
@@ -70,25 +84,19 @@
                         };
                     };
                 }
-            ];            
+            ];
             specialArgs = {
                 inherit system;
                 inherit pkgs;
                 inherit inputs;
                 inherit local;
             };
-        };
+        });
 
         # $option = home | nixos
         # nix flake new nix-configs -t github:AdamDunmore/NixConfigs#$option 
-        templates.home = {
-            path = ./template/home;
-            description = "A flake for Home-manager systems";
-        };
-
-        templates.nixos = {
-            path = ./template/nixos;
-            description = "A flake for Nixos systems";
-        };
+        templates = forEachTemplate (template: {
+            path = ./template/${template};
+        });
     };
 }
