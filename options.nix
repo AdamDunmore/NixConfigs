@@ -2,7 +2,12 @@
 
 with lib;
 let
-    falseEnableOption = s: mkEnableOption s;
+  falseEnableOption = s: mkOption {
+    type = types.bool;
+    default = true;
+    example = false;
+    description = s;
+  };
 in
 {
     options.settings = {

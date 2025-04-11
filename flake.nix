@@ -48,7 +48,7 @@
         pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = local.system; };
         system = local.system;
     in
-    {
+    {             
         homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ ./home ];
@@ -67,6 +67,7 @@
 
         # sudo nixos-rebuild switch --flake .#$(host)
         nixosConfigurations = forEachHost(host: inputs.nixpkgs.lib.nixosSystem {
+            inherit system;
             modules = [
                 ./nixos
                 ./nixos/host/${host}/hardware-configuration.nix
