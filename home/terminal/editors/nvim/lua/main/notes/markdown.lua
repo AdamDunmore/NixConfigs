@@ -1,6 +1,6 @@
 -- Render markdown
 require('render-markdown').setup({
-    ft = { 'markdown' },
+    file_types = { 'markdown' },
     render_modes = { 'n', 'c', 't' },
     anti_conceal = {  enabled = false },
     on = {

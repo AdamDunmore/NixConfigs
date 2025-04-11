@@ -41,6 +41,7 @@ in
                     noice-nvim
                     toggleterm-nvim
                     lualine-nvim
+                    mini-icons
 
                     # Code #
                     nvim-treesitter.withAllGrammars
