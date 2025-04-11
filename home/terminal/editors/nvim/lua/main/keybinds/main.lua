@@ -147,3 +147,11 @@ vim.api.nvim_set_keymap(
     '<Esc>:ADLuasnipJumpB<CR>',
     { noremap = false, silent = true }
 )
+
+-- Folding
+-- vim.api.nvim_set_keymap(
+--     'i',
+--     '<leader>zc',
+--     '<Esc>',
+--     { noremap = false, silent = true }
+-- )

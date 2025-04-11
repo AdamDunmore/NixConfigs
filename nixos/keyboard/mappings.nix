@@ -6,7 +6,7 @@ in
 with lib;
 {
     config = mkIf cfg {
-        # Too fix
+        # TODO
         # boot.kernelModules = [ "uinputs"];
         # hardware.uinput.enable = true;
         # services.evdevremapkeys = {
