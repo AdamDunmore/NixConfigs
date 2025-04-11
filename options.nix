@@ -20,9 +20,9 @@ in
             terminal = {
                 editors = {
                     emacs = mkEnableOption "Enables Emacs";
-                    nvim = mkEnableOption "Enables Nvim";
+                    nvim = falseEnableOption "Enables Nvim";
                 };
-                shell.enable = mkEnableOption "Enables Shell modules";
+                shell.enable = falseEnableOption "Enables Shell modules";
                 terminals = {
                     alacritty = mkEnableOption "Enables Alacritty";
                     kitty = mkEnableOption "Enables Kitty";

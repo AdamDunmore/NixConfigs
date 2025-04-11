@@ -4,13 +4,8 @@
     config.settings = {
         home = {
             apps.level = "light";
-            scripts = true;
             terminal = {
-                editors = {
-                    emacs = true;
-                    nvim = true;
-                };
-                shell.enable = true;
+                editors.emacs = true;
                 terminals.alacritty = true;
             };
             widgets = {
@@ -31,7 +26,7 @@
                 enable = true;
                 custom_layout = true;
             };
-            services.syncthing = true;
+            #services.syncthing = true;
         };
     };
 }
