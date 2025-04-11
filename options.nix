@@ -1,6 +1,9 @@
 { lib, pkgs, ... }:
 
 with lib;
+let
+    falseEnableOption = s: mkEnableOption s;
+in
 {
     options.settings = {
         home = {
@@ -13,7 +16,7 @@ with lib;
                 };
             };
 
-            scripts = mkEnableOption "Enable scripts module";
+            scripts = falseEnableOption "Enable scripts module";
             terminal = {
                 editors = {
                     emacs = mkEnableOption "Enables Emacs";
