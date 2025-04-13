@@ -14,8 +14,11 @@
                 wofi = true;
             };
             wm = {
-                default = "${pkgs.swayfx}/bin/sway";
-                default_locker = "${pkgs.hyprlock}/bin/hyprlock";
+                defaults = {
+                    wm = pkgs.swayfx;
+                    locker = pkgs.hyprlock;
+                    terminal = pkgs.alacritty;
+                };
                 sway.enable = true;
                 hyprland.hyprlock = true;
             };

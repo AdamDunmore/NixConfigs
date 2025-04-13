@@ -39,18 +39,27 @@ in
                 wofi = mkEnableOption "Enables Wofi";
             };
             wm = {
-                default = mkOption {
-                    type = types.str;
-                    default = "${pkgs.i3}/bin/i3";
-                    example = "\${pkgs.i3}/bin/i3";
-                    description = "The binary for your default Window Manager/Compositor";
-                };
+                defaults = {
+                    wm =  mkOption {
+                        type = types.package;
+                        default = pkgs.i3;
+                        example = pkgs.i3;
+                        description = "The package for your default Window Manager/Compositor";
+                    };
 
-                default_locker = mkOption {
-                    type = types.str;
-                    default = "${pkgs.swaylock}/bin/swaylock";
-                    example = "\${pkgs.swaylock}/bin/swaylock";
-                    description = "The binary for your default Wayland locker";
+                    locker = mkOption {
+                        type = types.package;
+                        default = pkgs.swaylock;
+                        example = pkgs.swaylock;
+                        description = "The package for your default locker";
+                    };
+
+                    terminal = mkOption { 
+                        type = types.package;
+                        default = pkgs.kitty;
+                        example = pkgs.kitty;
+                        description = "The package for your default terminal";
+                    };
                 };
 
                 hyprland = {
