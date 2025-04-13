@@ -49,28 +49,33 @@
         system = local.system;
     in
     {             
-        homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ ./home ];
-            extraSpecialArgs = {
-                inherit local;
-                inherit inputs;
-            };
-        });
-
-        # sudo nix run .#$(host)
-        packages.${local.system}.hm_conf = inputs.self.homeConfigurations.${local.username}.activationPackage; 
-        apps.${local.system} = forEachHost(host: {
-            type = "app";            
-            program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
-        });
+        # TODO fix hm
+        # homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
+        #     inherit pkgs;
+        #     modules = [ ./home ];
+        #     extraSpecialArgs = {
+        #         inherit local;
+        #         inherit inputs;
+        #     };
+        # });
+        #
+        # # sudo nix run .#$(host)
+        # packages.${local.system}.hm_conf = inputs.self.homeConfigurations.${local.username}.activationPackage; 
+        # apps.${local.system} = forEachHost(host: {
+        #     type = "app";            
+        #     program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
+        # });
 
         # sudo nixos-rebuild switch --flake .#$(host)
         nixosConfigurations = forEachHost(host: inputs.nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
+                ./options.nix
+                ./settings.nix
+
+                ./host/${host}
+
                 ./nixos
-                ./nixos/host/${host}/hardware-configuration.nix
                 
                 inputs.home-manager.nixosModules.home-manager {
                     home-manager = {
