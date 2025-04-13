@@ -26,7 +26,7 @@ in
                     luajitPackages.luarocks 
                 ];
                	initLua = ''require("main")'';
-                plugins = [ ./nvim ] ++ (with pkgs.vimPlugins; [
+                plugins = [ ./. ] ++ (with pkgs.vimPlugins; [
                     # Navigation #
                     telescope-nvim
                     telescope-project-nvim
