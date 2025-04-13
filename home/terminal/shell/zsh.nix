@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.settings.home.terminal.shell.enable;
+  cfg = config.settings.home.terminal.shell.zsh;
   lsd = "${pkgs.lsd}/bin/lsd";
 in
 with lib;

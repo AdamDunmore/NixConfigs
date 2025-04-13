@@ -7,6 +7,7 @@
             terminal = {
                 editors.emacs = true;
                 terminals.alacritty = true;
+                shell.zellij = true;
             };
             widgets = {
                 mako = true;

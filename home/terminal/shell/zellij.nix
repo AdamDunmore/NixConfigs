@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.settings.home.terminal.shell.enable;
+  cfg = config.settings.home.terminal.shell.zellij;
   colours = import ../../../values/colours.nix;
 in
 with lib;

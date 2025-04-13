@@ -27,7 +27,16 @@ in
                     emacs = mkEnableOption "Enables Emacs";
                     nvim = falseEnableOption "Enables Nvim";
                 };
-                shell.enable = falseEnableOption "Enables Shell modules";
+                shell = {
+                    lsd = falseEnableOption "Enables lsd";
+                    git = falseEnableOption "Enables git";
+                    starship = falseEnableOption "Enables starship";
+                    tmux = mkEnableOption "Enables tmux";
+                    yazi = falseEnableOption "Enables yazi";
+                    zellij = mkEnableOption "Enables zellij";
+                    zoxide = falseEnableOption "Enables zoxide (z)"; 
+                    zsh = falseEnableOption "Enables zsh";
+                };
                 terminals = {
                     alacritty = mkEnableOption "Enables Alacritty";
                     kitty = mkEnableOption "Enables Kitty";
