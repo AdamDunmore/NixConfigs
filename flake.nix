@@ -59,7 +59,7 @@
         });
 
         # sudo nix run .#$(host)
-        packages = forEachSystem (system: { hm_conf = inputs.self.homeConfigurations.${local.username}.activationPackage; }); 
+        packages.${local.system}.hm_conf = inputs.self.homeConfigurations.${local.username}.activationPackage; 
         apps.${local.system} = forEachHost(host: {
             type = "app";            
             program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 

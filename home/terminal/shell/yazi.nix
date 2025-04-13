@@ -1,7 +1,7 @@
 { lib, config, ... }:
 
 let
-  cfg = config.settings.home.terminal.shell.yazi;
+    cfg = config.settings.home.terminal.shell.yazi;
 in
 with lib;
 {
