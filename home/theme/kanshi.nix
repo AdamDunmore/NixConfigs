@@ -7,7 +7,7 @@
                     profile.name = "PC";
                     profile.outputs = [
                         {
-                            criteria = "LG Electronics 24EA53";
+                            criteria = "LG Electronics 24EA53 0x01010101";
                             mode = "1920x1080@60Hz";
                             position = "0,0";
                         }
