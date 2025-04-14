@@ -1,4 +1,4 @@
-{ lib, config, pkgs }:
+{ lib, config, pkgs, ... }:
 let
     cfg = config.settings.home.terminal.editors.emacs;
 in
