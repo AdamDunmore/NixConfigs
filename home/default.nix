@@ -9,7 +9,6 @@ with lib;
 
     imports = [
         ../options.nix
-        ../settings.nix
 
         ./apps
         ./scripts
