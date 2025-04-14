@@ -3,7 +3,7 @@
 {
     config.settings = {
         home = {
-            apps.level = "all";
+            apps.level = "light";
             terminal = {
                 editors.emacs = true;
                 terminals.alacritty = true;

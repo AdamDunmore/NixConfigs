@@ -83,7 +83,13 @@
                 
                 inputs.home-manager.nixosModules.home-manager {
                     home-manager = {
-                        users = { ${local.username} = { imports = [ ./home ]; };};
+                        users = { ${local.username} = { imports = [ 
+                            ./options.nix
+                            ./settings.nix 
+                            ./host/${host}/settings.nix
+
+                            ./home 
+                        ]; };};
                         backupFileExtension = "bkp";
                         useGlobalPkgs = true;
                         useUserPackages = true;

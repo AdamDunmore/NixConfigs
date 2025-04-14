@@ -8,7 +8,7 @@ with lib;
     };
 
     imports = [
-        ../options.nix
+        # ../options.nix
 
         ./apps
         ./scripts
