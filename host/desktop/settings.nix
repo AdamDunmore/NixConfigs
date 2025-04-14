@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-    config.settings = lib.mkForce{
-        home.apps.level = "all";
+    config.settings = {
+        home.apps.level = lib.mkForce "all";
     };
 }

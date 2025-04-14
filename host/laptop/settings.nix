@@ -1,5 +1,6 @@
+{ lib, ... }:
 {
     config.settings = {
-        home.apps.level = "light";
+        home.apps.level = lib.mkForce "light";
     };
 }
