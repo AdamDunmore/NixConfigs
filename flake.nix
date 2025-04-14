@@ -72,6 +72,7 @@
             modules = [
                 ./options.nix
                 ./settings.nix
+                ./host/${host}/settings.nix
 
                 ./host/${host}
 
