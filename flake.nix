@@ -70,6 +70,9 @@
         nixosConfigurations = forEachHost(host: inputs.nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
+                { nixpkgs.pkgs = pkgs; }
+
+
                 ./options.nix
                 ./settings.nix
                 ./host/${host}/settings.nix
@@ -94,7 +97,7 @@
             ];
             specialArgs = {
                 inherit system;
-                inherit pkgs;
+                # inherit pkgs;
                 inherit inputs;
                 inherit local;
             };
