@@ -72,29 +72,19 @@
             modules = [
                 { nixpkgs.pkgs = pkgs; }
 
-
-                ./options.nix
-                ./settings.nix
-                ./host/${host}/settings.nix
-
                 ./host/${host}
 
                 ./nixos
                 
                 inputs.home-manager.nixosModules.home-manager {
                     home-manager = {
-                        users = { ${local.username} = { imports = [ 
-                            ./options.nix
-                            ./settings.nix 
-                            ./host/${host}/settings.nix
-
-                            ./home 
-                        ]; };};
+                        users.${local.username}.imports = [ ./home ];
                         backupFileExtension = "bkp";
                         useGlobalPkgs = true;
                         useUserPackages = true;
                         extraSpecialArgs = {
                                 inherit pkgs;
+                                inherit host;
                                 inherit inputs;
                                 inherit local;
                         };
@@ -103,7 +93,7 @@
             ];
             specialArgs = {
                 inherit system;
-                # inherit pkgs;
+                inherit host;
                 inherit inputs;
                 inherit local;
             };

@@ -1,4 +1,4 @@
-{ local, lib, ... }:
+{ local, lib, host, ... }:
 with lib;
 {
     config = {
@@ -8,7 +8,9 @@ with lib;
     };
 
     imports = [
-        # ../options.nix
+        ../options.nix
+        ../settings.nix
+        ../host/${host}/settings.nix
 
         ./apps
         ./scripts
