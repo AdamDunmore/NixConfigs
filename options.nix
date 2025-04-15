@@ -21,6 +21,7 @@ in
                         example = "[ pkgs.spotify pkgs.steam ]";
                         description = "A list of packages to start we autostart is run";
                     };
+                    runOnBoot = mkEnableOption "Enables autostart running on boot";
                 };
                 level = mkOption {
                     type = types.enum [ "all" "light" "minimal" ];

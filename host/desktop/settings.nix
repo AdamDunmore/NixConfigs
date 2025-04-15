@@ -2,7 +2,7 @@
 {
     config.settings = {
         home.apps.level = lib.mkForce "all";
-        home.autostart = {
+        home.apps.autostart = {
             enable = true;
             apps = with pkgs; [
                 steam
