@@ -13,6 +13,15 @@ in
     options.settings = {
         home = {
             apps = {
+                autostart = {
+                    enable = falseEnableOption "Enables autostart";
+                    apps = mkOption {
+                        type = types.listOf types.package;
+                        default = [];
+                        example = "[ pkgs.spotify pkgs.steam ]";
+                        description = "A list of packages to start we autostart is run";
+                    };
+                };
                 level = mkOption {
                     type = types.enum [ "all" "light" "minimal" ];
                     default = "minimal";
