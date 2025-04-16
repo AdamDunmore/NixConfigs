@@ -14,9 +14,9 @@ in
         services.displayManager = {
             # defaultSession = "";
             sessionPackages = with pkgs; [
-                ( lib.mkIf cfg.sway swayfx )
-                ( lib.mkIf cfg.hyprland hyprland)
-                ( lib.mkIf cfg.river river)
+                ( lib.mkIf wm_cfg.sway.enable swayfx)
+                ( lib.mkIf wm_cfg.hyprland.enable hyprland)
+                ( lib.mkIf wm_cfg.river.enable river)
             ];
         };
     };

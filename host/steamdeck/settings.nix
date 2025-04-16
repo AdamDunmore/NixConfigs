@@ -11,5 +11,6 @@
             theme = false;
         };
         nixos.keyboard.custom_layout = false;
+        nixos.steamdeck.enable = true;
     };
 }

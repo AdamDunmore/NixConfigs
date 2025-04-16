@@ -117,6 +117,9 @@ in
             services = {
                 syncthing = mkEnableOption "Enable Syncthing";
             };
+            steamdeck = {
+                enable = mkEnableOption "Enables steamdeck module";
+            };
             system = falseEnableOption "Enables system modules";
         };
     };

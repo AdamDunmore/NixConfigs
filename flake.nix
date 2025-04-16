@@ -22,6 +22,7 @@
         hosts = [
             "laptop"
             "desktop"
+            "steamdeck"
         ];
 
         systems = [

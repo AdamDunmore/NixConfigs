@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-    cfg = config.settings.nixos.theme;
+    cfg = config.settings.home.theme;
 in
 {
     config = lib.mkIf cfg {
