@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   cfg = config.settings.nixos.keyboard.custom_layout;
@@ -33,17 +33,23 @@ with lib;
             keyboards.default = {
                 settings = {
                     main = {
-                        capslock = "layer(renamed)";
+                        capslock = "oneshot(renamed)";
 
                     };
                     renamed = {
+                        shift = "layer(onehanded)";
                         esc = "`"; 
                         z = "102nd"; # \
                         p = "G-102nd"; # |
                         c = "capslock";
                     };
+                    onehanded = {
+                        q = "leftmouse";
+                        e = "rightmouse";
+                    };
                 };
             };
-        };   
+        };
+        environment.systemPackages = with pkgs; [ pkgs.keyd ];
     };
 }
