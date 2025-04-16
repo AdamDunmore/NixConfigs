@@ -8,6 +8,9 @@
         home-manager.url = "github:nix-community/home-manager";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+        jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+        jovian.inputs.nixpkgs.follows = "nixpkgs";
+
         spicetify-nix.url = "github:Gerg-L/spicetify-nix";
         spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
         nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -104,5 +107,7 @@
         templates = forEachTemplate (template: {
             path = ./template/${template};
         });
+
+        # Jovian ISO
     };
 }
