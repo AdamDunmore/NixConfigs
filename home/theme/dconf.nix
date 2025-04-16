@@ -1,7 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
+let
+    cfg = config.settings.nixos.theme;
+in
+
 with lib.hm.gvariant;
 {
-    config = {
+    config = lib.mkIf cfg {
         dconf = {
             enable = true;
             settings = {

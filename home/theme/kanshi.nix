@@ -1,5 +1,9 @@
+{ lib, config, ... }:
+let
+    cfg = config.settings.nixos.theme;
+in
 {
-    config = {
+    config = lib.mkIf cfg {
         services.kanshi = {
             enable = true;
             settings = [

@@ -1,7 +1,9 @@
-{ pkgs, ... }:
-
+{ pkgs, lib, config, ... }:
+let
+    cfg = config.settings.nixos.system;
+in
 {
-    config = {
+    config = lib.mkIf cfg {
         # Services (Mainly for AGS)
         services = {
             libinput.enable = true;

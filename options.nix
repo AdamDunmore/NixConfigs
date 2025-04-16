@@ -52,6 +52,7 @@ in
                     kitty = mkEnableOption "Enables Kitty";
                 };
             };
+            theme = falseEnableOption "Enables theme modules";
             widgets = {
                 mako = mkEnableOption "Enables Mako";
                 waybar = mkEnableOption "Enables Waybar";
@@ -110,12 +111,13 @@ in
                 description = "String value for what display manager to use. Possible options are 'greetd', 'ly' or 'sddm'.";
             };
             keyboard = {
-                enable = mkEnableOption "Enable Configuring Keyboard";
-                custom_layout = mkEnableOption "Enable Custom Keyboard Layout";
+                enable = falseEnableOption "Enable Configuring Keyboard";
+                custom_layout = falseEnableOption "Enable Custom Keyboard Layout";
             };
             services = {
                 syncthing = mkEnableOption "Enable Syncthing";
             };
+            system = falseEnableOption "Enables system modules";
         };
     };
 }

@@ -1,5 +1,9 @@
+{ lib, config, ... }:
+let
+    cfg = config.settings.nixos.system;
+in
 {
-    config = {
+    config = lib.mkIf cfg {
         boot.loader = {
             efi.canTouchEfiVariables = true;
             timeout = 3;

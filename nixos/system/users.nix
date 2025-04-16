@@ -1,7 +1,9 @@
-{ local, pkgs, ... }:
-
+{ local, pkgs, lib, config, ... }:
+let
+    cfg = config.settings.nixos.system;
+in
 {
-    config = {
+    config = lib.mkIf cfg {
         users.users.${local.username} = {
             isNormalUser = true;
             description = "";

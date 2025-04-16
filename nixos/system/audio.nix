@@ -1,5 +1,9 @@
+{ lib, config, ... }:
+let
+    cfg = config.settings.nixos.system;
+in
 {
-    config = {
+    config = lib.mkIf cfg {
         security.rtkit.enable = true;
         services.pipewire = {
             enable = true;

@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
+let
+    cfg = config.settings.nixos.theme;
+in
 {
-    config = {
+    config = lib.mkIf cfg {
         qt = {
             enable = true;
             platformTheme.name = "gtk3";
