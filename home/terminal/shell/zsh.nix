@@ -2,7 +2,7 @@
 
 let
     cfg = config.settings.home.terminal.shell.zsh;
-    cfg_editors = config.settings.home.editors;
+    cfg_editors = config.settings.home.terminal.editors;
     lsd = "${pkgs.lsd}/bin/lsd";
 
     inherit (lib) mkIf;
@@ -15,10 +15,7 @@ in
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
         enableCompletion = true;
-        envExtra = "
-            HOSTNAME=$(hostname)" 
-            + ( mkIf cfg_editors.nvim "MANPAGER='nvim +Man!'" )
-        ;
+        envExtra = "HOSTNAME=$(hostname)";
         shellAliases = {
             top = "htop";
 

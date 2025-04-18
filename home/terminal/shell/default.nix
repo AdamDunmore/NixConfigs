@@ -1,12 +1,23 @@
+{ lib, config, ... }:
+let
+    cfg_editors = config.settings.home.terminal.editors;
+    inherit (lib) mkIf mkMerge;
+in
 {
-  imports = [
-    ./lsd.nix
-    ./git.nix
-    ./starship.nix
-    ./tmux.nix
-    ./yazi.nix
-    ./zellij.nix
-    ./zoxide.nix
-    ./zsh.nix
-  ];
+    config = {
+        home.sessionVariables = mkMerge [
+            { MANPAGER = (mkIf cfg_editors.nvim "nvim +Man!"); } 
+        ];
+    };
+
+    imports = [
+        ./lsd.nix
+        ./git.nix
+        ./starship.nix
+        ./tmux.nix
+        ./yazi.nix
+        ./zellij.nix
+        ./zoxide.nix
+        ./zsh.nix
+    ];
 }
