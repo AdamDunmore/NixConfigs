@@ -1,10 +1,12 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.settings.home.terminal.shell.zsh;
-  lsd = "${pkgs.lsd}/bin/lsd";
+    cfg = config.settings.home.terminal.shell.zsh;
+    cfg_editors = config.settings.home.editors;
+    lsd = "${pkgs.lsd}/bin/lsd";
+
+    inherit (lib) mkIf;
 in
-with lib;
 {
   config = mkIf cfg {
      programs.zsh = {
@@ -14,8 +16,9 @@ with lib;
         syntaxHighlighting.enable = true;
         enableCompletion = true;
         envExtra = "
-        HOSTNAME=$(hostname)
-        ";
+            HOSTNAME=$(hostname)" 
+            + ( mkIf cfg_editors.nvim "MANPAGER='nvim +Man!'" )
+        ;
         shellAliases = {
             top = "htop";
 
@@ -29,7 +32,7 @@ with lib;
             nix-switch = "sudo nixos-rebuild switch --flake";
             nix-test = "sudo nixos-rebuild test --fast --flake";
 
-            emacs = "emacs -nw --init-directory ~/.config/emacs";
+            emacs = mkIf cfg_editors.emacs "emacs -nw --init-directory ~/.config/emacs";
         };
     };
   }; 
