@@ -1,6 +1,7 @@
-{ inputs, config, lib, local, ... }:
+{ inputs, config, lib, local, pkgs, ... }:
 let
     cfg = config.settings.nixos.steamdeck;
+    defaults = config.settings.home.wm.defaults;
     inherit (lib) mkIf;
 in
 {
@@ -18,6 +19,7 @@ in
             };
             steam = {
                 autoStart = true;
+                desktopSession = "${defaults.wm}/bin/${defaults.wm.meta.mainProgram}";
                 enable = true;
                 user = local.username;
             };
