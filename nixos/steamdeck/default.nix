@@ -21,6 +21,7 @@ in
                 enable = true;
                 user = local.username;
             };
+            steamos.useSteamOSConfig = true;
         }; 
     };
 }
