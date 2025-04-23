@@ -12,6 +12,7 @@
         ./display_managers
         ./keyboard
         ./services
+	./steamdeck
         ./system
     ];
 }

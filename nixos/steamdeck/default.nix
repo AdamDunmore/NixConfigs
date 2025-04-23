@@ -4,7 +4,7 @@ let
     inherit (lib) mkIf;
 in
 {
-    imports = [ inputs.jovian.nixosModules.default ];
+    imports = [ inputs.jovian.nixosModules.jovian ];
     config = mkIf cfg.enable {
         jovian = {
             decky-loader = {
@@ -12,14 +12,14 @@ in
                 user = local.username;
 
             };
-            steamdeck = {
+            devices.steamdeck = {
                 enable = true;
                 autoUpdate = true;
             };
             steam = {
                 autoStart = true;
                 enable = true;
-                user = local.user;
+                user = local.username;
             };
         }; 
     };

@@ -105,10 +105,10 @@ in
 
             };
             display_manager = mkOption {
-                type = types.enum [ "greetd" "ly" "sddm" ];
+                type = types.enum [ "greetd" "ly" "sddm" "none" ];
                 default = "greetd";
                 example = "sddm";
-                description = "String value for what display manager to use. Possible options are 'greetd', 'ly' or 'sddm'.";
+                description = "String value for what display manager to use. Possible options are 'greetd', 'ly', 'sddm' or 'none'.";
             };
             keyboard = {
                 enable = falseEnableOption "Enable Configuring Keyboard";
@@ -120,7 +120,10 @@ in
             steamdeck = {
                 enable = mkEnableOption "Enables steamdeck module";
             };
-            system = falseEnableOption "Enables system modules";
+            system = {
+                enable = falseEnableOption "Enables system modules";
+                bootloader = falseEnableOption "Enables bootloader module";
+            };
         };
     };
 }

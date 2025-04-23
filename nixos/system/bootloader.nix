@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-    cfg = config.settings.nixos.system;
+    cfg = config.settings.nixos.system.bootloader;
 in
 {
     config = lib.mkIf cfg {
