@@ -17,5 +17,6 @@ import nixpkgs {
             "electron-27.3.11"
         ];
         allowUnfree = true;
+        allowBroken = true;
     };
 }

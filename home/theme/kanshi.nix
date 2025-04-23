@@ -40,6 +40,34 @@ in
                         }
                     ];
                 }
+
+                {
+                    profile.name = "Steamdeck - Undocked";
+                    profile.outputs = [
+                        {
+                            criteria = "Valve Corporation ANX7530 U 0x00000001";
+                            mode = "800x1280@90Hz";
+                            position = "0,0";
+                        }
+                    ];
+                }
+
+                {
+                    profile.name = "Steamdeck - Docked";
+                    profile.outputs = [
+                        {
+                            criteria = "Valve Corporation ANX7530 U 0x00000001";
+                            mode = "800x1280@90Hz";
+                            position = "0,0";
+                        }
+
+                        {
+                            criteria = "AOC 2460G5 0x0002FE34";
+                            mode = "1920x1080@75Hz";
+                            position = "1920,0";
+                        }
+                    ];
+                }
             ];
         };
     };
