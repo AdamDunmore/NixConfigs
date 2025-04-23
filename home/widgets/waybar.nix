@@ -29,7 +29,8 @@ with lib;
                     };
 
                     "battery" = {
-                        format = "    {capacity}%";
+                        format = "󰁹    {capacity}%";
+                        format-charging = "󰂄    {capacity}%";
                     };
 
                     "network" = {
