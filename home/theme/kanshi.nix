@@ -42,7 +42,7 @@ in
                 }
 
                 {
-                    profile.name = "Steamdeck - Undocked";
+                    profile.name = "Steamdeck Undocked";
                     profile.outputs = [
                         {
                             criteria = "Valve Corporation ANX7530 U 0x00000001";
@@ -53,7 +53,7 @@ in
                 }
 
                 {
-                    profile.name = "Steamdeck - Docked";
+                    profile.name = "Steamdeck Docked";
                     profile.outputs = [
                         {
                             criteria = "Valve Corporation ANX7530 U 0x00000001";
