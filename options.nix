@@ -120,9 +120,10 @@ in
             steamdeck = {
                 enable = mkEnableOption "Enables steamdeck module";
             };
-            system = {
+            system = { 
                 enable = falseEnableOption "Enables system modules";
                 bootloader = falseEnableOption "Enables bootloader module";
+                secrets = falseEnableOption "Enables secrets module";
             };
         };
     };
