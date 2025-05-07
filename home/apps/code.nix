@@ -1,8 +1,8 @@
 { pkgs, lib, config, ... }:
 let
     cfg = config.settings.home.apps.level;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf (cfg == "light" || cfg == "all") {
         programs.vscode = {
