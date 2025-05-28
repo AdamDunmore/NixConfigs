@@ -3,6 +3,7 @@
 let
     cfg = config.settings.home.widgets.waybar;
     colours = import ../../values/colours.nix;
+    locker = config.settings.home.wm.defaults.locker;
 in
 with lib;
 {
@@ -15,10 +16,11 @@ with lib;
                     position = "top";
                     height = 30;
                     spacing = 30;
+                    fixed-center = true;
 
-                    modules-left = [ "sway/workspaces" "custom/waybar-mpris" ];
+                    modules-left = [ "sway/workspaces" "mpris" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "network" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/power_lock" "custom/power_sleep" "custom/power_restart" "custom/power_off" "custom/margin" ];
 
                     "backlight" = {
                       format = "󰃠    {percent}%";
@@ -44,23 +46,51 @@ with lib;
                       format = "{:%A, %d %b %Y} ";
                     };
 
-                    "custom/waybar-mpris" = {
-                        return-type = "json";
-                        exec = "waybar-mpris --position --autofocus";
-                        on-click = "waybar-mpris --send toggle";
-                        on-click-right = "waybar-mpris --send player-next";
-                        on-scroll-up = "waybar-mpris --send player-next";
-                        on-scroll-down = "waybar-mpris --send player-prev";
-                        # on-scroll-up = "waybar-mpris --send next";
-                        # on-scroll-down = "waybar-mpris --send prev";
-                        escape = true;
+                    "mpris"= {
+                        format = "{player_icon}  {dynamic}";
+                        format-paused = "{status_icon}  <i>{dynamic}</i>";
+                        player-icons = {
+                            default = "▶";
+                            mpv = "🎵";
+                        };
+                        status-icons = {
+                            paused = "⏸";
+                        };
+                        ignored-players = ["firefox"];
+                    };
+
+                    "custom/power_off" = {
+                        on-click = "shutdown now";
+                        format = "⏻  ";
+                    };
+
+                    "custom/power_restart" = {
+                        on-click = "reboot";
+                        format = "󰜉  ";
+                    };
+
+                    "custom/power_sleep" = {
+                        on-click = "systemctl suspend";
+                        format = "󰤄  ";
+                    };
+
+                    "custom/power_lock" = {
+                        on-click = "${locker}/bin/${locker.meta.mainProgram}";
+                        format = "  ";
+                    };
+
+                    "custom/margin" = {
+                        format = " ";
                     };
                 };
             };
             style = ''
                 window#waybar {
-                    padding-left: 20;
-                    padding-right: 20;
+                    background-color: ${colours.blue.one};
+                }
+
+                #workspaces button {
+                    transition: background-color 0.2s;
                 }
 
                 #workspaces button.focused {

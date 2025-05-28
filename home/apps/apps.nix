@@ -50,8 +50,6 @@ with lib;
                 wpaperd
                 wofi
                 kanshi
-                xdg-desktop-portal
-                waybar-mpris
 
                 # Gnome
                 nautilus
