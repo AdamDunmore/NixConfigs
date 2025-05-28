@@ -1,6 +1,11 @@
 local lsp_config = require('lspconfig');
 local capabilities = require('blink.cmp').get_lsp_capabilities();
 
+vim.diagnostic.config({
+    signs = true,
+    virtual_text = true
+})
+
 -- Java
 lsp_config.jdtls.setup({
     capabilities = capabilities,
