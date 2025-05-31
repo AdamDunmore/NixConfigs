@@ -9,45 +9,55 @@ with lib;
         programs.wofi = {
             enable = true;
             settings = {
-                allow_images = true;
+                allow_images = false;
                 no_actions = true;
                 show = "drun";
-                height = 300;
-                width = 600;
+                height = 30;
+                # columns = 5;
+                width = "100%";
                 prompt = "";
-                matching = "multi-contains";
                 insensitive = true;
+                hide_scroll = true;
+                matching = "multi-contains";
+                location = 7;
+                dynamic_lines = true;
+                orientation = "horizontal";
             };
-            style = ''
-                window {
-                    font-size: 22px;
-                    font-family: "${font.name}";
+            style = let
+                height = "height: 30px;";
+            in ''
+                * {
+                    all: unset; 
+                }
 
-                    border-radius: 10px;
-                    border-width: 3px;
-                    border-style: solid;
-                    border-color: rgba(0,0,0,0.2);
+                window {
+                    font-size: 10px;
+                    font-family: "${font.name}";
+                    background-color: ${colours.blue.one};
+                }
+
+                #inner-box {
+                    padding: 0px;
                 }
 
                 #entry {
-                    padding: 10px;
                     color: #ffffff;
+                    ${height}
+                    padding: 3px;
                 }
 
-                #entry:selected {
-                    border: none;
+                #entry:selected {        
+                    background-color: ${colours.blue.two};
                 }
 
                 #text{
-                    padding-left: 20px;
+                    padding: 0px;
                 }
 
                 #input{
-                    font-size: 24px;
-                    padding: 10px;
-                    margin: 10px;
-
-                    border-radius: 5px;
+                    padding: 3px;
+                    margin-right: 4px;
+                    margin-left: 4px;
                 }
             '';
         };   
