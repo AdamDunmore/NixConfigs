@@ -51,6 +51,35 @@ vim.api.nvim_set_keymap( --Down
     { noremap = true, silent = true }
 )
 
+vim.api.nvim_set_keymap( --Left
+    'n',
+    '<A-S-Left>',
+    ":vertical resize -10<CR>",
+    { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap( --Up
+    'n',
+    '<A-S-Up>',
+    ":horizontal resize -10<CR>",
+    { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap( --Right
+    'n',
+    '<A-S-Right>',
+    ":vertical resize +10<CR>",
+    { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap( --Down
+    'n',
+    '<A-S-Down>',
+    ":horizontal resize +10<CR>",
+    { noremap = true, silent = true }
+)
+
+
 -- Telescope
 vim.api.nvim_set_keymap(
     'n',

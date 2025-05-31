@@ -13,7 +13,6 @@ with lib;
                 no_actions = true;
                 show = "drun";
                 height = 30;
-                # columns = 5;
                 width = "100%";
                 prompt = "";
                 insensitive = true;
