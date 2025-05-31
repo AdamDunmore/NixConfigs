@@ -1,6 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, colours, ... }:
 let
-    colours = import ../../../values/colours.nix;
     cfg = config.settings.home.wm.hyprland;
 in
 {

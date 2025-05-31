@@ -1,7 +1,6 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, colours, ... }:
 let
     cfg = config.settings.home.wm.sway;
-    colours = import ../../../values/colours.nix;
 in
 {
     config = lib.mkIf cfg.swaylock {

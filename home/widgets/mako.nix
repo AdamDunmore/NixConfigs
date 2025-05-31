@@ -1,8 +1,6 @@
-{ config, lib, ... }:
+{ config, lib, font, colours, ... }:
 let
     cfg = config.settings.home.widgets.mako;
-    colours = import ../../values/colours.nix;
-    font = import ../../values/font.nix;
 in
 with lib;
 {

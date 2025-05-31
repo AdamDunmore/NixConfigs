@@ -52,6 +52,9 @@
 
         pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = local.system; };
         system = local.system;
+
+        colours = import ./values/colours.nix;
+        font = import ./values/font.nix;
     in
     {             
         # TODO fix hm
@@ -92,6 +95,8 @@
                                 inherit host;
                                 inherit inputs;
                                 inherit local;
+                                inherit font;
+                                inherit colours;
                         };
                     };
                 }
@@ -101,6 +106,8 @@
                 inherit host;
                 inherit inputs;
                 inherit local;
+                inherit font;
+                inherit colours;
             };
         });
 

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, font, ... }:
 let
     cfg = config.settings.home.theme;
 in
@@ -14,7 +14,7 @@ in
                 name = "breeze";
             };
             font = {
-                name = "CodeNewRoman";
+                name = font.name;
                 package = pkgs.nerd-fonts.code-new-roman;
             };
         };

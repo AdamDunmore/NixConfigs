@@ -1,8 +1,7 @@
-{ config, lib, ... }:
+{ config, lib, colours, ... }:
 
 let
     cfg = config.settings.home.widgets.waybar;
-    colours = import ../../values/colours.nix;
     locker = config.settings.home.wm.defaults.locker;
 in
 with lib;

@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, font, colours, ... }:
 
 let
     cfg = config.settings.home.widgets.wofi;
@@ -21,7 +21,7 @@ with lib;
             style = ''
                 window {
                     font-size: 22px;
-                    font-family: "CodeNewRoman";
+                    font-family: "${font.name}";
 
                     border-radius: 10px;
                     border-width: 3px;

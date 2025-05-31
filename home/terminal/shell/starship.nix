@@ -1,8 +1,7 @@
-{ lib, config, ... }:
+{ lib, config, colours, ... }:
 
 let
   cfg = config.settings.home.terminal.shell.starship;
-  colours = import ../../../values/colours.nix;
 in
 with lib;
 {

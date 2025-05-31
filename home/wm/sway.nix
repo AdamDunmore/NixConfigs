@@ -1,8 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, colours, ... }:
 
 let
     mod = "Mod4";
-    colours = import ../../values/colours.nix;
     cfg = config.settings.home.wm.sway;
 in
 {
