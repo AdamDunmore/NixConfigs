@@ -31,6 +31,23 @@ in
                 }
 
                 {
+                    profile.name = "PC_Steamdeck_Docked";
+                    profile.outputs = [
+                        {
+                            criteria = "LG Electronics 24EA53 0x01010101";
+                            mode = "1920x1080@60Hz";
+                            position = "0,0";
+                        }
+
+                        {
+                            criteria = "Microstep MSI G323CV DC3M022700075";
+                            mode = "1920x1080@75Hz";
+                            position = "1920,0";
+                        }
+                    ];
+                }
+
+                {
                     profile.name = "Laptop";
                     profile.outputs = [
                         {
