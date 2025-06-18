@@ -11,6 +11,7 @@ in
     };
 
     imports = [
+        ./ai.nix
         ./lsd.nix
         ./git.nix
         ./starship.nix

@@ -6,8 +6,9 @@
             enable = true;
             apps = with pkgs; [
                 steam
-                tidal-hifi
+                firefox
                 discord
+
             ];
         };
     };

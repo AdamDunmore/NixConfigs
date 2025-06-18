@@ -38,6 +38,7 @@ in
                     nvim = falseEnableOption "Enables Nvim";
                 };
                 shell = {
+                    ai = falseEnableOption "Enables ai";
                     lsd = falseEnableOption "Enables lsd";
                     git = falseEnableOption "Enables git";
                     starship = falseEnableOption "Enables starship";

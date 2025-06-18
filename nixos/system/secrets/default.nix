@@ -21,6 +21,10 @@ in
                 sopsFile = ./secrets.yaml;
                 key = "github_pat";
             };
+            openai_key = {
+                sopsFile = ./secrets.yaml;
+                key = "openai_key";
+            };
         };
     };
 }
