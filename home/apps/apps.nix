@@ -103,6 +103,7 @@ with lib;
                 sops
                 pulseaudio
                 playerctl
+                usbutils
 
                 # Languages
                 typescript
