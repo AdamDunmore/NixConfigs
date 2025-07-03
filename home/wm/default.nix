@@ -31,7 +31,6 @@ in
             "${mod}+Shift+C" = "reload";
             "${mod}+l" = "exec ${config.settings.home.wm.defaults.locker}/bin/hyprlock"; #TODO change
             "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"";
-            "${mod}+a" = "exec ${pkgs.ags}/bin/ags -t \"menu\"";
 
             #Modes
             "${mod}+R" = "mode \"resize\"";

@@ -16,6 +16,7 @@
         nix-flatpak.url = "github:gmodena/nix-flatpak";
         mnw.url = "github:Gerg-L/mnw";
         sops-nix.url = "github:Mic92/sops-nix";
+        ags.url = "github:Aylur/ags";
     };
 
     outputs = { ... } @inputs:

@@ -26,33 +26,36 @@ in
                     luajitPackages.luarocks 
                 ];
                	initLua = ''require("main")'';
-                plugins = [ ./. ] ++ (with pkgs.vimPlugins; [
-                    # Navigation #
-                    telescope-nvim
-                    telescope-project-nvim
-                    telescope-file-browser-nvim
+                plugins = {
+                    dev.config.pure = ./.;
+                    start = with pkgs.vimPlugins; [
+                        # Navigation #
+                        telescope-nvim
+                        telescope-project-nvim
+                        telescope-file-browser-nvim
 
-                    # UI #
-                    nui-nvim 
-                    nord-nvim
-                    bufferline-nvim
-                    dashboard-nvim
-                    nvim-tree-lua
-                    noice-nvim
-                    toggleterm-nvim
-                    lualine-nvim
-                    mini-icons
+                        # UI #
+                        nui-nvim 
+                        nord-nvim
+                        bufferline-nvim
+                        dashboard-nvim
+                        nvim-tree-lua
+                        noice-nvim
+                        toggleterm-nvim
+                        lualine-nvim
+                        mini-icons
 
-                    # Code #
-                    nvim-treesitter.withAllGrammars
-                    blink-cmp
-                    luasnip
-                    nvim-lspconfig
-                    nvim-comment
+                        # Code #
+                        nvim-treesitter.withAllGrammars
+                        blink-cmp
+                        luasnip
+                        nvim-lspconfig
+                        nvim-comment
 
-                    # Notes
-                    render-markdown-nvim
-                ]);
+                        # Notes
+                        render-markdown-nvim
+                    ];
+                };
         };
     };
 }

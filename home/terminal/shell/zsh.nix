@@ -19,7 +19,7 @@ in
         shellAliases = {
             top = "htop";
 
-            ls = "${lsd} -l";
+            # ls = "${lsd} -l";
             lst = "${lsd} --tree -l";
 
             cds = "echo \"Disk usage of current dir: $(du . -sh)\"";

@@ -44,7 +44,6 @@ with lib;
                 # Sway
                 wl-clipboard
                 swaysome
-                ags
                 grim
                 slurp
                 wpaperd
