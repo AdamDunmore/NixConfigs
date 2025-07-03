@@ -17,9 +17,9 @@ with lib;
                     spacing = 30;
                     fixed-center = true;
 
-                    modules-left = [ "sway/workspaces" "mpris" ];
+                    modules-left = [ "sway/workspaces" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/power_lock" "custom/power_sleep" "custom/power_restart" "custom/power_off" "custom/margin" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "network" ];
 
                     "backlight" = {
                       format = "󰃠    {percent}%";
@@ -44,44 +44,57 @@ with lib;
                     "clock#date" = {
                       format = "{:%A, %d %b %Y} ";
                     };
-
-                    "mpris"= {
-                        format = "{player_icon}  {dynamic}";
-                        format-paused = "{status_icon}  <i>{dynamic}</i>";
-                        player-icons = {
-                            default = "▶";
-                            mpv = "🎵";
-                        };
-                        status-icons = {
-                            paused = "⏸";
-                        };
-                        ignored-players = ["firefox"];
-                    };
-
-                    "custom/power_off" = {
-                        on-click = "shutdown now";
-                        format = "⏻  ";
-                    };
-
-                    "custom/power_restart" = {
-                        on-click = "reboot";
-                        format = "󰜉  ";
-                    };
-
-                    "custom/power_sleep" = {
-                        on-click = "systemctl suspend";
-                        format = "󰤄  ";
-                    };
-
-                    "custom/power_lock" = {
-                        on-click = "${locker}/bin/${locker.meta.mainProgram}";
-                        format = "  ";
-                    };
-
-                    "custom/margin" = {
-                        format = " ";
-                    };
                 };
+            #     sideBar = {
+            #         layer = "top";
+            #         position = "right";
+            #         width = 10;
+            #         spacing = 30;
+            #         fixed-center = true;
+            #
+            #         modules-left = [ "mpris" ];
+            #         modules-center = [];
+            #         modules-right = [ "custom/power_lock" "custom/power_sleep" "custom/power_restart" "custom/power_off" "custom/margin" ];
+            #
+            #         "mpris"= {
+            #             format = "{player_icon}\n{title}\n{artist}";
+            #             format-paused = "{status_icon}\n{title}\n{artist}\n{player}\n{length}";
+            #             rotate = 1;
+            #             player-icons = {
+            #                 default = "▶";
+            #                 mpv = "🎵";
+            #                 spotify = "";
+            #             };
+            #             status-icons = {
+            #                 paused = "⏸";
+            #             };
+            #             ignored-players = ["firefox"];
+            #         };
+            #
+            #         "custom/power_off" = {
+            #             on-click = "shutdown now";
+            #             format = "⏻  ";
+            #         };
+            #
+            #         "custom/power_restart" = {
+            #             on-click = "reboot";
+            #             format = "󰜉  ";
+            #         };
+            #
+            #         "custom/power_sleep" = {
+            #             on-click = "systemctl suspend";
+            #             format = "󰤄  ";
+            #         };
+            #
+            #         "custom/power_lock" = {
+            #             on-click = "${locker}/bin/${locker.meta.mainProgram}";
+            #             format = "  ";
+            #         };
+            #
+            #         "custom/margin" = {
+            #             format = " ";
+            #         };
+            #     };
             };
             style = ''
                 window#waybar {
