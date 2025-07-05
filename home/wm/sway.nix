@@ -11,6 +11,63 @@ in
             package = pkgs.swayfx;
             checkConfig = false; #Temporary fix for swayfx
             config = {
+                keybindings = {
+                    "${mod}+Return" = "exec ${config.settings.home.wm.defaults.terminal}/bin/${config.settings.home.wm.defaults.terminal.meta.mainProgram}";
+                    "${mod}+Shift+Q" = "kill";
+                    "${mod}+D" = "exec ${pkgs.wofi}/bin/wofi";
+                    "${mod}+Shift+C" = "reload";
+                    "${mod}+l" = "exec ${config.settings.home.wm.defaults.locker}/bin/${config.settings.home.wm.defaults.locker.meta.mainProgram}";
+                    "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"";
+
+                    #Modes
+                    "${mod}+R" = "mode \"resize\"";
+
+                    #Movements
+                    "${mod}+Left" = "focus Left";
+                    "${mod}+Down" = "focus Down";
+                    "${mod}+Up" = "focus Up";
+                    "${mod}+Right" = "focus Right";
+
+                    "${mod}+Shift+Left" = "move Left";
+                    "${mod}+Shift+Down" = "move Down";
+                    "${mod}+Shift+Up" = "move Up";
+                    "${mod}+Shift+Right" = "move Right";
+                    
+                    #Workspaces
+                    "${mod}+1" = "exec ${pkgs.swaysome}/bin/swaysome focus 1";
+                    "${mod}+2" = "exec ${pkgs.swaysome}/bin/swaysome focus 2";
+                    "${mod}+3" = "exec ${pkgs.swaysome}/bin/swaysome focus 3";
+                    "${mod}+4" = "exec ${pkgs.swaysome}/bin/swaysome focus 4";
+                    "${mod}+5" = "exec ${pkgs.swaysome}/bin/swaysome focus 5";
+                    "${mod}+6" = "exec ${pkgs.swaysome}/bin/swaysome focus 6";
+                    "${mod}+7" = "exec ${pkgs.swaysome}/bin/swaysome focus 7";
+                    "${mod}+8" = "exec ${pkgs.swaysome}/bin/swaysome focus 8";
+                    "${mod}+9" = "exec ${pkgs.swaysome}/bin/swaysome focus 9";
+
+                    "${mod}+Shift+1" = "exec ${pkgs.swaysome}/bin/swaysome move 1";
+                    "${mod}+Shift+2" = "exec ${pkgs.swaysome}/bin/swaysome move 2";
+                    "${mod}+Shift+3" = "exec ${pkgs.swaysome}/bin/swaysome move 3";
+                    "${mod}+Shift+4" = "exec ${pkgs.swaysome}/bin/swaysome move 4";
+                    "${mod}+Shift+5" = "exec ${pkgs.swaysome}/bin/swaysome move 5";
+                    "${mod}+Shift+6" = "exec ${pkgs.swaysome}/bin/swaysome move 6";
+                    "${mod}+Shift+7" = "exec ${pkgs.swaysome}/bin/swaysome move 7";
+                    "${mod}+Shift+8" = "exec ${pkgs.swaysome}/bin/swaysome move 8";
+                    "${mod}+Shift+9" = "exec ${pkgs.swaysome}/bin/swaysome move 9";
+
+                    "${mod}+h" = "splith";
+                    "${mod}+v" = "splitv";
+                    "${mod}+f" = "fullscreen";
+                    "${mod}+Shift+f" = "floating toggle";
+
+                    "${mod}+Shift+s" = "move scratchpad";
+                    "${mod}+s" = "scratchpad show";
+
+                    "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+                    "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+                    "XF86AudioMute" = "exec pactl set-sink-volume @DEFAULT_SINK@ 0%";
+                    "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+                    "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+                };
                 # TODO test removing this
                 input = {
                     "*" = {
