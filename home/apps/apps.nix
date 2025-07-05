@@ -25,8 +25,6 @@ with lib;
             home.packages = (with pkgs; [
                 tidal-hifi
                 spicetify-cli
-                brave
-                firefox
                 vscode
                 logseq
                 motrix

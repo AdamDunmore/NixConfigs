@@ -6,7 +6,7 @@ in
 {
     config = mkIf (cfg == "light" || cfg == "all") {
         programs.firefox = {
-
+            enable = true;
         };
     };
 }

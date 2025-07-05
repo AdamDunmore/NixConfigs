@@ -64,9 +64,14 @@ in
 
                     "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
                     "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+                    "Shift+XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +1%";
+                    "Shift+XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -1%";
                     "XF86AudioMute" = "exec pactl set-sink-volume @DEFAULT_SINK@ 0%";
+
                     "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
                     "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+                    "Shift+XF86MonBrightnessUp" = "exec brightnessctl set 1%+";
+                    "Shift+XF86MonBrightnessDown" = "exec brightnessctl set 1%-";
                 };
                 # TODO test removing this
                 input = {
