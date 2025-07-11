@@ -30,8 +30,9 @@ with lib;
                     };
 
                     "battery" = {
-                        format = "󰁹    {capacity}%";
-                        format-charging = "󰂄    {capacity}%";
+                        format = "{icon} {capacity}%";
+                        format-charging = "󰂄 {capacity}%";
+                        format-icons = [ "󰁻" "󰁽" "󰁿" "󰂁" "󰁹" ];
                     };
 
                     "network" = {
