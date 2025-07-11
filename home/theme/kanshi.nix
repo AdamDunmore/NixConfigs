@@ -11,8 +11,8 @@ in
                     profile.name = "PC";
                     profile.outputs = [
                         {
-                            criteria = "LG Electronics 24EA53 0x01010101";
-                            mode = "1920x1080@60Hz";
+                            criteria = "AOC 2460G5 0x0002FE34";
+                            mode = "1920x1080@75Hz";
                             position = "0,0";
                         }
 
@@ -23,8 +23,8 @@ in
                         }
 
                         {
-                            criteria = "AOC 2460G5 0x0002FE34";
-                            mode = "1920x1080@75Hz";
+                            criteria = "LG Electronics 24EA53 0x01010101";
+                            mode = "1920x1080@60Hz";
                             position = "3840,0";
                         }
                     ];
