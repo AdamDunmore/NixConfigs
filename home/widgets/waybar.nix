@@ -26,7 +26,8 @@ with lib;
                     };
 
                     "pulseaudio" = {
-                      format = "   {volume}%";
+                        format = "   {volume}%";
+                        on-click = "~/.scripts/sinkcycle.sh";
                     };
 
                     "battery" = {
