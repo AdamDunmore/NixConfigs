@@ -7,15 +7,15 @@ const { TOP, RIGHT, BOTTOM } = Astal.WindowAnchor
 
 export default function Sidebar(){
     return (
-        <window visible name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
+        <window visible={false} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
             <box class="power_box" valign="2">
                 <button onClicked={(self) => { execAsync("hyprlock") }} class="power_button">
                     <label label=""/>
                 </button>
-                <button onclicked={(self) => { execasync("systemctl suspend") }} class="power_button">
+                <button onclicked={(self) => { execAsync("systemctl suspend") }} class="power_button">
                     <label label="󰤄"/>
                 </button>
-                <button onclicked={(self) => { execasync("reboot") }} class="power_button">
+                <button onclicked={(self) => { execAsync("reboot") }} class="power_button">
                     <label label="󰜉"/>
                 </button>
                 <button onClicked={(self) => { execAsync("shutdown now") }} class="power_button">
