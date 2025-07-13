@@ -3,9 +3,10 @@
 let
     mod = "Mod4";
     cfg = config.settings.home.wm.sway;
+    inherit (lib) mkIf;
 in
 {
-    config = lib.mkIf cfg.enable { 
+    config = mkIf cfg.enable { 
         wayland.windowManager.sway = {
             enable = true;
             package = pkgs.swayfx;
@@ -18,6 +19,7 @@ in
                     "${mod}+Shift+C" = "reload";
                     "${mod}+l" = "exec ${config.settings.home.wm.defaults.locker}/bin/${config.settings.home.wm.defaults.locker.meta.mainProgram}";
                     "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"";
+                    "${mod}+q" = mkIf config.settings.home.widgets.ags "exec ags toggle sidebar";
 
                     #Modes
                     "${mod}+R" = "mode \"resize\"";
@@ -107,6 +109,7 @@ in
                     { command = "${pkgs.waybar}/bin/waybar"; }
                     { command = "${pkgs.wpaperd}/bin/wpaperd"; }
                     { command = "${pkgs.kanshi}/bin/kanshi"; }
+                    { command = "ags run"; }
 
                     { command = "${pkgs.swaysome}/bin/swaysome init 1"; }
                 ];

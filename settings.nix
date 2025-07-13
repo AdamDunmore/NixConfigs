@@ -10,6 +10,7 @@
                 shell.zellij = true;
             };
             widgets = {
+                ags = true;
                 mako = true;
                 waybar = true;
                 wofi = true;

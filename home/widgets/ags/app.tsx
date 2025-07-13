@@ -3,10 +3,13 @@ import { Astal } from "ags/gtk4"
 
 import Sidebar from "./sidebar"
 
+import SidebarCSS from "./sidebar.scss"
+
 app.start({
-  main() {
-    return (
-       Sidebar() 
-    )
-  },
+    css: SidebarCSS, 
+    main() {
+        return (
+            Sidebar() 
+        )
+    },
 })

@@ -55,6 +55,7 @@ in
             };
             theme = falseEnableOption "Enables theme modules";
             widgets = {
+                ags = mkEnableOption "Enables ags";
                 mako = mkEnableOption "Enables Mako";
                 waybar = mkEnableOption "Enables Waybar";
                 wofi = mkEnableOption "Enables Wofi";
