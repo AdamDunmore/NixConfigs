@@ -10,6 +10,9 @@ in
         programs.ags = {
             enable = true;
             configDir = ./.;
+            extraPackages = with pkgs.astal; [
+                mpris
+            ];
         };
     };
 }
