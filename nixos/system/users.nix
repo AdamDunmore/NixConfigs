@@ -7,7 +7,7 @@ in
         users.users.${local.username} = {
             isNormalUser = true;
             description = "";
-            extraGroups = [ "networkmanager" "wheel" "audio" "dialout"];
+            extraGroups = [ "networkmanager" "wheel" "audio" "dialout" "vboxusers" ];
             shell = pkgs.zsh;
             ignoreShellProgramCheck = true;
         };

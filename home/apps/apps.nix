@@ -16,7 +16,6 @@ with lib;
                 arduino-ide
                 obs-studio
                 godot_4
-                distrobox
                 parsec-bin
             ]);
         })

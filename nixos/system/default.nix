@@ -7,5 +7,6 @@
         ./secrets
         ./timezone.nix
         ./users.nix
+        ./virtualisation.nix
     ]; 
 }
