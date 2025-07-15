@@ -120,6 +120,7 @@ with lib;
                 pkg-config
                 pango
                 binutils 
+                libnotify
             ]);
         })
     ];

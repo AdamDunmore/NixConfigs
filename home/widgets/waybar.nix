@@ -19,10 +19,11 @@ with lib;
 
                     modules-left = [ "sway/workspaces" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "network" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/margin" ];
 
                     "backlight" = {
-                      format = "󰃠    {percent}%";
+                        format = "󰃠    {percent}%";
+                        tooltip = false;
                     };
 
                     "pulseaudio" = {
@@ -34,30 +35,29 @@ with lib;
                         format = "{icon} {capacity}%";
                         format-charging = "󰂄 {capacity}%";
                         format-icons = [ "󰁻" "󰁽" "󰁿" "󰂁" "󰁹" ];
+                        on-click = "~/.scripts/powercycle.sh";
+
                     };
 
                     "network" = {
-                      format-wifi = "i    {signalStrength}%";
+                        format-wifi = "i    {signalStrength}%";
+                        tooltip-format = "{ifname} {frequency} {bandwidthDownBytes}/{bandwidthUpBytes}";
                     };
 
                     "clock" = {
-                      format = "{:%H:%M}";
+                        format = "{:%H:%M}";
+                        tooltip-format = "{:%H:%M:%S}";
                     };
                     "clock#date" = {
-                      format = "{:%A, %d %b %Y} ";
+                        format = "{:%A, %d %b %Y} ";
+                        tooltop = false;
+                    };
+
+                    "custom/margin" = {
+                        format = " ";
                     };
                 };
-            #     sideBar = {
-            #         layer = "top";
-            #         position = "right";
-            #         width = 10;
-            #         spacing = 30;
-            #         fixed-center = true;
-            #
-            #         modules-left = [ "mpris" ];
-            #         modules-center = [];
-            #         modules-right = [ "custom/power_lock" "custom/power_sleep" "custom/power_restart" "custom/power_off" "custom/margin" ];
-            #
+
             #         "mpris"= {
             #             format = "{player_icon}\n{title}\n{artist}";
             #             format-paused = "{status_icon}\n{title}\n{artist}\n{player}\n{length}";
@@ -73,30 +73,7 @@ with lib;
             #             ignored-players = ["firefox"];
             #         };
             #
-            #         "custom/power_off" = {
-            #             on-click = "shutdown now";
-            #             format = "⏻  ";
-            #         };
-            #
-            #         "custom/power_restart" = {
-            #             on-click = "reboot";
-            #             format = "󰜉  ";
-            #         };
-            #
-            #         "custom/power_sleep" = {
-            #             on-click = "systemctl suspend";
-            #             format = "󰤄  ";
-            #         };
-            #
-            #         "custom/power_lock" = {
-            #             on-click = "${locker}/bin/${locker.meta.mainProgram}";
-            #             format = "  ";
-            #         };
-            #
-            #         "custom/margin" = {
-            #             format = " ";
-            #         };
-            #     };
+
             };
             style = ''
                 window#waybar {
