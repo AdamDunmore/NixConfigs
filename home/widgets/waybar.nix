@@ -41,7 +41,7 @@ with lib;
 
                     "network" = {
                         format-wifi = "i    {signalStrength}%";
-                        tooltip-format = "{ifname} {frequency} {bandwidthDownBytes}/{bandwidthUpBytes}";
+                        tooltip-format = "{essid} {frequency}GHz {bandwidthDownBytes}:{bandwidthUpBytes}";
                     };
 
                     "clock" = {
