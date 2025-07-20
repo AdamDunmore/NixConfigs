@@ -32,6 +32,7 @@ in
 
                 emacs = mkIf cfg_editors.emacs "emacs -nw --init-directory ~/.config/emacs";
                 d-music = mkIf cfg_apps.music "rip -f $HOME/Music search tidal track";
+                d-music-a = mkIf cfg_apps.music "rip -f $HOME/Music lastfm";
             };
         };
     }; 
