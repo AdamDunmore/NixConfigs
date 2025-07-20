@@ -7,5 +7,6 @@
         ./firefox.nix
         ./flatpak.nix
         ./spicetify.nix
+        ./music.nix
     ];
 }

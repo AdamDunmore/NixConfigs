@@ -1,23 +1,18 @@
 import Mpris from "gi://AstalMpris";
 
+const mpris = Mpris.Mpris;
+
 export default class UMpris {
-    mpris: Mpris.Mpris; 
-    players: Mpris.Player[]; 
-
-    constructor(){
-        this.mpris = new Mpris.Mpris();
-        this.players = this.mpris.players;
-    }
-
-    updatePlayers() : void {
-        this.players = this.mpris.players;
-    }
-
-    getPlayerNames() : String[] {
+    static getPlayerNames() : String[] {
+        const players = mpris.get_players();
         const names : String[] = [];
-        for(let x = 0; x < this.players.length; x++) {
-            names.push(this.players[x].get_identity())
+        for(let x = 0; x < players.length; x++) {
+            names.push(players[x].get_identity())
         }
         return names; 
+    }
+
+    static getPlayers(){
+        return mpris.players;
     }
 }

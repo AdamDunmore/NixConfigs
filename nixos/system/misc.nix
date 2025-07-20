@@ -38,22 +38,24 @@ in
         # Man pages
         documentation.dev.enable = true;
 
-        # Enables xdg portals
-        xdg.portal = {
-            enable = true;
-            xdgOpenUsePortal = true;
-            wlr.enable = true;
-            config.common.default = "*";
-            extraPortals = with pkgs; [ 
-                xdg-desktop-portal-gtk
-                xdg-desktop-portal-wlr
-            ];
-        };
-
         # Enables Dconf
         programs.dconf.enable = true;
 
         # Enables flakes
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+        #XDG Setup
+        xdg = {
+            portal = {
+                enable = true;
+                xdgOpenUsePortal = true;
+                wlr.enable = true;
+                config.common.default = "*";
+                extraPortals = with pkgs; [ 
+                    xdg-desktop-portal-gtk
+                    xdg-desktop-portal-wlr
+                ];
+            };
+        };
     };
 }

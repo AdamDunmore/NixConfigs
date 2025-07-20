@@ -5,6 +5,11 @@ with lib;
         home.username = mkForce local.username; 
         home.homeDirectory = mkForce "/home/${local.username}";
         home.stateVersion = mkForce local.stable_version;
+
+        xdg.userDirs = {
+            enable = true;
+            createDirectories = true;
+        };
     };
 
     imports = [
