@@ -40,13 +40,13 @@
             prop: (kind: Property(Title),
                 default: (kind: Text("Unknown"))
             ),
-            width: "35%",
+            width: "50%",
         ),
         (
             prop: (kind: Property(Album), style: (fg: "white"),
                 default: (kind: Text("Unknown Album"), style: (fg: "white"))
             ),
-            width: "30%",
+            width: "15%",
         ),
         (
             prop: (kind: Property(Duration),
