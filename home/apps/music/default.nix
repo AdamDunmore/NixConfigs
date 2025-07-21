@@ -25,9 +25,10 @@ in
         home.packages = [ pkgs.streamrip ];   
 
         programs.zsh.shellAliases = {
-            d-music = "rip -f $HOME/Music -q 3 search tidal track";
-            d-music-a = "rip -f $HOME/Music -q 3 search tidal";
-            d-music-l = "rip -f $HOME/Music -q 3 lastfm";
+            arip = "rip -f $HOME/Music - q 4 -c FLAC"
+            d-music = "arip search tidal track";
+            d-music-a = "arip search tidal";
+            d-music-l = "arip lastfm";
         };
     };
 }
