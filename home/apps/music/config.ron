@@ -1,0 +1,117 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    theme: Some("nord_mini"),
+    on_song_change: None,
+    volume_step: 5,
+    scrolloff: 5,
+    wrap_navigation: true,
+    enable_mouse: true,
+    enable_config_hot_reload: true,
+    album_art: (
+        method: Auto,
+        max_size_px: (width: 1200, height: 1200),
+        disabled_protocols: ["http://", "https://"],
+        vertical_align: Top,
+        horizontal_align: Center,
+    ),
+    keybinds: (
+        global: {
+            ":":       CommandMode,
+            ",":       VolumeDown,
+            ".":       VolumeUp,
+            "<Tab>":   NextTab,
+            "<S-Tab>": PreviousTab,
+            "1":       SwitchToTab("Queue"),
+            "2":       SwitchToTab("Playlists"),
+            "3":       SwitchToTab("Directories"),
+            "4":       SwitchToTab("Search"),
+            "Q":   Quit,
+            "p":       TogglePause,
+            "z":       ToggleRepeat,
+            "x":       ToggleRandom,
+            "f":       SeekForward,
+            "b":       SeekBack,
+            "F":       NextTrack,
+            "B":       PreviousTrack,
+            "?":       ShowHelp,
+            "u":       Update,
+        },
+        navigation: {
+            "k":         Up,
+            "j":         Down,
+            "h":         Left,
+            "l":         Right,
+            "J":         MoveDown,
+            "K":         MoveUp,
+            "<Up>":      Up,
+            "<Down>":    Down,
+            "<Left>":    Left,
+            "<Right>":   Right,
+            "<C-k>":     PaneUp,
+            "<C-j>":     PaneDown,
+            "<C-h>":     PaneLeft,
+            "<C-l>":     PaneRight,
+            "a":         Add,
+            "A":         AddAll,
+            "r":         Rename,
+            "g":         Top,
+            "G":         Bottom,
+            "<Space>":   Select,
+            "<C-Space>": InvertSelection,
+            "<CR>":      Confirm,
+            "i":         FocusInput,
+            "/":         EnterSearch,
+            "<Esc>":     Close,
+            "D":         Delete,
+        },
+        queue: {
+            "D":       DeleteAll,
+            "<CR>":    Play,
+            "<C-s>":   Save,
+            "a":       AddToPlaylist,
+            "d":       Delete,
+            "C":       JumpToCurrent,
+        },
+    ),
+    search: (
+        case_sensitive: false,
+        mode: Contains,
+        tags: [
+            (value: "any",         label: "Any Tag"),
+            (value: "artist",      label: "Artist"),
+            (value: "title",       label: "Title"),
+            (value: "genre",       label: "Genre"),
+        ],
+    ),
+    artists: (
+        album_display_mode: NameOnly,
+        album_sort_by: Name,
+    ),
+    tabs: [
+        (
+            name: "Queue",
+            pane: Split(
+                direction: Horizontal,
+                panes: [(size: "40%", pane: Pane(AlbumArt)), (size: "60%", pane: Pane(Queue))],
+            ),
+
+        ),
+
+        (
+            name: "Playlists",
+            pane: Pane(Playlists),
+        ),
+
+        (
+            name: "Directories",
+            pane: Pane(Directories),
+        ),
+
+        (
+            name: "Search",
+            pane: Pane(Search),
+        ),
+    ],
+)
