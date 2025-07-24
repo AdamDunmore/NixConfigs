@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 sinks=($(pactl list short sinks | cut -f1))
 current_sink=$(pactl info | grep "Default Sink" | awk '{print $3}')

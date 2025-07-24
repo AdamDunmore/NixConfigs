@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 killall steam
 
 while [ "$(pgrep steam)" != "" ]; do

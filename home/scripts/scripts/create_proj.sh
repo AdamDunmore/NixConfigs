@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # A script to build a project given an argument for a languge
 if [ "$1" = "" ]; then # Could maybe move to an input call
