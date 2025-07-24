@@ -22,10 +22,13 @@ in
             source = ./.;
         };
 
-        home.packages = [ pkgs.streamrip ];   
+        home.packages = with pkgs; [ 
+            streamrip
+            ffmpeg_6
+        ];   
 
         programs.zsh.shellAliases = {
-            arip = "rip -q 4 -f $HOME/Music -c FLAC";
+            arip = "rip -q 2 -f $HOME/Music -c FLAC";
             d-music = "arip search tidal track";
             d-music-a = "arip search tidal";
             d-music-l = "arip lastfm";
