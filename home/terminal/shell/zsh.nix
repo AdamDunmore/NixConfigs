@@ -26,6 +26,8 @@ in
                 cds = "echo \"Disk usage of current dir: $(du . -sh)\"";
 
                 ze = "zellij options --attach-to-session=true --session-name=main"; 
+
+                sync-dir = "${pkgs.rsync}/bin/rsync -Pcauv";
         
                 nix-switch = "sudo nixos-rebuild switch --flake";
                 nix-test = "sudo nixos-rebuild test --fast --flake";
