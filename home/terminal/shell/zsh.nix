@@ -27,7 +27,7 @@ in
 
                 ze = "zellij options --attach-to-session=true --session-name=main"; 
 
-                sync-dir = "${pkgs.rsync}/bin/rsync -Pcauv";
+                sync-dir = "${pkgs.rsync}/bin/rsync -Pauv --delete";
         
                 nix-switch = "sudo nixos-rebuild switch --flake";
                 nix-test = "sudo nixos-rebuild test --fast --flake";
