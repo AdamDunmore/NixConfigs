@@ -1,4 +1,4 @@
-{ config, lib, colours, ... }:
+{ config, pkgs, lib, colours, ... }:
 
 let
     cfg = config.settings.home.widgets.waybar;

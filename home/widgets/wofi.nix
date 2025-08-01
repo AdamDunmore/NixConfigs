@@ -1,4 +1,4 @@
-{ lib, config, font, colours, ... }:
+{ lib, config, pkgs, font, colours, ... }:
 
 let
     cfg = config.settings.home.widgets.wofi;
@@ -6,6 +6,12 @@ in
 with lib;
 {
     config = mkIf cfg {
+        home.packages = [ pkgs.bzmenu ];
+
+        programs.zsh.shellAliases = {
+            btwofi = "bzmenu -s 2 --launcher custom --launcher-command \"wofi --show=dmenu\"";
+        };
+
         programs.wofi = {
             enable = true;
             settings = {
@@ -22,9 +28,7 @@ with lib;
                 dynamic_lines = true;
                 orientation = "horizontal";
             };
-            style = let
-                height = "height: 30px;";
-            in ''
+            style = ''
                 * {
                     all: unset; 
                 }
@@ -41,7 +45,6 @@ with lib;
 
                 #entry {
                     color: #ffffff;
-                    ${height}
                     padding: 3px;
                 }
 
@@ -50,7 +53,7 @@ with lib;
                 }
 
                 #text{
-                    padding: 0px;
+                    padding: 2px;
                 }
 
                 #input{
