@@ -27,7 +27,7 @@ in
             ffmpeg_6
         ];   
 
-        programs.zsh.shellAliases = {
+        home.shellAliases = {
             arip = "rip -q 2 -f $HOME/Music -c FLAC";
             d-music = "arip search tidal track";
             d-music-a = "arip search tidal";

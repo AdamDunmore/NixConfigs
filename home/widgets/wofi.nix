@@ -8,7 +8,7 @@ with lib;
     config = mkIf cfg {
         home.packages = [ pkgs.bzmenu ];
 
-        programs.zsh.shellAliases = {
+        home.shellAliases = {
             btwofi = "bzmenu -s 2 --launcher custom --launcher-command \"wofi --show=dmenu\"";
         };
 
