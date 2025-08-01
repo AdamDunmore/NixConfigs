@@ -6,11 +6,15 @@ in
 with lib;
 {
     config = mkIf cfg {
-        home.packages = [ pkgs.bzmenu ];
-
-        home.shellAliases = {
-            btwofi = "bzmenu -s 2 --launcher custom --launcher-command \"wofi --show=dmenu\"";
-        };
+        home.packages = [ 
+            pkgs.bzmenu 
+            (pkgs.writeShellApplication { 
+                name = "btwofi";
+                text = ''
+                    bzmenu -s 2 --launcher custom --launcher-command "wofi --show=dmenu"
+                '';
+            })
+        ];
 
         programs.wofi = {
             enable = true;

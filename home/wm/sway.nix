@@ -20,6 +20,7 @@ in
                     "${mod}+l" = "exec ${config.settings.home.wm.defaults.locker}/bin/${config.settings.home.wm.defaults.locker.meta.mainProgram}";
                     "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"";
                     "${mod}+q" = mkIf config.settings.home.widgets.ags "exec ags toggle sidebar";
+                    "${mod}+b" = "exec btwofi";
 
                     #Modes
                     "${mod}+R" = "mode \"resize\"";
