@@ -16,6 +16,7 @@ in
                 lst = "${lsd} --tree -l";
 
                 cds = "echo \"Disk usage of current dir: $(du . -sh)\"";
+                copy-pat = "wl-copy $(sudo cat ~/pat | cut -c1-40)";
 
                 ze = "zellij options --attach-to-session=true --session-name=main"; 
 
