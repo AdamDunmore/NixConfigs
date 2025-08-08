@@ -14,6 +14,10 @@ in
 
         # Enable networking
         networking.networkmanager.enable = true;
+        hardware.wirelessRegulatoryDatabase = true;
+        boot.extraModprobeConfig = ''
+            options cfg80211 ieee80211_regdom="GB"
+        '';
 
         # Downloading Nerd Font
         fonts.packages = with pkgs; [
