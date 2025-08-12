@@ -21,8 +21,8 @@ in
                 };
 
                 folders = {
-                    "University" = {
-                        path = "/home/${local.username}/Documents/Data";
+                    "Music" = {
+                        path = "/home/${local.username}/Music";
                         devices = [ "desktop" "laptop" ]; #"server"
                         ignorePerms = false;
                     };

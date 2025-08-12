@@ -32,7 +32,7 @@
                 custom_layout = true;
             };
             services = {
-                syncthing = false;
+                syncthing = true;
                 tailscale = true;
             };
         };
