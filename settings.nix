@@ -31,7 +31,10 @@
                 enable = true;
                 custom_layout = true;
             };
-            #services.syncthing = true;
+            services = {
+                syncthing = false;
+                tailscale = true;
+            };
         };
     };
 }
