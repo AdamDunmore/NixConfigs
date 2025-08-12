@@ -87,6 +87,10 @@ with lib;
                 #workspaces button.focused {
                     background-color: ${colours.blue.two};
                 }
+
+                #workspaces button.urgent {
+                    background-color: ${colours.blue.three};
+                }
             '';
         };     
     };
