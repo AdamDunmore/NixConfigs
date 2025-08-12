@@ -25,6 +25,11 @@ in
                 sopsFile = ./secrets.yaml;
                 key = "openai_key";
             };
+
+            ts_key = {
+                sopsFile = ./secrets.yaml;
+                key = "ts_key";
+            };
         };
     };
 }

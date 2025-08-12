@@ -29,6 +29,7 @@ in
             };
             sessionVariables = mkMerge [
                 { MANPAGER = (mkIf cfg_editors.nvim "nvim +Man!"); } 
+                { SOPS_AGE_KEY_FILE = "/etc/age.key"; }
             ];
         };
     };

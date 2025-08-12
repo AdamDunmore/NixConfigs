@@ -119,6 +119,7 @@ in
             };
             services = {
                 syncthing = mkEnableOption "Enable Syncthing";
+                tailscale = mkEnableOption "Enable Tailscale";
             };
             steamdeck = {
                 enable = mkEnableOption "Enables steamdeck module";
