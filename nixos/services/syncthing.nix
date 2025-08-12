@@ -17,7 +17,7 @@ in
                 devices = {
                     # "server" = { id = ""; };
                     "desktop" = { id = "BUUBAHB-J32JMCM-XMM6TA5-L3RT7IK-73NZNID-3K3VSIQ-GOWRST2-CUSVJAO"; };
-                    "laptop" = { id = "3QDOA7N-HNVYBEV-WHCA6EX-KSSL6O4-ECRELZ7-YVG2CKI-OTZ3AID-GZ2LMAL"; };
+                    "laptop" = { id = "KIPS7XQ-OJUQDR7-QYSLXWJ-YMOM7NZ-H7PNGSK-V323JHN-EUEO7U2-MP43WQZ"; };
                 };
 
                 folders = {
