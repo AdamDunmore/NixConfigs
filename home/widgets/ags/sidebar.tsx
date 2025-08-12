@@ -1,5 +1,4 @@
 import { Astal } from "ags/gtk4"
-import { bind } from "astal"
 import Mpris from "gi://AstalMpris";
 import { createState } from "ags"
 import app from "ags/gtk4/app"
@@ -26,9 +25,10 @@ export default function Sidebar(){
                      //   </box>
                     //))
                         }
-                    { bind(mpris, "players").as(players => (
-                        <label label={players[0].identity}/>
-                    )) }
+                    { //bind(mpris, "players").as(players => (
+                      //  <label label={players[0].identity}/>
+                    //)) 
+                    }
                 </box>
                 <box vexpand={true} class="spacer" />
                 <box class="power_box" valign={2}>
