@@ -9,6 +9,14 @@
 
         hardware.framework.enableKmod = true;
 
+        # Locks regulatory code to GB
+        boot.kernelParams = [
+          "cfg80211_ieee80211_regdom=GB"
+          "cfg80211_reg_ignore_hints=1"
+        ];
+
+        networking.networkmanager.settings.main.no-auto-default = true;
+
         # Sets up fprint
         services.fprintd = {
             enable = true;
