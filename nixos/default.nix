@@ -1,4 +1,4 @@
-{ local, host, ... }:
+{ local, host, config, ... }:
 
 {
     system.stateVersion = local.stable_version;

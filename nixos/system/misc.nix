@@ -61,5 +61,14 @@ in
                 ];
             };
         };
+
+        # Music scrobbling
+        services.mpdscribble = {
+            enable = true;
+            endpoints."last.fm" = {
+                passwordFile = config.sops.secrets.lastfm_pass.path;                
+                username = "SkinnySheev";
+            };
+        };
     };
 }

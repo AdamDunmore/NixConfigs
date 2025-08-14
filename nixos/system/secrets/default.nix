@@ -30,6 +30,12 @@ in
                 sopsFile = ./secrets.yaml;
                 key = "ts_key";
             };
+
+            lastfm_pass = {
+                sopsFile = ./secrets.yaml;
+                key = "lastfm_pass";
+            };
+
         };
     };
 }
