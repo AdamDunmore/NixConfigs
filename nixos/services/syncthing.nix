@@ -27,6 +27,12 @@ in
                         devices = [ "desktop" "laptop" "phone" ]; #"server"
                         ignorePerms = false;
                     };
+
+                    "Documents" = {
+                        path = "/home/${local.username}/Documents";
+                        devices = [ "desktop" "laptop" ]; #"server"
+                        ignorePerms = false;
+                    };
                 };
             };
         };
