@@ -12,6 +12,9 @@ in
             configDir = ./.;
             extraPackages = with pkgs.astal; [
                 mpris
+                io
+                gjs
+                astal4
             ];
         };
     };

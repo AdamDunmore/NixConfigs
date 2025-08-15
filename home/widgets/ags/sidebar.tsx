@@ -25,9 +25,9 @@ export default function Sidebar(){
                      //   </box>
                     //))
                         }
-                    { //bind(mpris, "players").as(players => (
-                      //  <label label={players[0].identity}/>
-                    //)) 
+                    { // bind(mpris, "players").as(players => (
+                      //   <label label={players[0].identity}/>
+                      // )) 
                     }
                 </box>
                 <box vexpand={true} class="spacer" />
