@@ -25,6 +25,7 @@ in
                 folders = {
                     "Music" = {
                         path = "/home/${local.username}/Music";
+                        type = "receiveonly";
                         devices = [ "desktop" "laptop" "phone" "server" ];
                         ignorePerms = false;
                     };
