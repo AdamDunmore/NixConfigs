@@ -24,13 +24,15 @@ in
 
                 folders = {
                     "Music" = {
+                        id = "7us1i-1qu93";
                         path = "/home/${local.username}/Music";
                         type = "receiveonly";
-                        devices = [ "desktop" "laptop" "phone" "server" ];
+                        devices = [ "server" ];
                         ignorePerms = false;
                     };
 
                     "Documents" = {
+                        id = "Documents";
                         path = "/home/${local.username}/Documents";
                         devices = [ "desktop" "laptop" "server" ];
                         ignorePerms = false;
