@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-    config.settings = {
+    config.settings = lib.mkDefault {
         home = {
             apps.level = "light";
             terminal = {

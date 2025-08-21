@@ -26,6 +26,7 @@
         hosts = [
             "laptop"
             "desktop"
+	    "server"
             "steamdeck"
         ];
 
