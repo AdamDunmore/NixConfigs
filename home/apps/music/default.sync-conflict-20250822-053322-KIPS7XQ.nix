@@ -7,7 +7,6 @@ in
     config = mkIf cfg {
         services.mpd = {
             enable = true;
-            musicDirectory = "~/Music";
             extraConfig = ''
                 audio_output {
                     type "pulse"
