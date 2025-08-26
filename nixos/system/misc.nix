@@ -1,88 +1,89 @@
 { pkgs, lib, config, ... }:
 let
     cfg = config.settings.nixos.system.enable;
-    inherit (lib) mkIf;
+    cosmic_cfg = config.settings.home.wm.cosmic;
+    inherit (lib) mkIf mkMerge;
 in
 {
-    config = mkIf cfg {
-        # Services (Mainly for AGS)
-        services = {
-            libinput.enable = true;
-            printing.enable = true;
-            power-profiles-daemon.enable = true;
-            gvfs.enable = true;
-        };
+    config = mkMerge [
+        ( mkIf cfg { 
+            # Services (Mainly for AGS)
+            services = {
+                libinput.enable = true;
+                printing.enable = true;
+                power-profiles-daemon.enable = true;
+                gvfs.enable = true;
+            };
 
-        # Enable networking
-        networking.networkmanager.enable = true;
-        hardware.wirelessRegulatoryDatabase = true;
-        boot.extraModprobeConfig = ''
-            options cfg80211 ieee80211_regdom="GB"
-        '';
+            # Enable networking
+            networking.networkmanager.enable = true;
+            hardware.wirelessRegulatoryDatabase = true;
+            boot.extraModprobeConfig = ''
+                options cfg80211 ieee80211_regdom="GB"
+            '';
 
-        # Downloading Nerd Font
-        fonts.packages = with pkgs; [
-            nerd-fonts.code-new-roman
-        ];
+            # Downloading Nerd Font
+            fonts.packages = with pkgs; [
+                nerd-fonts.code-new-roman
+            ];
 
 
-        #Enables Flatpak
-        services.flatpak.enable = true;
+            #Enables Flatpak
+            services.flatpak.enable = true;
 
-        #Enables Hyprlock
-        security.polkit.enable = true;
-        security.pam.services.hyprlock = {};
-        security.pam.services.swaylock = {};
+            #Enables Hyprlock
+            security.polkit.enable = true;
+            security.pam.services.hyprlock = {};
+            security.pam.services.swaylock = {};
 
-        # Garbage Collection
-        nix.gc = {
-            automatic = true;
-            options = "--delete-older-than 30d";
-        };
+            # Garbage Collection
+            nix.gc = {
+                automatic = true;
+                options = "--delete-older-than 30d";
+            };
 
-        # Man pages
-        documentation.dev.enable = true;
+            # Man pages
+            documentation.dev.enable = true;
 
-        # Enables Dconf
-        programs.dconf.enable = true;
+            # Enables Dconf
+            programs.dconf.enable = true;
 
-        # Enables flakes
-        nix.settings.experimental-features = [ "nix-command" "flakes" ];
+            # Enables flakes
+            nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-        #XDG Setup
-        xdg = {
-            portal = {
+            #XDG Setup
+            xdg = {
+                portal = {
+                    enable = true;
+                    xdgOpenUsePortal = true;
+                    wlr.enable = true;
+                    config.common.default = "*";
+                    extraPortals = with pkgs; [ 
+                        xdg-desktop-portal-gtk
+                        xdg-desktop-portal-wlr
+                    ];
+                };
+            };
+
+            # Music scrobbling
+            services.mpdscribble = mkIf config.settings.home.apps.music {
                 enable = true;
-                xdgOpenUsePortal = true;
-                wlr.enable = true;
-                config.common.default = "*";
-                extraPortals = with pkgs; [ 
-                    xdg-desktop-portal-gtk
-                    xdg-desktop-portal-wlr
-                ];
+                endpoints."last.fm" = {
+                    passwordFile = config.sops.secrets.lastfm_pass.path;                
+                    username = "SkinnySheev";
+                };
             };
-        };
-
-        # Music scrobbling
-        services.mpdscribble = mkIf config.settings.home.apps.music {
-            enable = true;
-            endpoints."last.fm" = {
-                passwordFile = config.sops.secrets.lastfm_pass.path;                
-                username = "SkinnySheev";
-            };
-        };
+        } )
         
-        # Enables Cosmic
-        services.desktopManager = let
-            l_cfg = config.settings.home.wm.cosmic;
-        in {
-            cosmic = mkIf l_cfg.enable {
+        ( mkIf cosmic_cfg.enable {
+            services.desktopManager.cosmic = {
                 enable = true;
                 xwayland.enable = true;
             };
-            cosmic-greeter = mkIf l_cfg.cosmic-greeter {
-                enable = true;
-            };
-        };
-    };
+        } ) 
+
+        ( mkIf cosmic_cfg.cosmic-greeter {
+            services.displayManager.cosmic-greeter.enable = true;
+        } ) 
+    ];
 }
