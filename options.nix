@@ -85,6 +85,10 @@ in
                     };
                 };
 
+                cosmic = {
+                    enable = mkEnableOption "Enables Cosmic";
+                    cosmic-greeter = mkEnableOption "Enables Cosmic Greeter";
+                };
                 hyprland = {
                     enable = mkEnableOption "Enables Hyprland";
                     hyprlock = mkEnableOption "Enables Hyprlock";

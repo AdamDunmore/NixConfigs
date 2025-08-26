@@ -1,9 +1,10 @@
 { pkgs, lib, config, ... }:
 let
     cfg = config.settings.nixos.system.enable;
+    inherit (lib) mkIf;
 in
 {
-    config = lib.mkIf cfg {
+    config = mkIf cfg {
         # Services (Mainly for AGS)
         services = {
             libinput.enable = true;
@@ -63,11 +64,24 @@ in
         };
 
         # Music scrobbling
-        services.mpdscribble = {
+        services.mpdscribble = mkIf config.settings.home.apps.music {
             enable = true;
             endpoints."last.fm" = {
                 passwordFile = config.sops.secrets.lastfm_pass.path;                
                 username = "SkinnySheev";
+            };
+        };
+        
+        # Enables Cosmic
+        services.desktopManager = let
+            l_cfg = config.settings.home.wm.cosmic;
+        in {
+            cosmic = mkIf l_cfg.enable {
+                enable = true;
+                xwayland.enable = true;
+            };
+            cosmic-greeter = mkIf l_cfg.cosmic-greeter {
+                enable = true;
             };
         };
     };

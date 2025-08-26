@@ -15,6 +15,7 @@ let
 in
 {
     imports = [
+        ./cosmic.nix
         ./hyprland.nix
         ./river.nix
         ./sway.nix

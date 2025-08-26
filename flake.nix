@@ -13,6 +13,12 @@
         jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
         jovian.inputs.nixpkgs.follows = "nixpkgs";
 
+
+        cosmic-manager.url = "github:HeitorAugustoLN/cosmic-manager";
+        cosmic-manager.inputs = {
+            nixpkgs.follows = "nixpkgs";
+            home-manager.follows = "home-manager";
+        };
         spicetify-nix.url = "github:Gerg-L/spicetify-nix";
         spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
         nix-flatpak.url = "github:gmodena/nix-flatpak";

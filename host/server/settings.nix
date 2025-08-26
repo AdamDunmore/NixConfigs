@@ -5,18 +5,30 @@
             apps = {
                 autostart.enable = false;
                 level = "minimal";
-		music = false; 
+                music = false; 
             };
             scripts = false;
-            terminal.terminals.alacritty = true;
-            terminal.editors.nvim = true;
+            terminal = {
+                editors = {
+                    nvim = true;
+                    emacs = false;
+                };
+                terminals.alacritty = false;
+            };
+            wm = {
+                sway.enable = false;
+                hyprland.hyprlock = false;
+            };
         };
-        nixos.keyboard.custom_layout = false;
-        nixos.display_manager = "none";
         nixos = {
+            display_manager = "none";
+            services = {
+                syncthing = true;
+                tailscale = true;
+            };
             system = {
                 bootloader = false;
-		virtualisation = false;
+                virtualisation = false;
             };
         };
     };
