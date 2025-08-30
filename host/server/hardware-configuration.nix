@@ -18,16 +18,14 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/MediaDrive" =
+    { device = "/dev/disk/by-uuid/90c3ce04-a5c6-4557-9c7b-8d860be31d02";
+      fsType = "ext4";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/16ca3928-40a7-495f-b19a-48debaf7e93a"; }
     ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

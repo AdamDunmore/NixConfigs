@@ -16,16 +16,6 @@ in
             '';
         };
 
-        programs.beets = {
-            enable = true;
-            mpdIntegration.enableStats = true;
-            settings = {
-                directory = "~/Music";
-                library = "~/Music/musiclibrary.db";
-                plugins = [ "web" ];
-            };
-        };
-
         programs.rmpc.enable = true;
 
         xdg.desktopEntries.rmpc = {

@@ -10,11 +10,6 @@
 	    services.openssh.enable = true;
 	    services.openssh.settings.PermitRootLogin = "yes";
 
-	    services.jellyfin = {
-	        enable = true;
-	    };
-	    networking.firewall.allowedTCPPorts = [ 8096 ];
-
         systemd.tmpfiles.rules = [
             "d /mnt/MediaDrive/Music/ 0777 root root -"
             "d /mnt/MediaDrive/Work/ 0777 root root -"

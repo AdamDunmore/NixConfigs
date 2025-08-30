@@ -122,6 +122,7 @@ in
                 custom_layout = falseEnableOption "Enable Custom Keyboard Layout";
             };
             services = {
+                jellyfin = mkEnableOption "Enable Jellyfin";
                 syncthing = mkEnableOption "Enable Syncthing";
                 tailscale = mkEnableOption "Enable Tailscale";
             };
