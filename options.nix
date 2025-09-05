@@ -122,6 +122,15 @@ in
                 custom_layout = falseEnableOption "Enable Custom Keyboard Layout";
             };
             services = {
+                mopidy = {
+                    enable = mkEnableOption "Enable Mopidy";
+                    path = mkOption {
+                        type = types.string; 
+                        default = "~/Music";
+                        example = "/mnt/Drive1/Music";
+                        description = "The path that mopidy-local uses";
+                    };
+                };
                 jellyfin = mkEnableOption "Enable Jellyfin";
                 syncthing = mkEnableOption "Enable Syncthing";
                 tailscale = mkEnableOption "Enable Tailscale";

@@ -32,7 +32,7 @@
         hosts = [
             "laptop"
             "desktop"
-	    "server"
+            "server"
             "steamdeck"
         ];
 

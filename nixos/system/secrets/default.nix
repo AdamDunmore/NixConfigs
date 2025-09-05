@@ -36,6 +36,21 @@ in
                 key = "lastfm_pass";
             };
 
+            subsonic_pass = {
+                owner = mkIf config.settings.nixos.services.mopidy.enable "mopidy";
+                sopsFile = ./secrets.yaml;
+                key = "subsonic_pass";
+            };
+        };
+        
+        sops.templates = {
+            "mopidy.conf" = {
+                content = ''
+                    [subidy]
+                    password = ${config.sops.placeholder."subsonic_pass"}
+                '';
+                owner = mkIf config.settings.nixos.services.mopidy.enable "mopidy";
+            };
         };
     };
 }
