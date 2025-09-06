@@ -23,7 +23,6 @@
         nixos = {
             display_manager = "none";
             services = {
-                syncthing = true;
                 tailscale = true;
             };
             system = {
