@@ -121,6 +121,7 @@ with lib;
                 pango
                 binutils 
                 libnotify
+                ffmpeg_6
             ]);
         })
     ];

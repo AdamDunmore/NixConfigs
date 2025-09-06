@@ -65,6 +65,12 @@ in
                 };
             };
 
+            # Enable FUSE                
+            programs.fuse = {
+              # enable = true;
+              userAllowOther = true;
+            };
+
             # Music scrobbling
             services.mpdscribble = mkIf config.settings.home.apps.music {
                 enable = true;

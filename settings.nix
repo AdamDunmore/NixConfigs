@@ -32,7 +32,6 @@
                 custom_layout = true;
             };
             services = {
-                mopidy.enable = true;
                 syncthing = true;
                 tailscale = true;
             };

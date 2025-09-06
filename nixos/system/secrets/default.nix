@@ -40,6 +40,12 @@ in
                 owner = mkIf config.settings.nixos.services.mopidy.enable "mopidy";
                 sopsFile = ./secrets.yaml;
                 key = "subsonic_pass";
+            }; 
+
+            nextcloud_pass = {
+                sopsFile = ./secrets.yaml;
+                key = "nextcloud_pass";
+                mode = "0444";
             };
         };
         
