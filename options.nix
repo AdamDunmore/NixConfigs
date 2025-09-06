@@ -29,7 +29,7 @@ in
                     example = "all";
                     description = "String value for what app package to install. Possible options are 'all', 'light' or 'minimal'.";
                 };
-                music = falseEnableOption "Enables music";
+                music = falseEnableOption "Enables music listening module";
             };
 
             scripts = falseEnableOption "Enable scripts module";
