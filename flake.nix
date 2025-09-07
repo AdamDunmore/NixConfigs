@@ -127,6 +127,25 @@
             path = ./template/${template};
         });
 
+        # Devshell
+        # nix develop .#install
+        devShells."${local.system}"."install" = pkgs.mkShell {
+            buildInputs = with pkgs; [
+                neovim
+                nh
+                git
+            ];
+            shellHook = ''
+                echo ""
+                echo "Welcome to my nix configuration install" 
+                echo ""
+                echo "To get started run:"
+                echo "    sudo nixos-generate-config"
+                echo "    cp /etc/nixos/hardware-configuration.nix ./host/<host>/"
+                echo "    nh os switch .#<host>"
+            '';
+        };
+
         # Jovian ISO
     };
 }
