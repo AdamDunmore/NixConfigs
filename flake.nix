@@ -63,7 +63,7 @@
         font = import ./values/font.nix;
     in
     {             
-        # sudn nh home switch .
+        # nh home switch .
         homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ ./home ];
@@ -77,7 +77,7 @@
             };
         });
 
-        # sudo nixos-rebuild switch --flake .#$(host)
+        # nh os switch . --hostname <host>
         nixosConfigurations = forEachHost(host: inputs.nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [

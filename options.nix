@@ -122,6 +122,7 @@ in
                 custom_layout = falseEnableOption "Enable Custom Keyboard Layout";
             };
             services = {
+                nh = falseEnableOption "Enables nh garbage collection";
                 mopidy = {
                     enable = mkEnableOption "Enable Mopidy";
                     path = mkOption {

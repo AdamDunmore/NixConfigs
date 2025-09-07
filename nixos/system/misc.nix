@@ -36,12 +36,6 @@ in
             security.pam.services.hyprlock = {};
             security.pam.services.swaylock = {};
 
-            # Garbage Collection
-            nix.gc = {
-                automatic = true;
-                options = "--delete-older-than 30d";
-            };
-
             # Man pages
             documentation.dev.enable = true;
 
