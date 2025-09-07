@@ -34,10 +34,7 @@
             "desktop"
             "server"
             "steamdeck"
-        ];
-
-        systems = [
-            "x86_64-linux"
+            "default"
         ];
 
         users = [
@@ -49,8 +46,7 @@
             "home"
         ];
 
-        forEachTemplate = inputs.nixpkgs.lib.genAttrs templates; 
-        forEachSystem = inputs.nixpkgs.lib.genAttrs systems;
+        forEachTemplate = inputs.nixpkgs.lib.genAttrs templates;
         forEachHost = inputs.nixpkgs.lib.genAttrs hosts;
         forEachUser = inputs.nixpkgs.lib.genAttrs users;
 
@@ -67,22 +63,19 @@
         font = import ./values/font.nix;
     in
     {             
-        # TODO fix hm
-        # homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
-        #     inherit pkgs;
-        #     modules = [ ./home ];
-        #     extraSpecialArgs = {
-        #         inherit local;
-        #         inherit inputs;
-        #     };
-        # });
-        #
-        # # sudo nix run .#$(host)
-        # packages.${local.system}.hm_conf = inputs.self.homeConfigurations.${local.username}.activationPackage; 
-        # apps.${local.system} = forEachHost(host: {
-        #     type = "app";            
-        #     program = "${inputs.self.packages."${local.system}".hm_conf}/activate"; 
-        # });
+        # sudn nh home switch .
+        homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [ ./home ];
+            extraSpecialArgs = {
+                    inherit pkgs;
+                    host = "default";
+                    inherit inputs;
+                    inherit local;
+                    inherit font;
+                    inherit colours;
+            };
+        });
 
         # sudo nixos-rebuild switch --flake .#$(host)
         nixosConfigurations = forEachHost(host: inputs.nixpkgs.lib.nixosSystem {
