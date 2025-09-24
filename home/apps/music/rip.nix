@@ -4,7 +4,7 @@ let
     inherit (lib) mkIf; 
 in
 {
-    config = mkIf cfg {
+    config = mkIf cfg.enable {
         home.packages = [ pkgs.streamrip ];   
 
         home.shellAliases = {

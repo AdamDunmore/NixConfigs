@@ -4,7 +4,7 @@ let
     inherit (lib) mkIf; 
 in
 {
-    config = mkIf cfg {
+    config = mkIf cfg.enable {
         programs.rmpc.enable = true;
 
         xdg.desktopEntries.rmpc = {

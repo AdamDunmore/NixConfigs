@@ -66,7 +66,7 @@ in
             };
 
             # Music scrobbling
-            services.mpdscribble = mkIf config.settings.home.apps.music {
+            services.mpdscribble = mkIf config.settings.home.apps.music.enable {
                 enable = true;
                 endpoints."last.fm" = {
                     passwordFile = config.sops.secrets.lastfm_pass.path;                

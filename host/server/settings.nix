@@ -5,7 +5,7 @@
             apps = {
                 autostart.enable = false;
                 level = "minimal";
-                music = false; 
+                music.enable = false; 
             };
             scripts = false;
             terminal = {
@@ -23,6 +23,7 @@
         nixos = {
             display_manager = "none";
             services = {
+                jellyfin = true;
                 tailscale = true;
             };
             system = {

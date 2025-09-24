@@ -5,7 +5,7 @@ let
     inherit (lib) mkIf;
 in
 {
-    config = mkIf cfg {
+    config = mkIf cfg.enable {
         services.mpd = mkIf (cfg_mopidy.enable == false) {
             enable = true;
             musicDirectory = "~/Music";

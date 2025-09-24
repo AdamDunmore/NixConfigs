@@ -29,7 +29,15 @@ in
                     example = "all";
                     description = "String value for what app package to install. Possible options are 'all', 'light' or 'minimal'.";
                 };
-                music = falseEnableOption "Enables music listening module";
+                music = {
+                    enable = falseEnableOption "Enables music listening module";
+                    path = mkOption {
+                        type = types.string; 
+                        default = "~/Music";
+                        example = "/mnt/Drive1/Music";
+                        description = "The path for your library";
+                    };
+                };
             };
 
             scripts = falseEnableOption "Enable scripts module";
@@ -127,8 +135,8 @@ in
                     enable = mkEnableOption "Enable Mopidy";
                     path = mkOption {
                         type = types.string; 
-                        default = "~/Music";
-                        example = "/mnt/Drive1/Music";
+                        default = config.settings.home.apps.music.path;
+                        example = "~/Music";
                         description = "The path that mopidy-local uses";
                     };
                 };

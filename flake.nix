@@ -135,7 +135,7 @@
                 echo "To get started run:"
                 echo "    sudo nixos-generate-config"
                 echo "    cp /etc/nixos/hardware-configuration.nix ./host/<host>/"
-                echo "    nh os switch .#<host>"
+                echo "    nh os switch . --hostname <host>"
             '';
         };
 

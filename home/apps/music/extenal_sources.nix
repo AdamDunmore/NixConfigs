@@ -4,14 +4,14 @@ let
     inherit (lib) mkIf;
 in
 {
-    config = mkIf cfg {
+    config = mkIf cfg.enable {
         programs.rclone ={
             enable = true;
             remotes.nextcloud = {
                 mounts = {
                     "Music_d" = {
                         enable = true;
-                        mountPoint = "/home/adam/Music/Server";
+                        mountPoint = "${cfg.path}/Server";
                         options = {
                             "vfs-cache-mode" = "minimal";
                             "vfs-read-chunk-size" = "128M";
