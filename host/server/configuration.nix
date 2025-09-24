@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: 
+{ pkgs, lib, ... }: 
 
 {
     config = {
@@ -9,5 +9,7 @@
 	
 	    services.openssh.enable = true;
 	    services.openssh.settings.PermitRootLogin = "yes";
+
+        programs.gnupg.agent.pinentryPackage = lib.mkForce pkgs.pinentry-tty;
     };
 }
