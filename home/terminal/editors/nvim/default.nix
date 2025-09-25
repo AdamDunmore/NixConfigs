@@ -24,6 +24,7 @@ in
                     zls
                     vscode-extensions.vue.volar
                     luajitPackages.luarocks 
+                    openssl
                 ];
                	initLua = ''require("main")'';
                 plugins = {
@@ -54,6 +55,7 @@ in
 
                         # Notes
                         render-markdown-nvim
+                        vim-gnupg
                     ];
                 };
         };
