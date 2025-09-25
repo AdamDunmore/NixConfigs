@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -33,7 +33,7 @@ in
                     enable = falseEnableOption "Enables music listening module";
                     path = mkOption {
                         type = types.string; 
-                        default = "~/Music";
+                        default = "${config.home.homeDirectory}/Music";
                         example = "/mnt/Drive1/Music";
                         description = "The path for your library";
                     };
@@ -131,6 +131,7 @@ in
             };
             services = {
                 nh = falseEnableOption "Enables nh garbage collection";
+                nextcloud = mkEnableOption "Enables nextcloud";
                 mopidy = {
                     enable = mkEnableOption "Enable Mopidy";
                     path = mkOption {
