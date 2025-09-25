@@ -1,6 +1,15 @@
 -- Render markdown
+
+
+vim.api.nvim_create_autocmd("BufReadCmd", {
+    pattern = "*md.aes",
+    callback = function(args)
+        vim.bo.filetype = "markdown" 
+    end
+})
+
 require('render-markdown').setup({
-    file_types = { 'markdown' },
+    file_types = { 'markdown', 'aes' },
     render_modes = { 'n', 'c', 't' },
     anti_conceal = {  enabled = false },
     on = {
