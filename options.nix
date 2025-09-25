@@ -140,7 +140,8 @@ in
                         description = "The path that mopidy-local uses";
                     };
                 };
-                jellyfin = mkEnableOption "Enable Jellyfin";
+                jellyfin = mkEnableOption "Enable Jellyfin";  
+                nginx = mkEnableOption "Enable Nginx";
                 syncthing = mkEnableOption "Enable Syncthing";
                 tailscale = mkEnableOption "Enable Tailscale";
             };
