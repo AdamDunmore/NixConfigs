@@ -6,6 +6,7 @@
                 autostart.enable = false;
                 level = "minimal";
                 music.enable = false; 
+                music.path = "/mnt/MediaDrive/Music";
             };
             scripts = false;
             terminal = {
