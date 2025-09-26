@@ -37,6 +37,10 @@ in
                         example = "/mnt/Drive1/Music";
                         description = "The path for your library";
                     };
+                    sources = {
+                        nextcloud = mkEnableOption "Enable nextcloud source";
+                        webdav = mkEnableOption "Enable webdav source";
+                    };
                 };
             };
 

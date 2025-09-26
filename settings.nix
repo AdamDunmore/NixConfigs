@@ -4,6 +4,7 @@
     config.settings = lib.mkDefault {
         home = {
             apps.level = "light";
+            apps.music.sources.webdav = true;
             terminal = {
                 editors.emacs = true;
                 terminals.alacritty = true;
