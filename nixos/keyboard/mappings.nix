@@ -32,20 +32,31 @@ with lib;
             enable = true;
             keyboards.default = {
                 settings = {
-                    main = {
-                        capslock = "oneshot(renamed)";
-
+                    meta = {
+                        esc = "oneshot(modeswitch)";  
                     };
-                    renamed = {
-                        shift = "layer(onehanded)";
+                    modeswitch = {
+                        esc = "setlayout(main)";
+                        o = "toggle(onehanded)";
+                    };
+                    onehanded = {
+                        esc = "clear()";
+                        q = "leftmouse";
+                        e = "rightmouse";
+                    };
+
+
+                    main = {
+                        capslock = "layer(common)";
+                    };
+
+                    common = {
                         esc = "`"; 
                         z = "102nd"; # \
                         p = "G-102nd"; # |
+                        d = "delete";
+                        i = "insert";
                         c = "capslock";
-                    };
-                    onehanded = {
-                        q = "leftmouse";
-                        e = "rightmouse";
                     };
                 };
             };
