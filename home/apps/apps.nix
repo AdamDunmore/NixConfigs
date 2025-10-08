@@ -34,7 +34,6 @@ with lib;
                 beeper
                 syncthing
                 kdePackages.kdeconnect-kde
-                steam
                 discord
 
 

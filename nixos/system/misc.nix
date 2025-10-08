@@ -89,5 +89,9 @@ in
         ( mkIf cosmic_cfg.cosmic-greeter {
             services.displayManager.cosmic-greeter.enable = true;
         } ) 
+
+        ( mkIf (cfg == "light" || cfg == "all") {
+            programs.steam.enable = true;
+        } )
     ];
 }
