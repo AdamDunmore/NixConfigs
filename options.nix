@@ -157,7 +157,7 @@ in
                 enable = falseEnableOption "Enables system modules";
                 bootloader = falseEnableOption "Enables bootloader module";
                 secrets = falseEnableOption "Enables secrets module";
-                virtualisation = falseEnableOption "Enables virtualbox";
+                virtualisation = mkEnableOption "Enables virtualbox";
             };
         };
     };

@@ -3,7 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        nixpkgs-24_11.url = "github:nixos/nixpkgs/nixos-24.11";
+        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -57,6 +57,7 @@
         };
 
         pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = local.system; };
+        pkgs-stable = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs-stable; system = local.system; }; 
         system = local.system;
 
         colours = import ./values/colours.nix;
@@ -69,6 +70,7 @@
             modules = [ ./home ];
             extraSpecialArgs = {
                     inherit pkgs;
+                    inherit pkgs-stable;
                     host = "default";
                     inherit inputs;
                     inherit local;
@@ -95,6 +97,7 @@
                         useUserPackages = true;
                         extraSpecialArgs = {
                                 inherit pkgs;
+                                inherit pkgs-stable;
                                 inherit host;
                                 inherit inputs;
                                 inherit local;
@@ -110,6 +113,7 @@
                 inherit inputs;
                 inherit local;
                 inherit font;
+                inherit pkgs-stable;
                 inherit colours;
             };
         });

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, pkgs-stable, lib, config, ... }:
 let
     cfg = config.settings.nixos.system.enable;
     cosmic_cfg = config.settings.home.wm.cosmic;
@@ -73,6 +73,10 @@ in
                     username = "SkinnySheev";
                 };
             };
+
+
+            # Moves pkgs to stable 
+            boot.kernelPackages = pkgs-stable.linuxPackages_latest;
         } )
         
         ( mkIf cosmic_cfg.enable {
