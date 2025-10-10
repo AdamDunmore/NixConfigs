@@ -1,14 +1,15 @@
 { local, pkgs, lib, config, ... }:
 let
     cfg = config.settings.nixos.system.enable;
+    inherit (lib) mkIf;
 in
 {
-    config = lib.mkIf cfg {
+    config = mkIf cfg {
         users.users.${local.username} = {
             isNormalUser = true;
             description = "";
             extraGroups = [ "networkmanager" "wheel" "audio" "dialout" "vboxusers" ];
-            shell = pkgs.zsh;
+            shell = mkIf config.settings.home.terminal.shell.zsh pkgs.zsh;
             ignoreShellProgramCheck = true;
         };
     };

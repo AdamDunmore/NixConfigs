@@ -7,7 +7,7 @@ in
     config = lib.mkIf cfg {
         programs.zoxide = {
             enable = true; 
-            enableZshIntegration = true;
+            enableZshIntegration = config.settings.home.terminal.shell.zsh;
         };
     }; 
 }

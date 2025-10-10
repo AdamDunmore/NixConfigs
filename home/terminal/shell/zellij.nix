@@ -1,15 +1,15 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.settings.home.terminal.shell.zellij;
+    cfg = config.settings.home.terminal.shell.zellij;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         programs.zellij = {
             enable = true;
             settings = {
-                default_shell = "${pkgs.zsh}/bin/zsh";
+                default_shell = mkIf config.settings.home.terminal.shell.zsh "${pkgs.zsh}/bin/zsh";
                 default_mode = "Locked";
                 pane_frames = false;
                 theme = "nord";

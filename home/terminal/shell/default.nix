@@ -8,7 +8,7 @@ in
 {
     config = {
         home = {    
-            shell.enableZshIntegration = true;
+            shell.enableZshIntegration = config.settings.home.terminal.shell.zsh;
             shellAliases = {
                 top = "htop";
 
@@ -42,7 +42,5 @@ in
         ./tmux.nix
         ./yazi.nix
         ./zellij.nix
-        ./zoxide.nix
-        ./zsh.nix
     ];
 }

@@ -11,7 +11,7 @@ with lib;
             clock24 = true;
             mouse = true;
             prefix = "C-r";
-            shell = "${pkgs.zsh}/bin/zsh";
+            shell = mkIf config.settings.home.terminal.shell.zsh "${pkgs.zsh}/bin/zsh";
             terminal = "screen-256color"; # Change if coulours are weird
         };
     };

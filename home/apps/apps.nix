@@ -70,16 +70,8 @@ with lib;
                 git
                 git-credential-manager
 
-                # Terminal Emulator
-                zsh
-                zsh-autocomplete
-                zsh-syntax-highlighting
-                zsh-autosuggestions
-                lsd
-                bat
-                starship
-
                 # Tools
+                bat
                 p7zip
                 networkmanager
                 brightnessctl

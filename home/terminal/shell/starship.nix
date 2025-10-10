@@ -8,7 +8,7 @@ with lib;
     config = mkIf cfg {
         programs.starship = {
             enable = true;
-            enableZshIntegration = true;
+            enableZshIntegration = config.settings.home.terminal.shell.zsh;
             settings = {
                 format = "[ ](${colours.light_blue.one})$username[](fg:${colours.light_blue.one} bg:${colours.blue.one})$hostname[](fg:${colours.blue.one} bg:${colours.light_blue.two})$directory[ ](${colours.light_blue.two})";
                 add_newline = false;

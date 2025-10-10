@@ -8,7 +8,7 @@ with lib;
     config = mkIf cfg {
         programs.yazi = {
             enable = true;
-            enableZshIntegration = true;
+            enableZshIntegration = config.settings.home.terminal.shell.zsh;
             settings = {
                 manager = {
                     show_hidden = true;

@@ -11,7 +11,7 @@ with lib;
             enable = true;
             package = pkgs.alacritty;
             settings = {
-                terminal.shell = "${pkgs.zsh}/bin/zsh";
+                terminal.shell = mkIf config.settings.home.terminal.shell.zsh "${pkgs.zsh}/bin/zsh";
                 colors = {
                     primary = {
                         background = "${colours.blue.three}";
@@ -36,7 +36,7 @@ with lib;
 
             extraConfig = "
                 background #222244
-                shell zsh
+                ${(mkIf config.settings.home.terminal.shell.zsh "shell zsh")}
                 confirm_os_window_close 0
             ";
         };
