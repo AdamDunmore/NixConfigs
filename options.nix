@@ -7,13 +7,6 @@ let
         example = false;
         description = s;
     };
-
-    defaultedEnableOption = {s, v} : mkOption {
-        type = types.bool;
-        default = v;
-        example = false;
-        description = s;
-    };
 in
 {
     options.settings = {
