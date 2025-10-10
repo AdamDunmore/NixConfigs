@@ -52,6 +52,7 @@ in
                 shell = {
                     ai = falseEnableOption "Enables ai";
                     lsd = falseEnableOption "Enables lsd";
+                    intellishell = falseEnableOption "Enables intellishell";
                     git = falseEnableOption "Enables git";
                     starship = falseEnableOption "Enables starship";
                     tmux = mkEnableOption "Enables tmux";

@@ -36,7 +36,6 @@
         hardware.graphics = {
             enable = true;
             extraPackages = with pkgs; [
-                amdvlk
                 mesa
                 vulkan-loader
                 vulkan-validation-layers

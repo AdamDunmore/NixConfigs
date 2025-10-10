@@ -36,11 +36,13 @@ in
     imports = [
         ./ai.nix
         ./lsd.nix
+        ./intellishell.nix
         ./git.nix
         ./starship.nix
         ./tmux.nix
         ./yazi.nix
         ./zellij.nix
+        ./zoxide.nix
         ./zsh.nix
     ];
 }
