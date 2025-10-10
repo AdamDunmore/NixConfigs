@@ -2,8 +2,8 @@
 
 let
     cfg = config.settings.home.widgets.wofi;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         home.packages = [ 

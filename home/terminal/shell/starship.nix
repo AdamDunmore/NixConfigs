@@ -2,8 +2,8 @@
 
 let
   cfg = config.settings.home.terminal.shell.starship;
+  inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         programs.starship = {

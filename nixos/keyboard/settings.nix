@@ -2,8 +2,8 @@
 
 let
   cfg = config.settings.nixos.keyboard.enable;
+  inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         console.keyMap = "uk";

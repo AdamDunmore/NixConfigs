@@ -2,8 +2,8 @@
 
 let
   cfg = config.settings.home.terminal.terminals;
+  inherit (lib) mkIf mkMerge;
 in
-with lib;
 {
   config = mkMerge [
     ( mkIf cfg.alacritty { 

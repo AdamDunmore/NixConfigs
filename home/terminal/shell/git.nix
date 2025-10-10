@@ -2,8 +2,8 @@
 
 let
   cfg = config.settings.home.terminal.shell.git;
+  inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         #Git credential helper setup

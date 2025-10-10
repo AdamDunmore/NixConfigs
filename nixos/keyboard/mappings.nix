@@ -2,8 +2,8 @@
 
 let
   cfg = config.settings.nixos.keyboard.custom_layout;
+  inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         # TODO

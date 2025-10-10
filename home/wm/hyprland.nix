@@ -3,8 +3,8 @@
 let
     cfg = config.settings.home.wm.hyprland;
     defaults = config.settings.home.wm.defaults;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg.enable { 
         wayland.windowManager.hyprland = { 

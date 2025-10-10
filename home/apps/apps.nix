@@ -2,8 +2,8 @@
 
 let
     cfg = config.settings.home.apps.level;
+    inherit (lib) mkIf mkMerge;
 in
-with lib;
 {
     config = mkMerge [
         (mkIf (cfg == "all") { #All

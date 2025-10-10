@@ -1,8 +1,8 @@
 { config, lib, font, colours, ... }:
 let
     cfg = config.settings.home.widgets.mako;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         services.mako = {

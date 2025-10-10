@@ -2,8 +2,8 @@
 
 let
   cfg = config.settings.nixos.display_manager;
+  inherit (lib) mkIf;
 in
-with lib;
 {
   config = mkIf (cfg == "ly") { 
     services.displayManager.ly = {

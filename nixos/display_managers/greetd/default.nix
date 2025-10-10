@@ -2,8 +2,8 @@
 let
     cfg = config.settings.nixos.display_manager;
     greeter = import ./greeter.nix { inherit pkgs; };
+    inherit (lib) mkIf;
 in
-with lib;
 {
   config = mkIf (cfg == "greetd") {
     services.greetd = {

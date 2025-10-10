@@ -3,8 +3,8 @@
 let
     cfg = config.settings.home.widgets.waybar;
     locker = config.settings.home.wm.defaults.locker;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         programs.waybar = {

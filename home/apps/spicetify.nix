@@ -3,8 +3,8 @@
 let
     cfg = config.settings.home.apps.level;
     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    inherit (lib) mkIf;
 in
-with lib;
 {
     imports = [ inputs.spicetify-nix.homeManagerModules.default ];
     config = mkIf (cfg == "light" || cfg == "all") {

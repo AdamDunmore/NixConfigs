@@ -6,8 +6,8 @@ let
     cfg = config.settings.home.wm.river;
     defaults = config.settings.home.wm.defaults;
     mod = "Super";
+    inherit (lib) mkIf mkMerge;
 in
-with lib;
 {
   config = mkMerge [
     ( mkIf cfg.enable { 

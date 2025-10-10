@@ -1,8 +1,8 @@
 { inputs, config, lib, ... }:
 let
     cfg = config.settings.home.apps.level;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
     config = mkIf (cfg == "all" || cfg == "light") {

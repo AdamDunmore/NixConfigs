@@ -1,13 +1,19 @@
 { config, lib, pkgs, ... }:
-
-with lib;
 let
-  falseEnableOption = s: mkOption {
-    type = types.bool;
-    default = true;
-    example = false;
-    description = s;
-  };
+    inherit (lib) mkOption types mkEnableOption;
+    falseEnableOption = s: mkOption {
+        type = types.bool;
+        default = true;
+        example = false;
+        description = s;
+    };
+
+    defaultedEnableOption = {s, v} : mkOption {
+        type = types.bool;
+        default = v;
+        example = false;
+        description = s;
+    };
 in
 {
     options.settings = {

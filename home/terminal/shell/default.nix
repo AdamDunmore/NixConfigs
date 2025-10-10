@@ -1,7 +1,6 @@
 { lib, config, pkgs, ... }:
 let
     cfg_editors = config.settings.home.terminal.editors;
-    cfg_apps = config.settings.home.apps;
     lsd = "${pkgs.lsd}/bin/lsd";
     inherit (lib) mkIf mkMerge;
 in
@@ -42,5 +41,6 @@ in
         ./tmux.nix
         ./yazi.nix
         ./zellij.nix
+        ./zsh.nix
     ];
 }

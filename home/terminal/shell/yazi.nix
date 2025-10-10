@@ -2,8 +2,8 @@
 
 let
     cfg = config.settings.home.terminal.shell.yazi;
+    inherit (lib) mkIf;
 in
-with lib;
 {
     config = mkIf cfg {
         programs.yazi = {
