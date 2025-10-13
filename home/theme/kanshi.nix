@@ -51,7 +51,7 @@ in
                     profile.name = "Laptop";
                     profile.outputs = [
                         {
-                            criteria = "BOE 0x0872 Unknown";
+                            criteria = "BOE 0x0BCA Unknown";
                             mode = "1920x1080@60Hz";
                             position = "0,0";
                         }
