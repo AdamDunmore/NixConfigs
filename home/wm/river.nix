@@ -24,7 +24,6 @@ in
                     "resize"
                 ];
                 spawn = [
-                    "${pkgs.waybar}/bin/waybar"
                     "${pkgs.wpaperd}/bin/wpaperd"
                     "${pkgs.kanshi}/bin/kanshi"
                     "${pkgs.river}/bin/rivertile" 

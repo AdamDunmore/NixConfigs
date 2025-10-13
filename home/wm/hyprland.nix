@@ -15,7 +15,6 @@ in
 
                 exec = [
                     "${pkgs.wpaperd}/bin/wpaperd"
-                    "${pkgs.waybar}/bin/waybar"
                     "${pkgs.kanshi}/bin/kanshi"
                 ];
                 general = {

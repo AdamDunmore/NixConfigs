@@ -52,7 +52,7 @@ in
                     profile.outputs = [
                         {
                             criteria = "BOE 0x0BCA Unknown";
-                            mode = "1920x1080@60Hz";
+                            mode = "2256x1504@59.999Hz";
                             position = "0,0";
                         }
                     ];

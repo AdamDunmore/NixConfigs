@@ -79,7 +79,7 @@ in
                 # TODO test removing this
                 input = {
                     "*" = {
-                        # Keyboard
+                        #Keyboard
                         xkb_layout = "gb";
 
                         # Mouse
@@ -94,6 +94,8 @@ in
                     };
                 };
 
+                floating.modifier = "${mod}";
+
                 modes = {
                     resize = {
                             Escape = "mode default";
@@ -107,9 +109,8 @@ in
                 };
 
                 startup = [
-                    { command = "${pkgs.waybar}/bin/waybar"; always = true; }
-                    { command = "${pkgs.wpaperd}/bin/wpaperd"; always = true; }
-                    { command = "${pkgs.kanshi}/bin/kanshi"; kanshi = true; }
+                    { command = "${pkgs.wpaperd}/bin/wpaperd"; }
+                    { command = "${pkgs.kanshi}/bin/kanshi"; }
 
                     { command = "ags run"; }
                     { command = "${pkgs.swaysome}/bin/swaysome init 1"; }
@@ -118,10 +119,11 @@ in
                 bars = [];
 
                 gaps = {
-                    inner = 10;
-                    outer = 10;
+                    inner = 5;
+                    outer = 2;
+                    smartBorders = "on";
+                    smartGaps = true;
                 };
-
 
                 window = {
                     border = 3;
@@ -143,10 +145,6 @@ in
                         indicator = "${colours.blue.one}";
                         text = "#00000000";
                     };
-                };
-
-                floating = {
-                    modifier = "${mod}";
                 };
             };
 
