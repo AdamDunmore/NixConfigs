@@ -107,11 +107,11 @@ in
                 };
 
                 startup = [
-                    { command = "${pkgs.waybar}/bin/waybar"; }
-                    { command = "${pkgs.wpaperd}/bin/wpaperd"; }
-                    { command = "${pkgs.kanshi}/bin/kanshi"; }
-                    { command = "ags run"; }
+                    { command = "${pkgs.waybar}/bin/waybar"; always = true; }
+                    { command = "${pkgs.wpaperd}/bin/wpaperd"; always = true; }
+                    { command = "${pkgs.kanshi}/bin/kanshi"; kanshi = true; }
 
+                    { command = "ags run"; }
                     { command = "${pkgs.swaysome}/bin/swaysome init 1"; }
                 ];
 
