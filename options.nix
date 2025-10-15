@@ -31,7 +31,7 @@ in
                 music = {
                     enable = falseEnableOption "Enables music listening module";
                     path = mkOption {
-                        type = types.string; 
+                        type = types.str; 
                         default = "${config.home.homeDirectory}/Music";
                         example = "/mnt/Drive1/Music";
                         description = "The path for your library";
@@ -138,7 +138,7 @@ in
                 mopidy = {
                     enable = mkEnableOption "Enable Mopidy";
                     path = mkOption {
-                        type = types.string; 
+                        type = types.str; 
                         default = config.settings.home.apps.music.path;
                         example = "~/Music";
                         description = "The path that mopidy-local uses";
