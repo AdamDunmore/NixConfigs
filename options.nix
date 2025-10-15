@@ -39,6 +39,12 @@ in
                     example = "all";
                     description = "String value for what app package to install. Possible options are 'all', 'light' or 'minimal'.";
                 };
+
+                misc = {
+                    code = mkEnableOption "Enables VSCode";
+                    flatpak = falseEnableOption "Enables Flatpak";
+                };
+
                 music = {
                     enable = falseEnableOption "Enables music listening module";
                     path = mkOption {

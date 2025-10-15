@@ -1,10 +1,10 @@
 { pkgs, lib, config, ... }:
 let
-    cfg = config.settings.home.apps.level;
+    cfg = config.settings.home.apps.misc.code;
     inherit (lib) mkIf;
 in
 {
-    config = mkIf (cfg == "light" || cfg == "all") {
+    config = mkIf cfg {
         programs.vscode = {
             enable = true;
             profiles.default = {
