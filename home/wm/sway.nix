@@ -76,7 +76,7 @@ in
                     "Shift+XF86MonBrightnessUp" = "exec brightnessctl set 1%+";
                     "Shift+XF86MonBrightnessDown" = "exec brightnessctl set 1%-";
                 };
-                # TODO test removing this
+
                 input = {
                     "*" = {
                         #Keyboard

@@ -34,7 +34,6 @@ in
     };
 
     imports = [
-        ./ai.nix
         ./lsd.nix
         ./intellishell.nix
         ./git.nix

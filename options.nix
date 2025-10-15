@@ -50,7 +50,6 @@ in
                     nvim = falseEnableOption "Enables Nvim";
                 };
                 shell = {
-                    ai = falseEnableOption "Enables ai";
                     lsd = falseEnableOption "Enables lsd";
                     intellishell = falseEnableOption "Enables intellishell";
                     git = falseEnableOption "Enables git";
