@@ -40,6 +40,7 @@ in
                         nextcloud = mkEnableOption "Enable nextcloud source";
                         webdav = mkEnableOption "Enable webdav source";
                     };
+                    spotify = mkEnableOption "Enables Spotify";
                 };
             };
 
