@@ -61,7 +61,7 @@
         system = local.system;
 
         colours = import ./values/colours.nix;
-        font = import ./values/font.nix;
+        font = import ./values/font.nix { inherit pkgs; };
     in
     {             
         # nh home switch .

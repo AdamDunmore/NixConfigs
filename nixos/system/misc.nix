@@ -1,4 +1,4 @@
-{ inputs, pkgs, pkgs-stable, lib, config, ... }:
+{ inputs, font, pkgs, pkgs-stable, lib, config, ... }:
 let
     cfg = config.settings.nixos.system.enable;
     cosmic_cfg = config.settings.home.wm.cosmic;
@@ -23,10 +23,7 @@ in
             '';
 
             # Downloading Nerd Font
-            fonts.packages = with pkgs; [
-                nerd-fonts.code-new-roman
-            ];
-
+            fonts.packages = [ font.pkg ];
 
             #Enables Flatpak
             services.flatpak.enable = true;

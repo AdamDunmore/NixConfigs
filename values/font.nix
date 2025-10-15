@@ -1,3 +1,5 @@
+{ pkgs, ...}:
 {
-    name = "CodeNewRoman";
+    name = "IntoneMono";
+    pkg = pkgs.nerd-fonts.intone-mono;
 }
