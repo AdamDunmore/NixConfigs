@@ -75,6 +75,10 @@ in
 
             # Moves pkgs to stable 
             boot.kernelPackages = pkgs-stable.linuxPackages_latest;
+            
+            # Default ssh settings
+            services.openssh.enable = lib.mkDefault false;
+            programs.ssh.askPassword = "";
         } )
         
         ( mkIf cosmic_cfg.enable {
