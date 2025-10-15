@@ -1,7 +1,3 @@
--- Todo
--- Setup folding
--- Setup Incremental selection
-
 require('nvim-treesitter.configs').setup({
     highlight = {
         enable = true,
@@ -11,11 +7,3 @@ require('nvim-treesitter.configs').setup({
         enable = true
     },
 });
-
--- Folding
---
--- vim.opt.foldmethod = 'expr';
--- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()';
--- vim.opt.foldnestmax = 3;
--- vim.opt.foldlevelstart = 1;
-
