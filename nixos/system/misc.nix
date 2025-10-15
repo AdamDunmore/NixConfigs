@@ -91,12 +91,5 @@ in
         ( mkIf (cfg == "light" || cfg == "all") {
             programs.steam.enable = true;
         } )
-
-        ( mkIf cfg_browser.firefox {
-            xdg.mime.defaultApplications = {
-                "x-scheme-handler/about" = "firefox.desktop";
-                "x-scheme-handler/unknown" = "firefox.desktop";
-            };
-        } )
     ];
 }
