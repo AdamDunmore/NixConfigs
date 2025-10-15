@@ -3,8 +3,10 @@
 {
     config.settings = lib.mkDefault {
         home = {
-            apps.level = "light";
-            apps.music.sources.webdav = true;
+            apps = {
+                level = "light";
+                browser.brave = true;
+            };
             terminal = {
                 editors.emacs = true;
                 terminals.alacritty = true;

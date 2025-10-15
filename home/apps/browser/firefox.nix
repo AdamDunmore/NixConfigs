@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-    cfg = config.settings.home.apps.level;
+    cfg = config.settings.home.apps.browser.firefox;
     inherit (lib) mkIf;
 in
 {
-    config = mkIf (cfg == "light" || cfg == "all") {
+    config = mkIf cfg {
         programs.firefox = {
             enable = true;
         };

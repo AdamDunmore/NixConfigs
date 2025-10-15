@@ -1,10 +1,10 @@
 { pkgs, config, lib, ... }:
 let
-    cfg = config.settings.home.apps.level;
+    cfg = config.settings.home.apps.browser.brave;
     inherit (lib) mkIf;
 in
 {
-    config = mkIf (cfg == "light" || cfg == "all") {
+    config = mkIf cfg {
         programs.chromium = {
             enable = true;
             package = pkgs.brave;

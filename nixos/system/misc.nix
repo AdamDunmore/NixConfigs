@@ -2,6 +2,7 @@
 let
     cfg = config.settings.nixos.system.enable;
     cosmic_cfg = config.settings.home.wm.cosmic;
+    cfg_browser = config.settings.home.apps.browser;
     inherit (lib) mkIf mkMerge;
 in
 {
@@ -89,6 +90,13 @@ in
 
         ( mkIf (cfg == "light" || cfg == "all") {
             programs.steam.enable = true;
+        } )
+
+        ( mkIf cfg_browser.firefox {
+            xdg.mime.defaultApplications = {
+                "x-scheme-handler/about" = "firefox.desktop";
+                "x-scheme-handler/unknown" = "firefox.desktop";
+            };
         } )
     ];
 }
