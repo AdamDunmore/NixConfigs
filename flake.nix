@@ -39,6 +39,7 @@
 
         users = [
             "adam"
+            "default"
         ];
 
         templates = [
@@ -115,10 +116,10 @@
         });
 
         # $option = home | nixos
-        # nix flake new nix-configs -t github:AdamDunmore/NixConfigs#$option 
-        # templates = forEachTemplate (template: {
-        #     path = ./template/${template};
-        # });
+        #nix flake new nix-configs -t github:AdamDunmore/NixConfigs#$option 
+        templates = forEachTemplate (template: {
+            path = ./template/${template};
+        });
 
         # Devshell
         # nix develop .#install
