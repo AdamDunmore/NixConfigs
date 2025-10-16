@@ -29,6 +29,14 @@ lsp_config.ts_ls.setup({
 -- Nix
 lsp_config.nil_ls.setup({
     capabilities = capabilities,
+    settings = {
+        ['nil'] = {
+            ['flake'] = {
+                autoArchive = true,
+                autoEvalInputs = true
+            }
+        }
+    }
 })
 
 -- Rust
