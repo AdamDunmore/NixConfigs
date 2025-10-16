@@ -7,6 +7,8 @@ in
     imports = [ inputs.ags.homeManagerModules.default ];
 
     config = mkIf cfg {
+        home.packages = with pkgs; [ gammastep ];
+
         programs.ags = {
             enable = true;
             configDir = ./.;

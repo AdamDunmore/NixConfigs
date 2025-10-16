@@ -61,6 +61,7 @@ in
                 vulkan-tools
                 steamtinkerlaunch
                 rshell 
+                gammastep
             ]);
         })
 

@@ -24,6 +24,8 @@ in
                 nix-switch = "sudo nixos-rebuild switch --flake";
                 nix-test = "sudo nixos-rebuild test --fast --flake";
 
+                toggle-night = "pgrep gammastep >/dev/null && pkill gammastep || nohup gammastep -O 17000K -b 0.3 &";
+
                 emacs = mkIf cfg_editors.emacs "emacs -nw --init-directory ~/.config/emacs";
             };
             sessionVariables = mkMerge [
