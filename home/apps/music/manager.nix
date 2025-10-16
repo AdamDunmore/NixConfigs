@@ -1,4 +1,4 @@
-{ pkgs, local, config, lib, ... }:
+{ pkgs, config, user, lib, ... }:
 let
     music-path = config.settings.home.apps.music.path;
     cfg = config.settings.home.apps.music; 
@@ -26,7 +26,7 @@ in
             file-settings = {
                 group = "media";
                 mode = "0774";
-                user = local.username; 
+                inherit user;
             };
         in{
             "${music-path}/Local".c = file-settings; # Some kind of file sync?

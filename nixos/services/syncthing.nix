@@ -1,5 +1,6 @@
-{ local, lib, config, ... }:
+{ lib, config, primary-user, ... }:
 
+# TODO move to hm
 let
     cfg = config.settings.nixos.services.syncthing;
     inherit (lib) mkIf;
@@ -8,9 +9,8 @@ in
     config = mkIf cfg {    
         services.syncthing = {
             enable = true;
-            user = local.username;
-            dataDir = "/home/${local.username}/Documents/";
-            configDir = "/home/${local.username}/.config/syncthing/";
+            dataDir = "/home/${primary-user}/Documents/";
+            configDir = "/home/${primary-user}/.config/syncthing/";
             overrideFolders = true;
             overrideDevices = true;
 
@@ -25,14 +25,14 @@ in
                 folders = {
                     "Music" = {
                         id = "7us1i-1qu93";
-                        path = "/home/${local.username}/Music";
+                        path = "/home/${primary-user}/Music";
                         devices = [ "desktop" "laptop" "server" ];
                         ignorePerms = false;
                     };
 
                     "Documents" = {
                         id = "Documents";
-                        path = "/home/${local.username}/Documents";
+                        path = "/home/${primary-user}/Documents";
                         devices = [ "desktop" "laptop" "server" ];
                         ignorePerms = false;
                     };

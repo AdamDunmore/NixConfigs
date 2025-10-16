@@ -1,7 +1,7 @@
-{ local, host, config, ... }:
+{ host, ... }:
 
 {
-    system.stateVersion = local.stable_version;
+    system.stateVersion = "24.11";
 
     imports = [
         ../options.nix
@@ -12,7 +12,7 @@
         ./display_managers
         ./keyboard
         ./services
-	./steamdeck
+        ./steamdeck
         ./system
     ];
 }

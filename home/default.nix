@@ -1,12 +1,12 @@
-{ local, lib, host, config, ... }:
+{ lib, host, config, user, ... }:
 let
     inherit (lib) mkIf mkForce;
 in
 {
     config = {
-        home.username = mkForce local.username; 
-        home.homeDirectory = mkForce "/home/${local.username}";
-        home.stateVersion = mkForce local.stable_version;
+        home.username = mkForce user; 
+        home.homeDirectory = mkForce "/home/${user}";
+        home.stateVersion = mkForce "24.11";
 
         xdg.userDirs = mkIf (config.settings.home.apps.level == "minimal") {
             enable = true;

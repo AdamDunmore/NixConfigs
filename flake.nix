@@ -50,15 +50,11 @@
         forEachHost = inputs.nixpkgs.lib.genAttrs hosts;
         forEachUser = inputs.nixpkgs.lib.genAttrs users;
 
-        local = {
-            username = "adam";
-            system = "x86_64-linux";
-            stable_version = "24.11";
-        };
+        system = "x86_64-linux";
+        primary-user = "adam";
 
-        pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = local.system; };
-        pkgs-stable = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs-stable; system = local.system; }; 
-        system = local.system;
+        pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; inherit system; };
+        pkgs-stable = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs-stable; inherit system; }; 
 
         colours = import ./values/colours.nix;
         font = import ./values/font.nix { inherit pkgs; };
@@ -73,7 +69,7 @@
                     inherit pkgs-stable;
                     host = "default";
                     inherit inputs;
-                    inherit local;
+                    inherit user;
                     inherit font;
                     inherit colours;
             };
@@ -89,9 +85,9 @@
 
                 ./nixos
                 
-                inputs.home-manager.nixosModules.home-manager {
+                inputs.home-manager.nixosModules.home-manager  {
                     home-manager = {
-                        users.${local.username}.imports = [ ./home ];
+                        users.${primary-user}.imports = [ ./home ];
                         backupFileExtension = "bkp";
                         useGlobalPkgs = true;
                         useUserPackages = true;
@@ -100,7 +96,7 @@
                                 inherit pkgs-stable;
                                 inherit host;
                                 inherit inputs;
-                                inherit local;
+                                user = primary-user;
                                 inherit font;
                                 inherit colours;
                         };
@@ -111,22 +107,22 @@
                 inherit system;
                 inherit host;
                 inherit inputs;
-                inherit local;
                 inherit font;
                 inherit pkgs-stable;
                 inherit colours;
+                inherit primary-user;
             };
         });
 
         # $option = home | nixos
         # nix flake new nix-configs -t github:AdamDunmore/NixConfigs#$option 
-        templates = forEachTemplate (template: {
-            path = ./template/${template};
-        });
+        # templates = forEachTemplate (template: {
+        #     path = ./template/${template};
+        # });
 
         # Devshell
         # nix develop .#install
-        devShells."${local.system}"."install" = pkgs.mkShell {
+        devShells.${system}."install" = pkgs.mkShell {
             buildInputs = with pkgs; [
                 neovim
                 nh
