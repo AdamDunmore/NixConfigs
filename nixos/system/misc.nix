@@ -2,7 +2,7 @@
 let
     cfg = config.settings.nixos.system.enable;
     cosmic_cfg = config.settings.home.wm.cosmic;
-    cfg_browser = config.settings.home.apps.browser;
+    cfg_apps = config.settings.home.apps;
     inherit (lib) mkIf mkMerge;
 in
 {
@@ -92,7 +92,7 @@ in
             services.displayManager.cosmic-greeter.enable = true;
         } ) 
 
-        ( mkIf (cfg == "light" || cfg == "all") {
+        ( mkIf (cfg_apps.level == "light" || cfg_apps.level == "all") {
             programs.steam.enable = true;
         } )
     ];
