@@ -88,7 +88,6 @@ in
                     };
 
                     "2362:628:PIXA3854:00_093A:0274_Touchpad" = { 
-                        click_method = "clickfinger";
                         natural_scroll = "enabled";
                         tap = "enabled";
                     };
