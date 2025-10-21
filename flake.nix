@@ -13,7 +13,6 @@
         jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
         jovian.inputs.nixpkgs.follows = "nixpkgs";
 
-
         cosmic-manager.url = "github:HeitorAugustoLN/cosmic-manager";
         cosmic-manager.inputs = {
             nixpkgs.follows = "nixpkgs";
@@ -59,20 +58,37 @@
 
         colours = import ./values/colours.nix;
         font = import ./values/font.nix { inherit pkgs; };
+
+        lib = pkgs.lib;
+
+
+        arguments = {
+            nixos = {
+                inherit system;
+                inherit inputs;
+                inherit font;
+                inherit pkgs-stable;
+                inherit colours;
+                inherit primary-user;
+            };
+
+            home-manager = {
+                inherit pkgs;
+                inherit pkgs-stable;
+                inherit inputs;
+                inherit font;
+                inherit colours;
+            };
+        };
     in
     {             
         # nh home switch .
         homeConfigurations = forEachUser (user: inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ ./home ];
-            extraSpecialArgs = {
-                    inherit pkgs;
-                    inherit pkgs-stable;
+            extraSpecialArgs = lib.mergeAttrs arguments.home-manager {
                     host = "default";
-                    inherit inputs;
                     inherit user;
-                    inherit font;
-                    inherit colours;
             };
         });
 
@@ -92,26 +108,15 @@
                         backupFileExtension = "bkp";
                         useGlobalPkgs = true;
                         useUserPackages = true;
-                        extraSpecialArgs = {
-                                inherit pkgs;
-                                inherit pkgs-stable;
+                        extraSpecialArgs = lib.mergeAttrs arguments.home-manager {
                                 inherit host;
-                                inherit inputs;
                                 user = primary-user;
-                                inherit font;
-                                inherit colours;
                         };
                     };
                 }
             ];
-            specialArgs = {
-                inherit system;
+            specialArgs = lib.mergeAttrs arguments.nixos {
                 inherit host;
-                inherit inputs;
-                inherit font;
-                inherit pkgs-stable;
-                inherit colours;
-                inherit primary-user;
             };
         });
 
