@@ -31,17 +31,7 @@ export default function Sidebar(){
                     }
                 </box>
                 <box vexpand={true} class="spacer" />
-                <box class="util_box" valign={2}>
-                    <button 
-                        hexpand={true} 
-                        onClicked={ (self) => { 
-                            exec('bash -c gammastep -O 15000K -b 0.5 &')
-                            //  .catch(_ => { } );
-                            // exec("gammastep -O 15000K -b 0.5 &");
-                        }} class="util_button">
-                        <label label="󱩌"/>
-                    </button>
-                </box>
+
                 <box class="power_box" valign={2}>
                     <button onClicked={(self) => { execAsync("hyprlock") }} class="power_button">
                         <label label=""/>
