@@ -31,9 +31,11 @@ lsp_config.nil_ls.setup({
     capabilities = capabilities,
     settings = {
         ['nil'] = {
-            ['flake'] = {
-                autoArchive = true,
-                autoEvalInputs = true
+            ['nix'] = {
+                ['flake'] = {
+                    autoArchive = true,
+                    autoEvalInputs = true
+                }
             }
         }
     }
