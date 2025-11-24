@@ -13,6 +13,12 @@ in
             syntaxHighlighting.enable = true;
             enableCompletion = true;
             envExtra = "HOSTNAME=$(hostname)";
+            initContent = ''
+                if [ -e "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh" ]; then
+                  . "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+                fi
+
+            '';
         };
 
         home.packages = with pkgs; [

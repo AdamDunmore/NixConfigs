@@ -7,6 +7,12 @@ in
 {
     config = {
         home = {    
+            sessionVariables = {
+                MANPAGER = (mkIf cfg_editors.nvim "nvim +Man!");
+                SOPS_AGE_KEY_FILE = "/etc/age.key";
+                SSH_ASKPASS = "";
+                EDITOR = "nvim";
+            };
             shell.enableZshIntegration = config.settings.home.terminal.shell.zsh;
             shellAliases = {
                 top = "htop";
@@ -28,11 +34,6 @@ in
 
                 emacs = mkIf cfg_editors.emacs "emacs -nw --init-directory ~/.config/emacs";
             };
-            sessionVariables = mkMerge [
-                { MANPAGER = (mkIf cfg_editors.nvim "nvim +Man!"); } 
-                { SOPS_AGE_KEY_FILE = "/etc/age.key"; }
-                { SSH_ASKPASS = ""; }
-            ];
         };
     };
 
