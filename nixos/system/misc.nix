@@ -93,7 +93,11 @@ in
         } ) 
 
         ( mkIf (cfg_apps.level == "light" || cfg_apps.level == "all") {
-            programs.steam.enable = true;
+            programs.steam = {
+                enable = true;
+                remotePlay.openFirewall = true;
+                dedicatedServer.openFirewall = true; 
+            };
         } )
     ];
 }
