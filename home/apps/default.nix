@@ -43,6 +43,7 @@ in
                 syncthing
                 kdePackages.kdeconnect-kde
                 discord
+                helvum
 
 
                 # Sway
