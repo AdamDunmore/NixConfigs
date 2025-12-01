@@ -47,6 +47,12 @@ in
                 key = "nextcloud_pass";
                 mode = "0444";
             };
+
+            server_pass = {
+                sopsFile = ./secrets.yaml;
+                key = "server_pass";
+                mode = "0444";
+            };
         };
         
         sops.templates = {

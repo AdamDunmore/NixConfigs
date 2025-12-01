@@ -25,7 +25,7 @@
             display_manager = "none";
             services = {
                 jellyfin = true;
-                nginx = true;
+                # nginx = true;
                 tailscale = true;
             };
             system = {

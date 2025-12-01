@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: 
+{ pkgs, lib, config, ... }: 
 
 {
     config = {
@@ -11,5 +11,16 @@
 	    services.openssh.settings.PermitRootLogin = "yes";
 
         programs.gnupg.agent.pinentryPackage = lib.mkForce pkgs.pinentry-tty;
+
+        users.users."server" = {
+            group = "users";
+            createHome = true;
+            isNormalUser = true;
+            description = "";
+            extraGroups = [ "networkmanager" "wheel" "audio" "dialout" ];
+            shell = pkgs.zsh;
+            ignoreShellProgramCheck = true;
+            hashedPasswordFile = config.sops.secrets.server_pass.path;
+        };
     };
 }
