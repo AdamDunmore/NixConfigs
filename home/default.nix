@@ -11,6 +11,9 @@ in
         xdg.userDirs = mkIf (config.settings.home.apps.level == "minimal") {
             enable = true;
             createDirectories = true;
+            extraConfig = {
+                DIRECTORY_MODE = "0755";
+            };
         };
     };
 
