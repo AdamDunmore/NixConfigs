@@ -18,7 +18,7 @@ in
             settings = {
                 devices = {
                     "desktop" = { id = "DIZXZOG-IIRYVVX-F2IYNJH-HD6TZNG-VCKQULR-PVNGL7Z-7HMA4KN-ZF66RAU"; };
-                    "laptop" = { id = "NLP3QWK-JRKA3NV-WOEUVOW-RO36YLY-V5WIF7U-LHY7BBC-XAVMZF3-BW5F2AR"; };
+                    "laptop" = { id = "KIPS7XQ-OJUQDR7-QYSLXWJ-YMOM7NZ-H7PNGSK-V323JHN-EUEO7U2-MP43WQZ"; };
                     "phone" = { id = "5NTRRMM-VISZNNG-7Q5KQQT-VEA5OBC-6BNUADV-WL6FIZM-XB5TNRW-KRV2YQS"; };
                     "server" = { id = "YOPRCA6-AFYUSFG-IWDAO5P-FD22Q2Z-QACENI2-QADPSNH-UDJR36C-PYHBUQC"; };
                 };
