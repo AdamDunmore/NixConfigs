@@ -11,7 +11,7 @@ in
             enable = true;
             user = primary-user;
             dataDir = "/home/${primary-user}/";
-            configDir = "/home/${primary-user}/"; #.config/syncthing";
+            configDir = "/home/${primary-user}/.config/syncthing";
             overrideFolders = true;
             overrideDevices = true;
 

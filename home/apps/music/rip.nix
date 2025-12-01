@@ -8,9 +8,9 @@ in
         home.packages = [ pkgs.streamrip ];   
 
         home.shellAliases = {
-            arip = "rip -q 2 -f $HOME/Music -c FLAC";
-            d-music = "arip search tidal track";
-            d-music-a = "arip search tidal";
+            arip = "rip -q 3 -f $HOME/Music/Downloads/ -c FLAC";
+            d-music = "arip search qobuz track";
+            d-music-a = "arip search qobuz";
             d-music-l = "arip lastfm";
         };
     };
