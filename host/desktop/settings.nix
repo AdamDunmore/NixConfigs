@@ -11,5 +11,6 @@
 
             ];
         };
+        nixos.services.syncthing = true;
     };
 }
