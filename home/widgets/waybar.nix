@@ -18,7 +18,7 @@ in
                     spacing = 30;
                     fixed-center = true;
 
-                    modules-left = [ "sway/workspaces" ];
+                    modules-left = [ "sway/workspaces" "custom/margin" "cava" ];
                     modules-center = [ "clock" "clock#date" ];
                     modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/margin" ];
 
@@ -38,6 +38,14 @@ in
                         format-icons = [ "󰁻" "󰁽" "󰁿" "󰂁" "󰁹" ];
                         on-click = "~/.scripts/powercycle.sh";
 
+                    };
+
+                    "cava" = {
+                        format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+                        bar_delimiter = 0;
+                        method = "pipewire";
+                        bars = 12;
+                        stereo = false;
                     };
 
                     "network" = {
