@@ -44,6 +44,7 @@ in
                 kdePackages.kdeconnect-kde
                 discord
                 helvum
+                cava
 
 
                 # Sway
