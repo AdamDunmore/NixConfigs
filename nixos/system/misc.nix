@@ -3,6 +3,7 @@ let
     cfg = config.settings.nixos.system.enable;
     cosmic_cfg = config.settings.home.wm.cosmic;
     cfg_apps = config.settings.home.apps;
+    wm_cfg = config.settings.home.wm.defaults;
     inherit (lib) mkIf mkMerge;
 in
 {
@@ -29,10 +30,13 @@ in
             #Enables Flatpak
             services.flatpak.enable = true;
 
-            #Enables Hyprlock
+            #Gnome keyring
+            services.gnome.gnome-keyring.enable = true;
             security.polkit.enable = true;
-            security.pam.services.hyprlock = {};
-            security.pam.services.swaylock = {};
+            security.pam.services.login.enableGnomeKeyring = true;
+            security.pam.services.hyprlock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.hyprlock) true;
+            security.pam.services.swaylock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.swaylock) true;
+            security.pam.services.sddm.enableGnomeKeyring = mkIf (config.settings.nixos.display_manager == "sddm") true;
 
             # Man pages
             documentation.dev.enable = true;
