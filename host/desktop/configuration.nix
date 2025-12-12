@@ -7,6 +7,10 @@
     boot.initrd.kernelModules = [ "amdgpu" ];
     services.xserver.videoDrivers = [ "amdgpu" ];
     hardware = {
+        logitech.wireless = {
+            enable = true;
+            enableGraphical = true;
+        };
         graphics = {
             enable = true;
             extraPackages = with pkgs; [
