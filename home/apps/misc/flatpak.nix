@@ -11,6 +11,7 @@ in
             enable = true;
             packages = mkIf (cfg_level == "all" || cfg_level == "light") [
                 "io.github.zen_browser.zen"
+                "org.vinegarhq.Sober"
             ];
         };
     };
