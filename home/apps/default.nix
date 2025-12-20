@@ -27,6 +27,7 @@ in
                 obs-studio
                 godot_4
                 parsec-bin
+                alvr
                 wfinfo-ng
             ]);
         })
