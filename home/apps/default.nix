@@ -3,6 +3,8 @@
 let
     cfg = config.settings.home.apps.level;
     inherit (lib) mkIf mkMerge;
+
+    wfinfo-ng = import ./pkgs/wfinfo-ng.nix { inherit pkgs; };
 in
 {
     imports = [
@@ -25,6 +27,7 @@ in
                 obs-studio
                 godot_4
                 parsec-bin
+                wfinfo-ng
             ]);
         })
 
