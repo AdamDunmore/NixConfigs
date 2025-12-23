@@ -50,6 +50,9 @@ in
                 helvum
                 cava
 
+                qemu
+                quickgui
+                quickemu
 
                 # Sway
                 wl-clipboard
