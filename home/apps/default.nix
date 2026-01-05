@@ -4,6 +4,7 @@ let
     cfg = config.settings.home.apps.level;
     inherit (lib) mkIf mkMerge;
 
+    jackify = import ./pkgs/jackify.nix { inherit pkgs; };
     wfinfo-ng = import ./pkgs/wfinfo-ng.nix { inherit pkgs; };
 in
 {
@@ -28,6 +29,7 @@ in
                 godot_4
                 parsec-bin
                 alvr
+                jackify
                 wfinfo-ng
             ]);
         })
