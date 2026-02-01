@@ -24,6 +24,8 @@
         mnw.url = "github:Gerg-L/mnw";
         sops-nix.url = "github:Mic92/sops-nix";
         ags.url = "github:Aylur/ags";
+        moonlight.url = "github:moonlight-mod/moonlight";
+        moonlight.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs = { ... } @inputs:

@@ -141,6 +141,26 @@
         "type": "github"
       }
     },
+    "moonlight": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769290167,
+        "narHash": "sha256-85W5OrP9Ju4ZJRUEZLpBreKxgUrHgxxZEv7KzcpqNDo=",
+        "owner": "moonlight-mod",
+        "repo": "moonlight",
+        "rev": "aed3fbaded899327c5c67d7792672b5819cfc2fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "moonlight-mod",
+        "repo": "moonlight",
+        "type": "github"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1754777568,
@@ -265,6 +285,7 @@
         "home-manager": "home-manager",
         "jovian": "jovian",
         "mnw": "mnw",
+        "moonlight": "moonlight",
         "nix-flatpak": "nix-flatpak",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",

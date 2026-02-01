@@ -1,12 +1,21 @@
 { config, lib, pkgs, ... }:
 let
     inherit (lib) mkOption types mkEnableOption;
+    # Dont use
     falseEnableOption = s: mkOption {
         type = types.bool;
         default = true;
         example = false;
         description = s;
     };
+
+    mkDefaultOption = s: d: mkOption {
+        type = types.bool;
+        default = d;
+        example = false;
+        description = s;
+    };
+    cfg = config.settings; 
 in
 {
     options.settings = {
@@ -46,7 +55,7 @@ in
                 };
 
                 music = {
-                    enable = falseEnableOption "Enables music listening module";
+                    enable = mkDefaultOption "Enables music listening module" true;
                     path = mkOption {
                         type = types.str; 
                         default = "${config.home.homeDirectory}/Music";

@@ -48,9 +48,9 @@ in
                 beeper
                 syncthing
                 kdePackages.kdeconnect-kde
-                discord
                 helvum
                 cava
+                discord
 
                 qemu
                 quickgui
