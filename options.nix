@@ -1,13 +1,6 @@
 { config, lib, pkgs, ... }:
 let
     inherit (lib) mkOption types mkEnableOption;
-    # Dont use
-    falseEnableOption = s: mkOption {
-        type = types.bool;
-        default = true;
-        example = false;
-        description = s;
-    };
 
     mkDefaultOption = s: d: mkOption {
         type = types.bool;
@@ -22,7 +15,7 @@ in
         home = {
             apps = {
                 autostart = {
-                    enable = falseEnableOption "Enables autostart";
+                    enable = mkDefaultOption "Enables autostart" true;
                     apps = mkOption {
                         type = types.listOf types.package;
                         default = [];
@@ -51,7 +44,7 @@ in
 
                 misc = {
                     code = mkEnableOption "Enables VSCode";
-                    flatpak = falseEnableOption "Enables Flatpak";
+                    flatpak = mkDefaultOption "Enables Flatpak" true;
                 };
 
                 music = {
@@ -70,29 +63,29 @@ in
                 };
             };
 
-            scripts = falseEnableOption "Enable scripts module";
+            scripts = mkDefaultOption "Enable scripts module" true;
             terminal = {
                 editors = {
                     emacs = mkEnableOption "Enables Emacs";
-                    nvim = falseEnableOption "Enables Nvim";
+                    nvim = mkDefaultOption "Enables Nvim" true;
                 };
                 shell = {
-                    lsd = falseEnableOption "Enables lsd";
-                    intellishell = falseEnableOption "Enables intellishell";
-                    git = falseEnableOption "Enables git";
-                    starship = falseEnableOption "Enables starship";
+                    lsd = mkDefaultOption "Enables lsd" true;
+                    intellishell = mkDefaultOption "Enables intellishell" true;
+                    git = mkDefaultOption "Enables git" true;
+                    starship = mkDefaultOption "Enables starship" true;
                     tmux = mkEnableOption "Enables tmux";
-                    yazi = falseEnableOption "Enables yazi";
+                    yazi = mkDefaultOption "Enables yazi" true;
                     zellij = mkEnableOption "Enables zellij";
-                    zoxide = falseEnableOption "Enables zoxide (z)"; 
-                    zsh = falseEnableOption "Enables zsh";
+                    zoxide = mkDefaultOption "Enables zoxide (z)" true; 
+                    zsh = mkDefaultOption "Enables zsh" true;
                 };
                 terminals = {
                     alacritty = mkEnableOption "Enables Alacritty";
                     kitty = mkEnableOption "Enables Kitty";
                 };
             };
-            theme = falseEnableOption "Enables theme modules";
+            theme = mkDefaultOption "Enables theme modules" true;
             widgets = {
                 ags = mkEnableOption "Enables ags";
                 mako = mkEnableOption "Enables Mako";
@@ -156,11 +149,11 @@ in
                 description = "String value for what display manager to use. Possible options are 'greetd', 'ly', 'sddm' or 'none'.";
             };
             keyboard = {
-                enable = falseEnableOption "Enable Configuring Keyboard";
-                custom_layout = falseEnableOption "Enable Custom Keyboard Layout";
+                enable = mkDefaultOption "Enable Configuring Keyboard" true;
+                custom_layout = mkDefaultOption "Enable Custom Keyboard Layout" true;
             };
             services = {
-                nh = falseEnableOption "Enables nh garbage collection";
+                nh = mkDefaultOption "Enables nh garbage collection" true;
                 nextcloud = mkEnableOption "Enables nextcloud";
                 mopidy = {
                     enable = mkEnableOption "Enable Mopidy";
@@ -180,9 +173,9 @@ in
                 enable = mkEnableOption "Enables steamdeck module";
             };
             system = { 
-                enable = falseEnableOption "Enables system modules";
-                bootloader = falseEnableOption "Enables bootloader module";
-                secrets = falseEnableOption "Enables secrets module";
+                enable = mkDefaultOption "Enables system modules" true;
+                bootloader = mkDefaultOption "Enables bootloader module" true;
+                secrets = mkDefaultOption "Enables secrets module" true;
                 virtualisation = mkEnableOption "Enables virtualbox";
             };
         };
