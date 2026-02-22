@@ -12,6 +12,8 @@ let
     ];
 
     get_bind = builtins.elemAt wm_keybinds;
+
+    inherit (lib) mkIf;
 in
 {
     imports = [
@@ -25,7 +27,32 @@ in
     ];
 
     config = { 
-        home.packages = forEachPkg;
+        home.packages = forEachPkg ++ (with pkgs; [
+            eog 
+        ]);
+
+        xdg = mkIf true {
+            mime.enable = true;
+            mimeApps = {
+                enable = true;
+                defaultApplications = {
+                    "text/html" = [ "firefox.desktop" ];
+                    "x-scheme-handler/http" = [ "firefox.desktop" ];
+                    "x-scheme-handler/https" = [ "firefox.desktop" ];
+                    "x-scheme-handler/about" = [ "firefox.desktop" ];
+                    "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+
+                    "image/*" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                    "image/png" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                    "image/jpeg" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                    "image/gif" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                    "image/webp" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                    "image/bmp" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                    "image/tiff" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                    "image/svg+xml" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+                };
+            };
+        };
     };
 }
 # WM Config Template 
