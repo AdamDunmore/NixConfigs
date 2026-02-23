@@ -29,15 +29,14 @@ in
 
                     "pulseaudio" = {
                         format = "   {volume}%";
-                        on-click = "~/.scripts/sinkcycle.sh";
+                        on-click = "${config.home.homeDirectory}/.scripts/sinkcycle.sh";
                     };
 
                     "battery" = {
                         format = "{icon} {capacity}%";
                         format-charging = "󰂄 {capacity}%";
                         format-icons = [ "󰁻" "󰁽" "󰁿" "󰂁" "󰁹" ];
-                        on-click = "~/.scripts/powercycle.sh";
-
+                        on-click = "${config.home.homeDirectory}/.scripts/powercycle.sh";
                     };
 
                     "cava" = {
