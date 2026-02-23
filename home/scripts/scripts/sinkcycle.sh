@@ -27,6 +27,9 @@ next_sink="${sinks[$next_index]}"
 # Apply new sink
 pactl set-default-sink "$next_sink"
 
+# Notify User
+notify-send "Sink changed" "${next_sink##*.}"
+
 # Move all current streams
 for input in $(pactl list short sink-inputs | awk '{print $1}'); do
     pactl move-sink-input "$input" "$next_sink"
