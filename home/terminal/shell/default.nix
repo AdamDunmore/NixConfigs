@@ -22,6 +22,7 @@ in
 
                 cds = "echo \"Disk usage of current dir: $(du . -sh)\"";
                 copy-pat = "wl-copy $(sudo cat ~/pat | cut -c1-40)";
+                gl1 = "wl-copy $(git log -n 1 | grep \"commit\" | cut -d \" \" -f 2)";
 
                 ze = "zellij options --attach-to-session=true --session-name=main"; 
 
