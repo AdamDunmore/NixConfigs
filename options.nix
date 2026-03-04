@@ -153,6 +153,7 @@ in
                 custom_layout = mkDefaultOption "Enable Custom Keyboard Layout" true;
             };
             services = {
+                ai = mkEnableOption "Enables local AI models";
                 nh = mkDefaultOption "Enables nh garbage collection" true;
                 nextcloud = mkEnableOption "Enables nextcloud";
                 mopidy = {

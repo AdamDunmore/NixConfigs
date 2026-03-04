@@ -35,6 +35,7 @@
                 custom_layout = true;
             };
             services = {
+                ai = true;
                 syncthing = true;
                 tailscale = true;
             };
