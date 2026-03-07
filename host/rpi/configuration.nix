@@ -2,15 +2,15 @@
 
 {
     config = {
-        networking.hostName = "server";
+        networking.hostName = "rpi";
 
 	    boot.loader.grub.enable = true;
-	    boot.loader.grub.device = "/dev/sda";
+	    #boot.loader.grub.device = "/dev/sda";
 	
-	    services.openssh.enable = true;
-	    services.openssh.settings.PermitRootLogin = "yes";
+	    #services.openssh.enable = true;
+	    #services.openssh.settings.PermitRootLogin = "yes";
 
-        programs.gnupg.agent.pinentryPackage = lib.mkForce pkgs.pinentry-tty;
+        #programs.gnupg.agent.pinentryPackage = lib.mkForce pkgs.pinentry-tty;
 
         users.users."${networking.hostName}" = {
             group = "users";
@@ -20,7 +20,8 @@
             extraGroups = [ "networkmanager" "wheel" "audio" "dialout" ];
             shell = pkgs.zsh;
             ignoreShellProgramCheck = true;
-            hashedPasswordFile = config.sops.secrets.server_pass.path;
+            # TODO readd
+            #hashedPasswordFile = config.sops.secrets.server_pass.path;
         };
     };
 }
