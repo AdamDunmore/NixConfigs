@@ -7,8 +7,6 @@
             apps = with pkgs; [
                 steam
                 firefox
-                discord
-
             ];
         };
     };

@@ -30,7 +30,7 @@ in
                 parsec-bin
                 alvr
                 jackify
-                wfinfo-ng
+                #wfinfo-ng needs maintainance
             ]);
         })
 
@@ -48,9 +48,8 @@ in
                 beeper
                 syncthing
                 kdePackages.kdeconnect-kde
-                helvum
+                #helvum not maintained dont readd
                 cava
-                discord
 
                 qemu
                 quickgui

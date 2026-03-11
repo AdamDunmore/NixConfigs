@@ -44,6 +44,7 @@ in
 
                 misc = {
                     code = mkEnableOption "Enables VSCode";
+                    discord = mkDefaultOption "Enables Discord" true;
                     flatpak = mkDefaultOption "Enables Flatpak" true;
                 };
 
