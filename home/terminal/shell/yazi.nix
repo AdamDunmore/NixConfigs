@@ -9,6 +9,7 @@ in
         programs.yazi = {
             enable = true;
             enableZshIntegration = config.settings.home.terminal.shell.zsh;
+            shellWrapperName = "yy";
             settings = {
                 manager = {
                     show_hidden = true;

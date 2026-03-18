@@ -11,7 +11,7 @@ in
     config = mkIf cfg {
         home.packages = [ discord ];
         
-        programs.moonlight-mod = {
+        programs.moonlight = {
             enable = false;
             configs.stable = {
                 extensions = {

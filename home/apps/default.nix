@@ -73,7 +73,7 @@ in
                 gnome-settings-daemon
 
 
-                wineWowPackages.stable
+                wineWow64Packages.stable
                 winetricks
                 gamescope
                 vulkan-tools

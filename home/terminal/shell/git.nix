@@ -9,8 +9,12 @@ in
         #Git credential helper setup
         programs.git = {
             enable = true;
-            userName = "Adam Dunmore";
-            userEmail = "adamfdunmore@gmail.com";
+            settings = {
+                user = {
+                    name = "Adam Dunmore";
+                    email = "adamfdunmore@gmail.com";
+                };
+            };
         };
     };  
 }

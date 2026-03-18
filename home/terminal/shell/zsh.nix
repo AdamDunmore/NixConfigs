@@ -12,6 +12,7 @@ in
             autosuggestion.enable = true;
             syntaxHighlighting.enable = true;
             enableCompletion = true;
+            dotDir = config.home.homeDirectory;
             envExtra = "HOSTNAME=$(hostname)";
             initContent = ''
                 if [ -e "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh" ]; then
