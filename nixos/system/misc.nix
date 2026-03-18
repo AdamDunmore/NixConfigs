@@ -103,17 +103,5 @@ in
                 dedicatedServer.openFirewall = true; 
             };
         } )
-
-        ( mkIf (config.settings.nixos.services.ai) {
-            services.ollama = {
-                enable = true;
-                syncModels = true;
-                loadModels = [
-                    "llama3.1"
-                    "deepseek-r1"
-                    "qwen3-coder"
-                ];
-            };
-        } )
     ];
 }

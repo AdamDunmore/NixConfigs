@@ -1,5 +1,6 @@
 {
     imports = [
+        ./ai.nix
         ./jellyfin.nix
         ./mopidy.nix
         ./nextcloud.nix
