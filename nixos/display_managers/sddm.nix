@@ -7,11 +7,21 @@ in
     config = lib.mkIf (cfg == "sddm") {
         services.displayManager.sddm = {
             enable = true;
-            package = pkgs.qt6Packages.sddm;
-            wayland.enable = true;
-            settings = {};
+            wayland.enable = false; #TODO fix for no mouse in SDDM
+            extraPackages = [
+                pkgs.kdePackages.qtmultimedia
+            ];
+            settings = {
+                General = {
+                    InputMethod = "";
+                };
+            };
             theme = "sddm-astronaut-theme";
-            extraPackages = [ pkgs.sddm-astronaut ];
         };
+
+
+        environment.systemPackages = [ 
+            pkgs.sddm-astronaut 
+        ];
     };
 }
