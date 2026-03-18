@@ -2,7 +2,7 @@
 
 pkgs.rustPlatform.buildRustPackage rec {
     pname = "wfinfo-ng";
-    version = "0.2.23";
+    version = "0.1.0";
     src = pkgs.fetchFromGitHub {
         owner = "knoellle";
         repo = pname;
@@ -11,6 +11,10 @@ pkgs.rustPlatform.buildRustPackage rec {
     };
     doCheck = false;
     cargoHash = "sha256-qz4hKQP9+FcsmboHsEbR+Z19aWD65Ytj8iQVyYphQYA=";
+    env = {
+        # Fix old CMAKE version
+        CMAKE_POLICY_VERSION_MINIMUM = "3.5";
+    };
     nativeBuildInputs = with pkgs; [
         pkg-config
         cmake
@@ -25,11 +29,11 @@ pkgs.rustPlatform.buildRustPackage rec {
         leptonica
         openssl
         tesseract
-        xorg.libX11
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXrandr
-        xorg.libXtst
+        libx11
+        libxcursor
+        libxi
+        libxrandr
+        libxtst
         libxcb
     ];
 }

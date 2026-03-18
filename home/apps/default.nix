@@ -30,7 +30,7 @@ in
                 parsec-bin
                 alvr
                 jackify
-                #wfinfo-ng needs maintainance
+                wfinfo-ng
             ]);
         })
 
