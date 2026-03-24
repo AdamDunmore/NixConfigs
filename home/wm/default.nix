@@ -31,6 +31,16 @@ in
             eog 
         ]);
 
+        home.pointerCursor = {
+            enable = true;
+            name = "Adwaita";
+            size = 16;
+            package = pkgs.adwaita-icon-theme;
+
+            gtk.enable = true;
+            sway.enable = mkIf (cfg.sway.enable) true;
+        };
+
         xdg = mkIf true {
             mime.enable = true;
             mimeApps = {
