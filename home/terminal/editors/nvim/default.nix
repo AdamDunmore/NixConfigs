@@ -5,7 +5,7 @@ let
 in
 {
     imports = [ inputs.mnw.homeManagerModules.mnw ];
-    config = lib.mkIf cfg {
+    config = lib.mkIf cfg { 
         programs.mnw = {
                 enable = true;
                 appName = "nv";

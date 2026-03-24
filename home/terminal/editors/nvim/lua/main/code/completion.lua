@@ -9,7 +9,7 @@ cmp.setup({
             ['<Tab>'] = { 'accept', 'fallback' }
         },
         completion = {
-            menu= {
+            menu = {
                 auto_show = true
             }
         }

@@ -1,4 +1,5 @@
-local lsp_config = require('lspconfig');
+-- TODO reenabled missing lsps
+
 local capabilities = require('blink.cmp').get_lsp_capabilities();
 
 vim.diagnostic.config({
@@ -6,77 +7,9 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
--- Java
-lsp_config.jdtls.setup({
+vim.lsp.config("*", {    
     capabilities = capabilities,
 })
 
--- Lua
-lsp_config.lua_ls.setup({
-    capabilities = capabilities,
-})
-
--- Python
-lsp_config.pyright.setup({
-    capabilities = capabilities,
-})
-
--- Java/Typescript 
-lsp_config.ts_ls.setup({
-    capabilities = capabilities,
-})
-
--- Nix
-lsp_config.nil_ls.setup({
-    capabilities = capabilities,
-    settings = {
-        ['nil'] = {
-            ['nix'] = {
-                ['flake'] = {
-                    autoArchive = true,
-                    autoEvalInputs = true
-                }
-            }
-        }
-    }
-})
-
--- Rust
-lsp_config.rust_analyzer.setup({
-    capabilities = capabilities,
-})
-
--- HTML
-lsp_config.html.setup({
-    capabilities = capabilities,
-})
-
---CSS
-lsp_config.cssls.setup({
-    capabilities = capabilities,
-})
-
--- Bash
-lsp_config.bashls.setup({
-    capabilities = capabilities,
-})
-
--- C/C++
-lsp_config.clangd.setup({
-    capabilities = capabilities,
-})
-
--- Zig
-lsp_config.zls.setup({
-    capabilities = capabilities,
-})
-
--- Vue
-lsp_config.volar.setup({
-    capabilities = capabilities,
-})
-
--- Dart
-lsp_config.dartls.setup({
-    capabilities = capabilities,
-})
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("nil_ls")
