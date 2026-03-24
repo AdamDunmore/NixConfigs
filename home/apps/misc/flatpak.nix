@@ -13,6 +13,7 @@ in
                 "io.github.zen_browser.zen"
                 "org.vinegarhq.Sober"
                 "io.mrarm.mcpelauncher"
+                "com.github._0negal.Viper"
             ];
         };
     };
