@@ -21,6 +21,7 @@ in
                     "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"";
                     "${mod}+q" = mkIf config.settings.home.widgets.ags "exec ags toggle sidebar";
                     "${mod}+b" = "exec btwofi";
+                    "${mod}+n" = "exec togglenight";
 
                     #Modes
                     "${mod}+R" = "mode \"resize\"";
