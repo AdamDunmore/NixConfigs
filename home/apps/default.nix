@@ -10,6 +10,7 @@ in
 {
     imports = [
         ./autostart.nix
+        ./translate.nix
         ./togglenight.nix
 
         ./browser

@@ -22,6 +22,7 @@ in
                     "${mod}+q" = mkIf config.settings.home.widgets.ags "exec ags toggle sidebar";
                     "${mod}+b" = "exec btwofi";
                     "${mod}+n" = "exec togglenight";
+                    "${mod}+t" = "exec translate";
 
                     #Modes
                     "${mod}+R" = "mode \"resize\"";
