@@ -14,10 +14,10 @@ in
                 border-color = "${colours.blue.two}FF";
                 border-radius = 30;
                 border-size = 2;
-                default-timeout = 3000;
+                default-timeout = 8000;
                 font = "${font.name} 12";
                 layer = "top";
-                max-visible = 3;
+                max-visible = 2;
                 sort = "-time";
                 height = 100;
                 icons = true;
