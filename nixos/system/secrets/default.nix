@@ -53,6 +53,12 @@ in
                 key = "server_pass";
                 mode = "0444";
             };
+
+            proton_pass = {
+                sopsFile = ./secrets.yaml;
+                key = "proton_pass";
+                mode = "0444";
+            };
         };
         
         sops.templates = {

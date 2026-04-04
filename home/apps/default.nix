@@ -42,7 +42,6 @@ in
                 vscode
                 logseq
                 motrix
-                protonvpn-gui
                 thonny
                 bottles
                 tor-browser
