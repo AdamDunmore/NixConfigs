@@ -54,9 +54,21 @@ in
                 mode = "0444";
             };
 
-            proton_pass = {
+            drive_client_id = {
                 sopsFile = ./secrets.yaml;
-                key = "proton_pass";
+                key = "drive_client_id";
+                mode = "0444";
+            };
+
+            drive_secret = {
+                sopsFile = ./secrets.yaml;
+                key = "drive_secret";
+                mode = "0444";
+            };
+
+            drive_token = {
+                sopsFile = ./secrets.yaml;
+                key = "drive_token";
                 mode = "0444";
             };
         };

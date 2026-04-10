@@ -2,7 +2,7 @@
     imports = [
         ./code.nix
         ./discord.nix
+        ./drive.nix
         ./flatpak.nix
-        ./proton.nix
     ];
 }

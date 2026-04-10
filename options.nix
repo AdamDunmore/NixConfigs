@@ -45,6 +45,7 @@ in
                 misc = {
                     code = mkEnableOption "Enables VSCode";
                     discord = mkDefaultOption "Enables Discord" true;
+                    drive = mkDefaultOption "Enables g-drive mount" true;
                     flatpak = mkDefaultOption "Enables Flatpak" true;
                 };
 
