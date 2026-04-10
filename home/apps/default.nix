@@ -51,6 +51,7 @@ in
                 kdePackages.kdeconnect-kde
                 #helvum not maintained dont readd
                 cava
+                mpv
                 proton-pass
                 protonmail-desktop
                 protonvpn-gui

@@ -135,6 +135,14 @@ in
                     enable = mkEnableOption "Enables Sway";
                     swaylock = mkEnableOption "Enables Swaylock";
                 };
+
+                primary-monitor = mkOption {
+                    type = types.str;
+                    default = "DP-1";
+                    example = "eDP-1";
+                    description = "The primary monitor of the system";
+                };
+                replays = mkDefaultOption "Enables replays" true;
             };
         };
 

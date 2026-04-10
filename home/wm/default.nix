@@ -31,9 +31,15 @@ in
         home.activation.createScreenshotsDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
             mkdir -p "$HOME/Pictures/Screenshots"
         ''; 
+
         home.sessionVariables = {
             GRIM_DEFAULT_DIR  = "~/Pictures/Screenshots";
         };
+        
+        # Replay setup
+        home.activation.createReplayDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            mkdir -p "$HOME/Videos/Replays"
+        '';
 
         home.packages = forEachPkg ++ (with pkgs; [
             eog 
@@ -68,6 +74,9 @@ in
                     "image/bmp" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
                     "image/tiff" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
                     "image/svg+xml" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
+
+                    "video/*" = [ "mpv.desktop" "firefox.desktop" ];
+                    "video/mp4" = [ "mpv.desktop" "firefox.desktop" ];
                 };
             };
         };

@@ -15,6 +15,8 @@ in
             };
             shell.enableZshIntegration = config.settings.home.terminal.shell.zsh;
             shellAliases = {
+                x = "xdg-open";
+                
                 top = "htop";
 
                 # ls = "${lsd} -l";

@@ -9,5 +9,6 @@
                 firefox
             ];
         };
+        home.wm.primary-monitor = ""; #TODO add
     };
 }

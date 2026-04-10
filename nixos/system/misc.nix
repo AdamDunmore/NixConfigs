@@ -103,5 +103,9 @@ in
                 dedicatedServer.openFirewall = true; 
             };
         } )
+
+        ( mkIf config.settings.home.wm.replays { 
+            programs.gpu-screen-recorder.enable = true;
+        })
     ];
 }
