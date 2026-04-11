@@ -9,6 +9,6 @@
                 firefox
             ];
         };
-        home.wm.primary-monitor = ""; #TODO add
+        home.wm.primary-monitor = "DP-2";
     };
 }
