@@ -118,10 +118,6 @@ in
                     };
                 };
 
-                cosmic = {
-                    enable = mkEnableOption "Enables Cosmic";
-                    cosmic-greeter = mkEnableOption "Enables Cosmic Greeter";
-                };
                 hyprland = {
                     enable = mkEnableOption "Enables Hyprland";
                     hyprlock = mkEnableOption "Enables Hyprlock";
@@ -153,10 +149,10 @@ in
 
             };
             display_manager = mkOption {
-                type = types.enum [ "greetd" "ly" "sddm" "none" ];
+                type = types.enum [ "greetd" "ly" "sddm" "cosmic" "none" ];
                 default = "greetd";
                 example = "sddm";
-                description = "String value for what display manager to use. Possible options are 'greetd', 'ly', 'sddm' or 'none'.";
+                description = "String value for what display manager to use. Possible options are 'greetd', 'ly', 'sddm', 'cosmic' or 'none'.";
             };
             keyboard = {
                 enable = mkDefaultOption "Enable Configuring Keyboard" true;

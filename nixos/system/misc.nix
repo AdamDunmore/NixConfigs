@@ -1,9 +1,7 @@
 { inputs, font, pkgs, pkgs-stable, lib, config, ... }:
 let
     cfg = config.settings.nixos.system.enable;
-    cosmic_cfg = config.settings.home.wm.cosmic;
     cfg_apps = config.settings.home.apps;
-    wm_cfg = config.settings.home.wm.defaults;
     inherit (lib) mkIf mkMerge;
 in
 {
@@ -33,10 +31,15 @@ in
             #Gnome keyring
             services.gnome.gnome-keyring.enable = true;
             security.polkit.enable = true;
-            security.pam.services.login.enableGnomeKeyring = true;
-            security.pam.services.hyprlock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.hyprlock) true;
-            security.pam.services.swaylock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.swaylock) true;
-            security.pam.services.sddm.enableGnomeKeyring = mkIf (config.settings.nixos.display_manager == "sddm") true;
+            security.pam.services = let 
+                wm_cfg = config.settings.home.wm.defaults; 
+            in {
+                login.enableGnomeKeyring = true;
+                hyprlock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.hyprlock) true;
+                swaylock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.swaylock) true;            
+                sddm.enableGnomeKeyring = mkIf (config.settings.nixos.display_manager == "sddm") true;
+                cosmic-greeter.enableGnomeKeyring = mkIf (config.settings.nixos.display_manager == "sddm") true;
+            };
 
             # Man pages
             documentation.dev.enable = true;
@@ -85,14 +88,7 @@ in
             programs.ssh.askPassword = "";
         } )
         
-        ( mkIf cosmic_cfg.enable {
-            services.desktopManager.cosmic = {
-                enable = true;
-                xwayland.enable = true;
-            };
-        } ) 
-
-        ( mkIf cosmic_cfg.cosmic-greeter {
+        ( mkIf (config.settings.nixos.display_manager == "cosmic") {
             services.displayManager.cosmic-greeter.enable = true;
         } ) 
 
