@@ -15,7 +15,23 @@ in
             enable = false;
             configs.stable = {
                 extensions = {
-
+                    betterCodeblocks.enable = true;  
+                    betterEmbedsYT.enable = true;      
+                    callIdling.enable = true;    
+                    callTimer.enable = true;  
+                    clearUrls.enable = true;           
+                    doubleClickActions.enable = true;             
+                    freeMoji.enable = true; 
+                    freeScreenShare.enable = true;
+                    freeStickers.enable = true;
+                    hideBlocked.enable = true;
+                    memberCount.enable = true;
+                    muteGuildOnJoin.enable = true;
+                    noHelp.enable = true;           
+                    noJoinMessageWave.enable = true;
+                    noPendingCount.enable = true;
+                    removeTopBar.enable = true;
+                    volumeManipulator.enable = true;
                 };
             };
         };
