@@ -7,7 +7,26 @@ in
     imports = [ inputs.ags.homeManagerModules.default ];
 
     config = mkIf cfg {
-        home.packages = with pkgs; [ gammastep ];
+        home.packages = with pkgs; [ 
+            gammastep 
+            mpdris2
+        ];
+
+        systemd.user.services.mpdris2 = {
+            Unit = {
+                Description = "MPD MPRIS bridge";
+                After = [ "mpd.service" ];
+            };
+
+            Service = {
+                ExecStart = "${pkgs.mpdris2}/bin/mpDris2";
+                Restart = "always";
+            };
+
+            Install = {
+                WantedBy = [ "default.target" ];
+            };
+        };
 
         programs.ags = {
             enable = true;
