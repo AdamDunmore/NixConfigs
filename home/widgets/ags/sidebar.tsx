@@ -16,7 +16,7 @@ export default function Sidebar(){
         for (let p of mpris.players){
             if (p.identity == "Music Player Daemon"){
                 setPlayer({
-                    title: p.title.slice(0,30),
+                    title: p.title.slice(0,20),
                     artist: p.artist.slice(0,30),
                     artUrl : p.artUrl.replace("file://", "")
                 });
