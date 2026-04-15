@@ -59,17 +59,22 @@ export default function Sidebar(){
                     </box>
                 </box>
                 <box vexpand={true} class="spacer" />
-                <box class="power_box" valign={2} halign={3}>
-                    <button onClicked={() => { execAsync("hyprlock") }} class="button">
+                <box valign={2} hexpand={true}>
+                    <button hexpand={true} onClicked={() => {execAsync("togglenight") }} class="button">
+                        <label label=""/>
+                    </button>
+                </box>
+                <box class="power_box" valign={2}>
+                    <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="button">
                         <label label=""/>
                     </button>
-                    <button onclicked={() => { execAsync("systemctl suspend") }} class="button">
+                    <button hexpand={true} onclicked={() => { execAsync("systemctl suspend") }} class="button">
                         <label label="󰤄"/>
                     </button>
-                    <button onclicked={() => { execAsync("reboot") }} class="button">
+                    <button hexpand={true} onclicked={() => { execAsync("reboot") }} class="button">
                         <label label="󰜉"/>
                     </button>
-                    <button onClicked={() => { execAsync("shutdown now") }} class="button">
+                    <button hexpand={true} onClicked={() => { execAsync("shutdown now") }} class="button">
                         <label label="⏻"/>
                     </button>
                 </box>
