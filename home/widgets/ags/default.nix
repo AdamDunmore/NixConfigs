@@ -32,10 +32,12 @@ in
             enable = true;
             configDir = ./.;
             extraPackages = with pkgs.astal; [
-                mpris
                 io
                 gjs
                 astal4
+
+                bluetooth 
+                mpris
             ];
         };
     };

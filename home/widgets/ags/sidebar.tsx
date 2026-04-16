@@ -1,14 +1,18 @@
 import { Astal } from "ags/gtk4"
-import { createState } from "ags"
+import { createState, createEffect, For } from "ags"
 import app from "ags/gtk4/app"
 import { execAsync } from "ags/process"
 import Mpris from "gi://AstalMpris";
+import Bluetooth from "gi://AstalBluetooth"
 
 const { TOP, RIGHT, BOTTOM } = Astal.WindowAnchor
 
 export default function Sidebar(){ 
     const mpris = Mpris.get_default();
+    const bluetooth = Bluetooth.get_default();
+
     const [player, setPlayer] = createState({});
+    const [devices, setDevices] = createState([]);
 
     const MAX_TITLE_LENGTH: number = 30;
 
@@ -21,7 +25,15 @@ export default function Sidebar(){
             volume: p.volume,
         });
     };
-    
+
+    const handleBTConnection = (d) => { //TODO add pairing notification
+        if(d.connected){
+            d.disconnect_device((e) => print(e))
+        }else {
+            d.connect_device((e) => print(e))
+        }
+    }
+
     mpris.connect("notify::players", () => {
         for (let p of mpris.players){
             if (p.identity == "Music Player Daemon"){
@@ -33,6 +45,11 @@ export default function Sidebar(){
             }
         }
     });
+
+    while(!bluetooth.get_devices()){
+    }setDevices(bluetooth.get_devices())
+
+    bluetooth.connect("notify", () => { setDevices(bluetooth.get_devices())})
 
     return (
         <window visible={false} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
@@ -54,6 +71,21 @@ export default function Sidebar(){
                         <label class="button" label={player(p => `${p.volume * 100}%`)} /> { /* Not a button but oh well */ }
                         <button hexpand={true} onClicked={() => { execAsync("rmpc volume +5") }} class="button" label="󰝝" />
                     </box>
+                </box>
+                <box vexpand={true} name="Spacer" />
+                <box name="Bluetooth Box" orientation={1} spacing={4}>
+                    <button label="Bluetooth" onClicked={() => {
+                        let a = bluetooth.get_adapter();
+                        a.start_discovery()
+                        setTimeout(() => { a.stop_discovery() }, 10000)
+                    }}/>
+                    <For each={devices}>
+                        {(d) => {
+                            if(d.name != null){
+                                return (<button label={devices(() => `${d.name} ${d.connected ? "" : ""}`)} onClicked={() => handleBTConnection(d)}/>)
+                            } else { return (<box visible={false}/>) }
+                        } }
+                    </For>
                 </box>
                 <box vexpand={true} name="Spacer" />
                 <button hexpand={true} onClicked={() => {execAsync("togglenight") }} class="button" label="" />
