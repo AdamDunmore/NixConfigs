@@ -49,13 +49,14 @@ export default function Sidebar(){
     });
 
     while(!bluetooth.get_devices()){}
-    setIsBluetooth(true);
-    setDevices(bluetooth.get_devices())
-    bluetooth.connect("notify", () => { 
+    if (bluetooth.isPowered){
+        setIsBluetooth(true);
         setDevices(bluetooth.get_devices())
-        setDiscovering(bluetooth.get_adapter().discovering);
-    })
-
+        bluetooth.connect("notify", () => { 
+            setDevices(bluetooth.get_devices())
+            setDiscovering(bluetooth.get_adapter().discovering);
+        })
+    }
     return (
         <window visible={false} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
             <box class="parent" orientation={1} vexpand={true}>
