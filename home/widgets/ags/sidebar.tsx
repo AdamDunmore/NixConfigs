@@ -13,6 +13,7 @@ export default function Sidebar(){
 
     const [player, setPlayer] = createState({});
     const [devices, setDevices] = createState([]);
+    const [discovering, setDiscovering] = createState(false);
 
     const MAX_TITLE_LENGTH: number = 30;
 
@@ -26,11 +27,11 @@ export default function Sidebar(){
         });
     };
 
-    const handleBTConnection = (d) => { //TODO add pairing notification
+    const handleBTConnection = (d) => {
         if(d.connected){
-            d.disconnect_device((e) => print(e))
+            d.disconnect_device((d) => print("Disconnecting"))
         }else {
-            d.connect_device((e) => print(e))
+            d.connect_device((d) => print("Connecting"))
         }
     }
 
@@ -46,14 +47,18 @@ export default function Sidebar(){
         }
     });
 
-    while(!bluetooth.get_devices()){
-    }setDevices(bluetooth.get_devices())
+    // Wait till adapter ready
+    while(!bluetooth.get_devices()){}
+    setDevices(bluetooth.get_devices())
 
-    bluetooth.connect("notify", () => { setDevices(bluetooth.get_devices())})
+    bluetooth.connect("notify", () => { 
+        setDevices(bluetooth.get_devices())
+        setDiscovering(bluetooth.get_adapter().discovering);
+    })
 
     return (
         <window visible={false} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
-            <box class="container" orientation={1} vexpand={true}>
+            <box class="parent" orientation={1} vexpand={true}>
                 <box valign={1} halign={3} orientation={1} spacing={6} name="Mpris Box">
                     <image
                         file={player(p => p?.artUrl ?? "undefined")}
@@ -72,23 +77,25 @@ export default function Sidebar(){
                         <button hexpand={true} onClicked={() => { execAsync("rmpc volume +5") }} class="button" label="󰝝" />
                     </box>
                 </box>
-                <box vexpand={true} name="Spacer" />
-                <box name="Bluetooth Box" orientation={1} spacing={4}>
-                    <button label="Bluetooth" onClicked={() => {
-                        let a = bluetooth.get_adapter();
-                        a.start_discovery()
-                        setTimeout(() => { a.stop_discovery() }, 10000)
-                    }}/>
-                    <For each={devices}>
-                        {(d) => {
-                            if(d.name != null){
-                                return (<button label={devices(() => `${d.name} ${d.connected ? "" : ""}`)} onClicked={() => handleBTConnection(d)}/>)
-                            } else { return (<box visible={false}/>) }
-                        } }
-                    </For>
+                <scrolledwindow maxContentHeight={600} vexpand={true}>
+                    <box name="Bluetooth Box" orientation={1} spacing={4} class="container">
+                        <button label={discovering(d => d ? "Bluetooth 󰘊" : "Bluetooth")} onClicked={() => {
+                            let a = bluetooth.get_adapter()
+                            if (!a.discovering){
+                                a.start_discovery()
+                                setTimeout(() => { a.stop_discovery() }, 10000)
+                            }
+                        }}/>
+                        <For each={devices}>
+                            {(d) => {
+                                if(d.name != null){
+                                    return (<button label={devices(() => `${d.name.slice(0, 8)} ${(d.batterPercentage != -1 && d.connected) ? "[󰁹 " + (d.batteryPercentage * 100) + "%]" : ""}`)} onClicked={() => handleBTConnection(d)}/>)
+                                } else { return (<box visible={false}/>) }
+                            } }
+                        </For>
                 </box>
-                <box vexpand={true} name="Spacer" />
-                <button hexpand={true} onClicked={() => {execAsync("togglenight") }} class="button" label="" />
+                </scrolledwindow>
+                <button valign={2} hexpand={true} onClicked={() => {execAsync("togglenight") }} class="button" label="" />
                 <box class="power_box" valign={2}>
                     <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="button" label="" />
                     <button hexpand={true} onclicked={() => { execAsync("systemctl suspend") }} class="button" label="󰤄" />
