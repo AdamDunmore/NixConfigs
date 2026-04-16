@@ -8,18 +8,15 @@ import Bluetooth from "gi://AstalBluetooth"
 const { TOP, RIGHT, BOTTOM } = Astal.WindowAnchor
 
 export default function Sidebar(){ 
-    const mpris = Mpris.get_default();
-    let bluetooth;
-    if (Bluetooth.isPowered){
-        bluetooth = Bluetooth.get_default();
-    }
-
     const [player, setPlayer] = createState({});
     const [devices, setDevices] = createState([]);
     const [discovering, setDiscovering] = createState(false);
+    const [isBluetooth, setIsBluetooth] = createState(false);
+
+    const mpris = Mpris.get_default();
+    const bluetooth = Bluetooth.get_default();
 
     const MAX_TITLE_LENGTH: number = 30;
-    let isBluetooth: boolean = false;
 
     const updatePlayer = (p) => {
         setPlayer({
@@ -51,16 +48,13 @@ export default function Sidebar(){
         }
     });
 
-    // Wait till adapter ready
-    if (Bluetooth.isPowered){
-        while(!bluetooth.get_devices()){}
+    while(!bluetooth.get_devices()){}
+    setIsBluetooth(true);
+    setDevices(bluetooth.get_devices())
+    bluetooth.connect("notify", () => { 
         setDevices(bluetooth.get_devices())
-
-        bluetooth.connect("notify", () => { 
-            setDevices(bluetooth.get_devices())
-            setDiscovering(bluetooth.get_adapter().discovering);
-        })
-    }
+        setDiscovering(bluetooth.get_adapter().discovering);
+    })
 
     return (
         <window visible={false} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
@@ -83,8 +77,8 @@ export default function Sidebar(){
                         <button hexpand={true} onClicked={() => { execAsync("rmpc volume +5") }} class="button" label="󰝝" />
                     </box>
                 </box>
-                <box vexpand={true} visible={!isBluetooth}/>
-                <scrolledwindow maxContentHeight={600} vexpand={true} visible={isBluetooth}>
+                <box vexpand={true} visible={isBluetooth(b => b ? false : true)}/>
+                <scrolledwindow maxContentHeight={600} vexpand={true} visible={isBluetooth(b => b ? true : false)}>
                     <box name="Bluetooth Box" orientation={1} spacing={4} class="container">
                         <button label={discovering(d => d ? "Bluetooth 󰘊" : "Bluetooth")} onClicked={() => {
                             let a = bluetooth.get_adapter()
