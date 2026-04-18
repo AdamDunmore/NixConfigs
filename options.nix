@@ -127,6 +127,10 @@ in
                     enable = mkEnableOption "Enables River";
                 };
 
+                mango = {
+                    enable = mkEnableOption "Enables Mango";
+                };
+
                 sway = {
                     enable = mkEnableOption "Enables Sway";
                     swaylock = mkEnableOption "Enables Swaylock";

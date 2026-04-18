@@ -18,6 +18,10 @@
             nixpkgs.follows = "nixpkgs";
             home-manager.follows = "home-manager";
         };
+        mango = {
+            url = "github:ernestoCruz05/mango-ext";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         spicetify-nix.url = "github:Gerg-L/spicetify-nix";
         spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
         nix-flatpak.url = "github:gmodena/nix-flatpak";

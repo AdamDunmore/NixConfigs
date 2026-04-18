@@ -25,6 +25,7 @@
                     terminal = pkgs.alacritty;
                 };
                 sway.enable = true;
+                mango.enable = true;
                 hyprland.hyprlock = true;
             };
         };    

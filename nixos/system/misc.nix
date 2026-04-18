@@ -5,6 +5,7 @@ let
     inherit (lib) mkIf mkMerge;
 in
 {
+    imports = [ inputs.mango.nixosModules.mango ];
     config = mkMerge [
         ( mkIf cfg { 
             # Services (Mainly for AGS)
@@ -102,6 +103,10 @@ in
 
         ( mkIf config.settings.home.wm.replays { 
             programs.gpu-screen-recorder.enable = true;
+        })
+
+        ( mkIf config.settings.home.wm.mango.enable {
+            programs.mango.enable = true;
         })
     ];
 }

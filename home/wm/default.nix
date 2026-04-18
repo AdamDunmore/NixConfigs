@@ -19,6 +19,7 @@ in
     imports = [
         ./hyprland.nix
         ./river.nix
+        ./mango.nix
         ./sway.nix
 
         ./lockers/hyprlock.nix
