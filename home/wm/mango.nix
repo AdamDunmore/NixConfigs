@@ -86,6 +86,18 @@ in
                     # Scratch
                     "${mod},S,toggle_scratchpad"
                     "${mod}+Shift,S,minimized"
+
+                    # Media
+                     "NONE,XF86AudioRaiseVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ +5%"
+                     "NONE,XF86AudioLowerVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ -5%"
+                     "NONE+Shift,XF86AudioRaiseVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ +1%"
+                     "NONE+Shift,XF86AudioLowerVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ -1%"
+                     "NONE,XF86AudioMute,spawn,pactl set-sink-volume @DEFAULT_SINK@ 0%"
+                    
+                     "NONE,XF86MonBrightnessUp,spawn,brightnessctl set 5%+"
+                     "NONE,XF86MonBrightnessDown,spawn,brightnessctl set 5%-"
+                     "NONE+Shift,XF86MonBrightnessUp,spawn,brightnessctl set 1%+"
+                     "NONE+Shift,XF86MonBrightnessDown,spawn,brightnessctl set 1%-"
                 ];
 
                 axisbind = [
@@ -135,19 +147,8 @@ in
                 bordercolor = hexToMango colours.blue.two;
                 focuscolor = hexToMango colours.blue.three;
 
-                    # "${mod}+Shift+s" = "move scratchpad";
-                    # "${mod}+s" = "scratchpad show";
-                    #
-                    # "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-                    # "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-                    # "Shift+XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +1%";
-                    # "Shift+XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -1%";
-                    # "XF86AudioMute" = "exec pactl set-sink-volume @DEFAULT_SINK@ 0%";
-                    #
-                    # "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
-                    # "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-                    # "Shift+XF86MonBrightnessUp" = "exec brightnessctl set 1%+";
-                    # "Shift+XF86MonBrightnessDown" = "exec brightnessctl set 1%-";
+                # Monitors
+                monitorrule="name:^eDP-1$,scale:2";
             };
         };
     };
