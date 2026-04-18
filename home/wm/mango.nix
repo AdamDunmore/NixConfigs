@@ -11,6 +11,7 @@ in
         wayland.windowManager.mango = {
             enable = true;
             settings = {
+                enable_hotarea = 0;
                 focus_cross_monitor = 1;
                 exchange_cross_monitor = 1;
                 scratchpad_cross_monitor = 1;

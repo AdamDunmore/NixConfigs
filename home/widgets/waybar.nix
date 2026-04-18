@@ -18,7 +18,7 @@ in
                     spacing = 30;
                     fixed-center = true;
 
-                    modules-left = [ "sway/workspaces" "custom/margin" "cava" ];
+                    modules-left = [ "sway/workspaces" "dwl/tags" "custom/margin" "cava" ];
                     modules-center = [ "clock" "clock#date" ];
                     modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/margin" ];
 
@@ -66,22 +66,6 @@ in
                     };
                 };
 
-            #         "mpris"= {
-            #             format = "{player_icon}\n{title}\n{artist}";
-            #             format-paused = "{status_icon}\n{title}\n{artist}\n{player}\n{length}";
-            #             rotate = 1;
-            #             player-icons = {
-            #                 default = "▶";
-            #                 mpv = "🎵";
-            #                 spotify = "";
-            #             };
-            #             status-icons = {
-            #                 paused = "⏸";
-            #             };
-            #             ignored-players = ["firefox"];
-            #         };
-            #
-
             };
             style = ''
                 window#waybar {
@@ -98,6 +82,13 @@ in
 
                 #workspaces button.urgent {
                     background-color: ${colours.blue.three};
+                }
+
+                #tags button:not(.occupied):not(.focused) {
+                    opacity: 0;
+                    padding: 0;
+                    margin: 0;
+                    min-width: 0;
                 }
             '';
         };     
