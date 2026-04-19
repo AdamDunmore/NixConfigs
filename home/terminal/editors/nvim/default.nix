@@ -14,7 +14,7 @@ in
                     # Language Servers
                     rust-analyzer
                     nil
-                    nodePackages_latest.typescript-language-server
+                    typescript-language-server
                     jdt-language-server
                     pyright
                     lua-language-server
