@@ -122,6 +122,11 @@ in
                     };
                 };
 
+                # Window Rules
+                windowrule = [
+                    "unfocused_opacity:1.0,appid:firefox"
+                ];
+
                 # Keyboard
                 xkb_rules_layout="gb";
 
