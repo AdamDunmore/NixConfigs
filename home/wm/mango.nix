@@ -32,9 +32,9 @@ in
                     "${mod},D,spawn,${pkgs.wofi}/bin/wofi"
                     "${mod}+Shift,C,reload_config"
                     "${mod},L,spawn,${config.settings.home.wm.defaults.locker}/bin/${config.settings.home.wm.defaults.locker.meta.mainProgram}"
-                    "${mod},C,spawn,GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"" #TODO fix
+                    "${mod},C,spawn_shell,GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"" #TODO fix
                     (mkIf config.settings.home.widgets.ags "${mod},Q,spawn,ags toggle sidebar")
-                    "${mod},B,spawn,btwofi" #TODO fix
+                    "${mod},B,spawn_shell,btwofi" #TODO fix
                     "${mod},N,spawn,togglenight"
                     "${mod},T,spawn,translate"
                     (mkIf config.settings.home.wm.replays "${mod}+Shift,R,spawn,killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\"") #TODO fix                     
