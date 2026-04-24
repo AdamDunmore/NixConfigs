@@ -20,10 +20,13 @@ in
                 exec-once = [
                     "${pkgs.wpaperd}/bin/wpaperd"
                     "${pkgs.kanshi}/bin/kanshi"
-                    (mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays") 
                     "ags run"
                     "${pkgs.waybar}/bin/waybar" # Waybar doesnt get started because mango doesn't reach graphical-session.target
                     "${pkgs.rmpc}/bin/rmpc play" # Pretty sure its the same issue as above
+                ];
+
+                exec = [
+                    (mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays") 
                 ];
 
                 bind = [
@@ -32,12 +35,12 @@ in
                     "${mod},D,spawn,${pkgs.wofi}/bin/wofi"
                     "${mod}+Shift,C,reload_config"
                     "${mod},L,spawn,${config.settings.home.wm.defaults.locker}/bin/${config.settings.home.wm.defaults.locker.meta.mainProgram}"
-                    "${mod},C,spawn_shell,GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"" #TODO fix
+                    "${mod},C,spawn_shell,GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"" 
                     (mkIf config.settings.home.widgets.ags "${mod},Q,spawn,ags toggle sidebar")
-                    "${mod},B,spawn_shell,btwofi" #TODO fix
+                    "${mod},B,spawn_shell,btwofi"
                     "${mod},N,spawn,togglenight"
                     "${mod},T,spawn,translate"
-                    (mkIf config.settings.home.wm.replays "${mod}+Shift,R,spawn,killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\"") #TODO fix                     
+                    (mkIf config.settings.home.wm.replays "${mod}+Shift,R,spawn_shell,killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\"")
                     
                     # Modes
                     "${mod},R,setkeymode,resize"
