@@ -4,7 +4,7 @@ local fb_actions = telescope.extensions.file_browser.actions
 local telescope_actions = require("telescope.actions");
 
 local file_ignore_patterns = {
-    -- "node_modules", 
+    "node_modules/",
     ".*%.o"
 };
 
