@@ -15,7 +15,7 @@ in
             };
             font = {
                 name = font.name;
-                package = pkgs.nerd-fonts.code-new-roman;
+                package = font.pkg;
             };
         };
     };
