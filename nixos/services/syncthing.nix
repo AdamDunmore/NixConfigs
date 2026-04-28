@@ -21,13 +21,14 @@ in
                     "laptop" = { id = "KIPS7XQ-OJUQDR7-QYSLXWJ-YMOM7NZ-H7PNGSK-V323JHN-EUEO7U2-MP43WQZ"; };
                     "phone" = { id = "SACQFTJ-WSNSYEW-TNPCSNC-RGUJFZU-DYP76PS-PWX5NJN-RCDISQP-Q63KWQZ"; };
                     "server" = { id = "YOPRCA6-AFYUSFG-IWDAO5P-FD22Q2Z-QACENI2-QADPSNH-UDJR36C-PYHBUQC"; };
+                    "thor" = { id = "ZU3IMAE-WYAKQOF-JQNATOI-EDEYAWR-O4X7SGU-3DC47BX-5FSRJUM-OEWEOQJ"; };
                 };
 
                 folders = {
                     "Music" = {
                         id = "7us1i-1qu93";
                         path = "/home/${primary-user}/Music";
-                        devices = [ "desktop" "laptop" "phone" ];
+                        devices = [ "desktop" "laptop" "phone" "thor" ];
                         ignorePerms = false;
                     };
 
