@@ -24,6 +24,7 @@ in
                     zls
                     vscode-extensions.vue.volar
                     luajitPackages.luarocks 
+                    vue-language-server
                     openssl
                 ];
                	initLua = ''require("main")'';
