@@ -113,7 +113,8 @@ in
                 startup = [
                     { command = "${pkgs.wpaperd}/bin/wpaperd"; }
                     { command = "${pkgs.kanshi}/bin/kanshi"; }
-                    { command = mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays"; }
+                    
+                    ( mkIf false { command = mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays"; })
 
                     { command = "ags run"; }
                     { command = "${pkgs.swaysome}/bin/swaysome init 1"; }
