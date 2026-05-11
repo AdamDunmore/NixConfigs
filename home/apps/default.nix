@@ -23,7 +23,7 @@ in
         (mkIf (cfg == "all") { #All
             home.packages = (with pkgs; [
                 scanmem
-                lutris
+                #lutris openldap broken upstream for laptop
                 heroic
                 prismlauncher
                 android-studio
@@ -45,7 +45,7 @@ in
                 logseq
                 motrix
                 thonny
-                bottles
+                #bottles openldap broken upstream for laptop
                 tor-browser
                 beeper
                 syncthing
@@ -55,7 +55,7 @@ in
                 mpv
                 proton-pass
                 protonmail-desktop
-                protonvpn-gui
+                proton-vpn
 
                 qemu
                 quickgui

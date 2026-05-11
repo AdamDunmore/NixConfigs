@@ -6,9 +6,9 @@ let
     inherit (lib) mkIf;
 in
 {
-    imports = [ inputs.mango.hmModules.mango ];
+    imports = [ inputs.mango.hmModules.mango-ext ];
     config = mkIf cfg.enable {
-        wayland.windowManager.mango = {
+        wayland.windowManager.mango-ext = {
             enable = true;
             settings = {
                 enable_hotarea = 0;
@@ -134,7 +134,7 @@ in
                 xkb_rules_layout="gb";
 
                 # Mouse
-                accel_profile=1;
+                mouse_accel_profile=1;
                 
                 #Trackpad
                 trackpad_natural_scrolling = 1;

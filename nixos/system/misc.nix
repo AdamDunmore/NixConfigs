@@ -5,7 +5,7 @@ let
     inherit (lib) mkIf mkMerge;
 in
 {
-    imports = [ inputs.mango.nixosModules.mango ];
+    imports = [ inputs.mango.nixosModules.mango-ext ];
     config = mkMerge [
         ( mkIf cfg { 
             # Services (Mainly for AGS)
@@ -106,7 +106,7 @@ in
         })
 
         ( mkIf config.settings.home.wm.mango.enable {
-            programs.mango.enable = true;
+            programs.mango-ext.enable = true;
         })
     ];
 }
