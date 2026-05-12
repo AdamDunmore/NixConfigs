@@ -6,7 +6,6 @@ let
     inherit (lib) mkIf;
 in
 {
-    # imports = [ inputs.mango.hmModules.mango-ext ];
     config = mkIf cfg.enable {
         wayland.windowManager.mango-ext = {
             enable = true;
@@ -19,18 +18,6 @@ in
                 circle_layout = "tile,canvas"; 
 
                 bind = [
-                    "${mod},Return,spawn,${config.settings.home.wm.defaults.terminal}/bin/${config.settings.home.wm.defaults.terminal.meta.mainProgram}"
-                    "${mod}+Shift,Q,killclient"
-                    "${mod},D,spawn,${pkgs.wofi}/bin/wofi"
-                    "${mod}+Shift,C,reload_config"
-                    "${mod},L,spawn,${config.settings.home.wm.defaults.locker}/bin/${config.settings.home.wm.defaults.locker.meta.mainProgram}"
-                    "${mod},C,spawn_shell,GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"" 
-                    (mkIf config.settings.home.widgets.ags "${mod},Q,spawn,ags toggle sidebar")
-                    "${mod},B,spawn_shell,btwofi"
-                    "${mod},N,spawn,togglenight"
-                    "${mod},T,spawn,translate"
-                    (mkIf config.settings.home.wm.replays "${mod}+Shift,R,spawn_shell,killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\"")
-                    
                     # Modes
                     "${mod},R,setkeymode,resize"
 
@@ -78,18 +65,6 @@ in
                     # Scratch
                     "${mod},S,toggle_scratchpad"
                     "${mod}+Shift,S,minimized"
-
-                    # Media
-                     "NONE,XF86AudioRaiseVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ +5%"
-                     "NONE,XF86AudioLowerVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ -5%"
-                     "NONE+Shift,XF86AudioRaiseVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ +1%"
-                     "NONE+Shift,XF86AudioLowerVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ -1%"
-                     "NONE,XF86AudioMute,spawn,pactl set-sink-volume @DEFAULT_SINK@ 0%"
-                    
-                     "NONE,XF86MonBrightnessUp,spawn,brightnessctl set 5%+"
-                     "NONE,XF86MonBrightnessDown,spawn,brightnessctl set 5%-"
-                     "NONE+Shift,XF86MonBrightnessUp,spawn,brightnessctl set 1%+"
-                     "NONE+Shift,XF86MonBrightnessDown,spawn,brightnessctl set 1%-"
                 ];
 
                 axisbind = [

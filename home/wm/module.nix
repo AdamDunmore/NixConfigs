@@ -11,13 +11,43 @@ let
     };
 in
 {
-    # imports = [ inputs.mango.hmModules.mango-ext ];
     options.wm = {
         modifier = mkOption {
-            type = types.enum [ "SUPER" "Alt" ];
+            type = types.enum [ "SUPER" "ALT" ];
             default = "SUPER";
             example = "SUPER";
             description = "The modifier key for the wm";
+        };
+        keybinds = mkOption {
+            type = types.listOf (types.submodule {
+                options = {
+                    mod = mkEnableOption "Add mod to bind";
+                    sub_mod = mkOption {
+                        type = types.enum [ "SUPER" "CTRL" "ALT" "SHIFT" ""];
+                        default = "";
+                        example = "SHIFT";
+                        description = "An additional modifier key to combo with the main one, leave unset for none";
+                    };
+                    key = mkOption {
+                        type = types.str;
+                        default = "G";
+                        example = "Return";
+                        description = "Key for keybind";
+                    };
+                    dispatch = mkOption {
+                        type = types.enum [ "spawn" "spawn_shell" "kill" "reload" "focus" "move" ];
+                        default = "spawn";
+                        example = "kill";
+                        description = "Dispatcher for bind";
+                    };
+                    arg = mkOption {
+                        type = types.str;
+                        default = "";
+                        example = "alacritty";
+                        description = "Any additional args for dispatcher";
+                    };
+                };
+            });
         };
         input = {
             keyboard = {
@@ -120,11 +150,21 @@ in
             hexToMango = c: builtins.replaceStrings ["#"] ["0x"] c;
             mod = ( 
                 if cfg.modifier == "SUPER" then "SUPER"
-                else if cfg.modifier == "Alt" then "ALT"
+                else if cfg.modifier == "ALT" then "ALT"
                 else "SUPER"
             );
         in {
             settings = {
+                bind = map (b: 
+                    "${if b.mod then mod else "NONE"}" + 
+                    "${if b.sub_mod == "" then "" else "+${b.sub_mod}"}," +
+                    "${b.key},${
+                        if b.dispatch == "spawn" then "spawn" 
+                        else if b.dispatch == "spawn_shell" then "spawn_shell"
+                        else if b.dispatch == "kill" then "killclient" 
+                        else if b.dispatch == "reload" then "reload_config"
+                        else "spawn"}," +
+                    "${b.arg}") cfg.keybinds;
                 exec = cfg.startup_always;
                 exec-once = cfg.startup;
 
@@ -151,7 +191,7 @@ in
         wayland.windowManager.sway = let 
             mod = (
                 if cfg.modifier == "SUPER" then "Mod4"
-                else if cfg.modifier == "Alt" then "Mod1"
+                else if cfg.modifier == "ALT" then "Mod1"
                 else "Mod4"
             );
         in {

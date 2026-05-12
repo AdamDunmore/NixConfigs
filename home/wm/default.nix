@@ -25,6 +25,29 @@ in
     config = { 
         wm = {
             modifier = "SUPER";
+            keybinds = [
+                { mod = true; key = "Return"; dispatch = "spawn"; arg = "${config.settings.home.wm.defaults.terminal}/bin/${config.settings.home.wm.defaults.terminal.meta.mainProgram}"; }
+                { mod = true; sub_mod = "SHIFT"; key = "Q"; dispatch = "kill"; }
+                { mod = true; key = "D"; dispatch = "spawn"; arg = "${pkgs.wofi}/bin/wofi"; }
+                { mod = true; sub_mod = "SHIFT"; key = "C"; dispatch = "reload"; }
+                { mod = true; key = "L"; dispatch = "spawn"; arg = "${config.settings.home.wm.defaults.locker}/bin/${config.settings.home.wm.defaults.locker.meta.mainProgram}"; }
+                { mod = true; key = "N"; dispatch = "spawn"; arg = "togglenight"; }
+                { mod = true; key = "C"; dispatch = "spawn_shell"; arg = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""; }
+                { mod = true; key = "B"; dispatch = "spawn_shell"; arg = "btwofi"; }
+                { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; } # Broken
+                (mkIf config.settings.home.widgets.ags { mod = true; key = "Q"; dispatch = "spawn"; arg = "ags toggle sidebar"; })
+                (mkIf config.settings.home.wm.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\""; })
+
+                { mod = false; key = "XF86AudioRaiseVolume"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ +5%"; }
+                { mod = false; key = "XF86AudioLowerVolume"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ -5%"; }
+                { mod = false; sub_mod = "SHIFT"; key = "XF86AudioRaiseVolume"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ +1%"; }
+                { mod = false; sub_mod = "SHIFT"; key = "XF86AudioLowerVolume"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ -1%"; }
+                { mod = false; key = "XF86AudioMute"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ 0%"; }
+                { mod = false; key = "XF86MonBrightnessUp"; dispatch = "spawn"; arg = "brightnessctl set 5%+"; }
+                { mod = false; key = "XF86MonBrightnessDown"; dispatch = "spawn"; arg = "brightnessctl set 5%-"; }
+                { mod = false; sub_mod = "SHIFT"; key = "XF86MonBrightnessUp"; dispatch = "spawn"; arg = "brightnessctl set 1%+"; }
+                { mod = false; sub_mod = "SHIFT"; key = "XF86MonBrightnessDown"; dispatch = "spawn"; arg = "brightnessctl set 1%-"; }
+            ];
             input = {
                 keyboard = {
                     layout = "gb";
