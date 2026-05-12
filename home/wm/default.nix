@@ -1,22 +1,15 @@
-{ lib, config, pkgs, ...}:
+{ lib, config, pkgs, colours, ...}:
 
 let
     cfg = config.settings.home.wm;
     forEachPkg = builtins.attrValues cfg.defaults;
-    wm_keybinds = [
-        {
-            keys = [ "mod" "return" ];
-            command = "exec";
-            arg = "";
-        }
-    ];
-
-    get_bind = builtins.elemAt wm_keybinds;
-
+    
     inherit (lib) mkIf;
 in
 {
     imports = [
+        ./module.nix
+
         ./hyprland.nix
         ./river.nix
         ./mango.nix
@@ -27,6 +20,54 @@ in
     ];
 
     config = { 
+        wm = {
+            modifier = "SUPER";
+            input = {
+                keyboard = {
+                    layout = "gb";
+                };
+                mouse = {
+                    accel = false;
+                    tap = true;
+                    natural_scroll = true;
+                };
+            };
+            gaps = {
+                inner = 5;
+                outer = 2;
+                smartGaps = true;
+                smartBorders = true;
+            };
+
+            startup = [
+                "${pkgs.wpaperd}/bin/wpaperd"
+                "${pkgs.kanshi}/bin/kanshi"
+                "ags run"
+            ];
+
+            startup_always = [
+                ( mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays")
+            ];
+
+            colours = {
+                focused = {
+                    border = "${colours.blue.two}";
+                    indicator = "${colours.blue.one}";
+                };
+                unfocused = {
+                    border = "${colours.blue.two}";
+                };
+            };
+
+            window = {
+                border = 3;
+                border_radius = 5;
+                dim = {
+                    inactive = 0.8;
+                };
+            };
+        };
+
         # Grim setup
         home.activation.createScreenshotsDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
             mkdir -p "$HOME/Pictures/Screenshots"

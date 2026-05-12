@@ -80,24 +80,6 @@ in
                     "Shift+XF86MonBrightnessDown" = "exec brightnessctl set 1%-";
                 };
 
-                input = {
-                    "*" = {
-                        #Keyboard
-                        xkb_layout = "gb";
-
-                        # Mouse
-                        accel_profile = "flat";
-                        
-                    };
-
-                    "2362:628:PIXA3854:00_093A:0274_Touchpad" = { 
-                        natural_scroll = "enabled";
-                        tap = "enabled";
-                    };
-                };
-
-                floating.modifier = "${mod}";
-
                 modes = {
                     resize = {
                             Escape = "mode default";
@@ -106,56 +88,19 @@ in
                             Left = "resize grow width 20px";
                             Down = "resize grow height 20px";
                             Right = "resize shrink width 20px";
-
                     };
                 };
 
                 startup = [
-                    { command = "${pkgs.wpaperd}/bin/wpaperd"; }
-                    { command = "${pkgs.kanshi}/bin/kanshi"; }
-                    
-                    ( mkIf (config.settings.home.wm.replays) { command = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays"; })
-
-                    { command = "ags run"; }
                     { command = "${pkgs.swaysome}/bin/swaysome init 1"; }
                 ];
 
                 bars = [];
 
-                gaps = {
-                    inner = 5;
-                    outer = 2;
-                    smartBorders = "on";
-                    smartGaps = true;
-                };
-
                 window = {
-                    border = 3;
                     titlebar = false;
                 };
-
-                colors = {
-                    unfocused = {
-                        background = "#00000000";
-                        border = "#00000000";
-                        childBorder = "${colours.blue.two}";
-                        indicator = "#00000000";
-                        text = "#00000000";
-                    };
-                    focused = {
-                        background = "#00000000";
-                        border = "#00000000";
-                        childBorder = "${colours.blue.two}";
-                        indicator = "${colours.blue.one}";
-                        text = "#00000000";
-                    };
-                };
             };
-
-            extraConfig = ''
-                corner_radius 5
-                default_dim_inactive 0.2
-            '';
         }; 
     };
 }
