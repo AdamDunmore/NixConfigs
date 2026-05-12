@@ -14,8 +14,10 @@ in
                 mainBar = {
                     layer = "top";
                     position = "top";
-                    height = 30;
-                    spacing = 30;
+                    height = 20;
+                    spacing = 10;
+                    margin-top = 5;
+                    margin-bottom = 5;
                     fixed-center = true;
 
                     modules-left = [ "sway/workspaces" "dwl/tags" "custom/margin" "cava" ];
@@ -69,26 +71,56 @@ in
             };
             style = ''
                 window#waybar {
-                    background-color: ${colours.blue.one};
+                    background-color: rgba(0,0,0,0);
                 }
 
+                button, label {
+                    background-color: ${colours.blue.one};
+                    border-radius: 25px;
+
+                    margin-left: 2px;
+                    margin-right: 2px;
+                }
+
+                #tags button,
                 #workspaces button {
                     transition: background-color 0.2s;
                 }
 
+                #tags button.focused,
                 #workspaces button.focused {
                     background-color: ${colours.blue.two};
                 }
 
+                #tags button.urgent,
                 #workspaces button.urgent {
                     background-color: ${colours.blue.three};
                 }
 
                 #tags button:not(.occupied):not(.focused) {
-                    opacity: 0;
-                    padding: 0;
-                    margin: 0;
-                    min-width: 0;
+                      font-size: 0;
+                      min-width: 0;
+                      min-height: 0;
+                      margin: -17px;
+                      padding: 0;
+                      border: 0;
+                      opacity: 0;
+                      box-shadow: none;
+                      background-color: transparent;
+                }
+
+                #custom-margin {
+                    background-color: rgba(0,0,0,0);
+                }
+
+                #backlight,
+                #battery,
+                #clock,
+                #date,
+                #pulseaudio,
+                #network {
+                    padding-left: 10px;
+                    padding-right: 10px;
                 }
             '';
         };     
