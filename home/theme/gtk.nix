@@ -10,6 +10,7 @@ in
                 name = "Nordic";
                 package = pkgs.nordic;
             };
+            gtk4.theme = config.gtk.theme;
             iconTheme = {
                 name = "breeze";
             };

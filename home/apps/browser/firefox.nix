@@ -7,6 +7,7 @@ in
     config = mkIf cfg {
         programs.firefox = {
             enable = true;
+            configPath = "${config.xdg.configHome}/mozilla/firefox";
         };
     };
 }
