@@ -1,4 +1,4 @@
-{ lib, config, pkgs, colours, ...}:
+{ lib, config, pkgs, colours, inputs, ...}:
 
 let
     cfg = config.settings.home.wm;
@@ -17,6 +17,9 @@ in
 
         ./lockers/hyprlock.nix
         ./lockers/swaylock.nix
+
+
+        inputs.mango.hmModules.mango-ext
     ];
 
     config = { 

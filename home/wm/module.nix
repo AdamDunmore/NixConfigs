@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, inputs, ... }:
 let
     cfg = config.wm;
     inherit (lib) mkOption mkEnableOption types mkDefault;
@@ -11,6 +11,7 @@ let
     };
 in
 {
+    # imports = [ inputs.mango.hmModules.mango-ext ];
     options.wm = {
         modifier = mkOption {
             type = types.enum [ "SUPER" "Alt" ];
@@ -115,6 +116,38 @@ in
         };  
     };
     config = {
+        wayland.windowManager.mango-ext = let
+            hexToMango = c: builtins.replaceStrings ["#"] ["0x"] c;
+            mod = ( 
+                if cfg.modifier == "SUPER" then "SUPER"
+                else if cfg.modifier == "Alt" then "ALT"
+                else "SUPER"
+            );
+        in {
+            settings = {
+                exec = cfg.startup_always;
+                exec-once = cfg.startup;
+
+                xkb_rules_layout=cfg.input.keyboard.layout;
+                mouse_accel_profile= if cfg.input.mouse.accel then 2 else 1;
+                trackpad_natural_scrolling = if cfg.input.mouse.natural_scroll then 1 else 0;
+                tap_to_click = if cfg.input.mouse.tap then 1 else 0;
+
+                border_radius = cfg.window.border_radius;
+                unfocused_opacity = cfg.window.dim.inactive;
+                borderpx = cfg.window.border;
+                smartgaps = if cfg.gaps.smartGaps then 1 else 0;
+                no_border_when_single = if cfg.gaps.smartBorders then 1 else 0;
+
+                gappih = cfg.gaps.inner;
+                gappiv = cfg.gaps.inner;
+                gappoh = cfg.gaps.outer;
+                gappov = cfg.gaps.outer;
+
+                bordercolor = hexToMango cfg.colours.focused.border; 
+                focuscolor = hexToMango cfg.colours.focused.indicator;
+            };
+        };
         wayland.windowManager.sway = let 
             mod = (
                 if cfg.modifier == "SUPER" then "Mod4"

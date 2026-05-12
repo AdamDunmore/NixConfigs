@@ -6,28 +6,17 @@ let
     inherit (lib) mkIf;
 in
 {
-    imports = [ inputs.mango.hmModules.mango-ext ];
+    # imports = [ inputs.mango.hmModules.mango-ext ];
     config = mkIf cfg.enable {
         wayland.windowManager.mango-ext = {
             enable = true;
+            systemd.enable = true;
             settings = {
                 enable_hotarea = 0;
                 focus_cross_monitor = 1;
                 exchange_cross_monitor = 1;
                 scratchpad_cross_monitor = 1;
-                circle_layout = "tile,canvas";
-
-                exec-once = [
-                    "${pkgs.wpaperd}/bin/wpaperd"
-                    "${pkgs.kanshi}/bin/kanshi"
-                    "ags run"
-                    "${pkgs.waybar}/bin/waybar" # Waybar doesnt get started because mango doesn't reach graphical-session.target
-                    "${pkgs.rmpc}/bin/rmpc play" # Pretty sure its the same issue as above
-                ];
-
-                exec = [
-                    (mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays") 
-                ];
+                circle_layout = "tile,canvas"; 
 
                 bind = [
                     "${mod},Return,spawn,${config.settings.home.wm.defaults.terminal}/bin/${config.settings.home.wm.defaults.terminal.meta.mainProgram}"
@@ -129,31 +118,6 @@ in
                 windowrule = [
                     "unfocused_opacity:1.0,appid:firefox"
                 ];
-
-                # Keyboard
-                xkb_rules_layout="gb";
-
-                # Mouse
-                mouse_accel_profile=1;
-                
-                #Trackpad
-                trackpad_natural_scrolling = 1;
-                tap_to_click = 1;
-
-                # Apperance
-                border_radius = 5;
-                unfocused_opacity = 0.8;
-                borderpx = 3;
-                smartgaps = 1;
-                no_border_when_single = 1;
-
-                gappih = 5;
-                gappiv = 5;
-                gappoh = 2;
-                gappov = 2;
-
-                bordercolor = hexToMango colours.blue.two;
-                focuscolor = hexToMango colours.blue.three;
 
                 # Monitors
                 monitorrule="name:^eDP-1$,scale:2";
