@@ -1,3 +1,49 @@
+$bg: unquote("@theme_bg_color");
+$fg: unquote("@theme_fg_color");
+$bg_selected: unquote("@theme_selected_bg_color");
+$fg_selected: unquote("@theme_selected_fg_color");
+$base: unquote("@theme_base_color");
+$border: unquote("@borders");
+
+window {
+  margin: 10px;
+  border-radius: 25px;
+  background-color: $base;
+}
+
+button {
+  all: unset;
+  color: $fg;
+  background-color: $bg;
+  padding: 5px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border;
+  border-radius: 25px;
+
+  transition:
+        background-color 400ms ease, color 400ms ease;
+}
+
+button:hover {
+  color: $fg_selected;
+  background-color: $base;
+}
+
+button:active {
+  color: $fg;
+  background-color: $bg;
+}
+
+.label {
+  all: unset;
+  background-color: $bg;
+  padding: 5px;
+
+  border-radius: 25px;
+}
+
 .parent {
   padding: 10px;
 }
@@ -12,6 +58,16 @@
   font-size: 18px;
 }
 
+.mpris_art {
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border;
+  border-radius: 25px;
+
+  min-width: 192px;
+  min-height: 192px;
+}
+
 .mpris_title {
   font-size: 14px;
 }
@@ -19,4 +75,10 @@
 
 .mpris_artist {
   font-size: 12px;
+}
+
+.volume_label {
+  font-size: 14px;
+  padding-right: 12px;
+  padding-left: 12px;
 }

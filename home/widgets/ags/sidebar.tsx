@@ -61,12 +61,18 @@ export default function Sidebar(){
         <window visible={false} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
             <box class="parent" orientation={1} vexpand={true}>
                 <box valign={1} halign={3} orientation={1} spacing={6} name="Mpris Box">
-                    <image
-                        file={player(p => p?.artUrl ?? "undefined")}
-                        pixelSize={128 + 64}
+                    <box
+                        hexpand={true}
+                        vexpand={true}
+                        class="mpris_art"
+                        css={player(p => `
+                            background: url("file://${(p?.artUrl ?? "undefined")}");
+                            background-size: cover;
+                            background-position: center;
+                        `)}
                     />
-                    <label class="mpris_title" label={player(p => p?.title ?? "No Title")}/>
-                    <label class="mpris_artist" label={player(p => p?.artist ?? "No Artist")} />
+                    <label class="mpris_title label" label={player(p => p?.title ?? "No Title")}/>
+                    <label class="mpris_artist label" label={player(p => p?.artist ?? "No Artist")} />
                     <box spacing={8}>
                         <button hexpand={true} onClicked={() => { execAsync("rmpc prev") }} class="button" label="" />
                         <button hexpand={true} onClicked={() => { execAsync("rmpc togglepause") }} class="button" label={player(p => p?.playbackStatus ? "" : "")} />
@@ -74,7 +80,7 @@ export default function Sidebar(){
                     </box>
                     <box spacing={8}>
                         <button hexpand={true} onClicked={() => { execAsync("rmpc volume -5") }} class="button" label="󰝞" />
-                        <label class="button" label={player(p => `${p.volume * 100}%`)} /> { /* Not a button but oh well */ }
+                        <label class="volume_label label" label={player(p => `${p.volume * 100}%`)} />                        
                         <button hexpand={true} onClicked={() => { execAsync("rmpc volume +5") }} class="button" label="󰝝" />
                     </box>
                 </box>
