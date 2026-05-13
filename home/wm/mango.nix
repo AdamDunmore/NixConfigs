@@ -1,8 +1,7 @@
-{ inputs, config, lib, pkgs, colours, ... }:
+{ config, lib, ... }:
 let
     mod = "SUPER";
     cfg = config.settings.home.wm.mango;
-    hexToMango = c: builtins.replaceStrings ["#"] ["0x"] c;
     inherit (lib) mkIf;
 in
 {
@@ -39,18 +38,6 @@ in
                     "${mod},btn_right,canvas_drag_pan"
                     "${mod},btn_left,moveresize,curmove"
                 ];
-
-                keymode = {
-                    resize = {
-                        bind = [
-                #             "NONE,Escape,setkeymode,default"
-                            "NONE,Up,resizewin,0,-20" 
-                            "NONE,Left,resizewin,-20,0" 
-                            "NONE,Down,resizewin,0,20" 
-                            "NONE,Right,resizewin,20,0" 
-                        ];
-                    };
-                };
 
                 # Window Rules
                 windowrule = [

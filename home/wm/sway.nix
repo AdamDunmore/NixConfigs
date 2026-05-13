@@ -1,5 +1,4 @@
-{ lib, config, pkgs, colours, ... }:
-
+{ lib, config, pkgs, ... }:
 let
     mod = "Mod4";
     cfg = config.settings.home.wm.sway;
@@ -18,17 +17,6 @@ in
 
                     "${mod}+Shift+s" = "move scratchpad";
                     "${mod}+s" = "scratchpad show";
-                };
-
-                modes = {
-                    resize = {
-                            Escape = "mode default";
-                            Return = "mode default";
-                            Up = "resize shrink height 20px";
-                            Left = "resize grow width 20px";
-                            Down = "resize grow height 20px";
-                            Right = "resize shrink width 20px";
-                    };
                 };
 
                 startup = [

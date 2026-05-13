@@ -18,7 +18,6 @@ in
         ./lockers/hyprlock.nix
         ./lockers/swaylock.nix
 
-
         inputs.mango.hmModules.mango-ext
     ];
 
@@ -89,6 +88,10 @@ in
                     name = "resize";
                     keybinds = [
                         { mod = false; key = "Escape"; dispatch = "mode"; arg = "default"; }
+                        { mod = false; key = "Up"; dispatch = "resizev"; arg = "-20"; }
+                        { mod = false; key = "Down"; dispatch = "resizev"; arg = "20"; }
+                        { mod = false; key = "Left"; dispatch = "resizeh"; arg = "-20"; }
+                        { mod = false; key = "Right"; dispatch = "resizeh"; arg = "20"; }
                     ];
                 }
             ];

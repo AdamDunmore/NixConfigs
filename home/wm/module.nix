@@ -23,7 +23,7 @@ let
                     description = "Key for keybind";
                 };
                 dispatch = mkOption {
-                    type = types.enum [ "spawn" "spawn_shell" "kill" "reload" "focus" "move" "view_workspace" "move_workspace" "fullscreen" "floating" "mode" ];
+                    type = types.enum [ "spawn" "spawn_shell" "kill" "reload" "focus" "move" "view_workspace" "move_workspace" "fullscreen" "floating" "mode" "resizev" "resizeh" ];
                     default = "spawn";                                                      
                     example = "kill";
                     description = "Dispatcher for bind";
@@ -183,8 +183,10 @@ in
                     else if b.dispatch == "fullscreen" then "togglefullscreen"
                     else if b.dispatch == "floating" then "togglefloating"
                     else if b.dispatch == "mode" then "setkeymode"
+                    else if b.dispatch == "resizev" then "resizewin,0,${b.arg}"
+                    else if b.dispatch == "resizeh" then "resizewin,${b.arg},0"
                     else "spawn"}," +
-                "${b.arg}"
+                "${if b.dispatch == "resizev" || b.dispatch == "resizeh" then "" else b.arg}"
             ) binds;
             mod = ( 
                 if cfg.modifier == "SUPER" then "SUPER"
@@ -245,9 +247,11 @@ in
                         else if b.dispatch == "fullscreen" then "fullscreen"
                         else if b.dispatch == "floating" then "floating toggle"
                         else if b.dispatch == "mode" then "mode"
+                        else if b.dispatch == "resizev" then "resize grow height ${b.arg}px" # TODO test
+                        else if b.dispatch == "resizeh" then "resize grow width ${b.arg}px"
                         else "spawn"
                     }" +
-                    " ${b.arg}";
+                    "${if b.dispatch == "resizev" || b.dispatch == "resizeh" then "" else " ${b.arg}"}";
             }) binds);
 
             mod = (
@@ -266,6 +270,11 @@ in
                     tap = (if cfg.input.mouse.tap then "enabled" else "disabled");
                     natural_scroll = (if cfg.input.mouse.natural_scroll then "enabled" else "disabled");
                 };
+
+                modes = builtins.listToAttrs (map (m: {
+                    name = m.name;
+                    value = bindsToActions m.keybinds;
+                }) cfg.modes);
 
                 colors = {
                     focused = {
