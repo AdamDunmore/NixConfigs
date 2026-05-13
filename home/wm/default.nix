@@ -38,6 +38,41 @@ in
                 (mkIf config.settings.home.widgets.ags { mod = true; key = "Q"; dispatch = "spawn"; arg = "ags toggle sidebar"; })
                 (mkIf config.settings.home.wm.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\""; })
 
+                { mod = true; key = "Left"; dispatch = "focus"; arg = "left"; }
+                { mod = true; key = "Down"; dispatch = "focus"; arg = "down"; }
+                { mod = true; key = "Up"; dispatch = "focus"; arg = "up"; }
+                { mod = true; key = "Right"; dispatch = "focus"; arg = "right"; }
+
+                { mod = true; sub_mod = "SHIFT"; key = "Left"; dispatch = "move"; arg = "left"; }
+                { mod = true; sub_mod = "SHIFT"; key = "Down"; dispatch = "move"; arg = "down"; }
+                { mod = true; sub_mod = "SHIFT"; key = "Up"; dispatch = "move"; arg = "up"; }
+                { mod = true; sub_mod = "SHIFT"; key = "Right"; dispatch = "move"; arg = "right"; }
+
+                { mod = true; key = "1"; dispatch = "view_workspace"; arg = "1"; }
+                { mod = true; key = "2"; dispatch = "view_workspace"; arg = "2"; }
+                { mod = true; key = "3"; dispatch = "view_workspace"; arg = "3"; }
+                { mod = true; key = "4"; dispatch = "view_workspace"; arg = "4"; }
+                { mod = true; key = "5"; dispatch = "view_workspace"; arg = "5"; }
+                { mod = true; key = "6"; dispatch = "view_workspace"; arg = "6"; }
+                { mod = true; key = "7"; dispatch = "view_workspace"; arg = "7"; }
+                { mod = true; key = "8"; dispatch = "view_workspace"; arg = "8"; }
+                { mod = true; key = "9"; dispatch = "view_workspace"; arg = "9"; }
+
+                { mod = true; sub_mod = "SHIFT"; key = "1"; dispatch = "move_workspace"; arg = "1"; }
+                { mod = true; sub_mod = "SHIFT"; key = "2"; dispatch = "move_workspace"; arg = "2"; }
+                { mod = true; sub_mod = "SHIFT"; key = "3"; dispatch = "move_workspace"; arg = "3"; }
+                { mod = true; sub_mod = "SHIFT"; key = "4"; dispatch = "move_workspace"; arg = "4"; }
+                { mod = true; sub_mod = "SHIFT"; key = "5"; dispatch = "move_workspace"; arg = "5"; }
+                { mod = true; sub_mod = "SHIFT"; key = "6"; dispatch = "move_workspace"; arg = "6"; }
+                { mod = true; sub_mod = "SHIFT"; key = "7"; dispatch = "move_workspace"; arg = "7"; }
+                { mod = true; sub_mod = "SHIFT"; key = "8"; dispatch = "move_workspace"; arg = "8"; }
+                { mod = true; sub_mod = "SHIFT"; key = "9"; dispatch = "move_workspace"; arg = "9"; }
+
+                { mod = true; key = "F"; dispatch = "fullscreen"; }
+                { mod = true; sub_mod = "SHIFT"; key = "F"; dispatch = "floating"; }
+
+                { mod = true; key = "R"; dispatch = "mode"; arg = "resize"; }
+
                 { mod = false; key = "XF86AudioRaiseVolume"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ +5%"; }
                 { mod = false; key = "XF86AudioLowerVolume"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ -5%"; }
                 { mod = false; sub_mod = "SHIFT"; key = "XF86AudioRaiseVolume"; dispatch = "spawn"; arg = "pactl set-sink-volume @DEFAULT_SINK@ +1%"; }
@@ -48,6 +83,16 @@ in
                 { mod = false; sub_mod = "SHIFT"; key = "XF86MonBrightnessUp"; dispatch = "spawn"; arg = "brightnessctl set 1%+"; }
                 { mod = false; sub_mod = "SHIFT"; key = "XF86MonBrightnessDown"; dispatch = "spawn"; arg = "brightnessctl set 1%-"; }
             ];
+
+            modes = [
+                { 
+                    name = "resize";
+                    keybinds = [
+                        { mod = false; key = "Escape"; dispatch = "mode"; arg = "default"; }
+                    ];
+                }
+            ];
+
             input = {
                 keyboard = {
                     layout = "gb";

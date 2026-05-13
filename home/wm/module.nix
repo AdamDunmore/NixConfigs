@@ -1,7 +1,42 @@
-{ config, lib, inputs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
     cfg = config.wm;
     inherit (lib) mkOption mkEnableOption types mkDefault;
+
+    mkKeybindOption = s: mkOption {
+        default = [];
+        example = [ { mod = true; key = "Return"; dispatch = "spawn"; arg = "alacritty"; } ];
+        description = s;
+        type = types.listOf (types.submodule {
+            options = {
+                mod = mkEnableOption "Add mod to bind";
+                sub_mod = mkOption {
+                    type = types.enum [ "SUPER" "CTRL" "ALT" "SHIFT" ""];
+                    default = "";
+                    example = "SHIFT";
+                    description = "An additional modifier key to combo with the main one, leave unset for none";
+                };
+                key = mkOption {
+                    type = types.str;
+                    default = "G";
+                    example = "Return";
+                    description = "Key for keybind";
+                };
+                dispatch = mkOption {
+                    type = types.enum [ "spawn" "spawn_shell" "kill" "reload" "focus" "move" "view_workspace" "move_workspace" "fullscreen" "floating" "mode" ];
+                    default = "spawn";                                                      
+                    example = "kill";
+                    description = "Dispatcher for bind";
+                };
+                arg = mkOption {
+                    type = types.str;
+                    default = "";
+                    example = "alacritty";
+                    description = "Any additional args for dispatcher";
+                };
+            };
+        });
+    };
 
     mkColourOption = s: mkOption {
         type = types.str;
@@ -18,37 +53,22 @@ in
             example = "SUPER";
             description = "The modifier key for the wm";
         };
-        keybinds = mkOption {
+        keybinds = mkKeybindOption "A list of wm keybinds";
+
+        modes = mkOption {
             type = types.listOf (types.submodule {
                 options = {
-                    mod = mkEnableOption "Add mod to bind";
-                    sub_mod = mkOption {
-                        type = types.enum [ "SUPER" "CTRL" "ALT" "SHIFT" ""];
-                        default = "";
-                        example = "SHIFT";
-                        description = "An additional modifier key to combo with the main one, leave unset for none";
-                    };
-                    key = mkOption {
+                    name = mkOption {
                         type = types.str;
-                        default = "G";
-                        example = "Return";
-                        description = "Key for keybind";
+                        default = "default";
+                        example = "resize";
+                        description = "The name of the mode";
                     };
-                    dispatch = mkOption {
-                        type = types.enum [ "spawn" "spawn_shell" "kill" "reload" "focus" "move" ];
-                        default = "spawn";
-                        example = "kill";
-                        description = "Dispatcher for bind";
-                    };
-                    arg = mkOption {
-                        type = types.str;
-                        default = "";
-                        example = "alacritty";
-                        description = "Any additional args for dispatcher";
-                    };
+                    keybinds = mkKeybindOption "A list of keybinds for the mode";
                 };
             });
         };
+
         input = {
             keyboard = {
                 layout = mkOption {
@@ -148,6 +168,24 @@ in
     config = {
         wayland.windowManager.mango-ext = let
             hexToMango = c: builtins.replaceStrings ["#"] ["0x"] c;
+            bindsToActions = binds : map (b: 
+                "${if b.mod then mod else "NONE"}" + 
+                "${if b.sub_mod == "" then "" else "+${b.sub_mod}"}," +
+                "${b.key},${
+                    if b.dispatch == "spawn" then "spawn" 
+                    else if b.dispatch == "spawn_shell" then "spawn_shell"
+                    else if b.dispatch == "kill" then "killclient" 
+                    else if b.dispatch == "reload" then "reload_config"
+                    else if b.dispatch == "focus" then "focusdir"
+                    else if b.dispatch == "move" then "exchange_client"
+                    else if b.dispatch == "view_workspace" then "view"
+                    else if b.dispatch == "move_workspace" then "tagsilent"
+                    else if b.dispatch == "fullscreen" then "togglefullscreen"
+                    else if b.dispatch == "floating" then "togglefloating"
+                    else if b.dispatch == "mode" then "setkeymode"
+                    else "spawn"}," +
+                "${b.arg}"
+            ) binds;
             mod = ( 
                 if cfg.modifier == "SUPER" then "SUPER"
                 else if cfg.modifier == "ALT" then "ALT"
@@ -155,16 +193,15 @@ in
             );
         in {
             settings = {
-                bind = map (b: 
-                    "${if b.mod then mod else "NONE"}" + 
-                    "${if b.sub_mod == "" then "" else "+${b.sub_mod}"}," +
-                    "${b.key},${
-                        if b.dispatch == "spawn" then "spawn" 
-                        else if b.dispatch == "spawn_shell" then "spawn_shell"
-                        else if b.dispatch == "kill" then "killclient" 
-                        else if b.dispatch == "reload" then "reload_config"
-                        else "spawn"}," +
-                    "${b.arg}") cfg.keybinds;
+                bind = bindsToActions cfg.keybinds;
+ 
+                keymode = builtins.listToAttrs (map (m: {
+                    name = m.name;
+                    value = {
+                        bind = bindsToActions m.keybinds;
+                    };
+                }) cfg.modes );
+
                 exec = cfg.startup_always;
                 exec-once = cfg.startup;
 
@@ -189,6 +226,30 @@ in
             };
         };
         wayland.windowManager.sway = let 
+            bindsToActions = binds : builtins.listToAttrs (map (b: {
+                name = 
+                    "${if b.mod then "${mod + "+"}" else ""}" +
+                    "${if b.sub_mod == "" then "" else "${b.sub_mod + "+"}"}" +
+                    "${b.key}";
+
+                value =
+                    "${
+                        if b.dispatch == "spawn" then "exec" 
+                        else if b.dispatch == "spawn_shell" then "exec"
+                        else if b.dispatch == "kill" then "kill" 
+                        else if b.dispatch == "reload" then "reload"
+                        else if b.dispatch == "focus" then "focus"
+                        else if b.dispatch == "move" then "move"
+                        else if b.dispatch == "view_workspace" then "exec ${pkgs.swaysome}/bin/swaysome focus"
+                        else if b.dispatch == "move_workspace" then "exec ${pkgs.swaysome}/bin/swaysome move"
+                        else if b.dispatch == "fullscreen" then "fullscreen"
+                        else if b.dispatch == "floating" then "floating toggle"
+                        else if b.dispatch == "mode" then "mode"
+                        else "spawn"
+                    }" +
+                    " ${b.arg}";
+            }) binds);
+
             mod = (
                 if cfg.modifier == "SUPER" then "Mod4"
                 else if cfg.modifier == "ALT" then "Mod1"
@@ -197,6 +258,8 @@ in
         in {
             config = {
                 floating.modifier = "${mod}";
+
+                keybindings = bindsToActions cfg.keybinds; 
                 input."*" = {
                     xkb_layout = cfg.input.keyboard.layout;
                     accel_profile = (if cfg.input.mouse.accel then "adaptive" else "flat");
