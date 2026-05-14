@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
     mod = "SUPER";
     cfg = config.settings.home.wm.mango;
@@ -10,12 +10,13 @@ in
             enable = true;
             systemd.enable = true;
             settings = {
+                drag_tile_to_tile = 1;
                 enable_hotarea = 0;
                 focus_cross_monitor = 1;
                 exchange_cross_monitor = 1;
                 scratchpad_cross_monitor = 1;
                 circle_layout = "tile,canvas"; 
-
+                exec-once = [ "${pkgs.waybar}/bin/waybar" ];
                 bind = [
                     # Window Modes
                     "${mod}+Shift,N,switch_layout"
