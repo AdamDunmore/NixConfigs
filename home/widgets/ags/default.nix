@@ -36,6 +36,7 @@ in
                 gjs
                 astal4
 
+                cava
                 bluetooth 
                 mpris
             ];

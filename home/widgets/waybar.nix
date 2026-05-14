@@ -40,14 +40,6 @@ in
                         on-click = "${config.home.homeDirectory}/.scripts/powercycle.sh";
                     };
 
-                    "cava" = { # TODO Re-add in AGS
-                        format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
-                        bar_delimiter = 0;
-                        method = "pipewire";
-                        bars = 12;
-                        stereo = false;
-                    };
-
                     "network" = {
                         format-wifi = "i    {signalStrength}%";
                         tooltip-format = "{essid} {frequency}GHz {bandwidthDownBytes}:{bandwidthUpBytes}";
