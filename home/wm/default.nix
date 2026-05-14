@@ -34,7 +34,7 @@ in
                 { mod = true; key = "C"; dispatch = "spawn_shell"; arg = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""; }
                 { mod = true; key = "B"; dispatch = "spawn_shell"; arg = "btwofi"; }
                 { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; } # Broken
-                (mkIf config.settings.home.widgets.ags { mod = true; key = "Q"; dispatch = "spawn"; arg = "ags toggle sidebar"; })
+                (mkIf config.settings.home.widgets.ags { mod = true; key = "Q"; dispatch = "spawn_shell"; arg = "ags request toggle"; })
                 (mkIf config.settings.home.wm.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\""; })
 
                 { mod = true; key = "Left"; dispatch = "focus"; arg = "left"; }
@@ -108,18 +108,18 @@ in
             };
             gaps = {
                 inner = 5;
-                outer = 2;
-                smartGaps = true;
-                smartBorders = true;
+                outer = 4;
+                smartGaps = false;
+                smartBorders = false;
             };
 
             startup = [
                 "${pkgs.wpaperd}/bin/wpaperd"
                 "${pkgs.kanshi}/bin/kanshi"
-                "ags run"
             ];
 
             startup_always = [
+                "ags quit & ags run"
                 ( mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays")
             ];
 
@@ -134,7 +134,7 @@ in
             };
 
             window = {
-                border = 3;
+                border = 2;
                 border_radius = 5;
                 dim = {
                     inactive = 0.8;

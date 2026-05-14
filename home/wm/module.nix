@@ -247,7 +247,7 @@ in
                         else if b.dispatch == "fullscreen" then "fullscreen"
                         else if b.dispatch == "floating" then "floating toggle"
                         else if b.dispatch == "mode" then "mode"
-                        else if b.dispatch == "resizev" then "resize grow height ${b.arg}px" # TODO test
+                        else if b.dispatch == "resizev" then "resize grow height ${b.arg}px"
                         else if b.dispatch == "resizeh" then "resize grow width ${b.arg}px"
                         else "spawn"
                     }" +

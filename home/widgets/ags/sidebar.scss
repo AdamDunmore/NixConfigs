@@ -6,6 +6,10 @@ $base: unquote("@theme_base_color");
 $border: unquote("@borders");
 
 window {
+  background-color: rgba(0,0,0,0);
+}
+
+.window {
   margin: 10px;
   border-radius: 25px;
   background-color: $base;

@@ -4,6 +4,7 @@ import app from "ags/gtk4/app"
 import { execAsync } from "ags/process"
 import Mpris from "gi://AstalMpris";
 import Bluetooth from "gi://AstalBluetooth"
+import Gtk from "gi://Gtk";
 
 const { TOP, RIGHT, BOTTOM } = Astal.WindowAnchor
 
@@ -12,11 +13,31 @@ export default function Sidebar(){
     const [devices, setDevices] = createState([]);
     const [discovering, setDiscovering] = createState(false);
     const [isBluetooth, setIsBluetooth] = createState(false);
+    const [isVisible, setIsVisible] = createState(false);
+    const [isWindowVisible, setIsWindowVisible] = createState(false);
 
     const mpris = Mpris.get_default();
     const bluetooth = Bluetooth.get_default();
 
     const MAX_TITLE_LENGTH: number = 30;
+    const TRANSITION_LENGTH: number = 500;
+
+    const toggleCalled = () => {
+        const v_status = isWindowVisible();
+        if (!v_status) {
+            setIsWindowVisible(!v_status);        
+            setTimeout(() => { setIsVisible(!v_status) }, 1)
+        } else{
+            setIsVisible(!v_status);
+            setTimeout(() => { setIsWindowVisible(!v_status) }, TRANSITION_LENGTH / 2)
+        }
+    };
+
+    app.connect("request", (app, [cmd, arg, ...rest], response) => {
+      if (cmd === "toggle") {
+          toggleCalled()
+      }
+    })
 
     const updatePlayer = (p) => {
         setPlayer({
@@ -58,7 +79,13 @@ export default function Sidebar(){
         })
     }
     return (
-        <window visible={false} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
+        <window visible={isWindowVisible(v => v)} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM }>
+        <revealer
+            class = "window"
+            revealChild={isVisible(v => v)}
+            transitionDuration={TRANSITION_LENGTH}
+            transitionType={Gtk.RevealerTransitionType.SLIDE_RIGHT}
+        >
             <box class="parent" orientation={1} vexpand={true}>
                 <box valign={1} halign={3} orientation={1} spacing={6} name="Mpris Box">
                     <box
@@ -111,6 +138,7 @@ export default function Sidebar(){
                     <button hexpand={true} onClicked={() => { execAsync("shutdown now") }} class="button" label="⏻" />
                 </box>
             </box>
+        </revealer>
         </window>
     )
 }
