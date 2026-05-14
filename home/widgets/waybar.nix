@@ -1,8 +1,7 @@
-{ config, pkgs, lib, colours, ... }:
+{ config, lib, colours, ... }:
 
 let
     cfg = config.settings.home.widgets.waybar;
-    locker = config.settings.home.wm.defaults.locker;
     inherit (lib) mkIf;
 in
 {
@@ -15,14 +14,14 @@ in
                     layer = "top";
                     position = "top";
                     height = 20;
-                    spacing = 10;
+                    spacing = 5;
                     margin-top = 5;
                     margin-bottom = 5;
                     fixed-center = true;
 
-                    modules-left = [ "sway/workspaces" "dwl/tags" "custom/margin" "cava" ];
+                    modules-left = [ "sway/workspaces" "dwl/tags" "custom/margin" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/margin" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/sidebar" "custom/margin" ];
 
                     "backlight" = {
                         format = "󰃠    {percent}%";
@@ -41,7 +40,7 @@ in
                         on-click = "${config.home.homeDirectory}/.scripts/powercycle.sh";
                     };
 
-                    "cava" = {
+                    "cava" = { # TODO Re-add in AGS
                         format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
                         bar_delimiter = 0;
                         method = "pipewire";
@@ -61,6 +60,12 @@ in
                     "clock#date" = {
                         format = "{:%A, %d %b %Y} ";
                         tooltop = false;
+                    };
+
+                    "custom/sidebar" = {
+                        format = " 󰍜 ";
+                        on-click = "ags request toggle";
+                        tooltip = false;
                     };
 
                     "custom/margin" = {
@@ -84,6 +89,8 @@ in
 
                 #tags button,
                 #workspaces button {
+                    padding-left: 10px;
+                    padding-right: 10px;
                     transition: background-color 0.2s;
                 }
 
