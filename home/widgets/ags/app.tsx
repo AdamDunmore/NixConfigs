@@ -1,14 +1,16 @@
 import app from "ags/gtk4/app"
 
 import Sidebar from "./sidebar"
+import Menu from "./menu"
 
-import SidebarCSS from "./sidebar.scss"
+import CommonCSS from "./common.scss"
 
 app.start({
-    css: SidebarCSS, 
+    css: CommonCSS,
     main() {
         return (
-            Sidebar() 
+            Sidebar(), 
+            Menu()
         )
     },
 })

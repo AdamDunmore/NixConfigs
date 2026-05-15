@@ -11,6 +11,7 @@ window {
 
 .window {
   margin: 10px;
+  padding: 10px;
   border-radius: 25px;
   background-color: $base;
 }
@@ -40,7 +41,7 @@ button:active {
   background-color: $bg;
 }
 
-.label {
+.background_label {
   all: unset;
   background-color: $bg;
   padding: 5px;
@@ -48,42 +49,68 @@ button:active {
   border-radius: 25px;
 }
 
-.parent {
-  padding: 10px;
-}
-
-.container {
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
-
-.button {
-  margin: 2px;
-  font-size: 18px;
-}
-
-.mpris_art {
+.sidebar_mpris_art {
   border-radius: 25px;
 
   min-width: 192px;
   min-height: 192px;
 }
 
-.cava_bar {
+.sidebar_cava_bar {
   background-color: $base;
 }
 
-.mpris_title {
+.sidebar_mpris_title {
   font-size: 14px;
 }
 
-
-.mpris_artist {
+.sidebar_mpris_artist {
   font-size: 12px;
 }
 
-.volume_label {
+.sidebar_volume_label {
   font-size: 14px;
   padding-right: 12px;
   padding-left: 12px;
+}
+
+.sidebar_power_button {
+  margin: 2px;
+  font-size: 18px;
+}
+
+.menu_window {
+  min-width: 800px;
+  min-height: 400px;
+}
+
+.menu_split_button_container {
+  min-width: 150px;
+  min-height: 60px;
+
+  margin: 5px;
+}
+
+.menu_split_button {
+  border-radius: 0px; 
+  font-size: 20px;
+}
+
+.menu_split_button_left {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-right: none;
+  min-width: 60px;
+}
+
+.menu_split_button_right {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.menu_back_button {
+  margin: 2px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 18px; 
 }

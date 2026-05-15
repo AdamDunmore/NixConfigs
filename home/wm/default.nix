@@ -34,7 +34,8 @@ in
                 { mod = true; key = "C"; dispatch = "spawn_shell"; arg = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""; }
                 { mod = true; key = "B"; dispatch = "spawn_shell"; arg = "btwofi"; }
                 { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; } # Broken
-                (mkIf config.settings.home.widgets.ags { mod = true; key = "Q"; dispatch = "spawn_shell"; arg = "ags request toggle"; })
+                (mkIf config.settings.home.widgets.ags { mod = true; key = "Q"; dispatch = "spawn_shell"; arg = "ags request toggle_sidebar"; })
+                (mkIf config.settings.home.widgets.ags { mod = true; key = "Z"; dispatch = "spawn_shell"; arg = "ags request toggle_menu"; })
                 (mkIf config.settings.home.wm.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\""; })
 
                 { mod = true; key = "Left"; dispatch = "focus"; arg = "left"; }
