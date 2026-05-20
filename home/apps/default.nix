@@ -56,6 +56,7 @@ in
                 proton-pass
                 protonmail-desktop
                 proton-vpn
+                stremio-linux-shell
 
                 qemu
                 quickgui
