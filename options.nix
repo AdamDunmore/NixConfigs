@@ -84,6 +84,7 @@ in
                 };
                 terminals = {
                     alacritty = mkEnableOption "Enables Alacritty";
+                    ghostty = mkEnableOption "Enables Alacritty";
                     kitty = mkEnableOption "Enables Kitty";
                 };
             };
