@@ -9,6 +9,7 @@
             };
             terminal = {
                 editors.emacs = true;
+                terminals.ghostty = true; # Testing
                 terminals.alacritty = true;
                 shell.zellij = true;
             };
@@ -22,7 +23,7 @@
                 defaults = {
                     wm = pkgs.swayfx;
                     locker = pkgs.hyprlock;
-                    terminal = pkgs.alacritty;
+                    terminal = pkgs.ghostty;
                 };
                 sway.enable = true;
                 mango.enable = true;
