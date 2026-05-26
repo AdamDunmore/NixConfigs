@@ -75,6 +75,7 @@ in
                     lsd = mkDefaultOption "Enables lsd" true;
                     intellishell = mkDefaultOption "Enables intellishell" true;
                     git = mkDefaultOption "Enables git" true;
+                    mpv = mkDefaultOption "Enables MPV" true;
                     starship = mkDefaultOption "Enables starship" true;
                     tmux = mkEnableOption "Enables tmux";
                     yazi = mkDefaultOption "Enables yazi" true;

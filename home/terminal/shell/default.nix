@@ -42,6 +42,7 @@ in
         ./lsd.nix
         ./intellishell.nix
         ./git.nix
+        ./mpv.nix
         ./starship.nix
         ./tmux.nix
         ./yazi.nix

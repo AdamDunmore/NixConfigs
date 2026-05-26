@@ -23,6 +23,10 @@ in
                     view = [
                         { run = "gqview $@ -t  & disown %1 && exit"; block = true; for = "unix"; }
                     ];
+
+                    play = [
+                        { run = "mpv"; for = "unix"; } # TODO Fix
+                    ];
                 };
                 open = {
                     prepend_rules = [
@@ -47,6 +51,9 @@ in
                         # Images
                         { name = "*.png"; use = "view"; }
                         { name = "*.jpg"; use = "view"; }
+                        
+                        # Videos
+                        { name = "*.mp4"; use = "play"; }
                     ];
                 };
             };
