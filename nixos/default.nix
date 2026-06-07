@@ -3,9 +3,6 @@
 {
     config = {
         system.stateVersion = "24.11";
-
-        # Enables Lix
-        # nix.package = pkgs.lixPackageSets.stable.lix;
     };
 
     imports = [
