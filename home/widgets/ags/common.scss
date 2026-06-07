@@ -28,7 +28,7 @@ button {
   border-radius: 25px;
 
   transition:
-        background-color 400ms ease, color 400ms ease;
+        background-color 400ms ease, color 400ms ease, opacity 400ms ease;
 }
 
 button:hover {
@@ -38,6 +38,11 @@ button:hover {
 
 button:active {
   color: $fg;
+  background-color: $bg;
+}
+
+.disabled, .disabled:hover, .disabled:active {
+  opacity: 0.5;
   background-color: $bg;
 }
 
@@ -80,8 +85,8 @@ button:active {
 }
 
 .menu_window {
-  min-width: 800px;
-  min-height: 400px;
+  min-width: 600px;
+  min-height: 300px;
 }
 
 .menu_split_button_container {

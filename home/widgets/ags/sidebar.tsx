@@ -33,9 +33,10 @@ export default function Sidebar(){
     };
 
     app.connect("request", (app, [cmd, arg, ...rest], response) => {
-      if (cmd === "toggle_sidebar") {
-          toggleCalled()
-      }
+        if (cmd === "toggle_sidebar") {
+            toggleCalled()
+            response("ok")
+        }
     })
 
     const updatePlayer = (p) => {

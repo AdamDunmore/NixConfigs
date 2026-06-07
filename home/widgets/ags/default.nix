@@ -35,9 +35,11 @@ in
                 io
                 gjs
                 astal4
+                pkgs.networkmanager
 
                 cava
                 bluetooth 
+                network
                 mpris
             ];
         };

@@ -21,7 +21,7 @@ in
 
                     modules-left = [ "sway/workspaces" "dwl/tags" "custom/margin" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/sidebar" "custom/margin" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/settings" "custom/sidebar" "custom/margin" ];
 
                     "backlight" = {
                         format = "󰃠    {percent}%";
@@ -56,7 +56,13 @@ in
 
                     "custom/sidebar" = {
                         format = " 󰍜 ";
-                        on-click = "ags request toggle";
+                        on-click = "ags request toggle_sidebar";
+                        tooltip = false;
+                    };
+
+                    "custom/settings" = {
+                        format = " 󰒓 ";
+                        on-click = "ags request toggle_menu";
                         tooltip = false;
                     };
 
