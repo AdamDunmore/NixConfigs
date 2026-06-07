@@ -1,7 +1,12 @@
-{ host, ... }:
+{ host, pkgs, ... }:
 
 {
-    system.stateVersion = "24.11";
+    config = {
+        system.stateVersion = "24.11";
+
+        # Enables Lix
+        # nix.package = pkgs.lixPackageSets.stable.lix;
+    };
 
     imports = [
         ../options.nix
