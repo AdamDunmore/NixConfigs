@@ -122,6 +122,7 @@ in
             startup_always = [
                 "ags quit & ags run"
                 ( mkIf (config.settings.home.wm.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.home.wm.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays")
+                "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd PATH XDG_DATA_DIRS"
             ];
 
             colours = {
@@ -175,25 +176,11 @@ in
             mime.enable = true;
             mimeApps = {
                 enable = true;
-                defaultApplications = {
-                    "text/html" = [ "firefox.desktop" ];
-                    "x-scheme-handler/http" = [ "firefox.desktop" ];
-                    "x-scheme-handler/https" = [ "firefox.desktop" ];
-                    "x-scheme-handler/about" = [ "firefox.desktop" ];
-                    "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-
-                    "image/*" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-                    "image/png" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-                    "image/jpeg" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-                    "image/gif" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-                    "image/webp" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-                    "image/bmp" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-                    "image/tiff" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-                    "image/svg+xml" = [ "org.gnome.eog.desktop" "firefox.desktop" ];
-
-                    "video/*" = [ "mpv.desktop" "firefox.desktop" ];
-                    "video/mp4" = [ "mpv.desktop" "firefox.desktop" ];
-                };
+                defaultApplicationPackages = with pkgs; [
+                    mpv
+                    eog
+                    firefox
+                ];
             };
         };
     };
