@@ -26,6 +26,10 @@ in
                     luajitPackages.luarocks 
                     vue-language-server
                     openssl
+
+                    # Deps
+                    rustc
+                    cargo
                 ];
                	initLua = ''require("main")'';
                 plugins = {
