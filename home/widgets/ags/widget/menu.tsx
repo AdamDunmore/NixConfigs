@@ -1,5 +1,5 @@
 import { Astal } from "ags/gtk4";
-import { createState, createEffect, For, With } from "ags";
+import { createState, For, With } from "ags";
 import app from "ags/gtk4/app";
 import Gtk from "gi://Gtk";
 import Bluetooth from "gi://AstalBluetooth"

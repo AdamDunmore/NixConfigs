@@ -1,7 +1,7 @@
 import app from "ags/gtk4/app"
 
-import Sidebar from "./sidebar"
-import Menu from "./menu"
+import Sidebar from "./widget/sidebar"
+import Menu from "./widget/menu"
 
 import CommonCSS from "./common.scss"
 
