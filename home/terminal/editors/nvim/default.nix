@@ -13,9 +13,9 @@ in
                 extraBinPath = with pkgs; [
                     # Language Servers
                     rust-analyzer
-                    nil
+                    nixd
                     typescript-language-server
-                    jdt-language-server
+                    jdt-language-server # Broken?
                     pyright
                     lua-language-server
                     vscode-langservers-extracted
