@@ -1,8 +1,27 @@
-vim.api.nvim_create_autocmd("BufReadCmd", {
-  pattern = "*.aes",
-  callback = function(args)
-    local password = vim.fn.inputsecret("Decryption password: ")
+function get_password() 
+    correct_password = "$invalid"
+    while correct_password == "$invalid" do
+       correct_password = test_password() 
+    end
+    return correct_password
+end
 
+function test_password()
+    password = vim.fn.inputsecret("Passowrd: ")
+    password_2 = vim.fn.inputsecret("Enter password again: ")
+
+    if password == password_2 then
+        return password
+    else
+        return "$invalid"
+    end
+end
+
+vim.api.nvim_create_autocmd("BufReadCmd", {
+    pattern = "*.aes",
+    callback = function(args)
+
+    local password = get_password()
     local out = vim.fn.systemlist(
         "openssl enc -d -aes-256-cbc -salt -pbkdf2 -pass stdin -in " .. vim.fn.shellescape(args.file),
             password .. "\n"
@@ -17,9 +36,9 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 })
 
 vim.api.nvim_create_autocmd("BufWriteCmd", {
-  pattern = "*.aes",
-  callback = function(args)
-    local password = vim.fn.inputsecret("Encryption password: ")
+    pattern = "*.aes",
+    callback = function(args)
+    local password = get_password()
 
     -- grab buffer contents
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
@@ -35,7 +54,7 @@ vim.api.nvim_create_autocmd("BufWriteCmd", {
 
 vim.api.nvim_create_user_command("Encrypt", function()
   local src = vim.fn.expand("%:p")          -- full path of current buffer
-  local password = vim.fn.inputsecret("Encryption password: ")
+  local password = get_password()
   local dst = src .. ".aes"                  -- you can customize naming here
 
   -- Get buffer contents
