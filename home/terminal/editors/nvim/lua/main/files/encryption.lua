@@ -1,14 +1,42 @@
+function get_password(confirm) 
+    local correct_password = "$invalid"
+    while correct_password == "$invalid" do
+        correct_password = test_password(confirm) 
+    end
+    return correct_password
+end
+
+function test_password(confirm)
+    local password = vim.fn.inputsecret("Password: ")
+
+    if not confirm then
+        return password
+    end
+
+    local password_2 = vim.fn.inputsecret("Enter password again: ")
+    if password == password_2 then
+        return password
+    else
+        vim.notify("Passwords do not match. Try again.", vim.log.levels.WARN)
+        return "$invalid"
+    end
+end
+
 vim.api.nvim_create_autocmd("BufReadCmd", {
-  pattern = "*.aes",
-  callback = function(args)
-    local password = vim.fn.inputsecret("Decryption password: ")
+    pattern = "*.aes",
+    callback = function(args)
+    local password
+    if vim.g.is_encrypting_password then
+        password = vim.g.is_encrypting_password
+    else
+        password = get_password(false)
+    end
 
     local out = vim.fn.systemlist(
         "openssl enc -d -aes-256-cbc -salt -pbkdf2 -pass stdin -in " .. vim.fn.shellescape(args.file),
             password .. "\n"
     )
 
-    -- replace buffer contents with decrypted text
     vim.api.nvim_buf_set_lines(0, 0, -1, false, out)
     vim.bo.modified = false
     vim.bo.readonly = false
@@ -17,15 +45,13 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 })
 
 vim.api.nvim_create_autocmd("BufWriteCmd", {
-  pattern = "*.aes",
-  callback = function(args)
-    local password = vim.fn.inputsecret("Encryption password: ")
+    pattern = "*.aes",
+    callback = function(args)
+    local password = get_password(false)
 
-    -- grab buffer contents
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     local text = table.concat(lines, "\n")
 
-    -- feed buffer into openssl via stdin
     local cmd = "openssl enc -aes-256-cbc -salt -pbkdf2 -pass stdin -out " .. vim.fn.shellescape(args.file)
     vim.fn.system(cmd, password .. "\n" .. text)
 
@@ -34,23 +60,26 @@ vim.api.nvim_create_autocmd("BufWriteCmd", {
 })
 
 vim.api.nvim_create_user_command("Encrypt", function()
-  local src = vim.fn.expand("%:p")          -- full path of current buffer
-  local password = vim.fn.inputsecret("Encryption password: ")
-  local dst = src .. ".aes"                  -- you can customize naming here
+  local src_buf = vim.api.nvim_get_current_buf() -- 1. Grab the current buffer ID
+  local src = vim.fn.expand("%:p")          
+  local password = get_password(true) 
+  local dst = src .. ".aes"                  
 
-  -- Get buffer contents
-  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local lines = vim.api.nvim_buf_get_lines(src_buf, 0, -1, false)
   local text = table.concat(lines, "\n")
 
-  -- Encrypt via openssl, pass password via stdin
   local cmd = "openssl enc -aes-256-cbc -salt -pbkdf2 -pass stdin -out " .. vim.fn.shellescape(dst)
-  local ret = vim.fn.system(cmd, password .. "\n" .. text)
+  vim.fn.system(cmd, password .. "\n" .. text)
 
-  -- Delete the original file
   os.remove(src)
 
-  -- Open the new encrypted file
-  vim.cmd("edit " .. vim.fn.fnameescape(dst))
-  vim.api.nvim_out_write("Encrypted " .. src .. " → " .. dst .. "\n")
-end, {})
+  vim.g.is_encrypting_password = password
 
+  vim.cmd("edit " .. vim.fn.fnameescape(dst))
+
+  vim.api.nvim_buf_delete(src_buf, { force = true })
+
+  vim.g.is_encrypting_password = nil
+
+  vim.api.nvim_out_write("Encrypted & cleaned up: " .. src .. " → " .. dst .. "\n")
+end, {})

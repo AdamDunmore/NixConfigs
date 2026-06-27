@@ -21,6 +21,7 @@ in
 
                 # ls = "${lsd} -l";
                 lst = "${lsd} --tree -l";
+                dcat = "${pkgs.openssl}/bin/openssl enc -d -aes-256-cbc -salt -pbkdf2 -in";
 
                 cds = "echo \"Disk usage of current dir: $(du . -sh)\"";
                 copy-pat = "wl-copy $(sudo cat ~/pat | cut -c1-40)";
