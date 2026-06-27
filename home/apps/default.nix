@@ -5,6 +5,7 @@ let
     inherit (lib) mkIf mkMerge;
 
     amethyst = import ./pkgs/amethyst.nix { inherit pkgs; };
+    brave-origin = import ./pkgs/brave-origin.nix { inherit pkgs; };
     jackify = import ./pkgs/jackify.nix { inherit pkgs; };
     wfinfo-ng = import ./pkgs/wfinfo-ng.nix { inherit pkgs; };
 in
@@ -47,6 +48,7 @@ in
                 logseq
                 motrix
                 thonny
+                brave-origin
                 #bottles openldap broken upstream for laptop
                 tor-browser
                 beeper

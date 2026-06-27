@@ -5,7 +5,6 @@
         home = {
             apps = {
                 level = "light";
-                browser.brave = true;
             };
             terminal = {
                 editors.emacs = true;

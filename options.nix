@@ -25,7 +25,6 @@ in
                     runOnBoot = mkEnableOption "Enables autostart running on boot";
                 };
                 browser = {
-                    brave = mkEnableOption "Enables Brave";
                     firefox = mkEnableOption "Enables firefox";
                     default = mkOption {
                         type = types.enum [ "brave" "firefox" ];
