@@ -34,6 +34,7 @@ in
                 godot_4
                 parsec-bin
                 alvr
+                openshot-qt
                 amethyst
                 jackify
                 wfinfo-ng
