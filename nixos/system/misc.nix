@@ -1,4 +1,4 @@
-{ inputs, font, pkgs, pkgs-stable, lib, config, ... }:
+{ inputs, font, pkgs, pkgs-stable, lib, config, system, ... }:
 let
     cfg = config.settings.nixos.system.enable;
     cfg_apps = config.settings.home.apps;
@@ -82,7 +82,8 @@ in
 
 
             # Moves pkgs to stable 
-            boot.kernelPackages = pkgs-stable.linuxPackages_latest;
+            # boot.kernelPackages = pkgs-stable.linuxPackages_latest; # TODO readd on kernel pkg update
+            boot.kernelPackages = pkgs.linuxPackages_latest;
             
             # Default ssh settings
             services.openssh.enable = lib.mkDefault false;
