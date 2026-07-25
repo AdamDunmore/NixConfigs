@@ -1,5 +1,6 @@
 { pkgs, ... }:
 rec {
+    hash = "sha256-fUBgMm4WI6eFeKTKngxJ7xL/dEcPKCg7QQIDVJ9p4z8=";
     nimbusHelper = pkgs.kodiPackages.buildKodiAddon rec {
         pname = "script-nimbus-helper";
         namespace = "script.nimbus.helper";
@@ -9,7 +10,7 @@ rec {
             owner = "ivarbrandt";
             repo = namespace;
             rev = "main";
-            hash = "sha256-siuMnLQX4pDNb5WsH6MLRVg4KdwgjkrgeTXpJjdqcm4=";
+            inherit hash;
         };
 
         propagatedBuildInputs = with pkgs.kodiPackages; [ requests ];
@@ -24,7 +25,7 @@ rec {
             owner = "ivarbrandt";
             repo = namespace;
             rev = "main";
-            hash = "sha256-siuMnLQX4pDNb5WsH6MLRVg4KdwgjkrgeTXpJjdqcm4=";
+            inherit hash;
         };
 
         propagatedBuildInputs = [
