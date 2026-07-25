@@ -134,7 +134,7 @@
             <setting id="tmdblist.sort_name" default="true">0</setting>
             <setting id="tmdblist.watchlist_sync" default="true">false</setting>
             <setting id="fanart_image" default="true">pov_fanart.png</setting>
-            <setting id="auto_start_pov" default="true">false</setting>
+            <setting id="auto_start_pov" default="true">true</setting>
             <setting id="widget_hide_watched" default="true">false</setting>
             <setting id="kodi_menu_cache">true</setting>
             <setting id="rli_fix">true</setting>
@@ -151,7 +151,7 @@
             <setting id="mdbl_indicators_active" default="true">false</setting>
             <setting id="watched_indicators" default="true">0</setting>
             <setting id="amble.indicators" default="true" />
-            <setting id="smart_play.enabled" default="true">0</setting>
+            <setting id="smart_play.enabled" default="true">2</setting>
             <setting id="nextep.sort_type" default="true">0</setting>
             <setting id="nextep.sort_order" default="true">0</setting>
             <setting id="nextep.sort_airing_today_to_top" default="true">false</setting>
@@ -162,7 +162,7 @@
             <setting id="extras.manage" default="true">[B]Browse...[/B]</setting>
             <setting id="extras.enable_scrollbars" default="true">false</setting>
             <setting id="extras.exclude_non_acting_roles">true</setting>
-            <setting id="include_year_in_title" default="true">0</setting>
+            <setting id="include_year_in_title" default="true">3</setting>
             <setting id="default_all_episodes">1</setting>
             <setting id="single_ep_display" default="true">0</setting>
             <setting id="single_ep_format">2</setting>
@@ -179,24 +179,24 @@
             <setting id="sort.collection" default="true">0</setting>
             <setting id="sort.watchlist" default="true">0</setting>
             <setting id="ignore_articles">true</setting>
-            <setting id="auto_play_movie" default="true">false</setting>
-            <setting id="autoplay_quality_movie" default="true">SD, 720p, 1080p, 4K</setting>
-            <setting id="results_quality_movie" default="true">SD, 720p, 1080p, 4K</setting>
+            <setting id="auto_play_movie" default="true">true</setting>
+            <setting id="autoplay_quality_movie" default="true">SD, 720p, 1080p</setting>
+            <setting id="results_quality_movie" default="true">SD, 720p, 1080p</setting>
             <setting id="auto_resume_movie" default="true">0</setting>
             <setting id="stingers.enable">true</setting>
             <setting id="stingers.threshold">10</setting>
-            <setting id="autoscrape_next_episode" default="true">false</setting>
+            <setting id="autoscrape_next_episode" default="true">true</setting>
             <setting id="autoscrape_next_window_time">20</setting>
-            <setting id="auto_play_episode" default="true">false</setting>
-            <setting id="autoplay_quality_episode" default="true">SD, 720p, 1080p, 4K</setting>
-            <setting id="autoplay_next_episode" default="true">false</setting>
+            <setting id="auto_play_episode" default="true">true</setting>
+            <setting id="autoplay_quality_episode" default="true">SD, 720p, 1080p</setting>
+            <setting id="autoplay_next_episode" default="true">true</setting>
             <setting id="autoplay_next_show_window">true</setting>
             <setting id="autoplay_next_window_timer_method" default="true">0</setting>
             <setting id="autoplay_next_window_time">20</setting>
             <setting id="autoplay_next_window_percentage">95</setting>
             <setting id="autoplay_next_check_threshold">3</setting>
-            <setting id="results_quality_episode" default="true">SD, 720p, 1080p, 4K</setting>
-            <setting id="auto_resume_episode" default="true">0</setting>
+            <setting id="results_quality_episode" default="true">SD, 720p, 1080p</setting>
+            <setting id="auto_resume_episode" default="true">1</setting>
             <setting id="skip_intro.enable">true</setting>
             <setting id="load_action">1</setting>
             <setting id="limit_resolve">10</setting>
