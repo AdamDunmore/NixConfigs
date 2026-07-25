@@ -5,9 +5,6 @@ let
 in
 {
     imports = [ inputs.sops-nix.nixosModules.sops ];
-    # secrets.yaml
-    # Encrypt
-    # Save password at /etc/sops-password
     config = mkIf cfg {
         sops = {
             defaultSopsFile = ./secrets.yaml;
@@ -69,6 +66,11 @@ in
             drive_token = {
                 sopsFile = ./secrets.yaml;
                 key = "drive_token";
+                mode = "0444";
+            };
+            tb_key = {
+                sopsFile = ./secrets.yaml;
+                key = "tb_key";
                 mode = "0444";
             };
         };

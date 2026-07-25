@@ -1,0 +1,62 @@
+{ inputs, config, lib, pkgs, ... }:
+let
+    nimbus = import ./nimbus.nix { inherit pkgs; };
+    pov = import ./pov.nix { inherit pkgs; inherit config; };
+    inherit (lib) mkIf; 
+in
+{
+    imports = [ inputs.sops-nix.homeManagerModules.sops ];
+    config = mkIf true {
+        sops.secrets.tb_key = {
+            sopsFile = ../../../../nixos/system/secrets/secrets.yaml;
+        };
+
+        programs.kodi = {
+            enable = true;
+            package = pkgs.kodi.withPackages (exts: with pkgs.kodiPackages; [
+                pov.pov
+
+                nimbus.nimbusHelper
+                nimbus.nimbusSkin
+            ]);
+            addonSettings = {
+                "skin.nimbus" = {
+                    touchmode = "true";
+                    home_no_categories_widget = "true";
+                    searchsetting = "1";
+                    current_search_provider = "3";
+
+                    homemenunomoviesbutton = "true";
+                    homemenunotvshowsbutton = "true";
+                    homemenunocustom1button = "true";
+                    homemenunocustom2button = "true";
+                    homemenunocustom3button = "true";
+                    homemenunopicturesbutton = "true";
+                    homemenunomusicbutton = "true";
+                    homemenunomusicvideobutton = "true";
+                    homemenunotvbutton = "true";
+                    homemenunoradiobutton = "true";
+                    homemenunogamesbutton = "true";
+                    homemenunoprogramsbutton = "true";
+                    homemenunovideosbutton = "true";
+                    homemenunofavbutton = "true";
+                    homemenunoweatherbutton = "true";
+
+                    "skin.forcedview." = "FlixList";
+                    "skin.forcedview.addons" = "FlixList";
+                };
+            };
+        };
+
+        home.file = {
+            ".kodi/addons/plugin.video.pov".source = "${pov.pov}/share/kodi/addons/plugin.video.pov";
+            ".kodi/addons/skin.nimbus".source = "${nimbus.nimbusSkin}/share/kodi/addons/skin.nimbus";
+            ".kodi/addons/script.nimbus.helper".source = "${nimbus.nimbusHelper}/share/kodi/addons/script.nimbus.helper";
+        };
+
+        sops.templates."pov-settings.xml" = {
+            path = "${config.home.homeDirectory}/.kodi/userdata/addon_data/plugin.video.pov/settings.xml";
+            content = pov.povSettings;
+        };
+    };
+}
