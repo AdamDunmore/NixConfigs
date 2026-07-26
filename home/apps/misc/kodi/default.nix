@@ -52,11 +52,13 @@ in
             ".kodi/addons/plugin.video.pov".source = "${pov.pov}/share/kodi/addons/plugin.video.pov";
             ".kodi/addons/skin.nimbus".source = "${nimbus.nimbusSkin}/share/kodi/addons/skin.nimbus";
             ".kodi/addons/script.nimbus.helper".source = "${nimbus.nimbusHelper}/share/kodi/addons/script.nimbus.helper";
+            ".kodi/userdata/guisettings.xml".text = nimbus.guiSettings; 
         };
 
         sops.templates."pov-settings.xml" = {
             path = "${config.home.homeDirectory}/.kodi/userdata/addon_data/plugin.video.pov/settings.xml";
             content = pov.povSettings;
         };
+
     };
 }
