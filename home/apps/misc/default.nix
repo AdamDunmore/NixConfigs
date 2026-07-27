@@ -4,7 +4,5 @@
         ./discord.nix
         ./drive.nix
         ./flatpak.nix
-
-        ./kodi
     ];
 }

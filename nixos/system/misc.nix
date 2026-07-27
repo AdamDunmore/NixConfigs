@@ -67,7 +67,7 @@ in
 
             # Enable FUSE                
             programs.fuse = {
-              # enable = true;
+              enable = true;
               userAllowOther = true;
             };
 

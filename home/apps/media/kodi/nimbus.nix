@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, package, ... }:
 rec {
-    hash = "sha256-fUBgMm4WI6eFeKTKngxJ7xL/dEcPKCg7QQIDVJ9p4z8=";
-    nimbusHelper = pkgs.kodiPackages.buildKodiAddon rec {
+    hash = "sha256-siuMnLQX4pDNb5WsH6MLRVg4KdwgjkrgeTXpJjdqcm4=";
+    nimbusHelper = package.packages.buildKodiAddon rec {
         pname = "script-nimbus-helper";
         namespace = "script.nimbus.helper";
         version = "master";
@@ -13,10 +13,10 @@ rec {
             inherit hash;
         };
 
-        propagatedBuildInputs = with pkgs.kodiPackages; [ requests ];
+        propagatedBuildInputs = with package.packages; [ requests ];
     };
 
-    nimbusSkin = pkgs.kodiPackages.buildKodiAddon rec {
+    nimbusSkin = package.packages.buildKodiAddon rec {
         pname = "skin-nimbus";
         namespace = "skin.nimbus";
         version = "master";
@@ -218,9 +218,9 @@ rec {
             <setting id="slideshow.displayeffects" default="true">true</setting>
             <setting id="slideshow.shuffle" default="true">false</setting>
             <setting id="slideshow.highqualitydownscaling" default="true">false</setting>
-            <setting id="locale.audiolanguage" default="true">mediadefault</setting>
+            <setting id="locale.audiolanguage" default="true">English</setting>
             <setting id="videoplayer.preferdefaultflag" default="true">true</setting>
-            <setting id="locale.subtitlelanguage" default="true">original</setting>
+            <setting id="locale.subtitlelanguage" default="true">English</setting>
             <setting id="accessibility.audiovisual" default="true">false</setting>
             <setting id="accessibility.audiohearing" default="true">false</setting>
             <setting id="accessibility.subhearing" default="true">false</setting>

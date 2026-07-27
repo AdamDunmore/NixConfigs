@@ -1,24 +1,26 @@
 { inputs, config, lib, pkgs, ... }:
 let
-    nimbus = import ./nimbus.nix { inherit pkgs; };
-    pov = import ./pov.nix { inherit pkgs; inherit config; };
+    package = pkgs.kodi-wayland;
+    nimbus = import ./nimbus.nix { inherit pkgs; inherit package; };
+    pov = import ./pov.nix { inherit pkgs; inherit package; inherit config; };
     inherit (lib) mkIf; 
 in
 {
     imports = [ inputs.sops-nix.homeManagerModules.sops ];
-    config = mkIf true {
+    config = mkIf true { # TODO make option
         sops.secrets.tb_key = {
             sopsFile = ../../../../nixos/system/secrets/secrets.yaml;
         };
 
         programs.kodi = {
             enable = true;
-            package = pkgs.kodi.withPackages (exts: with pkgs.kodiPackages; [
+            package = package.withPackages (exts: [
                 pov.pov
 
                 nimbus.nimbusHelper
                 nimbus.nimbusSkin
             ]);
+            
             addonSettings = {
                 "skin.nimbus" = {
                     touchmode = "true";

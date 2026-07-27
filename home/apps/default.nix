@@ -17,6 +17,7 @@ in
         ./togglenight.nix
 
         ./browser
+        ./media
         ./misc
         ./music
     ];
