@@ -1,6 +1,6 @@
-{ pkgs, config, ... }:
+{ pkgs, package, config, ... }:
 {
-    pov = pkgs.kodiPackages.buildKodiAddon rec {
+    pov = package.packages.buildKodiAddon rec {
         pname = "pov";
         namespace = "plugin.video.pov";
         version = "6.07.90";
@@ -10,7 +10,7 @@
             hash = "sha256-0BkV6vHFAHh0uDYPMIFBrIJAIBVTvaNYiR+WuPqoG0A=";
         };
 
-        propagatedBuildInputs = with pkgs.kodiPackages; [
+        propagatedBuildInputs = with package.packages; [
             requests
         ];
     };
@@ -118,9 +118,6 @@
             <setting id="trakt.sync_interval">30</setting>
             <setting id="trakt.sync_refresh_widgets" default="true">false</setting>
             <setting id="trakt.refresh" default="true" />
-            <setting id="trakt.expires" default="true" />
-            <setting id="trakt.token" default="true" />
-            <setting id="trakt_user" default="true" />
             <setting id="trakt.reverse" default="true">false</setting>
             <setting id="mdblist.refresh" default="true" />
             <setting id="mdblist.expires" default="true" />
@@ -147,7 +144,6 @@
             <setting id="database.merge_status">true</setting>
             <setting id="database.maintenance.due">1785205388</setting>
             <setting id="reuse_language_invoker" default="true">true</setting>
-            <setting id="trakt_indicators_active" default="true">false</setting>
             <setting id="mdbl_indicators_active" default="true">false</setting>
             <setting id="watched_indicators" default="true">0</setting>
             <setting id="amble.indicators" default="true" />
@@ -252,9 +248,14 @@
             <setting id="get_rpdb_series" default="true">false</setting>
             <setting id="image_resolutions">2</setting>
             <setting id="tmdb_read_token" default="true">eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkODQ4MzE2YTMzZTc5MDk1YmViOTQ1YTJiZDJkNTNiMSIsIm5iZiI6MTcxMTQ3Mzg1NC45MzQsInN1YiI6IjY2MDMwNGJlYjAyZjVlMDE3ZDIxNDAzZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._uRCLIwLIE2gOlH8q04gcM3ywIXpxuZ-uyel-UMRRg4</setting>
+            <setting id="mdblist.client_id" default="true">TlibB0hxTOxCFONKaR1W8J35eHc0ls7SP9ZhqHCl</setting>
+            <setting id="trakt.refresh">mfa2-k2j_5iSJ5BFgaVgks5PRkHxEVX5XkPQhYH0JdMrPDlCu0elhsztTlyuAgfl</setting>
+            <setting id="trakt.expires">1785643996</setting>
+            <setting id="trakt.token">_n1SxLCqyD0K9VNqtXFvBbnGVunOG_uKwU3SvRm3zeMup2cmyZWuj0vRm9cxAM8i</setting>
+            <setting id="trakt_user">SkinnySheev</setting>
+            <setting id="trakt_indicators_active">true</setting>
             <setting id="trakt.client_id" default="true">6bc29124c3d9466e06a3ed19a7b5976fcb28311008401e1ce04cf08196f8b16a</setting>
             <setting id="trakt.client_secret" default="true">99478842b17d44d7accafef45c6c1bbba235792753c195069ae149595cd3a919</setting>
-            <setting id="mdblist.client_id" default="true">TlibB0hxTOxCFONKaR1W8J35eHc0ls7SP9ZhqHCl</setting>
             <setting id="context.options">1</setting>
             <setting id="context.extras">2</setting>
             <setting id="context.trakt">3</setting>
