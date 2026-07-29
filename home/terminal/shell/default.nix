@@ -45,6 +45,7 @@ in
         ./git.nix
         ./mpv.nix
         ./starship.nix
+        ./opencode.nix
         ./tmux.nix
         ./yazi.nix
         ./zellij.nix
