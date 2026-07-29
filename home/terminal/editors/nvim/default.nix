@@ -25,11 +25,12 @@ in
                     vscode-extensions.vue.volar
                     luajitPackages.luarocks 
                     vue-language-server
-                    openssl
+                    copilot-language-server
 
                     # Deps
                     rustc
                     cargo
+                    openssl
                 ];
                	initLua = ''require("main")'';
                 plugins = {
@@ -57,6 +58,8 @@ in
                         luasnip
                         nvim-lspconfig
                         nvim-comment
+                        sidekick-nvim
+                        minuet-ai-nvim
 
                         # Notes
                         render-markdown-nvim

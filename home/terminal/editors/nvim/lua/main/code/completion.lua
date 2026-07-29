@@ -4,7 +4,8 @@ local cmp = require('blink.cmp');
 cmp.setup({
     completion = {
         trigger = {
-            show_on_keyword = true
+            show_on_keyword = true,
+            prefetch_on_insert = false
         },
 
         menu = {
@@ -28,7 +29,16 @@ cmp.setup({
     },
     snippets = { preset = "luasnip" },
     sources = {
-        default = { 'snippets', 'buffer', 'lsp', 'path' }
+        default = { 'snippets', 'buffer', 'lsp', 'path', 'minuet'},
+        providers = {
+            minuet = {
+                name = "minuet",
+                module = "minuet.blink",
+                async = true,
+                timeout_ms = 3000,
+                score_offset = 100,
+            },
+        },
     },
     signature = { enabled = true }, 
 })
