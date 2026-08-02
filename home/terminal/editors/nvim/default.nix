@@ -22,16 +22,15 @@ in
                     bash-language-server
                     clang-tools
                     zls
-                    vscode-extensions.vue.volar
                     luajitPackages.luarocks 
                     vue-language-server
                     openssl
+                    vtsls
 
                     # Deps
                     rustc
                     cargo
                 ];
-               	initLua = ''require("main")'';
                 plugins = {
                     dev.config.pure = ./.;
                     start = with pkgs.vimPlugins; [
@@ -63,6 +62,14 @@ in
                         vim-gnupg
                     ];
                 };
+               	initLua = ''
+                _G.paths = {
+                    vue_language_server =
+                    "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server",
+                }
+
+                require("main")
+                '';
         };
     };
 }
