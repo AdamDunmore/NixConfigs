@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 
 let
     cfg = config.settings.home.apps.level;
@@ -8,6 +8,7 @@ let
     brave-origin = import ./pkgs/brave-origin.nix { inherit pkgs; };
     jackify = import ./pkgs/jackify.nix { inherit pkgs; };
     wfinfo-ng = import ./pkgs/wfinfo-ng.nix { inherit pkgs; };
+    watch-me = inputs.watch-me.packages.${pkgs.system}.default;
 in
 {
     imports = [
@@ -39,6 +40,7 @@ in
                 amethyst
                 jackify
                 wfinfo-ng
+                watch-me
             ]);
         })
 
@@ -62,6 +64,7 @@ in
                 protonmail-desktop
                 proton-vpn
                 stremio-linux-shell
+                vlc
 
                 qemu
                 quickgui

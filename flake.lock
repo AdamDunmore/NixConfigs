@@ -349,6 +349,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1785090369,
+        "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "624af665418d3c65d544145b4d34ad696439570e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "ags": "ags",
@@ -363,7 +379,8 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable",
         "sops-nix": "sops-nix",
-        "spicetify-nix": "spicetify-nix"
+        "spicetify-nix": "spicetify-nix",
+        "watch-me": "watch-me"
       }
     },
     "scenefx": {
@@ -439,6 +456,24 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "watch-me": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1785885797,
+        "narHash": "sha256-E7grD41jbZnnbkAV0Fdixtx5Q2dVBZaxhuac0jccgVc=",
+        "ref": "refs/heads/master",
+        "rev": "041974c31eb872a9b0e6ca647200cf32fc5e941b",
+        "revCount": 4,
+        "type": "git",
+        "url": "ssh://git@github.com/AdamDunmore/watch-me.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/AdamDunmore/watch-me.git"
       }
     }
   },

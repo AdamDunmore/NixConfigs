@@ -18,6 +18,12 @@ in
                 sopsFile = ./secrets.yaml;
                 key = "github_pat";
             };
+            github_ssh_key = {
+                path = "/home/adam/.ssh/id_ed25519";
+                owner = "adam";
+                mode = "0600";
+                sopsFile = ./secrets.yaml;
+            };
             openai_key = {
                 sopsFile = ./secrets.yaml;
                 key = "openai_key";
