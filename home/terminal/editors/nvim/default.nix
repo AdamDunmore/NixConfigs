@@ -30,6 +30,7 @@ in
                     # Deps
                     rustc
                     cargo
+                    openssl
                 ];
                 plugins = {
                     dev.config.pure = ./.;
@@ -56,6 +57,8 @@ in
                         luasnip
                         nvim-lspconfig
                         nvim-comment
+                        sidekick-nvim
+                        minuet-ai-nvim
 
                         # Notes
                         render-markdown-nvim

@@ -124,6 +124,7 @@ in
                 pulseaudio
                 playerctl
                 usbutils
+                lsof
 
                 # Languages
                 typescript
