@@ -463,11 +463,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1785885797,
-        "narHash": "sha256-E7grD41jbZnnbkAV0Fdixtx5Q2dVBZaxhuac0jccgVc=",
+        "lastModified": 1785895918,
+        "narHash": "sha256-Seiy6xla5DlMst9eAtfzFArAoj2UIEPVJNlNEXsNZwo=",
         "ref": "refs/heads/master",
-        "rev": "041974c31eb872a9b0e6ca647200cf32fc5e941b",
-        "revCount": 4,
+        "rev": "bd6de321cc2d1f2b82f609c5e7954c88e45371b5",
+        "revCount": 5,
         "type": "git",
         "url": "ssh://git@github.com/AdamDunmore/watch-me.git"
       },
