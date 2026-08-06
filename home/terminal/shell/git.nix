@@ -10,6 +10,7 @@ in
         programs.git = {
             enable = true;
             settings = {
+                url."git@github.com:".insteadOf = "https://github.com/";
                 user = {
                     name = "Adam Dunmore";
                     email = "adamfdunmore@gmail.com";
