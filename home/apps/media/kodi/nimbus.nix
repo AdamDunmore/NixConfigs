@@ -1,6 +1,6 @@
 { pkgs, package, ... }:
 rec {
-    hash = "sha256-fUBgMm4WI6eFeKTKngxJ7xL/dEcPKCg7QQIDVJ9p4z8=";
+    hash = "sha256-siuMnLQX4pDNb5WsH6MLRVg4KdwgjkrgeTXpJjdqcm4=";
     nimbusHelper = package.packages.buildKodiAddon rec {
         pname = "script-nimbus-helper";
         namespace = "script.nimbus.helper";
