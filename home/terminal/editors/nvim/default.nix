@@ -23,8 +23,14 @@ in
                     clang-tools
                     zls
                     luajitPackages.luarocks 
-                    vue-language-server
                     openssl
+
+                    (pkgs.vue-language-server.overrideAttrs (old: {
+                        postInstall = (old.postInstall or "") + ''
+                            ln -s ${pkgs.vue-language-server}/lib/language-tools/node_modules/.pnpm/typescript@6.0.3/node_modules/typescript \
+                              $out/lib/language-tools/packages/typescript-plugin/node_modules/typescript
+                        '';
+                    }))
                     vtsls
 
                     # Deps
@@ -68,7 +74,7 @@ in
                	initLua = ''
                 _G.paths = {
                     vue_language_server =
-                    "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server",
+                        "${pkgs.vue-language-server}/lib/language-tools/packages/typescript-plugin";
                 }
 
                 require("main")

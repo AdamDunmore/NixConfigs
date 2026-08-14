@@ -7,7 +7,13 @@
         networking.hostName = "laptop";
         boot.loader.grub.efiSupport = true;
 
-        hardware.framework.enableKmod = true;
+        hardware.framework = { 
+            enableKmod = true;
+            laptop13.audioEnhancement = {
+                enable = true;
+                rawDeviceName = "alsa_output.pci-0000_c1_00.6.analog-stereo";
+            };
+        };
 
         # Locks regulatory code to GB
         boot.kernelParams = [
