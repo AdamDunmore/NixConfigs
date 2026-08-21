@@ -1,0 +1,6 @@
+keys:
+  - &system age1hf05yevnuzhtsjhcmhxulgva2cg50c63kzrpw77yakmd2mqg5auscyy3a0
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    age: *system

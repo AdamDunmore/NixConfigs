@@ -1,0 +1,34 @@
+{ lib, config, ... }:
+
+let
+    cfg = config.settings.modules.home.terminal.shell.starship;
+    colours = config.settings.values.colours;
+    inherit (lib) mkIf;
+in
+{
+    config = mkIf cfg.enable {
+        programs.starship = {
+            enable = true;
+            enableZshIntegration = config.settings.modules.home.terminal.shell.zsh.enable;
+            settings = {
+                format = "[ ](${colours.light_blue.one})$username[](fg:${colours.light_blue.one} bg:${colours.blue.one})$hostname[](fg:${colours.blue.one} bg:${colours.light_blue.two})$directory[ ](${colours.light_blue.two})";
+                add_newline = false;
+                username = {
+                    style_user = "bg:${colours.light_blue.one} fg:${colours.white.one}";
+                    disabled = false;
+                    show_always = true;
+                    format = "[$user ]($style)";
+                };
+                hostname = {
+                    format = "[ $hostname ]($style)"; 
+                    style = "bg:${colours.blue.one} fg:${colours.white.one}";
+                    ssh_only = true;
+                };
+                directory = {
+                    format = "[ $path ]($style)";
+                    style = "bg:${colours.light_blue.two} fg:${colours.white.one}";
+                };
+            };
+        };
+    };
+}
