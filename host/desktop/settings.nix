@@ -1,0 +1,14 @@
+{ lib, pkgs, ... }:
+{
+    config.settings = {
+        home.apps.level = lib.mkForce "all";
+        home.apps.autostart = {
+            enable = true;
+            apps = with pkgs; [
+                steam
+                firefox
+            ];
+        };
+        home.wm.primary-monitor = "DP-2";
+    };
+}

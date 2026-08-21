@@ -1,0 +1,18 @@
+{ lib, config, pkgs, ... }:
+
+let
+  cfg = config.settings.home.terminal.shell.tmux;
+  inherit (lib) mkIf;
+in
+{
+    config = mkIf cfg {
+        programs.tmux = {
+            enable = true;
+            clock24 = true;
+            mouse = true;
+            prefix = "C-r";
+            shell = mkIf config.settings.home.terminal.shell.zsh "${pkgs.zsh}/bin/zsh";
+            terminal = "screen-256color"; # Change if coulours are weird
+        };
+    };
+}

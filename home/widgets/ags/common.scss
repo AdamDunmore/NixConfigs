@@ -1,0 +1,121 @@
+$bg: unquote("@theme_bg_color");
+$fg: unquote("@theme_fg_color");
+$bg_selected: unquote("@theme_selected_bg_color");
+$fg_selected: unquote("@theme_selected_fg_color");
+$base: unquote("@theme_base_color");
+$border: unquote("@borders");
+
+window {
+  background-color: rgba(0,0,0,0);
+}
+
+.window {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: $base;
+}
+
+button {
+  all: unset;
+  color: $fg;
+  background-color: $bg;
+  padding: 5px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border;
+  border-radius: 25px;
+
+  transition:
+        background-color 400ms ease, color 400ms ease, opacity 400ms ease;
+}
+
+button:hover {
+  color: $fg_selected;
+  background-color: $base;
+}
+
+button:active {
+  color: $fg;
+  background-color: $bg;
+}
+
+.disabled, .disabled:hover, .disabled:active {
+  opacity: 0.5;
+  background-color: $bg;
+}
+
+.background_label {
+  all: unset;
+  background-color: $bg;
+  padding: 5px;
+
+  border-radius: 25px;
+}
+
+.sidebar_mpris_art {
+  border-radius: 25px;
+
+  min-width: 192px;
+  min-height: 192px;
+}
+
+.sidebar_cava_bar {
+  background-color: $base;
+}
+
+.sidebar_mpris_title {
+  font-size: 14px;
+}
+
+.sidebar_mpris_artist {
+  font-size: 12px;
+}
+
+.sidebar_volume_label {
+  font-size: 14px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.sidebar_power_button {
+  margin: 2px;
+  font-size: 18px;
+}
+
+.menu_window {
+  min-width: 600px;
+  min-height: 300px;
+}
+
+.menu_split_button_container {
+  min-width: 150px;
+  min-height: 60px;
+
+  margin: 5px;
+}
+
+.menu_split_button {
+  border-radius: 0px; 
+  font-size: 20px;
+}
+
+.menu_split_button_left {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-right: none;
+  min-width: 60px;
+}
+
+.menu_split_button_right {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.menu_back_button {
+  margin: 2px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 18px; 
+}
