@@ -3,6 +3,6 @@
         ../../settings.nix
     ];
     config = {
-        settings.values.primary-monitor = "DP-2";
+        settings.values.primary-monitor = "eDP-1";
     };
 }
