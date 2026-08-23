@@ -1,5 +1,6 @@
 import { Astal } from "ags/gtk4";
 import { createState, For, With } from "ags";
+import { execAsync } from "ags/process";
 import app from "ags/gtk4/app";
 import Gtk from "gi://Gtk";
 import Bluetooth from "gi://AstalBluetooth"
@@ -23,6 +24,13 @@ export default function Menu(){
     const [accessPoints, setAccessPoints] = createState([]);
     const [activeAccessPoint, setActiveAccessPoint] = createState(wifi.get_active_access_point());
     const [isTypingPassword, setIsTypingPassword] = createState(false);
+    const [stats, setStats] = createState({
+        cpu: 0,
+        ram: 0,
+        cpu_temp: 0,
+        gpu: 0,
+        gpu_temp: 0,
+    });
 
     const TRANSITION_LENGTH: number = 200;
 
@@ -52,6 +60,18 @@ export default function Menu(){
             response("ok")
         }
     })
+
+    const updateStats = async () => {
+        try {
+            const output = await execAsync(["systemstats"]);
+            setStats(JSON.parse(output));
+        } catch (e) {
+            print(`systemstats failed: ${e}`);
+        }
+    };
+
+    updateStats();
+    setInterval(updateStats, 2000);
 
     const handleBTConnection = (d) => {
         if(d.connected){
@@ -104,6 +124,19 @@ export default function Menu(){
                 <With value={activeWindow}>
                     {(w) => {
                         switch(w) {
+                            case "system":
+                                return (
+                                    <box vexpand={true} hexpand={true}>
+                                        <button class="menu_back_button" onClicked={() => close()} label="󰌍" valign={Gtk.Align.START} halign={Gtk.Align.START}/>
+                                        <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
+                                            <label class="system_label" label={stats(s => `CPU: ${s.cpu.toFixed(1)}%`)} />
+                                            <label class="system_label" label={stats(s => `CPU Temp: ${s.cpu_temp.toFixed(1)}°C`)} />
+                                            <label class="system_label" label={stats(s => `GPU: ${s.gpu.toFixed(1)}%`)} />
+                                            <label class="system_label" label={stats(s => `GPU Temp: ${s.gpu_temp.toFixed(1)}°C`)} />
+                                            <label class="system_label" label={stats(s => `RAM: ${s.ram.toFixed(1)}%`)} />
+                                        </box>
+                                    </box>
+                                )
                             case "wifi":
                                 return (
                                     <box vexpand={true} hexpand={true}>
@@ -176,6 +209,9 @@ export default function Menu(){
                                         <box class="menu_split_button_container" orientation={Gtk.Orientation.HORIZONTAL} valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
                                             <button onClicked={() => {if (isBluetooth()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_left ${isBluetoothPowered() ? "" : "disabled"}`} label="" />
                                             <button onClicked={() => {if (isBluetoothPowered()) {open("bluetooth")}}} vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_right ${isBluetoothPowered() ? "" : "disabled"}`} label="" />
+                                        </box>
+                                        <box class="menu_split_button_container" orientation={Gtk.Orientation.HORIZONTAL} valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
+                                            <button onClicked={() => {open("system")}} vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_left menu_split_button_right`} label="" />
                                         </box>
                                     </box>
                                 )

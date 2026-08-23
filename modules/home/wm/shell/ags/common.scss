@@ -85,8 +85,8 @@ button:active {
 }
 
 .menu_window {
-  min-width: 600px;
   min-height: 300px;
+  padding: 10px;
 }
 
 .menu_split_button_container {
@@ -118,4 +118,13 @@ button:active {
   padding-left: 16px;
   padding-right: 16px;
   font-size: 18px; 
+}
+
+.system_label {
+  padding: 20px;
+  padding-left: auto;
+  padding-right: auto;
+  border-bottom: solid;
+  border-bottom-color: rgba(0,0,0,0.4);
+  border-bottom-width: 2px;
 }
