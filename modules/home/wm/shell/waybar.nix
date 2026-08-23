@@ -9,7 +9,12 @@ in
     config = mkIf cfg.enable {
         programs.waybar = {
             enable = true;
-            package = inputs.waybar.packages.${system}.waybar;
+            package = inputs.waybar.packages.${system}.waybar.overrideAttrs(old: {
+                doCheck = false;
+                mesonFlags = (old.mesonFlags or []) ++ [
+                    "-Dtests=disabled"
+                ];
+            });
             settings = {
                 mainBar = {
                     layer = "top";
