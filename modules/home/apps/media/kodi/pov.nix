@@ -3,11 +3,11 @@
     pov = package.packages.buildKodiAddon rec {
         pname = "pov";
         namespace = "plugin.video.pov";
-        version = "6.07.90";
+        version = "6.08.13";
 
         src = pkgs.fetchzip {
             url = "https://kodiyashimaru.github.io/repo/${namespace}/${namespace}-${version}.zip";
-            hash = "sha256-0BkV6vHFAHh0uDYPMIFBrIJAIBVTvaNYiR+WuPqoG0A=";
+            hash = "sha256-5Pu/xWWu1auAC4hFLm++FS6okTWL1DarkdTLHVv5CUI=";
         };
 
         propagatedBuildInputs = with package.packages; [

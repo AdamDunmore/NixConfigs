@@ -10,6 +10,7 @@ in
         home.packages = with pkgs; [ 
             gammastep 
             mpdris2
+            lm_sensors
         ];
 
         systemd.user.services.mpdris2 = {

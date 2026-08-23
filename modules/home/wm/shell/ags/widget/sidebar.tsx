@@ -106,7 +106,7 @@ export default function Sidebar(){
                         </box>
                         <box spacing={8}>
                             <button hexpand={true} onClicked={() => { execAsync("rmpc volume -5") }} class="button" label="󰝞" />
-                            <label class="sidebar_volume_label background_label" label={player(p => `${p.volume * 100}%`)} />                        
+                            <label class="sidebar_volume_label background_label" label={player(p => `${Math.floor(p.volume * 100)}%`)} />                        
                             <button hexpand={true} onClicked={() => { execAsync("rmpc volume +5") }} class="button" label="󰝝" />
                         </box>
                     </box>

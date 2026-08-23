@@ -12,7 +12,7 @@
                     secrets.user_password = false; # TODO change when in live
                 };
                 home = {
-                    apps.media.kodi.enable = false;
+                    apps.media.kodi.enable = true;
                     terminal.shell.zellij.enable = true;
                     wm = {
                         defaults = {
