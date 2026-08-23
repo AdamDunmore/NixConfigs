@@ -28,6 +28,7 @@ in
                         format = "{icon} {percent}%";
                         format-icons = [ "󰃞" "󰃟" "󰃠" ];
                         tooltip = false;
+                        on-click = "togglenight";
                     };
 
                     "pulseaudio" = {
@@ -41,6 +42,17 @@ in
                         format-charging = "󰂄 {capacity}%";
                         format-icons = [ "󰁻" "󰁽" "󰁿" "󰂁" "󰁹" ];
                         on-click = "powercycle";
+                        states = {
+                            warning = 30;
+                            critical = 15;
+                        };
+                        events = {
+                            on-discharging-warning = "notify-send -u normal 'Low Battery' & powerprofilesctl set power-saver";
+                            on-discharging-critical = "notify-send -u normal 'Battery Critical' & powerprofilesctl set power-saver";
+                            on-charging-100 = "notify-send -u normal 'Battery Full!'";
+                            on-discharging = "notify-send -u normal 'Power Switch' Discharging";
+                            on-charging = "notify-send -u normal 'Power Switch' Charging'";
+                        };
                     };
 
                     "network" = {
@@ -112,6 +124,14 @@ in
 
                 #custom-margin {
                     background-color: rgba(0,0,0,0);
+                }
+
+                #battery.warning {
+                    background-color: #AA9930;
+                }
+
+                #battery.critical {
+                    background-color: #AA5555;
                 }
 
                 #backlight,
