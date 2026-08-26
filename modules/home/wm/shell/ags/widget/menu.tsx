@@ -1,36 +1,27 @@
 import { Astal } from "ags/gtk4";
-import { createState, For, With } from "ags";
-import { execAsync } from "ags/process";
+import { createState, With } from "ags";
 import app from "ags/gtk4/app";
 import Gtk from "gi://Gtk";
-import Bluetooth from "gi://AstalBluetooth"
-import Network from "gi://AstalNetwork"
+import AstalBluetooth from "gi://AstalBluetooth"
+import AstalNetwork from "gi://AstalNetwork"
+
+import MenuSplitButton from "./menu_split_button.js";
+import Bluetooth from "./menu_items/bluetooth.tsx";
+import System from "./menu_items/system.tsx";
+import Wifi from "./menu_items/wifi.tsx";
 
 const { LEFT, BOTTOM } = Astal.WindowAnchor
 
 export default function Menu(){
-    const bluetooth = Bluetooth.get_default();
-    const network = Network.get_default();
+    const bluetooth = AstalBluetooth.get_default();
+    const network = AstalNetwork.get_default();
     const wifi = network.get_wifi();
 
     const [isVisible, setIsVisible] = createState(false);
     const [isWindowVisible, setIsWindowVisible] = createState(false);
     const [activeWindow, setActiveWindow] = createState("none");
-    const [devices, setDevices] = createState([]);
-    const [discovering, setDiscovering] = createState(false);
-    const [isBluetooth, setIsBluetooth] = createState(false);
     const [isBluetoothPowered, setIsBluetoothPowered] = createState(false);
     const [isWifiPowered, setIsWifiPowered] = createState(false);
-    const [accessPoints, setAccessPoints] = createState([]);
-    const [activeAccessPoint, setActiveAccessPoint] = createState(wifi.get_active_access_point());
-    const [isTypingPassword, setIsTypingPassword] = createState(false);
-    const [stats, setStats] = createState({
-        cpu: 0,
-        ram: 0,
-        cpu_temp: 0,
-        gpu: 0,
-        gpu_temp: 0,
-    });
 
     const TRANSITION_LENGTH: number = 200;
 
@@ -61,57 +52,13 @@ export default function Menu(){
         }
     })
 
-    const updateStats = async () => {
-        try {
-            const output = await execAsync(["systemstats"]);
-            setStats(JSON.parse(output));
-        } catch (e) {
-            print(`systemstats failed: ${e}`);
-        }
-    };
-
-    updateStats();
-    setInterval(updateStats, 2000);
-
-    const handleBTConnection = (d) => {
-        if(d.connected){
-            d.disconnect_device((d) => print("Disconnecting"))
-        }else {
-            d.connect_device((d) => print("Connecting"))
-        }
-    }
-
-    const handleBluetooth = () => {
-        setDevices(bluetooth.get_devices())
-        setIsBluetoothPowered(bluetooth.get_adapter().powered);
-    };
-    while(!bluetooth.get_devices()){}
-    if (bluetooth.isPowered){
-        setIsBluetooth(true);
-        handleBluetooth()
-        bluetooth.connect("notify", () => { 
-            handleBluetooth()
-            setDiscovering(bluetooth.get_adapter().discovering);
-        })
-    }
-
-    const handleWifi = () => {
+    wifi.connect("notify", () => {
         setIsWifiPowered(wifi.accessPoints.length > 0);
-        setAccessPoints(wifi.accessPoints);
-        setActiveAccessPoint(wifi.get_active_access_point());
-    }; handleWifi()
+    }); setIsWifiPowered(wifi.accessPoints.length > 0);
 
-    wifi.connect("state-changed", () => {
-        handleWifi()
-    })
-
-    wifi.connect("access-point-removed", () => {
-        handleWifi()
-    })
-
-    wifi.connect("access-point-removed", () => {
-        handleWifi()
-    })
+    bluetooth.connect("notify", () => {
+        setIsBluetoothPowered(bluetooth.get_adapter().powered);
+    }); setIsBluetoothPowered(bluetooth.get_adapter().powered);
 
     return (
         <window visible={isWindowVisible(v => v)} name="menu" $={(self) => app.add_window(self)} anchor={BOTTOM | LEFT } keymode={Astal.Keymode.ON_DEMAND}> 
@@ -125,94 +72,19 @@ export default function Menu(){
                     {(w) => {
                         switch(w) {
                             case "system":
-                                return (
-                                    <box vexpand={true} hexpand={true}>
-                                        <button class="menu_back_button" onClicked={() => close()} label="󰌍" valign={Gtk.Align.START} halign={Gtk.Align.START}/>
-                                        <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                                            <label class="system_label" label={stats(s => `CPU: ${s.cpu.toFixed(1)}%`)} />
-                                            <label class="system_label" label={stats(s => `CPU Temp: ${s.cpu_temp.toFixed(1)}°C`)} />
-                                            <label class="system_label" label={stats(s => `GPU: ${s.gpu.toFixed(1)}%`)} />
-                                            <label class="system_label" label={stats(s => `GPU Temp: ${s.gpu_temp.toFixed(1)}°C`)} />
-                                            <label class="system_label" label={stats(s => `RAM: ${s.ram.toFixed(1)}%`)} />
-                                        </box>
-                                    </box>
-                                )
+                                return ( <System backCallback={close} /> )
                             case "wifi":
-                                return (
-                                    <box vexpand={true} hexpand={true}>
-                                        <button class="menu_back_button" onClicked={() => close()} label="󰌍" valign={Gtk.Align.START} halign={Gtk.Align.START}/>
-                                        <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                                            <scrolledwindow vexpand={true} hexpand={true} visible={isWifiPowered(w => w ? true : false)}>
-                                                <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
-                                                    <button visible={isTypingPassword(b => b ? false : true)} label="Scan 󰘊" onClicked={() => { if(!wifi.scanning){ wifi.scan(); } }}/>
-                                                    <box spacing={4} visible={isTypingPassword(b => b ? true : false)}>
-                                                        <entry placeholderText="Password" hexpand={true} />
-                                                        <button valign={Gtk.Align.CENTER} halign={Gtk.Align.END} label="<" onClicked={() => { setIsTypingPassword(false); }}/>
-                                                        <button valign={Gtk.Align.CENTER} halign={Gtk.Align.END} label=">" onClicked={() => {
-                                                            setIsTypingPassword(false);
-                                                        }}/>
-                                                    </box>
-                                                    <For each={accessPoints}>
-                                                        {(p) => {   
-                                                            if(p.ssid != "") { return ( // TODO fix Logic Error
-                                                                <button label={activeAccessPoint(a => `${p.ssid} ${(a != null && p.ssid == a.ssid) ? "%" : ""}`)} onClicked={() => {
-                                                                    let a = activeAccessPoint();
-                                                                    if (a == null || p.ssid != a.ssid){
-                                                                        setIsTypingPassword(true); // Should only type if password is required
-                                                                    } else {
-                                                                        wifi.deactivate_connection(null);
-                                                                    }
-                                                                }}/>
-                                                            ) }
-                                                        }}
-                                                    </For>
-                                                </box>
-                                            </scrolledwindow>
-                                        </box>
-                                    </box>
-                                )
+                                return ( <Wifi wifi={wifi} backCallback={close}/> )
                             
                             case "bluetooth": // TODO redesign
-                                return (
-                                    <box vexpand={true} hexpand={true} orientation={Gtk.Orientation.HORIZONTAL}>
-                                        <button class="menu_back_button" onClicked={() => close()} label="󰌍" valign={Gtk.Align.START} halign={Gtk.Align.START}/>
-                                        <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                                            <scrolledwindow vexpand={true} hexpand={true} visible={isBluetooth(b => b ? true : false)}>
-                                                <box name="Bluetooth Box" orientation={1} spacing={4}>
-                                                    <button label={discovering(d => d ? "Bluetooth 󰘊" : "Bluetooth")} onClicked={() => {
-                                                        let a = bluetooth.get_adapter()
-                                                        if (!a.discovering){
-                                                            a.start_discovery()
-                                                            setTimeout(() => { a.stop_discovery() }, 10000)
-                                                        }
-                                                    }}/>
-                                                    <For each={devices}>
-                                                        {(d) => {
-                                                            if(d.name != null){
-                                                                return (<button label={devices(() => `${d.name.slice(0, 8)} ${(d.batterPercentage != -1 && d.connected) ? "[󰁹 " + (d.batteryPercentage * 100) + "%]" : ""}`)} onClicked={() => handleBTConnection(d)}/>)
-                                                            } else { return (<box visible={false}/>) }
-                                                        } }
-                                                    </For>
-                                            </box>
-                                            </scrolledwindow>
-                                        </box>
-                                    </box>
-                                )
+                                return ( <Bluetooth bluetooth={bluetooth} backCallback={close} /> )
 
                             default:
                                 return (
                                     <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
-                                        <box class="menu_split_button_container" orientation={Gtk.Orientation.HORIZONTAL} valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
-                                            <button vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_left ${isWifiPowered() ? "" : "disabled"}`} label="" onClicked={() => {wifi.set_enabled(!isWifiPowered())}}/>
-                                            <button onClicked={() => {if(isWifiPowered()) {open("wifi")}}} vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_right ${isWifiPowered() ? "" : "disabled"}`} label="" />
-                                        </box>
-                                        <box class="menu_split_button_container" orientation={Gtk.Orientation.HORIZONTAL} valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
-                                            <button onClicked={() => {if (isBluetooth()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_left ${isBluetoothPowered() ? "" : "disabled"}`} label="" />
-                                            <button onClicked={() => {if (isBluetoothPowered()) {open("bluetooth")}}} vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_right ${isBluetoothPowered() ? "" : "disabled"}`} label="" />
-                                        </box>
-                                        <box class="menu_split_button_container" orientation={Gtk.Orientation.HORIZONTAL} valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
-                                            <button onClicked={() => {open("system")}} vexpand={true} hexpand={true} class={`menu_split_button menu_split_button_left menu_split_button_right`} label="" />
-                                        </box>
+                                        <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
+                                        <MenuSplitButton icon="" callback={() => {if (isBluetooth()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
+                                        <MenuSplitButton icon="" callback={() => {open("system")}} />
                                     </box>
                                 )
                         }
