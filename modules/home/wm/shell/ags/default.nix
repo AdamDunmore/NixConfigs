@@ -43,6 +43,7 @@ in
                 network
                 mpris
                 powerprofiles
+                wireplumber
             ];
         };
     };

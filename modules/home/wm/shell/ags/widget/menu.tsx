@@ -12,6 +12,7 @@ import Bluetooth from "./menu_items/bluetooth.tsx";
 import System from "./menu_items/system.tsx";
 import Wifi from "./menu_items/wifi.tsx";
 import Notifications from "./menu_items/notifications.tsx";
+import Mixer from "./menu_items/mixer.tsx";
 
 const { LEFT, BOTTOM } = Astal.WindowAnchor
 
@@ -92,6 +93,9 @@ export default function Menu(){
                             case "notifications":
                                 return ( <Notifications backCallback={close} /> )
 
+                            case "mixer":
+                                return ( <Mixer backCallback={close} /> )
+
                             default:
                                 return (
                                     <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}>
@@ -103,6 +107,7 @@ export default function Menu(){
                                         <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
                                             <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
                                             <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
+                                            <MenuSplitButton icon="󱡫" callback={() => { open("mixer") }}/>
                                         </box>
                                     </box>
                                 )

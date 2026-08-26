@@ -141,6 +141,16 @@ button:active {
   font-size: 12px;
 }
 
+.menu_mixer_bar {
+  margin: 5px;
+  padding: 10px;
+
+  border-radius: 5px;
+  min-width: 20px;
+  font-size: 8px;
+  background-color: $bg;
+}
+
 .system_label {
   padding: 20px;
   padding-left: auto;
