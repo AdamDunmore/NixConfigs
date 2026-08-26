@@ -42,6 +42,7 @@ in
                 bluetooth 
                 network
                 mpris
+                powerprofiles
             ];
         };
     };

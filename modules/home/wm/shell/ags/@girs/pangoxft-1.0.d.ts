@@ -257,7 +257,7 @@ export namespace PangoXft {
         }
 
         // Constructor properties interface
-        interface ConstructorProps<A extends GObject.Object = GObject.Object> extends PangoFc.FontMap.ConstructorProps, Gio.ListModel.ConstructorProps {}
+        interface ConstructorProps<A extends GObject.Object = GObject.Object> extends PangoFc.FontMap.ConstructorProps<A>, Gio.ListModel.ConstructorProps {}
     }
 
     /**
@@ -266,7 +266,7 @@ export namespace PangoXft {
      * type {@link PangoXft.Font}.
      * @gir-type Class
      */
-    class FontMap<A extends GObject.Object = GObject.Object> extends PangoFc.FontMap implements Gio.ListModel<A> {
+    class FontMap<A extends GObject.Object = GObject.Object> extends PangoFc.FontMap<A> implements Gio.ListModel<A> {
         static $gtype: GObject.GType<FontMap>;
 
         /**

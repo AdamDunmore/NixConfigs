@@ -4,28 +4,32 @@ import app from "ags/gtk4/app";
 import Gtk from "gi://Gtk";
 import AstalBluetooth from "gi://AstalBluetooth"
 import AstalNetwork from "gi://AstalNetwork"
+import AstalPowerProfiles from "gi://AstalPowerProfiles"
 
 import MenuSplitButton from "./menu_split_button.js";
 import Bluetooth from "./menu_items/bluetooth.tsx";
 import System from "./menu_items/system.tsx";
 import Wifi from "./menu_items/wifi.tsx";
+import { execAsync } from "ags/process";
 
 const { LEFT, BOTTOM } = Astal.WindowAnchor
 
 export default function Menu(){
-    const bluetooth = AstalBluetooth.get_default();
-    const network = AstalNetwork.get_default();
-    const wifi = network.get_wifi();
+    const bluetooth: AstalBluetooth.Bluetooth = AstalBluetooth.get_default();
+    const network: AstalNetwork.Network = AstalNetwork.get_default();
+    const wifi: AstalNetwork.Wifi | null = network.get_wifi();
+    const powerprofiles: AstalPowerProfiles.PowerProfiles = AstalPowerProfiles.get_default();
 
-    const [isVisible, setIsVisible] = createState(false);
-    const [isWindowVisible, setIsWindowVisible] = createState(false);
-    const [activeWindow, setActiveWindow] = createState("none");
-    const [isBluetoothPowered, setIsBluetoothPowered] = createState(false);
-    const [isWifiPowered, setIsWifiPowered] = createState(false);
+    const [isVisible, setIsVisible] = createState<boolean>(false);
+    const [isWindowVisible, setIsWindowVisible] = createState<boolean>(false);
+    const [activeWindow, setActiveWindow] = createState<string>("none");
+    const [powerProfile, setPowerProfile] = createState<string>("");
+    const [isBluetoothPowered, setIsBluetoothPowered] = createState<boolean>(false);
+    const [isWifiPowered, setIsWifiPowered] = createState<boolean>(false);
 
     const TRANSITION_LENGTH: number = 200;
 
-    const open = (window) => {
+    const open = (window: string) => {
         setActiveWindow(window);
     };
 
@@ -52,13 +56,18 @@ export default function Menu(){
         }
     })
 
-    wifi.connect("notify", () => {
+    wifi.connect("access-point-added", () => {
         setIsWifiPowered(wifi.accessPoints.length > 0);
     }); setIsWifiPowered(wifi.accessPoints.length > 0);
 
-    bluetooth.connect("notify", () => {
-        setIsBluetoothPowered(bluetooth.get_adapter().powered);
-    }); setIsBluetoothPowered(bluetooth.get_adapter().powered);
+    const adapter = bluetooth.get_adapter();
+    adapter.connect("notify::powered", () => {
+        setIsBluetoothPowered(adapter.powered);
+    }); setIsBluetoothPowered(adapter.powered);
+
+    powerprofiles.connect("notify::active-profile", () => {
+        setPowerProfile(powerprofiles.active_profile);
+    }); setPowerProfile(powerprofiles.active_profile);
 
     return (
         <window visible={isWindowVisible(v => v)} name="menu" $={(self) => app.add_window(self)} anchor={BOTTOM | LEFT } keymode={Astal.Keymode.ON_DEMAND}> 
@@ -81,10 +90,15 @@ export default function Menu(){
 
                             default:
                                 return (
-                                    <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
-                                        <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
-                                        <MenuSplitButton icon="" callback={() => {if (isBluetooth()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
-                                        <MenuSplitButton icon="" callback={() => {open("system")}} />
+                                    <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}>
+                                        <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
+                                            <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
+                                            <MenuSplitButton icon="" callback={() => {if (isBluetooth()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
+                                            <MenuSplitButton icon="" callback={() => {open("system")}} />
+                                        </box>
+                                        <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
+                                            <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
+                                        </box>
                                     </box>
                                 )
                         }

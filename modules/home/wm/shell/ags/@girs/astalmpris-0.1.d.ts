@@ -157,8 +157,6 @@ export namespace AstalMpris {
 
         _init(...args: any[]): void;
 
-        static ["new"](): Mpris;
-
         // Signals
         /** @signal */
         connect<K extends keyof Mpris.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Mpris.SignalSignatures[K]>): number;
@@ -399,16 +397,16 @@ export namespace AstalMpris {
 
         // Properties
         /**
-         * Full dbus nama of this player.
+         * Full dbus name of this player.
+         * @construct-only
          */
         get bus_name(): string;
-        set bus_name(val: string);
 
         /**
-         * Full dbus nama of this player.
+         * Full dbus name of this player.
+         * @construct-only
          */
         get busName(): string;
-        set busName(val: string);
 
         /**
          * Indicates if {@link AstalMpris.Player.bus_name} is available on dbus.
@@ -667,13 +665,15 @@ export namespace AstalMpris {
         set length(val: number);
 
         /**
-         * The location of an image representing the track or album. You might prefer using {@link AstalMpris.Player.cover_art}.
+         * The location of an image representing the track or album. You might prefer using {@link AstalMpris.Player.cover_art} which is 
+         * guaranteed to be a local file path when `art_url` exists.
          */
         get art_url(): string;
         set art_url(val: string);
 
         /**
-         * The location of an image representing the track or album. You might prefer using {@link AstalMpris.Player.cover_art}.
+         * The location of an image representing the track or album. You might prefer using {@link AstalMpris.Player.cover_art} which is 
+         * guaranteed to be a local file path when `art_url` exists.
          */
         get artUrl(): string;
         set artUrl(val: string);
@@ -766,6 +766,20 @@ export namespace AstalMpris {
         /** @signal */
         emit<K extends keyof Player.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Player.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
+
+        // Static methods
+        /**
+         * Async version of {@link AstalMpris.Player.new} that yields after the player is fully initialized. Note that if the player is not avaiable 
+         * on the session bus properties will have empty values.
+         * @param name dbus name of the player.
+         * @param _callback_ 
+         */
+        static new_async(name: string, _callback_: Gio.AsyncReadyCallback<Player> | null): void;
+
+        /**
+         * @param _res_ 
+         */
+        static new_finish(_res_: Gio.AsyncResult): Player;
 
         // Methods
         /**

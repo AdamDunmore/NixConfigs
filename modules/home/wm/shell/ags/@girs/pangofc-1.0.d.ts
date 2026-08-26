@@ -383,7 +383,7 @@ export namespace PangoFc {
         }
 
         // Constructor properties interface
-        interface ConstructorProps<A extends GObject.Object = GObject.Object> extends Pango.FontMap.ConstructorProps, Gio.ListModel.ConstructorProps {}
+        interface ConstructorProps<A extends GObject.Object = GObject.Object> extends Pango.FontMap.ConstructorProps<A>, Gio.ListModel.ConstructorProps {}
     }
 
     /**
@@ -396,7 +396,7 @@ export namespace PangoFc {
      * range of shapers implemented using FreeType that come with Pango.
      * @gir-type Class
      */
-    abstract class FontMap<A extends GObject.Object = GObject.Object> extends Pango.FontMap implements Gio.ListModel<A> {
+    abstract class FontMap<A extends GObject.Object = GObject.Object> extends Pango.FontMap<A> implements Gio.ListModel<A> {
         static $gtype: GObject.GType<FontMap>;
 
         /**
