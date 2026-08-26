@@ -1,9 +1,11 @@
-$bg: unquote("@theme_bg_color");
-$fg: unquote("@theme_fg_color");
-$bg_selected: unquote("@theme_selected_bg_color");
-$fg_selected: unquote("@theme_selected_fg_color");
-$base: unquote("@theme_base_color");
-$border: unquote("@borders");
+@use "sass:string";
+
+$bg: string.unquote("@theme_bg_color");
+$fg: string.unquote("@theme_fg_color");
+$bg_selected: string.unquote("@theme_selected_bg_color");
+$fg_selected: string.unquote("@theme_selected_fg_color");
+$base: string.unquote("@theme_base_color");
+$border: string.unquote("@borders");
 
 window {
   background-color: rgba(0,0,0,0);
