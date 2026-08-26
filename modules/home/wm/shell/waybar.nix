@@ -47,6 +47,7 @@ in
                         format-charging = "󰂄 {capacity}%";
                         format-icons = [ "󰁻" "󰁽" "󰁿" "󰂁" "󰁹" ];
                         on-click = "powercycle";
+                        interval = 1;
                         states = {
                             warning = 30;
                             critical = 15;
@@ -56,7 +57,7 @@ in
                             on-discharging-critical = "notify-send -u normal 'Battery Critical' & powerprofilesctl set power-saver";
                             on-charging-100 = "notify-send -u normal 'Battery Full!'";
                             on-discharging = "notify-send -u normal 'Power Switch' Discharging";
-                            on-charging = "notify-send -u normal 'Power Switch' Charging'";
+                            on-charging = "notify-send -u normal 'Power Switch' Charging & powerprofilesctl set performance";
                         };
                     };
 
