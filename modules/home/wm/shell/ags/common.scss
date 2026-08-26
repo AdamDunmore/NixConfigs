@@ -107,13 +107,14 @@ button:active {
 .menu_split_button_left {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
-  border-right: none;
+  border-right-style: none;
   min-width: 60px;
 }
 
 .menu_split_button_right {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-right-style: solid;
 }
 
 .menu_back_button {
