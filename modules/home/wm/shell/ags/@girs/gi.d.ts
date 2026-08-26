@@ -14,6 +14,7 @@ import './astalcava-0.1.d.ts';
 import './astalio-0.1.d.ts';
 import './astalmpris-0.1.d.ts';
 import './astalnetwork-0.1.d.ts';
+import './astalnotifd-0.1.d.ts';
 import './astalpowerprofiles-0.1.d.ts';
 import './atk-1.0.d.ts';
 import './atspi-2.0.d.ts';

@@ -12,6 +12,7 @@ window {
 }
 
 .window {
+  min-width: 500px;
   margin: 10px;
   padding: 10px;
   border-radius: 25px;
@@ -120,6 +121,23 @@ button:active {
   padding-left: 16px;
   padding-right: 16px;
   font-size: 18px; 
+}
+
+.menu_notification {
+  padding: 10px;
+  margin: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border;
+  border-radius: 15px;
+}
+.menu_notification_expand {
+  background-color: rgba(0,0,0,0);
+  border: none;
+}
+
+.menu_notification_content {
+  font-size: 12px;
 }
 
 .system_label {

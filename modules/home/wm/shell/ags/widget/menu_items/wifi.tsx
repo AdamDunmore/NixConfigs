@@ -3,6 +3,7 @@ import Network from "gi://AstalNetwork"
 import { createState, For, } from "ags";
 
 import MenuBar from "../menu_bar.tsx";
+import AstalNetwork from "gi://AstalNetwork?version=0.1";
 
 export default function Wifi({ backCallback, wifi }: { backCallback: () => void, wifi: Network.Wifi }){
 

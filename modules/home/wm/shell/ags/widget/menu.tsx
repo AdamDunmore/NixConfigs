@@ -1,16 +1,17 @@
 import { Astal } from "ags/gtk4";
 import { createState, With } from "ags";
 import app from "ags/gtk4/app";
+import { execAsync } from "ags/process";
 import Gtk from "gi://Gtk";
 import AstalBluetooth from "gi://AstalBluetooth"
 import AstalNetwork from "gi://AstalNetwork"
 import AstalPowerProfiles from "gi://AstalPowerProfiles"
 
-import MenuSplitButton from "./menu_split_button.js";
+import MenuSplitButton from "./menu_split_button.tsx";
 import Bluetooth from "./menu_items/bluetooth.tsx";
 import System from "./menu_items/system.tsx";
 import Wifi from "./menu_items/wifi.tsx";
-import { execAsync } from "ags/process";
+import Notifications from "./menu_items/notifications.tsx";
 
 const { LEFT, BOTTOM } = Astal.WindowAnchor
 
@@ -88,6 +89,9 @@ export default function Menu(){
                             case "bluetooth": // TODO redesign
                                 return ( <Bluetooth bluetooth={bluetooth} backCallback={close} /> )
 
+                            case "notifications":
+                                return ( <Notifications backCallback={close} /> )
+
                             default:
                                 return (
                                     <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}>
@@ -98,6 +102,7 @@ export default function Menu(){
                                         </box>
                                         <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
                                             <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
+                                            <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
                                         </box>
                                     </box>
                                 )
