@@ -58,14 +58,18 @@ export default function Menu(){
         }
     })
 
-    wifi.connect("access-point-added", () => {
+    wifi?.connect("access-point-added", () => {
         setIsWifiPowered(wifi.accessPoints.length > 0);
-    }); setIsWifiPowered(wifi.accessPoints.length > 0);
+
+    });
+    if (wifi) setIsWifiPowered(wifi.accessPoints.length > 0);
 
     const adapter = bluetooth.get_adapter();
-    adapter.connect("notify::powered", () => {
+    adapter?.connect("notify::powered", () => {
         setIsBluetoothPowered(adapter.powered);
-    }); setIsBluetoothPowered(adapter.powered);
+
+    });
+    if (adapter) setIsBluetoothPowered(adapter.powered);
 
     powerprofiles.connect("notify::active-profile", () => {
         setPowerProfile(powerprofiles.active_profile);
