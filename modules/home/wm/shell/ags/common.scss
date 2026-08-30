@@ -26,7 +26,7 @@ window {
 button {
   all: unset;
   color: $fg;
-  background-color: gtk-alpha($bg, 0.5);
+  background-color: gtk-alpha($bg, 0.6);
   padding: 5px;
 
   border-style:solid;
@@ -128,7 +128,10 @@ levelbar block.empty {
 }
 
 .menu_window {
-  background-color: gtk-alpha($base, 0.8);
+  background-color: gtk-alpha($base, 0.6);
+  border-style: solid;
+  border-color: gtk-alpha($border, 0.5);
+  border-width: 1px;
   min-height: 200px;
   min-width: 480px;
   padding: 10px;
@@ -144,6 +147,7 @@ levelbar block.empty {
 
 .menu_split_button {
   border-radius: 0px; 
+  border-color: gtk-alpha($border, 0.5);
   font-size: 20px;
 }
 
@@ -166,6 +170,7 @@ levelbar block.empty {
   padding-right: 12px;
   font-size: 18px; 
   min-height: 20px;
+  border-color: gtk-alpha($border, 0.5);
 }
 
 .menu_notification {
