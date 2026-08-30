@@ -25,7 +25,7 @@ in
                     margin-bottom = 5;
                     fixed-center = true;
 
-                    modules-left = [ "sway/workspaces" "mango/workspaces" "custom/margin" ];
+                    modules-left = [ "custom/margin" "sway/workspaces" "mango/workspaces" "custom/margin" ];
                     modules-center = [ "clock" "clock#date" ];
                     modules-right = [ "backlight" "pulseaudio" "battery" "custom/settings" "custom/sidebar" "custom/margin" ];
 
@@ -67,11 +67,11 @@ in
                     };
                     "clock#date" = {
                         format = "{:%A, %d %b %Y}";
-                        tooltop = false;
+                        tooltip = false;
                     };
                     
                     "mango/workspaces" = {
-                        hide-empty = true;
+                        hide-empty = false;
                         on-click = "activate";
                     };
 
@@ -98,7 +98,12 @@ in
                     background-color: rgba(0,0,0,0);
                 }
 
+                #custom-margin {
+                    background-color: rgba(0,0,0,0);
+                }
+
                 button {
+                    font-size: 14px;
                     padding: 0px;
                     border: none;
                     box-shadow: none; /* Remove predefined box-shadow */
@@ -106,24 +111,36 @@ in
                 }
 
                 button:hover {
+                    color: ${colours.white.one};
                     background: none; /* Remove predefined background color (white) */
                     transition: none; /* Disable predefined animations */
                 }
 
-                #workspaces button.active {
-                    background-color: ${colours.blue.two};
+                #backlight,
+                #battery,
+                #clock,
+                #date,
+                #pulseaudio,
+                #network,
+                #custom-sidebar,
+                #custom-settings {
+                    color: ${colours.white.one};
+                    background-color: alpha(${colours.blue.one}, 0.5);
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    border-radius: 10px;
+                    transition: background-color 0.25s;
+
+                    margin-left: 2px;
+                    margin-right: 2px;
                 }
 
-                #workspaces button.urgent {
-                    background-color: ${colours.blue.three};
-                }
-
-                #workspaces button:hover {
-                    background-color: ${colours.blue.two};
-                }
-
-                #custom-margin {
-                    background-color: rgba(0,0,0,0);
+                #backlight:hover,
+                #battery:hover,
+                #pulseaudio:hover,
+                #custom-sidebar:hover,
+                #custom-settings:hover {
+                    background-color: alpha(${colours.blue.one}, 0.8); 
                 }
 
                 #battery.warning {
@@ -134,24 +151,35 @@ in
                     background-color: #AA5555;
                 }
 
-                #backlight,
-                #battery,
-                #clock,
-                #date,
-                #pulseaudio,
-                #network,
-                #custom-sidebar,
-                #custom-settings,
-                #workspaces button {
-                    color: ${colours.white.one};
-                    background-color: ${colours.blue.one};
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    border-radius: 25px;
-                    transition: background-color 0.2s;
+                #workspaces button:first-child {
+                    border-radius: 10px 0 0 10px;
+                }
 
-                    margin-left: 2px;
-                    margin-right: 2px;
+                #workspaces button:last-child {
+                    border-radius: 0 10px 10px 0;
+                }
+
+                #workspaces button {
+                    padding: 5px;
+                    background-color: alpha(${colours.blue.one}, 0.5);
+                    border-radius: 0px;
+                    transition: background-color 0.75s;
+                }
+
+                #workspaces button.empty {
+                    background-color: alpha(${colours.blue.two}, 0.5);
+                }
+
+                #workspaces button.active {
+                    background-color: ${colours.blue.one};
+                }
+
+                #workspaces button.urgent {
+                    background-color: ${colours.blue.three};
+                }
+
+                #workspaces button:hover {
+                    background-color: ${colours.blue.two};
                 }
             '';
         };     
