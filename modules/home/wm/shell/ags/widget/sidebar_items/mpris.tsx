@@ -43,6 +43,9 @@ export default function MprisItem(){
         player.connect("notify::title", () => { 
             update_track(player);
         })
+        player.connect("notify::artist", () => { 
+            update_track(player);
+        })
         player.connect("notify::playback-status", () => { setPlaybackStatus(player.playback_status) });
         player.connect("notify::volume", () => { setVolume(player.volume) });
         player.connect("notify::position", () => { setPosition(player.position) });
