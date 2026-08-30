@@ -51,9 +51,6 @@ export default function Wifi({ backCallback, wifi }: { backCallback: () => void,
                                 return (
                                     <button 
                                         visible={access_point.ssid != null}
-                                        label={ activeAccessPoint(active_access_point => access_point.ssid +
-                                            `${(access_point.ssid == active_access_point?.ssid) ? `  ${access_point.strength}%` : ""}`
-                                        )} 
                                         onClicked={() => {
                                             let active_access_point = activeAccessPoint();
                                             if (active_access_point == null || access_point.ssid != active_access_point.ssid){
@@ -65,7 +62,13 @@ export default function Wifi({ backCallback, wifi }: { backCallback: () => void,
                                                 wifi.deactivate_connection(null);
                                             }
                                         }
-                                    }/>
+                                    }>
+                                        <box orientation={Gtk.Orientation.HORIZONTAL}>
+                                            <image icon_name={access_point.icon_name} />
+                                            <label hexpand={true} label={access_point.ssid}/>
+                                            <label visible={activeAccessPoint(a => a?.ssid == access_point.ssid)} label={`[ ${access_point.strength}%]`} />
+                                        </box>
+                                    </button>
                                 )
                             }}
                         </For>

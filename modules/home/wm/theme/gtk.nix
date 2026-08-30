@@ -14,7 +14,8 @@ in
             };
             gtk4.theme = config.gtk.theme;
             iconTheme = {
-                name = "breeze";
+                name = "Papirus-Dark";
+                package = pkgs.papirus-icon-theme;
             };
             font = {
                 name = font.name;

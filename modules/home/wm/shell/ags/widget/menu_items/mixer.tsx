@@ -41,7 +41,8 @@ export default function Mixer({ backCallback }: { backCallback: () => void }){
                                             }}
                                         />
                                         <label 
-                                            label={s.name} 
+                                            class="mixer_label"
+                                            label={s?.name?.slice(0,30)} 
                                             valign={Gtk.Align.END} 
                                             wrap 
                                             wrapMode={Pango.WrapMode.WORD_CHAR}

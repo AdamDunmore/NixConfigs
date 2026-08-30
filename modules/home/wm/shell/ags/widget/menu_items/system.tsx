@@ -26,12 +26,20 @@ export default function System({ backCallback }: { backCallback: () => void }){
     return (
         <box vexpand={true} hexpand={true}>
             <MenuBar backCallback={backCallback} />
-            <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                <label class="system_label" label={stats(s => `CPU: ${s.cpu.toFixed(1)}%`)} />
-                <label class="system_label" label={stats(s => `CPU Temp: ${s.cpu_temp.toFixed(1)}°C`)} />
-                <label class="system_label" label={stats(s => `GPU: ${s.gpu.toFixed(1)}%`)} />
-                <label class="system_label" label={stats(s => `GPU Temp: ${s.gpu_temp.toFixed(1)}°C`)} />
-                <label class="system_label" label={stats(s => `RAM: ${s.ram.toFixed(1)}%`)} />
+            <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} >
+                <box orientation={Gtk.Orientation.HORIZONTAL}>
+                    <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} class="system_box" >
+                        <label class="system_label" label=" CPU" />
+                        <label class="system_label" label={stats(s => ` ${s.cpu.toFixed(1)}%`)} />
+                        <label class="system_label" label={stats(s => ` ${s.cpu_temp.toFixed(1)}°C`)} />
+                    </box>
+                    <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} class="system_box">
+                        <label class="system_label" label="󰢮 GPU" />
+                        <label class="system_label" label={stats(s => ` ${s.gpu.toFixed(1)}%`)} />
+                        <label class="system_label" label={stats(s => ` ${s.gpu_temp.toFixed(1)}°C`)} />
+                    </box>
+                </box>
+                <label class="system_label system_box" label={stats(s => ` ${s.ram.toFixed(1)}%`)} vexpand={true}/>
             </box>
         </box>
     );

@@ -41,7 +41,15 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
                         <For each={devices}>
                             {(d: AstalBluetooth.Device) => {
                                 if(d.name != null){
-                                    return (<button label={devices(() => `${d.name.slice(0, 8)} ${(d.battery_percentage != -1 && d.connected) ? "[󰁹 " + (d.battery_percentage * 100) + "%]" : ""}`)} onClicked={() => handleBTConnection(d)}/>)
+                                    return (
+                                        <button onClicked={() => handleBTConnection(d)}>
+                                            <box orientation={Gtk.Orientation.HORIZONTAL}>
+                                                <image iconName={d.icon} halign={Gtk.Align.START}/>
+                                                <label hexpand={true} label={devices(() => `${d.name.slice(0, 8)}`)} />
+                                                <label visible={d.battery_percentage != -1 && d.connected} label={"[󰁹 " + (d.battery_percentage * 100) + "%]"} />
+                                            </box>
+                                        </button>
+                                    )
                                 } else { return (<box visible={false}/>) }
                             } }
                         </For>
