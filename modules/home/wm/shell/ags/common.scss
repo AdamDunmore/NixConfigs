@@ -62,12 +62,6 @@ levelbar block.empty {
   background-color: $bg;
 }
 
-// .sidebar_mpris_window {
-//   background-color: gtk-alpha($bg, 0.7);
-//   padding: 5px;
-//   border-radius: 5px;
-// }
-
 .sidebar_mpris_label {
   all: unset;
   background-color: gtk-alpha($bg, 0.7);
@@ -117,7 +111,6 @@ levelbar block.empty {
 
 .sidebar_cava_bar {
   background-color: gtk-alpha($base, 0.7);
-  border-radius: 2px;
 }
 
 .sidebar_mpris_title {

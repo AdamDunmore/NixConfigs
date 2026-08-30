@@ -17,7 +17,7 @@ export default function MprisItem(){
     const [cavaValues, setCavaValues] = createState<number[]>([]);
     const [isInteracting, setIsInteracting] = createState<boolean>(false);
 
-    const MAX_TITLE_LENGTH: number = 20;
+    const MAX_TITLE_LENGTH: number = 30;
 
     const cava = Cava.get_default();
     const mpris = Mpris.get_default();
@@ -25,15 +25,11 @@ export default function MprisItem(){
     cava.set_bars(8);
     cava.set_framerate(15)
 
-    cava.connect("notify::values", () => {
-        setCavaValues(cava.get_values());
-    })
-
     let connected_player: Mpris.Player | null = null;
 
     const update_track = function(player: Mpris.Player){
-            setTitle(player.title.slice(0,MAX_TITLE_LENGTH - 10)); 
-            setArtist(player.artist.slice(0,MAX_TITLE_LENGTH)); 
+            setTitle(player.title.slice(0,MAX_TITLE_LENGTH)); 
+            setArtist(player.artist.slice(0,MAX_TITLE_LENGTH + 5)); 
             setArtUrl(player.art_url);
             setLength(player.length);
             setPlaybackStatus(player.playback_status);
@@ -64,6 +60,10 @@ export default function MprisItem(){
             }
         }
     });
+
+    cava.connect("notify::values", () => {
+        setCavaValues(cava.get_values());
+    })
     return (
         <box valign={1} halign={3} orientation={1} spacing={6} name="Mpris Box" class="sidebar_mpris_window">
             <Gtk.EventControllerMotion
@@ -101,10 +101,11 @@ export default function MprisItem(){
                             `)}
                         >
                         </box>
-                        <box $type="overlay" orientation={Gtk.Orientation.VERTICAL} halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} visible={isInteracting(i => i)}>
+                        <box $type="overlay" orientation={Gtk.Orientation.VERTICAL} halign={Gtk.Align.CENTER} valign={Gtk.Align.START} visible={isInteracting(i => i)}>
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label sidebar_mpris_title" label={title(t => t ?? "No Title")} />
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label sidebar_mpris_artist" label={artist(a => a ?? "No Artist")} />
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={volume(v => ` ${Math.floor(v * 100)}%`)} />                        
+                            <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={position(p => `${Math.floor(p/60).toString().padStart(2, "0")}:${p % 60}/${Math.floor(length() / 60).toString().padStart(2, "0")}:${length() % 60}`)} />                        
                         </box>
                         <centerbox $type="overlay" hexpand vexpand>
                             <box $type="end" class="sidebar_cava_box" valign={Gtk.Align.END} hexpand vexpand>
