@@ -1,5 +1,6 @@
 import Gtk from "gi://Gtk";
 import Gio from "gi://Gio";
+import Pango from "gi://Pango";
 import { createState, For, onCleanup } from "ags";
 
 import MenuBar from "../menu_bar";
@@ -62,14 +63,13 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
                             {(n: MakoNotification) => {
                                 const [ focused, setFocused ] = createState<boolean>(false);
                                 return (
-                                    <box orientation={Gtk.Orientation.VERTICAL} class="menu_notification">
-                                        <box hexpand={true}>
+                                    <button onClicked={() => setFocused(!focused())}>
+                                        <box orientation={Gtk.Orientation.VERTICAL} class="menu_notification">
                                             <label label={n.app_name} halign={Gtk.Align.START}/>
-                                            <button class="menu_notification_expand" label={focused(f => f ? "-" : "+")} onClicked={() => setFocused(!focused())} halign={Gtk.Align.END}/>
+                                            <label class="menu_notification_content" label={n.summary} wrap wrap_mode={Pango.WrapMode.WORD_CHAR} />
+                                            <label class="menu_notification_content" label={n.body} visible={focused} wrap wrap_mode={Pango.WrapMode.WORD_CHAR} />
                                         </box>
-                                        <label class="menu_notification_content" label={n.summary} />
-                                        <label class="menu_notification_content" label={n.body} visible={focused} />
-                                    </box>
+                                    </button>
                                 )
                             }}
                         </For>

@@ -77,13 +77,13 @@ in
 
                     "custom/sidebar" = {
                         format = " 󰍜 ";
-                        on-click = "ags request toggle_sidebar";
+                        on-click = "ags request toggle_menu";
                         tooltip = false;
                     };
 
                     "custom/settings" = {
-                        format = " 󰒓 ";
-                        on-click = "ags request toggle_menu";
+                        format = " 󰝚 ";
+                        on-click = "ags request toggle_sidebar";
                         tooltip = false;
                     };
 

@@ -37,16 +37,12 @@ export default function Sidebar(){
                 class = "window"
                 revealChild={isVisible(v => v)}
                 transitionDuration={TRANSITION_LENGTH}
-                transitionType={Gtk.RevealerTransitionType.SLIDE_RIGHT}
+                transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT}
             >
                 <box orientation={1} vexpand={true}>
                     <MprisItem />
-                    <button valign={2} hexpand={true} onClicked={() => {execAsync("togglenight") }} class="button" label="" />
-                    <box valign={2}>
-                        <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="sidebar_power_button" label="" />
-                        <button hexpand={true} onclicked={() => { execAsync("systemctl suspend") }} class="sidebar_power_button" label="󰤄" />
-                        <button hexpand={true} onclicked={() => { execAsync("reboot") }} class="sidebar_power_button" label="󰜉" />
-                        <button hexpand={true} onClicked={() => { execAsync("shutdown now") }} class="sidebar_power_button" label="⏻" />
+                    <box valign={Gtk.Align.END} halign={Gtk.Align.END} orientation={Gtk.Orientation.VERTICAL}>
+
                     </box>
                 </box>
             </revealer>

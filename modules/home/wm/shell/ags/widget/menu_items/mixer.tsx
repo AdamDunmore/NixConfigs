@@ -41,7 +41,7 @@ export default function Mixer({ backCallback }: { backCallback: () => void }){
                                             }}
                                         />
                                         <label 
-                                            class="mixer_label"
+                                            class="menu_mixer_label"
                                             label={s?.name?.slice(0,30)} 
                                             valign={Gtk.Align.END} 
                                             wrap 

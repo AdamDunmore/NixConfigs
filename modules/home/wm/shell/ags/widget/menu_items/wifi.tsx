@@ -51,8 +51,8 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
             </MenuBar>
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true} spacing={2}>
                 <box spacing={4} visible={newActiveAccessPoint(t => t !== "none")}>
-                    <button class="wifi_menu_entry_button" valign={Gtk.Align.CENTER} halign={Gtk.Align.START} label="󰁮" onClicked={() => { setNewActiveAccessPoint("none") }}/>
-                    <button class="wifi_menu_entry_button" valign={Gtk.Align.CENTER} halign={Gtk.Align.START} label="󰌑" onClicked={handleConnection}/>
+                    <button class="menu_button" valign={Gtk.Align.CENTER} halign={Gtk.Align.START} label="" onClicked={() => { setNewActiveAccessPoint("none") }}/>
+                    <button class="menu_button" valign={Gtk.Align.CENTER} halign={Gtk.Align.START} label="󰌑" onClicked={handleConnection}/>
                     <entry placeholderText={newActiveAccessPoint(ap => `${ap.ssid} password`)} hexpand={true} onNotifyText={t => setCurrentPassword(t.text)} onActivate={handleConnection}/>
                 </box>
                 <scrolledwindow vexpand={true} hexpand={true}>
@@ -62,6 +62,7 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
                                 return (
                                     <button 
                                         visible={access_point.ssid != null}
+                                        class="menu_button"
                                         onClicked={() => {
                                             let active_access_point = activeAccessPoint();
                                             if (active_access_point != null && access_point.ssid === active_access_point.ssid){

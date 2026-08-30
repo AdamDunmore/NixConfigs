@@ -3,7 +3,9 @@ export default function MenuBar({ backCallback, children }: { backCallback: () =
     return (
         <box orientation={Gtk.Orientation.VERTICAL}>
             <button class="menu_button menu_back_button" onClicked={() => backCallback()} label="󰌍" valign={Gtk.Align.START} halign={Gtk.Align.START}/>
-            {children}
+            <box orientation={Gtk.Orientation.VERTICAL}>
+                {children}
+            </box>
         </box>
     )
 }

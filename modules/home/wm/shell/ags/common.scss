@@ -7,6 +7,10 @@ $fg_selected: string.unquote("@theme_selected_fg_color");
 $base: string.unquote("@theme_base_color");
 $border: string.unquote("@borders");
 
+@function gtk-alpha($color, $alpha) {
+    @return string.unquote("alpha(#{$color}, #{$alpha})");
+}
+
 window {
   background-color: rgba(0,0,0,0);
 }
@@ -14,29 +18,28 @@ window {
 .window {
   min-width: 200px;
   margin: 10px;
-  padding: 10px;
-  border-radius: 25px;
-  background-color: $base;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0);
 }
 
 button {
   all: unset;
   color: $fg;
-  background-color: $bg;
+  background-color: gtk-alpha($bg, 0.5);
   padding: 5px;
 
-  border-style: solid;
+  border-style:solid;
   border-width: 1px;
-  border-color: $border;
-  border-radius: 25px;
+  border-color: gtk-alpha($border, 0.5);
+  border-radius: 10px;
 
-  transition:
-        background-color 400ms ease, color 400ms ease, opacity 400ms ease;
+  transition: background-color 0.25s, color 0.25s;
 }
 
 button:hover {
   color: $fg_selected;
-  background-color: $base;
+  background-color: $bg;
 }
 
 button:active {
@@ -44,36 +47,85 @@ button:active {
   background-color: $bg;
 }
 
+levelbar block.filled {
+  background-color: gtk-alpha($bg, 0.9);
+  border: none;
+}
+
+levelbar block.empty {
+  background-color: gtk-alpha($base, 0.9);
+  border: none;
+}
+
 .disabled, .disabled:hover, .disabled:active {
   opacity: 0.5;
   background-color: $bg;
 }
 
-.background_label {
-  all: unset;
-  background-color: $bg;
-  padding: 5px;
+// .sidebar_mpris_window {
+//   background-color: gtk-alpha($bg, 0.7);
+//   padding: 5px;
+//   border-radius: 5px;
+// }
 
-  border-radius: 25px;
+.sidebar_mpris_label {
+  all: unset;
+  background-color: gtk-alpha($bg, 0.7);
+  padding: 5px;
+  margin-top: 10px;
+
+  border-radius: 5px;
+
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.sidebar_mpris_window:hover .sidebar_mpris_label, .sidebar_mpris_window:hover .sidebar_mpris_media {
+  opacity: 1;
 }
 
 .sidebar_mpris_art {
   border-radius: 25px;
-
   min-width: 192px;
   min-height: 192px;
 }
 
+.sidebar_mpris_media {
+  opacity: 0;
+}
+
+.sidebar_mpris_media {
+  background: none;
+  border: none;
+  font-size: 16px;
+  min-height: 30px;
+  min-width: 30px;
+  border-radius: 45px;
+  margin: 5px;
+  background-color: gtk-alpha($bg, 0.2);
+}
+
+.sidebar_mpris_media:hover {
+  background-color: gtk-alpha($bg, 0.8);
+}
+
+.sidebar_cava_box {
+  margin-left: 17px;
+  margin-right: 17px;
+  margin-bottom: 5px;
+}
+
 .sidebar_cava_bar {
-  background-color: $base;
+  background-color: gtk-alpha($base, 0.7);
+  border-radius: 2px;
 }
 
 .sidebar_mpris_title {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .sidebar_mpris_artist {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .sidebar_volume_label {
@@ -82,13 +134,9 @@ button:active {
   padding-left: 12px;
 }
 
-.sidebar_power_button {
-  margin: 2px;
-  font-size: 18px;
-}
-
 .menu_window {
-  min-height: 300px;
+  background-color: gtk-alpha($base, 0.8);
+  min-height: 200px;
   min-width: 480px;
   padding: 10px;
 }
@@ -97,7 +145,8 @@ button:active {
   min-width: 150px;
   min-height: 60px;
 
-  margin: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 .menu_split_button {
@@ -106,15 +155,15 @@ button:active {
 }
 
 .menu_split_button_left {
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   border-right-style: none;
   min-width: 60px;
 }
 
 .menu_split_button_right {
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   border-right-style: solid;
 }
 
@@ -123,20 +172,13 @@ button:active {
   padding-left: 12px;
   padding-right: 12px;
   font-size: 18px; 
-}
-
-.wifi_menu_entry_button {
-  padding-left: 15px;
-  padding-right: 15px;
+  min-height: 20px;
 }
 
 .menu_notification {
-  padding: 10px;
   margin: 5px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: $border;
-  border-radius: 15px;
+  background-color: gtk-alpha($bg, 0.4);
+  border-radius: 10px;
 }
 .menu_notification_expand {
   background-color: rgba(0,0,0,0);
@@ -147,6 +189,18 @@ button:active {
   font-size: 12px;
 }
 
+.menu_system_label {
+  padding: 20px;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.menu_system_box {
+  background-color: gtk-alpha($bg, 0.5);
+  border-radius: 10px;
+  margin: 5px;
+}
+
 .menu_mixer_bar {
   margin: 5px;
   padding: 10px;
@@ -154,24 +208,10 @@ button:active {
   border-radius: 5px;
   min-width: 20px;
   font-size: 8px;
-  background-color: $bg;
+  background-color: gtk-alpha($bg, 0.5);
 }
 
-.system_label {
-  padding: 20px;
-  padding-left: auto;
-  padding-right: auto;
-}
-
-.system_box {
-  border-style: solid;
-  border-width: 1px;
-  border-color: $border;
-  border-radius: 15px;
-  margin: 10px;
-}
-
-.mixer_label {
+.menu_mixer_label {
   min-height: 40px;
   font-size: 8px;
 }
