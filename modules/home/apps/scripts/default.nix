@@ -1,5 +1,6 @@
 {
     imports = [
+        ./check_wm.nix
         ./replay.nix
         ./sinkcycle.nix
         ./powercycle.nix
