@@ -1,7 +1,9 @@
 import Gtk from "gi://Gtk";
-
-export default function MenuBar({ backCallback }: { backCallback: () => void }){
+export default function MenuBar({ backCallback, children }: { backCallback: () => void, children?: JSX.Element }){
     return (
-        <button class="menu_back_button" onClicked={() => backCallback()} label="󰌍" valign={Gtk.Align.START} halign={Gtk.Align.START}/>
+        <box orientation={Gtk.Orientation.VERTICAL}>
+            <button class="menu_button menu_back_button" onClicked={() => backCallback()} label="󰌍" valign={Gtk.Align.START} halign={Gtk.Align.START}/>
+            {children}
+        </box>
     )
 }

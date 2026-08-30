@@ -27,7 +27,7 @@ in
 
                     modules-left = [ "sway/workspaces" "mango/workspaces" "custom/margin" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "network" "custom/settings" "custom/sidebar" "custom/margin" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/settings" "custom/sidebar" "custom/margin" ];
 
                     "backlight" = {
                         format = "{icon} {percent}%";
@@ -59,12 +59,6 @@ in
                             on-discharging = "notify-send -u normal 'Power Switch' Discharging";
                             on-charging = "notify-send -u normal 'Power Switch' Charging & powerprofilesctl set performance";
                         };
-                    };
-
-                    "network" = {
-                        format-wifi = "{icon}  {signalStrength}%";
-                        format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
-                        tooltip-format = "{essid} {frequency}GHz {bandwidthDownBytes}:{bandwidthUpBytes}";
                     };
 
                     "clock" = {

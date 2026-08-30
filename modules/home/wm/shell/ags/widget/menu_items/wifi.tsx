@@ -3,16 +3,18 @@ import Network from "gi://AstalNetwork"
 import { createState, For, } from "ags";
 
 import MenuBar from "../menu_bar.tsx";
-import AstalNetwork from "gi://AstalNetwork?version=0.1";
 
 export default function Wifi({ backCallback, wifi }: { backCallback: () => void, wifi: Network.Wifi }){
 
-    const [accessPoints, setAccessPoints] = createState([]);
+    const [accessPoints, setAccessPoints] = createState<Network.AccessPoint[]>([]);
     const [activeAccessPoint, setActiveAccessPoint] = createState(wifi.get_active_access_point());
     const [isTypingPassword, setIsTypingPassword] = createState(false);
 
     const handleWifi = () => {
-        setAccessPoints(wifi.accessPoints);
+        const uniqueAccessPoints = [...new Map(
+            wifi.accessPoints.map(ap => [ap.ssid, ap])
+        ).values()]
+        setAccessPoints(uniqueAccessPoints);
         setActiveAccessPoint(wifi.get_active_access_point());
     }; handleWifi()
 
@@ -31,11 +33,12 @@ export default function Wifi({ backCallback, wifi }: { backCallback: () => void,
 
     return (
         <box vexpand={true} hexpand={true}>
-            <MenuBar backCallback={backCallback} />
+            <MenuBar backCallback={backCallback}>
+                <button class="menu_button" label="" visible={isTypingPassword(b => b ? false : true)} onClicked={() => { if(!wifi.scanning){ wifi.scan(); } }}/>
+            </MenuBar>
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
                 <scrolledwindow vexpand={true} hexpand={true}>
                     <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
-                        <button visible={isTypingPassword(b => b ? false : true)} label="Scan 󰘊" onClicked={() => { if(!wifi.scanning){ wifi.scan(); } }}/>
                         <box spacing={4} visible={isTypingPassword(b => b ? true : false)}>
                             <entry placeholderText="Password" hexpand={true} />
                             <button valign={Gtk.Align.CENTER} halign={Gtk.Align.END} label="<" onClicked={() => { setIsTypingPassword(false); }}/>
@@ -44,17 +47,26 @@ export default function Wifi({ backCallback, wifi }: { backCallback: () => void,
                             }}/>
                         </box>
                         <For each={accessPoints}>
-                            {(p) => {   
-                                if(p.ssid != "") { return ( // TODO fix Logic Error
-                                    <button label={activeAccessPoint(a => `${p.ssid} ${(a != null && p.ssid == a.ssid) ? "%" : ""}`)} onClicked={() => {
-                                        let a = activeAccessPoint();
-                                        if (a == null || p.ssid != a.ssid){
-                                            setIsTypingPassword(true); // Should only type if password is required
-                                        } else {
-                                            wifi.deactivate_connection(null);
+                            {(access_point: Network.AccessPoint) => {   
+                                return (
+                                    <button 
+                                        visible={access_point.ssid != null}
+                                        label={ activeAccessPoint(active_access_point => access_point.ssid +
+                                            `${(access_point.ssid == active_access_point?.ssid) ? `  ${access_point.strength}%` : ""}`
+                                        )} 
+                                        onClicked={() => {
+                                            let active_access_point = activeAccessPoint();
+                                            if (active_access_point == null || access_point.ssid != active_access_point.ssid){
+                                                // access_point.activate(null, (self, res, data) => {
+                                                // })
+
+                                                // setIsTypingPassword(true);
+                                            } else {
+                                                wifi.deactivate_connection(null);
+                                            }
                                         }
-                                    }}/>
-                                ) }
+                                    }/>
+                                )
                             }}
                         </For>
                     </box>

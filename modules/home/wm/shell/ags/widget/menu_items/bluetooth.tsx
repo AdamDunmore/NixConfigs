@@ -26,17 +26,18 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
 
     return (
         <box vexpand={true} hexpand={true} orientation={Gtk.Orientation.HORIZONTAL}>
-            <MenuBar backCallback={backCallback} />
-            <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                <scrolledwindow vexpand={true} hexpand={true}>
-                    <box name="Bluetooth Box" orientation={1} spacing={4}>
-                        <button label={discovering(d => d ? "Bluetooth 󰘊" : "Bluetooth")} onClicked={() => {
+            <MenuBar backCallback={backCallback}>
+                <button class="menu_button" label={discovering(d => d ? "󰘊" : "")} onClicked={() => {
                             let a = bluetooth.get_adapter()
-                            if (!a.discovering){
+                            if (a && !a.discovering){
                                 a.start_discovery()
                                 setTimeout(() => { a.stop_discovery() }, 10000)
                             }
                         }}/>
+            </MenuBar>
+            <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
+                <scrolledwindow vexpand={true} hexpand={true}>
+                    <box name="Bluetooth Box" orientation={1} spacing={4}>
                         <For each={devices}>
                             {(d: AstalBluetooth.Device) => {
                                 if(d.name != null){
