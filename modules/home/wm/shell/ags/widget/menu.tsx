@@ -89,7 +89,7 @@ export default function Menu(){
                             case "system":
                                 return ( <System backCallback={close} /> )
                             case "wifi":
-                                return ( <Wifi wifi={wifi} backCallback={close}/> )
+                                return ( <Wifi network={network} backCallback={close}/> )
                             
                             case "bluetooth": // TODO redesign
                                 return ( <Bluetooth bluetooth={bluetooth} backCallback={close} /> )
