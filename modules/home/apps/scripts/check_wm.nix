@@ -1,15 +1,15 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, user, ... }:
 let
     cfg = config.settings.modules.home.apps.scripts;
     cw = pkgs.writeShellScriptBin "check_wm" ''
         bins=("waybar" "ags" "kanshi" "wpaperd")
-        commands=("${pkgs.waybar}/bin/waybar" "ags run" "${pkgs.kanshi}/bin/kanshi" "${pkgs.wpaperd}/bin/wpaperd")
+        commands=("${pkgs.waybar}/bin/waybar" "/etc/profiles/per-user/${user}/bin/ags run" "${pkgs.kanshi}/bin/kanshi" "${pkgs.wpaperd}/bin/wpaperd")
 
         for i in "''${!commands[@]}"; do
             output=$(ps -A | grep ''${bins[i]})
             if [[ -z "$output" ]]; then
                 echo "Starting ''${bins[i]}"
-                ''${commands[i]} & 
+                eval "''${commands[i]}" & 
             else
                 echo "Service Running fine: $output"
             fi

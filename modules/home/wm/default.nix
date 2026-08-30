@@ -26,6 +26,25 @@ in
     ];
 
     config = mkIf cfg.enable { 
+        systemd.user.services.check_wm = mkIf cfg.systemd {
+            Service = {
+                ExecStart = "${pkgs.bash}/bin/bash check_wm";
+                KillMode = "process";
+            };
+        };
+
+        systemd.user.timers.check_wm = mkIf cfg.systemd {
+            Timer = {
+                OnBootSec = "10s";
+                OnUnitActiveSec = "10s";
+                Unit = "check_wm.service";
+            };
+
+            Install = {
+                WantedBy = [ "timers.target" ];
+            };
+        };
+
         home.packages = forEachPkg ++ (with pkgs; [
             wl-clipboard
             swaysome # TODO move to sway module

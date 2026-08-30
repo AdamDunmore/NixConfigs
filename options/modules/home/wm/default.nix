@@ -18,6 +18,13 @@ in
             example = false;
             description = "Enables the window manager modules";
         };
+        systemd = mkOption {
+            type = lib.types.bool;
+            default = config.settings.modules.home.wm.enable;
+            example = false;
+            description = "Enables the window manager systemd module";
+        };
+
         replays = mkOption {
             type = lib.types.bool;
             default = false;
