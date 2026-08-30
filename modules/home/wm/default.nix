@@ -35,8 +35,8 @@ in
 
         systemd.user.timers.check_wm = mkIf cfg.systemd {
             Timer = {
-                OnBootSec = "10s";
-                OnUnitActiveSec = "10s";
+                OnBootSec = "60s";
+                OnUnitActiveSec = "60s";
                 Unit = "check_wm.service";
             };
 
