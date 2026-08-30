@@ -62,6 +62,9 @@ export default function Menu(){
         setIsWifiPowered(wifi.accessPoints.length > 0);
 
     });
+    wifi?.connect("access-point-removed", () => {
+        setIsWifiPowered(wifi.accessPoints.length > 0);
+    })
     if (wifi) setIsWifiPowered(wifi.accessPoints.length > 0);
 
     const adapter = bluetooth.get_adapter();
@@ -105,7 +108,7 @@ export default function Menu(){
                                     <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}>
                                         <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
                                             <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
-                                            <MenuSplitButton icon="" callback={() => {if (isBluetooth()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
+                                            <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
                                             <MenuSplitButton icon="" callback={() => {open("system")}} />
                                         </box>
                                         <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
