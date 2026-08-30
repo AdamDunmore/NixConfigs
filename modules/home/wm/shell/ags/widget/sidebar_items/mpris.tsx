@@ -105,7 +105,7 @@ export default function MprisItem(){
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label sidebar_mpris_title" label={title(t => t ?? "No Title")} />
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label sidebar_mpris_artist" label={artist(a => a ?? "No Artist")} />
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={volume(v => ` ${Math.floor(v * 100)}%`)} />                        
-                            <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={position(p => `${Math.floor(p/60).toString().padStart(2, "0")}:${p % 60}/${Math.floor(length() / 60).toString().padStart(2, "0")}:${length() % 60}`)} />                        
+                            <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={position(p => `${Math.floor(p/60).toString().padStart(2, "0")}:${(p % 60).toString().padStart(2, "0")}/${Math.floor(length() / 60).toString().padStart(2, "0")}:${(length() % 60).toString().padStart(2, "0")}`)} />                        
                         </box>
                         <centerbox $type="overlay" hexpand vexpand>
                             <box $type="end" class="sidebar_cava_box" valign={Gtk.Align.END} hexpand vexpand>
