@@ -27,7 +27,7 @@
             url = "github:moonlight-mod/moonlight";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        #watch-me.url = "git+ssh://git@github.com/AdamDunmore/watch-me.git";
+        watch-me.url = "git+ssh://git@github.com/AdamDunmore/watch-me.git";
     };
 
     outputs = { ... } @inputs:

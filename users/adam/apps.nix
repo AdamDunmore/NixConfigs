@@ -37,7 +37,7 @@ in
         custom-pkgs.jackify
         custom-pkgs.wfinfo-ng
 
-        #inputs.watch-me.packages.${system}.default
+        inputs.watch-me.packages.${system}.default
 
         logseq
         motrix
