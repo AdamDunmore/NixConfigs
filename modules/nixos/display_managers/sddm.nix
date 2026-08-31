@@ -8,7 +8,8 @@ in
     config = mkIf (cfg.default == "sddm") {
         services.displayManager.sddm = {
             enable = true;
-            wayland.enable = false; # TODO fix for no mouse in SDDM
+            wayland.enable = true;
+            # wayland.enable = false; # TODO fix for no mouse in SDDM
             extraPackages = [
                 pkgs.kdePackages.qtmultimedia
             ];

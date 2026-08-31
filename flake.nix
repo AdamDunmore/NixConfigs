@@ -14,6 +14,7 @@
         waybar.url = "github:alexays/waybar";
         ags.url = "github:Aylur/ags";
         nix-flatpak.url = "github:gmodena/nix-flatpak";
+        jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
         spicetify-nix = {
             url = "github:Gerg-L/spicetify-nix";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +40,7 @@
             adam = [
                 { name = "laptop"; system = "x86_64-linux"; }
                 { name = "desktop"; system = "x86_64-linux"; }
+                { name = "steam-deck"; system = "x86_64-linux"; }
             ];
         };
 

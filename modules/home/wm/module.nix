@@ -151,14 +151,14 @@ in
             dim = {
                 active = mkOption {
                     type = types.float;
-                    default = 1;
+                    default = 1.0;
                     example = 0.1;
                     description = "How much to dim active window by";
                 };
 
                 inactive = mkOption {
                     type = types.float;
-                    default = 1;
+                    default = 1.0;
                     example = 0.1;
                     description = "How much to dim inactive window by";
                 };

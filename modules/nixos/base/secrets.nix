@@ -6,9 +6,7 @@ in
 {
     imports = [ inputs.sops-nix.nixosModules.sops ];
     config = mkIf cfg.enable {
-        sops = {
-            defaultSopsFormat = "yaml";
-            age.keyFile = "/etc/age.key";
-        };
+        sops.defaultSopsFormat = "yaml";
+        sops.age.keyFile = "/etc/age.key";
     };
 }
