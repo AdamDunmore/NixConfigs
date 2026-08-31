@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-    cfg = config.settings.modules.nixos.services.syncthing;
+    cfg = config.settings.modules.nixos.services.tailscale;
     
     inherit (lib) mkIf;
 in

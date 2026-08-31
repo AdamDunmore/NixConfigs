@@ -6,11 +6,14 @@
     config = {
         networking.hostName = "steam-deck";
 
+        boot.loader.grub.efiSupport = true;
+
         jovian = {
             hardware.has.amd.gpu = true;
             devices.steamdeck = {
                 enable = true;
                 autoUpdate = true;
+                enableOsFanControl = false;
             };
             decky-loader = {
                 enable = true;
@@ -20,7 +23,7 @@
                 enable = true;
                 inherit user;
                 autoStart = true;
-                # desktopSession = "mangowm";
+                desktopSession = "mango-ext";
             };
         }; 
     };

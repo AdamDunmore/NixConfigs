@@ -8,7 +8,8 @@ in
     ];
     config = {
         # settings.values.primary-monitor = "eDP-1";
-        settings.modules.enable = mkForce false;
-        settings.modules.nixos.base.enable = true;
+        #settings.modules.enable = mkForce false;
+        #settings.modules.nixos.base.enable = true;
+	settings.modules.nixos.services.tailscale.enable = mkForce false;
     };
 }

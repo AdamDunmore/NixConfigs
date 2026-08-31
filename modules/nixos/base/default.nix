@@ -20,6 +20,7 @@ in
         ( mkIf cfg.enable { 
             # Services (Mainly for AGS)
             services = {
+                upower.enable = true;
                 libinput.enable = true;
                 printing.enable = true;
                 power-profiles-daemon.enable = true;
