@@ -56,6 +56,8 @@ in
 
             # Gnome
             nautilus
+            udisks 
+            gnome-disk-utility
             eog
             file-roller
             gnome-system-monitor
