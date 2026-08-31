@@ -32,6 +32,17 @@ in
                 }
 
                 {
+                    profile.name = "Laptop";
+                    profile.outputs = [
+                        {
+                            criteria = "BOE 0x0BCA Unknown";
+                            mode = "2256x1504@59.999Hz";
+                            position = "0,0";
+                        }
+                    ];
+                }
+
+                {
                     profile.name = "Steamdeck_UnDocked";
                     profile.outputs = [
                         {
@@ -42,7 +53,7 @@ in
                         }
                     ];
                 }
-            ];
+aa            ];
         };
     };
 }
