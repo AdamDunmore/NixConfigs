@@ -50,6 +50,7 @@ in
                             mode = "800x1280@90Hz";
                             position = "0,0";
                             transform = "270";
+                            scale = 1.0;
                         }
                     ];
                 }
