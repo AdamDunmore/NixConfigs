@@ -70,7 +70,7 @@ in
             keybinds = [
                 { mod = true; key = "Return"; dispatch = "spawn"; arg = "${cfg.defaults.terminal}/bin/${cfg.defaults.terminal.meta.mainProgram}"; }
                 { mod = true; sub_mod = "SHIFT"; key = "Q"; dispatch = "kill"; }
-                { mod = true; key = "D"; dispatch = "spawn"; arg = "${pkgs.wofi}/bin/wofi"; }
+                { mod = true; key = "D"; dispatch = "spawn_shell"; arg = "ags request toggle_sidebar"; }
                 { mod = true; sub_mod = "SHIFT"; key = "C"; dispatch = "reload"; }
                 { mod = true; key = "L"; dispatch = "spawn"; arg = "${cfg.defaults.locker}/bin/${cfg.defaults.locker.meta.mainProgram}"; }
                 { mod = true; key = "N"; dispatch = "spawn"; arg = "togglenight"; }

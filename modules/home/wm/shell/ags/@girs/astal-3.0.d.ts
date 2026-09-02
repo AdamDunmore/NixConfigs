@@ -59,11 +59,11 @@ export namespace Astal {
      * @gir-type Enum
      */
     enum MouseButton {
-        PRIMARY,
-        MIDDLE,
-        SECONDARY,
-        BACK,
-        FORWARD,
+        PRIMARY = 1,
+        MIDDLE = 2,
+        SECONDARY = 3,
+        BACK = 4,
+        FORWARD = 5,
     }
 
 
@@ -78,15 +78,15 @@ export namespace Astal {
      * @gir-type Enum
      */
     enum Exclusivity {
-        NORMAL,
+        NORMAL = 0,
         /**
          * Request the compositor to allocate space for this window.
          */
-        EXCLUSIVE,
+        EXCLUSIVE = 1,
         /**
          * Request the compositor to stack layers on top of each other.
          */
-        IGNORE,
+        IGNORE = 2,
     }
 
 
@@ -101,10 +101,10 @@ export namespace Astal {
      * @gir-type Enum
      */
     enum Layer {
-        BACKGROUND,
-        BOTTOM,
-        TOP,
-        OVERLAY,
+        BACKGROUND = 0,
+        BOTTOM = 1,
+        TOP = 2,
+        OVERLAY = 3,
     }
 
 
@@ -122,24 +122,36 @@ export namespace Astal {
         /**
          * Window should not receive keyboard events.
          */
-        NONE,
+        NONE = 0,
         /**
          * Window should have exclusive focus if it is on the top or overlay layer.
          */
-        EXCLUSIVE,
+        EXCLUSIVE = 1,
         /**
          * Focus and Unfocues the window as needed.
          */
-        ON_DEMAND,
+        ON_DEMAND = 2,
     }
 
 
+    /**
+     * @default 3
+     */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MINOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MICRO_VERSION: number;
 
+    /**
+     * @default 3.0.0
+     */
     const VERSION: string;
 
     /**
@@ -204,11 +216,11 @@ export namespace Astal {
      * @gir-type Flags
      */
     enum WindowAnchor {
-        NONE,
-        TOP,
-        RIGHT,
-        LEFT,
-        BOTTOM,
+        NONE = 1,
+        TOP = 2,
+        RIGHT = 4,
+        LEFT = 8,
+        BOTTOM = 16,
     }
 
 
@@ -353,23 +365,23 @@ export namespace Astal {
             /**
              * @signal
              */
-            hover: (arg0: HoverEvent) => void;
+            hover: (event: HoverEvent) => void;
             /**
              * @signal
              */
-            "hover-lost": (arg0: HoverEvent) => void;
+            "hover-lost": (event: HoverEvent) => void;
             /**
              * @signal
              */
-            click: (arg0: ClickEvent) => void;
+            click: (event: ClickEvent) => void;
             /**
              * @signal
              */
-            "click-release": (arg0: ClickEvent) => void;
+            "click-release": (event: ClickEvent) => void;
             /**
              * @signal
              */
-            scroll: (arg0: ScrollEvent) => void;
+            scroll: (event: ScrollEvent) => void;
             "notify::always-show-image": (pspec: GObject.ParamSpec) => void;
             "notify::image": (pspec: GObject.ParamSpec) => void;
             "notify::image-position": (pspec: GObject.ParamSpec) => void;
@@ -823,27 +835,27 @@ export namespace Astal {
             /**
              * @signal
              */
-            hover: (arg0: HoverEvent) => void;
+            hover: (event: HoverEvent) => void;
             /**
              * @signal
              */
-            "hover-lost": (arg0: HoverEvent) => void;
+            "hover-lost": (event: HoverEvent) => void;
             /**
              * @signal
              */
-            click: (arg0: ClickEvent) => void;
+            click: (event: ClickEvent) => void;
             /**
              * @signal
              */
-            "click-release": (arg0: ClickEvent) => void;
+            "click-release": (event: ClickEvent) => void;
             /**
              * @signal
              */
-            scroll: (arg0: ScrollEvent) => void;
+            scroll: (event: ScrollEvent) => void;
             /**
              * @signal
              */
-            motion: (arg0: MotionEvent) => void;
+            motion: (event: MotionEvent) => void;
             "notify::above-child": (pspec: GObject.ParamSpec) => void;
             "notify::visible-window": (pspec: GObject.ParamSpec) => void;
             "notify::border-width": (pspec: GObject.ParamSpec) => void;
@@ -2322,17 +2334,17 @@ export namespace Astal {
              * Emitted when a new monitor is added to {@link Gdk.Display}.
              * @signal
              */
-            "monitor-added": (arg0: Gdk.Monitor) => void;
+            "monitor-added": (monitor: Gdk.Monitor) => void;
             /**
              * Emitted when a monitor is disconnected from {@link Gdk.Display}.
              * @signal
              */
-            "monitor-removed": (arg0: Gdk.Monitor) => void;
+            "monitor-removed": (monitor: Gdk.Monitor) => void;
             /**
              * Emitted when a window that has been added using {@link Gtk.Application.add_window} changes its visibility .
              * @signal
              */
-            "window-toggled": (arg0: Gtk.Window) => void;
+            "window-toggled": (window: Gtk.Window) => void;
             "notify::monitors": (pspec: GObject.ParamSpec) => void;
             "notify::windows": (pspec: GObject.ParamSpec) => void;
             "notify::gtk-theme": (pspec: GObject.ParamSpec) => void;
@@ -2527,15 +2539,25 @@ export namespace Astal {
         get instanceName(): string;
         set instanceName(val: string);
 
+        /**
+         * @throws GLib.Error
+         */
         quit(): void;
 
+        /**
+         * @throws GLib.Error
+         */
         inspector(): void;
 
         /**
          * @param window 
+         * @throws GLib.Error
          */
         toggle_window(window: string): void;
 
+        /**
+         * @throws GLib.Error
+         */
         acquire_socket(): void;
 
         get_instance_name(): string;

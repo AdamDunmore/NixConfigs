@@ -23,12 +23,24 @@ export namespace AstalPowerProfiles {
      */
 
 
+    /**
+     * @default 0
+     */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 1
+     */
     const MINOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MICRO_VERSION: number;
 
+    /**
+     * @default 0.1.0
+     */
     const VERSION: string;
 
     function get_default(): PowerProfiles;
@@ -41,7 +53,7 @@ export namespace AstalPowerProfiles {
              * only be emitted to the process that originally called {@link AstalPowerProfiles.PowerProfiles.hold_profile}.
              * @signal
              */
-            "profile-released": (arg0: number) => void;
+            "profile-released": (cookie: number) => void;
             "notify::active-profile": (pspec: GObject.ParamSpec) => void;
             "notify::icon-name": (pspec: GObject.ParamSpec) => void;
             "notify::actions": (pspec: GObject.ParamSpec) => void;

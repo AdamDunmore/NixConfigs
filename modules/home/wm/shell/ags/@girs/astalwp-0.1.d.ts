@@ -38,9 +38,9 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum Available {
-        UNKNOWN,
-        NO,
-        YES,
+        UNKNOWN = 0,
+        NO = 1,
+        YES = 2,
     }
 
 
@@ -55,9 +55,9 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum DeviceType {
-        UNKNOWN,
-        AUDIO_DEVICE,
-        VIDEO_DEVICE,
+        UNKNOWN = 0,
+        AUDIO_DEVICE = 1,
+        VIDEO_DEVICE = 2,
     }
 
 
@@ -72,8 +72,8 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum Direction {
-        INPUT,
-        OUTPUT,
+        INPUT = 0,
+        OUTPUT = 1,
     }
 
 
@@ -88,12 +88,12 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum MediaCategory {
-        UNKNOWN,
-        PLAYBACK,
-        CAPTURE,
-        DUPLEX,
-        MONITOR,
-        MANAGER,
+        UNKNOWN = 0,
+        PLAYBACK = 1,
+        CAPTURE = 2,
+        DUPLEX = 3,
+        MONITOR = 4,
+        MANAGER = 5,
     }
 
 
@@ -108,16 +108,16 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum MediaClass {
-        UNKNOWN,
-        AUDIO_SOURCE,
-        AUDIO_SINK,
-        STREAM_INPUT_AUDIO,
-        STREAM_OUTPUT_AUDIO,
-        VIDEO_SOURCE,
-        VIDEO_SINK,
-        STREAM_INPUT_VIDEO,
-        STREAM_OUTPUT_VIDEO,
-        AUDIO_SOURCE_VIRTUAL,
+        UNKNOWN = 0,
+        AUDIO_SOURCE = 1,
+        AUDIO_SINK = 2,
+        STREAM_INPUT_AUDIO = 3,
+        STREAM_OUTPUT_AUDIO = 4,
+        VIDEO_SOURCE = 5,
+        VIDEO_SINK = 6,
+        STREAM_INPUT_VIDEO = 7,
+        STREAM_OUTPUT_VIDEO = 8,
+        AUDIO_SOURCE_VIRTUAL = 9,
     }
 
 
@@ -132,18 +132,18 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum MediaRole {
-        UNKNOWN,
-        MOVIE,
-        MUSIC,
-        CAMERA,
-        SCREEN,
-        COMMUNICATION,
-        GAME,
-        NOTIFICATION,
-        DSP,
-        PRODUCTION,
-        ACCESSIBILITY,
-        TEST,
+        UNKNOWN = 0,
+        MOVIE = 1,
+        MUSIC = 2,
+        CAMERA = 3,
+        SCREEN = 4,
+        COMMUNICATION = 5,
+        GAME = 6,
+        NOTIFICATION = 7,
+        DSP = 8,
+        PRODUCTION = 9,
+        ACCESSIBILITY = 10,
+        TEST = 11,
     }
 
 
@@ -158,11 +158,11 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum NodeState {
-        ERROR,
-        CREATING,
-        SUSPENDED,
-        IDLE,
-        RUNNING,
+        ERROR = -1,
+        CREATING = 0,
+        SUSPENDED = 1,
+        IDLE = 2,
+        RUNNING = 3,
     }
 
 
@@ -177,17 +177,29 @@ export namespace AstalWp {
      * @gir-type Enum
      */
     enum Scale {
-        LINEAR,
-        CUBIC,
+        LINEAR = 0,
+        CUBIC = 1,
     }
 
 
+    /**
+     * @default 0
+     */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MICRO_VERSION: number;
 
+    /**
+     * @default 1
+     */
     const MINOR_VERSION: number;
 
+    /**
+     * @default 0.1.0
+     */
     const VERSION: string;
 
     /**
@@ -243,52 +255,52 @@ export namespace AstalWp {
              * @signal
              * @run-first
              */
-            "device-added": (arg0: Device) => void;
+            "device-added": (object: Device) => void;
             /**
              * @signal
              * @run-first
              */
-            "device-removed": (arg0: Device) => void;
+            "device-removed": (object: Device) => void;
             /**
              * @signal
              * @run-first
              */
-            "microphone-added": (arg0: Endpoint) => void;
+            "microphone-added": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "microphone-removed": (arg0: Endpoint) => void;
+            "microphone-removed": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "recorder-added": (arg0: Stream) => void;
+            "recorder-added": (object: Stream) => void;
             /**
              * @signal
              * @run-first
              */
-            "recorder-removed": (arg0: Stream) => void;
+            "recorder-removed": (object: Stream) => void;
             /**
              * @signal
              * @run-first
              */
-            "speaker-added": (arg0: Endpoint) => void;
+            "speaker-added": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "speaker-removed": (arg0: Endpoint) => void;
+            "speaker-removed": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "stream-added": (arg0: Stream) => void;
+            "stream-added": (object: Stream) => void;
             /**
              * @signal
              * @run-first
              */
-            "stream-removed": (arg0: Stream) => void;
+            "stream-removed": (object: Stream) => void;
             "notify::default-microphone": (pspec: GObject.ParamSpec) => void;
             "notify::default-speaker": (pspec: GObject.ParamSpec) => void;
             "notify::devices": (pspec: GObject.ParamSpec) => void;
@@ -1711,52 +1723,52 @@ export namespace AstalWp {
              * @signal
              * @run-first
              */
-            "device-added": (arg0: Device) => void;
+            "device-added": (object: Device) => void;
             /**
              * @signal
              * @run-first
              */
-            "device-removed": (arg0: Device) => void;
+            "device-removed": (object: Device) => void;
             /**
              * @signal
              * @run-first
              */
-            "recorder-added": (arg0: Stream) => void;
+            "recorder-added": (object: Stream) => void;
             /**
              * @signal
              * @run-first
              */
-            "recorder-removed": (arg0: Stream) => void;
+            "recorder-removed": (object: Stream) => void;
             /**
              * @signal
              * @run-first
              */
-            "sink-added": (arg0: Endpoint) => void;
+            "sink-added": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "sink-removed": (arg0: Endpoint) => void;
+            "sink-removed": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "source-added": (arg0: Endpoint) => void;
+            "source-added": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "source-removed": (arg0: Endpoint) => void;
+            "source-removed": (object: Endpoint) => void;
             /**
              * @signal
              * @run-first
              */
-            "stream-added": (arg0: Stream) => void;
+            "stream-added": (object: Stream) => void;
             /**
              * @signal
              * @run-first
              */
-            "stream-removed": (arg0: Stream) => void;
+            "stream-removed": (object: Stream) => void;
             "notify::devices": (pspec: GObject.ParamSpec) => void;
             "notify::recorders": (pspec: GObject.ParamSpec) => void;
             "notify::sinks": (pspec: GObject.ParamSpec) => void;
@@ -1919,22 +1931,22 @@ export namespace AstalWp {
              * @signal
              * @run-first
              */
-            "device-added": (arg0: Device) => void;
+            "device-added": (object: Device) => void;
             /**
              * @signal
              * @run-first
              */
-            "device-removed": (arg0: Device) => void;
+            "device-removed": (object: Device) => void;
             /**
              * @signal
              * @run-first
              */
-            "node-added": (arg0: Node) => void;
+            "node-added": (object: Node) => void;
             /**
              * @signal
              * @run-first
              */
-            "node-removed": (arg0: Node) => void;
+            "node-removed": (object: Node) => void;
             /**
              * @signal
              * @run-first

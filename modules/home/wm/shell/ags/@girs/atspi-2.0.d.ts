@@ -42,30 +42,30 @@ export namespace Atspi {
          * Indicates an error condition or
          * uninitialized value.
          */
-        INVALID,
+        INVALID = 0,
         /**
          * `TRUE` if all of the criteria are met.
          */
-        ALL,
+        ALL = 1,
         /**
          * `TRUE` if any of the criteria are met.
          */
-        ANY,
+        ANY = 2,
         /**
          * `TRUE` if none of the criteria are met.
          */
-        NONE,
+        NONE = 3,
         /**
          * Same as `ATSPI_Collection_MATCH_ALL` if
          * the criteria is non-empty; for empty criteria this rule requires returned
          * value to also have empty set.
          */
-        EMPTY,
+        EMPTY = 4,
         /**
          * Used only to determine the end of the
          * enumeration.
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 5,
     }
 
 
@@ -85,36 +85,36 @@ export namespace Atspi {
         /**
          * Invalid sort order
          */
-        INVALID,
+        INVALID = 0,
         /**
          * Canonical sort order
          */
-        CANONICAL,
+        CANONICAL = 1,
         /**
          * Flow sort order
          */
-        FLOW,
+        FLOW = 2,
         /**
          * Tab sort order
          */
-        TAB,
+        TAB = 3,
         /**
          * Reverse canonical sort order
          */
-        REVERSE_CANONICAL,
+        REVERSE_CANONICAL = 4,
         /**
          * Reverse flow sort order
          */
-        REVERSE_FLOW,
+        REVERSE_FLOW = 5,
         /**
          * Reverse tab sort order
          */
-        REVERSE_TAB,
+        REVERSE_TAB = 6,
         /**
          * Used only to determine the end of the
          * enumeration.
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 7,
     }
 
 
@@ -134,20 +134,20 @@ export namespace Atspi {
         /**
          * Restrict children tree traveral
          */
-        RESTRICT_CHILDREN,
+        RESTRICT_CHILDREN = 0,
         /**
          * Restrict sibling tree traversal
          */
-        RESTRICT_SIBLING,
+        RESTRICT_SIBLING = 1,
         /**
          * In-order tree traversal.
          */
-        INORDER,
+        INORDER = 2,
         /**
          * Used only to determine the end of the
          * enumeration.
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 3,
     }
 
 
@@ -183,47 +183,47 @@ export namespace Atspi {
         /**
          * Indicates an error condition or uninitialized value.
          */
-        INVALID,
+        INVALID = 0,
         /**
          * The bottom-most layer, over which everything else
          * is painted.        The 'desktop background' is generally in this layer.
          */
-        BACKGROUND,
+        BACKGROUND = 1,
         /**
          * The 'background' layer for most content renderers and
          * UI {@link Atspi.Component} containers.
          */
-        CANVAS,
+        CANVAS = 2,
         /**
          * The layer in which the majority of ordinary
          * 'foreground' widgets reside.
          */
-        WIDGET,
+        WIDGET = 3,
         /**
          * A special layer between `ATSPI_LAYER_CANVAS` and
          * `ATSPI_LAYER_WIDGET`, in which the 'pseudo windows' (e.g. the MDI frames)
          * reside. See `atspi_component_get_mdi_z_order`.
          */
-        MDI,
+        MDI = 4,
         /**
          * A layer for popup window content, above
          * `ATSPI_LAYER_WIDGET`.
          */
-        POPUP,
+        POPUP = 5,
         /**
          * The topmost layer.
          */
-        OVERLAY,
+        OVERLAY = 6,
         /**
          * The layer in which a toplevel window background usually
          * resides.
          */
-        WINDOW,
+        WINDOW = 7,
         /**
          * Used only to determine the end of the
          * enumeration.
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 8,
     }
 
 
@@ -243,17 +243,17 @@ export namespace Atspi {
         /**
          * Specifies xy coordinates relative to the screen.
          */
-        SCREEN,
+        SCREEN = 0,
         /**
          * Specifies xy coordinates relative to the widget's
          * top-level window.
          */
-        WINDOW,
+        WINDOW = 1,
         /**
          * Specifies xy coordinates relative to the widget's
          * immediate parent.
          */
-        PARENT,
+        PARENT = 2,
     }
 
 
@@ -275,22 +275,22 @@ export namespace Atspi {
          * Indicates that a key on a keyboard device was
          * pressed.
          */
-        KEY_PRESSED_EVENT,
+        KEY_PRESSED_EVENT = 0,
         /**
          * Indicates that a key on a keyboard device was
          * released.
          */
-        KEY_RELEASED_EVENT,
+        KEY_RELEASED_EVENT = 1,
         /**
          * Indicates that a button on a non-keyboard
          * human interface device (HID) was pressed.
          */
-        BUTTON_PRESSED_EVENT,
+        BUTTON_PRESSED_EVENT = 2,
         /**
          * Indicates that a button on a non-keyboard
          * human interface device (HID) was released.
          */
-        BUTTON_RELEASED_EVENT,
+        BUTTON_RELEASED_EVENT = 3,
     }
 
 
@@ -309,11 +309,11 @@ export namespace Atspi {
         /**
          * Key press event
          */
-        PRESSED,
+        PRESSED = 0,
         /**
          * Key release event
          */
-        RELEASED,
+        RELEASED = 1,
     }
 
 
@@ -333,16 +333,16 @@ export namespace Atspi {
         /**
          * Emulates the pressing of a hardware keyboard key.
          */
-        PRESS,
+        PRESS = 0,
         /**
          * Emulates the release of a hardware keyboard key.
          */
-        RELEASE,
+        RELEASE = 1,
         /**
          * Emulates the pressing and immediate releasing
          * of a hardware keyboard key.
          */
-        PRESSRELEASE,
+        PRESSRELEASE = 2,
         /**
          * A symbolic key event is generated, without specifying a
          * hardware key. Note: if the keysym is not present in the current keyboard
@@ -356,7 +356,7 @@ export namespace Atspi {
          * i.e., present on the system keyboard for the current locale (even if a
          * physical hardware keyboard is not connected).
          */
-        SYM,
+        SYM = 3,
         /**
          * A string is converted to its equivalent keyboard events
          * and emitted. If the string consists of complex characters or composed
@@ -365,15 +365,15 @@ export namespace Atspi {
          * `ATSPI_KEY_SYM`. In practice this limitation primarily effects
          * Chinese and Japanese locales.
          */
-        STRING,
+        STRING = 4,
         /**
          * Emulates locking a set of modifiers.
          */
-        LOCKMODIFIERS,
+        LOCKMODIFIERS = 5,
         /**
          * Emulates unlocking a set of modifiers.
          */
-        UNLOCKMODIFIERS,
+        UNLOCKMODIFIERS = 6,
     }
 
 
@@ -395,15 +395,15 @@ export namespace Atspi {
         /**
          * No live region.
          */
-        NONE,
+        NONE = 0,
         /**
          * This live region should be considered polite.
          */
-        POLITE,
+        POLITE = 1,
         /**
          * This live region should be considered assertive.
          */
-        ASSERTIVE,
+        ASSERTIVE = 2,
     }
 
 
@@ -423,31 +423,31 @@ export namespace Atspi {
         /**
          * For localizable natural-language messages.
          */
-        MESSAGES,
+        MESSAGES = 0,
         /**
          * For regular expression matching and string
          * collation.
          */
-        COLLATE,
+        COLLATE = 1,
         /**
          * For regular expression matching, character
          * classification, conversion, case-sensitive comparison, and wide character
          * functions.
          */
-        CTYPE,
+        CTYPE = 2,
         /**
          * For monetary formatting.
          */
-        MONETARY,
+        MONETARY = 3,
         /**
          * For number formatting (such as the decimal
          * point and the thousands separator).
          */
-        NUMERIC,
+        NUMERIC = 4,
         /**
          * For time and date formatting.
          */
-        TIME,
+        TIME = 5,
     }
 
 
@@ -465,19 +465,19 @@ export namespace Atspi {
         /**
          * The left or right 'Shift' key.
          */
-        SHIFT,
+        SHIFT = 0,
         /**
          * The ShiftLock or CapsLock key.
          */
-        SHIFTLOCK,
+        SHIFTLOCK = 1,
         /**
          * 'Control'/'Ctrl'.
          */
-        CONTROL,
+        CONTROL = 2,
         /**
          * The Alt key (as opposed to AltGr).
          */
-        ALT,
+        ALT = 3,
         /**
          * Depending on the platform, this may map to 'Window',
          * 'Function', 'Meta', 'Menu', or 'NumLock'. Such 'Meta keys' will
@@ -486,20 +486,20 @@ export namespace Atspi {
          * event having `ATSPI_MODIFIER_META2` means that the 'Mod2Mask' bit
          * is set in the corresponding XEvent.
          */
-        META,
+        META = 4,
         /**
          * See `ATSPI_MODIFIER_META`.
          */
-        META2,
+        META2 = 5,
         /**
          * See `ATSPI_MODIFIER_META`.
          */
-        META3,
+        META3 = 6,
         /**
          * A symbolic meta key name that is mapped by AT-SPI
          * to the appropriate META value, for the convenience of the client.
          */
-        NUMLOCK,
+        NUMLOCK = 14,
     }
 
 
@@ -536,80 +536,80 @@ export namespace Atspi {
          * Not a meaningful relationship; clients should not
          * normally encounter this {@link Atspi.RelationType} value.
          */
-        NULL,
+        NULL = 0,
         /**
          * Object is a label for one or more other objects.
          */
-        LABEL_FOR,
+        LABEL_FOR = 1,
         /**
          * Object is labelled by one or more other
          * objects.
          */
-        LABELLED_BY,
+        LABELLED_BY = 2,
         /**
          * Object is an interactive object which
          * modifies the state, onscreen location, or other attributes of one or more
          * target objects.
          */
-        CONTROLLER_FOR,
+        CONTROLLER_FOR = 3,
         /**
          * Object state, position, etc. is
          * modified/controlled by user interaction with one or more other objects.
          * For instance a viewport or scroll pane may be `ATSPI_RELATION_CONTROLLED_BY`
          * scrollbars.
          */
-        CONTROLLED_BY,
+        CONTROLLED_BY = 4,
         /**
          * Object has a grouping relationship (e.g. 'same
          * group as') to one or more other objects.
          */
-        MEMBER_OF,
+        MEMBER_OF = 5,
         /**
          * Object is a tooltip associated with another
          * object.
          */
-        TOOLTIP_FOR,
+        TOOLTIP_FOR = 6,
         /**
          * Object is a child of the target.
          */
-        NODE_CHILD_OF,
+        NODE_CHILD_OF = 7,
         /**
          * Object is a parent of the target.
          */
-        NODE_PARENT_OF,
+        NODE_PARENT_OF = 8,
         /**
          * Used to indicate that a relationship exists, but
          * its type is not specified in the enumeration.
          */
-        EXTENDED,
+        EXTENDED = 9,
         /**
          * Object renders content which flows logically to
          * another object. For instance, text in a paragraph may flow to another
          * object which is not the 'next sibling' in the accessibility hierarchy.
          */
-        FLOWS_TO,
+        FLOWS_TO = 10,
         /**
          * Reciprocal of `ATSPI_RELATION_FLOWS_TO`.
          */
-        FLOWS_FROM,
+        FLOWS_FROM = 11,
         /**
          * Object is visually and semantically considered
          * a subwindow of another object, even though it is not the object's child.
          * Useful when dealing with embedded applications and other cases where the
          * widget hierarchy does not map cleanly to the onscreen presentation.
          */
-        SUBWINDOW_OF,
+        SUBWINDOW_OF = 12,
         /**
          * Similar to `ATSPI_RELATION_SUBWINDOW_OF`, but
          * specifically used for cross-process embedding.
          */
-        EMBEDS,
+        EMBEDS = 13,
         /**
          * Reciprocal of `ATSPI_RELATION_EMBEDS`. Used to
          * denote content rendered by embedded renderers that live in a separate process
          * space from the embedding context.
          */
-        EMBEDDED_BY,
+        EMBEDDED_BY = 14,
         /**
          * Denotes that the object is a transient window or
          * frame associated with another onscreen object. Similar to `ATSPI_TOOLTIP_FOR`,
@@ -621,18 +621,18 @@ export namespace Atspi {
          * of assistive technology clients, even though the previous toplevel
          * `ATSPI_ROLE_FRAME` object may still be the active window.
          */
-        POPUP_FOR,
+        POPUP_FOR = 15,
         /**
          * This is the reciprocal relation to
          * `ATSPI_RELATION_POPUP_FOR`.
          */
-        PARENT_WINDOW_OF,
+        PARENT_WINDOW_OF = 16,
         /**
          * Reciprocal of {@link Atspi.RelationType.DESCRIBED_BY}.
          * Indicates that this object provides descriptive information about the target
          * object(s). See also {@link Atspi.RelationType.DETAILS_FOR} and {@link Atspi.RelationType.ERROR_FOR}.
          */
-        DESCRIPTION_FOR,
+        DESCRIPTION_FOR = 17,
         /**
          * Reciprocal of {@link Atspi.RelationType.DESCRIPTION_FOR}.
          * Indicates that one or more target objects provide descriptive information
@@ -647,7 +647,7 @@ export namespace Atspi {
          * objects containing detailed descriptions so that their content can be more
          * closely reviewed.
          */
-        DESCRIBED_BY,
+        DESCRIBED_BY = 18,
         /**
          * Reciprocal of {@link Atspi.RelationType.DETAILS_FOR}. Indicates
          * that this object has a detailed or extended description, the contents of
@@ -658,14 +658,14 @@ export namespace Atspi {
          * If the detailed information describes an error condition,
          * {@link Atspi.RelationType.ERROR_FOR} should be used instead. `Since`: 2.26.
          */
-        DETAILS,
+        DETAILS = 19,
         /**
          * Reciprocal of {@link Atspi.RelationType.DETAILS}. Indicates
          * that this object provides a detailed or extended description about the target
          * object(s). See also {@link Atspi.RelationType.DESCRIPTION_FOR} and
          * {@link Atspi.RelationType.ERROR_FOR}. `Since`: 2.26.
          */
-        DETAILS_FOR,
+        DETAILS_FOR = 20,
         /**
          * Reciprocal of {@link Atspi.RelationType.ERROR_FOR}.
          * Indicates that this object has one or more errors, the nature of which is
@@ -673,18 +673,18 @@ export namespace Atspi {
          * relation type should also contain {@link Atspi.StateType.INVALID_ENTRY} in their
          * {@link Atspi.StateSet}. `Since`: 2.26.
          */
-        ERROR_MESSAGE,
+        ERROR_MESSAGE = 21,
         /**
          * Reciprocal of {@link Atspi.RelationType.ERROR_MESSAGE}.
          * Indicates that this object contains an error message describing an invalid
          * condition in the target object(s). `Since`: 2.26.
          */
-        ERROR_FOR,
+        ERROR_FOR = 22,
         /**
          * Do not use as a parameter value, used to
          * determine the size of the enumeration.
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 23,
     }
 
 
@@ -705,238 +705,238 @@ export namespace Atspi {
          * A role indicating an error condition, such as
          * uninitialized Role data.
          */
-        INVALID,
+        INVALID = 0,
         /**
          * Object is a label indicating the keyboard
          * accelerators for the parent.
          */
-        ACCELERATOR_LABEL,
+        ACCELERATOR_LABEL = 1,
         /**
          * Object is used to alert the user about something.
          */
-        ALERT,
+        ALERT = 2,
         /**
          * Object contains a dynamic or moving image of some
          * kind.
          */
-        ANIMATION,
+        ANIMATION = 3,
         /**
          * Object is a 2d directional indicator.
          */
-        ARROW,
+        ARROW = 4,
         /**
          * Object contains one or more dates, usually arranged
          * into a 2d list.
          */
-        CALENDAR,
+        CALENDAR = 5,
         /**
          * Object that can be drawn into and is used to trap
          * events.
          */
-        CANVAS,
+        CANVAS = 6,
         /**
          * A choice that can be checked or unchecked and
          * provides a separate       indicator for the current state.
          */
-        CHECK_BOX,
+        CHECK_BOX = 7,
         /**
          * A menu item that behaves like a check box. See
          * `ATSPI_ROLE_CHECK_BOX`.
          */
-        CHECK_MENU_ITEM,
+        CHECK_MENU_ITEM = 8,
         /**
          * A specialized dialog that lets the user choose a
          * color.
          */
-        COLOR_CHOOSER,
+        COLOR_CHOOSER = 9,
         /**
          * The header for a column of data.
          */
-        COLUMN_HEADER,
+        COLUMN_HEADER = 10,
         /**
          * A list of choices the user can select from.
          */
-        COMBO_BOX,
+        COMBO_BOX = 11,
         /**
          * An object which allows entry of a date.
          */
-        DATE_EDITOR,
+        DATE_EDITOR = 12,
         /**
          * An inconifed internal frame within a DESKTOP_FRAME.
          */
-        DESKTOP_ICON,
+        DESKTOP_ICON = 13,
         /**
          * A pane that supports internal frames and
          * iconified versions of those internal frames.
          */
-        DESKTOP_FRAME,
+        DESKTOP_FRAME = 14,
         /**
          * An object that allows a value to be changed via rotating a
          * visual element, or which displays a value via such a rotating element.
          */
-        DIAL,
+        DIAL = 15,
         /**
          * A top level window with title bar and a border.
          */
-        DIALOG,
+        DIALOG = 16,
         /**
          * A pane that allows the user to navigate through
          * and select the contents of a directory.
          */
-        DIRECTORY_PANE,
+        DIRECTORY_PANE = 17,
         /**
          * An object used for drawing custom user interface
          * elements.
          */
-        DRAWING_AREA,
+        DRAWING_AREA = 18,
         /**
          * A specialized dialog that displays the files in
          * the directory and lets the user select a file, browse a different
          * directory, or specify a filename.
          */
-        FILE_CHOOSER,
+        FILE_CHOOSER = 19,
         /**
          * A object that fills up space in a user interface.
          */
-        FILLER,
+        FILLER = 20,
         /**
          * Don't use, reserved for future use.
          */
-        FOCUS_TRAVERSABLE,
+        FOCUS_TRAVERSABLE = 21,
         /**
          * Allows selection of a display font.
          */
-        FONT_CHOOSER,
+        FONT_CHOOSER = 22,
         /**
          * A top level window with a title bar, border, menubar,
          * etc.
          */
-        FRAME,
+        FRAME = 23,
         /**
          * A pane that is guaranteed to be painted on top of
          * all panes beneath it.
          */
-        GLASS_PANE,
+        GLASS_PANE = 24,
         /**
          * A document container for HTML, whose children
          * represent the document content.
          */
-        HTML_CONTAINER,
+        HTML_CONTAINER = 25,
         /**
          * A small fixed size picture, typically used to decorate
          * components.
          */
-        ICON,
+        ICON = 26,
         /**
          * An image, typically static.
          */
-        IMAGE,
+        IMAGE = 27,
         /**
          * A frame-like object that is clipped by a desktop
          * pane.
          */
-        INTERNAL_FRAME,
+        INTERNAL_FRAME = 28,
         /**
          * An object used to present an icon or short string in an
          * interface.
          */
-        LABEL,
+        LABEL = 29,
         /**
          * A specialized pane that allows its children to be
          * drawn in layers, providing a form of stacking order.
          */
-        LAYERED_PANE,
+        LAYERED_PANE = 30,
         /**
          * An object that presents a list of objects to the user and
          * allows the user to select one or more of them.
          */
-        LIST,
+        LIST = 31,
         /**
          * An object that represents an element of a list.
          */
-        LIST_ITEM,
+        LIST_ITEM = 32,
         /**
          * An object usually found inside a menu bar that contains a
          * list of actions the user can choose from.
          */
-        MENU,
+        MENU = 33,
         /**
          * An object usually drawn at the top of the primary
          * dialog box of an application that contains a list of menus the user can
          * choose from.
          */
-        MENU_BAR,
+        MENU_BAR = 34,
         /**
          * An object usually contained in a menu that presents
          * an action the user can choose.
          */
-        MENU_ITEM,
+        MENU_ITEM = 35,
         /**
          * A specialized pane whose primary use is inside a
          * dialog.
          */
-        OPTION_PANE,
+        OPTION_PANE = 36,
         /**
          * An object that is a child of a page tab list.
          */
-        PAGE_TAB,
+        PAGE_TAB = 37,
         /**
          * An object that presents a series of panels (or
          * page tabs), one at a time,through some mechanism provided by the
          * object.
          */
-        PAGE_TAB_LIST,
+        PAGE_TAB_LIST = 38,
         /**
          * A generic container that is often used to group objects.
          */
-        PANEL,
+        PANEL = 39,
         /**
          * A text object uses for passwords, or other places
          * where the text content is not shown visibly to the user.
          */
-        PASSWORD_TEXT,
+        PASSWORD_TEXT = 40,
         /**
          * A temporary window that is usually used to offer the
          * user a list of choices, and then hides when the user selects one of those
          * choices.
          */
-        POPUP_MENU,
+        POPUP_MENU = 41,
         /**
          * An object used to indicate how much of a task has
          * been completed.
          */
-        PROGRESS_BAR,
+        PROGRESS_BAR = 42,
         /**
          * An object the user can manipulate to tell the
          * application to do something.
          */
-        BUTTON,
+        BUTTON = 43,
         /**
          * A specialized check box that will cause other
          * radio buttons in the same group to become unchecked when this one is
          * checked.
          */
-        RADIO_BUTTON,
+        RADIO_BUTTON = 44,
         /**
          * Object is both a menu item and a "radio button"
          * . See `ATSPI_ROLE_RADIO_BUTTON`.
          */
-        RADIO_MENU_ITEM,
+        RADIO_MENU_ITEM = 45,
         /**
          * A specialized pane that has a glass pane and a
          * layered pane as its children.
          */
-        ROOT_PANE,
+        ROOT_PANE = 46,
         /**
          * The header for a row of data.
          */
-        ROW_HEADER,
+        ROW_HEADER = 47,
         /**
          * An object usually used to allow a user to
          * incrementally view a large amount of data by moving the bounds of a
          * viewport along a one-dimensional axis.
          */
-        SCROLL_BAR,
+        SCROLL_BAR = 48,
         /**
          * An object that allows a user to incrementally view
          * a large amount of information. `ATSPI_ROLE_SCROLL_PANE` objects are usually
@@ -944,65 +944,65 @@ export namespace Atspi {
          * `ATSPI_RELATION_CONTROLLER_FOR` and `ATSPI_RELATION_CONTROLLED_BY`
          * reciprocal relations are set. See  `atspi_get_relation_set`.
          */
-        SCROLL_PANE,
+        SCROLL_PANE = 49,
         /**
          * An object usually contained in a menu to provide a
          * visible and logical separation of the contents in a menu.
          */
-        SEPARATOR,
+        SEPARATOR = 50,
         /**
          * An object that allows the user to select from a bounded
          * range.  Unlike `ATSPI_ROLE_SCROLL_BAR`, `ATSPI_ROLE_SLIDER` objects need not control
          * 'viewport'-like objects.
          */
-        SLIDER,
+        SLIDER = 51,
         /**
          * An object which allows one of a set of choices to
          * be selected, and which displays the current choice.
          */
-        SPIN_BUTTON,
+        SPIN_BUTTON = 52,
         /**
          * A specialized panel that presents two other panels
          * at the same time.
          */
-        SPLIT_PANE,
+        SPLIT_PANE = 53,
         /**
          * Object displays non-quantitative status information
          * (c.f. `ATSPI_ROLE_PROGRESS_BAR`)
          */
-        STATUS_BAR,
+        STATUS_BAR = 54,
         /**
          * An object used to repesent information in terms of rows
          * and columns.
          */
-        TABLE,
+        TABLE = 55,
         /**
          * A 'cell' or discrete child within a Table. Note:
          * Table cells need not have `ATSPI_ROLE_TABLE_CELL`, other
          * `AtspiRoleType` values are valid as well.
          */
-        TABLE_CELL,
+        TABLE_CELL = 56,
         /**
          * An object which labels a particular column
          * in an {@link Atspi.Table}.
          */
-        TABLE_COLUMN_HEADER,
+        TABLE_COLUMN_HEADER = 57,
         /**
          * An object which labels a particular row in a
          * {@link Atspi.Table}. {@link Atspi.Table} rows and columns may also be labelled via the
          * `ATSPI_RELATION_LABEL_FOR`/`ATSPI_RELATION_LABELLED_BY` relationships.
          * See `atspi_get_relation_set`.
          */
-        TABLE_ROW_HEADER,
+        TABLE_ROW_HEADER = 58,
         /**
          * Object allows menu to be removed from menubar
          * and shown in its own window.
          */
-        TEAROFF_MENU_ITEM,
+        TEAROFF_MENU_ITEM = 59,
         /**
          * An object that emulates a terminal.
          */
-        TERMINAL,
+        TERMINAL = 60,
         /**
          * An interactive widget that supports multiple lines of text
          * and optionally accepts user input, but whose purpose is not to solicit user
@@ -1012,89 +1012,89 @@ export namespace Atspi {
          * and `ATSPI_ROLE_PASSWORD_TEXT`. For generic objects which display a brief amount
          * of textual information, see `ATSPI_ROLE_STATIC`.
          */
-        TEXT,
+        TEXT = 61,
         /**
          * A specialized push button that can be checked or
          * unchecked, but does not procide a separate indicator for the current
          * state.
          */
-        TOGGLE_BUTTON,
+        TOGGLE_BUTTON = 62,
         /**
          * A bar or palette usually composed of push buttons or
          * toggle buttons.
          */
-        TOOL_BAR,
+        TOOL_BAR = 63,
         /**
          * An object that provides information about another
          * object.
          */
-        TOOL_TIP,
+        TOOL_TIP = 64,
         /**
          * An object used to repsent hierarchical information to the
          * user.
          */
-        TREE,
+        TREE = 65,
         /**
          * An object that presents both tabular and
          * hierarchical info to the user.
          */
-        TREE_TABLE,
+        TREE_TABLE = 66,
         /**
          * The object contains some {@link Atspi.Accessible} information,
          * but its role is not known.
          */
-        UNKNOWN,
+        UNKNOWN = 67,
         /**
          * An object usually used in a scroll pane, or to
          * otherwise clip a larger object or content renderer to a specific
          * onscreen viewport.
          */
-        VIEWPORT,
+        VIEWPORT = 68,
         /**
          * A top level window with no title or border.
          */
-        WINDOW,
+        WINDOW = 69,
         /**
          * means that the role for this item is known, but not
          * included in the core enumeration. Deprecated since 2.24.
          */
-        EXTENDED,
+        EXTENDED = 70,
         /**
          * An object that serves as a document header.
          */
-        HEADER,
+        HEADER = 71,
         /**
          * An object that serves as a document footer.
          */
-        FOOTER,
+        FOOTER = 72,
         /**
          * An object which is contains a single paragraph of
          * text content. See also `ATSPI_ROLE_TEXT`.
          */
-        PARAGRAPH,
+        PARAGRAPH = 73,
         /**
          * An object which describes margins and tab stops, etc.
          *    for text objects which it controls (should have
          * `ATSPI_RELATION_CONTROLLER_FOR` relation to such).
          */
-        RULER,
+        RULER = 74,
         /**
          * An object corresponding to the toplevel accessible
          * of an application, which may contain `ATSPI_ROLE_FRAME` objects or other
          * accessible objects. Children of objects with the #ATSPI_ROLE_DESKTOP_FRAME role are generally
          * `ATSPI_ROLE_APPLICATION` objects.
          */
-        APPLICATION,
+        APPLICATION = 75,
         /**
          * The object is a dialog or list containing items
          * for insertion into an entry widget, for instance a list of words for
          * completion of a text entry.
          */
-        AUTOCOMPLETE,
+        AUTOCOMPLETE = 76,
         /**
          * The object is an editable text object in a toolbar.
          */
-        EDITBAR,
+        EDITBAR = 77,
         /**
          * The object is an embedded component container.  This
          * role is a "grouping" hint that the contained objects share a context
@@ -1102,7 +1102,7 @@ export namespace Atspi {
          * embedded. In particular, it is used for some kinds of document embedding,
          * and for embedding of out-of-process component, "panel applets", etc.
          */
-        EMBEDDED,
+        EMBEDDED = 78,
         /**
          * The object is a component whose textual content may be
          * entered or modified by the user, provided `ATSPI_STATE_EDITABLE` is present.
@@ -1110,7 +1110,7 @@ export namespace Atspi {
          * not present) implies a read-only 'text field' in a form, as opposed to a
          * title, label, or caption.
          */
-        ENTRY,
+        ENTRY = 79,
         /**
          * The object is a graphical depiction of quantitative data.
          * It may contain multiple subelements whose attributes and/or description
@@ -1119,13 +1119,13 @@ export namespace Atspi {
          * particularly important in interpreting objects of this type, as is the
          * accessible description property. See `ATSPI_ROLE_CAPTION`.
          */
-        CHART,
+        CHART = 80,
         /**
          * The object contains descriptive information, usually
          * textual, about another user interface element such as a table, chart, or
          * image.
          */
-        CAPTION,
+        CAPTION = 81,
         /**
          * The object is a visual frame or container which
          * contains a view of document content. {@link Atspi.Document} frames may occur within
@@ -1134,19 +1134,19 @@ export namespace Atspi {
          * ATSPI_ROLE_DOCUMENT_FRAME:  Either this object, or a singleton descendant,
          * should implement the {@link Atspi.Document} interface.
          */
-        DOCUMENT_FRAME,
+        DOCUMENT_FRAME = 82,
         /**
          * The object serves as a heading for content which
          * follows it in a document. The 'heading level' of the heading, if
          * availabe,  may be obtained by       querying the object's attributes.
          */
-        HEADING,
+        HEADING = 83,
         /**
          * The object is a containing instance which encapsulates a
          * page of information. `ATSPI_ROLE_PAGE` is used in documents and content which
          * support a paginated navigation model.
          */
-        PAGE,
+        PAGE = 84,
         /**
          * The object is a containing instance of document content
          * which constitutes a particular 'logical' section of the document.  The
@@ -1154,13 +1154,13 @@ export namespace Atspi {
          * itself, may be obtained by querying the object's attributes.  Sections
          * may be nested.
          */
-        SECTION,
+        SECTION = 85,
         /**
          * The object is redundant with another object in
          * the hierarchy, and is exposed for purely technical reasons.  Objects of
          * this role should be ignored by clients, if they are encountered at all.
          */
-        REDUNDANT_OBJECT,
+        REDUNDANT_OBJECT = 86,
         /**
          * The object is a containing instance of document content
          * which has within it components with which the user can interact in order
@@ -1174,7 +1174,7 @@ export namespace Atspi {
          * associated with the current document, rather than the current foreground
          * application or viewer instance.
          */
-        FORM,
+        FORM = 87,
         /**
          * The object is a hypertext anchor, i.e. a "link" in a
          * hypertext document.  Such objects are distinct from 'inline'       content
@@ -1182,124 +1182,124 @@ export namespace Atspi {
          * the range/location within a text object where an inline or embedded object
          * lies.
          */
-        LINK,
+        LINK = 88,
         /**
          * The object is a window or similar viewport
          * which is used to allow composition or input of a 'complex character',
          * in other words it is an "input method window".
          */
-        INPUT_METHOD_WINDOW,
+        INPUT_METHOD_WINDOW = 89,
         /**
          * A row in a table.
          */
-        TABLE_ROW,
+        TABLE_ROW = 90,
         /**
          * An object that represents an element of a tree.
          */
-        TREE_ITEM,
+        TREE_ITEM = 91,
         /**
          * A document frame which contains a
          * spreadsheet.
          */
-        DOCUMENT_SPREADSHEET,
+        DOCUMENT_SPREADSHEET = 92,
         /**
          * A document frame which contains a
          * presentation or slide content.
          */
-        DOCUMENT_PRESENTATION,
+        DOCUMENT_PRESENTATION = 93,
         /**
          * A document frame which contains textual content,
          * such as found in a word processing
          * application.
          */
-        DOCUMENT_TEXT,
+        DOCUMENT_TEXT = 94,
         /**
          * A document frame which contains HTML or other
          * markup suitable for display in a web browser.
          */
-        DOCUMENT_WEB,
+        DOCUMENT_WEB = 95,
         /**
          * A document frame which contains email content
          * to be displayed or composed either in plain text or
          * HTML.
          */
-        DOCUMENT_EMAIL,
+        DOCUMENT_EMAIL = 96,
         /**
          * An object found within a document and designed to
          * present a comment, note, or other annotation. In some cases, this object
          * might not be visible until activated.
          */
-        COMMENT,
+        COMMENT = 97,
         /**
          * A non-collapsible list of choices the user can
          * select from.
          */
-        LIST_BOX,
+        LIST_BOX = 98,
         /**
          * A group of related widgets. This group typically has
          * a label.
          */
-        GROUPING,
+        GROUPING = 99,
         /**
          * An image map object. Usually a graphic with multiple
          * hotspots, where each hotspot can be activated resulting in the loading of
          * another document or section of a document.
          */
-        IMAGE_MAP,
+        IMAGE_MAP = 100,
         /**
          * A transitory object designed to present a
          * message to the user, typically at the desktop level rather than inside a
          * particular application.
          */
-        NOTIFICATION,
+        NOTIFICATION = 101,
         /**
          * An object designed to present a message to the user
          * within an existing window.
          */
-        INFO_BAR,
+        INFO_BAR = 102,
         /**
          * A bar that serves as a level indicator to, for
          * instance, show the strength of a password or the state of a battery. `Since`: 2.8
          */
-        LEVEL_BAR,
+        LEVEL_BAR = 103,
         /**
          * A bar that serves as the title of a window or a
          *  dialog. `Since`: 2.12
          */
-        TITLE_BAR,
+        TITLE_BAR = 104,
         /**
          * An object which contains a text section
          *  that is quoted from another source.  `Since`: 2.12
          */
-        BLOCK_QUOTE,
+        BLOCK_QUOTE = 105,
         /**
          * An object which represents an audio
          *  element. `Since`: 2.12
          */
-        AUDIO,
+        AUDIO = 106,
         /**
          * An object which represents a video
          *  element. `Since`: 2.12
          */
-        VIDEO,
+        VIDEO = 107,
         /**
          * A definition of a term or concept. `Since`: 2.12
          */
-        DEFINITION,
+        DEFINITION = 108,
         /**
          * A section of a page that consists of a
          *  composition that forms an independent part of a document, page, or
          *  site. Examples: A blog entry, a news story, a forum post. `Since`:
          *  2.12
          */
-        ARTICLE,
+        ARTICLE = 109,
         /**
          * A region of a web page intended as a
          *  navigational landmark. This is designed to allow Assistive
          *  Technologies to provide quick navigation among key regions within a
          *  document. `Since`: 2.12
          */
-        LANDMARK,
+        LANDMARK = 110,
         /**
          * A text widget or container holding log content, such
          *  as chat history and error logs. In this role there is a
@@ -1308,7 +1308,7 @@ export namespace Atspi {
          *  information is added only to the end of the log, not at arbitrary
          *  points. `Since`: 2.12
          */
-        LOG,
+        LOG = 111,
         /**
          * A container where non-essential information
          *  changes frequently. Common usages of marquee include stock tickers
@@ -1316,25 +1316,25 @@ export namespace Atspi {
          *  is that logs usually have a meaningful order or sequence of
          *  important content changes. `Since`: 2.12
          */
-        MARQUEE,
+        MARQUEE = 112,
         /**
          * A text widget or container that holds a mathematical
          *  expression. `Since`: 2.12
          */
-        MATH,
+        MATH = 113,
         /**
          * A widget whose purpose is to display a rating,
          *  such as the number of stars associated with a song in a media
          *  player. Objects of this role should also implement
          *  AtspiValue. `Since`: 2.12
          */
-        RATING,
+        RATING = 114,
         /**
          * An object containing a numerical counter which
          *  indicates an amount of elapsed time from a start point, or the time
          *  remaining until an end point. `Since`: 2.12
          */
-        TIMER,
+        TIMER = 115,
         /**
          * A generic non-container object whose purpose is to display
          *  a brief amount of information to the user and whose role is known by the
@@ -1350,26 +1350,26 @@ export namespace Atspi {
          *  containers, see `ATSPI_ROLE_PANEL`. For objects whose role is not known by the
          *  implementor, see `ATSPI_ROLE_UNKNOWN`. `Since`: 2.16.
          */
-        STATIC,
+        STATIC = 116,
         /**
          * An object that represents a mathematical fraction. `Since`: 2.16.
          */
-        MATH_FRACTION,
+        MATH_FRACTION = 117,
         /**
          * An object that represents a mathematical expression
          *  displayed with a radical. `Since`: 2.16.
          */
-        MATH_ROOT,
+        MATH_ROOT = 118,
         /**
          * An object that contains text that is displayed as a
          *  subscript. `Since`: 2.16.
          */
-        SUBSCRIPT,
+        SUBSCRIPT = 119,
         /**
          * An object that contains text that is displayed as a
          *  superscript. `Since`: 2.16.
          */
-        SUPERSCRIPT,
+        SUPERSCRIPT = 120,
         /**
          * An object that represents a list of term-value
          *  groups. A term-value group represents an individual description and consist
@@ -1377,33 +1377,33 @@ export namespace Atspi {
          *  values (`ATSPI_ROLE_DESCRIPTION_VALUE`). For each list, there should not be
          *  more than one group with the same term name. `Since`: 2.26.
          */
-        DESCRIPTION_LIST,
+        DESCRIPTION_LIST = 121,
         /**
          * An object that represents a term or phrase
          *  with a corresponding definition. `Since`: 2.26.
          */
-        DESCRIPTION_TERM,
+        DESCRIPTION_TERM = 122,
         /**
          * An object that represents the description,
          *  definition, or value of a term. `Since`: 2.26.
          */
-        DESCRIPTION_VALUE,
+        DESCRIPTION_VALUE = 123,
         /**
          * An object that contains the text of a footnote. `Since`: 2.26.
          */
-        FOOTNOTE,
+        FOOTNOTE = 124,
         /**
          * Content previously deleted or proposed to be
          * deleted, e.g. in revision history or a content view providing suggestions
          * from reviewers. `Since`: 2.34.
          */
-        CONTENT_DELETION,
+        CONTENT_DELETION = 125,
         /**
          * Content previously inserted or proposed to be
          * inserted, e.g. in revision history or a content view providing suggestions
          * from reviewers. `Since`: 2.34.
          */
-        CONTENT_INSERTION,
+        CONTENT_INSERTION = 126,
         /**
          * A run of content that is marked or highlighted, such as for
          * reference purposes, or to call it out as having a special purpose. If the
@@ -1413,7 +1413,7 @@ export namespace Atspi {
          * {@link Atspi.RelationType.DETAILS_FOR} should be used on the associated content section
          * to point back to the mark. `Since`: 2.36.
          */
-        MARK,
+        MARK = 127,
         /**
          * A container for content that is called out as a proposed
          * change from the current version of the document, such as by a reviewer of the
@@ -1421,21 +1421,21 @@ export namespace Atspi {
          * {@link Atspi.Role.CONTENT_INSERTION}, in any order, to indicate what the
          * actual change is. `Since`: 2.36
          */
-        SUGGESTION,
+        SUGGESTION = 128,
         /**
          * A specialized push button to open a menu. `Since` 2.46
          */
-        PUSH_BUTTON_MENU,
+        PUSH_BUTTON_MENU = 129,
         /**
          * A switch that can be toggled on/off. `Since` 2.56
          */
-        SWITCH,
+        SWITCH = 130,
         /**
          * Not a valid role, used for finding end of
          * enumeration.
          */
-        LAST_DEFINED,
-        PUSH_BUTTON,
+        LAST_DEFINED = 131,
+        PUSH_BUTTON = 43,
     }
 
 
@@ -1456,36 +1456,36 @@ export namespace Atspi {
          * Scroll the object to the top left corner of the
          * window.
          */
-        TOP_LEFT,
+        TOP_LEFT = 0,
         /**
          * Scroll the object to the bottom right corner of
          * the window.
          */
-        BOTTOM_RIGHT,
+        BOTTOM_RIGHT = 1,
         /**
          * Scroll the object to the top edge of the window.
          */
-        TOP_EDGE,
+        TOP_EDGE = 2,
         /**
          * Scroll the object to the bottom edge of the
          * window.
          */
-        BOTTOM_EDGE,
+        BOTTOM_EDGE = 3,
         /**
          * Scroll the object to the left edge of the
          * window.
          */
-        LEFT_EDGE,
+        LEFT_EDGE = 4,
         /**
          * Scroll the object to the right edge of the
          * window.
          */
-        RIGHT_EDGE,
+        RIGHT_EDGE = 5,
         /**
          * Scroll the object to application-dependent position
          * on the window.
          */
-        ANYWHERE,
+        ANYWHERE = 6,
     }
 
 
@@ -1506,7 +1506,7 @@ export namespace Atspi {
          * Indicates an invalid state - probably an error
          * condition.
          */
-        INVALID,
+        INVALID = 0,
         /**
          * Indicates a window is currently the active window, or
          * an object is the active subelement within a container or table.
@@ -1517,35 +1517,35 @@ export namespace Atspi {
          * focusable and not selectable is the currently-active item within its
          * parent container.
          */
-        ACTIVE,
+        ACTIVE = 1,
         /**
          * Indicates that the object is armed.
          */
-        ARMED,
+        ARMED = 2,
         /**
          * Indicates the current object is busy, i.e. onscreen
          * representation is in the process of changing, or       the object is
          * temporarily unavailable for interaction due to activity already in progress.
          */
-        BUSY,
+        BUSY = 3,
         /**
          * Indicates this object is currently checked.
          */
-        CHECKED,
+        CHECKED = 4,
         /**
          * Indicates this object is collapsed.
          */
-        COLLAPSED,
+        COLLAPSED = 5,
         /**
          * Indicates that this object no longer has a valid
          * backing widget        (for instance, if its peer object has been destroyed).
          */
-        DEFUNCT,
+        DEFUNCT = 6,
         /**
          * Indicates the user can change the contents of this
          * object.
          */
-        EDITABLE,
+        EDITABLE = 7,
         /**
          * Indicates that this object is enabled, i.e. that it
          * currently reflects some application state. Objects that are "greyed out"
@@ -1553,85 +1553,85 @@ export namespace Atspi {
          * user interaction cannot cause them to acquire `ATSPI_STATE_ENABLED`.
          * See `ATSPI_STATE_SENSITIVE`.
          */
-        ENABLED,
+        ENABLED = 8,
         /**
          * Indicates this object allows progressive
          * disclosure of its children.
          */
-        EXPANDABLE,
+        EXPANDABLE = 9,
         /**
          * Indicates this object is expanded.
          */
-        EXPANDED,
+        EXPANDED = 10,
         /**
          * Indicates this object can accept keyboard focus,
          * which means all events resulting from typing on the keyboard will
          * normally be passed to it when it has focus.
          */
-        FOCUSABLE,
+        FOCUSABLE = 11,
         /**
          * Indicates this object currently has the keyboard
          * focus.
          */
-        FOCUSED,
+        FOCUSED = 12,
         /**
          * Indicates that the object has an associated
          * tooltip.
          */
-        HAS_TOOLTIP,
+        HAS_TOOLTIP = 13,
         /**
          * Indicates the orientation of this object is
          * horizontal.
          */
-        HORIZONTAL,
+        HORIZONTAL = 14,
         /**
          * Indicates this object is minimized and is
          * represented only by an icon.
          */
-        ICONIFIED,
+        ICONIFIED = 15,
         /**
          * Indicates something must be done with this object
          * before the user can interact with an object in a different window.
          */
-        MODAL,
+        MODAL = 16,
         /**
          * Indicates this (text) object can contain multiple
          * lines of text.
          */
-        MULTI_LINE,
+        MULTI_LINE = 17,
         /**
          * Indicates this object allows more than one of
          * its children to be selected at the same time, or in the case of text
          * objects, that the object supports non-contiguous text selections.
          */
-        MULTISELECTABLE,
+        MULTISELECTABLE = 18,
         /**
          * Indicates this object paints every pixel within its
          * rectangular region. It also indicates an alpha value of unity, if it
          * supports alpha blending.
          */
-        OPAQUE,
+        OPAQUE = 19,
         /**
          * Indicates this object is currently pressed.
          */
-        PRESSED,
+        PRESSED = 20,
         /**
          * Indicates the size of this object's size is not
          * fixed.
          */
-        RESIZABLE,
+        RESIZABLE = 21,
         /**
          * Indicates this object is the child of an object
          * that allows its children to be selected and that this child is one of
          * those children       that can be selected.
          */
-        SELECTABLE,
+        SELECTABLE = 22,
         /**
          * Indicates this object is the child of an object that
          * allows its children to be selected and that this child is one of those
          * children that has been selected.
          */
-        SELECTED,
+        SELECTED = 23,
         /**
          * Indicates this object is sensitive, e.g. to user
          * interaction. `ATSPI_STATE_SENSITIVE` usually accompanies.
@@ -1643,36 +1643,36 @@ export namespace Atspi {
          * current state is ambiguous or undefined. See `ATSPI_STATE_ENABLED`,
          * `ATSPI_STATE_INDETERMINATE`.
          */
-        SENSITIVE,
+        SENSITIVE = 24,
         /**
          * Indicates this object, the object's parent, the
          * object's parent's parent, and so on, are all 'shown' to the end-user,
          * i.e. subject to "exposure" if blocking or obscuring objects do not
          * interpose between this object and the top of the window stack.
          */
-        SHOWING,
+        SHOWING = 25,
         /**
          * Indicates this (text) object can contain only a
          * single line of text.
          */
-        SINGLE_LINE,
+        SINGLE_LINE = 26,
         /**
          * Indicates that the information returned for this object
          * may no longer be synchronized with the application state.  This can occur
          * if the object has `ATSPI_STATE_TRANSIENT`, and can also occur towards the
          * end of the object peer's lifecycle.
          */
-        STALE,
+        STALE = 27,
         /**
          * Indicates this object is transient.
          */
-        TRANSIENT,
+        TRANSIENT = 28,
         /**
          * Indicates the orientation of this object is vertical;
          * for example this state may appear on such objects as scrollbars, text
          * objects (with vertical text flow), separators, etc.
          */
-        VERTICAL,
+        VERTICAL = 29,
         /**
          * Indicates this object is visible, e.g. has been
          * explicitly marked for exposure to the user. `ATSPI_STATE_VISIBLE` is no
@@ -1684,7 +1684,7 @@ export namespace Atspi {
          * `ATSPI_STATE_VISIBLE` and `ATSPI_STATE_SHOWING` is
          * semantically equivalent to saying that an object is 'hidden'.
          */
-        VISIBLE,
+        VISIBLE = 30,
         /**
          * Indicates that "active-descendant-changed"
          * event is sent when children become 'active' (i.e. are selected or
@@ -1697,7 +1697,7 @@ export namespace Atspi {
          * visibility changes and activation of their contained child objects, without
          * the client having previously requested references to those children.
          */
-        MANAGES_DESCENDANTS,
+        MANAGES_DESCENDANTS = 31,
         /**
          * Indicates that a check box or other boolean
          * indicator is in a state other than checked or not checked.  This
@@ -1711,18 +1711,18 @@ export namespace Atspi {
          * `ATSPI_STATE_INDETERMINATE` and a corresponding state-changed event will be
          * fired.
          */
-        INDETERMINATE,
+        INDETERMINATE = 32,
         /**
          * Indicates that user interaction with this object is
          * 'required' from the user, for instance before completing the
          * processing of a form.
          */
-        REQUIRED,
+        REQUIRED = 33,
         /**
          * Indicates that an object's onscreen content
          * is truncated, e.g. a text value in a spreadsheet cell.
          */
-        TRUNCATED,
+        TRUNCATED = 34,
         /**
          * Indicates this object's visual representation is
          * dynamic, not static. This state may be applied to an object during an
@@ -1733,13 +1733,13 @@ export namespace Atspi {
          * definitive evidence that the object's visual representation is
          * static; this state is advisory.
          */
-        ANIMATED,
+        ANIMATED = 35,
         /**
          * This object has indicated an error condition
          * due to failure of input validation.  For instance, a form control may
          * acquire this state in response to invalid or malformed user input.
          */
-        INVALID_ENTRY,
+        INVALID_ENTRY = 36,
         /**
          * This state indicates that the object
          * in question implements some form of typeahead or
@@ -1752,7 +1752,7 @@ export namespace Atspi {
          * completion of the data in the input field, in which case
          * these input events may trigger text-changed events from the source.
          */
-        SUPPORTS_AUTOCOMPLETION,
+        SUPPORTS_AUTOCOMPLETION = 37,
         /**
          * This state indicates that the object in
          * question supports text selection. It should only be exposed on objects
@@ -1761,26 +1761,26 @@ export namespace Atspi {
          * selectable child of an object which implements {@link Atspi.Selection}. While
          * similar, text selection and subelement selection are distinct operations.
          */
-        SELECTABLE_TEXT,
+        SELECTABLE_TEXT = 38,
         /**
          * This state indicates that the object in question is
          * the 'default' interaction object in a dialog, i.e. the one that gets
          * activated if the user presses "Enter" when the dialog is initially
          * posted.
          */
-        IS_DEFAULT,
+        IS_DEFAULT = 39,
         /**
          * This state indicates that the object (typically a
          * hyperlink) has already been activated or invoked, with the result that
          * some backing data has been downloaded or rendered.
          */
-        VISITED,
+        VISITED = 40,
         /**
          * Indicates this object has the potential to
          *  be checked, such as a checkbox or toggle-able table cell. `Since`:
          *  2.12
          */
-        CHECKABLE,
+        CHECKABLE = 41,
         /**
          * Indicates that the object has a popup
          * context menu or sub-level menu which may or may not be
@@ -1788,19 +1788,19 @@ export namespace Atspi {
          * Note that ordinary tooltips are not considered popups in this
          * context. `Since`: 2.12
          */
-        HAS_POPUP,
+        HAS_POPUP = 42,
         /**
          * Indicates that an object which is ENABLED and
          * SENSITIVE has a value which can be read, but not modified, by the
          * user. `Since`: 2.16
          */
-        READ_ONLY,
+        READ_ONLY = 43,
         /**
          * This value of the enumeration should not be used
          * as a parameter, it indicates the number of items in the {@link Atspi.StateType}
          * enumeration.
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 44,
     }
 
 
@@ -1826,12 +1826,12 @@ export namespace Atspi {
          * character only. Start and end offsets differ by one, by definition,
          * for this value.
          */
-        CHAR,
+        CHAR = 0,
         /**
          * Boundary condition is start of a word; i.e.
          * range is from start of one word to the start of another word.
          */
-        WORD_START,
+        WORD_START = 1,
         /**
          * Boundary condition is the end of a word; i.e.
          * range is from the end of one word to the end of another. Some locales
@@ -1840,7 +1840,7 @@ export namespace Atspi {
          * In these cases, characters may be returned in lieu of multi-character
          * substrings.
          */
-        WORD_END,
+        WORD_END = 2,
         /**
          * Boundary condition is start of a
          * sentence, as determined by the application. Some locales or
@@ -1848,7 +1848,7 @@ export namespace Atspi {
          * boundary type can not always be honored. Some locales will return lines
          * of text instead of grammatical sentences.
          */
-        SENTENCE_START,
+        SENTENCE_START = 3,
         /**
          * Boundary condition is end of a sentence,
          * as determined by the application, including the sentence-delimiting
@@ -1857,21 +1857,21 @@ export namespace Atspi {
          * always be honored. Some locales will return lines of text instead of
          * grammatical sentences.
          */
-        SENTENCE_END,
+        SENTENCE_END = 4,
         /**
          * Boundary condition is the start of a line;
          * i.e. range is from start of one line to the start of another.  This
          * generally means that an end-of-line character will appear at the end of
          * the range.
          */
-        LINE_START,
+        LINE_START = 5,
         /**
          * Boundary condition is the end of a line; i.e.
          * range is from start of one line to the start of another.  This generally
          * means that an end-of-line character will be the first character of the
          * range.
          */
-        LINE_END,
+        LINE_END = 6,
     }
 
 
@@ -1891,22 +1891,22 @@ export namespace Atspi {
         /**
          * No characters/glyphs are omitted.
          */
-        NONE,
+        NONE = 0,
         /**
          * Characters/glyphs clipped by the minimum coordinate
          * are omitted.
          */
-        MIN,
+        MIN = 1,
         /**
          * Characters/glyphs which intersect the maximum
          * coordinate are omitted.
          */
-        MAX,
+        MAX = 2,
         /**
          * Only glyphs falling entirely within the region
          * bounded by min and max are retained.
          */
-        BOTH,
+        BOTH = 3,
     }
 
 
@@ -1927,181 +1927,307 @@ export namespace Atspi {
          * Granularity is defined by the boundaries between characters
          * (including non-printing characters)
          */
-        CHAR,
+        CHAR = 0,
         /**
          * Granularity is defined by the boundaries of a word,
          * starting at the beginning of the current word and finishing at the beginning of
          * the following one, if present.
          */
-        WORD,
+        WORD = 1,
         /**
          * Granularity is defined by the boundaries of a sentence,
          * starting at the beginning of the current sentence and finishing at the beginning of
          * the following one, if present.
          */
-        SENTENCE,
+        SENTENCE = 2,
         /**
          * Granularity is defined by the boundaries of a line,
          * starting at the beginning of the current line and finishing at the beginning of
          * the following one, if present.
          */
-        LINE,
+        LINE = 3,
         /**
          * Granularity is defined by the boundaries of a paragraph,
          * starting at the beginning of the current paragraph and finishing at the beginning of
          * the following one, if present.
          */
-        PARAGRAPH,
+        PARAGRAPH = 4,
     }
 
 
     /**
      * One higher than the highest valid value of {@link Atspi.ComponentLayer}.
+     * @default 9
      */
     const COMPONENTLAYER_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.CoordType}.
+     * @default 3
      */
     const COORD_TYPE_COUNT: number;
 
+    /**
+     * @default org.a11y.atspi.Accessible
+     */
     const DBUS_INTERFACE_ACCESSIBLE: string;
 
+    /**
+     * @default org.a11y.atspi.Action
+     */
     const DBUS_INTERFACE_ACTION: string;
 
+    /**
+     * @default org.a11y.atspi.Application
+     */
     const DBUS_INTERFACE_APPLICATION: string;
 
+    /**
+     * @default org.a11y.atspi.Cache
+     */
     const DBUS_INTERFACE_CACHE: string;
 
+    /**
+     * @default org.a11y.atspi.Collection
+     */
     const DBUS_INTERFACE_COLLECTION: string;
 
+    /**
+     * @default org.a11y.atspi.Component
+     */
     const DBUS_INTERFACE_COMPONENT: string;
 
+    /**
+     * @default org.a11y.atspi.DeviceEventController
+     */
     const DBUS_INTERFACE_DEC: string;
 
+    /**
+     * @default org.a11y.atspi.DeviceEventListener
+     */
     const DBUS_INTERFACE_DEVICE_EVENT_LISTENER: string;
 
+    /**
+     * @default org.a11y.atspi.Document
+     */
     const DBUS_INTERFACE_DOCUMENT: string;
 
+    /**
+     * @default org.a11y.atspi.EditableText
+     */
     const DBUS_INTERFACE_EDITABLE_TEXT: string;
 
+    /**
+     * @default org.a11y.atspi.Event.Keyboard
+     */
     const DBUS_INTERFACE_EVENT_KEYBOARD: string;
 
+    /**
+     * @default org.a11y.atspi.Event.Mouse
+     */
     const DBUS_INTERFACE_EVENT_MOUSE: string;
 
+    /**
+     * @default org.a11y.atspi.Event.Object
+     */
     const DBUS_INTERFACE_EVENT_OBJECT: string;
 
+    /**
+     * @default org.a11y.atspi.Event.ScreenReader
+     */
     const DBUS_INTERFACE_EVENT_SCREEN_READER: string;
 
+    /**
+     * @default org.a11y.atspi.Hyperlink
+     */
     const DBUS_INTERFACE_HYPERLINK: string;
 
+    /**
+     * @default org.a11y.atspi.Hypertext
+     */
     const DBUS_INTERFACE_HYPERTEXT: string;
 
+    /**
+     * @default org.a11y.atspi.Image
+     */
     const DBUS_INTERFACE_IMAGE: string;
 
+    /**
+     * @default org.freedesktop.a11y.KeyboardMonitor
+     */
     const DBUS_INTERFACE_KEYBOARD_MONITOR: string;
 
+    /**
+     * @default org.a11y.atspi.Registry
+     */
     const DBUS_INTERFACE_REGISTRY: string;
 
+    /**
+     * @default org.a11y.atspi.Selection
+     */
     const DBUS_INTERFACE_SELECTION: string;
 
+    /**
+     * @default org.a11y.atspi.Socket
+     */
     const DBUS_INTERFACE_SOCKET: string;
 
+    /**
+     * @default org.a11y.atspi.Table
+     */
     const DBUS_INTERFACE_TABLE: string;
 
+    /**
+     * @default org.a11y.atspi.TableCell
+     */
     const DBUS_INTERFACE_TABLE_CELL: string;
 
+    /**
+     * @default org.a11y.atspi.Text
+     */
     const DBUS_INTERFACE_TEXT: string;
 
+    /**
+     * @default org.a11y.atspi.Value
+     */
     const DBUS_INTERFACE_VALUE: string;
 
+    /**
+     * @default org.freedesktop.a11y.Manager
+     */
     const DBUS_NAME_A11Y_MANAGER: string;
 
+    /**
+     * @default org.a11y.atspi.Registry
+     */
     const DBUS_NAME_REGISTRY: string;
 
+    /**
+     * @default /org/freedesktop/a11y/Manager
+     */
     const DBUS_PATH_A11Y_MANAGER: string;
 
+    /**
+     * @default /org/a11y/atspi/registry/deviceeventcontroller
+     */
     const DBUS_PATH_DEC: string;
 
+    /**
+     * @default /org/a11y/atspi/null
+     */
     const DBUS_PATH_NULL: string;
 
+    /**
+     * @default /org/a11y/atspi/registry
+     */
     const DBUS_PATH_REGISTRY: string;
 
+    /**
+     * @default /org/a11y/atspi/accessible/root
+     */
     const DBUS_PATH_ROOT: string;
 
+    /**
+     * @default /org/a11y/atspi/screenreader
+     */
     const DBUS_PATH_SCREEN_READER: string;
 
+    /**
+     * @default 31
+     */
     const DEVICE_A11Y_MANAGER_VIRTUAL_MOD_END: number;
 
+    /**
+     * @default 15
+     */
     const DEVICE_A11Y_MANAGER_VIRTUAL_MOD_START: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.EventType}.
+     * @default 4
      */
     const EVENTTYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.KeyEventType}.
+     * @default 2
      */
     const KEYEVENTTYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.KeySynthType}.
+     * @default 5
      */
     const KEYSYNTHTYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.LocaleType}.
+     * @default 6
      */
     const LOCALE_TYPE_COUNT: number;
 
+    /**
+     * @default 6
+     */
     const MATCHTYPES_COUNT: number;
 
+    /**
+     * @default 65536
+     */
     const MAX_CHILDREN: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.ModifierType}.
+     * @default 8
      */
     const MODIFIERTYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.RelationType}.
+     * @default 24
      */
     const RELATIONTYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.Role}.
+     * @default 132
      */
     const ROLE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.ScrollType}.
+     * @default 7
      */
     const SCROLLTYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.CollectionSortOrder}.
+     * @default 8
      */
     const SORTORDER_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.StateType}.
+     * @default 42
      */
     const STATETYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.TextBoundaryType}.
+     * @default 7
      */
     const TEXT_BOUNDARY_TYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.TextClipType}.
+     * @default 4
      */
     const TEXT_CLIP_TYPE_COUNT: number;
 
     /**
      * One higher than the highest valid value of
      * #AtspiCollection_TreeTraversalType.
+     * @default 4
      */
     const TREETRAVERSALTYPE_COUNT: number;
 
@@ -2111,6 +2237,7 @@ export namespace Atspi {
      * @param listener a pointer to the {@link Atspi.DeviceListener} for which            device events are requested.
      * @param filter Unused parameter.
      * @returns `true` if successful, otherwise `false`.
+     * @throws GLib.Error
      */
     function deregister_device_event_listener(listener: DeviceListener, filter: null): boolean;
 
@@ -2122,6 +2249,7 @@ export namespace Atspi {
      * @param modmask the key modifier mask for which this listener is to be            'deregistered' (of type {@link Atspi.KeyMaskType}).
      * @param event_types an {@link Atspi.KeyMaskType} mask indicating which             types of key events were requested ({@link Atspi.KeyEventType.PRESSED}, etc.).
      * @returns `true` if successful, otherwise `false`.
+     * @throws GLib.Error
      */
     function deregister_keystroke_listener(listener: DeviceListener, key_set: KeyDefinition[] | null, modmask: KeyMaskType, event_types: KeyEventMask): boolean;
 
@@ -2153,6 +2281,7 @@ export namespace Atspi {
      * @param keystring an (optional) UTF-8 string which, if           `synth_type` is {@link Atspi.KeySynthType.STRING}, indicates a 'composed'           keyboard input string being synthesized; this type of           keyboard event synthesis does not emulate hardware           keypresses but injects the string as though a composing           input method (such as XIM) were used.
      * @param synth_type an {@link Atspi.KeySynthType} flag indicating whether `keyval`           is to be interpreted as a keysym rather than a keycode           ({@link Atspi.KeySynthType.SYM}) or a string ({@link Atspi.KeySynthType.STRING}) or a modifier           mask ({@link Atspi.KeySynthType.LOCKMODIFIERS} and {@link Atspi.KeySynthType.UNLOCKMODIFIERS}), or           whether to synthesize {@link Atspi.KeySynthType.PRESS},           {@link Atspi.KeySynthType.RELEASE}, or both ({@link Atspi.KeySynthType.PRESSRELEASE}).
      * @returns `true` if successful, otherwise `false`.
+     * @throws GLib.Error
      */
     function generate_keyboard_event(keyval: bigint | number, keystring: string | null, synth_type: KeySynthType): boolean;
 
@@ -2167,6 +2296,7 @@ export namespace Atspi {
      * @param y a `glong` indicating the screen y coordinate of the mouse event.
      * @param name a string indicating which mouse event to be synthesized        (e.g. "b1p", "b1c", "b2r", "rel", "abs").
      * @returns `true` if successful, otherwise `false`.
+     * @throws GLib.Error
      */
     function generate_mouse_event(x: bigint | number, y: bigint | number, name: string): boolean;
 
@@ -2176,6 +2306,7 @@ export namespace Atspi {
      * @param y a `glong` indicating the screen y coordinate of the mouse event.
      * @param name a string indicating which mouse event to be synthesized        (e.g. "b1p", "b1c", "b2r", "rel", "abs").
      * @param callback a callback to be called when a reply is received. May be NULL.
+     * @throws GLib.Error
      */
     function generate_mouse_event_async(x: bigint | number, y: bigint | number, name: string, callback: GenerateMouseEventCB): void;
 
@@ -2234,6 +2365,7 @@ export namespace Atspi {
      * @param event_types 
      * @param filter 
      * @returns Always returns `false`.
+     * @throws GLib.Error
      */
     function register_device_event_listener(listener: DeviceListener, event_types: DeviceEventMask, filter: null): boolean;
 
@@ -2251,6 +2383,7 @@ export namespace Atspi {
      * @param event_types an {@link Atspi.KeyMaskType} mask indicating which             types of key events are requested ({@link Atspi.KeyEventType.PRESSED} etc.).
      * @param sync_type an {@link Atspi.KeyListenerSyncType} parameter indicating             the behavior of the notification/listener transaction.
      * @returns `true` if successful, otherwise `false`.
+     * @throws GLib.Error
      */
     function register_keystroke_listener(listener: DeviceListener, key_set: KeyDefinition[] | null, modmask: KeyMaskType, event_types: KeyEventMask, sync_type: KeyListenerSyncType): boolean;
 
@@ -2355,18 +2488,18 @@ export namespace Atspi {
      * @gir-type Flags
      */
     enum Cache {
-        NONE,
-        PARENT,
-        CHILDREN,
-        NAME,
-        DESCRIPTION,
-        STATES,
-        ROLE,
-        INTERFACES,
-        ATTRIBUTES,
-        ALL,
-        DEFAULT,
-        UNDEFINED,
+        NONE = 0,
+        PARENT = 1,
+        CHILDREN = 2,
+        NAME = 4,
+        DESCRIPTION = 8,
+        STATES = 16,
+        ROLE = 32,
+        INTERFACES = 64,
+        ATTRIBUTES = 128,
+        ALL = 1073741823,
+        DEFAULT = 127,
+        UNDEFINED = 1073741824,
     }
 
 
@@ -2393,17 +2526,17 @@ export namespace Atspi {
          * which means in some cases they may already have been delivered to the
          * application before the AT client receives the notification.
          */
-        NOSYNC,
+        NOSYNC = 0,
         /**
          * Events are delivered synchronously, before the
          * currently focused application sees them.
          */
-        SYNCHRONOUS,
+        SYNCHRONOUS = 1,
         /**
          * Events may be consumed by the AT client.  Presumes and
          * requires #ATSPI_KEYLISTENER_SYNCHRONOUS, incompatible with #ATSPI_KEYLISTENER_NOSYNC.
          */
-        CANCONSUME,
+        CANCONSUME = 2,
         /**
          * Events are received not from the application toolkit layer, but
          * from the device driver or windowing system subsystem; such notifications are 'global' in the
@@ -2413,7 +2546,7 @@ export namespace Atspi {
          * event notifications, even when inaccessible or "broken" applications have focus, are not
          * required, it may be best to avoid this enum value/flag.
          */
-        ALL_WINDOWS,
+        ALL_WINDOWS = 4,
     }
 
 
@@ -2432,7 +2565,7 @@ export namespace Atspi {
              * @detailed
              * @run-last
              */
-            "mode-changed": (arg0: number, arg1: string) => void;
+            "mode-changed": (arg1: number, why: string) => void;
             /**
              * The signal "region-changed" is emitted by a screen reader to indicate
              * that it is now reading or tracking a new object, or, a new piece of
@@ -2441,8 +2574,8 @@ export namespace Atspi {
              * @signal
              * @run-last
              */
-            "region-changed": (arg0: number, arg1: number) => void;
-            [key: `mode-changed::${string}`]: (arg0: number, arg1: string) => void;
+            "region-changed": (arg1: number, arg2: number) => void;
+            [key: `mode-changed::${string}`]: (arg1: number, why: string) => void;
         }
 
         // Constructor properties interface
@@ -2535,12 +2668,15 @@ export namespace Atspi {
          * to the user, but to be an id which is stable over application development.
          * Typically, this is the gtkbuilder id.
          * @returns a character string representing the accessible id of the {@link Atspi.Accessible} object or NULL on exception.
+         * @since 2.34
+         * @throws GLib.Error
          */
         get_accessible_id(): string;
 
         /**
          * Gets the {@link Atspi.Action} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Action} interface          instance, or NULL if `obj` does not implement {@link Atspi.Action}.
+         * @deprecated since 2.10: Use atspi_accessible_get_action_iface instead.
          */
         get_action(): Action;
 
@@ -2553,6 +2689,7 @@ export namespace Atspi {
         /**
          * Gets the containing {@link Atspi.Application} for an object.
          * @returns the containing {@link Atspi.Application} instance for          this object.
+         * @throws GLib.Error
          */
         get_application(): Accessible;
 
@@ -2561,6 +2698,7 @@ export namespace Atspi {
          * pointed to by the {@link Atspi.Accessible} object.
          * Only works on application root objects.
          * @returns a UTF-8 string indicating the AT-SPI version for the {@link Atspi.Accessible} object or NULL on exception.
+         * @throws GLib.Error
          */
         get_atspi_version(): string;
 
@@ -2570,6 +2708,7 @@ export namespace Atspi {
          * For typographic, textual, or textually-semantic attributes, see
          * atspi_text_get_attributes instead.
          * @returns The name-value-pair attributes assigned to this object.
+         * @throws GLib.Error
          */
         get_attributes(): { [key: string]: string };
 
@@ -2579,6 +2718,7 @@ export namespace Atspi {
          * For typographic, textual, or textually-semantic attributes, see
          * atspi_text_get_attributes_as_array instead.
          * @returns The name-value-pair          attributes assigned to this object.
+         * @throws GLib.Error
          */
         get_attributes_as_array(): string[];
 
@@ -2586,18 +2726,21 @@ export namespace Atspi {
          * Gets the {@link Atspi.Accessible} child of an {@link Atspi.Accessible} object at a given index.
          * @param child_index a #long indicating which child is specified.
          * @returns a pointer to the {@link Atspi.Accessible} child object at index `child_index` or NULL on exception.
+         * @throws GLib.Error
          */
         get_child_at_index(child_index: number): Accessible;
 
         /**
          * Gets the number of children contained by an {@link Atspi.Accessible} object.
          * @returns a #long indicating the number of {@link Atspi.Accessible} children          contained by an {@link Atspi.Accessible} object or -1 on exception.
+         * @throws GLib.Error
          */
         get_child_count(): number;
 
         /**
          * Gets the {@link Atspi.Collection} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Collection} interface          instance, or NULL if `obj` does not implement {@link Atspi.Collection}.
+         * @deprecated since 2.10: Use atspi_accessible_get_collection_iface instead.
          */
         get_collection(): Collection;
 
@@ -2610,6 +2753,7 @@ export namespace Atspi {
         /**
          * Gets the {@link Atspi.Component} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Component} interface          instance, or NULL if `obj` does not implement {@link Atspi.Component}.
+         * @deprecated since 2.10: Use atspi_accessible_get_component_iface instead.
          */
         get_component(): Component;
 
@@ -2622,12 +2766,14 @@ export namespace Atspi {
         /**
          * Gets the description of an {@link Atspi.Accessible} object.
          * @returns a UTF-8 string describing the {@link Atspi.Accessible} object or NULL on exception.
+         * @throws GLib.Error
          */
         get_description(): string;
 
         /**
          * Gets the {@link Atspi.Document} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Document} interface          instance, or NULL if `obj` does not implement {@link Atspi.Document}.
+         * @deprecated since 2.10: Use atspi_accessible_get_document_iface instead.
          */
         get_document(): Document;
 
@@ -2640,6 +2786,7 @@ export namespace Atspi {
         /**
          * Gets the {@link Atspi.EditableText} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.EditableText} interface          instance, or NULL if `obj` does not implement {@link Atspi.EditableText}.
+         * @deprecated since 2.10: Use atspi_accessible_get_editable_text_iface instead.
          */
         get_editable_text(): EditableText;
 
@@ -2654,6 +2801,8 @@ export namespace Atspi {
          * present, it provides information that a screen reader can relay to the user
          * to explain how to interact with the object.
          * @returns a character string representing the help text for the {@link Atspi.Accessible} object or NULL on exception.
+         * @since 2.52
+         * @throws GLib.Error
          */
         get_help_text(): string;
 
@@ -2666,6 +2815,7 @@ export namespace Atspi {
         /**
          * Gets the {@link Atspi.Hypertext} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Hypertext} interface          instance, or NULL if `obj` does not implement {@link Atspi.Hypertext}.
+         * @deprecated since 2.10: Use atspi_accessible_get_hypertext_iface instead.
          */
         get_hypertext(): Hypertext;
 
@@ -2679,12 +2829,14 @@ export namespace Atspi {
          * Gets the application id for a {@link Atspi.Accessible} object.
          * Only works on application root objects.
          * @returns a positive `gint` indicating the id for the {@link Atspi.Accessible} object or -1 on exception.
+         * @throws GLib.Error
          */
         get_id(): number;
 
         /**
          * Gets the {@link Atspi.Image} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Image} interface instance, or          NULL if `obj` does not implement {@link Atspi.Image}.
+         * @deprecated since 2.10: Use atspi_accessible_get_image_iface instead.
          */
         get_image(): Image;
 
@@ -2698,6 +2850,7 @@ export namespace Atspi {
          * Gets the index of an {@link Atspi.Accessible} object within its parent's
          * {@link Atspi.Accessible} children list.
          * @returns a `glong` indicating the index of the {@link Atspi.Accessible} object          in its parent,          or -1 if `obj` has no containing parent or on exception.
+         * @throws GLib.Error
          */
         get_index_in_parent(): number;
 
@@ -2713,20 +2866,26 @@ export namespace Atspi {
          * This method will return useful values for roles that fall outside the
          * enumeration used in atspi_accessible_getRole ().
          * @returns a localized, UTF-8 string specifying the type of UI role played by an {@link Atspi.Accessible} object.
+         * @throws GLib.Error
          */
         get_localized_role_name(): string;
 
         /**
          * Gets the name of an {@link Atspi.Accessible} object.
          * @returns a UTF-8 string indicating the name of the {@link Atspi.Accessible} object or NULL on exception.
+         * @throws GLib.Error
          */
         get_name(): string;
 
+        /**
+         * @throws GLib.Error
+         */
         get_object_locale(): string;
 
         /**
          * Gets an {@link Atspi.Accessible} object's parent container.
          * @returns a pointer to the          {@link Atspi.Accessible} object which contains the given          {@link Atspi.Accessible} instance, or NULL if the `obj` has no          parent container.
+         * @throws GLib.Error
          */
         get_parent(): Accessible | null;
 
@@ -2735,6 +2894,7 @@ export namespace Atspi {
          * added for debugging; it is a shortcut to explicitly querying the
          * accessible's app->bus_name and then calling GetConnectionUnixProcessID.
          * @returns The process ID or undetermined value if `error` is set.
+         * @throws GLib.Error
          */
         get_process_id(): number;
 
@@ -2742,6 +2902,7 @@ export namespace Atspi {
          * Gets the set of {@link Atspi.Relation} objects which describes this {@link Atspi.Accessible} object's
          * relationships with other {@link Atspi.Accessible} objects.
          * @returns a {@link GLib.Array} of          {@link Atspi.Relation} pointers or NULL on exception.
+         * @throws GLib.Error
          */
         get_relation_set(): Relation[];
 
@@ -2749,6 +2910,7 @@ export namespace Atspi {
          * Gets the UI role played by an {@link Atspi.Accessible} object.
          * This role's name can be obtained via atspi_accessible_get_role_name ().
          * @returns the {@link Atspi.Role} of an {@link Atspi.Accessible} object.
+         * @throws GLib.Error
          */
         get_role(): Role;
 
@@ -2757,12 +2919,14 @@ export namespace Atspi {
          * This method will return useful values for roles that fall outside the
          * enumeration used in atspi_accessible_get_role ().
          * @returns a UTF-8 string specifying the type of UI role played by an {@link Atspi.Accessible} object.
+         * @throws GLib.Error
          */
         get_role_name(): string;
 
         /**
          * Gets the {@link Atspi.Selection} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Selection} interface          instance, or NULL if `obj` does not implement {@link Atspi.Selection}.
+         * @deprecated since 2.10: Use atspi_accessible_get_selection_iface instead.
          */
         get_selection(): Selection;
 
@@ -2787,6 +2951,7 @@ export namespace Atspi {
         /**
          * Gets the {@link Atspi.Table} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Table} interface instance, or          NULL if `obj` does not implement {@link Atspi.Table}.
+         * @deprecated since 2.10: Use atspi_accessible_get_table_iface instead.
          */
         get_table(): Table;
 
@@ -2811,6 +2976,7 @@ export namespace Atspi {
         /**
          * Gets the {@link Atspi.Table} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Text} interface instance, or          NULL if `obj` does not implement {@link Atspi.Text}.
+         * @deprecated since 2.10: Use atspi_accessible_get_text_iface instead.
          */
         get_text(): Text;
 
@@ -2830,6 +2996,7 @@ export namespace Atspi {
          * Gets the toolkit name for an {@link Atspi.Accessible} object.
          * Only works on application root objects.
          * @returns a UTF-8 string indicating the toolkit name for the {@link Atspi.Accessible} object or NULL on exception.
+         * @throws GLib.Error
          */
         get_toolkit_name(): string;
 
@@ -2837,12 +3004,14 @@ export namespace Atspi {
          * Gets the toolkit version for an {@link Atspi.Accessible} object.
          * Only works on application root objects.
          * @returns a UTF-8 string indicating the toolkit version for the {@link Atspi.Accessible} object or NULL on exception.
+         * @throws GLib.Error
          */
         get_toolkit_version(): string;
 
         /**
          * Gets the {@link Atspi.Table} interface for an {@link Atspi.Accessible}.
          * @returns a pointer to an {@link Atspi.Value} interface instance, or          NULL if `obj` does not implement {@link Atspi.Value}.
+         * @deprecated since 2.10: Use atspi_accessible_get_value_iface instead.
          */
         get_value(): Value;
 
@@ -2965,6 +3134,7 @@ export namespace Atspi {
          * Invoke the action indicated by #index.
          * @param i an integer specifying which action to invoke.
          * @returns `TRUE` if the action is successfully invoked, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         do_action(i: number): boolean;
 
@@ -2973,6 +3143,8 @@ export namespace Atspi {
          *      object implementing {@link Atspi.Action}.
          * @param i an integer indicating which action to query.
          * @returns a UTF-8 string describing the '`i`-th' invocable action.
+         * @deprecated since 2.10: Use atspi_action_get_action_description instead.
+         * @throws GLib.Error
          */
         get_action_description(i: number): string;
 
@@ -3000,6 +3172,7 @@ export namespace Atspi {
          *        gtk+-2.X.
          * @param i an integer indicating which action to query.
          * @returns a UTF-8 string which can be parsed to determine the `i`-th       invocable action's keybindings.
+         * @throws GLib.Error
          */
         get_key_binding(i: number): string;
 
@@ -3008,12 +3181,14 @@ export namespace Atspi {
          *      object implementing {@link Atspi.Action}.
          * @param i an integer indicating which action to query.
          * @returns the name of the action, as a UTF-8 string.
+         * @throws GLib.Error
          */
         get_localized_name(i: number): string;
 
         /**
          * Get the number of actions invokable on an {@link Atspi.Action} implementor.
          * @returns an integer indicating the number of invocable actions.
+         * @throws GLib.Error
          */
         get_n_actions(): number;
 
@@ -3022,11 +3197,14 @@ export namespace Atspi {
          *      object implementing {@link Atspi.Action}.
          * @param i an integer indicating which action to query.
          * @returns the non-localized name of the action, as a UTF-8 string.
+         * @deprecated since 2.10: Use atspi_action_get_action_name instead.
+         * @throws GLib.Error
          */
         get_action_name(i: number): string;
 
         /**
          * @returns The active descendant of the given object. Not yet implemented.
+         * @throws GLib.Error
          */
         get_active_descendant(): Accessible;
 
@@ -3038,6 +3216,7 @@ export namespace Atspi {
          * @param count The maximum number of results to return, or 0 for no limit.
          * @param traverse Whether to traverse the accessible subtree (in case         of `TRUE`) or only the direct children (on case of `FALSE`).
          * @returns All          {@link Atspi.Accessible} objects matching the given match rule.
+         * @throws GLib.Error
          */
         get_matches(rule: MatchRule, sortby: CollectionSortOrder, count: number, traverse: boolean): Accessible[];
 
@@ -3051,6 +3230,7 @@ export namespace Atspi {
          * @param count The maximum number of results to return, or 0 for no limit.
          * @param traverse Whether to traverse the accessible subtree (in case         of `TRUE`) or only the direct children (on case of `FALSE`).
          * @returns All          {@link Atspi.Accessible} objects matching the given match rule that preceed          `current_object`.
+         * @throws GLib.Error
          */
         get_matches_from(current_object: Accessible, rule: MatchRule, sortby: CollectionSortOrder, tree: CollectionTreeTraversalType, count: number, traverse: boolean): Accessible[];
 
@@ -3065,12 +3245,14 @@ export namespace Atspi {
          * @param count The maximum number of results to return, or 0 for no limit.
          * @param traverse Whether to traverse the accessible subtree (in case         of `TRUE`) or only the direct children (on case of `FALSE`).
          * @returns All          {@link Atspi.Accessible} objects matching the given match rule after          `current_object`.
+         * @throws GLib.Error
          */
         get_matches_to(current_object: Accessible, rule: MatchRule, sortby: CollectionSortOrder, tree: CollectionTreeTraversalType, limit_scope: boolean, count: number, traverse: boolean): Accessible[];
 
         /**
          * Not yet implemented.
          * @param test 
+         * @throws GLib.Error
          */
         is_ancestor_of(test: Accessible): boolean;
 
@@ -3080,6 +3262,7 @@ export namespace Atspi {
          * @param y a `gint` specifying the y coordinate in question.
          * @param ctype the desired coordinate system of the point (`x`, `y`)         (e.g. CSPI_COORD_TYPE_WINDOW, CSPI_COORD_TYPE_SCREEN).
          * @returns `TRUE` if the specified component contains the point (`x`, `y`),          `FALSE` otherwise.
+         * @throws GLib.Error
          */
         contains(x: number, y: number, ctype: CoordType): boolean;
 
@@ -3089,12 +3272,14 @@ export namespace Atspi {
          * @param y a `gint` specifying the y coordinate of the point in question.
          * @param ctype the coordinate system of the point (`x`, `y`)         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns a pointer to an          {@link Atspi.Accessible} child of the specified component which          contains the point (`x`, `y`), or NULL if no child contains          the point.
+         * @throws GLib.Error
          */
         get_accessible_at_point(x: number, y: number, ctype: CoordType): Accessible | null;
 
         /**
          * Gets the opacity/alpha value of a component, if alpha blending is in use.
          * @returns the opacity value of a component, as a `gdouble` between 0.0 and 1.0.
+         * @throws GLib.Error
          */
         get_alpha(): number;
 
@@ -3104,6 +3289,7 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns An {@link Atspi.Rect} giving the accessible's extents.
+         * @throws GLib.Error
          */
         get_extents(ctype: CoordType): Rect;
 
@@ -3111,6 +3297,7 @@ export namespace Atspi {
          * Queries which layer the component is painted into, to help determine its
          *      visibility in terms of stacking order.
          * @returns the {@link Atspi.ComponentLayer} into which this component is painted.
+         * @throws GLib.Error
          */
         get_layer(): ComponentLayer;
 
@@ -3118,6 +3305,7 @@ export namespace Atspi {
          * Queries the z stacking order of a component which is in the MDI or window
          *       layer. (Bigger z-order numbers mean nearer the top)
          * @returns a `gshort` indicating the stacking order of the component       in the MDI layer, or -1 if the component is not in the MDI layer.
+         * @throws GLib.Error
          */
         get_mdi_z_order(): number;
 
@@ -3127,6 +3315,7 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns An {@link Atspi.Point} giving the `obj`'s position.
+         * @throws GLib.Error
          */
         get_position(ctype: CoordType): Point;
 
@@ -3141,6 +3330,7 @@ export namespace Atspi {
          * The returned values are meaningful only if the Component has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns An {@link Atspi.Point} giving the `obj`'s size.
+         * @throws GLib.Error
          */
         get_size(): Point;
 
@@ -3148,6 +3338,7 @@ export namespace Atspi {
          * Attempts to set the keyboard input focus to the specified
          *         {@link Atspi.Component}.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         grab_focus(): boolean;
 
@@ -3156,6 +3347,7 @@ export namespace Atspi {
          * visible on the screen.
          * @param type a {@link Atspi.ScrollType} indicating where the object should be placed on the        screen.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_to(type: ScrollType): boolean;
 
@@ -3166,6 +3358,7 @@ export namespace Atspi {
          * @param x the x coordinate of the point to reach
          * @param y the y coordinate of the point to reach
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_to_point(coords: CoordType, x: number, y: number): boolean;
 
@@ -3177,6 +3370,7 @@ export namespace Atspi {
          * @param height the height to which the component should be resized.
          * @param ctype the coordinate system in which the position is specified.         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns `TRUE` if successful; `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_extents(x: number, y: number, width: number, height: number, ctype: CoordType): boolean;
 
@@ -3186,6 +3380,7 @@ export namespace Atspi {
          * @param y the new vertical position to which the component should be moved.
          * @param ctype the coordinate system in which the position is specified.         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns `TRUE` if successful; `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_position(x: number, y: number, ctype: CoordType): boolean;
 
@@ -3194,6 +3389,7 @@ export namespace Atspi {
          * @param width the width to which the component should be resized.
          * @param height the height to which the component should be resized.
          * @returns `TRUE` if successful; `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_size(width: number, height: number): boolean;
 
@@ -3201,6 +3397,8 @@ export namespace Atspi {
          * Gets the value of a single attribute, if specified for the document as a whole.
          * @param attribute a string indicating the name of a specific attribute.
          * @returns a string corresponding to the value of the specified attribute, or an empty string if the attribute is unspecified for the object.
+         * @deprecated since 2.10: Use atspi_document_get_document_attribute_value instead.
+         * @throws GLib.Error
          */
         get_document_attribute_value(attribute: string): string;
 
@@ -3208,12 +3406,15 @@ export namespace Atspi {
          * Gets all constant attributes for the document as a whole. For attributes
          * that change within the document content, see `atspi_text_get_attribute_run` instead.
          * @returns a {@link GLib.HashTable}          containing the constant attributes of the document, as name-value pairs.
+         * @deprecated since 2.10: Use atspi_document_get_document_attributes instead.
+         * @throws GLib.Error
          */
         get_document_attributes(): { [key: string]: string };
 
         /**
          * Gets the current page number of an `AccessibleDocument` object.
          * @returns a `gint` indicating the current page number in the `AccessibleDocument` object.
+         * @throws GLib.Error
          */
         get_current_page_number(): number;
 
@@ -3221,18 +3422,22 @@ export namespace Atspi {
          * Gets the locale associated with the document's content,
          * e.g. the locale for LOCALE_TYPE_MESSAGES.
          * @returns a string compliant with the POSIX standard for locale description.
+         * @throws GLib.Error
          */
         get_locale(): string;
 
         /**
          * Gets the page count of an `AccessibleDocument` object.
          * @returns a `gint` indicating the page count of an `AccessibleDocument` object.
+         * @throws GLib.Error
          */
         get_page_count(): number;
 
         /**
          * Returns an array of AtspiTextSelections within this document.
          * @returns a GArray of AtspiTextSelection structures representing the selection.
+         * @since 2.52
+         * @throws GLib.Error
          */
         get_text_selections(): TextSelection[];
 
@@ -3244,6 +3449,8 @@ export namespace Atspi {
          * FALSE will be returned.
          * @param selections a GArray of AtspiTextSelections              to be selected.
          * @returns TRUE if the selection was made successfully; FALSE otherwise.
+         * @since 2.52
+         * @throws GLib.Error
          */
         set_text_selections(selections: TextSelection[]): boolean;
 
@@ -3254,6 +3461,7 @@ export namespace Atspi {
          * @param start_pos a `gint` indicating the starting character offset       of the text to copy.
          * @param end_pos a `gint` indicating the offset of the first character       past the end of the text section to be copied.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         copy_text(start_pos: number, end_pos: number): boolean;
 
@@ -3265,6 +3473,7 @@ export namespace Atspi {
          * @param start_pos a `gint` indicating the starting character offset       of the text to cut.
          * @param end_pos a `gint` indicating the offset of the first character       past the end of the text section to be cut.
          * @returns `TRUE` if operation was successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         cut_text(start_pos: number, end_pos: number): boolean;
 
@@ -3276,6 +3485,7 @@ export namespace Atspi {
          * @param start_pos a `gint` indicating the starting character offset       of the text to delete.
          * @param end_pos a `gint` indicating the offset of the first character       past the end of the text section to be deleted.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         delete_text(start_pos: number, end_pos: number): boolean;
 
@@ -3288,6 +3498,7 @@ export namespace Atspi {
          * @param text a string representing the text to insert, in UTF-8 encoding.
          * @param length the number of characters of text to insert, in bytes. If the byte count of text is less than or equal to length, the entire contents of text will be inserted.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         insert_text(position: number, text: string, length: number): boolean;
 
@@ -3298,6 +3509,7 @@ export namespace Atspi {
          *       variable-width encoding.
          * @param position a `gint` indicating the character offset at which to insert       the new text.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         paste_text(position: number): boolean;
 
@@ -3305,6 +3517,7 @@ export namespace Atspi {
          * Replace the entire text contents of an {@link Atspi.EditableText} object.
          * @param new_contents a character string, encoded in UTF-8, which is to      become the new text contents of the {@link Atspi.EditableText} object.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         set_text_contents(new_contents: string): boolean;
 
@@ -3312,6 +3525,7 @@ export namespace Atspi {
          * Gets the {@link Atspi.Hyperlink} object at a specified index.
          * @param link_index a (zero-index) `gint` indicating which hyperlink to query.
          * @returns the {@link Atspi.Hyperlink} object          specified by `link_index`.
+         * @throws GLib.Error
          */
         get_link(link_index: number): Hyperlink | null;
 
@@ -3320,6 +3534,7 @@ export namespace Atspi {
          *        character offset.
          * @param character_offset a `gint` specifying the character offset to query.
          * @returns the linkIndex of the {@link Atspi.Hyperlink} active at        character offset `character_offset`, or -1 if there is        no hyperlink at the specified character offset.
+         * @throws GLib.Error
          */
         get_link_index(character_offset: number): number;
 
@@ -3327,12 +3542,14 @@ export namespace Atspi {
          * Gets the total number of {@link Atspi.Hyperlink} objects that an
          * {@link Atspi.Hypertext} implementor has.
          * @returns a `gint` indicating the number of {@link Atspi.Hyperlink} objects        of the {@link Atspi.Hypertext} implementor, or -1 if        the number cannot be determined (for example, if the        {@link Atspi.Hypertext} object is so large that it is not        all currently in the memory cache).
+         * @throws GLib.Error
          */
         get_n_links(): number;
 
         /**
          * Gets the description of the image displayed in an {@link Atspi.Image} object.
          * @returns a UTF-8 string describing the image.
+         * @throws GLib.Error
          */
         get_image_description(): string;
 
@@ -3343,12 +3560,14 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns a pointer to an {@link Atspi.Rect} corresponding to the image's bounding box. The minimum x and y coordinates, width, and height are specified.
+         * @throws GLib.Error
          */
         get_image_extents(ctype: CoordType): Rect;
 
         /**
          * Gets the locale associated with an image and its textual representation.
          * @returns A POSIX LC_MESSAGES-style locale value for image description and text.
+         * @throws GLib.Error
          */
         get_image_locale(): string;
 
@@ -3359,6 +3578,7 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns a pointer to an {@link Atspi.Point} where x and y correspond to the minimum coordinates of the displayed image.
+         * @throws GLib.Error
          */
         get_image_position(ctype: CoordType): Point;
 
@@ -3367,6 +3587,7 @@ export namespace Atspi {
          * The returned values are meaningful only if the Image has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns a pointer to an {@link Atspi.Point} where x corresponds to the image's width and y corresponds to the image's height.
+         * @throws GLib.Error
          */
         get_image_size(): Point;
 
@@ -3374,6 +3595,7 @@ export namespace Atspi {
          * Clears the current selection, removing all selected children from the
          *       specified {@link Atspi.Selection} implementor's selection list.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         clear_selection(): boolean;
 
@@ -3385,6 +3607,7 @@ export namespace Atspi {
          * See `atspi_selection_deselect_selected_child`
          * @param child_index a `gint` indicating which of the children              of the {@link Atspi.Accessible} is to be de-selected.
          * @returns `TRUE` if the child was successfully deselected, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         deselect_child(child_index: number): boolean;
 
@@ -3396,6 +3619,7 @@ export namespace Atspi {
          *          are asymmetric.
          * @param selected_child_index a `gint` indicating which of the selected children              of the {@link Atspi.Accessible} is to be selected.
          * @returns `TRUE` if the child was successfully deselected, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         deselect_selected_child(selected_child_index: number): boolean;
 
@@ -3403,6 +3627,7 @@ export namespace Atspi {
          * Gets the number of children of an {@link Atspi.Selection} implementor which are
          *        currently selected.
          * @returns a `gint` indicating the number of {@link Atspi.Accessible} children        of the {@link Atspi.Selection} implementor which are currently selected.
+         * @throws GLib.Error
          */
         get_n_selected_children(): number;
 
@@ -3417,6 +3642,7 @@ export namespace Atspi {
          *      and `atspi_selection_get_n_selected_children` - 1, inclusive.
          * @param selected_child_index a `gint` indicating which of the selected      children is specified.
          * @returns a pointer to a selected {@link Atspi.Accessible} child          object, specified by `selected_child_index`.
+         * @throws GLib.Error
          */
         get_selected_child(selected_child_index: number): Accessible;
 
@@ -3426,6 +3652,7 @@ export namespace Atspi {
          *        standard {@link Atspi.Accessible} container's list of children.
          * @param child_index an index into the {@link Atspi.Selection}'s list of children.
          * @returns `TRUE` if the specified child is currently selected,          `FALSE` otherwise.
+         * @throws GLib.Error
          */
         is_child_selected(child_index: number): boolean;
 
@@ -3433,6 +3660,7 @@ export namespace Atspi {
          * Attempts to select all of the children of an {@link Atspi.Selection} implementor.
          * Not all {@link Atspi.Selection} implementors support this operation.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         select_all(): boolean;
 
@@ -3443,6 +3671,7 @@ export namespace Atspi {
          *         selection.
          * @param child_index a `gint` indicating which child of the {@link Atspi.Accessible}              is to be selected.
          * @returns `TRUE` if the child was successfully selected, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         select_child(child_index: number): boolean;
 
@@ -3451,6 +3680,7 @@ export namespace Atspi {
          * Not all tables support column selection.
          * @param column the zero-indexed column number of the column being selected.
          * @returns `TRUE` if the specified column was successfully selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         add_column_selection(column: number): boolean;
 
@@ -3459,6 +3689,7 @@ export namespace Atspi {
          * Not all tables support row selection.
          * @param row the zero-indexed row number of the row being selected.
          * @returns `TRUE` if the specified row was successfully selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         add_row_selection(row: number): boolean;
 
@@ -3469,12 +3700,14 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns an {@link Atspi.Accessible} object representing the          specified table cell.
+         * @throws GLib.Error
          */
         get_accessible_at(row: number, column: number): Accessible;
 
         /**
          * Gets an accessible representation of the caption for an {@link Atspi.Table}.
          * @returns an {@link Atspi.Accessible} object that serves as the table's caption.
+         * @throws GLib.Error
          */
         get_caption(): Accessible;
 
@@ -3485,6 +3718,7 @@ export namespace Atspi {
          * `see` `atspi_table_get_index_at`, `atspi_table_get_row_at_index`
          * @param index the specified child index, zero-indexed.
          * @returns a `gint` indicating the first column spanned by the child of a          table, at the specified 1-D (zero-offset) `index`.
+         * @throws GLib.Error
          */
         get_column_at_index(index: number): number;
 
@@ -3493,6 +3727,7 @@ export namespace Atspi {
          * `atspi_table_get_column_header`, which returns an {@link Atspi.Accessible}.
          * @param column the specified table column, zero-indexed.
          * @returns a UTF-8 string describing the specified table column, if available.
+         * @throws GLib.Error
          */
         get_column_description(column: number): string;
 
@@ -3505,6 +3740,7 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns a `gint` indicating the number of columns spanned by the specified cell.
+         * @throws GLib.Error
          */
         get_column_extent_at(row: number, column: number): number;
 
@@ -3514,6 +3750,7 @@ export namespace Atspi {
          * returns a string.
          * @param column the specified table column, zero-indexed.
          * @returns an {@link Atspi.Accessible} representation of the          specified table column, if available.
+         * @throws GLib.Error
          */
         get_column_header(column: number): Accessible;
 
@@ -3526,6 +3763,7 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns a `gint` which serves as the index of a specified cell in the          table, in a form usable by `atspi_get_child_at_index`.
+         * @throws GLib.Error
          */
         get_index_at(row: number, column: number): number;
 
@@ -3534,6 +3772,7 @@ export namespace Atspi {
          *        exclusive of any columns that are programmatically hidden, but inclusive
          *        of columns that may be outside of the current scrolling window or viewport.
          * @returns a `gint` indicating the number of columns in the table.
+         * @throws GLib.Error
          */
         get_n_columns(): number;
 
@@ -3542,6 +3781,7 @@ export namespace Atspi {
          *        exclusive of any rows that are programmatically hidden, but inclusive
          *        of rows that may be outside of the current scrolling window or viewport.
          * @returns a `gint` indicating the number of rows in the table.
+         * @throws GLib.Error
          */
         get_n_rows(): number;
 
@@ -3549,6 +3789,7 @@ export namespace Atspi {
          * Queries a table to find out how many columns are currently selected.
          * Not all tables support column selection.
          * @returns a `gint` indicating the number of columns currently selected.
+         * @throws GLib.Error
          */
         get_n_selected_columns(): number;
 
@@ -3556,6 +3797,7 @@ export namespace Atspi {
          * Query a table to find out how many rows are currently selected.
          * Not all tables support row selection.
          * @returns a `gint` indicating the number of rows currently selected.
+         * @throws GLib.Error
          */
         get_n_selected_rows(): number;
 
@@ -3566,6 +3808,7 @@ export namespace Atspi {
          * `see` `atspi_table_get_index_at`, `atspi_table_get_column_at_index`
          * @param index the specified child index, zero-indexed.
          * @returns a `gint` indicating the first row spanned by the child of a          table, at the specified 1-D (zero-offset) `index`.
+         * @throws GLib.Error
          */
         get_row_at_index(index: number): number;
 
@@ -3593,6 +3836,7 @@ export namespace Atspi {
          * `TRUE`, respectively.
          * @param index the index of the {@link Atspi.Table} child whose row/column extents are requested.
          * @returns `TRUE` if the index is associated with a valid table cell, `FALSE` if the index does not correspond to a cell.  If `FALSE` is returned, the values of the out parameters are undefined.
+         * @throws GLib.Error
          */
         get_row_column_extents_at_index(index: number): [boolean, number, number, number, number, boolean];
 
@@ -3601,6 +3845,7 @@ export namespace Atspi {
          * `atspi_table_get_row_header`, which returns an {@link Atspi.Accessible}.
          * @param row the specified table row, zero-indexed.
          * @returns a UTF-8 string describing the specified table row, if available.
+         * @throws GLib.Error
          */
         get_row_description(row: number): string;
 
@@ -3613,6 +3858,7 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns a `gint` indicating the number of rows spanned by the specified cell.
+         * @throws GLib.Error
          */
         get_row_extent_at(row: number, column: number): number;
 
@@ -3621,6 +3867,7 @@ export namespace Atspi {
          * `atspi_table_get_row_description`, which returns a string.
          * @param row the specified table row, zero-indexed.
          * @returns an {@link Atspi.Accessible} representation of the specified          table row, if available.
+         * @throws GLib.Error
          */
         get_row_header(row: number): Accessible;
 
@@ -3628,18 +3875,21 @@ export namespace Atspi {
          * Queries a table for a list of indices of columns which are currently
          * selected.
          * @returns an array of `gint` values,          specifying which columns are currently selected.
+         * @throws GLib.Error
          */
         get_selected_columns(): number[];
 
         /**
          * Queries a table for a list of indices of rows which are currently selected.
          * @returns an array of `gint` values,          specifying which rows are currently selected.
+         * @throws GLib.Error
          */
         get_selected_rows(): number[];
 
         /**
          * Gets an accessible object which summarizes the contents of an {@link Atspi.Table}.
          * @returns an {@link Atspi.Accessible} object that serves as the          table's summary (often a reduced {@link Atspi.Table}).
+         * @throws GLib.Error
          */
         get_summary(): Accessible;
 
@@ -3648,6 +3898,7 @@ export namespace Atspi {
          * Not all tables support column selection.
          * @param column the zero-indexed column number of the column being queried.
          * @returns `TRUE` if the specified column is currently selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         is_column_selected(column: number): boolean;
 
@@ -3656,6 +3907,7 @@ export namespace Atspi {
          * row selection.
          * @param row the zero-indexed row number of the row being queried.
          * @returns `TRUE` if the specified row is currently selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         is_row_selected(row: number): boolean;
 
@@ -3664,6 +3916,7 @@ export namespace Atspi {
          * @param row the zero-indexed row of the cell being queried.
          * @param column the zero-indexed column of the cell being queried.
          * @returns `TRUE` if the specified cell is currently selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         is_selected(row: number, column: number): boolean;
 
@@ -3673,6 +3926,7 @@ export namespace Atspi {
          * Not all tables support column selection.
          * @param column the zero-indexed column number of the column being de-selected.
          * @returns `TRUE` if the specified column was successfully de-selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         remove_column_selection(column: number): boolean;
 
@@ -3681,15 +3935,20 @@ export namespace Atspi {
          * Not all tables support row selection.
          * @param row the zero-indexed number of the row being de-selected.
          * @returns `TRUE` if the specified row was successfully de-selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         remove_row_selection(row: number): boolean;
 
         /**
          * Returns the column headers as an array of cell accessibles.
          * @returns a GPtrArray of AtspiAccessibles representing the column header cells.
+         * @throws GLib.Error
          */
         get_column_header_cells(): Accessible[];
 
+        /**
+         * @throws GLib.Error
+         */
         get_column_index(): number;
 
         /**
@@ -3697,6 +3956,7 @@ export namespace Atspi {
          * The returned values are meaningful only if the table cell has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns a gint representing the number of columns occupied by this cell, or 0 if the cell does not implement this method.
+         * @throws GLib.Error
          */
         get_column_span(): number;
 
@@ -3704,12 +3964,14 @@ export namespace Atspi {
          * Gets the row and column indexes and extents of this cell accessible.
          * The returned values are meaningful only if the table cell has both
          * STATE_VISIBLE and STATE_SHOWING.
+         * @throws GLib.Error
          */
         get_row_column_span(): [number, number, number, number];
 
         /**
          * Returns the row headers as an array of cell accessibles.
          * @returns a GPtrArray of AtspiAccessibles representing the row header cells.
+         * @throws GLib.Error
          */
         get_row_header_cells(): Accessible[];
 
@@ -3718,6 +3980,7 @@ export namespace Atspi {
          * The returned values are meaningful only if the table cell has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns a gint representing the number of rows occupied by this cell, or 0 if the cell does not implement this method.
+         * @throws GLib.Error
          */
         get_row_span(): number;
 
@@ -3726,6 +3989,7 @@ export namespace Atspi {
          * @param start_offset the starting offset of the desired new selection.
          * @param end_offset the offset of the first character after the new selection.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         add_selection(start_offset: number, end_offset: number): boolean;
 
@@ -3735,6 +3999,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the attribute        search is based.
          * @param include_defaults a #bool that, when set as `FALSE`, indicates the call should only return those attributes which are explicitly set on the current attribute run, omitting any attributes which are inherited from the default values.
          * @returns a {@link GLib.HashTable} with attributes          defined at the indicated offset, optionally including the 'default' ones.
+         * @throws GLib.Error
          */
         get_attribute_run(offset: number, include_defaults: boolean): [{ [key: string]: string }, number, number];
 
@@ -3743,6 +4008,8 @@ export namespace Atspi {
          * @param offset The character offset at which to query the attribute.
          * @param attribute_name The attribute to query.
          * @returns the value of a given attribute at the given offset, or `null` if not present.
+         * @deprecated since 2.10: Use atspi_text_get_text_attribute_value instead.
+         * @throws GLib.Error
          */
         get_text_attribute_value(offset: number, attribute_name: string): string | null;
 
@@ -3752,6 +4019,8 @@ export namespace Atspi {
          * where possible.
          * @param offset a `gint` indicating the offset from which the attribute        search is based.
          * @returns a {@link GLib.HashTable} describing the attributes at the given character offset.
+         * @deprecated since 2.10: Use atspi_text_get_text_attributes instead.
+         * @throws GLib.Error
          */
         get_text_attributes(offset: number): [{ [key: string]: string }, number, number];
 
@@ -3766,12 +4035,14 @@ export namespace Atspi {
          * @param clipTypeX an {@link Atspi.TextClipType} indicating how to treat characters that        intersect the bounding box's x extents.
          * @param clipTypeY an {@link Atspi.TextClipType} indicating how to treat characters that        intersect the bounding box's y extents.
          * @returns a null-terminated list of          pointers to {@link Atspi.TextRange} structs detailing the bounded text.
+         * @throws GLib.Error
          */
         get_bounded_ranges(x: number, y: number, width: number, height: number, type: CoordType, clipTypeX: TextClipType, clipTypeY: TextClipType): TextRange[];
 
         /**
          * Gets the current offset of the text caret in an {@link Atspi.Text} object.
          * @returns a `gint` indicating the current position of the text caret.
+         * @throws GLib.Error
          */
         get_caret_offset(): number;
 
@@ -3779,12 +4050,14 @@ export namespace Atspi {
          * Gets the character at a given offset for an {@link Atspi.Text} object.
          * @param offset a `gint` indicating the text offset where the desired          character is located.
          * @returns a `guint`  representing the        UCS-4 unicode code point of the given character, or        0xFFFFFFFF if the character in question cannot be represented        in the UCS-4 encoding.
+         * @throws GLib.Error
          */
         get_character_at_offset(offset: number): number;
 
         /**
          * Gets the character count of an `AccessibleText` object.
          * @returns a `gint` indicating the total number of              characters in the `AccessibleText` object.
+         * @throws GLib.Error
          */
         get_character_count(): number;
 
@@ -3796,6 +4069,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset of the text character for        whom boundary information is requested.
          * @param type an `AccessibleCoordType` indicating the coordinate system to use        for the returned values.
          * @returns An {@link Atspi.Rect} specifying the position and size of the character.
+         * @throws GLib.Error
          */
         get_character_extents(offset: number, type: CoordType): Rect;
 
@@ -3806,6 +4080,7 @@ export namespace Atspi {
          * the attributes reported by `atspi_text_get_attributes`
          * describes the entire set of text attributes over a range.
          * @returns a {@link GLib.HashTable}          containing the default attributes applied to a text object,          (exclusive of explicitly-set attributes), encoded as UTF-8.
+         * @throws GLib.Error
          */
         get_default_attributes(): { [key: string]: string };
 
@@ -3813,6 +4088,7 @@ export namespace Atspi {
          * Gets the number of active non-contiguous selections for an
          *          {@link Atspi.Text} object.
          * @returns a `gint` indicating the current          number of non-contiguous text selections active          within an {@link Atspi.Text} object.
+         * @throws GLib.Error
          */
         get_n_selections(): number;
 
@@ -3822,6 +4098,7 @@ export namespace Atspi {
          * @param y the y coordinate of the point to be queried.
          * @param type an {@link Atspi.CoordType} indicating the coordinate system in which       the values should be returned.
          * @returns the offset (as a `gint`) at the point (`x`, `y`)       in the specified coordinate system.
+         * @throws GLib.Error
          */
         get_offset_at_point(x: number, y: number, type: CoordType): number;
 
@@ -3833,6 +4110,7 @@ export namespace Atspi {
          * @param end_offset a `gint` indicating the offset of the text character        after the last character for whom boundary information is requested.
          * @param type an {@link Atspi.CoordType} indicating the coordinate system to use        for the returned values.
          * @returns An {@link Atspi.Rect} giving the position and size of the specified range          of text.
+         * @throws GLib.Error
          */
         get_range_extents(start_offset: number, end_offset: number, type: CoordType): Rect;
 
@@ -3870,6 +4148,8 @@ export namespace Atspi {
          * @param offset position
          * @param granularity An {@link Atspi.TextGranularity}
          * @returns a newly allocated string containing the text at the `offset` bounded   by the specified `granularity`. Use `g_free()` to free the returned string.   Returns `null` if the offset is invalid or no implementation is available.
+         * @since 2.9.90
+         * @throws GLib.Error
          */
         get_string_at_offset(offset: number, granularity: TextGranularity): TextRange;
 
@@ -3879,6 +4159,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the delimiter        search is based.
          * @param type an {@link Atspi.TextBoundaryType} indicating whether the desired       text string is a word, sentence, line, or attribute run.
          * @returns an {@link Atspi.TextRange} containing a UTF-8 string representing the          delimited text, both of whose delimiting boundaries are after or          inclusive of the current offset, or an empty string if no such          text exists.
+         * @throws GLib.Error
          */
         get_text_after_offset(offset: number, type: TextBoundaryType): TextRange;
 
@@ -3888,6 +4169,8 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the delimiter        search is based.
          * @param type an {@link Atspi.TextBoundaryType} indicating whether the desired       text string is a word, sentence, line, or attribute run.
          * @returns an {@link Atspi.TextRange} containing a UTF-8 string representing the          delimited text, whose delimiting boundaries bracket the          current offset, or an empty string if no such text exists.
+         * @deprecated since 2.10: Use atspi_text_get_string_at_offset.
+         * @throws GLib.Error
          */
         get_text_at_offset(offset: number, type: TextBoundaryType): TextRange;
 
@@ -3897,6 +4180,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the delimiter        search is based.
          * @param type an {@link Atspi.TextBoundaryType} indicating whether the desired       text string is a word, sentence, line, or attribute run.
          * @returns an {@link Atspi.TextRange} containing a UTF-8 string representing the          delimited text, both of whose delimiting boundaries are before the          current offset, or an empty string if no such text exists.
+         * @throws GLib.Error
          */
         get_text_before_offset(offset: number, type: TextBoundaryType): TextRange;
 
@@ -3904,6 +4188,7 @@ export namespace Atspi {
          * De-selects a text selection.
          * @param selection_num a `gint` indicating which text selection to remove.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         remove_selection(selection_num: number): boolean;
 
@@ -3914,6 +4199,7 @@ export namespace Atspi {
          * @param end_offset a `gint` indicating the first character past the desired range.
          * @param type a {@link Atspi.ScrollType} indicating where the object should be placed on the        screen.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_substring_to(start_offset: number, end_offset: number, type: ScrollType): boolean;
 
@@ -3926,6 +4212,7 @@ export namespace Atspi {
          * @param x the x coordinate of the point to reach
          * @param y the y coordinate of the point to reach
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_substring_to_point(start_offset: number, end_offset: number, coords: CoordType, x: number, y: number): boolean;
 
@@ -3933,6 +4220,7 @@ export namespace Atspi {
          * Moves the text caret to a given position.
          * @param new_offset the offset to which the text caret is to be moved.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_caret_offset(new_offset: number): boolean;
 
@@ -3942,30 +4230,35 @@ export namespace Atspi {
          * @param start_offset a `gint` indicating the new starting offset for the selection.
          * @param end_offset a `gint` indicating the desired new offset of the first character             after the selection.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_selection(selection_num: number, start_offset: number, end_offset: number): boolean;
 
         /**
          * Gets the current value for an {@link Atspi.Value}.
          * @returns the current value for this object.
+         * @throws GLib.Error
          */
         get_current_value(): number;
 
         /**
          * Gets the maximum allowed value for an {@link Atspi.Value}.
          * @returns the maximum allowed value for this object.
+         * @throws GLib.Error
          */
         get_maximum_value(): number;
 
         /**
          * Gets the minimum increment by which an {@link Atspi.Value} can be adjusted.
          * @returns the minimum increment by which the value may be changed, or zero if the minimum increment cannot be determined.
+         * @throws GLib.Error
          */
         get_minimum_increment(): number;
 
         /**
          * Gets the minimum allowed value for an {@link Atspi.Value}.
          * @returns the minimum allowed value for this object.
+         * @throws GLib.Error
          */
         get_minimum_value(): number;
 
@@ -3973,6 +4266,7 @@ export namespace Atspi {
          * Sets the current value of an {@link Atspi.Value}.
          * @param new_value a `gdouble` value which is the desired new value of the object.
          * @returns `TRUE` if the value could be assigned the specified value,          `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_current_value(new_value: number): boolean;
     }
@@ -4128,6 +4422,7 @@ export namespace Atspi {
          * @param x a `gint` indicating the x coordinate of the mouse event, relative to     `obj`..
          * @param y a `gint` indicating the y coordinate of the mouse event, relative to     `obj`..
          * @param name a string indicating which mouse event to be synthesized        (e.g. "b1p", "b1c", "b2r", "rel", "abs").
+         * @since 2.52
          * @virtual
          */
         vfunc_generate_mouse_event(obj: Accessible, x: number, y: number, name: string): void;
@@ -4138,6 +4433,7 @@ export namespace Atspi {
          * locking modifier such as num lock via atspi_device_get_locked_modifiers,
          * rather than to add key grabs.
          * @param keysym the XKB keysym to map.
+         * @since 2.55
          * @virtual
          */
         vfunc_get_keysym_modifier(keysym: number): number;
@@ -4177,6 +4473,7 @@ export namespace Atspi {
          * that is not currently being used. If no unused modifier can be found,
          * then it will use the first modifier by default.
          * @param keysym the XKB keysym to map.
+         * @since 2.55
          * @virtual
          */
         vfunc_map_keysym_modifier(keysym: number): number;
@@ -4211,6 +4508,7 @@ export namespace Atspi {
         /**
          * Removes a mapped modifier from the given keysym.
          * @param keysym the XKB keysym to unmap.
+         * @since 2.55
          * @virtual
          */
         vfunc_unmap_keysym_modifier(keysym: number): void;
@@ -4250,11 +4548,14 @@ export namespace Atspi {
          * @param x a `gint` indicating the x coordinate of the mouse event, relative to     `obj`..
          * @param y a `gint` indicating the y coordinate of the mouse event, relative to     `obj`..
          * @param name a string indicating which mouse event to be synthesized        (e.g. "b1p", "b1c", "b2r", "rel", "abs").
+         * @since 2.52
+         * @throws GLib.Error
          */
         generate_mouse_event(obj: Accessible, x: number, y: number, name: string): void;
 
         /**
          * Returns the application ID of the device.
+         * @since 2.55
          */
         get_app_id(): string;
 
@@ -4270,6 +4571,7 @@ export namespace Atspi {
          * rather than to add key grabs.
          * @param keysym the XKB keysym to map.
          * @returns the modifier that is mapped to this keysym.
+         * @since 2.55
          */
         get_keysym_modifier(keysym: number): number;
 
@@ -4309,6 +4611,7 @@ export namespace Atspi {
          * then it will use the first modifier by default.
          * @param keysym the XKB keysym to map.
          * @returns the modifier that is now mapped to this keysym. This return value can be passed to atspi_device_add_key_grab.
+         * @since 2.55
          */
         map_keysym_modifier(keysym: number): number;
 
@@ -4344,6 +4647,7 @@ export namespace Atspi {
         /**
          * Sets the application ID of the device.
          * @param app_id the application ID.
+         * @since 2.55
          */
         set_app_id(app_id: string): void;
 
@@ -4355,6 +4659,7 @@ export namespace Atspi {
         /**
          * Removes a mapped modifier from the given keysym.
          * @param keysym the XKB keysym to unmap.
+         * @since 2.55
          */
         unmap_keysym_modifier(keysym: number): void;
 
@@ -4678,6 +4983,7 @@ export namespace Atspi {
          *             event type.
          * @param event_type a string specifying the event type for which this             listener is to be deregistered.
          * @returns `TRUE` if successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         deregister(event_type: string): boolean;
 
@@ -4768,6 +5074,7 @@ export namespace Atspi {
          * reader and is thus a special case internally.
          * @param event_type a character string indicating the type of events for which            notification is requested.  Format is            EventClass:major_type:minor_type:detail            where all subfields other than EventClass are optional.            EventClasses include "object", "window", "mouse",            and toolkit events (e.g. "Gtk", "AWT").            Examples: "focus:", "Gtk:GtkWidget:button_press_event".
          * @returns `TRUE` if successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         register(event_type: string): boolean;
 
@@ -4776,6 +5083,7 @@ export namespace Atspi {
          * @param event_type a character string indicating the type of events for which            notification is requested.  See `atspi_event_listener_register` for a description of the format and legal event types.
          * @param properties a list of             properties that should be sent along with the event. The             properties are valued for the duration of the event callback.             TODO: Document.
          * @returns `TRUE` if successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         register_full(event_type: string, properties: string[] | null): boolean;
 
@@ -4785,6 +5093,7 @@ export namespace Atspi {
          * @param properties a list of             properties that should be sent along with the event. The             properties are valued for the duration of the event callback.
          * @param app the application whose events should be reported, or      %null for all applications.
          * @returns `TRUE` if successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         register_with_app(event_type: string, properties: string[] | null, app: Accessible | null): boolean;
     }
@@ -4845,12 +5154,14 @@ export namespace Atspi {
         /**
          * Gets the ending character offset of the text range associated with
          *       an {@link Atspi.Hyperlink}, in its originating {@link Atspi.Hypertext}.
+         * @throws GLib.Error
          */
         get_end_index(): number;
 
         /**
          * Gets the starting and ending character offsets of the text range
          * associated with an {@link Atspi.Hyperlink}, in its originating {@link Atspi.Hypertext}.
+         * @throws GLib.Error
          */
         get_index_range(): Range;
 
@@ -4862,6 +5173,7 @@ export namespace Atspi {
          * 
          * see: `atspi_hyperlink_get_uri` and `atspi_hyperlink_get_object`.
          * @returns a `gint` indicating the number of anchors in this hyperlink.
+         * @throws GLib.Error
          */
         get_n_anchors(): number;
 
@@ -4870,12 +5182,14 @@ export namespace Atspi {
          * {@link Atspi.Accessible}.
          * @param i a (zero-index) `gint` indicating which hyperlink anchor to query.
          * @returns an {@link Atspi.Accessible} that represents the object        associated with the `ith` anchor of the specified {@link Atspi.Hyperlink}.
+         * @throws GLib.Error
          */
         get_object(i: number): Accessible;
 
         /**
          * Gets the starting character offset of the text range associated with
          *       an {@link Atspi.Hyperlink}, in its originating {@link Atspi.Hypertext}.
+         * @throws GLib.Error
          */
         get_start_index(): number;
 
@@ -4883,6 +5197,7 @@ export namespace Atspi {
          * Gets the URI associated with a particular hyperlink anchor.
          * @param i a (zero-index) integer indicating which hyperlink anchor to query.
          * @returns a UTF-8 string giving the URI of the `ith` hyperlink anchor.
+         * @throws GLib.Error
          */
         get_uri(i: number): string;
 
@@ -4890,6 +5205,7 @@ export namespace Atspi {
          * Tells whether an {@link Atspi.Hyperlink} object is still valid with respect to its
          *          originating hypertext object.
          * @returns `TRUE` if the specified {@link Atspi.Hyperlink} is still valid with respect          to its originating {@link Atspi.Hypertext} object, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         is_valid(): boolean;
     }
@@ -5564,6 +5880,7 @@ export namespace Atspi {
          * Invoke the action indicated by #index.
          * @param i an integer specifying which action to invoke.
          * @returns `TRUE` if the action is successfully invoked, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         do_action(i: number): boolean;
 
@@ -5572,6 +5889,8 @@ export namespace Atspi {
          *      object implementing {@link Atspi.Action}.
          * @param i an integer indicating which action to query.
          * @returns a UTF-8 string describing the '`i`-th' invocable action.
+         * @deprecated since 2.10: Use atspi_action_get_action_description instead.
+         * @throws GLib.Error
          */
         get_action_description(i: number): string;
 
@@ -5599,6 +5918,7 @@ export namespace Atspi {
          *        gtk+-2.X.
          * @param i an integer indicating which action to query.
          * @returns a UTF-8 string which can be parsed to determine the `i`-th       invocable action's keybindings.
+         * @throws GLib.Error
          */
         get_key_binding(i: number): string;
 
@@ -5607,12 +5927,14 @@ export namespace Atspi {
          *      object implementing {@link Atspi.Action}.
          * @param i an integer indicating which action to query.
          * @returns the name of the action, as a UTF-8 string.
+         * @throws GLib.Error
          */
         get_localized_name(i: number): string;
 
         /**
          * Get the number of actions invokable on an {@link Atspi.Action} implementor.
          * @returns an integer indicating the number of invocable actions.
+         * @throws GLib.Error
          */
         get_n_actions(): number;
 
@@ -5621,6 +5943,8 @@ export namespace Atspi {
          *      object implementing {@link Atspi.Action}.
          * @param i an integer indicating which action to query.
          * @returns the non-localized name of the action, as a UTF-8 string.
+         * @deprecated since 2.10: Use atspi_action_get_action_name instead.
+         * @throws GLib.Error
          */
         get_action_name(i: number): string;
     }
@@ -5654,6 +5978,7 @@ export namespace Atspi {
         // Methods
         /**
          * @returns The active descendant of the given object. Not yet implemented.
+         * @throws GLib.Error
          */
         get_active_descendant(): Accessible;
 
@@ -5665,6 +5990,7 @@ export namespace Atspi {
          * @param count The maximum number of results to return, or 0 for no limit.
          * @param traverse Whether to traverse the accessible subtree (in case         of `TRUE`) or only the direct children (on case of `FALSE`).
          * @returns All          {@link Atspi.Accessible} objects matching the given match rule.
+         * @throws GLib.Error
          */
         get_matches(rule: MatchRule, sortby: CollectionSortOrder, count: number, traverse: boolean): Accessible[];
 
@@ -5678,6 +6004,7 @@ export namespace Atspi {
          * @param count The maximum number of results to return, or 0 for no limit.
          * @param traverse Whether to traverse the accessible subtree (in case         of `TRUE`) or only the direct children (on case of `FALSE`).
          * @returns All          {@link Atspi.Accessible} objects matching the given match rule that preceed          `current_object`.
+         * @throws GLib.Error
          */
         get_matches_from(current_object: Accessible, rule: MatchRule, sortby: CollectionSortOrder, tree: CollectionTreeTraversalType, count: number, traverse: boolean): Accessible[];
 
@@ -5692,12 +6019,14 @@ export namespace Atspi {
          * @param count The maximum number of results to return, or 0 for no limit.
          * @param traverse Whether to traverse the accessible subtree (in case         of `TRUE`) or only the direct children (on case of `FALSE`).
          * @returns All          {@link Atspi.Accessible} objects matching the given match rule after          `current_object`.
+         * @throws GLib.Error
          */
         get_matches_to(current_object: Accessible, rule: MatchRule, sortby: CollectionSortOrder, tree: CollectionTreeTraversalType, limit_scope: boolean, count: number, traverse: boolean): Accessible[];
 
         /**
          * Not yet implemented.
          * @param test 
+         * @throws GLib.Error
          */
         is_ancestor_of(test: Accessible): boolean;
     }
@@ -5740,6 +6069,7 @@ export namespace Atspi {
          * @param y a `gint` specifying the y coordinate in question.
          * @param ctype the desired coordinate system of the point (`x`, `y`)         (e.g. CSPI_COORD_TYPE_WINDOW, CSPI_COORD_TYPE_SCREEN).
          * @returns `TRUE` if the specified component contains the point (`x`, `y`),          `FALSE` otherwise.
+         * @throws GLib.Error
          */
         contains(x: number, y: number, ctype: CoordType): boolean;
 
@@ -5749,12 +6079,14 @@ export namespace Atspi {
          * @param y a `gint` specifying the y coordinate of the point in question.
          * @param ctype the coordinate system of the point (`x`, `y`)         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns a pointer to an          {@link Atspi.Accessible} child of the specified component which          contains the point (`x`, `y`), or NULL if no child contains          the point.
+         * @throws GLib.Error
          */
         get_accessible_at_point(x: number, y: number, ctype: CoordType): Accessible | null;
 
         /**
          * Gets the opacity/alpha value of a component, if alpha blending is in use.
          * @returns the opacity value of a component, as a `gdouble` between 0.0 and 1.0.
+         * @throws GLib.Error
          */
         get_alpha(): number;
 
@@ -5764,6 +6096,7 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns An {@link Atspi.Rect} giving the accessible's extents.
+         * @throws GLib.Error
          */
         get_extents(ctype: CoordType): Rect;
 
@@ -5771,6 +6104,7 @@ export namespace Atspi {
          * Queries which layer the component is painted into, to help determine its
          *      visibility in terms of stacking order.
          * @returns the {@link Atspi.ComponentLayer} into which this component is painted.
+         * @throws GLib.Error
          */
         get_layer(): ComponentLayer;
 
@@ -5778,6 +6112,7 @@ export namespace Atspi {
          * Queries the z stacking order of a component which is in the MDI or window
          *       layer. (Bigger z-order numbers mean nearer the top)
          * @returns a `gshort` indicating the stacking order of the component       in the MDI layer, or -1 if the component is not in the MDI layer.
+         * @throws GLib.Error
          */
         get_mdi_z_order(): number;
 
@@ -5787,6 +6122,7 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns An {@link Atspi.Point} giving the `obj`'s position.
+         * @throws GLib.Error
          */
         get_position(ctype: CoordType): Point;
 
@@ -5795,6 +6131,7 @@ export namespace Atspi {
          * The returned values are meaningful only if the Component has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns An {@link Atspi.Point} giving the `obj`'s size.
+         * @throws GLib.Error
          */
         get_size(): Point;
 
@@ -5802,6 +6139,7 @@ export namespace Atspi {
          * Attempts to set the keyboard input focus to the specified
          *         {@link Atspi.Component}.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         grab_focus(): boolean;
 
@@ -5810,6 +6148,7 @@ export namespace Atspi {
          * visible on the screen.
          * @param type a {@link Atspi.ScrollType} indicating where the object should be placed on the        screen.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_to(type: ScrollType): boolean;
 
@@ -5820,6 +6159,7 @@ export namespace Atspi {
          * @param x the x coordinate of the point to reach
          * @param y the y coordinate of the point to reach
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_to_point(coords: CoordType, x: number, y: number): boolean;
 
@@ -5831,6 +6171,7 @@ export namespace Atspi {
          * @param height the height to which the component should be resized.
          * @param ctype the coordinate system in which the position is specified.         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns `TRUE` if successful; `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_extents(x: number, y: number, width: number, height: number, ctype: CoordType): boolean;
 
@@ -5840,6 +6181,7 @@ export namespace Atspi {
          * @param y the new vertical position to which the component should be moved.
          * @param ctype the coordinate system in which the position is specified.         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns `TRUE` if successful; `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_position(x: number, y: number, ctype: CoordType): boolean;
 
@@ -5848,6 +6190,7 @@ export namespace Atspi {
          * @param width the width to which the component should be resized.
          * @param height the height to which the component should be resized.
          * @returns `TRUE` if successful; `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_size(width: number, height: number): boolean;
     }
@@ -5877,6 +6220,8 @@ export namespace Atspi {
          * Gets the value of a single attribute, if specified for the document as a whole.
          * @param attribute a string indicating the name of a specific attribute.
          * @returns a string corresponding to the value of the specified attribute, or an empty string if the attribute is unspecified for the object.
+         * @deprecated since 2.10: Use atspi_document_get_document_attribute_value instead.
+         * @throws GLib.Error
          */
         get_document_attribute_value(attribute: string): string;
 
@@ -5884,12 +6229,15 @@ export namespace Atspi {
          * Gets all constant attributes for the document as a whole. For attributes
          * that change within the document content, see `atspi_text_get_attribute_run` instead.
          * @returns a {@link GLib.HashTable}          containing the constant attributes of the document, as name-value pairs.
+         * @deprecated since 2.10: Use atspi_document_get_document_attributes instead.
+         * @throws GLib.Error
          */
         get_document_attributes(): { [key: string]: string };
 
         /**
          * Gets the current page number of an `AccessibleDocument` object.
          * @returns a `gint` indicating the current page number in the `AccessibleDocument` object.
+         * @throws GLib.Error
          */
         get_current_page_number(): number;
 
@@ -5897,18 +6245,22 @@ export namespace Atspi {
          * Gets the locale associated with the document's content,
          * e.g. the locale for LOCALE_TYPE_MESSAGES.
          * @returns a string compliant with the POSIX standard for locale description.
+         * @throws GLib.Error
          */
         get_locale(): string;
 
         /**
          * Gets the page count of an `AccessibleDocument` object.
          * @returns a `gint` indicating the page count of an `AccessibleDocument` object.
+         * @throws GLib.Error
          */
         get_page_count(): number;
 
         /**
          * Returns an array of AtspiTextSelections within this document.
          * @returns a GArray of AtspiTextSelection structures representing the selection.
+         * @since 2.52
+         * @throws GLib.Error
          */
         get_text_selections(): TextSelection[];
 
@@ -5920,6 +6272,8 @@ export namespace Atspi {
          * FALSE will be returned.
          * @param selections a GArray of AtspiTextSelections              to be selected.
          * @returns TRUE if the selection was made successfully; FALSE otherwise.
+         * @since 2.52
+         * @throws GLib.Error
          */
         set_text_selections(selections: TextSelection[]): boolean;
     }
@@ -5952,6 +6306,7 @@ export namespace Atspi {
          * @param start_pos a `gint` indicating the starting character offset       of the text to copy.
          * @param end_pos a `gint` indicating the offset of the first character       past the end of the text section to be copied.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         copy_text(start_pos: number, end_pos: number): boolean;
 
@@ -5963,6 +6318,7 @@ export namespace Atspi {
          * @param start_pos a `gint` indicating the starting character offset       of the text to cut.
          * @param end_pos a `gint` indicating the offset of the first character       past the end of the text section to be cut.
          * @returns `TRUE` if operation was successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         cut_text(start_pos: number, end_pos: number): boolean;
 
@@ -5974,6 +6330,7 @@ export namespace Atspi {
          * @param start_pos a `gint` indicating the starting character offset       of the text to delete.
          * @param end_pos a `gint` indicating the offset of the first character       past the end of the text section to be deleted.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         delete_text(start_pos: number, end_pos: number): boolean;
 
@@ -5986,6 +6343,7 @@ export namespace Atspi {
          * @param text a string representing the text to insert, in UTF-8 encoding.
          * @param length the number of characters of text to insert, in bytes. If the byte count of text is less than or equal to length, the entire contents of text will be inserted.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         insert_text(position: number, text: string, length: number): boolean;
 
@@ -5996,6 +6354,7 @@ export namespace Atspi {
          *       variable-width encoding.
          * @param position a `gint` indicating the character offset at which to insert       the new text.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         paste_text(position: number): boolean;
 
@@ -6003,6 +6362,7 @@ export namespace Atspi {
          * Replace the entire text contents of an {@link Atspi.EditableText} object.
          * @param new_contents a character string, encoded in UTF-8, which is to      become the new text contents of the {@link Atspi.EditableText} object.
          * @returns `TRUE` if the operation was successful, otherwise `FALSE`.
+         * @throws GLib.Error
          */
         set_text_contents(new_contents: string): boolean;
     }
@@ -6040,6 +6400,7 @@ export namespace Atspi {
          * Gets the {@link Atspi.Hyperlink} object at a specified index.
          * @param link_index a (zero-index) `gint` indicating which hyperlink to query.
          * @returns the {@link Atspi.Hyperlink} object          specified by `link_index`.
+         * @throws GLib.Error
          */
         get_link(link_index: number): Hyperlink | null;
 
@@ -6048,6 +6409,7 @@ export namespace Atspi {
          *        character offset.
          * @param character_offset a `gint` specifying the character offset to query.
          * @returns the linkIndex of the {@link Atspi.Hyperlink} active at        character offset `character_offset`, or -1 if there is        no hyperlink at the specified character offset.
+         * @throws GLib.Error
          */
         get_link_index(character_offset: number): number;
 
@@ -6055,6 +6417,7 @@ export namespace Atspi {
          * Gets the total number of {@link Atspi.Hyperlink} objects that an
          * {@link Atspi.Hypertext} implementor has.
          * @returns a `gint` indicating the number of {@link Atspi.Hyperlink} objects        of the {@link Atspi.Hypertext} implementor, or -1 if        the number cannot be determined (for example, if the        {@link Atspi.Hypertext} object is so large that it is not        all currently in the memory cache).
+         * @throws GLib.Error
          */
         get_n_links(): number;
     }
@@ -6083,6 +6446,7 @@ export namespace Atspi {
         /**
          * Gets the description of the image displayed in an {@link Atspi.Image} object.
          * @returns a UTF-8 string describing the image.
+         * @throws GLib.Error
          */
         get_image_description(): string;
 
@@ -6093,12 +6457,14 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns a pointer to an {@link Atspi.Rect} corresponding to the image's bounding box. The minimum x and y coordinates, width, and height are specified.
+         * @throws GLib.Error
          */
         get_image_extents(ctype: CoordType): Rect;
 
         /**
          * Gets the locale associated with an image and its textual representation.
          * @returns A POSIX LC_MESSAGES-style locale value for image description and text.
+         * @throws GLib.Error
          */
         get_image_locale(): string;
 
@@ -6109,6 +6475,7 @@ export namespace Atspi {
          * STATE_VISIBLE and STATE_SHOWING.
          * @param ctype the desired coordinate system into which to return the results,         (e.g. ATSPI_COORD_TYPE_WINDOW, ATSPI_COORD_TYPE_SCREEN).
          * @returns a pointer to an {@link Atspi.Point} where x and y correspond to the minimum coordinates of the displayed image.
+         * @throws GLib.Error
          */
         get_image_position(ctype: CoordType): Point;
 
@@ -6117,6 +6484,7 @@ export namespace Atspi {
          * The returned values are meaningful only if the Image has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns a pointer to an {@link Atspi.Point} where x corresponds to the image's width and y corresponds to the image's height.
+         * @throws GLib.Error
          */
         get_image_size(): Point;
     }
@@ -6154,6 +6522,7 @@ export namespace Atspi {
          * Clears the current selection, removing all selected children from the
          *       specified {@link Atspi.Selection} implementor's selection list.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         clear_selection(): boolean;
 
@@ -6165,6 +6534,7 @@ export namespace Atspi {
          * See `atspi_selection_deselect_selected_child`
          * @param child_index a `gint` indicating which of the children              of the {@link Atspi.Accessible} is to be de-selected.
          * @returns `TRUE` if the child was successfully deselected, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         deselect_child(child_index: number): boolean;
 
@@ -6176,6 +6546,7 @@ export namespace Atspi {
          *          are asymmetric.
          * @param selected_child_index a `gint` indicating which of the selected children              of the {@link Atspi.Accessible} is to be selected.
          * @returns `TRUE` if the child was successfully deselected, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         deselect_selected_child(selected_child_index: number): boolean;
 
@@ -6183,6 +6554,7 @@ export namespace Atspi {
          * Gets the number of children of an {@link Atspi.Selection} implementor which are
          *        currently selected.
          * @returns a `gint` indicating the number of {@link Atspi.Accessible} children        of the {@link Atspi.Selection} implementor which are currently selected.
+         * @throws GLib.Error
          */
         get_n_selected_children(): number;
 
@@ -6197,6 +6569,7 @@ export namespace Atspi {
          *      and `atspi_selection_get_n_selected_children` - 1, inclusive.
          * @param selected_child_index a `gint` indicating which of the selected      children is specified.
          * @returns a pointer to a selected {@link Atspi.Accessible} child          object, specified by `selected_child_index`.
+         * @throws GLib.Error
          */
         get_selected_child(selected_child_index: number): Accessible;
 
@@ -6206,6 +6579,7 @@ export namespace Atspi {
          *        standard {@link Atspi.Accessible} container's list of children.
          * @param child_index an index into the {@link Atspi.Selection}'s list of children.
          * @returns `TRUE` if the specified child is currently selected,          `FALSE` otherwise.
+         * @throws GLib.Error
          */
         is_child_selected(child_index: number): boolean;
 
@@ -6213,6 +6587,7 @@ export namespace Atspi {
          * Attempts to select all of the children of an {@link Atspi.Selection} implementor.
          * Not all {@link Atspi.Selection} implementors support this operation.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         select_all(): boolean;
 
@@ -6223,6 +6598,7 @@ export namespace Atspi {
          *         selection.
          * @param child_index a `gint` indicating which child of the {@link Atspi.Accessible}              is to be selected.
          * @returns `TRUE` if the child was successfully selected, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         select_child(child_index: number): boolean;
     }
@@ -6264,6 +6640,7 @@ export namespace Atspi {
          * Not all tables support column selection.
          * @param column the zero-indexed column number of the column being selected.
          * @returns `TRUE` if the specified column was successfully selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         add_column_selection(column: number): boolean;
 
@@ -6272,6 +6649,7 @@ export namespace Atspi {
          * Not all tables support row selection.
          * @param row the zero-indexed row number of the row being selected.
          * @returns `TRUE` if the specified row was successfully selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         add_row_selection(row: number): boolean;
 
@@ -6282,12 +6660,14 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns an {@link Atspi.Accessible} object representing the          specified table cell.
+         * @throws GLib.Error
          */
         get_accessible_at(row: number, column: number): Accessible;
 
         /**
          * Gets an accessible representation of the caption for an {@link Atspi.Table}.
          * @returns an {@link Atspi.Accessible} object that serves as the table's caption.
+         * @throws GLib.Error
          */
         get_caption(): Accessible;
 
@@ -6298,6 +6678,7 @@ export namespace Atspi {
          * `see` `atspi_table_get_index_at`, `atspi_table_get_row_at_index`
          * @param index the specified child index, zero-indexed.
          * @returns a `gint` indicating the first column spanned by the child of a          table, at the specified 1-D (zero-offset) `index`.
+         * @throws GLib.Error
          */
         get_column_at_index(index: number): number;
 
@@ -6306,6 +6687,7 @@ export namespace Atspi {
          * `atspi_table_get_column_header`, which returns an {@link Atspi.Accessible}.
          * @param column the specified table column, zero-indexed.
          * @returns a UTF-8 string describing the specified table column, if available.
+         * @throws GLib.Error
          */
         get_column_description(column: number): string;
 
@@ -6318,6 +6700,7 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns a `gint` indicating the number of columns spanned by the specified cell.
+         * @throws GLib.Error
          */
         get_column_extent_at(row: number, column: number): number;
 
@@ -6327,6 +6710,7 @@ export namespace Atspi {
          * returns a string.
          * @param column the specified table column, zero-indexed.
          * @returns an {@link Atspi.Accessible} representation of the          specified table column, if available.
+         * @throws GLib.Error
          */
         get_column_header(column: number): Accessible;
 
@@ -6339,6 +6723,7 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns a `gint` which serves as the index of a specified cell in the          table, in a form usable by `atspi_get_child_at_index`.
+         * @throws GLib.Error
          */
         get_index_at(row: number, column: number): number;
 
@@ -6347,6 +6732,7 @@ export namespace Atspi {
          *        exclusive of any columns that are programmatically hidden, but inclusive
          *        of columns that may be outside of the current scrolling window or viewport.
          * @returns a `gint` indicating the number of columns in the table.
+         * @throws GLib.Error
          */
         get_n_columns(): number;
 
@@ -6355,6 +6741,7 @@ export namespace Atspi {
          *        exclusive of any rows that are programmatically hidden, but inclusive
          *        of rows that may be outside of the current scrolling window or viewport.
          * @returns a `gint` indicating the number of rows in the table.
+         * @throws GLib.Error
          */
         get_n_rows(): number;
 
@@ -6362,6 +6749,7 @@ export namespace Atspi {
          * Queries a table to find out how many columns are currently selected.
          * Not all tables support column selection.
          * @returns a `gint` indicating the number of columns currently selected.
+         * @throws GLib.Error
          */
         get_n_selected_columns(): number;
 
@@ -6369,6 +6757,7 @@ export namespace Atspi {
          * Query a table to find out how many rows are currently selected.
          * Not all tables support row selection.
          * @returns a `gint` indicating the number of rows currently selected.
+         * @throws GLib.Error
          */
         get_n_selected_rows(): number;
 
@@ -6379,6 +6768,7 @@ export namespace Atspi {
          * `see` `atspi_table_get_index_at`, `atspi_table_get_column_at_index`
          * @param index the specified child index, zero-indexed.
          * @returns a `gint` indicating the first row spanned by the child of a          table, at the specified 1-D (zero-offset) `index`.
+         * @throws GLib.Error
          */
         get_row_at_index(index: number): number;
 
@@ -6406,6 +6796,7 @@ export namespace Atspi {
          * `TRUE`, respectively.
          * @param index the index of the {@link Atspi.Table} child whose row/column extents are requested.
          * @returns `TRUE` if the index is associated with a valid table cell, `FALSE` if the index does not correspond to a cell.  If `FALSE` is returned, the values of the out parameters are undefined.
+         * @throws GLib.Error
          */
         get_row_column_extents_at_index(index: number): [boolean, number, number, number, number, boolean];
 
@@ -6414,6 +6805,7 @@ export namespace Atspi {
          * `atspi_table_get_row_header`, which returns an {@link Atspi.Accessible}.
          * @param row the specified table row, zero-indexed.
          * @returns a UTF-8 string describing the specified table row, if available.
+         * @throws GLib.Error
          */
         get_row_description(row: number): string;
 
@@ -6426,6 +6818,7 @@ export namespace Atspi {
          * @param row the specified table row, zero-indexed.
          * @param column the specified table column, zero-indexed.
          * @returns a `gint` indicating the number of rows spanned by the specified cell.
+         * @throws GLib.Error
          */
         get_row_extent_at(row: number, column: number): number;
 
@@ -6434,6 +6827,7 @@ export namespace Atspi {
          * `atspi_table_get_row_description`, which returns a string.
          * @param row the specified table row, zero-indexed.
          * @returns an {@link Atspi.Accessible} representation of the specified          table row, if available.
+         * @throws GLib.Error
          */
         get_row_header(row: number): Accessible;
 
@@ -6441,18 +6835,21 @@ export namespace Atspi {
          * Queries a table for a list of indices of columns which are currently
          * selected.
          * @returns an array of `gint` values,          specifying which columns are currently selected.
+         * @throws GLib.Error
          */
         get_selected_columns(): number[];
 
         /**
          * Queries a table for a list of indices of rows which are currently selected.
          * @returns an array of `gint` values,          specifying which rows are currently selected.
+         * @throws GLib.Error
          */
         get_selected_rows(): number[];
 
         /**
          * Gets an accessible object which summarizes the contents of an {@link Atspi.Table}.
          * @returns an {@link Atspi.Accessible} object that serves as the          table's summary (often a reduced {@link Atspi.Table}).
+         * @throws GLib.Error
          */
         get_summary(): Accessible;
 
@@ -6461,6 +6858,7 @@ export namespace Atspi {
          * Not all tables support column selection.
          * @param column the zero-indexed column number of the column being queried.
          * @returns `TRUE` if the specified column is currently selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         is_column_selected(column: number): boolean;
 
@@ -6469,6 +6867,7 @@ export namespace Atspi {
          * row selection.
          * @param row the zero-indexed row number of the row being queried.
          * @returns `TRUE` if the specified row is currently selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         is_row_selected(row: number): boolean;
 
@@ -6477,6 +6876,7 @@ export namespace Atspi {
          * @param row the zero-indexed row of the cell being queried.
          * @param column the zero-indexed column of the cell being queried.
          * @returns `TRUE` if the specified cell is currently selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         is_selected(row: number, column: number): boolean;
 
@@ -6486,6 +6886,7 @@ export namespace Atspi {
          * Not all tables support column selection.
          * @param column the zero-indexed column number of the column being de-selected.
          * @returns `TRUE` if the specified column was successfully de-selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         remove_column_selection(column: number): boolean;
 
@@ -6494,6 +6895,7 @@ export namespace Atspi {
          * Not all tables support row selection.
          * @param row the zero-indexed number of the row being de-selected.
          * @returns `TRUE` if the specified row was successfully de-selected, `FALSE` if not.
+         * @throws GLib.Error
          */
         remove_row_selection(row: number): boolean;
     }
@@ -6522,9 +6924,13 @@ export namespace Atspi {
         /**
          * Returns the column headers as an array of cell accessibles.
          * @returns a GPtrArray of AtspiAccessibles representing the column header cells.
+         * @throws GLib.Error
          */
         get_column_header_cells(): Accessible[];
 
+        /**
+         * @throws GLib.Error
+         */
         get_column_index(): number;
 
         /**
@@ -6532,12 +6938,14 @@ export namespace Atspi {
          * The returned values are meaningful only if the table cell has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns a gint representing the number of columns occupied by this cell, or 0 if the cell does not implement this method.
+         * @throws GLib.Error
          */
         get_column_span(): number;
 
         /**
          * Retrieves the tabular position of this cell.
          * @returns TRUE if successful, FALSE otherwise.
+         * @throws GLib.Error
          */
         get_position(): [number, number, number];
 
@@ -6545,12 +6953,14 @@ export namespace Atspi {
          * Gets the row and column indexes and extents of this cell accessible.
          * The returned values are meaningful only if the table cell has both
          * STATE_VISIBLE and STATE_SHOWING.
+         * @throws GLib.Error
          */
         get_row_column_span(): [number, number, number, number];
 
         /**
          * Returns the row headers as an array of cell accessibles.
          * @returns a GPtrArray of AtspiAccessibles representing the row header cells.
+         * @throws GLib.Error
          */
         get_row_header_cells(): Accessible[];
 
@@ -6559,12 +6969,14 @@ export namespace Atspi {
          * The returned values are meaningful only if the table cell has both
          * STATE_VISIBLE and STATE_SHOWING.
          * @returns a gint representing the number of rows occupied by this cell, or 0 if the cell does not implement this method.
+         * @throws GLib.Error
          */
         get_row_span(): number;
 
         /**
          * Returns a reference to the accessible of the containing table.
          * @returns the AtspiAccessible for the containing table.
+         * @throws GLib.Error
          */
         get_table(): Accessible;
     }
@@ -6604,6 +7016,7 @@ export namespace Atspi {
          * @param start_offset the starting offset of the desired new selection.
          * @param end_offset the offset of the first character after the new selection.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         add_selection(start_offset: number, end_offset: number): boolean;
 
@@ -6613,6 +7026,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the attribute        search is based.
          * @param include_defaults a #bool that, when set as `FALSE`, indicates the call should only return those attributes which are explicitly set on the current attribute run, omitting any attributes which are inherited from the default values.
          * @returns a {@link GLib.HashTable} with attributes          defined at the indicated offset, optionally including the 'default' ones.
+         * @throws GLib.Error
          */
         get_attribute_run(offset: number, include_defaults: boolean): [{ [key: string]: string }, number, number];
 
@@ -6621,6 +7035,8 @@ export namespace Atspi {
          * @param offset The character offset at which to query the attribute.
          * @param attribute_name The attribute to query.
          * @returns the value of a given attribute at the given offset, or `null` if not present.
+         * @deprecated since 2.10: Use atspi_text_get_text_attribute_value instead.
+         * @throws GLib.Error
          */
         get_text_attribute_value(offset: number, attribute_name: string): string | null;
 
@@ -6630,6 +7046,8 @@ export namespace Atspi {
          * where possible.
          * @param offset a `gint` indicating the offset from which the attribute        search is based.
          * @returns a {@link GLib.HashTable} describing the attributes at the given character offset.
+         * @deprecated since 2.10: Use atspi_text_get_text_attributes instead.
+         * @throws GLib.Error
          */
         get_text_attributes(offset: number): [{ [key: string]: string }, number, number];
 
@@ -6644,12 +7062,14 @@ export namespace Atspi {
          * @param clipTypeX an {@link Atspi.TextClipType} indicating how to treat characters that        intersect the bounding box's x extents.
          * @param clipTypeY an {@link Atspi.TextClipType} indicating how to treat characters that        intersect the bounding box's y extents.
          * @returns a null-terminated list of          pointers to {@link Atspi.TextRange} structs detailing the bounded text.
+         * @throws GLib.Error
          */
         get_bounded_ranges(x: number, y: number, width: number, height: number, type: CoordType, clipTypeX: TextClipType, clipTypeY: TextClipType): TextRange[];
 
         /**
          * Gets the current offset of the text caret in an {@link Atspi.Text} object.
          * @returns a `gint` indicating the current position of the text caret.
+         * @throws GLib.Error
          */
         get_caret_offset(): number;
 
@@ -6657,12 +7077,14 @@ export namespace Atspi {
          * Gets the character at a given offset for an {@link Atspi.Text} object.
          * @param offset a `gint` indicating the text offset where the desired          character is located.
          * @returns a `guint`  representing the        UCS-4 unicode code point of the given character, or        0xFFFFFFFF if the character in question cannot be represented        in the UCS-4 encoding.
+         * @throws GLib.Error
          */
         get_character_at_offset(offset: number): number;
 
         /**
          * Gets the character count of an `AccessibleText` object.
          * @returns a `gint` indicating the total number of              characters in the `AccessibleText` object.
+         * @throws GLib.Error
          */
         get_character_count(): number;
 
@@ -6674,6 +7096,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset of the text character for        whom boundary information is requested.
          * @param type an `AccessibleCoordType` indicating the coordinate system to use        for the returned values.
          * @returns An {@link Atspi.Rect} specifying the position and size of the character.
+         * @throws GLib.Error
          */
         get_character_extents(offset: number, type: CoordType): Rect;
 
@@ -6684,6 +7107,7 @@ export namespace Atspi {
          * the attributes reported by `atspi_text_get_attributes`
          * describes the entire set of text attributes over a range.
          * @returns a {@link GLib.HashTable}          containing the default attributes applied to a text object,          (exclusive of explicitly-set attributes), encoded as UTF-8.
+         * @throws GLib.Error
          */
         get_default_attributes(): { [key: string]: string };
 
@@ -6691,6 +7115,7 @@ export namespace Atspi {
          * Gets the number of active non-contiguous selections for an
          *          {@link Atspi.Text} object.
          * @returns a `gint` indicating the current          number of non-contiguous text selections active          within an {@link Atspi.Text} object.
+         * @throws GLib.Error
          */
         get_n_selections(): number;
 
@@ -6700,6 +7125,7 @@ export namespace Atspi {
          * @param y the y coordinate of the point to be queried.
          * @param type an {@link Atspi.CoordType} indicating the coordinate system in which       the values should be returned.
          * @returns the offset (as a `gint`) at the point (`x`, `y`)       in the specified coordinate system.
+         * @throws GLib.Error
          */
         get_offset_at_point(x: number, y: number, type: CoordType): number;
 
@@ -6711,6 +7137,7 @@ export namespace Atspi {
          * @param end_offset a `gint` indicating the offset of the text character        after the last character for whom boundary information is requested.
          * @param type an {@link Atspi.CoordType} indicating the coordinate system to use        for the returned values.
          * @returns An {@link Atspi.Rect} giving the position and size of the specified range          of text.
+         * @throws GLib.Error
          */
         get_range_extents(start_offset: number, end_offset: number, type: CoordType): Rect;
 
@@ -6718,6 +7145,7 @@ export namespace Atspi {
          * Gets the bounds of the `selection_num`-th active text selection for an
          *         {@link Atspi.Text} object.
          * @param selection_num a `gint` indicating which selection to query.
+         * @throws GLib.Error
          */
         get_selection(selection_num: number): Range;
 
@@ -6755,6 +7183,8 @@ export namespace Atspi {
          * @param offset position
          * @param granularity An {@link Atspi.TextGranularity}
          * @returns a newly allocated string containing the text at the `offset` bounded   by the specified `granularity`. Use `g_free()` to free the returned string.   Returns `null` if the offset is invalid or no implementation is available.
+         * @since 2.9.90
+         * @throws GLib.Error
          */
         get_string_at_offset(offset: number, granularity: TextGranularity): TextRange;
 
@@ -6765,6 +7195,7 @@ export namespace Atspi {
          * @param start_offset a `gint` indicating the start of the desired text range.
          * @param end_offset a `gint` indicating the first character past the desired range.
          * @returns a text string containing characters from `start_offset`          to `end_offset`-1, inclusive, encoded as UTF-8.
+         * @throws GLib.Error
          */
         get_text(start_offset: number, end_offset: number): string;
 
@@ -6774,6 +7205,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the delimiter        search is based.
          * @param type an {@link Atspi.TextBoundaryType} indicating whether the desired       text string is a word, sentence, line, or attribute run.
          * @returns an {@link Atspi.TextRange} containing a UTF-8 string representing the          delimited text, both of whose delimiting boundaries are after or          inclusive of the current offset, or an empty string if no such          text exists.
+         * @throws GLib.Error
          */
         get_text_after_offset(offset: number, type: TextBoundaryType): TextRange;
 
@@ -6783,6 +7215,8 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the delimiter        search is based.
          * @param type an {@link Atspi.TextBoundaryType} indicating whether the desired       text string is a word, sentence, line, or attribute run.
          * @returns an {@link Atspi.TextRange} containing a UTF-8 string representing the          delimited text, whose delimiting boundaries bracket the          current offset, or an empty string if no such text exists.
+         * @deprecated since 2.10: Use atspi_text_get_string_at_offset.
+         * @throws GLib.Error
          */
         get_text_at_offset(offset: number, type: TextBoundaryType): TextRange;
 
@@ -6792,6 +7226,7 @@ export namespace Atspi {
          * @param offset a `gint` indicating the offset from which the delimiter        search is based.
          * @param type an {@link Atspi.TextBoundaryType} indicating whether the desired       text string is a word, sentence, line, or attribute run.
          * @returns an {@link Atspi.TextRange} containing a UTF-8 string representing the          delimited text, both of whose delimiting boundaries are before the          current offset, or an empty string if no such text exists.
+         * @throws GLib.Error
          */
         get_text_before_offset(offset: number, type: TextBoundaryType): TextRange;
 
@@ -6799,6 +7234,7 @@ export namespace Atspi {
          * De-selects a text selection.
          * @param selection_num a `gint` indicating which text selection to remove.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         remove_selection(selection_num: number): boolean;
 
@@ -6809,6 +7245,7 @@ export namespace Atspi {
          * @param end_offset a `gint` indicating the first character past the desired range.
          * @param type a {@link Atspi.ScrollType} indicating where the object should be placed on the        screen.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_substring_to(start_offset: number, end_offset: number, type: ScrollType): boolean;
 
@@ -6821,6 +7258,7 @@ export namespace Atspi {
          * @param x the x coordinate of the point to reach
          * @param y the y coordinate of the point to reach
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         scroll_substring_to_point(start_offset: number, end_offset: number, coords: CoordType, x: number, y: number): boolean;
 
@@ -6828,6 +7266,7 @@ export namespace Atspi {
          * Moves the text caret to a given position.
          * @param new_offset the offset to which the text caret is to be moved.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_caret_offset(new_offset: number): boolean;
 
@@ -6837,6 +7276,7 @@ export namespace Atspi {
          * @param start_offset a `gint` indicating the new starting offset for the selection.
          * @param end_offset a `gint` indicating the desired new offset of the first character             after the selection.
          * @returns `TRUE` if successful, `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_selection(selection_num: number, start_offset: number, end_offset: number): boolean;
     }
@@ -6872,24 +7312,28 @@ export namespace Atspi {
         /**
          * Gets the current value for an {@link Atspi.Value}.
          * @returns the current value for this object.
+         * @throws GLib.Error
          */
         get_current_value(): number;
 
         /**
          * Gets the maximum allowed value for an {@link Atspi.Value}.
          * @returns the maximum allowed value for this object.
+         * @throws GLib.Error
          */
         get_maximum_value(): number;
 
         /**
          * Gets the minimum increment by which an {@link Atspi.Value} can be adjusted.
          * @returns the minimum increment by which the value may be changed, or zero if the minimum increment cannot be determined.
+         * @throws GLib.Error
          */
         get_minimum_increment(): number;
 
         /**
          * Gets the minimum allowed value for an {@link Atspi.Value}.
          * @returns the minimum allowed value for this object.
+         * @throws GLib.Error
          */
         get_minimum_value(): number;
 
@@ -6897,6 +7341,8 @@ export namespace Atspi {
          * Gets the human readable text alternative associated with the value.
          * `text` is a newly created string, that must be freed by the
          * caller. Can be NULL if no descriptor is available.
+         * @since 2.46
+         * @throws GLib.Error
          */
         get_text(): string;
 
@@ -6904,6 +7350,7 @@ export namespace Atspi {
          * Sets the current value of an {@link Atspi.Value}.
          * @param new_value a `gdouble` value which is the desired new value of the object.
          * @returns `TRUE` if the value could be assigned the specified value,          `FALSE` otherwise.
+         * @throws GLib.Error
          */
         set_current_value(new_value: number): boolean;
     }

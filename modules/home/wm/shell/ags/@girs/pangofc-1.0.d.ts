@@ -51,6 +51,7 @@ export namespace PangoFc {
      * fontconfig that have that.
      * @since 1.34
      * @deprecated since 1.56: Use FC_FONT_FEATURES
+     * @default fontfeatures
      */
     const FONT_FEATURES: string;
 
@@ -66,6 +67,7 @@ export namespace PangoFc {
      * This is equivalent to FC_FONT_VARIATIONS in versions of
      * fontconfig that have that.
      * @deprecated since 1.56: Use FC_FONT_VARIATIONS
+     * @default fontvariations
      */
     const FONT_VARIATIONS: string;
 
@@ -80,6 +82,7 @@ export namespace PangoFc {
      * rules to choose different fonts for horizontal and vertical
      * writing directions.
      * @since 1.20
+     * @default pangogravity
      */
     const GRAVITY: string;
 
@@ -96,6 +99,7 @@ export namespace PangoFc {
      * fontconfig that have that.
      * @since 1.24
      * @deprecated since 1.56: Use FC_PRGNAME
+     * @default prgname
      */
     const PRGNAME: string;
 
@@ -109,6 +113,7 @@ export namespace PangoFc {
      * pango versions (or only pango-using applications, or only
      * non-pango-using applications).
      * @since 1.20
+     * @default pangoversion
      */
     const VERSION: string;
 
@@ -180,6 +185,7 @@ export namespace PangoFc {
          * internal value stored by the {@link PangoFc.Decoder} and must not
          * be modified or freed.
          * @param fcfont the {@link PangoFc.Font} to query.
+         * @since 1.6
          * @virtual
          */
         vfunc_get_charset(fcfont: Font): fontconfig.CharSet;
@@ -194,6 +200,7 @@ export namespace PangoFc {
          * in the fonts character map table.)
          * @param fcfont a {@link PangoFc.Font} to query.
          * @param wc the Unicode code point to convert to a single {@link Pango.Glyph}.
+         * @since 1.6
          * @virtual
          */
         vfunc_get_glyph(fcfont: Font, wc: number): Pango.Glyph;
@@ -208,6 +215,7 @@ export namespace PangoFc {
          * be modified or freed.
          * @param fcfont the {@link PangoFc.Font} to query.
          * @returns the `FcCharset` for `fcfont`; must not   be modified or freed.
+         * @since 1.6
          */
         get_charset(fcfont: Font): fontconfig.CharSet;
 
@@ -222,6 +230,7 @@ export namespace PangoFc {
          * @param fcfont a {@link PangoFc.Font} to query.
          * @param wc the Unicode code point to convert to a single {@link Pango.Glyph}.
          * @returns the glyph index, or 0 if the glyph isn't covered by the font.
+         * @since 1.6
          */
         get_glyph(fcfont: Font, wc: number): Pango.Glyph;
     }
@@ -315,6 +324,7 @@ export namespace PangoFc {
          * so will be ignored.
          * @param pattern a {@link fontconfig.Pattern}
          * @param include_size if `true`, the pattern will include the size from   the `pattern`; otherwise the resulting pattern will be unsized.   (only `FC_SIZE` is examined, not `FC_PIXEL_SIZE`)
+         * @since 1.4
          */
         static description_from_pattern(pattern: fontconfig.Pattern, include_size: boolean): Pango.FontDescription;
 
@@ -327,6 +337,7 @@ export namespace PangoFc {
          * the glyph, use {@link PangoFc.Font.has_char}.
          * @param wc Unicode character to look up
          * @returns the glyph index, or 0, if the Unicode   character doesn't exist in the font.
+         * @since 1.4
          */
         get_glyph(wc: string): number;
 
@@ -338,6 +349,8 @@ export namespace PangoFc {
          * The returned array is only valid as long as the font
          * and its fontmap are valid.
          * @returns a   `null`-terminated array of {@link Pango.Language}*
+         * @since 1.48
+         * @deprecated since 1.50: Use `pango_font_get_language()`
          */
         get_languages(): Pango.Language[] | null;
 
@@ -348,6 +361,7 @@ export namespace PangoFc {
          * Use PANGO_GET_UNKNOWN_GLYPH() instead.
          * @param wc the Unicode character for which a glyph is needed.
          * @returns a glyph index into `font`.
+         * @since 1.4
          */
         get_unknown_glyph(wc: string): Pango.Glyph;
 
@@ -355,6 +369,8 @@ export namespace PangoFc {
          * Determines whether `font` has a glyph for the codepoint `wc`.
          * @param wc Unicode codepoint to look up
          * @returns `true` if `font` has the requested codepoint.
+         * @since 1.4
+         * @deprecated since 1.44: Use {@link Pango.Font.has_char}
          */
         has_char(wc: string): boolean;
 
@@ -364,12 +380,16 @@ export namespace PangoFc {
          * 
          * Since 1.44, it does nothing.
          * @param glyphs a {@link Pango.GlyphString}
+         * @since 1.4
+         * @deprecated since 1.32
          */
         kern_glyphs(glyphs: Pango.GlyphString): void;
 
         /**
          * Releases a font previously obtained with
          * {@link PangoFc.Font.lock_face}.
+         * @since 1.4
+         * @deprecated since 1.44: Use `pango_font_get_hb_font()` instead
          */
         unlock_face(): void;
     }
@@ -377,7 +397,7 @@ export namespace PangoFc {
 
     namespace FontMap {
         // Signal signatures
-        interface SignalSignatures extends Pango.FontMap.SignalSignatures {
+        interface SignalSignatures extends Pango.FontMap.SignalSignatures, Gio.ListModel.SignalSignatures {
             "notify::item-type": (pspec: GObject.ParamSpec) => void;
             "notify::n-items": (pspec: GObject.ParamSpec) => void;
         }
@@ -434,6 +454,7 @@ export namespace PangoFc {
          * output of the `default_substitute()` virtual function of the
          * font map, or if fontconfig has been reinitialized to new
          * configuration.
+         * @since 1.4
          */
         cache_clear(): void;
 
@@ -444,6 +465,7 @@ export namespace PangoFc {
          * This currently calls {@link PangoFc.FontMap.cache_clear} which
          * ensures that list of fonts, etc will be regenerated using the
          * updated configuration.
+         * @since 1.38
          */
         config_changed(): void;
 
@@ -455,6 +477,8 @@ export namespace PangoFc {
          * additional information needed for correct operation on the {@link Pango.Context}
          * after calling this function.
          * @returns a new {@link Pango.Context}
+         * @since 1.4
+         * @deprecated since 1.22: Use `pango_font_map_create_context()` instead.
          */
         create_context(): Pango.Context;
 
@@ -465,6 +489,7 @@ export namespace PangoFc {
          * {@link PangoFc.FontMap.add_decoder_find_func}.
          * @param pattern The {@link fontconfig.Pattern} to find the decoder for.
          * @returns a newly created {@link PangoFc.Decoder}   object or `null` if no decoder is set for `pattern`.
+         * @since 1.26
          */
         find_decoder(pattern: fontconfig.Pattern): Decoder | null;
 
@@ -476,6 +501,7 @@ export namespace PangoFc {
          * This function can be used to do things like set
          * hinting and antialiasing options.
          * @param func function to call to to do final config tweaking on {@link fontconfig.Pattern} objects
+         * @since 1.48
          */
         set_default_substitute(func: SubstituteFunc): void;
 
@@ -489,6 +515,7 @@ export namespace PangoFc {
          * windowing system for the font map exits. This function is only
          * intended to be called only for backend implementations deriving
          * from {@link PangoFc.FontMap}.
+         * @since 1.4
          */
         shutdown(): void;
 
@@ -499,6 +526,7 @@ export namespace PangoFc {
          * 
          * That is, if your substitution function will return different
          * results for the same input pattern, you must call this function.
+         * @since 1.48
          */
         substitute_changed(): void;
 
@@ -512,6 +540,7 @@ export namespace PangoFc {
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
          * @returns the {@link GObject.GType} of the items contained in `list`.
+         * @since 2.44
          */
         get_item_type(): GObject.GType;
 
@@ -522,6 +551,7 @@ export namespace PangoFc {
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
          * @returns the number of items in `list`.
+         * @since 2.44
          */
         get_n_items(): number;
 
@@ -540,6 +570,7 @@ export namespace PangoFc {
          * See also: `g_list_model_get_n_items()`
          * @param position the position of the item to fetch
          * @returns the object at `position`.
+         * @since 2.44
          */
         get_item(position: number): A | null;
 
@@ -567,6 +598,7 @@ export namespace PangoFc {
          * @param position the position at which `list` changed
          * @param removed the number of items removed
          * @param added the number of items added
+         * @since 2.44
          */
         items_changed(position: number, removed: number, added: number): void;
 
@@ -579,6 +611,7 @@ export namespace PangoFc {
          * 
          * The same {@link GObject.Object} instance may not appear more than once in a {@link Gio.ListModel}.
          * @param position the position of the item to fetch
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item(position: number): A | null;
@@ -592,6 +625,7 @@ export namespace PangoFc {
          * 
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item_type(): GObject.GType;
@@ -602,6 +636,7 @@ export namespace PangoFc {
          * Depending on the model implementation, calling this function may be
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_n_items(): number;

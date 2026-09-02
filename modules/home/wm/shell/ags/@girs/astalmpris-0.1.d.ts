@@ -38,9 +38,9 @@ export namespace AstalMpris {
      * @gir-type Enum
      */
     enum PlaybackStatus {
-        PLAYING,
-        PAUSED,
-        STOPPED,
+        PLAYING = 0,
+        PAUSED = 1,
+        STOPPED = 2,
     }
 
 
@@ -55,19 +55,19 @@ export namespace AstalMpris {
      * @gir-type Enum
      */
     enum Loop {
-        UNSUPPORTED,
+        UNSUPPORTED = 0,
         /**
          * The playback will stop when there are no more tracks to play.
          */
-        NONE,
+        NONE = 1,
         /**
          * The current track will start again from the begining once it has finished playing.
          */
-        TRACK,
+        TRACK = 2,
         /**
          * The playback loops through a list of tracks.
          */
-        PLAYLIST,
+        PLAYLIST = 3,
     }
 
 
@@ -82,24 +82,36 @@ export namespace AstalMpris {
      * @gir-type Enum
      */
     enum Shuffle {
-        UNSUPPORTED,
+        UNSUPPORTED = 0,
         /**
          * Playback is progressing through a playlist in some other order.
          */
-        ON,
+        ON = 1,
         /**
          * Playback is progressing linearly through a playlist.
          */
-        OFF,
+        OFF = 2,
     }
 
 
+    /**
+     * @default 0
+     */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 1
+     */
     const MINOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MICRO_VERSION: number;
 
+    /**
+     * @default 0.1.0
+     */
     const VERSION: string;
 
     /**
@@ -109,17 +121,17 @@ export namespace AstalMpris {
 
     namespace Mpris {
         // Signal signatures
-        interface SignalSignatures extends GObject.Object.SignalSignatures {
+        interface SignalSignatures extends GObject.Object.SignalSignatures, Gio.ListModel.SignalSignatures {
             /**
              * Emitted when a new mpris Player appears.
              * @signal
              */
-            "player-added": (arg0: Player) => void;
+            "player-added": (player: Player) => void;
             /**
              * Emitted when a Player disappears.
              * @signal
              */
-            "player-closed": (arg0: Player) => void;
+            "player-closed": (player: Player) => void;
             "notify::players": (pspec: GObject.ParamSpec) => void;
         }
 
@@ -189,6 +201,7 @@ export namespace AstalMpris {
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
          * @returns the {@link GObject.GType} of the items contained in `list`.
+         * @since 2.44
          */
         get_item_type(): GObject.GType;
 
@@ -199,6 +212,7 @@ export namespace AstalMpris {
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
          * @returns the number of items in `list`.
+         * @since 2.44
          */
         get_n_items(): number;
 
@@ -217,6 +231,7 @@ export namespace AstalMpris {
          * See also: `g_list_model_get_n_items()`
          * @param position the position of the item to fetch
          * @returns the object at `position`.
+         * @since 2.44
          */
         get_item(position: number): A | null;
 
@@ -244,6 +259,7 @@ export namespace AstalMpris {
          * @param position the position at which `list` changed
          * @param removed the number of items removed
          * @param added the number of items added
+         * @since 2.44
          */
         items_changed(position: number, removed: number, added: number): void;
 
@@ -256,6 +272,7 @@ export namespace AstalMpris {
          * 
          * The same {@link GObject.Object} instance may not appear more than once in a {@link Gio.ListModel}.
          * @param position the position of the item to fetch
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item(position: number): A | null;
@@ -269,6 +286,7 @@ export namespace AstalMpris {
          * 
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item_type(): GObject.GType;
@@ -279,6 +297,7 @@ export namespace AstalMpris {
          * Depending on the model implementation, calling this function may be
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_n_items(): number;

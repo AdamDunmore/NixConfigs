@@ -48,9 +48,9 @@ export namespace GdkX11 {
      * @gir-type Enum
      */
     enum X11DeviceType {
-        LOGICAL,
-        PHYSICAL,
-        FLOATING,
+        LOGICAL = 0,
+        PHYSICAL = 1,
+        FLOATING = 2,
     }
 
 
@@ -358,7 +358,7 @@ export namespace GdkX11 {
              * @signal
              * @run-last
              */
-            xevent: (arg0: null) => boolean | void;
+            xevent: (xevent: null) => boolean | void;
             "notify::composited": (pspec: GObject.ParamSpec) => void;
             "notify::dmabuf-formats": (pspec: GObject.ParamSpec) => void;
             "notify::input-shapes": (pspec: GObject.ParamSpec) => void;
@@ -409,6 +409,7 @@ export namespace GdkX11 {
          * `display_name`. If opening the display fails, `null` is
          * returned.
          * @param display_name name of the X display.   See the XOpenDisplay() for details.
+         * @deprecated since 4.18
          */
         static open(display_name: string | null): Gdk.Display | null;
 
@@ -465,18 +466,23 @@ export namespace GdkX11 {
          * 
          * This function returns `NULL` if GDK is using GLX.
          * @returns the EGL display object
+         * @since 4.4
+         * @deprecated since 4.18
          */
         get_egl_display(): null;
 
         /**
          * Retrieves the version of the EGL implementation.
          * @returns `true` if EGL is available
+         * @since 4.4
+         * @deprecated since 4.18
          */
         get_egl_version(): [boolean, number, number];
 
         /**
          * Retrieves the version of the GLX implementation.
          * @returns `true` if GLX is available
+         * @deprecated since 4.18
          */
         get_glx_version(): [boolean, number, number];
 
@@ -503,6 +509,7 @@ export namespace GdkX11 {
         /**
          * Gets the startup notification ID for a display.
          * @returns the startup notification ID for `display`
+         * @deprecated since 4.10
          */
         get_startup_notification_id(): string;
 
@@ -531,6 +538,7 @@ export namespace GdkX11 {
          * may even fall back to a few default cursors.
          * @param cursor a {@link Gdk.Cursor}
          * @returns an Xlib Cursor.
+         * @deprecated since 4.18
          */
         get_xcursor(cursor: Gdk.Cursor): xlib.Cursor;
 
@@ -572,6 +580,7 @@ export namespace GdkX11 {
          * for the corresponding `GtkSetting`).
          * @param theme the name of the cursor theme to use, or `null`   to unset a previously set value
          * @param size the cursor size to use, or 0 to keep the previous size
+         * @deprecated since 4.16: Use the cursor-related properties of   [GtkSettings](../gtk4/class.Settings.html) to set the cursor theme
          */
         set_cursor_theme(theme: string | null, size: number): void;
 
@@ -591,6 +600,7 @@ export namespace GdkX11 {
          * complete (for example, when opening a window or when calling
          * `gdk_display_notify_startup_complete()`).
          * @param startup_id the startup notification ID (must be valid utf8)
+         * @deprecated since 4.10: Using {@link Gdk.Toplevel.set_startup_id} is sufficient
          */
         set_startup_notification_id(startup_id: string): void;
 
@@ -611,6 +621,7 @@ export namespace GdkX11 {
          * locale into a form suitable for storing in a window property.
          * @param str a nul-terminated string
          * @returns 0 upon success, non-zero upon failure
+         * @deprecated since 4.18
          */
         string_to_compound_text(str: string): [number, string, number, Uint8Array];
 
@@ -625,6 +636,7 @@ export namespace GdkX11 {
          * @param length The number of items to transform
          * @param list location to store an  array of strings in   the encoding of the current locale. This array should be   freed using `gdk_x11_free_text_list()`.
          * @returns the number of strings stored in list, or 0,   if the conversion failed
+         * @deprecated since 4.18
          */
         text_property_to_text_list(encoding: string, format: number, text: number, length: number, list: string): number;
 
@@ -638,6 +650,7 @@ export namespace GdkX11 {
          * Converts from UTF-8 to compound text.
          * @param str a UTF-8 string
          * @returns `true` if the conversion succeeded, otherwise `false`
+         * @deprecated since 4.18
          */
         utf8_to_compound_text(str: string): [boolean, string, number, Uint8Array];
     }
@@ -802,6 +815,7 @@ export namespace GdkX11 {
         /**
          * Returns the XID of the Output corresponding to `monitor`.
          * @returns the XID of `monitor`
+         * @deprecated since 4.18
          */
         get_output(): xlib.XID;
 
@@ -811,6 +825,7 @@ export namespace GdkX11 {
          * 
          * The returned geometry is in ”application pixels”, not in ”device pixels”
          * (see {@link Gdk.Monitor.get_scale_factor}).
+         * @deprecated since 4.18
          */
         get_workarea(): Gdk.Rectangle;
     }
@@ -870,6 +885,7 @@ export namespace GdkX11 {
          * in the
          * [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
          * @returns the current workspace, or 0 if workspaces are not supported
+         * @deprecated since 4.18
          */
         get_current_desktop(): number;
 
@@ -879,6 +895,7 @@ export namespace GdkX11 {
          * extension, 0 is returned.
          * @param monitor_num number of the monitor, between 0 and gdk_screen_get_n_monitors (screen)
          * @returns the XID of the monitor
+         * @deprecated since 4.18
          */
         get_monitor_output(monitor_num: number): xlib.XID;
 
@@ -888,24 +905,28 @@ export namespace GdkX11 {
          * in the
          * [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
          * @returns the number of workspaces, or 0 if workspaces are not supported
+         * @deprecated since 4.18
          */
         get_number_of_desktops(): number;
 
         /**
          * Returns the index of a {@link GdkX11.X11Screen}.
          * @returns the position of `screen` among the screens   of its display
+         * @deprecated since 4.18
          */
         get_screen_number(): number;
 
         /**
          * Returns the name of the window manager for `screen`.
          * @returns the name of the window manager screen `screen`, or "unknown" if the window manager is unknown. The string is owned by GDK and should not be freed.
+         * @deprecated since 4.18
          */
         get_window_manager_name(): string;
 
         /**
          * Returns the screen of a {@link GdkX11.X11Screen}.
          * @returns an Xlib Screen*
+         * @deprecated since 4.18
          */
         get_xscreen(): xlib.Screen;
 
@@ -924,6 +945,7 @@ export namespace GdkX11 {
          * a window manager change.
          * @param property_name name of the WM property
          * @returns `true` if the window manager supports `property`
+         * @deprecated since 4.18
          */
         supports_net_wm_hint(property_name: string): boolean;
     }
@@ -984,6 +1006,7 @@ export namespace GdkX11 {
          * Looks up the {@link Gdk.Surface} that wraps the given native window handle.
          * @param display the {@link Gdk.Display} corresponding to the   window handle
          * @param window an Xlib Window
+         * @deprecated since 4.18
          */
         static lookup_for_display(display: X11Display, window: xlib.Window): X11Surface;
 
@@ -991,18 +1014,21 @@ export namespace GdkX11 {
         /**
          * Gets the number of the workspace `surface` is on.
          * @returns the current workspace of `surface`
+         * @deprecated since 4.18
          */
         get_desktop(): number;
 
         /**
          * Returns the group this surface belongs to.
          * @returns The group of this surface;
+         * @deprecated since 4.18
          */
         get_group(): Gdk.Surface | null;
 
         /**
          * Returns the X resource (surface) belonging to a {@link Gdk.Surface}.
          * @returns the ID of `drawable`’s X resource.
+         * @deprecated since 4.18
          */
         get_xid(): xlib.Window;
 
@@ -1011,6 +1037,7 @@ export namespace GdkX11 {
          * window manager that supports multiple workspaces, as described
          * in the [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
          * Will not do anything if the surface is already on all workspaces.
+         * @deprecated since 4.18
          */
         move_to_current_desktop(): void;
 
@@ -1019,6 +1046,7 @@ export namespace GdkX11 {
          * window manager that supports multiple workspaces, as described
          * in the [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
          * @param desktop the number of the workspace to move the surface to
+         * @deprecated since 4.18
          */
         move_to_desktop(desktop: number): void;
 
@@ -1030,6 +1058,7 @@ export namespace GdkX11 {
          * synchronziation may need to be disabled. This is the case for a surface
          * embedded via the XEMBED protocol.
          * @param frame_sync_enabled whether frame-synchronization should be enabled
+         * @deprecated since 4.18
          */
         set_frame_sync_enabled(frame_sync_enabled: boolean): void;
 
@@ -1037,6 +1066,7 @@ export namespace GdkX11 {
          * Sets the group leader of `surface` to be `leader`.
          * See the ICCCM for details.
          * @param leader a {@link Gdk.Surface}
+         * @deprecated since 4.18
          */
         set_group(leader: Gdk.Surface): void;
 
@@ -1044,6 +1074,7 @@ export namespace GdkX11 {
          * Sets a hint on `surface` that pagers should not
          * display it. See the EWMH for details.
          * @param skips_pager `true` to skip pagers
+         * @deprecated since 4.18
          */
         set_skip_pager_hint(skips_pager: boolean): void;
 
@@ -1051,6 +1082,7 @@ export namespace GdkX11 {
          * Sets a hint on `surface` that taskbars should not
          * display it. See the EWMH for details.
          * @param skips_taskbar `true` to skip taskbars
+         * @deprecated since 4.18
          */
         set_skip_taskbar_hint(skips_taskbar: boolean): void;
 
@@ -1065,6 +1097,7 @@ export namespace GdkX11 {
          * function should only be used by applications which do not use GTK
          * to create toplevel surfaces.
          * @param variant the theme variant to export
+         * @deprecated since 4.18
          */
         set_theme_variant(variant: string): void;
 
@@ -1072,6 +1105,7 @@ export namespace GdkX11 {
          * Sets a hint on `surface` that it needs user attention.
          * See the ICCCM for details.
          * @param urgent `true` to indicate urgenct attention needed
+         * @deprecated since 4.18
          */
         set_urgency_hint(urgent: boolean): void;
 
@@ -1089,6 +1123,7 @@ export namespace GdkX11 {
          * function should only be used by applications which handle input
          * events bypassing GDK.
          * @param timestamp An XServer timestamp to which the property should be set
+         * @deprecated since 4.18
          */
         set_user_time(timestamp: number): void;
 
@@ -1098,6 +1133,7 @@ export namespace GdkX11 {
          * not a toplevel surface, it is ignored.
          * @param name Property name, will be interned as an X atom
          * @param value Property value, or `null` to delete
+         * @deprecated since 4.18
          */
         set_utf8_property(name: string, value: string | null): void;
     }

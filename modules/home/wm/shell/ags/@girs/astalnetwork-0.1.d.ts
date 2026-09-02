@@ -40,9 +40,9 @@ export namespace AstalNetwork {
      * @gir-type Enum
      */
     enum Primary {
-        UNKNOWN,
-        WIRED,
-        WIFI,
+        UNKNOWN = 0,
+        WIRED = 1,
+        WIFI = 2,
     }
 
 
@@ -57,14 +57,14 @@ export namespace AstalNetwork {
      * @gir-type Enum
      */
     enum State {
-        UNKNOWN,
-        ASLEEP,
-        DISCONNECTED,
-        DISCONNECTING,
-        CONNECTING,
-        CONNECTED_LOCAL,
-        CONNECTED_SITE,
-        CONNECTED_GLOBAL,
+        UNKNOWN = 0,
+        ASLEEP = 10,
+        DISCONNECTED = 20,
+        DISCONNECTING = 30,
+        CONNECTING = 40,
+        CONNECTED_LOCAL = 50,
+        CONNECTED_SITE = 60,
+        CONNECTED_GLOBAL = 70,
     }
 
 
@@ -79,11 +79,11 @@ export namespace AstalNetwork {
      * @gir-type Enum
      */
     enum Connectivity {
-        UNKNOWN,
-        NONE,
-        PORTAL,
-        LIMITED,
-        FULL,
+        UNKNOWN = 0,
+        NONE = 1,
+        PORTAL = 2,
+        LIMITED = 3,
+        FULL = 4,
     }
 
 
@@ -98,19 +98,19 @@ export namespace AstalNetwork {
      * @gir-type Enum
      */
     enum DeviceState {
-        UNKNOWN,
-        UNMANAGED,
-        UNAVAILABLE,
-        DISCONNECTED,
-        PREPARE,
-        CONFIG,
-        NEED_AUTH,
-        IP_CONFIG,
-        IP_CHECK,
-        SECONDARIES,
-        ACTIVATED,
-        DEACTIVATING,
-        FAILED,
+        UNKNOWN = 0,
+        UNMANAGED = 10,
+        UNAVAILABLE = 20,
+        DISCONNECTED = 30,
+        PREPARE = 40,
+        CONFIG = 50,
+        NEED_AUTH = 60,
+        IP_CONFIG = 70,
+        IP_CHECK = 80,
+        SECONDARIES = 90,
+        ACTIVATED = 100,
+        DEACTIVATING = 110,
+        FAILED = 120,
     }
 
 
@@ -125,18 +125,30 @@ export namespace AstalNetwork {
      * @gir-type Enum
      */
     enum Internet {
-        CONNECTED,
-        CONNECTING,
-        DISCONNECTED,
+        CONNECTED = 0,
+        CONNECTING = 1,
+        DISCONNECTED = 2,
     }
 
 
+    /**
+     * @default 0
+     */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 1
+     */
     const MINOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MICRO_VERSION: number;
 
+    /**
+     * @default 0.1.0
+     */
     const VERSION: string;
 
     function primary_to_string(): string;
@@ -361,6 +373,7 @@ export namespace AstalNetwork {
 
         /**
          * @param _res_ 
+         * @throws GLib.Error
          */
         activate_finish(_res_: Gio.AsyncResult): void;
 
@@ -496,15 +509,15 @@ export namespace AstalNetwork {
             /**
              * @signal
              */
-            "access-point-added": (arg0: AccessPoint) => void;
+            "access-point-added": (ap: AccessPoint) => void;
             /**
              * @signal
              */
-            "access-point-removed": (arg0: AccessPoint) => void;
+            "access-point-removed": (ap: AccessPoint) => void;
             /**
              * @signal
              */
-            "state-changed": (arg0: DeviceState, arg1: DeviceState, arg2: NM.DeviceStateReason) => void;
+            "state-changed": (new_state: DeviceState, old_state: DeviceState, reaseon: NM.DeviceStateReason) => void;
             "notify::device": (pspec: GObject.ParamSpec) => void;
             "notify::active-connection": (pspec: GObject.ParamSpec) => void;
             "notify::active-access-point": (pspec: GObject.ParamSpec) => void;
@@ -657,6 +670,7 @@ export namespace AstalNetwork {
 
         /**
          * @param _res_ 
+         * @throws GLib.Error
          */
         deactivate_connection_finish(_res_: Gio.AsyncResult): void;
 

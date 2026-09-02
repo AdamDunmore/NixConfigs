@@ -36,133 +36,133 @@ export namespace Graphene {
          * Rotate in the default order; the
          *   default order is one of the following enumeration values
          */
-        DEFAULT,
+        DEFAULT = -1,
         /**
          * Rotate in the X, Y, and Z order. Deprecated in
          *   Graphene 1.10, it's an alias for {@link Graphene.EulerOrder.SXYZ}
          */
-        XYZ,
+        XYZ = 0,
         /**
          * Rotate in the Y, Z, and X order. Deprecated in
          *   Graphene 1.10, it's an alias for {@link Graphene.EulerOrder.SYZX}
          */
-        YZX,
+        YZX = 1,
         /**
          * Rotate in the Z, X, and Y order. Deprecated in
          *   Graphene 1.10, it's an alias for {@link Graphene.EulerOrder.SZXY}
          */
-        ZXY,
+        ZXY = 2,
         /**
          * Rotate in the X, Z, and Y order. Deprecated in
          *   Graphene 1.10, it's an alias for {@link Graphene.EulerOrder.SXZY}
          */
-        XZY,
+        XZY = 3,
         /**
          * Rotate in the Y, X, and Z order. Deprecated in
          *   Graphene 1.10, it's an alias for {@link Graphene.EulerOrder.SYXZ}
          */
-        YXZ,
+        YXZ = 4,
         /**
          * Rotate in the Z, Y, and X order. Deprecated in
          *   Graphene 1.10, it's an alias for {@link Graphene.EulerOrder.SZYX}
          */
-        ZYX,
+        ZYX = 5,
         /**
          * Defines a static rotation along the X, Y, and Z axes (Since: 1.10)
          */
-        SXYZ,
+        SXYZ = 6,
         /**
          * Defines a static rotation along the X, Y, and X axes (Since: 1.10)
          */
-        SXYX,
+        SXYX = 7,
         /**
          * Defines a static rotation along the X, Z, and Y axes (Since: 1.10)
          */
-        SXZY,
+        SXZY = 8,
         /**
          * Defines a static rotation along the X, Z, and X axes (Since: 1.10)
          */
-        SXZX,
+        SXZX = 9,
         /**
          * Defines a static rotation along the Y, Z, and X axes (Since: 1.10)
          */
-        SYZX,
+        SYZX = 10,
         /**
          * Defines a static rotation along the Y, Z, and Y axes (Since: 1.10)
          */
-        SYZY,
+        SYZY = 11,
         /**
          * Defines a static rotation along the Y, X, and Z axes (Since: 1.10)
          */
-        SYXZ,
+        SYXZ = 12,
         /**
          * Defines a static rotation along the Y, X, and Y axes (Since: 1.10)
          */
-        SYXY,
+        SYXY = 13,
         /**
          * Defines a static rotation along the Z, X, and Y axes (Since: 1.10)
          */
-        SZXY,
+        SZXY = 14,
         /**
          * Defines a static rotation along the Z, X, and Z axes (Since: 1.10)
          */
-        SZXZ,
+        SZXZ = 15,
         /**
          * Defines a static rotation along the Z, Y, and X axes (Since: 1.10)
          */
-        SZYX,
+        SZYX = 16,
         /**
          * Defines a static rotation along the Z, Y, and Z axes (Since: 1.10)
          */
-        SZYZ,
+        SZYZ = 17,
         /**
          * Defines a relative rotation along the Z, Y, and X axes (Since: 1.10)
          */
-        RZYX,
+        RZYX = 18,
         /**
          * Defines a relative rotation along the X, Y, and X axes (Since: 1.10)
          */
-        RXYX,
+        RXYX = 19,
         /**
          * Defines a relative rotation along the Y, Z, and X axes (Since: 1.10)
          */
-        RYZX,
+        RYZX = 20,
         /**
          * Defines a relative rotation along the X, Z, and X axes (Since: 1.10)
          */
-        RXZX,
+        RXZX = 21,
         /**
          * Defines a relative rotation along the X, Z, and Y axes (Since: 1.10)
          */
-        RXZY,
+        RXZY = 22,
         /**
          * Defines a relative rotation along the Y, Z, and Y axes (Since: 1.10)
          */
-        RYZY,
+        RYZY = 23,
         /**
          * Defines a relative rotation along the Z, X, and Y axes (Since: 1.10)
          */
-        RZXY,
+        RZXY = 24,
         /**
          * Defines a relative rotation along the Y, X, and Y axes (Since: 1.10)
          */
-        RYXY,
+        RYXY = 25,
         /**
          * Defines a relative rotation along the Y, X, and Z axes (Since: 1.10)
          */
-        RYXZ,
+        RYXZ = 26,
         /**
          * Defines a relative rotation along the Z, X, and Z axes (Since: 1.10)
          */
-        RZXZ,
+        RZXZ = 27,
         /**
          * Defines a relative rotation along the X, Y, and Z axes (Since: 1.10)
          */
-        RXYZ,
+        RXYZ = 28,
         /**
          * Defines a relative rotation along the Z, Y, and Z axes (Since: 1.10)
          */
-        RZYZ,
+        RZYZ = 29,
     }
 
 
@@ -175,22 +175,28 @@ export namespace Graphene {
         /**
          * No intersection
          */
-        NONE,
+        NONE = 0,
         /**
          * The ray is entering the intersected
          *   object
          */
-        ENTER,
+        ENTER = 1,
         /**
          * The ray is leaving the intersected
          *   object
          */
-        LEAVE,
+        LEAVE = 2,
     }
 
 
+    /**
+     * @default 3.141593
+     */
     const PI: number;
 
+    /**
+     * @default 1.570796
+     */
     const PI_2: number;
 
     /**
@@ -212,6 +218,7 @@ export namespace Graphene {
      * ```
      * 
      * @since 1.0
+     * @default 2
      */
     const VEC2_LEN: number;
 
@@ -234,6 +241,7 @@ export namespace Graphene {
      * ```
      * 
      * @since 1.0
+     * @default 3
      */
     const VEC3_LEN: number;
 
@@ -256,6 +264,7 @@ export namespace Graphene {
      * ```
      * 
      * @since 1.0
+     * @default 4
      */
     const VEC4_LEN: number;
 
@@ -490,6 +499,7 @@ export namespace Graphene {
          * A degenerate {@link Graphene.Box} that can only be expanded.
          * 
          * The returned value is owned by Graphene and should not be modified or freed.
+         * @since 1.2
          */
         static empty(): Box;
 
@@ -497,6 +507,7 @@ export namespace Graphene {
          * A degenerate {@link Graphene.Box} that cannot be expanded.
          * 
          * The returned value is owned by Graphene and should not be modified or freed.
+         * @since 1.2
          */
         static infinite(): Box;
 
@@ -505,6 +516,7 @@ export namespace Graphene {
          * maximum vertex set at (0, 0, 0).
          * 
          * The returned value is owned by Graphene and should not be modified or freed.
+         * @since 1.2
          */
         static minus_one(): Box;
 
@@ -513,6 +525,7 @@ export namespace Graphene {
          * maximum vertex set at (1, 1, 1).
          * 
          * The returned value is owned by Graphene and should not be modified or freed.
+         * @since 1.2
          */
         static one(): Box;
 
@@ -521,6 +534,7 @@ export namespace Graphene {
          * maximum vertex set at (1, 1, 1).
          * 
          * The returned value is owned by Graphene and should not be modified or freed.
+         * @since 1.2
          */
         static one_minus_one(): Box;
 
@@ -528,6 +542,7 @@ export namespace Graphene {
          * A {@link Graphene.Box} with both the minimum and maximum vertices set at (0, 0, 0).
          * 
          * The returned value is owned by Graphene and should not be modified or freed.
+         * @since 1.2
          */
         static zero(): Box;
 
@@ -537,6 +552,7 @@ export namespace Graphene {
          * {@link Graphene.Box} `b`.
          * @param b a {@link Graphene.Box}
          * @returns `true` if the box is contained in the given box
+         * @since 1.2
          */
         contains_box(b: Box): boolean;
 
@@ -544,6 +560,7 @@ export namespace Graphene {
          * Checks whether `box` contains the given `point`.
          * @param point the coordinates to check
          * @returns `true` if the point is contained in the given box
+         * @since 1.2
          */
         contains_point(point: Point3D): boolean;
 
@@ -551,12 +568,14 @@ export namespace Graphene {
          * Checks whether the two given boxes are equal.
          * @param b a {@link Graphene.Box}
          * @returns `true` if the boxes are equal
+         * @since 1.2
          */
         equal(b: Box): boolean;
 
         /**
          * Expands the dimensions of `box` to include the coordinates at `point`.
          * @param point the coordinates of the point to include
+         * @since 1.2
          */
         expand(point: Point3D): Box;
 
@@ -566,6 +585,7 @@ export namespace Graphene {
          * If `scalar` is positive, the {@link Graphene.Box} will grow; if `scalar` is
          * negative, the {@link Graphene.Box} will shrink.
          * @param scalar a scalar value
+         * @since 1.2
          */
         expand_scalar(scalar: number): Box;
 
@@ -573,63 +593,74 @@ export namespace Graphene {
          * Expands the dimensions of `box` to include the coordinates of the
          * given vector.
          * @param vec the coordinates of the point to include, as a {@link Graphene.Vec3}
+         * @since 1.2
          */
         expand_vec3(vec: Vec3): Box;
 
         /**
          * Frees the resources allocated by `graphene_box_alloc()`.
+         * @since 1.2
          */
         free(): void;
 
         /**
          * Computes the bounding {@link Graphene.Sphere} capable of containing the given
          * {@link Graphene.Box}.
+         * @since 1.2
          */
         get_bounding_sphere(): Sphere;
 
         /**
          * Retrieves the coordinates of the center of a {@link Graphene.Box}.
+         * @since 1.2
          */
         get_center(): Point3D;
 
         /**
          * Retrieves the size of the `box` on the Z axis.
          * @returns the depth of the box
+         * @since 1.2
          */
         get_depth(): number;
 
         /**
          * Retrieves the size of the `box` on the Y axis.
          * @returns the height of the box
+         * @since 1.2
          */
         get_height(): number;
 
         /**
          * Retrieves the coordinates of the maximum point of the given
          * {@link Graphene.Box}.
+         * @since 1.2
          */
         get_max(): Point3D;
 
         /**
          * Retrieves the coordinates of the minimum point of the given
          * {@link Graphene.Box}.
+         * @since 1.2
          */
         get_min(): Point3D;
 
         /**
          * Retrieves the size of the box on all three axes, and stores
          * it into the given `size` vector.
+         * @since 1.2
          */
         get_size(): Vec3;
 
         /**
          * Computes the vertices of the given {@link Graphene.Box}.
+         * @since 1.2
          */
         get_vertices(): Vec3[];
 
         /**
          * Retrieves the size of the `box` on the X axis.
          * @returns the width of the box
+         * @since 1.2
          */
         get_width(): number;
 
@@ -638,6 +669,7 @@ export namespace Graphene {
          * @param min the coordinates of the minimum vertex
          * @param max the coordinates of the maximum vertex
          * @returns the initialized {@link Graphene.Box}
+         * @since 1.2
          */
         init(min: Point3D | null, max: Point3D | null): Box;
 
@@ -646,6 +678,7 @@ export namespace Graphene {
          * another {@link Graphene.Box}.
          * @param src a {@link Graphene.Box}
          * @returns the initialized {@link Graphene.Box}
+         * @since 1.2
          */
         init_from_box(src: Box): Box;
 
@@ -657,6 +690,7 @@ export namespace Graphene {
          * `graphene_box_empty()`.
          * @param points an array of {@link Graphene.Point3D}
          * @returns the initialized {@link Graphene.Box}
+         * @since 1.2
          */
         init_from_points(points: Point3D[]): Box;
 
@@ -666,6 +700,7 @@ export namespace Graphene {
          * @param min the coordinates of the minimum vertex
          * @param max the coordinates of the maximum vertex
          * @returns the initialized {@link Graphene.Box}
+         * @since 1.2
          */
         init_from_vec3(min: Vec3 | null, max: Vec3 | null): Box;
 
@@ -677,6 +712,7 @@ export namespace Graphene {
          * `graphene_box_empty()`.
          * @param vectors an array of {@link Graphene.Vec3}
          * @returns the initialized {@link Graphene.Box}
+         * @since 1.2
          */
         init_from_vectors(vectors: Vec3[]): Box;
 
@@ -687,12 +723,14 @@ export namespace Graphene {
          * initialized with `graphene_box_empty()`.
          * @param b a {@link Graphene.Box}
          * @returns true if the two boxes intersect
+         * @since 1.2
          */
         intersection(b: Box): [boolean, Box | null];
 
         /**
          * Unions the two given {@link Graphene.Box}.
          * @param b the box to union to `a`
+         * @since 1.2
          */
         union(b: Box): Box;
     }
@@ -719,11 +757,13 @@ export namespace Graphene {
          * Checks if two {@link Graphene.Euler} are equal.
          * @param b a {@link Graphene.Euler}
          * @returns `true` if the two {@link Graphene.Euler} are equal
+         * @since 1.2
          */
         equal(b: Euler): boolean;
 
         /**
          * Frees the resources allocated by `graphene_euler_alloc()`.
+         * @since 1.2
          */
         free(): void;
 
@@ -733,6 +773,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_euler_get_x()`
          * @returns the first component of the Euler angle vector, in radians
+         * @since 1.10
          */
         get_alpha(): number;
 
@@ -742,6 +783,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_euler_get_y()`
          * @returns the second component of the Euler angle vector, in radians
+         * @since 1.10
          */
         get_beta(): number;
 
@@ -751,6 +793,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_euler_get_z()`
          * @returns the third component of the Euler angle vector, in radians
+         * @since 1.10
          */
         get_gamma(): number;
 
@@ -763,24 +806,28 @@ export namespace Graphene {
          * enumeration value; it will return the effective order of rotation
          * instead.
          * @returns the order used to apply the rotations
+         * @since 1.2
          */
         get_order(): EulerOrder;
 
         /**
          * Retrieves the rotation angle on the X axis, in degrees.
          * @returns the rotation angle
+         * @since 1.2
          */
         get_x(): number;
 
         /**
          * Retrieves the rotation angle on the Y axis, in degrees.
          * @returns the rotation angle
+         * @since 1.2
          */
         get_y(): number;
 
         /**
          * Retrieves the rotation angle on the Z axis, in degrees.
          * @returns the rotation angle
+         * @since 1.2
          */
         get_z(): number;
 
@@ -792,6 +839,7 @@ export namespace Graphene {
          * @param y rotation angle on the Y axis, in degrees
          * @param z rotation angle on the Z axis, in degrees
          * @returns the initialized {@link Graphene.Euler}
+         * @since 1.2
          */
         init(x: number, y: number, z: number): Euler;
 
@@ -803,6 +851,7 @@ export namespace Graphene {
          * to calling `graphene_euler_init()` with all angles set to 0.
          * @param src a {@link Graphene.Euler}
          * @returns the initialized {@link Graphene.Euler}
+         * @since 1.2
          */
         init_from_euler(src: Euler | null): Euler;
 
@@ -814,6 +863,7 @@ export namespace Graphene {
          * @param m a rotation matrix
          * @param order the order used to apply the rotations
          * @returns the initialized {@link Graphene.Euler}
+         * @since 1.2
          */
         init_from_matrix(m: Matrix | null, order: EulerOrder): Euler;
 
@@ -825,6 +875,7 @@ export namespace Graphene {
          * @param q a normalized {@link Graphene.Quaternion}
          * @param order the order used to apply the rotations
          * @returns the initialized {@link Graphene.Euler}
+         * @since 1.2
          */
         init_from_quaternion(q: Quaternion | null, order: EulerOrder): Euler;
 
@@ -836,6 +887,7 @@ export namespace Graphene {
          * @param z rotation angle on the Z axis, in radians
          * @param order order of rotations
          * @returns the initialized {@link Graphene.Euler}
+         * @since 1.10
          */
         init_from_radians(x: number, y: number, z: number, order: EulerOrder): Euler;
 
@@ -848,6 +900,7 @@ export namespace Graphene {
          * @param v a {@link Graphene.Vec3} containing the rotation   angles in degrees
          * @param order the order used to apply the rotations
          * @returns the initialized {@link Graphene.Euler}
+         * @since 1.2
          */
         init_from_vec3(v: Vec3 | null, order: EulerOrder): Euler;
 
@@ -858,6 +911,7 @@ export namespace Graphene {
          * @param z rotation angle on the Z axis, in degrees
          * @param order the order used to apply the rotations
          * @returns the initialized {@link Graphene.Euler}
+         * @since 1.2
          */
         init_with_order(x: number, y: number, z: number, order: EulerOrder): Euler;
 
@@ -868,6 +922,7 @@ export namespace Graphene {
          * given {@link Graphene.Euler}, and then converting the quaternion into another
          * {@link Graphene.Euler}.
          * @param order the new order
+         * @since 1.2
          */
         reorder(order: EulerOrder): Euler;
 
@@ -888,17 +943,20 @@ export namespace Graphene {
          * 
          * The rotation sign convention is right-handed, to preserve compatibility
          * between Euler-based, quaternion-based, and angle-axis-based rotations.
+         * @since 1.2
          */
         to_matrix(): Matrix;
 
         /**
          * Converts a {@link Graphene.Euler} into a {@link Graphene.Quaternion}.
+         * @since 1.10
          */
         to_quaternion(): Quaternion;
 
         /**
          * Retrieves the angles of a {@link Graphene.Euler} and initializes a
          * {@link Graphene.Vec3} with them.
+         * @since 1.2
          */
         to_vec3(): Vec3;
     }
@@ -926,6 +984,7 @@ export namespace Graphene {
          * {@link Graphene.Frustum}.
          * @param point a {@link Graphene.Point3D}
          * @returns `true` if the point is inside the frustum
+         * @since 1.2
          */
         contains_point(point: Point3D): boolean;
 
@@ -933,16 +992,19 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Frustum} are equal.
          * @param b a {@link Graphene.Frustum}
          * @returns `true` if the given frustums are equal
+         * @since 1.6
          */
         equal(b: Frustum): boolean;
 
         /**
          * Frees the resources allocated by `graphene_frustum_alloc()`.
+         * @since 1.2
          */
         free(): void;
 
         /**
          * Retrieves the planes that define the given {@link Graphene.Frustum}.
+         * @since 1.2
          */
         get_planes(): Plane[];
 
@@ -956,6 +1018,7 @@ export namespace Graphene {
          * @param p4 a clipping plane
          * @param p5 a clipping plane
          * @returns the initialized frustum
+         * @since 1.2
          */
         init(p0: Plane, p1: Plane, p2: Plane, p3: Plane, p4: Plane, p5: Plane): Frustum;
 
@@ -964,6 +1027,7 @@ export namespace Graphene {
          * planes of another {@link Graphene.Frustum}.
          * @param src a {@link Graphene.Frustum}
          * @returns the initialized frustum
+         * @since 1.2
          */
         init_from_frustum(src: Frustum): Frustum;
 
@@ -971,6 +1035,7 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Frustum} using the given `matrix`.
          * @param matrix a {@link Graphene.Matrix}
          * @returns the initialized frustum
+         * @since 1.2
          */
         init_from_matrix(matrix: Matrix): Frustum;
 
@@ -979,6 +1044,7 @@ export namespace Graphene {
          * a {@link Graphene.Frustum}.
          * @param box a {@link Graphene.Box}
          * @returns `true` if the box intersects the frustum
+         * @since 1.2
          */
         intersects_box(box: Box): boolean;
 
@@ -987,6 +1053,7 @@ export namespace Graphene {
          * a {@link Graphene.Frustum}.
          * @param sphere a {@link Graphene.Sphere}
          * @returns `true` if the sphere intersects the frustum
+         * @since 1.2
          */
         intersects_sphere(sphere: Sphere): boolean;
     }
@@ -1023,6 +1090,7 @@ export namespace Graphene {
         /**
          * Computes the determinant of the given matrix.
          * @returns the value of the determinant
+         * @since 1.0
          */
         determinant(): number;
 
@@ -1030,6 +1098,7 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Matrix} matrices are equal.
          * @param b a {@link Graphene.Matrix}
          * @returns `true` if the two matrices are equal, and `false` otherwise
+         * @since 1.10
          */
         equal(b: Matrix): boolean;
 
@@ -1061,17 +1130,20 @@ export namespace Graphene {
          * 
          * @param b a {@link Graphene.Matrix}
          * @returns `true` if the matrices are equal. and `false` otherwise
+         * @since 1.10
          */
         equal_fast(b: Matrix): boolean;
 
         /**
          * Frees the resources allocated by `graphene_matrix_alloc()`.
+         * @since 1.0
          */
         free(): void;
 
         /**
          * Retrieves the given row vector at `index_` inside a matrix.
          * @param index_ the index of the row vector, between 0 and 3
+         * @since 1.0
          */
         get_row(index_: number): Vec4;
 
@@ -1080,42 +1152,49 @@ export namespace Graphene {
          * @param row the row index
          * @param col the column index
          * @returns the value at the given indices
+         * @since 1.0
          */
         get_value(row: number, col: number): number;
 
         /**
          * Retrieves the scaling factor on the X axis in `m`.
          * @returns the value of the scaling factor
+         * @since 1.0
          */
         get_x_scale(): number;
 
         /**
          * Retrieves the translation component on the X axis from `m`.
          * @returns the translation component
+         * @since 1.10
          */
         get_x_translation(): number;
 
         /**
          * Retrieves the scaling factor on the Y axis in `m`.
          * @returns the value of the scaling factor
+         * @since 1.0
          */
         get_y_scale(): number;
 
         /**
          * Retrieves the translation component on the Y axis from `m`.
          * @returns the translation component
+         * @since 1.10
          */
         get_y_translation(): number;
 
         /**
          * Retrieves the scaling factor on the Z axis in `m`.
          * @returns the value of the scaling factor
+         * @since 1.0
          */
         get_z_scale(): number;
 
         /**
          * Retrieves the translation component on the Z axis from `m`.
          * @returns the translation component
+         * @since 1.10
          */
         get_z_translation(): number;
 
@@ -1142,6 +1221,7 @@ export namespace Graphene {
          * @param x_0 the x0 member
          * @param y_0 the y0 member
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_from_2d(xx: number, yx: number, xy: number, yy: number, x_0: number, y_0: number): Matrix;
 
@@ -1150,6 +1230,7 @@ export namespace Graphene {
          * point values.
          * @param v an array of at least 16 floating   point values
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_from_float(v: number[]): Matrix;
 
@@ -1158,6 +1239,7 @@ export namespace Graphene {
          * given matrix.
          * @param src a {@link Graphene.Matrix}
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_from_matrix(src: Matrix): Matrix;
 
@@ -1169,6 +1251,7 @@ export namespace Graphene {
          * @param v2 the third row vector
          * @param v3 the fourth row vector
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_from_vec4(v0: Vec4, v1: Vec4, v2: Vec4, v3: Vec4): Matrix;
 
@@ -1183,12 +1266,14 @@ export namespace Graphene {
          * @param z_near distance of the near clipping plane
          * @param z_far distance of the far clipping plane
          * @returns the initialized matrix
+         * @since 1.2
          */
         init_frustum(left: number, right: number, bottom: number, top: number, z_near: number, z_far: number): Matrix;
 
         /**
          * Initializes a {@link Graphene.Matrix} with the identity matrix.
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_identity(): Matrix;
 
@@ -1213,6 +1298,7 @@ export namespace Graphene {
          * @param center the vector describing the position to look at
          * @param up the vector describing the world's upward direction; usually,   this is the `graphene_vec3_y_axis()` vector
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_look_at(eye: Vec3, center: Vec3, up: Vec3): Matrix;
 
@@ -1225,6 +1311,7 @@ export namespace Graphene {
          * @param z_near the distance of the near clipping plane
          * @param z_far the distance of the far clipping plane
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_ortho(left: number, right: number, top: number, bottom: number, z_near: number, z_far: number): Matrix;
 
@@ -1235,6 +1322,7 @@ export namespace Graphene {
          * @param z_near the near Z plane
          * @param z_far the far Z plane
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_perspective(fovy: number, aspect: number, z_near: number, z_far: number): Matrix;
 
@@ -1244,6 +1332,7 @@ export namespace Graphene {
          * @param angle the rotation angle, in degrees
          * @param axis the axis vector as a {@link Graphene.Vec3}
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_rotate(angle: number, axis: Vec3): Matrix;
 
@@ -1253,6 +1342,7 @@ export namespace Graphene {
          * @param y the scale factor on the Y axis
          * @param z the scale factor on the Z axis
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_scale(x: number, y: number, z: number): Matrix;
 
@@ -1262,6 +1352,7 @@ export namespace Graphene {
          * @param x_skew skew factor, in radians, on the X axis
          * @param y_skew skew factor, in radians, on the Y axis
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_skew(x_skew: number, y_skew: number): Matrix;
 
@@ -1270,6 +1361,7 @@ export namespace Graphene {
          * given coordinates.
          * @param p the translation coordinates
          * @returns the initialized matrix
+         * @since 1.0
          */
         init_translate(p: Point3D): Matrix;
 
@@ -1282,12 +1374,14 @@ export namespace Graphene {
          * will return an identity matrix.
          * @param b a {@link Graphene.Matrix}
          * @param factor the linear interpolation factor
+         * @since 1.0
          */
         interpolate(b: Matrix, factor: number): Matrix;
 
         /**
          * Inverts the given matrix.
          * @returns `true` if the matrix is invertible
+         * @since 1.0
          */
         inverse(): [boolean, Matrix];
 
@@ -1295,24 +1389,28 @@ export namespace Graphene {
          * Checks whether the given {@link Graphene.Matrix} is compatible with an
          * a 2D affine transformation matrix.
          * @returns `true` if the matrix is compatible with an affine   transformation matrix
+         * @since 1.0
          */
         is_2d(): boolean;
 
         /**
          * Checks whether a {@link Graphene.Matrix} has a visible back face.
          * @returns `true` if the back face of the matrix is visible
+         * @since 1.0
          */
         is_backface_visible(): boolean;
 
         /**
          * Checks whether the given {@link Graphene.Matrix} is the identity matrix.
          * @returns `true` if the matrix is the identity matrix
+         * @since 1.0
          */
         is_identity(): boolean;
 
         /**
          * Checks whether a matrix is singular.
          * @returns `true` if the matrix is singular
+         * @since 1.0
          */
         is_singular(): boolean;
 
@@ -1322,6 +1420,7 @@ export namespace Graphene {
          * Matrix multiplication is not commutative in general; the order of the factors matters.
          * The product of this multiplication is (`a` × `b`)
          * @param b a {@link Graphene.Matrix}
+         * @since 1.0
          */
         multiply(b: Matrix): Matrix;
 
@@ -1332,17 +1431,20 @@ export namespace Graphene {
          * @param b a {@link Graphene.Matrix}
          * @param epsilon the threshold between the two matrices
          * @returns `true` if the two matrices are near each other, and   `false` otherwise
+         * @since 1.10
          */
         near(b: Matrix, epsilon: number): boolean;
 
         /**
          * Normalizes the given {@link Graphene.Matrix}.
+         * @since 1.0
          */
         normalize(): Matrix;
 
         /**
          * Applies a perspective of `depth` to the matrix.
          * @param depth the depth of the perspective
+         * @since 1.0
          */
         perspective(depth: number): Matrix;
 
@@ -1351,12 +1453,14 @@ export namespace Graphene {
          * 
          * This function is only useful for debugging; there are no guarantees
          * made on the format of the output.
+         * @since 1.0
          */
         print(): void;
 
         /**
          * Projects a {@link Graphene.Point} using the matrix `m`.
          * @param p a {@link Graphene.Point}
+         * @since 1.0
          */
         project_point(p: Point): Point;
 
@@ -1365,6 +1469,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_matrix_project_point()`
          * @param r a {@link Graphene.Rect}
+         * @since 1.2
          */
         project_rect(r: Rect): Quad;
 
@@ -1374,6 +1479,7 @@ export namespace Graphene {
          * The resulting rectangle is the axis aligned bounding rectangle capable
          * of fully containing the projected rectangle.
          * @param r a {@link Graphene.Rect}
+         * @since 1.0
          */
         project_rect_bounds(r: Rect): Rect;
 
@@ -1385,6 +1491,7 @@ export namespace Graphene {
          * then multiplying the matrix `m` with the rotation matrix.
          * @param angle the rotation angle, in degrees
          * @param axis the rotation axis, as a {@link Graphene.Vec3}
+         * @since 1.0
          */
         rotate(angle: number, axis: Vec3): void;
 
@@ -1392,6 +1499,7 @@ export namespace Graphene {
          * Adds a rotation transformation to `m`, using the given
          * {@link Graphene.Euler}.
          * @param e a rotation described by a {@link Graphene.Euler}
+         * @since 1.2
          */
         rotate_euler(e: Euler): void;
 
@@ -1402,6 +1510,7 @@ export namespace Graphene {
          * This is the equivalent of calling `graphene_quaternion_to_matrix()` and
          * then multiplying `m` with the rotation matrix.
          * @param q a rotation described by a {@link Graphene.Quaternion}
+         * @since 1.2
          */
         rotate_quaternion(q: Quaternion): void;
 
@@ -1411,6 +1520,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_matrix_rotate()`
          * @param angle the rotation angle, in degrees
+         * @since 1.0
          */
         rotate_x(angle: number): void;
 
@@ -1420,6 +1530,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_matrix_rotate()`
          * @param angle the rotation angle, in degrees
+         * @since 1.0
          */
         rotate_y(angle: number): void;
 
@@ -1429,6 +1540,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_matrix_rotate()`
          * @param angle the rotation angle, in degrees
+         * @since 1.0
          */
         rotate_z(angle: number): void;
 
@@ -1441,24 +1553,28 @@ export namespace Graphene {
          * @param factor_x scaling factor on the X axis
          * @param factor_y scaling factor on the Y axis
          * @param factor_z scaling factor on the Z axis
+         * @since 1.0
          */
         scale(factor_x: number, factor_y: number, factor_z: number): void;
 
         /**
          * Adds a skew of `factor` on the X and Y axis to the given matrix.
          * @param factor skew factor
+         * @since 1.0
          */
         skew_xy(factor: number): void;
 
         /**
          * Adds a skew of `factor` on the X and Z axis to the given matrix.
          * @param factor skew factor
+         * @since 1.0
          */
         skew_xz(factor: number): void;
 
         /**
          * Adds a skew of `factor` on the Y and Z axis to the given matrix.
          * @param factor skew factor
+         * @since 1.0
          */
         skew_yz(factor: number): void;
 
@@ -1479,12 +1595,14 @@ export namespace Graphene {
          * This function can be used to convert between a {@link Graphene.Matrix}
          * and an affine matrix type from other libraries.
          * @returns `true` if the matrix is compatible with an affine   transformation matrix
+         * @since 1.0
          */
         to_2d(): [boolean, number, number, number, number, number, number];
 
         /**
          * Converts a {@link Graphene.Matrix} to an array of floating point
          * values.
+         * @since 1.0
          */
         to_float(): number[];
 
@@ -1496,6 +1614,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_matrix_transform_point()`
          * @param r a {@link Graphene.Rect}
+         * @since 1.0
          */
         transform_bounds(r: Rect): Rect;
 
@@ -1505,6 +1624,7 @@ export namespace Graphene {
          * The result is the axis aligned bounding box containing the transformed
          * vertices.
          * @param b a {@link Graphene.Box}
+         * @since 1.2
          */
         transform_box(b: Box): Box;
 
@@ -1517,6 +1637,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_simd4x4f_point3_mul()`
          * @param p a {@link Graphene.Point}
+         * @since 1.0
          */
         transform_point(p: Point): Point;
 
@@ -1529,12 +1650,14 @@ export namespace Graphene {
          * 
          * See also: `graphene_simd4x4f_point3_mul()`
          * @param p a {@link Graphene.Point3D}
+         * @since 1.2
          */
         transform_point3d(p: Point3D): Point3D;
 
         /**
          * Transform a {@link Graphene.Ray} using the given matrix `m`.
          * @param r a {@link Graphene.Ray}
+         * @since 1.4
          */
         transform_ray(r: Ray): Ray;
 
@@ -1545,6 +1668,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_matrix_transform_point()`
          * @param r a {@link Graphene.Rect}
+         * @since 1.0
          */
         transform_rect(r: Rect): Quad;
 
@@ -1552,6 +1676,7 @@ export namespace Graphene {
          * Transforms a {@link Graphene.Sphere} using the given matrix `m`. The
          * result is the bounding sphere containing the transformed sphere.
          * @param s a {@link Graphene.Sphere}
+         * @since 1.2
          */
         transform_sphere(s: Sphere): Sphere;
 
@@ -1564,6 +1689,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_simd4x4f_vec3_mul()`
          * @param v a {@link Graphene.Vec3}
+         * @since 1.0
          */
         transform_vec3(v: Vec3): Vec3;
 
@@ -1572,6 +1698,7 @@ export namespace Graphene {
          * 
          * See also: `graphene_simd4x4f_vec4_mul()`
          * @param v a {@link Graphene.Vec4}
+         * @since 1.0
          */
         transform_vec4(v: Vec4): Vec4;
 
@@ -1582,11 +1709,13 @@ export namespace Graphene {
          * This is the equivalent of calling `graphene_matrix_init_translate()` and
          * then multiplying `m` with the translation matrix.
          * @param pos a {@link Graphene.Point3D}
+         * @since 1.0
          */
         translate(pos: Point3D): void;
 
         /**
          * Transposes the given matrix.
+         * @since 1.0
          */
         transpose(): Matrix;
 
@@ -1595,6 +1724,7 @@ export namespace Graphene {
          * a `modelview` matrix.
          * @param modelview a {@link Graphene.Matrix} for the modelview matrix; this is   the inverse of the modelview used when projecting the point
          * @param point a {@link Graphene.Point3D} with the coordinates of the point
+         * @since 1.2
          */
         unproject_point3d(modelview: Matrix, point: Point3D): Point3D;
 
@@ -1603,6 +1733,7 @@ export namespace Graphene {
          * given matrix, within the given axis aligned rectangular `bounds`.
          * @param r a {@link Graphene.Rect}
          * @param bounds the bounds of the transformation
+         * @since 1.0
          */
         untransform_bounds(r: Rect, bounds: Rect): Rect;
 
@@ -1612,6 +1743,7 @@ export namespace Graphene {
          * @param p a {@link Graphene.Point}
          * @param bounds the bounds of the transformation
          * @returns `true` if the point was successfully untransformed
+         * @since 1.0
          */
         untransform_point(p: Point, bounds: Rect): [boolean, Point];
     }
@@ -1638,6 +1770,7 @@ export namespace Graphene {
          * Computes the distance of `point` from a {@link Graphene.Plane}.
          * @param point a {@link Graphene.Point3D}
          * @returns the distance of the given {@link Graphene.Point3D} from the plane
+         * @since 1.2
          */
         distance(point: Point3D): number;
 
@@ -1645,11 +1778,13 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Plane} are equal.
          * @param b a {@link Graphene.Plane}
          * @returns `true` if the given planes are equal
+         * @since 1.2
          */
         equal(b: Plane): boolean;
 
         /**
          * Frees the resources allocated by `graphene_plane_alloc()`.
+         * @since 1.2
          */
         free(): void;
 
@@ -1657,12 +1792,14 @@ export namespace Graphene {
          * Retrieves the distance along the normal vector of the
          * given {@link Graphene.Plane} from the origin.
          * @returns the constant value of the plane
+         * @since 1.2
          */
         get_constant(): number;
 
         /**
          * Retrieves the normal vector pointing towards the origin of the
          * given {@link Graphene.Plane}.
+         * @since 1.2
          */
         get_normal(): Vec3;
 
@@ -1672,6 +1809,7 @@ export namespace Graphene {
          * @param normal a unit length normal vector defining the plane   pointing towards the origin; if unset, we use the X axis by default
          * @param constant the distance from the origin to the plane along the   normal vector; the sign determines the half-space occupied by the   plane
          * @returns the initialized plane
+         * @since 1.2
          */
         init(normal: Vec3 | null, constant: number): Plane;
 
@@ -1680,6 +1818,7 @@ export namespace Graphene {
          * vector and constant of another {@link Graphene.Plane}.
          * @param src a {@link Graphene.Plane}
          * @returns the initialized plane
+         * @since 1.2
          */
         init_from_plane(src: Plane): Plane;
 
@@ -1689,6 +1828,7 @@ export namespace Graphene {
          * @param normal a normal vector defining the plane pointing towards the origin
          * @param point a {@link Graphene.Point3D}
          * @returns the initialized plane
+         * @since 1.2
          */
         init_from_point(normal: Vec3, point: Point3D): Plane;
 
@@ -1702,6 +1842,7 @@ export namespace Graphene {
          * @param b a {@link Graphene.Point3D}
          * @param c a {@link Graphene.Point3D}
          * @returns the initialized plane
+         * @since 1.2
          */
         init_from_points(a: Point3D, b: Point3D, c: Point3D): Plane;
 
@@ -1710,18 +1851,21 @@ export namespace Graphene {
          * the given {@link Graphene.Vec4} vector.
          * @param src a {@link Graphene.Vec4} containing the normal vector in its first   three components, and the distance in its fourth component
          * @returns the initialized plane
+         * @since 1.2
          */
         init_from_vec4(src: Vec4): Plane;
 
         /**
          * Negates the normal vector and constant of a {@link Graphene.Plane}, effectively
          * mirroring the plane across the origin.
+         * @since 1.2
          */
         negate(): Plane;
 
         /**
          * Normalizes the vector of the given {@link Graphene.Plane},
          * and adjusts the constant accordingly.
+         * @since 1.2
          */
         normalize(): Plane;
 
@@ -1736,6 +1880,7 @@ export namespace Graphene {
          * recomputing it every time.
          * @param matrix a {@link Graphene.Matrix}
          * @param normal_matrix a {@link Graphene.Matrix}
+         * @since 1.10
          */
         transform(matrix: Matrix, normal_matrix: Matrix | null): Plane;
     }
@@ -1766,6 +1911,7 @@ export namespace Graphene {
         // Static methods
         /**
          * Returns a point fixed at (0, 0).
+         * @since 1.0
          */
         static zero(): Point;
 
@@ -1774,6 +1920,7 @@ export namespace Graphene {
          * Computes the distance between `a` and `b`.
          * @param b a {@link Graphene.Point}
          * @returns the distance between the two points
+         * @since 1.0
          */
         distance(b: Point): [number, number, number];
 
@@ -1786,11 +1933,13 @@ export namespace Graphene {
          * `graphene_point_near()` instead.
          * @param b a {@link Graphene.Point}
          * @returns `true` if the points have the same coordinates
+         * @since 1.0
          */
         equal(b: Point): boolean;
 
         /**
          * Frees the resources allocated by `graphene_point_alloc()`.
+         * @since 1.0
          */
         free(): void;
 
@@ -1801,6 +1950,7 @@ export namespace Graphene {
          * @param x the X coordinate
          * @param y the Y coordinate
          * @returns the initialized point
+         * @since 1.0
          */
         init(x: number, y: number): Point;
 
@@ -1808,6 +1958,7 @@ export namespace Graphene {
          * Initializes `p` with the same coordinates of `src`.
          * @param src the {@link Graphene.Point} to use
          * @returns the initialized point
+         * @since 1.0
          */
         init_from_point(src: Point): Point;
 
@@ -1815,6 +1966,7 @@ export namespace Graphene {
          * Initializes `p` with the coordinates inside the given {@link Graphene.Vec2}.
          * @param src a {@link Graphene.Vec2}
          * @returns the initialized point
+         * @since 1.4
          */
         init_from_vec2(src: Vec2): Point;
 
@@ -1823,6 +1975,7 @@ export namespace Graphene {
          * given `factor`.
          * @param b a {@link Graphene.Point}
          * @param factor the linear interpolation factor
+         * @since 1.0
          */
         interpolate(b: Point, factor: number): Point;
 
@@ -1832,12 +1985,14 @@ export namespace Graphene {
          * @param b a {@link Graphene.Point}
          * @param epsilon threshold between the two points
          * @returns `true` if the distance is within `epsilon`
+         * @since 1.0
          */
         near(b: Point, epsilon: number): boolean;
 
         /**
          * Stores the coordinates of the given {@link Graphene.Point} into a
          * {@link Graphene.Vec2}.
+         * @since 1.4
          */
         to_vec2(): Vec2;
     }
@@ -1871,6 +2026,7 @@ export namespace Graphene {
         // Static methods
         /**
          * Retrieves a constant point with all three coordinates set to 0.
+         * @since 1.0
          */
         static zero(): Point3D;
 
@@ -1878,6 +2034,7 @@ export namespace Graphene {
         /**
          * Computes the cross product of the two given {@link Graphene.Point3D}.
          * @param b a {@link Graphene.Point3D}
+         * @since 1.0
          */
         cross(b: Point3D): Point3D;
 
@@ -1885,6 +2042,7 @@ export namespace Graphene {
          * Computes the distance between the two given {@link Graphene.Point3D}.
          * @param b a {@link Graphene.Point3D}
          * @returns the distance between two points
+         * @since 1.4
          */
         distance(b: Point3D): [number, Vec3 | null];
 
@@ -1892,6 +2050,7 @@ export namespace Graphene {
          * Computes the dot product of the two given {@link Graphene.Point3D}.
          * @param b a {@link Graphene.Point3D}
          * @returns the value of the dot product
+         * @since 1.0
          */
         dot(b: Point3D): number;
 
@@ -1899,11 +2058,13 @@ export namespace Graphene {
          * Checks whether two given points are equal.
          * @param b a {@link Graphene.Point3D}
          * @returns `true` if the points are equal
+         * @since 1.0
          */
         equal(b: Point3D): boolean;
 
         /**
          * Frees the resources allocated via `graphene_point3d_alloc()`.
+         * @since 1.0
          */
         free(): void;
 
@@ -1913,6 +2074,7 @@ export namespace Graphene {
          * @param y the Y coordinate of the point
          * @param z the Z coordinate of the point
          * @returns the initialized {@link Graphene.Point3D}
+         * @since 1.0
          */
         init(x: number, y: number, z: number): Point3D;
 
@@ -1921,6 +2083,7 @@ export namespace Graphene {
          * another {@link Graphene.Point3D}.
          * @param src a {@link Graphene.Point3D}
          * @returns the initialized point
+         * @since 1.0
          */
         init_from_point(src: Point3D): Point3D;
 
@@ -1929,6 +2092,7 @@ export namespace Graphene {
          * of a {@link Graphene.Vec3}.
          * @param v a {@link Graphene.Vec3}
          * @returns the initialized {@link Graphene.Point3D}
+         * @since 1.0
          */
         init_from_vec3(v: Vec3): Point3D;
 
@@ -1937,6 +2101,7 @@ export namespace Graphene {
          * provided `factor`, and places the result in `res`.
          * @param b a {@link Graphene.Point3D}
          * @param factor the interpolation factor
+         * @since 1.0
          */
         interpolate(b: Point3D, factor: number): Point3D;
 
@@ -1944,6 +2109,7 @@ export namespace Graphene {
          * Computes the length of the vector represented by the
          * coordinates of the given {@link Graphene.Point3D}.
          * @returns the length of the vector represented by the point
+         * @since 1.0
          */
         length(): number;
 
@@ -1953,12 +2119,14 @@ export namespace Graphene {
          * @param b a {@link Graphene.Point3D}
          * @param epsilon fuzzyness factor
          * @returns `true` if the points are near each other
+         * @since 1.0
          */
         near(b: Point3D, epsilon: number): boolean;
 
         /**
          * Computes the normalization of the vector represented by the
          * coordinates of the given {@link Graphene.Point3D}.
+         * @since 1.0
          */
         normalize(): Point3D;
 
@@ -1971,6 +2139,7 @@ export namespace Graphene {
          * @param viewport a {@link Graphene.Rect} representing a viewport
          * @param z_near the coordinate of the near clipping plane, or 0 for   the default near clipping plane
          * @param z_far the coordinate of the far clipping plane, or 1 for the   default far clipping plane
+         * @since 1.4
          */
         normalize_viewport(viewport: Rect, z_near: number, z_far: number): Point3D;
 
@@ -1978,12 +2147,14 @@ export namespace Graphene {
          * Scales the coordinates of the given {@link Graphene.Point3D} by
          * the given `factor`.
          * @param factor the scaling factor
+         * @since 1.0
          */
         scale(factor: number): Point3D;
 
         /**
          * Stores the coordinates of a {@link Graphene.Point3D} into a
          * {@link Graphene.Vec3}.
+         * @since 1.0
          */
         to_vec3(): Vec3;
     }
@@ -2008,6 +2179,7 @@ export namespace Graphene {
         // Methods
         /**
          * Computes the bounding rectangle of `q` and places it into `r`.
+         * @since 1.0
          */
         bounds(): Rect;
 
@@ -2015,11 +2187,13 @@ export namespace Graphene {
          * Checks if the given {@link Graphene.Quad} contains the given {@link Graphene.Point}.
          * @param p a {@link Graphene.Point}
          * @returns `true` if the point is inside the {@link Graphene.Quad}
+         * @since 1.0
          */
         contains(p: Point): boolean;
 
         /**
          * Frees the resources allocated by `graphene_quad_alloc()`
+         * @since 1.0
          */
         free(): void;
 
@@ -2027,6 +2201,7 @@ export namespace Graphene {
          * Retrieves the point of a {@link Graphene.Quad} at the given index.
          * @param index_ the index of the point to retrieve
          * @returns a {@link Graphene.Point}
+         * @since 1.0
          */
         get_point(index_: number): Point;
 
@@ -2037,6 +2212,7 @@ export namespace Graphene {
          * @param p3 the third point of the quadrilateral
          * @param p4 the fourth point of the quadrilateral
          * @returns the initialized {@link Graphene.Quad}
+         * @since 1.0
          */
         init(p1: Point, p2: Point, p3: Point, p4: Point): Quad;
 
@@ -2044,6 +2220,7 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Quad} using an array of points.
          * @param points an array of 4 {@link Graphene.Point}
          * @returns the initialized {@link Graphene.Quad}
+         * @since 1.2
          */
         init_from_points(points: Point[]): Quad;
 
@@ -2052,6 +2229,7 @@ export namespace Graphene {
          * given {@link Graphene.Rect}.
          * @param r a {@link Graphene.Rect}
          * @returns the initialized {@link Graphene.Quad}
+         * @since 1.0
          */
         init_from_rect(r: Rect): Quad;
     }
@@ -2077,6 +2255,7 @@ export namespace Graphene {
         /**
          * Adds two {@link Graphene.Quaternion} `a` and `b`.
          * @param b a {@link Graphene.Quaternion}
+         * @since 1.10
          */
         add(b: Quaternion): Quaternion;
 
@@ -2084,6 +2263,7 @@ export namespace Graphene {
          * Computes the dot product of two {@link Graphene.Quaternion}.
          * @param b a {@link Graphene.Quaternion}
          * @returns the value of the dot products
+         * @since 1.0
          */
         dot(b: Quaternion): number;
 
@@ -2091,11 +2271,13 @@ export namespace Graphene {
          * Checks whether the given quaternions are equal.
          * @param b a {@link Graphene.Quaternion}
          * @returns `true` if the quaternions are equal
+         * @since 1.0
          */
         equal(b: Quaternion): boolean;
 
         /**
          * Releases the resources allocated by `graphene_quaternion_alloc()`.
+         * @since 1.0
          */
         free(): void;
 
@@ -2106,6 +2288,7 @@ export namespace Graphene {
          * @param z the third component of the quaternion
          * @param w the fourth component of the quaternion
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init(x: number, y: number, z: number, w: number): Quaternion;
 
@@ -2115,6 +2298,7 @@ export namespace Graphene {
          * @param angle the rotation on a given axis, in degrees
          * @param axis the axis of rotation, expressed as a vector
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init_from_angle_vec3(angle: number, axis: Vec3): Quaternion;
 
@@ -2128,6 +2312,7 @@ export namespace Graphene {
          * @param deg_y rotation angle on the Y axis (pitch), in degrees
          * @param deg_z rotation angle on the Z axis (roll), in degrees
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init_from_angles(deg_x: number, deg_y: number, deg_z: number): Quaternion;
 
@@ -2135,6 +2320,7 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Quaternion} using the given {@link Graphene.Euler}.
          * @param e a {@link Graphene.Euler}
          * @returns the initialized {@link Graphene.Quaternion}
+         * @since 1.2
          */
         init_from_euler(e: Euler): Quaternion;
 
@@ -2143,6 +2329,7 @@ export namespace Graphene {
          * of a transformation matrix.
          * @param m a {@link Graphene.Matrix}
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init_from_matrix(m: Matrix): Quaternion;
 
@@ -2150,6 +2337,7 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Quaternion} with the values from `src`.
          * @param src a {@link Graphene.Quaternion}
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init_from_quaternion(src: Quaternion): Quaternion;
 
@@ -2163,6 +2351,7 @@ export namespace Graphene {
          * @param rad_y rotation angle on the Y axis (pitch), in radians
          * @param rad_z rotation angle on the Z axis (roll), in radians
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init_from_radians(rad_x: number, rad_y: number, rad_z: number): Quaternion;
 
@@ -2170,6 +2359,7 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Quaternion} with the values from `src`.
          * @param src a {@link Graphene.Vec4}
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init_from_vec4(src: Vec4): Quaternion;
 
@@ -2177,23 +2367,27 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Quaternion} using the identity
          * transformation.
          * @returns the initialized quaternion
+         * @since 1.0
          */
         init_identity(): Quaternion;
 
         /**
          * Inverts a {@link Graphene.Quaternion}, and returns the conjugate
          * quaternion of `q`.
+         * @since 1.0
          */
         invert(): Quaternion;
 
         /**
          * Multiplies two {@link Graphene.Quaternion} `a` and `b`.
          * @param b a {@link Graphene.Quaternion}
+         * @since 1.10
          */
         multiply(b: Quaternion): Quaternion;
 
         /**
          * Normalizes a {@link Graphene.Quaternion}.
+         * @since 1.0
          */
         normalize(): Quaternion;
 
@@ -2201,6 +2395,7 @@ export namespace Graphene {
          * Scales all the elements of a {@link Graphene.Quaternion} `q` using
          * the given scalar factor.
          * @param factor a scaling factor
+         * @since 1.10
          */
         scale(factor: number): Quaternion;
 
@@ -2210,11 +2405,13 @@ export namespace Graphene {
          * using the given interpolation `factor`.
          * @param b a {@link Graphene.Quaternion}
          * @param factor the linear interpolation factor
+         * @since 1.0
          */
         slerp(b: Quaternion, factor: number): Quaternion;
 
         /**
          * Converts a quaternion into an `angle`, `axis` pair.
+         * @since 1.0
          */
         to_angle_vec3(): [number, Vec3];
 
@@ -2222,12 +2419,14 @@ export namespace Graphene {
          * Converts a {@link Graphene.Quaternion} to its corresponding rotations
          * on the [Euler angles](http://en.wikipedia.org/wiki/Euler_angles)
          * on each axis.
+         * @since 1.2
          */
         to_angles(): [number, number, number];
 
         /**
          * Converts a quaternion into a transformation matrix expressing
          * the rotation defined by the {@link Graphene.Quaternion}.
+         * @since 1.0
          */
         to_matrix(): Matrix;
 
@@ -2235,12 +2434,14 @@ export namespace Graphene {
          * Converts a {@link Graphene.Quaternion} to its corresponding rotations
          * on the [Euler angles](http://en.wikipedia.org/wiki/Euler_angles)
          * on each axis.
+         * @since 1.2
          */
         to_radians(): [number, number, number];
 
         /**
          * Copies the components of a {@link Graphene.Quaternion} into a
          * {@link Graphene.Vec4}.
+         * @since 1.0
          */
         to_vec4(): Vec4;
     }
@@ -2267,11 +2468,13 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Ray} are equal.
          * @param b a {@link Graphene.Ray}
          * @returns `true` if the given rays are equal
+         * @since 1.4
          */
         equal(b: Ray): boolean;
 
         /**
          * Frees the resources allocated by `graphene_ray_alloc()`.
+         * @since 1.4
          */
         free(): void;
 
@@ -2279,11 +2482,13 @@ export namespace Graphene {
          * Computes the point on the given {@link Graphene.Ray} that is closest to the
          * given point `p`.
          * @param p a {@link Graphene.Point3D}
+         * @since 1.4
          */
         get_closest_point_to_point(p: Point3D): Point3D;
 
         /**
          * Retrieves the direction of the given {@link Graphene.Ray}.
+         * @since 1.4
          */
         get_direction(): Vec3;
 
@@ -2294,6 +2499,7 @@ export namespace Graphene {
          * If the ray does not intersect the plane, this function returns `INFINITY`.
          * @param p a {@link Graphene.Plane}
          * @returns the distance of the origin of the ray from the plane
+         * @since 1.4
          */
         get_distance_to_plane(p: Plane): number;
 
@@ -2306,11 +2512,13 @@ export namespace Graphene {
          * ray itself.
          * @param p a {@link Graphene.Point3D}
          * @returns the distance of the point
+         * @since 1.4
          */
         get_distance_to_point(p: Point3D): number;
 
         /**
          * Retrieves the origin of the given {@link Graphene.Ray}.
+         * @since 1.4
          */
         get_origin(): Point3D;
 
@@ -2318,6 +2526,7 @@ export namespace Graphene {
          * Retrieves the coordinates of a point at the distance `t` along the
          * given {@link Graphene.Ray}.
          * @param t the distance along the ray
+         * @since 1.4
          */
         get_position_at(t: number): Point3D;
 
@@ -2327,6 +2536,7 @@ export namespace Graphene {
          * @param origin the origin of the ray
          * @param direction the direction vector
          * @returns the initialized ray
+         * @since 1.4
          */
         init(origin: Point3D | null, direction: Vec3 | null): Ray;
 
@@ -2335,6 +2545,7 @@ export namespace Graphene {
          * values of another {@link Graphene.Ray}.
          * @param src a {@link Graphene.Ray}
          * @returns the initialized ray
+         * @since 1.4
          */
         init_from_ray(src: Ray): Ray;
 
@@ -2343,6 +2554,7 @@ export namespace Graphene {
          * @param origin a {@link Graphene.Vec3}
          * @param direction a {@link Graphene.Vec3}
          * @returns the initialized ray
+         * @since 1.4
          */
         init_from_vec3(origin: Vec3 | null, direction: Vec3 | null): Ray;
 
@@ -2351,6 +2563,7 @@ export namespace Graphene {
          * {@link Graphene.Box} `b`.
          * @param b a {@link Graphene.Box}
          * @returns the type of intersection
+         * @since 1.10
          */
         intersect_box(b: Box): [RayIntersectionKind, number];
 
@@ -2359,6 +2572,7 @@ export namespace Graphene {
          * {@link Graphene.Sphere} `s`.
          * @param s a {@link Graphene.Sphere}
          * @returns the type of intersection
+         * @since 1.10
          */
         intersect_sphere(s: Sphere): [RayIntersectionKind, number];
 
@@ -2367,6 +2581,7 @@ export namespace Graphene {
          * {@link Graphene.Triangle} `t`.
          * @param t a {@link Graphene.Triangle}
          * @returns the type of intersection
+         * @since 1.10
          */
         intersect_triangle(t: Triangle): [RayIntersectionKind, number];
 
@@ -2377,6 +2592,7 @@ export namespace Graphene {
          * See also: `graphene_ray_intersect_box()`
          * @param b a {@link Graphene.Box}
          * @returns `true` if the ray intersects the box
+         * @since 1.10
          */
         intersects_box(b: Box): boolean;
 
@@ -2387,6 +2603,7 @@ export namespace Graphene {
          * See also: `graphene_ray_intersect_sphere()`
          * @param s a {@link Graphene.Sphere}
          * @returns `true` if the ray intersects the sphere
+         * @since 1.10
          */
         intersects_sphere(s: Sphere): boolean;
 
@@ -2397,6 +2614,7 @@ export namespace Graphene {
          * See also: `graphene_ray_intersect_triangle()`
          * @param t a {@link Graphene.Triangle}
          * @returns `true` if the ray intersects the triangle
+         * @since 1.10
          */
         intersects_triangle(t: Triangle): boolean;
     }
@@ -2438,12 +2656,14 @@ export namespace Graphene {
          * Allocates a new {@link Graphene.Rect}.
          * 
          * The contents of the returned rectangle are undefined.
+         * @since 1.0
          */
         static alloc(): Rect;
 
         /**
          * Returns a degenerate rectangle with origin fixed at (0, 0) and
          * a size of 0, 0.
+         * @since 1.4
          */
         static zero(): Rect;
 
@@ -2452,6 +2672,7 @@ export namespace Graphene {
          * Checks whether a {@link Graphene.Rect} contains the given coordinates.
          * @param p a {@link Graphene.Point}
          * @returns `true` if the rectangle contains the point
+         * @since 1.0
          */
         contains_point(p: Point): boolean;
 
@@ -2460,6 +2681,7 @@ export namespace Graphene {
          * rectangle.
          * @param b a {@link Graphene.Rect}
          * @returns `true` if the rectangle `a` fully contains `b`
+         * @since 1.0
          */
         contains_rect(b: Rect): boolean;
 
@@ -2467,65 +2689,77 @@ export namespace Graphene {
          * Checks whether the two given rectangle are equal.
          * @param b a {@link Graphene.Rect}
          * @returns `true` if the rectangles are equal
+         * @since 1.0
          */
         equal(b: Rect): boolean;
 
         /**
          * Expands a {@link Graphene.Rect} to contain the given {@link Graphene.Point}.
          * @param p a {@link Graphene.Point}
+         * @since 1.4
          */
         expand(p: Point): Rect;
 
         /**
          * Frees the resources allocated by `graphene_rect_alloc()`.
+         * @since 1.0
          */
         free(): void;
 
         /**
          * Compute the area of given normalized rectangle.
          * @returns the area of the normalized rectangle
+         * @since 1.10
          */
         get_area(): number;
 
         /**
          * Retrieves the coordinates of the bottom-left corner of the given rectangle.
+         * @since 1.0
          */
         get_bottom_left(): Point;
 
         /**
          * Retrieves the coordinates of the bottom-right corner of the given rectangle.
+         * @since 1.0
          */
         get_bottom_right(): Point;
 
         /**
          * Retrieves the coordinates of the center of the given rectangle.
+         * @since 1.0
          */
         get_center(): Point;
 
         /**
          * Retrieves the normalized height of the given rectangle.
          * @returns the normalized height of the rectangle
+         * @since 1.0
          */
         get_height(): number;
 
         /**
          * Retrieves the coordinates of the top-left corner of the given rectangle.
+         * @since 1.0
          */
         get_top_left(): Point;
 
         /**
          * Retrieves the coordinates of the top-right corner of the given rectangle.
+         * @since 1.0
          */
         get_top_right(): Point;
 
         /**
          * Computes the four vertices of a {@link Graphene.Rect}.
+         * @since 1.4
          */
         get_vertices(): Vec2[];
 
         /**
          * Retrieves the normalized width of the given rectangle.
          * @returns the normalized width of the rectangle
+         * @since 1.0
          */
         get_width(): number;
 
@@ -2533,6 +2767,7 @@ export namespace Graphene {
          * Retrieves the normalized X coordinate of the origin of the given
          * rectangle.
          * @returns the normalized X coordinate of the rectangle
+         * @since 1.0
          */
         get_x(): number;
 
@@ -2540,6 +2775,7 @@ export namespace Graphene {
          * Retrieves the normalized Y coordinate of the origin of the given
          * rectangle.
          * @returns the normalized Y coordinate of the rectangle
+         * @since 1.0
          */
         get_y(): number;
 
@@ -2553,6 +2789,7 @@ export namespace Graphene {
          * @param width the width of the `graphene_rect_t`.size
          * @param height the height of the `graphene_rect_t`.size
          * @returns the initialized rectangle
+         * @since 1.0
          */
         init(x: number, y: number, width: number, height: number): Rect;
 
@@ -2563,6 +2800,7 @@ export namespace Graphene {
          * before returning.
          * @param src a {@link Graphene.Rect}
          * @returns the initialized rectangle
+         * @since 1.0
          */
         init_from_rect(src: Rect): Rect;
 
@@ -2584,6 +2822,7 @@ export namespace Graphene {
          * @param d_x the horizontal inset
          * @param d_y the vertical inset
          * @returns the inset rectangle
+         * @since 1.0
          */
         inset(d_x: number, d_y: number): Rect;
 
@@ -2604,6 +2843,7 @@ export namespace Graphene {
          * height then the size will be set to zero.
          * @param d_x the horizontal inset
          * @param d_y the vertical inset
+         * @since 1.4
          */
         inset_r(d_x: number, d_y: number): Rect;
 
@@ -2612,6 +2852,7 @@ export namespace Graphene {
          * rectangles.
          * @param b a {@link Graphene.Rect}
          * @param factor the linear interpolation factor
+         * @since 1.0
          */
         interpolate(b: Rect, factor: number): Rect;
 
@@ -2626,6 +2867,7 @@ export namespace Graphene {
          * a degenerate rectangle with origin in (0, 0) and a size of 0.
          * @param b a {@link Graphene.Rect}
          * @returns `true` if the two rectangles intersect
+         * @since 1.0
          */
         intersection(b: Rect): [boolean, Rect | null];
 
@@ -2636,6 +2878,7 @@ export namespace Graphene {
          * positive values, and that the origin is the top-left corner of
          * the rectangle.
          * @returns the normalized rectangle
+         * @since 1.0
          */
         normalize(): Rect;
 
@@ -2645,6 +2888,7 @@ export namespace Graphene {
          * This function ensures that the size of the rectangle is made of
          * positive values, and that the origin is in the top-left corner
          * of the rectangle.
+         * @since 1.4
          */
         normalize_r(): Rect;
 
@@ -2655,6 +2899,7 @@ export namespace Graphene {
          * @param d_x the horizontal offset
          * @param d_y the vertical offset
          * @returns the offset rectangle
+         * @since 1.0
          */
         offset(d_x: number, d_y: number): Rect;
 
@@ -2664,6 +2909,7 @@ export namespace Graphene {
          * The size of the rectangle is left unchanged.
          * @param d_x the horizontal offset
          * @param d_y the vertical offset
+         * @since 1.4
          */
         offset_r(d_x: number, d_y: number): Rect;
 
@@ -2677,6 +2923,8 @@ export namespace Graphene {
          * 
          * This function is the equivalent of calling `floor` on
          * the coordinates of the origin, and `ceil` on the size.
+         * @since 1.4
+         * @deprecated since 1.10: Use `graphene_rect_round_extents()` instead
          */
         round(): Rect;
 
@@ -2702,6 +2950,7 @@ export namespace Graphene {
          * size, then the move of the origin would not be compensated
          * by a move in the anti-origin, leaving the corners of the
          * original rectangle outside the rounded one.
+         * @since 1.10
          */
         round_extents(): Rect;
 
@@ -2710,6 +2959,8 @@ export namespace Graphene {
          * their nearest integer values; the rounding is guaranteed
          * to be large enough to contain the original rectangle.
          * @returns the pixel-aligned rectangle.
+         * @since 1.0
+         * @deprecated since 1.4: Use `graphene_rect_round()` instead
          */
         round_to_pixel(): Rect;
 
@@ -2718,6 +2969,7 @@ export namespace Graphene {
          * and vertically by `s_v`. The result `res` is normalized.
          * @param s_h horizontal scale factor
          * @param s_v vertical scale factor
+         * @since 1.10
          */
         scale(s_h: number, s_v: number): Rect;
 
@@ -2728,6 +2980,7 @@ export namespace Graphene {
          * 
          * The union in the image above is the blue outline.
          * @param b a {@link Graphene.Rect}
+         * @since 1.0
          */
         union(b: Rect): Rect;
     }
@@ -2778,6 +3031,7 @@ export namespace Graphene {
         /**
          * A constant pointer to a zero {@link Graphene.Size}, useful for
          * equality checks and interpolations.
+         * @since 1.0
          */
         static zero(): Size;
 
@@ -2786,11 +3040,13 @@ export namespace Graphene {
          * Checks whether the two give {@link Graphene.Size} are equal.
          * @param b a {@link Graphene.Size}
          * @returns `true` if the sizes are equal
+         * @since 1.0
          */
         equal(b: Size): boolean;
 
         /**
          * Frees the resources allocated by `graphene_size_alloc()`.
+         * @since 1.0
          */
         free(): void;
 
@@ -2799,6 +3055,7 @@ export namespace Graphene {
          * @param width the width
          * @param height the height
          * @returns the initialized {@link Graphene.Size}
+         * @since 1.0
          */
         init(width: number, height: number): Size;
 
@@ -2807,6 +3064,7 @@ export namespace Graphene {
          * the given `src`.
          * @param src a {@link Graphene.Size}
          * @returns the initialized {@link Graphene.Size}
+         * @since 1.0
          */
         init_from_size(src: Size): Size;
 
@@ -2815,12 +3073,14 @@ export namespace Graphene {
          * interpolation `factor`.
          * @param b a {@link Graphene.Size}
          * @param factor the linear interpolation factor
+         * @since 1.0
          */
         interpolate(b: Size, factor: number): Size;
 
         /**
          * Scales the components of a {@link Graphene.Size} using the given `factor`.
          * @param factor the scaling factor
+         * @since 1.0
          */
         scale(factor: number): Size;
     }
@@ -2845,6 +3105,7 @@ export namespace Graphene {
          * of a {@link Graphene.Sphere}.
          * @param point a {@link Graphene.Point3D}
          * @returns `true` if the sphere contains the point
+         * @since 1.2
          */
         contains_point(point: Point3D): boolean;
 
@@ -2853,6 +3114,7 @@ export namespace Graphene {
          * a {@link Graphene.Sphere}.
          * @param point a {@link Graphene.Point3D}
          * @returns the distance of the point
+         * @since 1.2
          */
         distance(point: Point3D): number;
 
@@ -2860,27 +3122,32 @@ export namespace Graphene {
          * Checks whether two {@link Graphene.Sphere} are equal.
          * @param b a {@link Graphene.Sphere}
          * @returns `true` if the spheres are equal
+         * @since 1.2
          */
         equal(b: Sphere): boolean;
 
         /**
          * Frees the resources allocated by `graphene_sphere_alloc()`.
+         * @since 1.2
          */
         free(): void;
 
         /**
          * Computes the bounding box capable of containing the
          * given {@link Graphene.Sphere}.
+         * @since 1.2
          */
         get_bounding_box(): Box;
 
         /**
          * Retrieves the coordinates of the center of a {@link Graphene.Sphere}.
+         * @since 1.2
          */
         get_center(): Point3D;
 
         /**
          * Retrieves the radius of a {@link Graphene.Sphere}.
+         * @since 1.2
          */
         get_radius(): number;
 
@@ -2889,6 +3156,7 @@ export namespace Graphene {
          * @param center the coordinates of the center of the sphere, or `null`   for a center in (0, 0, 0)
          * @param radius the radius of the sphere
          * @returns the initialized {@link Graphene.Sphere}
+         * @since 1.2
          */
         init(center: Point3D | null, radius: number): Sphere;
 
@@ -2901,6 +3169,7 @@ export namespace Graphene {
          * @param points an array of {@link Graphene.Point3D}
          * @param center the center of the sphere
          * @returns the initialized {@link Graphene.Sphere}
+         * @since 1.2
          */
         init_from_points(points: Point3D[], center: Point3D | null): Sphere;
 
@@ -2913,12 +3182,14 @@ export namespace Graphene {
          * @param vectors an array of {@link Graphene.Vec3}
          * @param center the center of the sphere
          * @returns the initialized {@link Graphene.Sphere}
+         * @since 1.2
          */
         init_from_vectors(vectors: Vec3[], center: Point3D | null): Sphere;
 
         /**
          * Checks whether the sphere has a zero radius.
          * @returns `true` if the sphere is empty
+         * @since 1.2
          */
         is_empty(): boolean;
 
@@ -2926,6 +3197,7 @@ export namespace Graphene {
          * Translates the center of the given {@link Graphene.Sphere} using the `point`
          * coordinates as the delta of the translation.
          * @param point the coordinates of the translation
+         * @since 1.2
          */
         translate(point: Point3D): Sphere;
     }
@@ -2949,6 +3221,7 @@ export namespace Graphene {
          * Checks whether the given triangle `t` contains the point `p`.
          * @param p a {@link Graphene.Point3D}
          * @returns `true` if the point is inside the triangle
+         * @since 1.2
          */
         contains_point(p: Point3D): boolean;
 
@@ -2956,17 +3229,20 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Triangle} are equal.
          * @param b a {@link Graphene.Triangle}
          * @returns `true` if the triangles are equal
+         * @since 1.2
          */
         equal(b: Triangle): boolean;
 
         /**
          * Frees the resources allocated by `graphene_triangle_alloc()`.
+         * @since 1.2
          */
         free(): void;
 
         /**
          * Computes the area of the given {@link Graphene.Triangle}.
          * @returns the area of the triangle
+         * @since 1.2
          */
         get_area(): number;
 
@@ -2989,11 +3265,13 @@ export namespace Graphene {
          *  - `res.y = v`
          * @param p a {@link Graphene.Point3D}
          * @returns `true` if the barycentric coordinates are valid
+         * @since 1.2
          */
         get_barycoords(p: Point3D | null): [boolean, Vec2];
 
         /**
          * Computes the bounding box of the given {@link Graphene.Triangle}.
+         * @since 1.2
          */
         get_bounding_box(): Box;
 
@@ -3002,22 +3280,26 @@ export namespace Graphene {
          * 
          * The midpoint G is the [centroid](https://en.wikipedia.org/wiki/Centroid#Triangle_centroid)
          * of the triangle, i.e. the intersection of its medians.
+         * @since 1.2
          */
         get_midpoint(): Point3D;
 
         /**
          * Computes the normal vector of the given {@link Graphene.Triangle}.
+         * @since 1.2
          */
         get_normal(): Vec3;
 
         /**
          * Computes the plane based on the vertices of the given {@link Graphene.Triangle}.
+         * @since 1.2
          */
         get_plane(): Plane;
 
         /**
          * Retrieves the three vertices of the given {@link Graphene.Triangle} and returns
          * their coordinates as {@link Graphene.Point3D}.
+         * @since 1.2
          */
         get_points(): [Point3D | null, Point3D | null, Point3D | null];
 
@@ -3039,11 +3321,13 @@ export namespace Graphene {
          * @param uv_b the UV coordinates of the second point
          * @param uv_c the UV coordinates of the third point
          * @returns `true` if the coordinates are valid
+         * @since 1.10
          */
         get_uv(p: Point3D | null, uv_a: Vec2, uv_b: Vec2, uv_c: Vec2): [boolean, Vec2];
 
         /**
          * Retrieves the three vertices of the given {@link Graphene.Triangle}.
+         * @since 1.2
          */
         get_vertices(): [Vec3 | null, Vec3 | null, Vec3 | null];
 
@@ -3055,6 +3339,7 @@ export namespace Graphene {
          * @param b an array of 3 floating point values
          * @param c an array of 3 floating point values
          * @returns the initialized {@link Graphene.Triangle}
+         * @since 1.10
          */
         init_from_float(a: number[], b: number[], c: number[]): Triangle;
 
@@ -3064,6 +3349,7 @@ export namespace Graphene {
          * @param b a {@link Graphene.Point3D}
          * @param c a {@link Graphene.Point3D}
          * @returns the initialized {@link Graphene.Triangle}
+         * @since 1.2
          */
         init_from_point3d(a: Point3D | null, b: Point3D | null, c: Point3D | null): Triangle;
 
@@ -3073,6 +3359,7 @@ export namespace Graphene {
          * @param b a {@link Graphene.Vec3}
          * @param c a {@link Graphene.Vec3}
          * @returns the initialized {@link Graphene.Triangle}
+         * @since 1.2
          */
         init_from_vec3(a: Vec3 | null, b: Vec3 | null, c: Vec3 | null): Triangle;
     }
@@ -3096,21 +3383,25 @@ export namespace Graphene {
         // Static methods
         /**
          * Retrieves a constant vector with (1, 1) components.
+         * @since 1.0
          */
         static one(): Vec2;
 
         /**
          * Retrieves a constant vector with (1, 0) components.
+         * @since 1.0
          */
         static x_axis(): Vec2;
 
         /**
          * Retrieves a constant vector with (0, 1) components.
+         * @since 1.0
          */
         static y_axis(): Vec2;
 
         /**
          * Retrieves a constant vector with (0, 0) components.
+         * @since 1.0
          */
         static zero(): Vec2;
 
@@ -3119,6 +3410,7 @@ export namespace Graphene {
          * Adds each component of the two passed vectors and places
          * each result into the components of `res`.
          * @param b a {@link Graphene.Vec2}
+         * @since 1.0
          */
         add(b: Vec2): Vec2;
 
@@ -3127,6 +3419,7 @@ export namespace Graphene {
          * component of the second operand `b`, and places the results into the
          * vector `res`.
          * @param b a {@link Graphene.Vec2}
+         * @since 1.0
          */
         divide(b: Vec2): Vec2;
 
@@ -3134,6 +3427,7 @@ export namespace Graphene {
          * Computes the dot product of the two given vectors.
          * @param b a {@link Graphene.Vec2}
          * @returns the dot product of the vectors
+         * @since 1.0
          */
         dot(b: Vec2): number;
 
@@ -3141,23 +3435,27 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Vec2} are equal.
          * @param v2 a {@link Graphene.Vec2}
          * @returns `true` if the two vectors are equal, and false otherwise
+         * @since 1.2
          */
         equal(v2: Vec2): boolean;
 
         /**
          * Frees the resources allocated by `v`
+         * @since 1.0
          */
         free(): void;
 
         /**
          * Retrieves the X component of the {@link Graphene.Vec2}.
          * @returns the value of the X component
+         * @since 1.0
          */
         get_x(): number;
 
         /**
          * Retrieves the Y component of the {@link Graphene.Vec2}.
          * @returns the value of the Y component
+         * @since 1.0
          */
         get_y(): number;
 
@@ -3168,6 +3466,7 @@ export namespace Graphene {
          * @param x the X field of the vector
          * @param y the Y field of the vector
          * @returns the initialized vector
+         * @since 1.0
          */
         init(x: number, y: number): Vec2;
 
@@ -3175,6 +3474,7 @@ export namespace Graphene {
          * Initializes `v` with the contents of the given array.
          * @param src an array of floating point values   with at least two elements
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_float(src: number[]): Vec2;
 
@@ -3182,6 +3482,7 @@ export namespace Graphene {
          * Copies the contents of `src` into `v`.
          * @param src a {@link Graphene.Vec2}
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_vec2(src: Vec2): Vec2;
 
@@ -3189,12 +3490,14 @@ export namespace Graphene {
          * Linearly interpolates `v1` and `v2` using the given `factor`.
          * @param v2 a {@link Graphene.Vec2}
          * @param factor the interpolation factor
+         * @since 1.10
          */
         interpolate(v2: Vec2, factor: number): Vec2;
 
         /**
          * Computes the length of the given vector.
          * @returns the length of the vector
+         * @since 1.0
          */
         length(): number;
 
@@ -3202,6 +3505,7 @@ export namespace Graphene {
          * Compares the two given vectors and places the maximum
          * values of each component into `res`.
          * @param b a {@link Graphene.Vec2}
+         * @since 1.0
          */
         max(b: Vec2): Vec2;
 
@@ -3209,6 +3513,7 @@ export namespace Graphene {
          * Compares the two given vectors and places the minimum
          * values of each component into `res`.
          * @param b a {@link Graphene.Vec2}
+         * @since 1.0
          */
         min(b: Vec2): Vec2;
 
@@ -3216,6 +3521,7 @@ export namespace Graphene {
          * Multiplies each component of the two passed vectors and places
          * each result into the components of `res`.
          * @param b a {@link Graphene.Vec2}
+         * @since 1.0
          */
         multiply(b: Vec2): Vec2;
 
@@ -3225,22 +3531,26 @@ export namespace Graphene {
          * @param v2 a {@link Graphene.Vec2}
          * @param epsilon the threshold between the two vectors
          * @returns `true` if the two vectors are near each other
+         * @since 1.2
          */
         near(v2: Vec2, epsilon: number): boolean;
 
         /**
          * Negates the given {@link Graphene.Vec2}.
+         * @since 1.2
          */
         negate(): Vec2;
 
         /**
          * Computes the normalized vector for the given vector `v`.
+         * @since 1.0
          */
         normalize(): Vec2;
 
         /**
          * Multiplies all components of the given vector with the given scalar `factor`.
          * @param factor the scalar factor
+         * @since 1.2
          */
         scale(factor: number): Vec2;
 
@@ -3249,11 +3559,13 @@ export namespace Graphene {
          * corresponding component of the second operand `b` and places
          * each result into the components of `res`.
          * @param b a {@link Graphene.Vec2}
+         * @since 1.0
          */
         subtract(b: Vec2): Vec2;
 
         /**
          * Stores the components of `v` into an array.
+         * @since 1.0
          */
         to_float(): number[];
     }
@@ -3278,30 +3590,35 @@ export namespace Graphene {
         /**
          * Provides a constant pointer to a vector with three components,
          * all sets to 1.
+         * @since 1.0
          */
         static one(): Vec3;
 
         /**
          * Provides a constant pointer to a vector with three components
          * with values set to (1, 0, 0).
+         * @since 1.0
          */
         static x_axis(): Vec3;
 
         /**
          * Provides a constant pointer to a vector with three components
          * with values set to (0, 1, 0).
+         * @since 1.0
          */
         static y_axis(): Vec3;
 
         /**
          * Provides a constant pointer to a vector with three components
          * with values set to (0, 0, 1).
+         * @since 1.0
          */
         static z_axis(): Vec3;
 
         /**
          * Provides a constant pointer to a vector with three components,
          * all sets to 0.
+         * @since 1.0
          */
         static zero(): Vec3;
 
@@ -3309,12 +3626,14 @@ export namespace Graphene {
         /**
          * Adds each component of the two given vectors.
          * @param b a {@link Graphene.Vec3}
+         * @since 1.0
          */
         add(b: Vec3): Vec3;
 
         /**
          * Computes the cross product of the two given vectors.
          * @param b a {@link Graphene.Vec3}
+         * @since 1.0
          */
         cross(b: Vec3): Vec3;
 
@@ -3323,6 +3642,7 @@ export namespace Graphene {
          * component of the second operand `b`, and places the results into the
          * vector `res`.
          * @param b a {@link Graphene.Vec3}
+         * @since 1.0
          */
         divide(b: Vec3): Vec3;
 
@@ -3330,6 +3650,7 @@ export namespace Graphene {
          * Computes the dot product of the two given vectors.
          * @param b a {@link Graphene.Vec3}
          * @returns the value of the dot product
+         * @since 1.0
          */
         dot(b: Vec3): number;
 
@@ -3337,41 +3658,48 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Vec3} are equal.
          * @param v2 a {@link Graphene.Vec3}
          * @returns `true` if the two vectors are equal, and false otherwise
+         * @since 1.2
          */
         equal(v2: Vec3): boolean;
 
         /**
          * Frees the resources allocated by `v`
+         * @since 1.0
          */
         free(): void;
 
         /**
          * Retrieves the first component of the given vector `v`.
          * @returns the value of the first component of the vector
+         * @since 1.0
          */
         get_x(): number;
 
         /**
          * Creates a {@link Graphene.Vec2} that contains the first and second
          * components of the given {@link Graphene.Vec3}.
+         * @since 1.0
          */
         get_xy(): Vec2;
 
         /**
          * Creates a {@link Graphene.Vec3} that contains the first two components of
          * the given {@link Graphene.Vec3}, and the third component set to 0.
+         * @since 1.0
          */
         get_xy0(): Vec3;
 
         /**
          * Converts a {@link Graphene.Vec3} in a {@link Graphene.Vec4} using 0.0
          * as the value for the fourth component of the resulting vector.
+         * @since 1.0
          */
         get_xyz0(): Vec4;
 
         /**
          * Converts a {@link Graphene.Vec3} in a {@link Graphene.Vec4} using 1.0
          * as the value for the fourth component of the resulting vector.
+         * @since 1.0
          */
         get_xyz1(): Vec4;
 
@@ -3379,18 +3707,21 @@ export namespace Graphene {
          * Converts a {@link Graphene.Vec3} in a {@link Graphene.Vec4} using `w` as
          * the value of the fourth component of the resulting vector.
          * @param w the value of the W component
+         * @since 1.0
          */
         get_xyzw(w: number): Vec4;
 
         /**
          * Retrieves the second component of the given vector `v`.
          * @returns the value of the second component of the vector
+         * @since 1.0
          */
         get_y(): number;
 
         /**
          * Retrieves the third component of the given vector `v`.
          * @returns the value of the third component of the vector
+         * @since 1.0
          */
         get_z(): number;
 
@@ -3402,6 +3733,7 @@ export namespace Graphene {
          * @param y the Y field of the vector
          * @param z the Z field of the vector
          * @returns a pointer to the initialized   vector
+         * @since 1.0
          */
         init(x: number, y: number, z: number): Vec3;
 
@@ -3409,6 +3741,7 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Vec3} with the values from an array.
          * @param src an array of 3 floating point values
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_float(src: number[]): Vec3;
 
@@ -3417,6 +3750,7 @@ export namespace Graphene {
          * {@link Graphene.Vec3}.
          * @param src a {@link Graphene.Vec3}
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_vec3(src: Vec3): Vec3;
 
@@ -3424,12 +3758,14 @@ export namespace Graphene {
          * Linearly interpolates `v1` and `v2` using the given `factor`.
          * @param v2 a {@link Graphene.Vec3}
          * @param factor the interpolation factor
+         * @since 1.10
          */
         interpolate(v2: Vec3, factor: number): Vec3;
 
         /**
          * Retrieves the length of the given vector `v`.
          * @returns the value of the length of the vector
+         * @since 1.0
          */
         length(): number;
 
@@ -3437,6 +3773,7 @@ export namespace Graphene {
          * Compares each component of the two given vectors and creates a
          * vector that contains the maximum values.
          * @param b a {@link Graphene.Vec3}
+         * @since 1.0
          */
         max(b: Vec3): Vec3;
 
@@ -3444,12 +3781,14 @@ export namespace Graphene {
          * Compares each component of the two given vectors and creates a
          * vector that contains the minimum values.
          * @param b a {@link Graphene.Vec3}
+         * @since 1.0
          */
         min(b: Vec3): Vec3;
 
         /**
          * Multiplies each component of the two given vectors.
          * @param b a {@link Graphene.Vec3}
+         * @since 1.0
          */
         multiply(b: Vec3): Vec3;
 
@@ -3459,22 +3798,26 @@ export namespace Graphene {
          * @param v2 a {@link Graphene.Vec3}
          * @param epsilon the threshold between the two vectors
          * @returns `true` if the two vectors are near each other
+         * @since 1.2
          */
         near(v2: Vec3, epsilon: number): boolean;
 
         /**
          * Negates the given {@link Graphene.Vec3}.
+         * @since 1.2
          */
         negate(): Vec3;
 
         /**
          * Normalizes the given {@link Graphene.Vec3}.
+         * @since 1.0
          */
         normalize(): Vec3;
 
         /**
          * Multiplies all components of the given vector with the given scalar `factor`.
          * @param factor the scalar factor
+         * @since 1.2
          */
         scale(factor: number): Vec3;
 
@@ -3483,11 +3826,13 @@ export namespace Graphene {
          * corresponding component of the second operand `b` and places
          * each result into the components of `res`.
          * @param b a {@link Graphene.Vec3}
+         * @since 1.0
          */
         subtract(b: Vec3): Vec3;
 
         /**
          * Copies the components of a {@link Graphene.Vec3} into the given array.
+         * @since 1.0
          */
         to_float(): number[];
     }
@@ -3512,36 +3857,42 @@ export namespace Graphene {
         /**
          * Retrieves a pointer to a {@link Graphene.Vec4} with all its
          * components set to 1.
+         * @since 1.0
          */
         static one(): Vec4;
 
         /**
          * Retrieves a pointer to a {@link Graphene.Vec4} with its
          * components set to (0, 0, 0, 1).
+         * @since 1.0
          */
         static w_axis(): Vec4;
 
         /**
          * Retrieves a pointer to a {@link Graphene.Vec4} with its
          * components set to (1, 0, 0, 0).
+         * @since 1.0
          */
         static x_axis(): Vec4;
 
         /**
          * Retrieves a pointer to a {@link Graphene.Vec4} with its
          * components set to (0, 1, 0, 0).
+         * @since 1.0
          */
         static y_axis(): Vec4;
 
         /**
          * Retrieves a pointer to a {@link Graphene.Vec4} with its
          * components set to (0, 0, 1, 0).
+         * @since 1.0
          */
         static z_axis(): Vec4;
 
         /**
          * Retrieves a pointer to a {@link Graphene.Vec4} with all its
          * components set to 0.
+         * @since 1.0
          */
         static zero(): Vec4;
 
@@ -3549,6 +3900,7 @@ export namespace Graphene {
         /**
          * Adds each component of the two given vectors.
          * @param b a {@link Graphene.Vec4}
+         * @since 1.0
          */
         add(b: Vec4): Vec4;
 
@@ -3557,6 +3909,7 @@ export namespace Graphene {
          * component of the second operand `b`, and places the results into the
          * vector `res`.
          * @param b a {@link Graphene.Vec4}
+         * @since 1.0
          */
         divide(b: Vec4): Vec4;
 
@@ -3564,6 +3917,7 @@ export namespace Graphene {
          * Computes the dot product of the two given vectors.
          * @param b a {@link Graphene.Vec4}
          * @returns the value of the dot product
+         * @since 1.0
          */
         dot(b: Vec4): number;
 
@@ -3571,47 +3925,55 @@ export namespace Graphene {
          * Checks whether the two given {@link Graphene.Vec4} are equal.
          * @param v2 a {@link Graphene.Vec4}
          * @returns `true` if the two vectors are equal, and false otherwise
+         * @since 1.2
          */
         equal(v2: Vec4): boolean;
 
         /**
          * Frees the resources allocated by `v`
+         * @since 1.0
          */
         free(): void;
 
         /**
          * Retrieves the value of the fourth component of the given {@link Graphene.Vec4}.
          * @returns the value of the fourth component
+         * @since 1.0
          */
         get_w(): number;
 
         /**
          * Retrieves the value of the first component of the given {@link Graphene.Vec4}.
          * @returns the value of the first component
+         * @since 1.0
          */
         get_x(): number;
 
         /**
          * Creates a {@link Graphene.Vec2} that contains the first two components
          * of the given {@link Graphene.Vec4}.
+         * @since 1.0
          */
         get_xy(): Vec2;
 
         /**
          * Creates a {@link Graphene.Vec3} that contains the first three components
          * of the given {@link Graphene.Vec4}.
+         * @since 1.0
          */
         get_xyz(): Vec3;
 
         /**
          * Retrieves the value of the second component of the given {@link Graphene.Vec4}.
          * @returns the value of the second component
+         * @since 1.0
          */
         get_y(): number;
 
         /**
          * Retrieves the value of the third component of the given {@link Graphene.Vec4}.
          * @returns the value of the third component
+         * @since 1.0
          */
         get_z(): number;
 
@@ -3624,6 +3986,7 @@ export namespace Graphene {
          * @param z the Z field of the vector
          * @param w the W field of the vector
          * @returns a pointer to the initialized   vector
+         * @since 1.0
          */
         init(x: number, y: number, z: number, w: number): Vec4;
 
@@ -3631,6 +3994,7 @@ export namespace Graphene {
          * Initializes a {@link Graphene.Vec4} with the values inside the given array.
          * @param src an array of four floating point values
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_float(src: number[]): Vec4;
 
@@ -3641,6 +4005,7 @@ export namespace Graphene {
          * @param z the value for the third component of `v`
          * @param w the value for the fourth component of `v`
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_vec2(src: Vec2, z: number, w: number): Vec4;
 
@@ -3650,6 +4015,7 @@ export namespace Graphene {
          * @param src a {@link Graphene.Vec3}
          * @param w the value for the fourth component of `v`
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_vec3(src: Vec3, w: number): Vec4;
 
@@ -3658,6 +4024,7 @@ export namespace Graphene {
          * another {@link Graphene.Vec4}.
          * @param src a {@link Graphene.Vec4}
          * @returns the initialized vector
+         * @since 1.0
          */
         init_from_vec4(src: Vec4): Vec4;
 
@@ -3665,12 +4032,14 @@ export namespace Graphene {
          * Linearly interpolates `v1` and `v2` using the given `factor`.
          * @param v2 a {@link Graphene.Vec4}
          * @param factor the interpolation factor
+         * @since 1.10
          */
         interpolate(v2: Vec4, factor: number): Vec4;
 
         /**
          * Computes the length of the given {@link Graphene.Vec4}.
          * @returns the length of the vector
+         * @since 1.0
          */
         length(): number;
 
@@ -3678,6 +4047,7 @@ export namespace Graphene {
          * Compares each component of the two given vectors and creates a
          * vector that contains the maximum values.
          * @param b a {@link Graphene.Vec4}
+         * @since 1.0
          */
         max(b: Vec4): Vec4;
 
@@ -3685,12 +4055,14 @@ export namespace Graphene {
          * Compares each component of the two given vectors and creates a
          * vector that contains the minimum values.
          * @param b a {@link Graphene.Vec4}
+         * @since 1.0
          */
         min(b: Vec4): Vec4;
 
         /**
          * Multiplies each component of the two given vectors.
          * @param b a {@link Graphene.Vec4}
+         * @since 1.0
          */
         multiply(b: Vec4): Vec4;
 
@@ -3700,22 +4072,26 @@ export namespace Graphene {
          * @param v2 a {@link Graphene.Vec4}
          * @param epsilon the threshold between the two vectors
          * @returns `true` if the two vectors are near each other
+         * @since 1.2
          */
         near(v2: Vec4, epsilon: number): boolean;
 
         /**
          * Negates the given {@link Graphene.Vec4}.
+         * @since 1.2
          */
         negate(): Vec4;
 
         /**
          * Normalizes the given {@link Graphene.Vec4}.
+         * @since 1.0
          */
         normalize(): Vec4;
 
         /**
          * Multiplies all components of the given vector with the given scalar `factor`.
          * @param factor the scalar factor
+         * @since 1.2
          */
         scale(factor: number): Vec4;
 
@@ -3724,12 +4100,14 @@ export namespace Graphene {
          * corresponding component of the second operand `b` and places
          * each result into the components of `res`.
          * @param b a {@link Graphene.Vec4}
+         * @since 1.0
          */
         subtract(b: Vec4): Vec4;
 
         /**
          * Stores the components of the given {@link Graphene.Vec4} into an array
          * of floating point values.
+         * @since 1.0
          */
         to_float(): number[];
     }

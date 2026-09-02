@@ -50,11 +50,11 @@ export namespace PangoOT {
         /**
          * The GSUB table.
          */
-        GSUB,
+        GSUB = 0,
         /**
          * The GPOS table.
          */
-        GPOS,
+        GPOS = 1,
     }
 
 
@@ -62,6 +62,7 @@ export namespace PangoOT {
      * This is used as the property bit in `pango_ot_ruleset_add_feature()` when a
      * feature should be applied to all glyphs.
      * @since 1.16
+     * @default 65535
      */
     const ALL_GLYPHS: number;
 
@@ -76,6 +77,7 @@ export namespace PangoOT {
      * `pango_ot_info_find_feature()` without having to worry about falling back to
      * default language system explicitly.
      * @since 1.16
+     * @default 65535
      */
     const DEFAULT_LANGUAGE: number;
 
@@ -85,6 +87,7 @@ export namespace PangoOT {
      * if the feature is not found, and `pango_ot_ruleset_add_feature()` function
      * automatically skips this value, so no special handling is required by the user.
      * @since 1.18
+     * @default 65535
      */
     const NO_FEATURE: number;
 
@@ -96,6 +99,7 @@ export namespace PangoOT {
      * taking a script index essentially return if the input script index is
      * this value, so no special handling is required by the user.
      * @since 1.18
+     * @default 65535
      */
     const NO_SCRIPT: number;
 
@@ -195,6 +199,7 @@ export namespace PangoOT {
         /**
          * Returns the {@link PangoOT.Info} structure for the given FreeType font face.
          * @param face a `FT_Face`
+         * @since 1.2
          */
         static get(face: freetype2.Face): Info;
 
@@ -352,6 +357,7 @@ export namespace PangoOT {
          * long as `info` is.
          * @param info a {@link PangoOT.Info}
          * @param desc a {@link PangoOT.RulesetDescription}
+         * @since 1.18
          */
         static get_for_description(info: Info, desc: RulesetDescription): Ruleset;
 
@@ -367,6 +373,7 @@ export namespace PangoOT {
         /**
          * Gets the number of GSUB and GPOS features in the ruleset.
          * @returns Total number of features in the `ruleset`
+         * @since 1.18
          */
         get_feature_count(): [number, number, number];
 
@@ -382,6 +389,7 @@ export namespace PangoOT {
          * @param feature_tag the tag of the feature to add
          * @param property_bit the property bit to use for this feature. Used to   identify the glyphs that this feature should be applied to, or   `PANGO_OT_ALL_GLYPHS` if it should be applied to all glyphs.
          * @returns `true` if the feature was found and added to ruleset,   `false` otherwise
+         * @since 1.18
          */
         maybe_add_feature(table_type: TableType, feature_tag: Tag, property_bit: bigint | number): boolean;
 
@@ -394,6 +402,7 @@ export namespace PangoOT {
          * @param features array of feature name and property bits to add
          * @param n_features number of feature records in `features` array
          * @returns The number of features in `features` that were found   and added to `ruleset`
+         * @since 1.18
          */
         maybe_add_features(table_type: TableType, features: FeatureMap, n_features: number): number;
 
@@ -401,6 +410,7 @@ export namespace PangoOT {
          * Performs the OpenType GPOS positioning on `buffer` using
          * the features in `ruleset`.
          * @param buffer a {@link PangoOT.Buffer}
+         * @since 1.4
          */
         position(buffer: Buffer): void;
 
@@ -408,6 +418,7 @@ export namespace PangoOT {
          * Performs the OpenType GSUB substitution on `buffer` using
          * the features in `ruleset`.
          * @param buffer a {@link PangoOT.Buffer}
+         * @since 1.4
          */
         substitute(buffer: Buffer): void;
     }
@@ -433,16 +444,19 @@ export namespace PangoOT {
          * @param glyph the glyph index to add, like a {@link Pango.Glyph}
          * @param properties the glyph properties
          * @param cluster the cluster that this glyph belongs to
+         * @since 1.4
          */
         add_glyph(glyph: number, properties: number, cluster: number): void;
 
         /**
          * Empties a {@link PangoOT.Buffer}, make it ready to add glyphs to.
+         * @since 1.4
          */
         clear(): void;
 
         /**
          * Destroys a {@link PangoOT.Buffer} and free all associated memory.
+         * @since 1.4
          */
         destroy(): void;
 
@@ -451,6 +465,7 @@ export namespace PangoOT {
          * 
          * The glyphs are owned by the buffer and should not be freed,
          * and are only valid as long as buffer is not modified.
+         * @since 1.4
          */
         get_glyphs(): Glyph[] | null;
 
@@ -461,6 +476,7 @@ export namespace PangoOT {
          * is over, to convert the resulting glyphs into a generic Pango
          * glyph string.
          * @param glyphs a {@link Pango.GlyphString}
+         * @since 1.4
          */
         output(glyphs: Pango.GlyphString): void;
 
@@ -470,6 +486,7 @@ export namespace PangoOT {
          * This setting is needed for proper horizontal positioning
          * of right-to-left scripts.
          * @param rtl `true` for right-to-left text
+         * @since 1.4
          */
         set_rtl(rtl: boolean): void;
 
@@ -480,6 +497,7 @@ export namespace PangoOT {
          * but will produce incorrect results with standard OpenType Indic
          * fonts.
          * @param zero_width_marks `true` if characters with a mark class should   be forced to zero width
+         * @since 1.6
          */
         set_zero_width_marks(zero_width_marks: boolean): void;
     }
@@ -567,6 +585,7 @@ export namespace PangoOT {
          * Primarily used internally by {@link PangoOT.Ruleset.get_for_description}
          * to cache rulesets for ruleset descriptions.
          * @returns the newly allocated {@link PangoOT.RulesetDescription}
+         * @since 1.18
          */
         copy(): RulesetDescription;
 
@@ -583,12 +602,14 @@ export namespace PangoOT {
          * being created, but still compare `false`.)
          * @param desc2 a ruleset description
          * @returns `true` if two ruleset descriptions are identical,   `false` otherwise
+         * @since 1.18
          */
         equal(desc2: RulesetDescription): boolean;
 
         /**
          * Frees a ruleset description allocated by
          * `pango_ot_ruleset_description_copy()`.
+         * @since 1.18
          */
         free(): void;
 
@@ -596,6 +617,7 @@ export namespace PangoOT {
          * Computes a hash of a {@link PangoOT.RulesetDescription} structure suitable
          * to be used, for example, as an argument to `g_hash_table_new()`.
          * @returns the hash value
+         * @since 1.18
          */
         hash(): number;
     }

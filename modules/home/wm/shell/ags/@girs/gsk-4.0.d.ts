@@ -65,70 +65,70 @@ export namespace Gsk {
         /**
          * The default blend mode, which specifies no blending
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * The source color is multiplied by the destination
          *   and replaces the destination
          */
-        MULTIPLY,
+        MULTIPLY = 1,
         /**
          * Multiplies the complements of the destination and source
          *   color values, then complements the result.
          */
-        SCREEN,
+        SCREEN = 2,
         /**
          * Multiplies or screens the colors, depending on the
          *   destination color value. This is the inverse of hard-list
          */
-        OVERLAY,
+        OVERLAY = 3,
         /**
          * Selects the darker of the destination and source colors
          */
-        DARKEN,
+        DARKEN = 4,
         /**
          * Selects the lighter of the destination and source colors
          */
-        LIGHTEN,
+        LIGHTEN = 5,
         /**
          * Brightens the destination color to reflect the source color
          */
-        COLOR_DODGE,
+        COLOR_DODGE = 6,
         /**
          * Darkens the destination color to reflect the source color
          */
-        COLOR_BURN,
+        COLOR_BURN = 7,
         /**
          * Multiplies or screens the colors, depending on the source color value
          */
-        HARD_LIGHT,
+        HARD_LIGHT = 8,
         /**
          * Darkens or lightens the colors, depending on the source color value
          */
-        SOFT_LIGHT,
+        SOFT_LIGHT = 9,
         /**
          * Subtracts the darker of the two constituent colors from the lighter color
          */
-        DIFFERENCE,
+        DIFFERENCE = 10,
         /**
          * Produces an effect similar to that of the difference mode but lower in contrast
          */
-        EXCLUSION,
+        EXCLUSION = 11,
         /**
          * Creates a color with the hue and saturation of the source color and the luminosity of the destination color
          */
-        COLOR,
+        COLOR = 12,
         /**
          * Creates a color with the hue of the source color and the saturation and luminosity of the destination color
          */
-        HUE,
+        HUE = 13,
         /**
          * Creates a color with the saturation of the source color and the hue and luminosity of the destination color
          */
-        SATURATION,
+        SATURATION = 14,
         /**
          * Creates a color with the luminosity of the source color and the hue and saturation of the destination color
          */
-        LUMINOSITY,
+        LUMINOSITY = 15,
     }
 
 
@@ -147,19 +147,19 @@ export namespace Gsk {
         /**
          * The top left corner
          */
-        TOP_LEFT,
+        TOP_LEFT = 0,
         /**
          * The top right corner
          */
-        TOP_RIGHT,
+        TOP_RIGHT = 1,
         /**
          * The bottom right corner
          */
-        BOTTOM_RIGHT,
+        BOTTOM_RIGHT = 2,
         /**
          * The bottom left corner
          */
-        BOTTOM_LEFT,
+        BOTTOM_LEFT = 3,
     }
 
 
@@ -194,14 +194,14 @@ export namespace Gsk {
          *   from the perspective of looking along the ray from the starting
          *   point.) If the total count is non-zero, the point will be filled.
          */
-        WINDING,
+        WINDING = 0,
         /**
          * Counts the total number of
          *   intersections, without regard to the orientation of the contour. If
          *   the total number of intersections is odd, the point will be
          *   filled.
          */
-        EVEN_ODD,
+        EVEN_ODD = 1,
     }
 
 
@@ -224,35 +224,35 @@ export namespace Gsk {
         /**
          * No type, used for uninitialized or unspecified values.
          */
-        NONE,
+        NONE = 0,
         /**
          * A float uniform
          */
-        FLOAT,
+        FLOAT = 1,
         /**
          * A GLSL int / gint32 uniform
          */
-        INT,
+        INT = 2,
         /**
          * A GLSL uint / guint32 uniform
          */
-        UINT,
+        UINT = 3,
         /**
          * A GLSL bool / gboolean uniform
          */
-        BOOL,
+        BOOL = 4,
         /**
          * A GLSL vec2 / graphene_vec2_t uniform
          */
-        VEC2,
+        VEC2 = 5,
         /**
          * A GLSL vec3 / graphene_vec3_t uniform
          */
-        VEC3,
+        VEC3 = 6,
         /**
          * A GLSL vec4 / graphene_vec4_t uniform
          */
-        VEC4,
+        VEC4 = 7,
     }
 
 
@@ -286,17 +286,17 @@ export namespace Gsk {
          * Start and stop the line exactly at the start
          *   and end point
          */
-        BUTT,
+        BUTT = 0,
         /**
          * Use a round ending, the center of the circle
          *   is the start or end point
          */
-        ROUND,
+        ROUND = 1,
         /**
          * use squared ending, the center of the square
          *   is the start or end point
          */
-        SQUARE,
+        SQUARE = 2,
     }
 
 
@@ -328,17 +328,17 @@ export namespace Gsk {
         /**
          * Use a sharp angled corner
          */
-        MITER,
+        MITER = 0,
         /**
          * Use a round join, the center of the circle is
          *   the join point
          */
-        ROUND,
+        ROUND = 1,
         /**
          * use a cut-off join, the join is cut off at half
          *   the line width from the joint point
          */
-        BEVEL,
+        BEVEL = 2,
     }
 
 
@@ -358,21 +358,21 @@ export namespace Gsk {
         /**
          * Use the alpha channel of the mask
          */
-        ALPHA,
+        ALPHA = 0,
         /**
          * Use the inverted alpha channel of the mask
          */
-        INVERTED_ALPHA,
+        INVERTED_ALPHA = 1,
         /**
          * Use the luminance of the mask,
          *     multiplied by mask alpha
          */
-        LUMINANCE,
+        LUMINANCE = 2,
         /**
          * Use the inverted luminance of the mask,
          *     multiplied by mask alpha
          */
-        INVERTED_LUMINANCE,
+        INVERTED_LUMINANCE = 3,
     }
 
 
@@ -402,22 +402,22 @@ export namespace Gsk {
          * The tangent in path direction of the incoming side
          *   of the path
          */
-        FROM_START,
+        FROM_START = 0,
         /**
          * The tangent against path direction of the incoming side
          *   of the path
          */
-        TO_START,
+        TO_START = 1,
         /**
          * The tangent in path direction of the outgoing side
          *   of the path
          */
-        TO_END,
+        TO_END = 2,
         /**
          * The tangent against path direction of the outgoing
          *   side of the path
          */
-        FROM_END,
+        FROM_END = 3,
     }
 
 
@@ -438,20 +438,20 @@ export namespace Gsk {
         /**
          * No intersection
          */
-        NONE,
+        NONE = 0,
         /**
          * A normal intersection, where the two paths
          *   cross each other
          */
-        NORMAL,
+        NORMAL = 1,
         /**
          * The start of a segment where the two paths coincide
          */
-        START,
+        START = 2,
         /**
          * The end of a segment where the two paths coincide
          */
-        END,
+        END = 3,
     }
 
 
@@ -473,35 +473,35 @@ export namespace Gsk {
         /**
          * A move-to operation, with 1 point describing the target point.
          */
-        MOVE,
+        MOVE = 0,
         /**
          * A close operation ending the current contour with a line back
          *   to the starting point. Two points describe the start and end of the line.
          */
-        CLOSE,
+        CLOSE = 1,
         /**
          * A line-to operation, with 2 points describing the start and
          *   end point of a straight line.
          */
-        LINE,
+        LINE = 2,
         /**
          * A curve-to operation describing a quadratic Bézier curve
          *   with 3 points describing the start point, the control point and the end
          *   point of the curve.
          */
-        QUAD,
+        QUAD = 3,
         /**
          * A curve-to operation describing a cubic Bézier curve with 4
          *   points describing the start point, the two control points and the end point
          *   of the curve.
          */
-        CUBIC,
+        CUBIC = 4,
         /**
          * A rational quadratic Bézier curve with 3 points describing
          *   the start point, control point and end point of the curve. A weight for the
          *   curve will be passed, too.
          */
-        CONIC,
+        CONIC = 5,
     }
 
 
@@ -520,131 +520,137 @@ export namespace Gsk {
         /**
          * Error type. No node will ever have this type.
          */
-        NOT_A_RENDER_NODE,
+        NOT_A_RENDER_NODE = 0,
         /**
          * A node containing a stack of children
          */
-        CONTAINER_NODE,
+        CONTAINER_NODE = 1,
         /**
          * A node drawing a `cairo_surface_t`
          */
-        CAIRO_NODE,
+        CAIRO_NODE = 2,
         /**
          * A node drawing a single color rectangle
          */
-        COLOR_NODE,
+        COLOR_NODE = 3,
         /**
          * A node drawing a linear gradient
          */
-        LINEAR_GRADIENT_NODE,
+        LINEAR_GRADIENT_NODE = 4,
         /**
          * A node drawing a repeating linear gradient
          */
-        REPEATING_LINEAR_GRADIENT_NODE,
+        REPEATING_LINEAR_GRADIENT_NODE = 5,
         /**
          * A node drawing a radial gradient
          */
-        RADIAL_GRADIENT_NODE,
+        RADIAL_GRADIENT_NODE = 6,
         /**
          * A node drawing a repeating radial gradient
          */
-        REPEATING_RADIAL_GRADIENT_NODE,
+        REPEATING_RADIAL_GRADIENT_NODE = 7,
         /**
          * A node drawing a conic gradient
          */
-        CONIC_GRADIENT_NODE,
+        CONIC_GRADIENT_NODE = 8,
         /**
          * A node stroking a border around an area
          */
-        BORDER_NODE,
+        BORDER_NODE = 9,
         /**
          * A node drawing a {@link Gdk.Texture}
          */
-        TEXTURE_NODE,
+        TEXTURE_NODE = 10,
         /**
          * A node drawing an inset shadow
          */
-        INSET_SHADOW_NODE,
+        INSET_SHADOW_NODE = 11,
         /**
          * A node drawing an outset shadow
          */
-        OUTSET_SHADOW_NODE,
+        OUTSET_SHADOW_NODE = 12,
         /**
          * A node that renders its child after applying a matrix transform
          */
-        TRANSFORM_NODE,
+        TRANSFORM_NODE = 13,
         /**
          * A node that changes the opacity of its child
          */
-        OPACITY_NODE,
+        OPACITY_NODE = 14,
         /**
          * A node that applies a color matrix to every pixel
          */
-        COLOR_MATRIX_NODE,
+        COLOR_MATRIX_NODE = 15,
         /**
          * A node that repeats the child's contents
          */
-        REPEAT_NODE,
+        REPEAT_NODE = 16,
         /**
          * A node that clips its child to a rectangular area
          */
-        CLIP_NODE,
+        CLIP_NODE = 17,
         /**
          * A node that clips its child to a rounded rectangle
          */
-        ROUNDED_CLIP_NODE,
+        ROUNDED_CLIP_NODE = 18,
         /**
          * A node that draws a shadow below its child
          */
-        SHADOW_NODE,
+        SHADOW_NODE = 19,
         /**
          * A node that blends two children together
          */
-        BLEND_NODE,
+        BLEND_NODE = 20,
         /**
          * A node that cross-fades between two children
          */
-        CROSS_FADE_NODE,
+        CROSS_FADE_NODE = 21,
         /**
          * A node containing a glyph string
          */
-        TEXT_NODE,
+        TEXT_NODE = 22,
         /**
          * A node that applies a blur
          */
-        BLUR_NODE,
+        BLUR_NODE = 23,
         /**
          * Debug information that does not affect the rendering
          */
-        DEBUG_NODE,
+        DEBUG_NODE = 24,
         /**
          * A node that uses OpenGL fragment shaders to render
          */
-        GL_SHADER_NODE,
+        GL_SHADER_NODE = 25,
         /**
          * A node drawing a {@link Gdk.Texture} scaled and filtered.
+         * @since 4.10
          */
-        TEXTURE_SCALE_NODE,
+        TEXTURE_SCALE_NODE = 26,
         /**
          * A node that masks one child with another.
+         * @since 4.10
          */
-        MASK_NODE,
+        MASK_NODE = 27,
         /**
          * A node that fills a path.
+         * @since 4.14
          */
-        FILL_NODE,
+        FILL_NODE = 28,
         /**
          * A node that strokes a path.
+         * @since 4.14
          */
-        STROKE_NODE,
+        STROKE_NODE = 29,
         /**
          * A node that possibly redirects part of the scene graph to a subsurface.
+         * @since 4.14
          */
-        SUBSURFACE_NODE,
+        SUBSURFACE_NODE = 30,
         /**
          * A node that applies some function to each color component.
+         * @since 4.20
          */
-        COMPONENT_TRANSFER_NODE,
+        COMPONENT_TRANSFER_NODE = 31,
     }
 
 
@@ -666,17 +672,17 @@ export namespace Gsk {
         /**
          * linear interpolation filter
          */
-        LINEAR,
+        LINEAR = 0,
         /**
          * nearest neighbor interpolation filter
          */
-        NEAREST,
+        NEAREST = 1,
         /**
          * linear interpolation along each axis,
          *   plus mipmap generation, with linear interpolation along the mipmap
          *   levels
          */
-        TRILINEAR,
+        TRILINEAR = 2,
     }
 
 
@@ -741,37 +747,37 @@ export namespace Gsk {
          * The category of the matrix has not been
          *   determined.
          */
-        UNKNOWN,
+        UNKNOWN = 0,
         /**
          * Analyzing the matrix concluded that it does
          *   not fit in any other category.
          */
-        ANY,
+        ANY = 1,
         /**
          * The matrix is a 3D matrix. This means that
          *   the w column (the last column) has the values (0, 0, 0, 1).
          */
-        "3D",
+        "3D" = 2,
         /**
          * The matrix is a 2D matrix. This is equivalent
          *   to `graphene_matrix_is_2d()` returning `true`. In particular, this
          *   means that Cairo can deal with the matrix.
          */
-        "2D",
+        "2D" = 3,
         /**
          * The matrix is a combination of 2D scale
          *   and 2D translation operations. In particular, this means that any
          *   rectangle can be transformed exactly using this matrix.
          */
-        "2D_AFFINE",
+        "2D_AFFINE" = 4,
         /**
          * The matrix is a 2D translation.
          */
-        "2D_TRANSLATE",
+        "2D_TRANSLATE" = 5,
         /**
          * The matrix is the identity matrix.
          */
-        IDENTITY,
+        IDENTITY = 6,
     }
 
 
@@ -925,19 +931,19 @@ export namespace Gsk {
         /**
          * The default behavior, only allow lines.
          */
-        ONLY_LINES,
+        ONLY_LINES = 0,
         /**
          * Allow emission of `GSK_PATH_QUAD` operations
          */
-        QUAD,
+        QUAD = 1,
         /**
          * Allow emission of `GSK_PATH_CUBIC` operations.
          */
-        CUBIC,
+        CUBIC = 2,
         /**
          * Allow emission of `GSK_PATH_CONIC` operations.
          */
-        CONIC,
+        CONIC = 4,
     }
 
 
@@ -1412,6 +1418,7 @@ export namespace Gsk {
         /**
          * Gets the child node that is getting drawn by the given `node`.
          * @returns the child {@link Gsk.RenderNode}
+         * @since 4.20
          */
         get_child(): RenderNode;
 
@@ -1419,6 +1426,7 @@ export namespace Gsk {
          * Gets the component transfer for one of the components.
          * @param component a value between 0 and 3 to indicate the red, green, blue   or alpha component
          * @returns the {@link Gsk.ComponentTransfer}
+         * @since 4.20
          */
         get_transfer(component: number): ComponentTransfer;
     }
@@ -1463,6 +1471,7 @@ export namespace Gsk {
          * 
          *     angle = 90 - `gsk_conic_gradient_node_get_rotation()`
          * @returns the angle for the gradient
+         * @since 4.2
          */
         get_angle(): number;
 
@@ -1671,12 +1680,14 @@ export namespace Gsk {
         /**
          * Gets the child node that is getting drawn by the given `node`.
          * @returns The child that is getting drawn
+         * @since 4.14
          */
         get_child(): RenderNode;
 
         /**
          * Retrieves the fill rule used to determine how the path is filled.
          * @returns a {@link Gsk.FillRule}
+         * @since 4.14
          */
         get_fill_rule(): FillRule;
 
@@ -1684,6 +1695,7 @@ export namespace Gsk {
          * Retrieves the path used to describe the area filled with the contents of
          * the `node`.
          * @returns a {@link Gsk.Path}
+         * @since 4.14
          */
         get_path(): Path;
     }
@@ -1938,6 +1950,8 @@ export namespace Gsk {
          * widget snapshot.
          * @param renderer a {@link Gsk.Renderer}
          * @returns `true` on success, `false` if an error occurred
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
+         * @throws GLib.Error
          */
         compile(renderer: Renderer): boolean;
 
@@ -1946,6 +1960,7 @@ export namespace Gsk {
          * of the uniform, or -1 if it was not found.
          * @param name uniform name
          * @returns The index of the uniform, or -1
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         find_uniform_by_name(name: string): number;
 
@@ -1956,6 +1971,7 @@ export namespace Gsk {
          * @param args uniform arguments
          * @param idx index of the uniform
          * @returns The value
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_arg_bool(args: GLib.Bytes | Uint8Array, idx: number): boolean;
 
@@ -1966,6 +1982,7 @@ export namespace Gsk {
          * @param args uniform arguments
          * @param idx index of the uniform
          * @returns The value
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_arg_float(args: GLib.Bytes | Uint8Array, idx: number): number;
 
@@ -1976,6 +1993,7 @@ export namespace Gsk {
          * @param args uniform arguments
          * @param idx index of the uniform
          * @returns The value
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_arg_int(args: GLib.Bytes | Uint8Array, idx: number): number;
 
@@ -1986,6 +2004,7 @@ export namespace Gsk {
          * @param args uniform arguments
          * @param idx index of the uniform
          * @returns The value
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_arg_uint(args: GLib.Bytes | Uint8Array, idx: number): number;
 
@@ -1996,6 +2015,7 @@ export namespace Gsk {
          * @param args uniform arguments
          * @param idx index of the uniform
          * @param out_value location to store the uniform value in
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_arg_vec2(args: GLib.Bytes | Uint8Array, idx: number, out_value: Graphene.Vec2): void;
 
@@ -2006,6 +2026,7 @@ export namespace Gsk {
          * @param args uniform arguments
          * @param idx index of the uniform
          * @param out_value location to store the uniform value in
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_arg_vec3(args: GLib.Bytes | Uint8Array, idx: number, out_value: Graphene.Vec3): void;
 
@@ -2016,12 +2037,14 @@ export namespace Gsk {
          * @param args uniform arguments
          * @param idx index of the uniform
          * @param out_value location to store set the uniform value in
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_arg_vec4(args: GLib.Bytes | Uint8Array, idx: number, out_value: Graphene.Vec4): void;
 
         /**
          * Get the size of the data block used to specify arguments for this shader.
          * @returns The size of the data block
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_args_size(): number;
 
@@ -2032,12 +2055,14 @@ export namespace Gsk {
          * in your usecase. It is determined by looking at the highest
          * u_textureN value that the shader defines.
          * @returns The number of texture inputs required by `shader`
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_n_textures(): number;
 
         /**
          * Get the number of declared uniforms for this shader.
          * @returns The number of declared uniforms
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_n_uniforms(): number;
 
@@ -2045,12 +2070,14 @@ export namespace Gsk {
          * Gets the resource path for the GLSL sourcecode being used
          * to render this shader.
          * @returns The resource path for the shader
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_resource(): string | null;
 
         /**
          * Gets the GLSL sourcecode being used to render this shader.
          * @returns The source code for the shader
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_source(): GLib.Bytes;
 
@@ -2058,6 +2085,7 @@ export namespace Gsk {
          * Get the name of the declared uniform for this shader at index `idx`.
          * @param idx index of the uniform
          * @returns The name of the declared uniform
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_uniform_name(idx: number): string;
 
@@ -2065,6 +2093,7 @@ export namespace Gsk {
          * Get the offset into the data block where data for this uniforms is stored.
          * @param idx index of the uniform
          * @returns The data offset
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_uniform_offset(idx: number): number;
 
@@ -2072,6 +2101,7 @@ export namespace Gsk {
          * Get the type of the declared uniform for this shader at index `idx`.
          * @param idx index of the uniform
          * @returns The type of the declared uniform
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_uniform_type(idx: number): GLUniformType;
     }
@@ -2111,6 +2141,7 @@ export namespace Gsk {
         /**
          * Gets args for the node.
          * @returns A {@link GLib.Bytes} with the uniform arguments
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_args(): GLib.Bytes;
 
@@ -2118,12 +2149,14 @@ export namespace Gsk {
          * Gets one of the children.
          * @param idx the position of the child to get
          * @returns the `idx`'th child of `node`
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_child(idx: number): RenderNode;
 
         /**
          * Returns the number of children
          * @returns The number of children
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         get_n_children(): number;
 
@@ -2299,18 +2332,21 @@ export namespace Gsk {
         /**
          * Retrieves the mask {@link Gsk.RenderNode} child of the `node`.
          * @returns the mask child node
+         * @since 4.10
          */
         get_mask(): RenderNode;
 
         /**
          * Retrieves the mask mode used by `node`.
          * @returns the mask mode
+         * @since 4.10
          */
         get_mask_mode(): MaskMode;
 
         /**
          * Retrieves the source {@link Gsk.RenderNode} child of the `node`.
          * @returns the source child node
+         * @since 4.10
          */
         get_source(): RenderNode;
     }
@@ -2645,6 +2681,7 @@ export namespace Gsk {
          * 
          * The rectangle will be fully contained in the bounds of the node.
          * @returns true if part or all of the rendernode is opaque, false if no   opaque region could be found.
+         * @since 4.16
          */
         get_opaque_rect(): [boolean, Graphene.Rect];
 
@@ -2686,6 +2723,7 @@ export namespace Gsk {
          * node to a file for later inspection.
          * @param filename the file to save it to
          * @returns true if saving was successful
+         * @throws GLib.Error
          */
         write_to_file(filename: string): boolean;
     }
@@ -2791,6 +2829,7 @@ export namespace Gsk {
          * before destroying the renderer.
          * @param surface the surface that renderer will be used on
          * @returns whether the renderer was successfully realized
+         * @throws GLib.Error
          */
         realize(surface: Gdk.Surface | null): boolean;
 
@@ -2801,6 +2840,8 @@ export namespace Gsk {
          * before destroying the renderer.
          * @param display the display that the renderer will be used on
          * @returns whether the renderer was successfully realized
+         * @since 4.14
+         * @throws GLib.Error
          */
         realize_for_display(display: Gdk.Display): boolean;
 
@@ -3086,6 +3127,7 @@ export namespace Gsk {
         /**
          * Gets the child node that is getting drawn by the given `node`.
          * @returns The child that is getting drawn
+         * @since 4.14
          */
         get_child(): RenderNode;
 
@@ -3093,12 +3135,14 @@ export namespace Gsk {
          * Retrieves the path that will be stroked with the contents of
          * the `node`.
          * @returns a {@link Gsk.Path}
+         * @since 4.14
          */
         get_path(): Path;
 
         /**
          * Retrieves the stroke attributes used in this `node`.
          * @returns a {@link Gsk.Stroke}
+         * @since 4.14
          */
         get_stroke(): Stroke;
     }
@@ -3137,6 +3181,7 @@ export namespace Gsk {
         /**
          * Gets the child node that is getting drawn by the given `node`.
          * @returns the child {@link Gsk.RenderNode}
+         * @since 4.14
          */
         get_child(): RenderNode;
     }
@@ -3209,6 +3254,7 @@ export namespace Gsk {
         /**
          * Checks whether the text `node` has color glyphs.
          * @returns `true` if the text node has color glyphs
+         * @since 4.2
          */
         has_color_glyphs(): boolean;
     }
@@ -3288,12 +3334,14 @@ export namespace Gsk {
         /**
          * Retrieves the {@link Gsk.ScalingFilter} used when creating this {@link Gsk.RenderNode}.
          * @returns the {@link Gsk.ScalingFilter}
+         * @since 4.10
          */
         get_filter(): ScalingFilter;
 
         /**
          * Retrieves the {@link Gdk.Texture} used when creating this {@link Gsk.RenderNode}.
          * @returns the {@link Gdk.Texture}
+         * @since 4.10
          */
         get_texture(): Gdk.Texture;
     }
@@ -3461,6 +3509,7 @@ export namespace Gsk {
          * Compares two component transfers for equality.
          * @param self a component transfer
          * @param other another component transfer
+         * @since 4.20
          */
         static equal(self: never, other: never): boolean;
 
@@ -3468,11 +3517,13 @@ export namespace Gsk {
         /**
          * Creates a copy of `other`.
          * @returns a newly allocated copy of `other`
+         * @since 4.20
          */
         copy(): ComponentTransfer;
 
         /**
          * Frees a component transfer.
+         * @since 4.20
          */
         free(): void;
     }
@@ -3560,6 +3611,7 @@ export namespace Gsk {
          * 
          * The `O` command is an extension that is not supported in SVG.
          * @param string a string
+         * @since 4.14
          */
         static parse(string: string): Path | null;
 
@@ -3581,6 +3633,7 @@ export namespace Gsk {
          * @param flags flags to pass to the foreach function
          * @param func the function to call for operations
          * @returns false if `func` returned false, true otherwise.
+         * @since 4.14
          */
         foreach(flags: PathForeachFlags, func: PathForeachFunc): boolean;
 
@@ -3603,6 +3656,7 @@ export namespace Gsk {
          * @param path2 the second path
          * @param func the function to call for intersections
          * @returns `FALSE` if `func` returned FALSE`, `TRUE` otherwise.
+         * @since 4.20
          */
         foreach_intersection(path2: Path | null, func: PathIntersectionFunc): boolean;
 
@@ -3622,6 +3676,7 @@ export namespace Gsk {
          * is a single point at the origin, where the `bounds` will also be set to
          * the zero rectangle but true will be returned.
          * @returns true if the path has bounds, false if the path is known   to be empty and have no bounds
+         * @since 4.14
          */
         get_bounds(): [boolean, Graphene.Rect];
 
@@ -3633,6 +3688,7 @@ export namespace Gsk {
          * @param point the point
          * @param threshold maximum allowed distance
          * @returns true if `point` was set to the closest point   on `self`, false if no point is closer than `threshold`
+         * @since 4.14
          */
         get_closest_point(point: Graphene.Point, threshold: number): [boolean, PathPoint, number];
 
@@ -3642,6 +3698,7 @@ export namespace Gsk {
          * An empty path has no points, so false
          * is returned in this case.
          * @returns true if `result` was filled
+         * @since 4.14
          */
         get_end_point(): [boolean, PathPoint];
 
@@ -3651,6 +3708,7 @@ export namespace Gsk {
          * An empty path has no points, so false
          * is returned in this case.
          * @returns true if `result` was filled
+         * @since 4.14
          */
         get_start_point(): [boolean, PathPoint];
 
@@ -3664,6 +3722,7 @@ export namespace Gsk {
          * like miters.
          * @param stroke stroke parameters
          * @returns true if the path has bounds, false if the path is known   to be empty and have no bounds.
+         * @since 4.14
          */
         get_stroke_bounds(stroke: Stroke): [boolean, Graphene.Rect];
 
@@ -3675,18 +3734,21 @@ export namespace Gsk {
          * @param point the point to test
          * @param fill_rule the fill rule to follow
          * @returns true if `point` is inside
+         * @since 4.14
          */
         in_fill(point: Graphene.Point, fill_rule: FillRule): boolean;
 
         /**
          * Returns if the path represents a single closed contour.
          * @returns true if the path is closed
+         * @since 4.14
          */
         is_closed(): boolean;
 
         /**
          * Checks if the path is empty, i.e. contains no lines or curves.
          * @returns true if the path is empty
+         * @since 4.14
          */
         is_empty(): boolean;
 
@@ -3697,12 +3759,14 @@ export namespace Gsk {
          * [SVG path syntax](https://www.w3.org/TR/SVG11/paths.html#PathData),
          * see {@link Gsk.Path.parse} for a summary of the syntax.
          * @param string the string to print into
+         * @since 4.14
          */
         print(string: GLib.String): void;
 
         /**
          * Increases the reference count of a path by one.
          * @returns the passed in {@link Gsk.Path}
+         * @since 4.14
          */
         ref(): Path;
 
@@ -3715,6 +3779,7 @@ export namespace Gsk {
          * This function does not clear the existing Cairo path. Call
          * `cairo_new_path()` if you want this.
          * @param cr a cairo context
+         * @since 4.14
          */
         to_cairo(cr: cairo.Context): void;
 
@@ -3727,6 +3792,7 @@ export namespace Gsk {
          * This is a wrapper around {@link Gsk.Path.print}, see that function
          * for details.
          * @returns a new string for `self`
+         * @since 4.14
          */
         to_string(): string;
 
@@ -3734,6 +3800,7 @@ export namespace Gsk {
          * Decreases the reference count of a path by one.
          * 
          * If the resulting reference count is zero, frees the path.
+         * @since 4.14
          */
         unref(): void;
     }
@@ -3796,6 +3863,7 @@ export namespace Gsk {
          * You can use `cairo_copy_path()` to access the path
          * from a Cairo context.
          * @param path a path
+         * @since 4.14
          */
         add_cairo_path(path: cairo.Path): void;
 
@@ -3807,18 +3875,21 @@ export namespace Gsk {
          * If `radius` is zero, the contour will be a closed point.
          * @param center the center of the circle
          * @param radius the radius of the circle
+         * @since 4.14
          */
         add_circle(center: Graphene.Point, radius: number): void;
 
         /**
          * Adds the outlines for the glyphs in `layout` to the builder.
          * @param layout the pango layout to add
+         * @since 4.14
          */
         add_layout(layout: Pango.Layout): void;
 
         /**
          * Appends all of `path` to the builder.
          * @param path the path to append
+         * @since 4.14
          */
         add_path(path: Path): void;
 
@@ -3830,12 +3901,14 @@ export namespace Gsk {
          * If the the width or height are 0, the path will be a closed
          * horizontal or vertical line. If both are 0, it'll be a closed dot.
          * @param rect the rectangle to create a path for
+         * @since 4.14
          */
         add_rect(rect: Graphene.Rect): void;
 
         /**
          * Appends all of `path` to the builder, in reverse order.
          * @param path the path to append
+         * @since 4.14
          */
         add_reverse_path(path: Path): void;
 
@@ -3844,6 +3917,7 @@ export namespace Gsk {
          * 
          * The path is going around the rectangle in clockwise direction.
          * @param rect the rounded rect
+         * @since 4.14
          */
         add_rounded_rect(rect: RoundedRect): void;
 
@@ -3860,6 +3934,7 @@ export namespace Gsk {
          * @param path the path to take the segment to
          * @param start the point on `path` to start at
          * @param end the point on `path` to end at
+         * @since 4.14
          */
         add_segment(path: Path, start: PathPoint, end: PathPoint): void;
 
@@ -3882,6 +3957,7 @@ export namespace Gsk {
          * @param y1 y coordinate of first control point
          * @param x2 x coordinate of second control point
          * @param y2 y coordinate of second control point
+         * @since 4.14
          */
         arc_to(x1: number, y1: number, x2: number, y2: number): void;
 
@@ -3893,6 +3969,7 @@ export namespace Gsk {
          * contour behaves differently from an open one. When stroking, its
          * start and end point are considered connected, so they will be
          * joined via the line join, and not ended with line caps.
+         * @since 4.14
          */
         close(): void;
 
@@ -3918,6 +3995,7 @@ export namespace Gsk {
          * @param x2 x coordinate of the end of the curve
          * @param y2 y coordinate of the end of the curve
          * @param weight weight of the control point, must be greater than zero
+         * @since 4.14
          */
         conic_to(x1: number, y1: number, x2: number, y2: number, weight: number): void;
 
@@ -3938,6 +4016,7 @@ export namespace Gsk {
          * @param y2 y coordinate of second control point
          * @param x3 x coordinate of the end of the curve
          * @param y3 y coordinate of the end of the curve
+         * @since 4.14
          */
         cubic_to(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): void;
 
@@ -3951,6 +4030,7 @@ export namespace Gsk {
          * to `0, 0`. Note that this is different from cairo, which starts
          * out without a current point.
          * @returns the current point
+         * @since 4.14
          */
         get_current_point(): Graphene.Point;
 
@@ -3969,6 +4049,7 @@ export namespace Gsk {
          * @param x2 x coordinate of second control point
          * @param y2 y coordinate of second control point
          * @param radius radius of the circle
+         * @since 4.14
          */
         html_arc_to(x1: number, y1: number, x2: number, y2: number, radius: number): void;
 
@@ -3982,6 +4063,7 @@ export namespace Gsk {
          * </picture>
          * @param x x coordinate
          * @param y y coordinate
+         * @since 4.14
          */
         line_to(x: number, y: number): void;
 
@@ -3993,6 +4075,7 @@ export namespace Gsk {
          * The second call will start a new contour.
          * @param x x coordinate
          * @param y y coordinate
+         * @since 4.14
          */
         move_to(x: number, y: number): void;
 
@@ -4010,6 +4093,7 @@ export namespace Gsk {
          * @param y1 y coordinate of control point
          * @param x2 x coordinate of the end of the curve
          * @param y2 y coordinate of the end of the curve
+         * @since 4.14
          */
         quad_to(x1: number, y1: number, x2: number, y2: number): void;
 
@@ -4019,6 +4103,7 @@ export namespace Gsk {
          * This function is intended primarily for language bindings.
          * {@link Gsk.PathBuilder} objects should not be kept around.
          * @returns the given path builder with   its reference count increased
+         * @since 4.14
          */
         ref(): PathBuilder;
 
@@ -4033,6 +4118,7 @@ export namespace Gsk {
          * @param y1 y coordinate of first control point
          * @param x2 x coordinate of second control point
          * @param y2 y coordinate of second control point
+         * @since 4.14
          */
         rel_arc_to(x1: number, y1: number, x2: number, y2: number): void;
 
@@ -4049,6 +4135,7 @@ export namespace Gsk {
          * @param x2 x offset of the end of the curve
          * @param y2 y offset of the end of the curve
          * @param weight weight of the curve, must be greater than zero
+         * @since 4.14
          */
         rel_conic_to(x1: number, y1: number, x2: number, y2: number, weight: number): void;
 
@@ -4066,6 +4153,7 @@ export namespace Gsk {
          * @param y2 y offset of second control point
          * @param x3 x offset of the end of the curve
          * @param y3 y offset of the end of the curve
+         * @since 4.14
          */
         rel_cubic_to(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): void;
 
@@ -4080,6 +4168,7 @@ export namespace Gsk {
          * @param x2 x coordinate of second control point
          * @param y2 y coordinate of second control point
          * @param radius radius of the circle
+         * @since 4.14
          */
         rel_html_arc_to(x1: number, y1: number, x2: number, y2: number, radius: number): void;
 
@@ -4090,6 +4179,7 @@ export namespace Gsk {
          * This is the relative version of {@link Gsk.PathBuilder.line_to}.
          * @param x x offset
          * @param y y offset
+         * @since 4.14
          */
         rel_line_to(x: number, y: number): void;
 
@@ -4100,6 +4190,7 @@ export namespace Gsk {
          * This is the relative version of {@link Gsk.PathBuilder.move_to}.
          * @param x x offset
          * @param y y offset
+         * @since 4.14
          */
         rel_move_to(x: number, y: number): void;
 
@@ -4114,6 +4205,7 @@ export namespace Gsk {
          * @param y1 y offset of control point
          * @param x2 x offset of the end of the curve
          * @param y2 y offset of the end of the curve
+         * @since 4.14
          */
         rel_quad_to(x1: number, y1: number, x2: number, y2: number): void;
 
@@ -4130,6 +4222,7 @@ export namespace Gsk {
          * @param positive_sweep whether to sweep in the positive direction
          * @param x x coordinate of the endpoint
          * @param y y coordinate of the endpoint
+         * @since 4.14
          */
         rel_svg_arc_to(rx: number, ry: number, x_axis_rotation: number, large_arc: boolean, positive_sweep: boolean, x: number, y: number): void;
 
@@ -4148,6 +4241,7 @@ export namespace Gsk {
          * @param positive_sweep whether to sweep in the positive direction
          * @param x x coordinate of the endpoint
          * @param y y coordinate of the endpoint
+         * @since 4.14
          */
         svg_arc_to(rx: number, ry: number, x_axis_rotation: number, large_arc: boolean, positive_sweep: boolean, x: number, y: number): void;
 
@@ -4162,11 +4256,13 @@ export namespace Gsk {
          * This function is intended primarily for language bindings.
          * C code should use {@link Gsk.PathBuilder.free_to_path}.
          * @returns the newly created path   with all the contours added to the builder
+         * @since 4.14
          */
         to_path(): Path;
 
         /**
          * Releases a reference on the given builder.
+         * @since 4.14
          */
         unref(): void;
     }
@@ -4201,12 +4297,14 @@ export namespace Gsk {
          * 
          * The length is cached, so this function does not do any work.
          * @returns the length of the path measured by `self`
+         * @since 4.14
          */
         get_length(): number;
 
         /**
          * Returns the path that the measure was created for.
          * @returns the path of `self`
+         * @since 4.14
          */
         get_path(): Path;
 
@@ -4216,18 +4314,21 @@ export namespace Gsk {
          * An empty path has no points, so false is returned in that case.
          * @param distance the distance
          * @returns true if `result` was set
+         * @since 4.14
          */
         get_point(distance: number): [boolean, PathPoint];
 
         /**
          * Returns the tolerance that the measure was created with.
          * @returns the tolerance of `self`
+         * @since 4.14
          */
         get_tolerance(): number;
 
         /**
          * Increases the reference count of a {@link Gsk.PathMeasure} by one.
          * @returns the passed in {@link Gsk.PathMeasure}.
+         * @since 4.14
          */
         ref(): PathMeasure;
 
@@ -4235,6 +4336,7 @@ export namespace Gsk {
          * Decreases the reference count of a {@link Gsk.PathMeasure} by one.
          * 
          * If the resulting reference count is zero, frees the object.
+         * @since 4.14
          */
         unref(): void;
     }
@@ -4265,12 +4367,14 @@ export namespace Gsk {
          * Returns whether `point1` is before or after `point2`.
          * @param point2 another path point
          * @returns -1 if `point1` is before `point2`,   1 if `point1` is after `point2`,   0 if they are equal
+         * @since 4.14
          */
         compare(point2: PathPoint): number;
 
         /**
          * Copies a path point.
          * @returns the copied point
+         * @since 4.14
          */
         copy(): PathPoint;
 
@@ -4285,11 +4389,13 @@ export namespace Gsk {
          * same location.
          * @param point2 another path point
          * @returns true if `point1` and `point2` are equal
+         * @since 4.14
          */
         equal(point2: PathPoint): boolean;
 
         /**
          * Frees a path point copied by {@link Gsk.PathPoint.copy}.
+         * @since 4.14
          */
         free(): void;
 
@@ -4317,6 +4423,7 @@ export namespace Gsk {
          * @param path the path that `point` is on
          * @param direction the direction for which to return the curvature
          * @returns the curvature of the path at the given point
+         * @since 4.14
          */
         get_curvature(path: Path, direction: PathDirection): [number, Graphene.Point | null];
 
@@ -4325,12 +4432,14 @@ export namespace Gsk {
          * to the point.
          * @param measure a path measure for the path
          * @returns the distance of `point`
+         * @since 4.14
          */
         get_distance(measure: PathMeasure): number;
 
         /**
          * Gets the position of the point.
          * @param path the path that `point` is on
+         * @since 4.14
          */
         get_position(path: Path): Graphene.Point;
 
@@ -4344,6 +4453,7 @@ export namespace Gsk {
          * @param path the path that `point` is on
          * @param direction the direction for which to return the rotation
          * @returns the angle between the tangent and the X axis, in degrees
+         * @since 4.14
          */
         get_rotation(path: Path, direction: PathDirection): number;
 
@@ -4364,6 +4474,7 @@ export namespace Gsk {
          * convenient to use.
          * @param path the path that `point` is on
          * @param direction the direction for which to return the tangent
+         * @since 4.14
          */
         get_tangent(path: Path, direction: PathDirection): Graphene.Vec2;
     }
@@ -4527,6 +4638,7 @@ export namespace Gsk {
         /**
          * Increases the reference count of a {@link Gsk.ShaderArgsBuilder} by one.
          * @returns the passed in {@link Gsk.ShaderArgsBuilder}
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         ref(): ShaderArgsBuilder;
 
@@ -4536,6 +4648,7 @@ export namespace Gsk {
          * The uniform must be of bool type.
          * @param idx index of the uniform
          * @param value value to set the uniform to
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         set_bool(idx: number, value: boolean): void;
 
@@ -4554,6 +4667,7 @@ export namespace Gsk {
          * The uniform must be of int type.
          * @param idx index of the uniform
          * @param value value to set the uniform to
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         set_int(idx: number, value: number): void;
 
@@ -4563,6 +4677,7 @@ export namespace Gsk {
          * The uniform must be of uint type.
          * @param idx index of the uniform
          * @param value value to set the uniform to
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         set_uint(idx: number, value: number): void;
 
@@ -4572,6 +4687,7 @@ export namespace Gsk {
          * The uniform must be of vec2 type.
          * @param idx index of the uniform
          * @param value value to set the uniform too
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         set_vec2(idx: number, value: Graphene.Vec2): void;
 
@@ -4581,6 +4697,7 @@ export namespace Gsk {
          * The uniform must be of vec3 type.
          * @param idx index of the uniform
          * @param value value to set the uniform too
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         set_vec3(idx: number, value: Graphene.Vec3): void;
 
@@ -4590,6 +4707,7 @@ export namespace Gsk {
          * The uniform must be of vec4 type.
          * @param idx index of the uniform
          * @param value value to set the uniform too
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         set_vec4(idx: number, value: Graphene.Vec4): void;
 
@@ -4606,6 +4724,7 @@ export namespace Gsk {
          * This function is intended primarily for bindings. C code should use
          * {@link Gsk.ShaderArgsBuilder.free_to_args}.
          * @returns the newly allocated buffer with   all the args added to `builder`
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         to_args(): GLib.Bytes;
 
@@ -4613,6 +4732,7 @@ export namespace Gsk {
          * Decreases the reference count of a `GskShaderArgBuilder` by one.
          * 
          * If the resulting reference count is zero, frees the builder.
+         * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use [GtkGLArea](../gtk4/class.GLArea.html)   for OpenGL rendering.
          */
         unref(): void;
     }
@@ -4663,6 +4783,7 @@ export namespace Gsk {
          * Checks if two strokes are identical.
          * @param stroke1 the first stroke
          * @param stroke2 the second stroke
+         * @since 4.14
          */
         static equal(stroke1: null, stroke2: null): boolean;
 
@@ -4670,23 +4791,27 @@ export namespace Gsk {
         /**
          * Creates a copy of a {@link Gsk.Stroke}.
          * @returns a new {@link Gsk.Stroke}. Use {@link Gsk.Stroke.free} to free it
+         * @since 4.14
          */
         copy(): Stroke;
 
         /**
          * Frees a {@link Gsk.Stroke}.
+         * @since 4.14
          */
         free(): void;
 
         /**
          * Gets the dash array in use.
          * @returns the dash array or `NULL` if the dash array is empty
+         * @since 4.14
          */
         get_dash(): number[] | null;
 
         /**
          * Gets the dash offset.
          * @returns the dash offset
+         * @since 4.14
          */
         get_dash_offset(): number;
 
@@ -4695,6 +4820,7 @@ export namespace Gsk {
          * 
          * See {@link Gsk.LineCap} for details.
          * @returns the line cap
+         * @since 4.14
          */
         get_line_cap(): LineCap;
 
@@ -4703,18 +4829,21 @@ export namespace Gsk {
          * 
          * See {@link Gsk.LineJoin} for details.
          * @returns the line join
+         * @since 4.14
          */
         get_line_join(): LineJoin;
 
         /**
          * Gets the line width used.
          * @returns the line width
+         * @since 4.14
          */
         get_line_width(): number;
 
         /**
          * Gets the miter limit.
          * @returns the miter limit
+         * @since 4.14
          */
         get_miter_limit(): number;
 
@@ -4743,6 +4872,7 @@ export namespace Gsk {
          * You can specify a starting offset into the dash with
          * {@link Gsk.Stroke.set_dash_offset}.
          * @param dash the array of dashes
+         * @since 4.14
          */
         set_dash(dash: number[] | null): void;
 
@@ -4754,6 +4884,7 @@ export namespace Gsk {
          * 
          * See {@link Gsk.Stroke.set_dash} for more details on dashing.
          * @param offset offset into the dash pattern
+         * @since 4.14
          */
         set_dash_offset(offset: number): void;
 
@@ -4762,6 +4893,7 @@ export namespace Gsk {
          * 
          * See {@link Gsk.LineCap} for details.
          * @param line_cap the line cap
+         * @since 4.14
          */
         set_line_cap(line_cap: LineCap): void;
 
@@ -4770,6 +4902,7 @@ export namespace Gsk {
          * 
          * See {@link Gsk.LineJoin} for details.
          * @param line_join the line join to use
+         * @since 4.14
          */
         set_line_join(line_join: LineJoin): void;
 
@@ -4778,6 +4911,7 @@ export namespace Gsk {
          * 
          * The line width must be >= 0.
          * @param line_width width of the line in pixels
+         * @since 4.14
          */
         set_line_width(line_width: number): void;
 
@@ -4792,6 +4926,7 @@ export namespace Gsk {
          * For joins of type {@link Gsk.LineJoin.MITER} that exceed the miter limit,
          * the join gets rendered as if it was of type {@link Gsk.LineJoin.BEVEL}.
          * @param limit the miter limit
+         * @since 4.14
          */
         set_miter_limit(limit: number): void;
 
@@ -4799,6 +4934,7 @@ export namespace Gsk {
          * A helper function that sets the stroke parameters
          * of a cairo context from a {@link Gsk.Stroke}.
          * @param cr the cairo context to configure
+         * @since 4.14
          */
         to_cairo(cr: cairo.Context): void;
     }
@@ -4892,6 +5028,7 @@ export namespace Gsk {
          * @param dx the x0 member
          * @param dy the y0 member
          * @returns The new transform
+         * @since 4.20
          */
         matrix_2d(xx: number, yx: number, xy: number, yy: number, dx: number, dy: number): Transform | null;
 
@@ -4983,6 +5120,7 @@ export namespace Gsk {
          * @param skew_x skew factor, in degrees, on the X axis
          * @param skew_y skew factor, in degrees, on the Y axis
          * @returns The new transform
+         * @since 4.6
          */
         skew(skew_x: number, skew_y: number): Transform | null;
 
@@ -5031,6 +5169,7 @@ export namespace Gsk {
          *     `gsk_transform_get_category()` >= GSK_TRANSFORM_CATEGORY_2D
          * 
          * to check.
+         * @since 4.6
          */
         to_2d_components(): [number, number, number, number, number, number, number];
 

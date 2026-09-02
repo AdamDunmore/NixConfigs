@@ -32,11 +32,11 @@ export namespace GLibUnix {
         /**
          * The readable file descriptor 0
          */
-        READ,
+        READ = 0,
         /**
          * The writable file descriptor 1
          */
-        WRITE,
+        WRITE = 1,
     }
 
 
@@ -68,18 +68,21 @@ export namespace GLibUnix {
 
     /**
      * @param user_name 
+     * @throws GLib.Error
      */
     function get_passwd_entry(user_name: string): null;
 
     /**
      * @param fds 
      * @param flags 
+     * @throws GLib.Error
      */
     function open_pipe(fds: number, flags: number): boolean;
 
     /**
      * @param fd 
      * @param nonblock 
+     * @throws GLib.Error
      */
     function set_fd_nonblocking(fd: number, nonblock: boolean): boolean;
 

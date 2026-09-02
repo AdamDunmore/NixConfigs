@@ -80,8 +80,6 @@ levelbar block.empty {
 
 .sidebar_mpris_art {
   border-radius: 25px;
-  min-width: 192px;
-  min-height: 192px;
 }
 
 .sidebar_mpris_media {
@@ -125,6 +123,30 @@ levelbar block.empty {
   font-size: 14px;
   padding-right: 12px;
   padding-left: 12px;
+}
+
+.sidebar_appmenu_window {
+  padding: 5px;
+}
+
+.sidebar_appmenu_entry {
+  margin-bottom: 5px;
+  background-color: gtk-alpha($bg, 0.2);
+}
+
+.sidebar_appmenu_entry:focus-within {
+  background-color: $bg;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.sidebar_appmenu_button {
+  background-color: gtk-alpha($bg, 0.5);
+}
+
+.sidebar_appmenu_button.selected {
+  background-color: $bg;
 }
 
 .menu_window {

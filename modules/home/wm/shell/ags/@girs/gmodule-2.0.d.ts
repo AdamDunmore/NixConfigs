@@ -46,12 +46,24 @@ export namespace GModule {
     }
 
 
+    /**
+     * @default 7
+     */
     const MODULE_IMPL_AR: number;
 
+    /**
+     * @default 1
+     */
     const MODULE_IMPL_DL: number;
 
+    /**
+     * @default 0
+     */
     const MODULE_IMPL_NONE: number;
 
+    /**
+     * @default 3
+     */
     const MODULE_IMPL_WIN32: number;
 
     /**
@@ -114,18 +126,18 @@ export namespace GModule {
          *     needed. The default action is to bind all symbols when the module
          *     is loaded.
          */
-        LAZY,
+        LAZY = 1,
         /**
          * specifies that symbols in the module should
          *     not be added to the global name space. The default action on most
          *     platforms is to place symbols in the module in the global name space,
          *     which may cause conflicts with existing symbols.
          */
-        LOCAL,
+        LOCAL = 2,
         /**
          * mask for all flags.
          */
-        MASK,
+        MASK = 3,
     }
 
 
@@ -159,6 +171,7 @@ export namespace GModule {
          * directory it will return `\Windows\mylibrary.dll`.
          * @param directory the directory where the module is. This can be     `null` or the empty string to indicate that the standard platform-specific     directories will be used, though that is not recommended
          * @param module_name the name of the module
+         * @deprecated since 2.76: Use `g_module_open()` instead with `module_name` as the basename of the file_name argument. See `G_MODULE_SUFFIX` for why.
          */
         static build_path(directory: string | null, module_name: string): string;
 

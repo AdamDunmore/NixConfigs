@@ -225,6 +225,7 @@ export namespace PangoXft {
          * Use `pango_fc_font_get_glyph()` instead.
          * @param wc Unicode codepoint to look up
          * @returns the glyph index, or 0, if the Unicode  character does not exist in the font.
+         * @since 1.2
          */
         get_glyph(wc: string): number;
 
@@ -244,6 +245,7 @@ export namespace PangoXft {
          * Use `pango_fc_font_has_char()` instead.
          * @param wc Unicode codepoint to look up
          * @returns `true` if `font` has the requested codepoint.
+         * @since 1.2
          */
         has_char(wc: string): boolean;
     }
@@ -251,7 +253,7 @@ export namespace PangoXft {
 
     namespace FontMap {
         // Signal signatures
-        interface SignalSignatures extends PangoFc.FontMap.SignalSignatures {
+        interface SignalSignatures extends PangoFc.FontMap.SignalSignatures, Gio.ListModel.SignalSignatures {
             "notify::item-type": (pspec: GObject.ParamSpec) => void;
             "notify::n-items": (pspec: GObject.ParamSpec) => void;
         }
@@ -306,6 +308,7 @@ export namespace PangoXft {
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
          * @returns the {@link GObject.GType} of the items contained in `list`.
+         * @since 2.44
          */
         get_item_type(): GObject.GType;
 
@@ -316,6 +319,7 @@ export namespace PangoXft {
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
          * @returns the number of items in `list`.
+         * @since 2.44
          */
         get_n_items(): number;
 
@@ -334,6 +338,7 @@ export namespace PangoXft {
          * See also: `g_list_model_get_n_items()`
          * @param position the position of the item to fetch
          * @returns the object at `position`.
+         * @since 2.44
          */
         get_item(position: number): A | null;
 
@@ -361,6 +366,7 @@ export namespace PangoXft {
          * @param position the position at which `list` changed
          * @param removed the number of items removed
          * @param added the number of items added
+         * @since 2.44
          */
         items_changed(position: number, removed: number, added: number): void;
 
@@ -373,6 +379,7 @@ export namespace PangoXft {
          * 
          * The same {@link GObject.Object} instance may not appear more than once in a {@link Gio.ListModel}.
          * @param position the position of the item to fetch
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item(position: number): A | null;
@@ -386,6 +393,7 @@ export namespace PangoXft {
          * 
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item_type(): GObject.GType;
@@ -396,6 +404,7 @@ export namespace PangoXft {
          * Depending on the model implementation, calling this function may be
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_n_items(): number;
@@ -494,6 +503,7 @@ export namespace PangoXft {
         /**
          * Sets the default foreground color for a XftRenderer.
          * @param default_color the default foreground color
+         * @since 1.8
          */
         set_default_color(default_color: Pango.Color): void;
 
@@ -501,6 +511,7 @@ export namespace PangoXft {
          * Sets the XftDraw object that the renderer is drawing to.
          * The renderer must not be currently active.
          * @param draw a XftDraw
+         * @since 1.8
          */
         set_draw(draw: xft.Draw): void;
     }

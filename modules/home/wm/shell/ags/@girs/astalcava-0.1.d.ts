@@ -38,14 +38,14 @@ export namespace AstalCava {
      * @gir-type Enum
      */
     enum Input {
-        FIFO,
-        PORTAUDIO,
-        PIPEWIRE,
-        ALSA,
-        PULSE,
-        SNDIO,
-        SHMEM,
-        WINSCAP,
+        FIFO = 0,
+        PORTAUDIO = 1,
+        PIPEWIRE = 2,
+        ALSA = 3,
+        PULSE = 4,
+        SNDIO = 5,
+        SHMEM = 8,
+        WINSCAP = 9,
     }
 
 

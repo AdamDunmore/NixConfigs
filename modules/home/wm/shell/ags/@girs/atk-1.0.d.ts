@@ -39,17 +39,17 @@ export namespace Atk {
         /**
          * specifies xy coordinates relative to the screen
          */
-        SCREEN,
+        SCREEN = 0,
         /**
          * specifies xy coordinates relative to the widget's
          * top-level window
          */
-        WINDOW,
+        WINDOW = 1,
         /**
          * specifies xy coordinates relative to the widget's
          * immediate parent. Since: 2.30
          */
-        PARENT,
+        PARENT = 2,
     }
 
 
@@ -68,15 +68,15 @@ export namespace Atk {
         /**
          * specifies a key press event
          */
-        PRESS,
+        PRESS = 0,
         /**
          * specifies a key release event
          */
-        RELEASE,
+        RELEASE = 1,
         /**
          * Not a valid value; specifies end of enumeration
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 2,
     }
 
 
@@ -99,35 +99,35 @@ export namespace Atk {
         /**
          * The object does not have a layer
          */
-        INVALID,
+        INVALID = 0,
         /**
          * This layer is reserved for the desktop background
          */
-        BACKGROUND,
+        BACKGROUND = 1,
         /**
          * This layer is used for Canvas components
          */
-        CANVAS,
+        CANVAS = 2,
         /**
          * This layer is normally used for components
          */
-        WIDGET,
+        WIDGET = 3,
         /**
          * This layer is used for layered components
          */
-        MDI,
+        MDI = 4,
         /**
          * This layer is used for popup components, such as menus
          */
-        POPUP,
+        POPUP = 5,
         /**
          * This layer is reserved for future use.
          */
-        OVERLAY,
+        OVERLAY = 6,
         /**
          * This layer is used for toplevel windows.
          */
-        WINDOW,
+        WINDOW = 7,
     }
 
 
@@ -150,15 +150,15 @@ export namespace Atk {
         /**
          * No live region.
          */
-        NONE,
+        NONE = 0,
         /**
          * This live region should be considered polite.
          */
-        POLITE,
+        POLITE = 1,
         /**
          * This live region should be considered assertive.
          */
-        ASSERTIVE,
+        ASSERTIVE = 2,
     }
 
 
@@ -177,64 +177,64 @@ export namespace Atk {
         /**
          * Not used, represens "no relationship" or an error condition.
          */
-        NULL,
+        NULL = 0,
         /**
          * Indicates an object controlled by one or more target objects.
          */
-        CONTROLLED_BY,
+        CONTROLLED_BY = 1,
         /**
          * Indicates an object is an controller for one or more target objects.
          */
-        CONTROLLER_FOR,
+        CONTROLLER_FOR = 2,
         /**
          * Indicates an object is a label for one or more target objects.
          */
-        LABEL_FOR,
+        LABEL_FOR = 3,
         /**
          * Indicates an object is labelled by one or more target objects.
          */
-        LABELLED_BY,
+        LABELLED_BY = 4,
         /**
          * Indicates an object is a member of a group of one or more target objects.
          */
-        MEMBER_OF,
+        MEMBER_OF = 5,
         /**
          * Indicates an object is a cell in a treetable which is displayed because a cell in the same column is expanded and identifies that cell.
          */
-        NODE_CHILD_OF,
+        NODE_CHILD_OF = 6,
         /**
          * Indicates that the object has content that flows logically to another
          *  AtkObject in a sequential way, (for instance text-flow).
          */
-        FLOWS_TO,
+        FLOWS_TO = 7,
         /**
          * Indicates that the object has content that flows logically from
          *  another AtkObject in a sequential way, (for instance text-flow).
          */
-        FLOWS_FROM,
+        FLOWS_FROM = 8,
         /**
          * Indicates a subwindow attached to a component but otherwise has no connection in  the UI heirarchy to that component.
          */
-        SUBWINDOW_OF,
+        SUBWINDOW_OF = 9,
         /**
          * Indicates that the object visually embeds
          *  another object's content, i.e. this object's content flows around
          *  another's content.
          */
-        EMBEDS,
+        EMBEDS = 10,
         /**
          * Reciprocal of {@link Atk.RelationType.EMBEDS}, indicates that
          *  this object's content is visualy embedded in another object.
          */
-        EMBEDDED_BY,
+        EMBEDDED_BY = 11,
         /**
          * Indicates that an object is a popup for another object.
          */
-        POPUP_FOR,
+        POPUP_FOR = 12,
         /**
          * Indicates that an object is a parent window of another object.
          */
-        PARENT_WINDOW_OF,
+        PARENT_WINDOW_OF = 13,
         /**
          * Reciprocal of {@link Atk.RelationType.DESCRIPTION_FOR}. Indicates that one
          * or more target objects provide descriptive information about this object. This relation
@@ -247,17 +247,17 @@ export namespace Atk {
          * provide a means for the user to navigate to objects containing detailed descriptions so
          * that their content can be more closely reviewed.
          */
-        DESCRIBED_BY,
+        DESCRIBED_BY = 14,
         /**
          * Reciprocal of {@link Atk.RelationType.DESCRIBED_BY}. Indicates that this
          * object provides descriptive information about the target object(s). See also
          * {@link Atk.RelationType.DETAILS_FOR} and {@link Atk.RelationType.ERROR_FOR}.
          */
-        DESCRIPTION_FOR,
+        DESCRIPTION_FOR = 15,
         /**
          * Indicates an object is a cell in a treetable and is expanded to display other cells in the same column.
          */
-        NODE_PARENT_OF,
+        NODE_PARENT_OF = 16,
         /**
          * Reciprocal of {@link Atk.RelationType.DETAILS_FOR}. Indicates that this object
          * has a detailed or extended description, the contents of which can be found in the target
@@ -267,30 +267,30 @@ export namespace Atk {
          * the detailed information describes an error condition, {@link Atk.RelationType.ERROR_FOR} should be
          * used instead. `Since`: ATK-2.26.
          */
-        DETAILS,
+        DETAILS = 17,
         /**
          * Reciprocal of {@link Atk.RelationType.DETAILS}. Indicates that this object
          * provides a detailed or extended description about the target object(s). See also
          * {@link Atk.RelationType.DESCRIPTION_FOR} and {@link Atk.RelationType.ERROR_FOR}. `Since`: ATK-2.26.
          */
-        DETAILS_FOR,
+        DETAILS_FOR = 18,
         /**
          * Reciprocal of {@link Atk.RelationType.ERROR_FOR}. Indicates that this object
          * has one or more errors, the nature of which is described in the contents of the target
          * object(s). Objects that have this relation type should also contain {@link Atk.StateType.INVALID_ENTRY}
          * in their {@link Atk.StateSet}. `Since`: ATK-2.26.
          */
-        ERROR_MESSAGE,
+        ERROR_MESSAGE = 19,
         /**
          * Reciprocal of {@link Atk.RelationType.ERROR_MESSAGE}. Indicates that this object
          * contains an error message describing an invalid condition in the target object(s). `Since`:
          * ATK_2.26.
          */
-        ERROR_FOR,
+        ERROR_FOR = 20,
         /**
          * Not used, this value indicates the end of the enumeration.
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 21,
     }
 
 
@@ -313,243 +313,243 @@ export namespace Atk {
         /**
          * Invalid role
          */
-        INVALID,
+        INVALID = 0,
         /**
          * A label which represents an accelerator
          */
-        ACCELERATOR_LABEL,
+        ACCELERATOR_LABEL = 1,
         /**
          * An object which is an alert to the user. Assistive Technologies typically respond to ATK_ROLE_ALERT by reading the entire onscreen contents of containers advertising this role.  Should be used for warning dialogs, etc.
          */
-        ALERT,
+        ALERT = 2,
         /**
          * An object which is an animated image
          */
-        ANIMATION,
+        ANIMATION = 3,
         /**
          * An arrow in one of the four cardinal directions
          */
-        ARROW,
+        ARROW = 4,
         /**
          * An object that displays a calendar and allows the user to select a date
          */
-        CALENDAR,
+        CALENDAR = 5,
         /**
          * An object that can be drawn into and is used to trap events
          */
-        CANVAS,
+        CANVAS = 6,
         /**
          * A choice that can be checked or unchecked and provides a separate indicator for the current state
          */
-        CHECK_BOX,
+        CHECK_BOX = 7,
         /**
          * A menu item with a check box
          */
-        CHECK_MENU_ITEM,
+        CHECK_MENU_ITEM = 8,
         /**
          * A specialized dialog that lets the user choose a color
          */
-        COLOR_CHOOSER,
+        COLOR_CHOOSER = 9,
         /**
          * The header for a column of data
          */
-        COLUMN_HEADER,
+        COLUMN_HEADER = 10,
         /**
          * A collapsible list of choices the user can select from
          */
-        COMBO_BOX,
+        COMBO_BOX = 11,
         /**
          * An object whose purpose is to allow a user to edit a date
          */
-        DATE_EDITOR,
+        DATE_EDITOR = 12,
         /**
          * An inconifed internal frame within a DESKTOP_PANE
          */
-        DESKTOP_ICON,
+        DESKTOP_ICON = 13,
         /**
          * A pane that supports internal frames and iconified versions of those internal frames
          */
-        DESKTOP_FRAME,
+        DESKTOP_FRAME = 14,
         /**
          * An object whose purpose is to allow a user to set a value
          */
-        DIAL,
+        DIAL = 15,
         /**
          * A top level window with title bar and a border
          */
-        DIALOG,
+        DIALOG = 16,
         /**
          * A pane that allows the user to navigate through and select the contents of a directory
          */
-        DIRECTORY_PANE,
+        DIRECTORY_PANE = 17,
         /**
          * An object used for drawing custom user interface elements
          */
-        DRAWING_AREA,
+        DRAWING_AREA = 18,
         /**
          * A specialized dialog that lets the user choose a file
          */
-        FILE_CHOOSER,
+        FILE_CHOOSER = 19,
         /**
          * A object that fills up space in a user interface
          */
-        FILLER,
+        FILLER = 20,
         /**
          * A specialized dialog that lets the user choose a font
          */
-        FONT_CHOOSER,
+        FONT_CHOOSER = 21,
         /**
          * A top level window with a title bar, border, menubar, etc.
          */
-        FRAME,
+        FRAME = 22,
         /**
          * A pane that is guaranteed to be painted on top of all panes beneath it
          */
-        GLASS_PANE,
+        GLASS_PANE = 23,
         /**
          * A document container for HTML, whose children represent the document content
          */
-        HTML_CONTAINER,
+        HTML_CONTAINER = 24,
         /**
          * A small fixed size picture, typically used to decorate components
          */
-        ICON,
+        ICON = 25,
         /**
          * An object whose primary purpose is to display an image
          */
-        IMAGE,
+        IMAGE = 26,
         /**
          * A frame-like object that is clipped by a desktop pane
          */
-        INTERNAL_FRAME,
+        INTERNAL_FRAME = 27,
         /**
          * An object used to present an icon or short string in an interface
          */
-        LABEL,
+        LABEL = 28,
         /**
          * A specialized pane that allows its children to be drawn in layers, providing a form of stacking order
          */
-        LAYERED_PANE,
+        LAYERED_PANE = 29,
         /**
          * An object that presents a list of objects to the user and allows the user to select one or more of them
          */
-        LIST,
+        LIST = 30,
         /**
          * An object that represents an element of a list
          */
-        LIST_ITEM,
+        LIST_ITEM = 31,
         /**
          * An object usually found inside a menu bar that contains a list of actions the user can choose from
          */
-        MENU,
+        MENU = 32,
         /**
          * An object usually drawn at the top of the primary dialog box of an application that contains a list of menus the user can choose from
          */
-        MENU_BAR,
+        MENU_BAR = 33,
         /**
          * An object usually contained in a menu that presents an action the user can choose
          */
-        MENU_ITEM,
+        MENU_ITEM = 34,
         /**
          * A specialized pane whose primary use is inside a DIALOG
          */
-        OPTION_PANE,
+        OPTION_PANE = 35,
         /**
          * An object that is a child of a page tab list
          */
-        PAGE_TAB,
+        PAGE_TAB = 36,
         /**
          * An object that presents a series of panels (or page tabs), one at a time, through some mechanism provided by the object
          */
-        PAGE_TAB_LIST,
+        PAGE_TAB_LIST = 37,
         /**
          * A generic container that is often used to group objects
          */
-        PANEL,
+        PANEL = 38,
         /**
          * A text object uses for passwords, or other places where the text content is not shown visibly to the user
          */
-        PASSWORD_TEXT,
+        PASSWORD_TEXT = 39,
         /**
          * A temporary window that is usually used to offer the user a list of choices, and then hides when the user selects one of those choices
          */
-        POPUP_MENU,
+        POPUP_MENU = 40,
         /**
          * An object used to indicate how much of a task has been completed
          */
-        PROGRESS_BAR,
+        PROGRESS_BAR = 41,
         /**
          * An object the user can manipulate to tell the application to do something
          */
-        BUTTON,
+        BUTTON = 42,
         /**
          * A specialized check box that will cause other radio buttons in the same group to become unchecked when this one is checked
          */
-        RADIO_BUTTON,
+        RADIO_BUTTON = 43,
         /**
          * A check menu item which belongs to a group. At each instant exactly one of the radio menu items from a group is selected
          */
-        RADIO_MENU_ITEM,
+        RADIO_MENU_ITEM = 44,
         /**
          * A specialized pane that has a glass pane and a layered pane as its children
          */
-        ROOT_PANE,
+        ROOT_PANE = 45,
         /**
          * The header for a row of data
          */
-        ROW_HEADER,
+        ROW_HEADER = 46,
         /**
          * An object usually used to allow a user to incrementally view a large amount of data.
          */
-        SCROLL_BAR,
+        SCROLL_BAR = 47,
         /**
          * An object that allows a user to incrementally view a large amount of information
          */
-        SCROLL_PANE,
+        SCROLL_PANE = 48,
         /**
          * An object usually contained in a menu to provide a visible and logical separation of the contents in a menu
          */
-        SEPARATOR,
+        SEPARATOR = 49,
         /**
          * An object that allows the user to select from a bounded range
          */
-        SLIDER,
+        SLIDER = 50,
         /**
          * A specialized panel that presents two other panels at the same time
          */
-        SPLIT_PANE,
+        SPLIT_PANE = 51,
         /**
          * An object used to get an integer or floating point number from the user
          */
-        SPIN_BUTTON,
+        SPIN_BUTTON = 52,
         /**
          * An object which reports messages of minor importance to the user
          */
-        STATUSBAR,
+        STATUSBAR = 53,
         /**
          * An object used to represent information in terms of rows and columns
          */
-        TABLE,
+        TABLE = 54,
         /**
          * A cell in a table
          */
-        TABLE_CELL,
+        TABLE_CELL = 55,
         /**
          * The header for a column of a table
          */
-        TABLE_COLUMN_HEADER,
+        TABLE_COLUMN_HEADER = 56,
         /**
          * The header for a row of a table
          */
-        TABLE_ROW_HEADER,
+        TABLE_ROW_HEADER = 57,
         /**
          * A menu item used to tear off and reattach its menu
          */
-        TEAR_OFF_MENU_ITEM,
+        TEAR_OFF_MENU_ITEM = 58,
         /**
          * An object that represents an accessible terminal.  (Since: 0.6)
          */
-        TERMINAL,
+        TERMINAL = 59,
         /**
          * An interactive widget that supports multiple lines of text and
          * optionally accepts user input, but whose purpose is not to solicit user input.
@@ -559,110 +559,110 @@ export namespace Atk {
          * ATK_ROLE_PASSWORD_TEXT. For generic objects which display a brief amount of
          * textual information, see ATK_ROLE_STATIC.
          */
-        TEXT,
+        TEXT = 60,
         /**
          * A specialized push button that can be checked or unchecked, but does not provide a separate indicator for the current state
          */
-        TOGGLE_BUTTON,
+        TOGGLE_BUTTON = 61,
         /**
          * A bar or palette usually composed of push buttons or toggle buttons
          */
-        TOOL_BAR,
+        TOOL_BAR = 62,
         /**
          * An object that provides information about another object
          */
-        TOOL_TIP,
+        TOOL_TIP = 63,
         /**
          * An object used to represent hierarchical information to the user
          */
-        TREE,
+        TREE = 64,
         /**
          * An object capable of expanding and collapsing rows as well as showing multiple columns of data.   (Since: 0.7)
          */
-        TREE_TABLE,
+        TREE_TABLE = 65,
         /**
          * The object contains some Accessible information, but its role is not known
          */
-        UNKNOWN,
+        UNKNOWN = 66,
         /**
          * An object usually used in a scroll pane
          */
-        VIEWPORT,
+        VIEWPORT = 67,
         /**
          * A top level window with no title or border.
          */
-        WINDOW,
+        WINDOW = 68,
         /**
          * An object that serves as a document header. (Since: 1.1.1)
          */
-        HEADER,
+        HEADER = 69,
         /**
          * An object that serves as a document footer.  (Since: 1.1.1)
          */
-        FOOTER,
+        FOOTER = 70,
         /**
          * An object which is contains a paragraph of text content.   (Since: 1.1.1)
          */
-        PARAGRAPH,
+        PARAGRAPH = 71,
         /**
          * An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER_FOR relation to such).   (Since: 1.1.1)
          */
-        RULER,
+        RULER = 72,
         /**
          * The object is an application object, which may contain `ATK_ROLE_FRAME` objects or other types of accessibles.  The root accessible of any application's ATK hierarchy should have ATK_ROLE_APPLICATION.   (Since: 1.1.4)
          */
-        APPLICATION,
+        APPLICATION = 73,
         /**
          * The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry.   (Since: 1.3)
          */
-        AUTOCOMPLETE,
+        AUTOCOMPLETE = 74,
         /**
          * The object is an editable text object in a toolbar.  (Since: 1.5)
          */
-        EDIT_BAR,
+        EDIT_BAR = 75,
         /**
          * The object is an embedded container within a document or panel.  This role is a grouping "hint" indicating that the contained objects share a context.  (Since: 1.7.2)
          */
-        EMBEDDED,
+        EMBEDDED = 76,
         /**
          * The object is a component whose textual content may be entered or modified by the user, provided `ATK_STATE_EDITABLE` is present.   (Since: 1.11)
          */
-        ENTRY,
+        ENTRY = 77,
         /**
          * The object is a graphical depiction of quantitative data. It may contain multiple subelements whose attributes and/or description may be queried to obtain both the quantitative data and information about how the data is being presented. The LABELLED_BY relation is particularly important in interpreting objects of this type, as is the accessible-description property.  (Since: 1.11)
          */
-        CHART,
+        CHART = 78,
         /**
          * The object contains descriptive information, usually textual, about another user interface element such as a table, chart, or image.  (Since: 1.11)
          */
-        CAPTION,
+        CAPTION = 79,
         /**
          * The object is a visual frame or container which contains a view of document content. Document frames may occur within another Document instance, in which case the second document may be said to be embedded in the containing instance. HTML frames are often ROLE_DOCUMENT_FRAME. Either this object, or a singleton descendant, should implement the Document interface.  (Since: 1.11)
          */
-        DOCUMENT_FRAME,
+        DOCUMENT_FRAME = 80,
         /**
          * The object serves as a heading for content which follows it in a document. The 'heading level' of the heading, if availabe, may be obtained by querying the object's attributes.
          */
-        HEADING,
+        HEADING = 81,
         /**
          * The object is a containing instance which encapsulates a page of information. `ATK_ROLE_PAGE` is used in documents and content which support a paginated navigation model.  (Since: 1.11)
          */
-        PAGE,
+        PAGE = 82,
         /**
          * The object is a containing instance of document content which constitutes a particular 'logical' section of the document. The type of content within a section, and the nature of the section division itself, may be obtained by querying the object's attributes. Sections may be nested. (Since: 1.11)
          */
-        SECTION,
+        SECTION = 83,
         /**
          * The object is redundant with another object in the hierarchy, and is exposed for purely technical reasons.  Objects of this role should normally be ignored by clients. (Since: 1.11)
          */
-        REDUNDANT_OBJECT,
+        REDUNDANT_OBJECT = 84,
         /**
          * The object is a container for form controls, for instance as part of a
          * web form or user-input form within a document.  This role is primarily a tag/convenience for
          * clients when navigating complex documents, it is not expected that ordinary GUI containers will
          * always have ATK_ROLE_FORM. (Since: 1.12.0)
          */
-        FORM,
+        FORM = 85,
         /**
          * The object is a hypertext anchor, i.e. a "link" in a
          * hypertext document.  Such objects are distinct from 'inline'
@@ -670,104 +670,104 @@ export namespace Atk {
          * to indicate the range/location within a text object where
          * an inline or embedded object lies.  (Since: 1.12.1)
          */
-        LINK,
+        LINK = 86,
         /**
          * The object is a window or similar viewport
          * which is used to allow composition or input of a 'complex character',
          * in other words it is an "input method window." (Since: 1.12.1)
          */
-        INPUT_METHOD_WINDOW,
+        INPUT_METHOD_WINDOW = 87,
         /**
          * A row in a table.  (Since: 2.1.0)
          */
-        TABLE_ROW,
+        TABLE_ROW = 88,
         /**
          * An object that represents an element of a tree.  (Since: 2.1.0)
          */
-        TREE_ITEM,
+        TREE_ITEM = 89,
         /**
          * A document frame which contains a spreadsheet.  (Since: 2.1.0)
          */
-        DOCUMENT_SPREADSHEET,
+        DOCUMENT_SPREADSHEET = 90,
         /**
          * A document frame which contains a presentation or slide content.  (Since: 2.1.0)
          */
-        DOCUMENT_PRESENTATION,
+        DOCUMENT_PRESENTATION = 91,
         /**
          * A document frame which contains textual content, such as found in a word processing application.  (Since: 2.1.0)
          */
-        DOCUMENT_TEXT,
+        DOCUMENT_TEXT = 92,
         /**
          * A document frame which contains HTML or other markup suitable for display in a web browser.  (Since: 2.1.0)
          */
-        DOCUMENT_WEB,
+        DOCUMENT_WEB = 93,
         /**
          * A document frame which contains email content to be displayed or composed either in plain text or HTML.  (Since: 2.1.0)
          */
-        DOCUMENT_EMAIL,
+        DOCUMENT_EMAIL = 94,
         /**
          * An object found within a document and designed to present a comment, note, or other annotation. In some cases, this object might not be visible until activated.  (Since: 2.1.0)
          */
-        COMMENT,
+        COMMENT = 95,
         /**
          * A non-collapsible list of choices the user can select from. (Since: 2.1.0)
          */
-        LIST_BOX,
+        LIST_BOX = 96,
         /**
          * A group of related widgets. This group typically has a label. (Since: 2.1.0)
          */
-        GROUPING,
+        GROUPING = 97,
         /**
          * An image map object. Usually a graphic with multiple hotspots, where each hotspot can be activated resulting in the loading of another document or section of a document. (Since: 2.1.0)
          */
-        IMAGE_MAP,
+        IMAGE_MAP = 98,
         /**
          * A transitory object designed to present a message to the user, typically at the desktop level rather than inside a particular application.  (Since: 2.1.0)
          */
-        NOTIFICATION,
+        NOTIFICATION = 99,
         /**
          * An object designed to present a message to the user within an existing window. (Since: 2.1.0)
          */
-        INFO_BAR,
+        INFO_BAR = 100,
         /**
          * A bar that serves as a level indicator to, for instance, show the strength of a password or the state of a battery.  (Since: 2.7.3)
          */
-        LEVEL_BAR,
+        LEVEL_BAR = 101,
         /**
          * A bar that serves as the title of a window or a
          * dialog. (Since: 2.12)
          */
-        TITLE_BAR,
+        TITLE_BAR = 102,
         /**
          * An object which contains a text section
          * that is quoted from another source. (Since: 2.12)
          */
-        BLOCK_QUOTE,
+        BLOCK_QUOTE = 103,
         /**
          * An object which represents an audio element. (Since: 2.12)
          */
-        AUDIO,
+        AUDIO = 104,
         /**
          * An object which represents a video element. (Since: 2.12)
          */
-        VIDEO,
+        VIDEO = 105,
         /**
          * A definition of a term or concept. (Since: 2.12)
          */
-        DEFINITION,
+        DEFINITION = 106,
         /**
          * A section of a page that consists of a
          * composition that forms an independent part of a document, page, or
          * site. Examples: A blog entry, a news story, a forum post. (Since: 2.12)
          */
-        ARTICLE,
+        ARTICLE = 107,
         /**
          * A region of a web page intended as a
          * navigational landmark. This is designed to allow Assistive
          * Technologies to provide quick navigation among key regions within a
          * document. (Since: 2.12)
          */
-        LANDMARK,
+        LANDMARK = 108,
         /**
          * A text widget or container holding log content, such
          * as chat history and error logs. In this role there is a
@@ -776,7 +776,7 @@ export namespace Atk {
          * information is added only to the end of the log, not at arbitrary
          * points. (Since: 2.12)
          */
-        LOG,
+        LOG = 109,
         /**
          * A container where non-essential information
          * changes frequently. Common usages of marquee include stock tickers
@@ -784,25 +784,25 @@ export namespace Atk {
          * is that logs usually have a meaningful order or sequence of
          * important content changes. (Since: 2.12)
          */
-        MARQUEE,
+        MARQUEE = 110,
         /**
          * A text widget or container that holds a mathematical
          * expression. (Since: 2.12)
          */
-        MATH,
+        MATH = 111,
         /**
          * A widget whose purpose is to display a rating,
          * such as the number of stars associated with a song in a media
          * player. Objects of this role should also implement
          * AtkValue. (Since: 2.12)
          */
-        RATING,
+        RATING = 112,
         /**
          * An object containing a numerical counter which
          * indicates an amount of elapsed time from a start point, or the time
          * remaining until an end point. (Since: 2.12)
          */
-        TIMER,
+        TIMER = 113,
         /**
          * An object that represents a list of
          * term-value groups. A term-value group represents a individual
@@ -811,17 +811,17 @@ export namespace Atk {
          * (ATK_ROLE_DESCRIPTION_VALUE). For each list, there should not be
          * more than one group with the same term name. (Since: 2.12)
          */
-        DESCRIPTION_LIST,
+        DESCRIPTION_LIST = 114,
         /**
          * An object that represents a term or phrase
          * with a corresponding definition. (Since: 2.12)
          */
-        DESCRIPTION_TERM,
+        DESCRIPTION_TERM = 115,
         /**
          * An object that represents the
          * description, definition or value of a term. (Since: 2.12)
          */
-        DESCRIPTION_VALUE,
+        DESCRIPTION_VALUE = 116,
         /**
          * A generic non-container object whose purpose is to display a
          * brief amount of information to the user and whose role is known by the
@@ -837,43 +837,43 @@ export namespace Atk {
          * {@link Atk.Role.TEXT}. For generic containers, see {@link Atk.Role.PANEL}. For objects whose
          * role is not known by the implementor, see {@link Atk.Role.UNKNOWN}. (Since: 2.16)
          */
-        STATIC,
+        STATIC = 117,
         /**
          * An object that represents a mathematical fraction.
          * (Since: 2.16)
          */
-        MATH_FRACTION,
+        MATH_FRACTION = 118,
         /**
          * An object that represents a mathematical expression
          * displayed with a radical. (Since: 2.16)
          */
-        MATH_ROOT,
+        MATH_ROOT = 119,
         /**
          * An object that contains text that is displayed as a
          * subscript. (Since: 2.16)
          */
-        SUBSCRIPT,
+        SUBSCRIPT = 120,
         /**
          * An object that contains text that is displayed as a
          * superscript. (Since: 2.16)
          */
-        SUPERSCRIPT,
+        SUPERSCRIPT = 121,
         /**
          * An object that contains the text of a footnote. (Since: 2.26)
          */
-        FOOTNOTE,
+        FOOTNOTE = 122,
         /**
          * Content previously deleted or proposed to be
          * deleted, e.g. in revision history or a content view providing suggestions
          * from reviewers. (Since: 2.34)
          */
-        CONTENT_DELETION,
+        CONTENT_DELETION = 123,
         /**
          * Content previously inserted or proposed to be
          * inserted, e.g. in revision history or a content view providing suggestions
          * from reviewers. (Since: 2.34)
          */
-        CONTENT_INSERTION,
+        CONTENT_INSERTION = 124,
         /**
          * A run of content that is marked or highlighted, such as for
          * reference purposes, or to call it out as having a special purpose. If the
@@ -883,7 +883,7 @@ export namespace Atk {
          * {@link Atk.RelationType.DETAILS_FOR} should be used on the associated content section
          * to point back to the mark. (Since: 2.36)
          */
-        MARK,
+        MARK = 125,
         /**
          * A container for content that is called out as a proposed
          * change from the current version of the document, such as by a reviewer of the
@@ -891,22 +891,22 @@ export namespace Atk {
          * {@link Atk.Role.CONTENT_INSERTION} children, in any order, to indicate what the
          * actual change is. (Since: 2.36)
          */
-        SUGGESTION,
+        SUGGESTION = 126,
         /**
          * A specialized push button to open a menu.
          * (Since: 2.46)
          */
-        PUSH_BUTTON_MENU,
+        PUSH_BUTTON_MENU = 127,
         /**
          * A switch that can be toggled on/off.
          * (Since: 2.56)
          */
-        SWITCH,
+        SWITCH = 128,
         /**
          * not a valid role, used for finding end of the enumeration
          */
-        LAST_DEFINED,
-        PUSH_BUTTON,
+        LAST_DEFINED = 129,
+        PUSH_BUTTON = 42,
     }
 
 
@@ -927,38 +927,38 @@ export namespace Atk {
          * Scroll the object vertically and horizontally to bring
          *   its top left corner to the top left corner of the window.
          */
-        TOP_LEFT,
+        TOP_LEFT = 0,
         /**
          * Scroll the object vertically and horizontally to
          *   bring its bottom right corner to the bottom right corner of the window.
          */
-        BOTTOM_RIGHT,
+        BOTTOM_RIGHT = 1,
         /**
          * Scroll the object vertically to bring its top edge to
          *   the top edge of the window.
          */
-        TOP_EDGE,
+        TOP_EDGE = 2,
         /**
          * Scroll the object vertically to bring its bottom
          *   edge to the bottom edge of the window.
          */
-        BOTTOM_EDGE,
+        BOTTOM_EDGE = 3,
         /**
          * Scroll the object vertically and horizontally to bring
          *   its left edge to the left edge of the window.
          */
-        LEFT_EDGE,
+        LEFT_EDGE = 4,
         /**
          * Scroll the object vertically and horizontally to
          *   bring its right edge to the right edge of the window.
          */
-        RIGHT_EDGE,
+        RIGHT_EDGE = 5,
         /**
          * Scroll the object vertically and horizontally so that
          *   as much as possible of the object becomes visible. The exact placement is
          *   determined by the application.
          */
-        ANYWHERE,
+        ANYWHERE = 6,
     }
 
 
@@ -977,27 +977,27 @@ export namespace Atk {
         /**
          * Indicates an invalid state - probably an error condition.
          */
-        INVALID,
+        INVALID = 0,
         /**
          * Indicates a window is currently the active window, or an object is the active subelement within a container or table. ATK_STATE_ACTIVE should not be used for objects which have ATK_STATE_FOCUSABLE or ATK_STATE_SELECTABLE: Those objects should use ATK_STATE_FOCUSED and ATK_STATE_SELECTED respectively. ATK_STATE_ACTIVE is a means to indicate that an object which is not focusable and not selectable is the currently-active item within its parent container.
          */
-        ACTIVE,
+        ACTIVE = 1,
         /**
          * Indicates that the object is 'armed', i.e. will be activated by if a pointer button-release event occurs within its bounds.  Buttons often enter this state when a pointer click occurs within their bounds, as a precursor to activation. ATK_STATE_ARMED has been deprecated since ATK-2.16 and should not be used in newly-written code.
          */
-        ARMED,
+        ARMED = 2,
         /**
          * Indicates the current object is busy, i.e. onscreen representation is in the process of changing, or the object is temporarily unavailable for interaction due to activity already in progress.  This state may be used by implementors of Document to indicate that content loading is underway.  It also may indicate other 'pending' conditions; clients may wish to interrogate this object when the ATK_STATE_BUSY flag is removed.
          */
-        BUSY,
+        BUSY = 3,
         /**
          * Indicates this object is currently checked, for instance a checkbox is 'non-empty'.
          */
-        CHECKED,
+        CHECKED = 4,
         /**
          * Indicates that this object no longer has a valid backing widget (for instance, if its peer object has been destroyed)
          */
-        DEFUNCT,
+        DEFUNCT = 5,
         /**
          * Indicates that this object can contain text, and that the
          * user can change the textual contents of this object by editing those contents
@@ -1006,67 +1006,67 @@ export namespace Atk {
          * from doing so, that object's {@link Atk.StateSet} should lack ATK_STATE_EDITABLE and
          * should contain ATK_STATE_READ_ONLY.
          */
-        EDITABLE,
+        EDITABLE = 6,
         /**
          * Indicates that this object is enabled, i.e. that it currently reflects some application state. Objects that are "greyed out" may lack this state, and may lack the STATE_SENSITIVE if direct user interaction cannot cause them to acquire STATE_ENABLED. See also: ATK_STATE_SENSITIVE
          */
-        ENABLED,
+        ENABLED = 7,
         /**
          * Indicates this object allows progressive disclosure of its children
          */
-        EXPANDABLE,
+        EXPANDABLE = 8,
         /**
          * Indicates this object its expanded - see ATK_STATE_EXPANDABLE above
          */
-        EXPANDED,
+        EXPANDED = 9,
         /**
          * Indicates this object can accept keyboard focus, which means all events resulting from typing on the keyboard will normally be passed to it when it has focus
          */
-        FOCUSABLE,
+        FOCUSABLE = 10,
         /**
          * Indicates this object currently has the keyboard focus
          */
-        FOCUSED,
+        FOCUSED = 11,
         /**
          * Indicates the orientation of this object is horizontal; used, for instance, by objects of ATK_ROLE_SCROLL_BAR.  For objects where vertical/horizontal orientation is especially meaningful.
          */
-        HORIZONTAL,
+        HORIZONTAL = 12,
         /**
          * Indicates this object is minimized and is represented only by an icon
          */
-        ICONIFIED,
+        ICONIFIED = 13,
         /**
          * Indicates something must be done with this object before the user can interact with an object in a different window
          */
-        MODAL,
+        MODAL = 14,
         /**
          * Indicates this (text) object can contain multiple lines of text
          */
-        MULTI_LINE,
+        MULTI_LINE = 15,
         /**
          * Indicates this object allows more than one of its children to be selected at the same time, or in the case of text objects, that the object supports non-contiguous text selections.
          */
-        MULTISELECTABLE,
+        MULTISELECTABLE = 16,
         /**
          * Indicates this object paints every pixel within its rectangular region.
          */
-        OPAQUE,
+        OPAQUE = 17,
         /**
          * Indicates this object is currently pressed.
          */
-        PRESSED,
+        PRESSED = 18,
         /**
          * Indicates the size of this object is not fixed
          */
-        RESIZABLE,
+        RESIZABLE = 19,
         /**
          * Indicates this object is the child of an object that allows its children to be selected and that this child is one of those children that can be selected
          */
-        SELECTABLE,
+        SELECTABLE = 20,
         /**
          * Indicates this object is the child of an object that allows its children to be selected and that this child is one of those children that has been selected
          */
-        SELECTED,
+        SELECTED = 21,
         /**
          * Indicates this object is sensitive, e.g. to user interaction.
          * STATE_SENSITIVE usually accompanies STATE_ENABLED for user-actionable controls,
@@ -1076,17 +1076,17 @@ export namespace Atk {
          * an explicit selection using an object whose current state is ambiguous or undefined.
          * `see` STATE_ENABLED, STATE_INDETERMINATE.
          */
-        SENSITIVE,
+        SENSITIVE = 22,
         /**
          * Indicates this object, the object's parent, the object's parent's parent, and so on,
          * are all 'shown' to the end-user, i.e. subject to "exposure" if blocking or obscuring objects do not interpose
          * between this object and the top of the window stack.
          */
-        SHOWING,
+        SHOWING = 23,
         /**
          * Indicates this (text) object can contain only a single line of text
          */
-        SINGLE_LINE,
+        SINGLE_LINE = 24,
         /**
          * Indicates that the information returned for this object may no longer be
          * synchronized with the application state.  This is implied if the object has STATE_TRANSIENT,
@@ -1094,17 +1094,17 @@ export namespace Atk {
          * the index associated with this object has changed since the user accessed the object (in lieu of
          * "index-in-parent-changed" events).
          */
-        STALE,
+        STALE = 25,
         /**
          * Indicates this object is transient, i.e. a snapshot which may not emit events when its
          * state changes.  Data from objects with ATK_STATE_TRANSIENT should not be cached, since there may be no
          * notification given when the cached data becomes obsolete.
          */
-        TRANSIENT,
+        TRANSIENT = 26,
         /**
          * Indicates the orientation of this object is vertical
          */
-        VERTICAL,
+        VERTICAL = 27,
         /**
          * Indicates this object is visible, e.g. has been explicitly marked for exposure to the user.
          * **note**: {@link Atk.StateType.VISIBLE} is no guarantee that the object is actually unobscured on the screen, only
@@ -1118,7 +1118,7 @@ export namespace Atk {
          * an image within a scrolling viewport.  Mostly useful for screen-review and magnification
          * algorithms.
          */
-        VISIBLE,
+        VISIBLE = 28,
         /**
          * Indicates that "active-descendant-changed" event
          * is sent when children become 'active' (i.e. are selected or navigated to onscreen).
@@ -1130,7 +1130,7 @@ export namespace Atk {
          * changes and activation of their contained child objects, without the client
          * having previously requested references to those children.
          */
-        MANAGES_DESCENDANTS,
+        MANAGES_DESCENDANTS = 29,
         /**
          * Indicates that the value, or some other quantifiable
          * property, of this AtkObject cannot be fully determined. In the case of a large
@@ -1140,19 +1140,19 @@ export namespace Atk {
          * indicate that the check box is a tri-state check box which is currently
          * neither checked nor unchecked.
          */
-        INDETERMINATE,
+        INDETERMINATE = 30,
         /**
          * Indicates that an object is truncated, e.g. a text value in a speradsheet cell.
          */
-        TRUNCATED,
+        TRUNCATED = 31,
         /**
          * Indicates that explicit user interaction with an object is required by the user interface, e.g. a required field in a "web-form" interface.
          */
-        REQUIRED,
+        REQUIRED = 32,
         /**
          * Indicates that the object has encountered an error condition due to failure of input validation. For instance, a form control may acquire this state in response to invalid or malformed user input.
          */
-        INVALID_ENTRY,
+        INVALID_ENTRY = 33,
         /**
          * Indicates that the object in question implements some form of ¨typeahead¨ or
          * pre-selection behavior whereby entering the first character of one or more sub-elements
@@ -1163,15 +1163,15 @@ export namespace Atk {
          * the data in the input field, in which case these input events may trigger text-changed
          * events from the AtkText interface.  This state supplants `ATK_ROLE_AUTOCOMPLETE`.
          */
-        SUPPORTS_AUTOCOMPLETION,
+        SUPPORTS_AUTOCOMPLETION = 34,
         /**
          * Indicates that the object in question supports text selection. It should only be exposed on objects which implement the Text interface, in order to distinguish this state from `ATK_STATE_SELECTABLE`, which infers that the object in question is a selectable child of an object which implements Selection. While similar, text selection and subelement selection are distinct operations.
          */
-        SELECTABLE_TEXT,
+        SELECTABLE_TEXT = 35,
         /**
          * Indicates that the object is the "default" active component, i.e. the object which is activated by an end-user press of the "Enter" or "Return" key.  Typically a "close" or "submit" button.
          */
-        DEFAULT,
+        DEFAULT = 36,
         /**
          * Indicates that the object changes its appearance dynamically as an inherent part of its presentation.  This state may come and go if an object is only temporarily animated on the way to a 'final' onscreen presentation.
          * **note**: some applications, notably content viewers, may not be able to detect
@@ -1179,28 +1179,28 @@ export namespace Atk {
          * be taken as definitive evidence that the object's visual representation is
          * static; this state is advisory.
          */
-        ANIMATED,
+        ANIMATED = 37,
         /**
          * Indicates that the object (typically a hyperlink) has already been 'activated', and/or its backing data has already been downloaded, rendered, or otherwise "visited".
          */
-        VISITED,
+        VISITED = 38,
         /**
          * Indicates this object has the potential to be
          *  checked, such as a checkbox or toggle-able table cell. `Since`:
          *  ATK-2.12
          */
-        CHECKABLE,
+        CHECKABLE = 39,
         /**
          * Indicates that the object has a popup context
          * menu or sub-level menu which may or may not be showing. This means
          * that activation renders conditional content.  Note that ordinary
          * tooltips are not considered popups in this context. `Since`: ATK-2.12
          */
-        HAS_POPUP,
+        HAS_POPUP = 40,
         /**
          * Indicates this object has a tooltip. `Since`: ATK-2.16
          */
-        HAS_TOOLTIP,
+        HAS_TOOLTIP = 41,
         /**
          * Indicates that a widget which is ENABLED and SENSITIVE
          * has a value which can be read, but not modified, by the user. Note that this
@@ -1212,15 +1212,15 @@ export namespace Atk {
          * labels and containers, ATK_STATE_READ_ONLY should not be applied. See also
          * ATK_STATE_EDITABLE. `Since`: ATK-2-16
          */
-        READ_ONLY,
+        READ_ONLY = 42,
         /**
          * Indicates this object is collapsed. `Since`: ATK-2.38
          */
-        COLLAPSED,
+        COLLAPSED = 43,
         /**
          * Not a valid state, used for finding end of enumeration
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 44,
     }
 
 
@@ -1239,123 +1239,123 @@ export namespace Atk {
         /**
          * Invalid attribute, like bad spelling or grammar.
          */
-        INVALID,
+        INVALID = 0,
         /**
          * The pixel width of the left margin
          */
-        LEFT_MARGIN,
+        LEFT_MARGIN = 1,
         /**
          * The pixel width of the right margin
          */
-        RIGHT_MARGIN,
+        RIGHT_MARGIN = 2,
         /**
          * The number of pixels that the text is indented
          */
-        INDENT,
+        INDENT = 3,
         /**
          * Either "true" or "false" indicating whether text is visible or not
          */
-        INVISIBLE,
+        INVISIBLE = 4,
         /**
          * Either "true" or "false" indicating whether text is editable or not
          */
-        EDITABLE,
+        EDITABLE = 5,
         /**
          * Pixels of blank space to leave above each newline-terminated line.
          */
-        PIXELS_ABOVE_LINES,
+        PIXELS_ABOVE_LINES = 6,
         /**
          * Pixels of blank space to leave below each newline-terminated line.
          */
-        PIXELS_BELOW_LINES,
+        PIXELS_BELOW_LINES = 7,
         /**
          * Pixels of blank space to leave between wrapped lines inside the same newline-terminated line (paragraph).
          */
-        PIXELS_INSIDE_WRAP,
+        PIXELS_INSIDE_WRAP = 8,
         /**
          * "true" or "false" whether to make the background color for each character the height of the highest font used on the current line, or the height of the font used for the current character.
          */
-        BG_FULL_HEIGHT,
+        BG_FULL_HEIGHT = 9,
         /**
          * Number of pixels that the characters are risen above the baseline. See also ATK_TEXT_ATTR_TEXT_POSITION.
          */
-        RISE,
+        RISE = 10,
         /**
          * "none", "single", "double", "low", or "error"
          */
-        UNDERLINE,
+        UNDERLINE = 11,
         /**
          * "true" or "false" whether the text is strikethrough
          */
-        STRIKETHROUGH,
+        STRIKETHROUGH = 12,
         /**
          * The size of the characters in points. eg: 10
          */
-        SIZE,
+        SIZE = 13,
         /**
          * The scale of the characters. The value is a string representation of a double
          */
-        SCALE,
+        SCALE = 14,
         /**
          * The weight of the characters.
          */
-        WEIGHT,
+        WEIGHT = 15,
         /**
          * The language used
          */
-        LANGUAGE,
+        LANGUAGE = 16,
         /**
          * The font family name
          */
-        FAMILY_NAME,
+        FAMILY_NAME = 17,
         /**
          * The background color. The value is an RGB value of the format "%u,%u,%u"
          */
-        BG_COLOR,
+        BG_COLOR = 18,
         /**
          * The foreground color. The value is an RGB value of the format "%u,%u,%u"
          */
-        FG_COLOR,
+        FG_COLOR = 19,
         /**
          * "true" if a `GdkBitmap` is set for stippling the background color.
          */
-        BG_STIPPLE,
+        BG_STIPPLE = 20,
         /**
          * "true" if a `GdkBitmap` is set for stippling the foreground color.
          */
-        FG_STIPPLE,
+        FG_STIPPLE = 21,
         /**
          * The wrap mode of the text, if any. Values are "none", "char", "word", or "word_char".
          */
-        WRAP_MODE,
+        WRAP_MODE = 22,
         /**
          * The direction of the text, if set. Values are "none", "ltr" or "rtl"
          */
-        DIRECTION,
+        DIRECTION = 23,
         /**
          * The justification of the text, if set. Values are "left", "right", "center" or "fill"
          */
-        JUSTIFICATION,
+        JUSTIFICATION = 24,
         /**
          * The stretch of the text, if set. Values are "ultra_condensed", "extra_condensed", "condensed", "semi_condensed", "normal", "semi_expanded", "expanded", "extra_expanded" or "ultra_expanded"
          */
-        STRETCH,
+        STRETCH = 25,
         /**
          * The capitalization variant of the text, if set. Values are "normal" or "small_caps"
          */
-        VARIANT,
+        VARIANT = 26,
         /**
          * The slant style of the text, if set. Values are "normal", "oblique" or "italic"
          */
-        STYLE,
+        STYLE = 27,
         /**
          * The vertical position with respect to the baseline. Values are "baseline", "super", or "sub". Note that a super or sub text attribute refers to position with respect to the baseline of the prior character.
          */
-        TEXT_POSITION,
+        TEXT_POSITION = 28,
         /**
          * not a valid text attribute, used for finding end of enumeration
          */
-        LAST_DEFINED,
+        LAST_DEFINED = 29,
     }
 
 
@@ -1377,37 +1377,37 @@ export namespace Atk {
          * Boundary is the boundary between characters
          * (including non-printing characters)
          */
-        CHAR,
+        CHAR = 0,
         /**
          * Boundary is the start (i.e. first character) of a word.
          */
-        WORD_START,
+        WORD_START = 1,
         /**
          * Boundary is the end (i.e. last
          * character) of a word.
          */
-        WORD_END,
+        WORD_END = 2,
         /**
          * Boundary is the first character in a sentence.
          */
-        SENTENCE_START,
+        SENTENCE_START = 3,
         /**
          * Boundary is the last (terminal)
          * character in a sentence; in languages which use "sentence stop"
          * punctuation such as English, the boundary is thus the '.', '?', or
          * similar terminal punctuation character.
          */
-        SENTENCE_END,
+        SENTENCE_END = 4,
         /**
          * Boundary is the initial character of the content or a
          * character immediately following a newline, linefeed, or return character.
          */
-        LINE_START,
+        LINE_START = 5,
         /**
          * Boundary is the linefeed, or return
          * character.
          */
-        LINE_END,
+        LINE_END = 6,
     }
 
 
@@ -1426,19 +1426,19 @@ export namespace Atk {
         /**
          * No clipping to be done
          */
-        NONE,
+        NONE = 0,
         /**
          * Text clipped by min coordinate is omitted
          */
-        MIN,
+        MIN = 1,
         /**
          * Text clipped by max coordinate is omitted
          */
-        MAX,
+        MAX = 2,
         /**
          * Only text fully within mix/max bound is retained
          */
-        BOTH,
+        BOTH = 3,
     }
 
 
@@ -1459,31 +1459,31 @@ export namespace Atk {
          * Granularity is defined by the boundaries between characters
          * (including non-printing characters)
          */
-        CHAR,
+        CHAR = 0,
         /**
          * Granularity is defined by the boundaries of a word,
          * starting at the beginning of the current word and finishing at the beginning of
          * the following one, if present.
          */
-        WORD,
+        WORD = 1,
         /**
          * Granularity is defined by the boundaries of a sentence,
          * starting at the beginning of the current sentence and finishing at the beginning of
          * the following one, if present.
          */
-        SENTENCE,
+        SENTENCE = 2,
         /**
          * Granularity is defined by the boundaries of a line,
          * starting at the beginning of the current line and finishing at the beginning of
          * the following one, if present.
          */
-        LINE,
+        LINE = 3,
         /**
          * Granularity is defined by the boundaries of a paragraph,
          * starting at the beginning of the current paragraph and finishing at the beginning of
          * the following one, if present.
          */
-        PARAGRAPH,
+        PARAGRAPH = 4,
     }
 
 
@@ -1501,22 +1501,22 @@ export namespace Atk {
      * @gir-type Enum
      */
     enum ValueType {
-        VERY_WEAK,
-        WEAK,
-        ACCEPTABLE,
-        STRONG,
-        VERY_STRONG,
-        VERY_LOW,
-        LOW,
-        MEDIUM,
-        HIGH,
-        VERY_HIGH,
-        VERY_BAD,
-        BAD,
-        GOOD,
-        VERY_GOOD,
-        BEST,
-        LAST_DEFINED,
+        VERY_WEAK = 0,
+        WEAK = 1,
+        ACCEPTABLE = 2,
+        STRONG = 3,
+        VERY_STRONG = 4,
+        VERY_LOW = 5,
+        LOW = 6,
+        MEDIUM = 7,
+        HIGH = 8,
+        VERY_HIGH = 9,
+        VERY_BAD = 10,
+        BAD = 11,
+        GOOD = 12,
+        VERY_GOOD = 13,
+        BEST = 14,
+        LAST_DEFINED = 15,
     }
 
 
@@ -1525,6 +1525,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
+     * @default 25813
      */
     const BINARY_AGE: number;
 
@@ -1533,6 +1534,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
+     * @default 1
      */
     const INTERFACE_AGE: number;
 
@@ -1541,6 +1543,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
+     * @default 2
      */
     const MAJOR_VERSION: number;
 
@@ -1549,6 +1552,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
+     * @default 3
      */
     const MICRO_VERSION: number;
 
@@ -1557,6 +1561,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
+     * @default 58
      */
     const MINOR_VERSION: number;
 
@@ -1574,6 +1579,7 @@ export namespace Atk {
      * `ATK_VERSION_MIN_REQUIRED` or earlier will cause warnings (but
      * using functions deprecated in later releases will not).
      * @since 2.14
+     * @default 2
      */
     const VERSION_MIN_REQUIRED: number;
 
@@ -1905,7 +1911,7 @@ export namespace Atk {
         /**
          * Link is inline
          */
-        INLINE,
+        INLINE = 1,
     }
 
 
@@ -2155,6 +2161,8 @@ export namespace Atk {
 
         /**
          * Determines whether this AtkHyperlink is selected
+         * @since 1.4
+         * @deprecated since 1.8: Please use ATK_STATE_FOCUSABLE for all links, and ATK_STATE_FOCUSED for focused links.
          * @virtual
          */
         vfunc_is_selected_link(): boolean;
@@ -2230,6 +2238,8 @@ export namespace Atk {
         /**
          * Determines whether this AtkHyperlink is selected
          * @returns True if the AtkHyperlink is selected, False otherwise
+         * @since 1.4
+         * @deprecated since 1.8: Please use ATK_STATE_FOCUSABLE for all links, and ATK_STATE_FOCUSED for focused links.
          */
         is_selected_link(): boolean;
 
@@ -2461,6 +2471,8 @@ export namespace Atk {
         // Static methods
         /**
          * Obtain the singleton instance of AtkMisc for this application.
+         * @since 1.13
+         * @deprecated Since 2.12.
          */
         static get_instance(): Misc;
 
@@ -2470,6 +2482,8 @@ export namespace Atk {
          * if one exists.
          * (This method is implemented by the toolkit ATK implementation layer;
          *  for instance, for GTK+, GAIL implements this via GDK_THREADS_ENTER).
+         * @since 1.13
+         * @deprecated Since 2.12.
          * @virtual
          */
         vfunc_threads_enter(): void;
@@ -2484,6 +2498,8 @@ export namespace Atk {
          * be bracketed by atk_misc_threads_leave/atk_misc_threads_enter calls.
          * (This method is implemented by the toolkit ATK implementation layer;
          *  for instance, for GTK+, GAIL implements this via GDK_THREADS_LEAVE).
+         * @since 1.13
+         * @deprecated Since 2.12.
          * @virtual
          */
         vfunc_threads_leave(): void;
@@ -2494,6 +2510,8 @@ export namespace Atk {
          * if one exists.
          * (This method is implemented by the toolkit ATK implementation layer;
          *  for instance, for GTK+, GAIL implements this via GDK_THREADS_ENTER).
+         * @since 1.13
+         * @deprecated Since 2.12.
          */
         threads_enter(): void;
 
@@ -2507,6 +2525,8 @@ export namespace Atk {
          * be bracketed by atk_misc_threads_leave/atk_misc_threads_enter calls.
          * (This method is implemented by the toolkit ATK implementation layer;
          *  for instance, for GTK+, GAIL implements this via GDK_THREADS_LEAVE).
+         * @since 1.13
+         * @deprecated Since 2.12.
          */
         threads_leave(): void;
     }
@@ -2514,7 +2534,7 @@ export namespace Atk {
 
     namespace NoOpObject {
         // Signal signatures
-        interface SignalSignatures extends Object.SignalSignatures {
+        interface SignalSignatures extends Object.SignalSignatures, Component.SignalSignatures, Document.SignalSignatures, Hypertext.SignalSignatures, Selection.SignalSignatures, Table.SignalSignatures, Text.SignalSignatures, Value.SignalSignatures, Window.SignalSignatures {
             "notify::accessible-component-layer": (pspec: GObject.ParamSpec) => void;
             "notify::accessible-component-mdi-zorder": (pspec: GObject.ParamSpec) => void;
             "notify::accessible-description": (pspec: GObject.ParamSpec) => void;
@@ -2806,6 +2826,7 @@ export namespace Atk {
          * `component`, on a scale from 0 (fully transparent) to 1.0
          * (fully opaque).
          * @returns An alpha value from 0 to 1.0, inclusive.
+         * @since 1.12
          */
         get_alpha(): number;
 
@@ -2838,6 +2859,7 @@ export namespace Atk {
          * If the position can not be obtained (e.g. a non-embedded plug or missing
          * support), x and y are set to -1.
          * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_position(coord_type: CoordType): [number, number];
 
@@ -2852,6 +2874,7 @@ export namespace Atk {
          * 
          * If the size can not be obtained (e.g. a non-embedded plug or missing
          * support), width and height are set to -1.
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_size(): [number, number];
 
@@ -2876,6 +2899,7 @@ export namespace Atk {
          * functions to be executed when this object receives focus events
          * (in or out).
          * @param handler_id the handler id of the focus handler to be removed from `component`
+         * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
          */
         remove_focus_handler(handler_id: number): void;
 
@@ -2887,6 +2911,7 @@ export namespace Atk {
          * object shows up on the screen, given its current position within the parents.
          * @param type specify where the object should be made visible.
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to(type: ScrollType): boolean;
 
@@ -2897,6 +2922,7 @@ export namespace Atk {
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to_point(coords: CoordType, x: number, y: number): boolean;
 
@@ -2954,6 +2980,7 @@ export namespace Atk {
          * Returns the alpha value (i.e. the opacity) for this
          * `component`, on a scale from 0 (fully transparent) to 1.0
          * (fully opaque).
+         * @since 1.12
          * @virtual
          */
         vfunc_get_alpha(): number;
@@ -2988,6 +3015,7 @@ export namespace Atk {
          * If the position can not be obtained (e.g. a non-embedded plug or missing
          * support), x and y are set to -1.
          * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          * @virtual
          */
         vfunc_get_position(coord_type: CoordType): [number, number];
@@ -3004,6 +3032,7 @@ export namespace Atk {
          * 
          * If the size can not be obtained (e.g. a non-embedded plug or missing
          * support), width and height are set to -1.
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          * @virtual
          */
         vfunc_get_size(): [number, number];
@@ -3029,6 +3058,7 @@ export namespace Atk {
          * functions to be executed when this object receives focus events
          * (in or out).
          * @param handler_id the handler id of the focus handler to be removed from `component`
+         * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
          * @virtual
          */
         vfunc_remove_focus_handler(handler_id: number): void;
@@ -3040,6 +3070,7 @@ export namespace Atk {
          * `component` in its parent, this only makes the parents scroll so that the
          * object shows up on the screen, given its current position within the parents.
          * @param type specify where the object should be made visible.
+         * @since 2.30
          * @virtual
          */
         vfunc_scroll_to(type: ScrollType): boolean;
@@ -3050,6 +3081,7 @@ export namespace Atk {
          * @param coords specify whether coordinates are relative to the screen or to the parent object.
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
+         * @since 2.30
          * @virtual
          */
         vfunc_scroll_to_point(coords: CoordType, x: number, y: number): boolean;
@@ -3089,6 +3121,7 @@ export namespace Atk {
          * Retrieves the value of the given `attribute_name` inside `document`.
          * @param attribute_name a character string representing the name of the attribute   whose value is being queried.
          * @returns a string value associated with the named    attribute for this document, or `null` if a value for    `attribute_name` has not been specified for this document.
+         * @since 1.12
          */
         get_attribute_value(attribute_name: string): string | null;
 
@@ -3096,12 +3129,14 @@ export namespace Atk {
          * Gets an AtkAttributeSet which describes document-wide
          *          attributes as name-value pairs.
          * @returns An AtkAttributeSet containing the explicitly          set name-value-pair attributes associated with this document          as a whole.
+         * @since 1.12
          */
         get_attributes(): AttributeSet;
 
         /**
          * Retrieves the current page number inside `document`.
          * @returns the current page number inside `document`, or -1 if   not implemented, not know by the implementor, or irrelevant.
+         * @since 2.12
          */
         get_current_page_number(): number;
 
@@ -3110,12 +3145,14 @@ export namespace Atk {
          * up to the caller to check atk_document_get_type to determine
          * how to cast this pointer.
          * @returns a %gpointer that points to an instance of the DOM.
+         * @deprecated Since 2.12. `document` is already a representation of the document. Use it directly, or one of its children, as an instance of the DOM.
          */
         get_document(): null;
 
         /**
          * Gets a string indicating the document type.
          * @returns a string indicating the document type
+         * @deprecated Since 2.12. Please use `atk_document_get_attributes()` to ask for the document type if it applies.
          */
         get_document_type(): string;
 
@@ -3126,18 +3163,21 @@ export namespace Atk {
          *          a different locale, see atk_text_get_attributes and
          *          atk_image_get_image_locale.
          * @returns a UTF-8 string indicating the POSIX-style LC_MESSAGES          locale of the document content as a whole, or NULL if          the document content does not specify a locale.
+         * @deprecated since 2.7.90: Please use `atk_object_get_object_locale()` instead.
          */
         get_locale(): string;
 
         /**
          * Retrieves the total number of pages inside `document`.
          * @returns total page count of `document`, or -1 if not implemented,   not know by the implementor or irrelevant.
+         * @since 2.12
          */
         get_page_count(): number;
 
         /**
          * Returns an array of AtkTextSelections within this document.
          * @returns a GArray of AtkTextSelection structures representing the selection.
+         * @since 2.52
          */
         get_text_selections(): TextSelection[];
 
@@ -3146,6 +3186,7 @@ export namespace Atk {
          * @param attribute_name a character string representing the name of the attribute   whose value is being set.
          * @param attribute_value a string value to be associated with `attribute_name`.
          * @returns `true` if `attribute_value` is successfully associated   with `attribute_name` for this `document`, and `false` if if the   document does not allow the attribute to be modified
+         * @since 1.12
          */
         set_attribute_value(attribute_name: string, attribute_value: string): boolean;
 
@@ -3157,11 +3198,13 @@ export namespace Atk {
          * FALSE will be returned.
          * @param selections a GArray of AtkTextSelections              to be selected.
          * @returns TRUE if the selection was made successfully; FALSE otherwise.
+         * @since 2.52
          */
         set_text_selections(selections: TextSelection[]): boolean;
 
         /**
          * Retrieves the current page number inside `document`.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_current_page_number(): number;
@@ -3170,6 +3213,7 @@ export namespace Atk {
          * Gets a %gpointer that points to an instance of the DOM.  It is
          * up to the caller to check atk_document_get_type to determine
          * how to cast this pointer.
+         * @deprecated Since 2.12. `document` is already a representation of the document. Use it directly, or one of its children, as an instance of the DOM.
          * @virtual
          */
         vfunc_get_document(): null;
@@ -3177,6 +3221,7 @@ export namespace Atk {
         /**
          * Retrieves the value of the given `attribute_name` inside `document`.
          * @param attribute_name a character string representing the name of the attribute   whose value is being queried.
+         * @since 1.12
          * @virtual
          */
         vfunc_get_document_attribute_value(attribute_name: string): string | null;
@@ -3184,6 +3229,7 @@ export namespace Atk {
         /**
          * Gets an AtkAttributeSet which describes document-wide
          *          attributes as name-value pairs.
+         * @since 1.12
          * @virtual
          */
         vfunc_get_document_attributes(): AttributeSet;
@@ -3194,24 +3240,28 @@ export namespace Atk {
          *          text substrings or images within this document may have
          *          a different locale, see atk_text_get_attributes and
          *          atk_image_get_image_locale.
+         * @deprecated since 2.7.90: Please use `atk_object_get_object_locale()` instead.
          * @virtual
          */
         vfunc_get_document_locale(): string;
 
         /**
          * Gets a string indicating the document type.
+         * @deprecated Since 2.12. Please use `atk_document_get_attributes()` to ask for the document type if it applies.
          * @virtual
          */
         vfunc_get_document_type(): string;
 
         /**
          * Retrieves the total number of pages inside `document`.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_page_count(): number;
 
         /**
          * Returns an array of AtkTextSelections within this document.
+         * @since 2.52
          * @virtual
          */
         vfunc_get_text_selections(): TextSelection[];
@@ -3220,6 +3270,7 @@ export namespace Atk {
          * Sets the value for the given `attribute_name` inside `document`.
          * @param attribute_name a character string representing the name of the attribute   whose value is being set.
          * @param attribute_value a string value to be associated with `attribute_name`.
+         * @since 1.12
          * @virtual
          */
         vfunc_set_document_attribute(attribute_name: string, attribute_value: string): boolean;
@@ -3231,6 +3282,7 @@ export namespace Atk {
          * the given selection ranges must be descendants of this document. Otherwise
          * FALSE will be returned.
          * @param selections a GArray of AtkTextSelections              to be selected.
+         * @since 2.52
          * @virtual
          */
         vfunc_set_text_selections(selections: TextSelection[]): boolean;
@@ -3410,6 +3462,7 @@ export namespace Atk {
         /**
          * Retrieves the locale identifier associated to the {@link Atk.Image}.
          * @returns a string corresponding to the POSIX   `LC_MESSAGES` locale used by the image description, or   `null` if the image does not specify a locale.
+         * @since 1.12
          */
         get_image_locale(): string | null;
 
@@ -3448,6 +3501,7 @@ export namespace Atk {
 
         /**
          * Retrieves the locale identifier associated to the {@link Atk.Image}.
+         * @since 1.12
          * @virtual
          */
         vfunc_get_image_locale(): string | null;
@@ -3634,6 +3688,7 @@ export namespace Atk {
          * Gets a `gint` representing the column at the specified `index_`.
          * @param index_ a `gint` representing an index in `table`
          * @returns a gint representing the column at the specified index, or -1 if the table does not implement this method.
+         * @deprecated Since 2.12.
          */
         get_column_at_index(index_: number): number;
 
@@ -3666,6 +3721,7 @@ export namespace Atk {
          * @param row a `gint` representing a row in `table`
          * @param column a `gint` representing a column in `table`
          * @returns a `gint` representing the index at specified position. The value -1 is returned if the object at row,column is not a child of table or table does not implement this interface.
+         * @deprecated Since 2.12. Use `atk_table_ref_at()` in order to get the accessible that represents the cell at (`row`, `column`)
          */
         get_index_at(row: number, column: number): number;
 
@@ -3685,6 +3741,7 @@ export namespace Atk {
          * Gets a `gint` representing the row at the specified `index_`.
          * @param index_ a `gint` representing an index in `table`
          * @returns a gint representing the row at the specified index, or -1 if the table does not implement this method.
+         * @deprecated since 2.12.
          */
         get_row_at_index(index_: number): number;
 
@@ -3863,6 +3920,7 @@ export namespace Atk {
         /**
          * Gets a `gint` representing the column at the specified `index_`.
          * @param index_ a `gint` representing an index in `table`
+         * @deprecated Since 2.12.
          * @virtual
          */
         vfunc_get_column_at_index(index_: number): number;
@@ -3895,6 +3953,7 @@ export namespace Atk {
          * `column`.
          * @param row a `gint` representing a row in `table`
          * @param column a `gint` representing a column in `table`
+         * @deprecated Since 2.12. Use `atk_table_ref_at()` in order to get the accessible that represents the cell at (`row`, `column`)
          * @virtual
          */
         vfunc_get_index_at(row: number, column: number): number;
@@ -3914,6 +3973,7 @@ export namespace Atk {
         /**
          * Gets a `gint` representing the row at the specified `index_`.
          * @param index_ a `gint` representing an index in `table`
+         * @deprecated since 2.12.
          * @virtual
          */
         vfunc_get_row_at_index(index_: number): number;
@@ -4084,12 +4144,14 @@ export namespace Atk {
         /**
          * Returns the column headers as an array of cell accessibles.
          * @returns a GPtrArray of AtkObjects representing the column header cells.
+         * @since 2.12
          */
         get_column_header_cells(): Object[];
 
         /**
          * Returns the number of columns occupied by this cell accessible.
          * @returns a gint representing the number of columns occupied by this cell, or 0 if the cell does not implement this method.
+         * @since 2.12
          */
         get_column_span(): number;
 
@@ -4100,35 +4162,41 @@ export namespace Atk {
          * will implement this function by calling get_row_span and get_column_span
          * on the object.
          * @returns TRUE if successful; FALSE otherwise.
+         * @since 2.12
          */
         get_row_column_span(): [boolean, number, number, number, number];
 
         /**
          * Returns the row headers as an array of cell accessibles.
          * @returns a GPtrArray of AtkObjects representing the row header cells.
+         * @since 2.12
          */
         get_row_header_cells(): Object[];
 
         /**
          * Returns the number of rows occupied by this cell accessible.
          * @returns a gint representing the number of rows occupied by this cell, or 0 if the cell does not implement this method.
+         * @since 2.12
          */
         get_row_span(): number;
 
         /**
          * Returns a reference to the accessible of the containing table.
          * @returns the atk object for the containing table.
+         * @since 2.12
          */
         get_table(): Object;
 
         /**
          * Returns the column headers as an array of cell accessibles.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_column_header_cells(): Object[];
 
         /**
          * Returns the number of columns occupied by this cell accessible.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_column_span(): number;
@@ -4139,24 +4207,28 @@ export namespace Atk {
          * Note: If the object does not implement this function, then, by default, atk
          * will implement this function by calling get_row_span and get_column_span
          * on the object.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_row_column_span(): [boolean, number, number, number, number];
 
         /**
          * Returns the row headers as an array of cell accessibles.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_row_header_cells(): Object[];
 
         /**
          * Returns the number of rows occupied by this cell accessible.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_row_span(): number;
 
         /**
          * Returns a reference to the accessible of the containing table.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_table(): Object;
@@ -4168,6 +4240,7 @@ export namespace Atk {
          * @param x_clip_type Specify the horizontal clip type.
          * @param y_clip_type Specify the vertical clip type.
          * @returns Array of AtkTextRange. The last          element of the array returned by this function will be NULL.
+         * @since 1.3
          */
         get_bounded_ranges(rect: TextRectangle, coord_type: CoordType, x_clip_type: TextClipType, y_clip_type: TextClipType): TextRange[];
 
@@ -4235,6 +4308,7 @@ export namespace Atk {
          * @param start_offset The offset of the first text character for which boundary        information is required.
          * @param end_offset The offset of the text character after the last character        for which boundary information is required.
          * @param coord_type Specify whether coordinates are relative to the screen or widget window.
+         * @since 1.3
          */
         get_range_extents(start_offset: number, end_offset: number, coord_type: CoordType): TextRectangle;
 
@@ -4292,6 +4366,7 @@ export namespace Atk {
          * @param offset position
          * @param granularity An {@link Atk.TextGranularity}
          * @returns a newly allocated string containing the text at          the `offset` bounded by the specified `granularity`. Use `g_free()`          to free the returned string.  Returns `null` if the offset is invalid          or no implementation is available.
+         * @since 2.10
          */
         get_string_at_offset(offset: number, granularity: TextGranularity): [string | null, number, number];
 
@@ -4308,6 +4383,7 @@ export namespace Atk {
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
          * @returns a newly allocated string containing the text after `offset` bounded          by the specified `boundary_type`. Use `g_free()` to free the returned          string.
+         * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
          */
         get_text_after_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
 
@@ -4339,6 +4415,7 @@ export namespace Atk {
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
          * @returns a newly allocated string containing the text at `offset` bounded          by the specified `boundary_type`. Use `g_free()` to free the returned          string.
+         * @deprecated This method is deprecated since ATK version 2.9.4. Please use `atk_text_get_string_at_offset()` instead.
          */
         get_text_at_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
 
@@ -4347,6 +4424,7 @@ export namespace Atk {
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
          * @returns a newly allocated string containing the text before `offset` bounded          by the specified `boundary_type`. Use `g_free()` to free the returned          string.
+         * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
          */
         get_text_before_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
 
@@ -4356,6 +4434,7 @@ export namespace Atk {
          * @param end_offset end offset in the `text`, or -1 for the end of the text.
          * @param type specify where the object should be made visible.
          * @returns whether scrolling was successful.
+         * @since 2.32
          */
         scroll_substring_to(start_offset: number, end_offset: number, type: ScrollType): boolean;
 
@@ -4368,6 +4447,7 @@ export namespace Atk {
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
          * @returns whether scrolling was successful.
+         * @since 2.32
          */
         scroll_substring_to_point(start_offset: number, end_offset: number, coords: CoordType, x: number, y: number): boolean;
 
@@ -4409,6 +4489,7 @@ export namespace Atk {
          * @param coord_type Specify whether coordinates are relative to the screen or widget window.
          * @param x_clip_type Specify the horizontal clip type.
          * @param y_clip_type Specify the vertical clip type.
+         * @since 1.3
          * @virtual
          */
         vfunc_get_bounded_ranges(rect: TextRectangle, coord_type: CoordType, x_clip_type: TextClipType, y_clip_type: TextClipType): TextRange[];
@@ -4478,6 +4559,7 @@ export namespace Atk {
          * @param start_offset The offset of the first text character for which boundary        information is required.
          * @param end_offset The offset of the text character after the last character        for which boundary information is required.
          * @param coord_type Specify whether coordinates are relative to the screen or widget window.
+         * @since 1.3
          * @virtual
          */
         vfunc_get_range_extents(start_offset: number, end_offset: number, coord_type: CoordType): TextRectangle;
@@ -4535,6 +4617,7 @@ export namespace Atk {
          * of the following paragraph after the offset.
          * @param offset position
          * @param granularity An {@link Atk.TextGranularity}
+         * @since 2.10
          * @virtual
          */
         vfunc_get_string_at_offset(offset: number, granularity: TextGranularity): [string | null, number, number];
@@ -4551,6 +4634,7 @@ export namespace Atk {
          * Gets the specified text.
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
+         * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
          * @virtual
          */
         vfunc_get_text_after_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
@@ -4582,6 +4666,7 @@ export namespace Atk {
          * start after the offset.
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
+         * @deprecated This method is deprecated since ATK version 2.9.4. Please use `atk_text_get_string_at_offset()` instead.
          * @virtual
          */
         vfunc_get_text_at_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
@@ -4590,6 +4675,7 @@ export namespace Atk {
          * Gets the specified text.
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
+         * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
          * @virtual
          */
         vfunc_get_text_before_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
@@ -4599,6 +4685,7 @@ export namespace Atk {
          * @param start_offset start offset in the `text`
          * @param end_offset end offset in the `text`, or -1 for the end of the text.
          * @param type specify where the object should be made visible.
+         * @since 2.32
          * @virtual
          */
         vfunc_scroll_substring_to(start_offset: number, end_offset: number, type: ScrollType): boolean;
@@ -4611,6 +4698,7 @@ export namespace Atk {
          * @param coords specify whether coordinates are relative to the screen or to the parent object.
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
+         * @since 2.32
          * @virtual
          */
         vfunc_scroll_substring_to_point(start_offset: number, end_offset: number, coords: CoordType, x: number, y: number): boolean;
@@ -4675,6 +4763,7 @@ export namespace Atk {
 
         /**
          * Gets the value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_value_and_text()` instead.
          */
         get_current_value(): unknown;
 
@@ -4684,11 +4773,13 @@ export namespace Atk {
          * mean that it is limited only by the floating point precision of the
          * platform.
          * @returns the minimum increment by which the value of this object may be changed. zero if undefined.
+         * @since 2.12
          */
         get_increment(): number;
 
         /**
          * Gets the maximum value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
          */
         get_maximum_value(): unknown;
 
@@ -4696,17 +4787,21 @@ export namespace Atk {
          * Gets the minimum increment by which the value of this object may be changed.  If zero,
          * the minimum increment is undefined, which may mean that it is limited only by the
          * floating point precision of the platform.
+         * @since 1.12
+         * @deprecated Since 2.12. Use `atk_value_get_increment()` instead.
          */
         get_minimum_increment(): unknown;
 
         /**
          * Gets the minimum value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
          */
         get_minimum_value(): unknown;
 
         /**
          * Gets the range of this object.
          * @returns a newly allocated {@link Atk.Range} that represents the minimum, maximum and descriptor (if available) of `obj`. NULL if that range is not defined.
+         * @since 2.12
          */
         get_range(): Range | null;
 
@@ -4714,6 +4809,7 @@ export namespace Atk {
          * Gets the list of subranges defined for this object. See {@link Atk.Value}
          * introduction for examples of subranges and when to expose them.
          * @returns an {@link GLib.SList} of {@link Atk.Range} which each of the subranges defined for this object. Free the returns list with `g_slist_free()`.
+         * @since 2.12
          */
         get_sub_ranges(): Range[];
 
@@ -4721,6 +4817,7 @@ export namespace Atk {
          * Gets the current value and the human readable text alternative of
          * `obj`. `text` is a newly created string, that must be freed by the
          * caller. Can be NULL if no descriptor is available.
+         * @since 2.12
          */
         get_value_and_text(): [number, string];
 
@@ -4728,6 +4825,7 @@ export namespace Atk {
          * Sets the value of this object.
          * @param value a {@link GObject.Value} which is the desired new accessible value.
          * @returns `true` if new value is successfully set, `false` otherwise.
+         * @deprecated Since 2.12. Use `atk_value_set_value()` instead.
          */
         set_current_value(value: GObject.Value | any): boolean;
 
@@ -4747,11 +4845,13 @@ export namespace Atk {
          * required anymore to return if the value was properly assigned or
          * not.
          * @param new_value a double which is the desired new accessible value.
+         * @since 2.12
          */
         set_value(new_value: number): void;
 
         /**
          * Gets the value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_value_and_text()` instead.
          * @virtual
          */
         vfunc_get_current_value(): GObject.Value | any;
@@ -4761,12 +4861,14 @@ export namespace Atk {
          * changed.  If zero, the minimum increment is undefined, which may
          * mean that it is limited only by the floating point precision of the
          * platform.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_increment(): number;
 
         /**
          * Gets the maximum value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
          * @virtual
          */
         vfunc_get_maximum_value(): GObject.Value | any;
@@ -4775,18 +4877,22 @@ export namespace Atk {
          * Gets the minimum increment by which the value of this object may be changed.  If zero,
          * the minimum increment is undefined, which may mean that it is limited only by the
          * floating point precision of the platform.
+         * @since 1.12
+         * @deprecated Since 2.12. Use `atk_value_get_increment()` instead.
          * @virtual
          */
         vfunc_get_minimum_increment(): GObject.Value | any;
 
         /**
          * Gets the minimum value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
          * @virtual
          */
         vfunc_get_minimum_value(): GObject.Value | any;
 
         /**
          * Gets the range of this object.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_range(): Range | null;
@@ -4794,6 +4900,7 @@ export namespace Atk {
         /**
          * Gets the list of subranges defined for this object. See {@link Atk.Value}
          * introduction for examples of subranges and when to expose them.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_sub_ranges(): Range[];
@@ -4802,6 +4909,7 @@ export namespace Atk {
          * Gets the current value and the human readable text alternative of
          * `obj`. `text` is a newly created string, that must be freed by the
          * caller. Can be NULL if no descriptor is available.
+         * @since 2.12
          * @virtual
          */
         vfunc_get_value_and_text(): [number, string];
@@ -4809,6 +4917,7 @@ export namespace Atk {
         /**
          * Sets the value of this object.
          * @param value a {@link GObject.Value} which is the desired new accessible value.
+         * @deprecated Since 2.12. Use `atk_value_set_value()` instead.
          * @virtual
          */
         vfunc_set_current_value(value: unknown): boolean;
@@ -4829,6 +4938,7 @@ export namespace Atk {
          * required anymore to return if the value was properly assigned or
          * not.
          * @param new_value a double which is the desired new accessible value.
+         * @since 2.12
          * @virtual
          */
         vfunc_set_value(new_value: number): void;
@@ -4897,7 +5007,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed": (arg0: Object) => void;
+            "active-descendant-changed": (arg1: Object) => void;
             /**
              * The "announcement" signal can be emitted to pass an announcement on to
              * be read by a screen reader.
@@ -4907,7 +5017,7 @@ export namespace Atk {
              * @since 2.46
              * @run-last
              */
-            announcement: (arg0: string) => void;
+            announcement: (arg1: string) => void;
             /**
              * The "attribute-changed" signal should be emitted when one of an object's
              * attributes changes.
@@ -4915,7 +5025,7 @@ export namespace Atk {
              * @since 2.52
              * @run-last
              */
-            "attribute-changed": (arg0: string, arg1: string) => void;
+            "attribute-changed": (arg1: string, arg2: string) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -4924,7 +5034,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed": (arg0: number, arg1: Object) => void;
+            "children-changed": (arg1: number, arg2: Object) => void;
             /**
              * The signal "focus-event" is emitted when an object gained or lost
              * focus.
@@ -4932,7 +5042,7 @@ export namespace Atk {
              * @deprecated since 2.9.4: Use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} signal instead.
              * @run-last
              */
-            "focus-event": (arg0: boolean) => void;
+            "focus-event": (arg1: boolean) => void;
             /**
              * The "notification" signal can be emitted to pass an announcement on to
              * be read by a screen reader.
@@ -4940,7 +5050,7 @@ export namespace Atk {
              * @since 2.50
              * @run-last
              */
-            notification: (arg0: string, arg1: number) => void;
+            notification: (arg1: string, arg2: number) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -4959,7 +5069,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change": (arg0: PropertyValues) => void;
+            "property-change": (arg1: PropertyValues) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -4968,7 +5078,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change": (arg0: string, arg1: boolean) => void;
+            "state-change": (arg1: string, arg2: boolean) => void;
             /**
              * The "visible-data-changed" signal is emitted when the visual
              * appearance of the object changed.
@@ -5002,7 +5112,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-component-layer": (arg0: Object) => void;
+            "active-descendant-changed::accessible-component-layer": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5012,7 +5122,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-component-mdi-zorder": (arg0: Object) => void;
+            "active-descendant-changed::accessible-component-mdi-zorder": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5022,7 +5132,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-description": (arg0: Object) => void;
+            "active-descendant-changed::accessible-description": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5032,7 +5142,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-help-text": (arg0: Object) => void;
+            "active-descendant-changed::accessible-help-text": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5042,7 +5152,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-hypertext-nlinks": (arg0: Object) => void;
+            "active-descendant-changed::accessible-hypertext-nlinks": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5052,7 +5162,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-id": (arg0: Object) => void;
+            "active-descendant-changed::accessible-id": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5062,7 +5172,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-name": (arg0: Object) => void;
+            "active-descendant-changed::accessible-name": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5072,7 +5182,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-parent": (arg0: Object) => void;
+            "active-descendant-changed::accessible-parent": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5082,7 +5192,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-role": (arg0: Object) => void;
+            "active-descendant-changed::accessible-role": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5092,7 +5202,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-table-caption": (arg0: Object) => void;
+            "active-descendant-changed::accessible-table-caption": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5102,7 +5212,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-table-caption-object": (arg0: Object) => void;
+            "active-descendant-changed::accessible-table-caption-object": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5112,7 +5222,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-table-column-description": (arg0: Object) => void;
+            "active-descendant-changed::accessible-table-column-description": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5122,7 +5232,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-table-column-header": (arg0: Object) => void;
+            "active-descendant-changed::accessible-table-column-header": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5132,7 +5242,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-table-row-description": (arg0: Object) => void;
+            "active-descendant-changed::accessible-table-row-description": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5142,7 +5252,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-table-row-header": (arg0: Object) => void;
+            "active-descendant-changed::accessible-table-row-header": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5152,7 +5262,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-table-summary": (arg0: Object) => void;
+            "active-descendant-changed::accessible-table-summary": (arg1: Object) => void;
             /**
              * The "active-descendant-changed" signal is emitted by an object
              * which has the state ATK_STATE_MANAGES_DESCENDANTS when the focus
@@ -5162,8 +5272,8 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "active-descendant-changed::accessible-value": (arg0: Object) => void;
-            [key: `active-descendant-changed::${string}`]: (arg0: Object) => void;
+            "active-descendant-changed::accessible-value": (arg1: Object) => void;
+            [key: `active-descendant-changed::${string}`]: (arg1: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5172,7 +5282,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-component-layer": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-component-layer": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5181,7 +5291,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-component-mdi-zorder": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-component-mdi-zorder": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5190,7 +5300,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-description": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-description": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5199,7 +5309,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-help-text": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-help-text": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5208,7 +5318,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-hypertext-nlinks": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-hypertext-nlinks": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5217,7 +5327,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-id": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-id": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5226,7 +5336,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-name": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-name": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5235,7 +5345,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-parent": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-parent": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5244,7 +5354,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-role": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-role": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5253,7 +5363,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-table-caption": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-table-caption": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5262,7 +5372,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-table-caption-object": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-table-caption-object": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5271,7 +5381,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-table-column-description": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-table-column-description": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5280,7 +5390,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-table-column-header": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-table-column-header": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5289,7 +5399,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-table-row-description": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-table-row-description": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5298,7 +5408,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-table-row-header": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-table-row-header": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5307,7 +5417,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-table-summary": (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-table-summary": (arg1: number, arg2: Object) => void;
             /**
              * The signal "children-changed" is emitted when a child is added or
              * removed from an object. It supports two details: "add" and
@@ -5316,8 +5426,8 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "children-changed::accessible-value": (arg0: number, arg1: Object) => void;
-            [key: `children-changed::${string}`]: (arg0: number, arg1: Object) => void;
+            "children-changed::accessible-value": (arg1: number, arg2: Object) => void;
+            [key: `children-changed::${string}`]: (arg1: number, arg2: Object) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5336,7 +5446,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-component-layer": (arg0: PropertyValues) => void;
+            "property-change::accessible-component-layer": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5355,7 +5465,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-component-mdi-zorder": (arg0: PropertyValues) => void;
+            "property-change::accessible-component-mdi-zorder": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5374,7 +5484,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-description": (arg0: PropertyValues) => void;
+            "property-change::accessible-description": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5393,7 +5503,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-help-text": (arg0: PropertyValues) => void;
+            "property-change::accessible-help-text": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5412,7 +5522,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-hypertext-nlinks": (arg0: PropertyValues) => void;
+            "property-change::accessible-hypertext-nlinks": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5431,7 +5541,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-id": (arg0: PropertyValues) => void;
+            "property-change::accessible-id": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5450,7 +5560,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-name": (arg0: PropertyValues) => void;
+            "property-change::accessible-name": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5469,7 +5579,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-parent": (arg0: PropertyValues) => void;
+            "property-change::accessible-parent": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5488,7 +5598,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-role": (arg0: PropertyValues) => void;
+            "property-change::accessible-role": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5507,7 +5617,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-table-caption": (arg0: PropertyValues) => void;
+            "property-change::accessible-table-caption": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5526,7 +5636,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-table-caption-object": (arg0: PropertyValues) => void;
+            "property-change::accessible-table-caption-object": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5545,7 +5655,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-table-column-description": (arg0: PropertyValues) => void;
+            "property-change::accessible-table-column-description": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5564,7 +5674,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-table-column-header": (arg0: PropertyValues) => void;
+            "property-change::accessible-table-column-header": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5583,7 +5693,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-table-row-description": (arg0: PropertyValues) => void;
+            "property-change::accessible-table-row-description": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5602,7 +5712,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-table-row-header": (arg0: PropertyValues) => void;
+            "property-change::accessible-table-row-header": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5621,7 +5731,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-table-summary": (arg0: PropertyValues) => void;
+            "property-change::accessible-table-summary": (arg1: PropertyValues) => void;
             /**
              * The signal "property-change" is emitted when an object's property
              * value changes. `arg1` contains an {@link Atk.PropertyValues} with the name
@@ -5640,8 +5750,8 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "property-change::accessible-value": (arg0: PropertyValues) => void;
-            [key: `property-change::${string}`]: (arg0: PropertyValues) => void;
+            "property-change::accessible-value": (arg1: PropertyValues) => void;
+            [key: `property-change::${string}`]: (arg1: PropertyValues) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5650,7 +5760,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-component-layer": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-component-layer": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5659,7 +5769,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-component-mdi-zorder": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-component-mdi-zorder": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5668,7 +5778,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-description": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-description": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5677,7 +5787,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-help-text": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-help-text": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5686,7 +5796,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-hypertext-nlinks": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-hypertext-nlinks": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5695,7 +5805,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-id": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-id": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5704,7 +5814,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-name": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-name": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5713,7 +5823,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-parent": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-parent": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5722,7 +5832,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-role": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-role": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5731,7 +5841,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-table-caption": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-table-caption": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5740,7 +5850,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-table-caption-object": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-table-caption-object": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5749,7 +5859,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-table-column-description": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-table-column-description": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5758,7 +5868,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-table-column-header": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-table-column-header": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5767,7 +5877,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-table-row-description": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-table-row-description": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5776,7 +5886,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-table-row-header": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-table-row-header": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5785,7 +5895,7 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-table-summary": (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-table-summary": (arg1: string, arg2: boolean) => void;
             /**
              * The "state-change" signal is emitted when an object's state
              * changes.  The detail value identifies the state type which has
@@ -5794,8 +5904,8 @@ export namespace Atk {
              * @detailed
              * @run-last
              */
-            "state-change::accessible-value": (arg0: string, arg1: boolean) => void;
-            [key: `state-change::${string}`]: (arg0: string, arg1: boolean) => void;
+            "state-change::accessible-value": (arg1: string, arg2: boolean) => void;
+            [key: `state-change::${string}`]: (arg1: string, arg2: boolean) => void;
         }
 
         // Constructor properties interface
@@ -6139,6 +6249,7 @@ export namespace Atk {
          * name-value pairs. As such these attributes may be considered weakly-typed properties or annotations,
          * as distinct from strongly-typed object data available via other get/set methods.
          * Not all objects have explicit "name-value pair" {@link Atk.AttributeSet} properties.
+         * @since 1.12
          * @virtual
          */
         vfunc_get_attributes(): AttributeSet;
@@ -6158,6 +6269,7 @@ export namespace Atk {
 
         /**
          * Gets the layer of the accessible.
+         * @deprecated Use atk_component_get_layer instead.
          * @virtual
          */
         vfunc_get_layer(): Layer;
@@ -6165,6 +6277,7 @@ export namespace Atk {
         /**
          * Gets the zorder of the accessible. The value G_MININT will be returned
          * if the layer of the accessible is not ATK_LAYER_MDI.
+         * @deprecated Use atk_component_get_mdi_zorder instead.
          * @virtual
          */
         vfunc_get_mdi_zorder(): number;
@@ -6183,6 +6296,7 @@ export namespace Atk {
         /**
          * Gets a UTF-8 string indicating the POSIX-style LC_MESSAGES locale
          * of `accessible`.
+         * @since 2.8
          * @virtual
          */
         vfunc_get_object_locale(): string;
@@ -6238,6 +6352,7 @@ export namespace Atk {
         /**
          * Removes a property change handler.
          * @param handler_id a guint which identifies the handler to be removed.
+         * @deprecated since 2.12: See `atk_object_connect_property_change_handler()`
          * @virtual
          */
         vfunc_remove_property_change_handler(handler_id: number): void;
@@ -6300,6 +6415,7 @@ export namespace Atk {
         /**
          * Gets the accessible id of the accessible.
          * @returns a character string representing the accessible id of the object, or NULL if no such string was set.
+         * @since 2.34
          */
         get_accessible_id(): string;
 
@@ -6309,6 +6425,7 @@ export namespace Atk {
          * as distinct from strongly-typed object data available via other get/set methods.
          * Not all objects have explicit "name-value pair" {@link Atk.AttributeSet} properties.
          * @returns an {@link Atk.AttributeSet} consisting of all explicit properties/annotations applied to the object, or an empty set if the object has no name-value pair attributes assigned to it. This #atkattributeset should be freed by a call to `atk_attribute_set_free()`.
+         * @since 1.12
          */
         get_attributes(): AttributeSet;
 
@@ -6321,6 +6438,7 @@ export namespace Atk {
         /**
          * Gets the help text associated with the accessible.
          * @returns a character string representing the help text or the object, or NULL if no such string was set.
+         * @since 2.52
          */
         get_help_text(): string;
 
@@ -6334,6 +6452,7 @@ export namespace Atk {
         /**
          * Gets the layer of the accessible.
          * @returns an {@link Atk.Layer} which is the layer of the accessible
+         * @deprecated Use atk_component_get_layer instead.
          */
         get_layer(): Layer;
 
@@ -6341,6 +6460,7 @@ export namespace Atk {
          * Gets the zorder of the accessible. The value G_MININT will be returned
          * if the layer of the accessible is not ATK_LAYER_MDI.
          * @returns a gint which is the zorder of the accessible, i.e. the depth at which the component is shown in relation to other components in the same container.
+         * @deprecated Use atk_component_get_mdi_zorder instead.
          */
         get_mdi_zorder(): number;
 
@@ -6360,6 +6480,7 @@ export namespace Atk {
          * Gets a UTF-8 string indicating the POSIX-style LC_MESSAGES locale
          * of `accessible`.
          * @returns a UTF-8 string indicating the POSIX-style LC_MESSAGES          locale of `accessible`.
+         * @since 2.8
          */
         get_object_locale(): string;
 
@@ -6438,6 +6559,7 @@ export namespace Atk {
         /**
          * Removes a property change handler.
          * @param handler_id a guint which identifies the handler to be removed.
+         * @deprecated since 2.12: See `atk_object_connect_property_change_handler()`
          */
         remove_property_change_handler(handler_id: number): void;
 
@@ -6456,6 +6578,7 @@ export namespace Atk {
          * instance to identify a given well-known accessible object for tailored screen
          * reading, or for automatic regression testing.
          * @param id a character string to be set as the accessible id
+         * @since 2.34
          */
         set_accessible_id(id: string): void;
 
@@ -6475,6 +6598,7 @@ export namespace Atk {
          * This is reserved for the initial value. If you want to set the name to
          * an empty value, you can use "".
          * @param help_text a character string to be set as the accessible's help text
+         * @since 2.52
          */
         set_help_text(help_text: string): void;
 
@@ -6589,7 +6713,7 @@ export namespace Atk {
 
     namespace Plug {
         // Signal signatures
-        interface SignalSignatures extends Object.SignalSignatures {
+        interface SignalSignatures extends Object.SignalSignatures, Component.SignalSignatures {
             "notify::accessible-component-layer": (pspec: GObject.ParamSpec) => void;
             "notify::accessible-component-mdi-zorder": (pspec: GObject.ParamSpec) => void;
             "notify::accessible-description": (pspec: GObject.ParamSpec) => void;
@@ -6668,6 +6792,7 @@ export namespace Atk {
          * loaded) and pass the value to the process implementing the
          * {@link Atk.Socket}, so it could embed the plug.
          * @returns the unique ID for the plug
+         * @since 1.30
          */
         get_id(): string;
 
@@ -6682,6 +6807,7 @@ export namespace Atk {
          * accessible object for the toplevel widget, an AtkPlug object, and make the
          * former the child of the latter by calling `atk_plug_set_child()`.
          * @param child an {@link Atk.Object} to be set as accessible child of `plug`.
+         * @since 2.35.0
          */
         set_child(child: Object): void;
 
@@ -6703,6 +6829,7 @@ export namespace Atk {
          * `component`, on a scale from 0 (fully transparent) to 1.0
          * (fully opaque).
          * @returns An alpha value from 0 to 1.0, inclusive.
+         * @since 1.12
          */
         get_alpha(): number;
 
@@ -6735,6 +6862,7 @@ export namespace Atk {
          * If the position can not be obtained (e.g. a non-embedded plug or missing
          * support), x and y are set to -1.
          * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_position(coord_type: CoordType): [number, number];
 
@@ -6743,6 +6871,7 @@ export namespace Atk {
          * 
          * If the size can not be obtained (e.g. a non-embedded plug or missing
          * support), width and height are set to -1.
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_size(): [number, number];
 
@@ -6767,6 +6896,7 @@ export namespace Atk {
          * functions to be executed when this object receives focus events
          * (in or out).
          * @param handler_id the handler id of the focus handler to be removed from `component`
+         * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
          */
         remove_focus_handler(handler_id: number): void;
 
@@ -6778,6 +6908,7 @@ export namespace Atk {
          * object shows up on the screen, given its current position within the parents.
          * @param type specify where the object should be made visible.
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to(type: ScrollType): boolean;
 
@@ -6788,6 +6919,7 @@ export namespace Atk {
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to_point(coords: CoordType, x: number, y: number): boolean;
 
@@ -6845,6 +6977,7 @@ export namespace Atk {
          * Returns the alpha value (i.e. the opacity) for this
          * `component`, on a scale from 0 (fully transparent) to 1.0
          * (fully opaque).
+         * @since 1.12
          * @virtual
          */
         vfunc_get_alpha(): number;
@@ -6879,6 +7012,7 @@ export namespace Atk {
          * If the position can not be obtained (e.g. a non-embedded plug or missing
          * support), x and y are set to -1.
          * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          * @virtual
          */
         vfunc_get_position(coord_type: CoordType): [number, number];
@@ -6888,6 +7022,7 @@ export namespace Atk {
          * 
          * If the size can not be obtained (e.g. a non-embedded plug or missing
          * support), width and height are set to -1.
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          * @virtual
          */
         vfunc_get_size(): [number, number];
@@ -6913,6 +7048,7 @@ export namespace Atk {
          * functions to be executed when this object receives focus events
          * (in or out).
          * @param handler_id the handler id of the focus handler to be removed from `component`
+         * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
          * @virtual
          */
         vfunc_remove_focus_handler(handler_id: number): void;
@@ -6924,6 +7060,7 @@ export namespace Atk {
          * `component` in its parent, this only makes the parents scroll so that the
          * object shows up on the screen, given its current position within the parents.
          * @param type specify where the object should be made visible.
+         * @since 2.30
          * @virtual
          */
         vfunc_scroll_to(type: ScrollType): boolean;
@@ -6934,6 +7071,7 @@ export namespace Atk {
          * @param coords specify whether coordinates are relative to the screen or to the parent object.
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
+         * @since 2.30
          * @virtual
          */
         vfunc_scroll_to_point(coords: CoordType, x: number, y: number): boolean;
@@ -7132,6 +7270,7 @@ export namespace Atk {
          * Adds the specified AtkObject to the target for the relation, if it is
          * not already present.  See also `atk_object_add_relationship()`.
          * @param target an {@link Atk.Object}
+         * @since 1.9
          */
         add_target(target: Object): void;
 
@@ -7231,6 +7370,7 @@ export namespace Atk {
          * is added to the relation.
          * @param relationship an {@link Atk.RelationType}
          * @param target an {@link Atk.Object}
+         * @since 1.9
          */
         add_relation_by_type(relationship: RelationType, target: Object): void;
 
@@ -7284,7 +7424,7 @@ export namespace Atk {
 
     namespace Socket {
         // Signal signatures
-        interface SignalSignatures extends Object.SignalSignatures {
+        interface SignalSignatures extends Object.SignalSignatures, Component.SignalSignatures {
             "notify::accessible-component-layer": (pspec: GObject.ParamSpec) => void;
             "notify::accessible-component-mdi-zorder": (pspec: GObject.ParamSpec) => void;
             "notify::accessible-description": (pspec: GObject.ParamSpec) => void;
@@ -7382,6 +7522,7 @@ export namespace Atk {
          * to pass the plug id on to the process implementing the {@link Atk.Socket}
          * as needed.
          * @param plug_id the ID of an {@link Atk.Plug}
+         * @since 1.30
          * @virtual
          */
         vfunc_embed(plug_id: string): void;
@@ -7399,12 +7540,14 @@ export namespace Atk {
          * to pass the plug id on to the process implementing the {@link Atk.Socket}
          * as needed.
          * @param plug_id the ID of an {@link Atk.Plug}
+         * @since 1.30
          */
         embed(plug_id: string): void;
 
         /**
          * Determines whether or not the socket has an embedded plug.
          * @returns TRUE if a plug is embedded in the socket
+         * @since 1.30
          */
         is_occupied(): boolean;
 
@@ -7426,6 +7569,7 @@ export namespace Atk {
          * `component`, on a scale from 0 (fully transparent) to 1.0
          * (fully opaque).
          * @returns An alpha value from 0 to 1.0, inclusive.
+         * @since 1.12
          */
         get_alpha(): number;
 
@@ -7458,6 +7602,7 @@ export namespace Atk {
          * If the position can not be obtained (e.g. a non-embedded plug or missing
          * support), x and y are set to -1.
          * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_position(coord_type: CoordType): [number, number];
 
@@ -7466,6 +7611,7 @@ export namespace Atk {
          * 
          * If the size can not be obtained (e.g. a non-embedded plug or missing
          * support), width and height are set to -1.
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_size(): [number, number];
 
@@ -7490,6 +7636,7 @@ export namespace Atk {
          * functions to be executed when this object receives focus events
          * (in or out).
          * @param handler_id the handler id of the focus handler to be removed from `component`
+         * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
          */
         remove_focus_handler(handler_id: number): void;
 
@@ -7501,6 +7648,7 @@ export namespace Atk {
          * object shows up on the screen, given its current position within the parents.
          * @param type specify where the object should be made visible.
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to(type: ScrollType): boolean;
 
@@ -7511,6 +7659,7 @@ export namespace Atk {
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to_point(coords: CoordType, x: number, y: number): boolean;
 
@@ -7568,6 +7717,7 @@ export namespace Atk {
          * Returns the alpha value (i.e. the opacity) for this
          * `component`, on a scale from 0 (fully transparent) to 1.0
          * (fully opaque).
+         * @since 1.12
          * @virtual
          */
         vfunc_get_alpha(): number;
@@ -7602,6 +7752,7 @@ export namespace Atk {
          * If the position can not be obtained (e.g. a non-embedded plug or missing
          * support), x and y are set to -1.
          * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          * @virtual
          */
         vfunc_get_position(coord_type: CoordType): [number, number];
@@ -7611,6 +7762,7 @@ export namespace Atk {
          * 
          * If the size can not be obtained (e.g. a non-embedded plug or missing
          * support), width and height are set to -1.
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          * @virtual
          */
         vfunc_get_size(): [number, number];
@@ -7636,6 +7788,7 @@ export namespace Atk {
          * functions to be executed when this object receives focus events
          * (in or out).
          * @param handler_id the handler id of the focus handler to be removed from `component`
+         * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
          * @virtual
          */
         vfunc_remove_focus_handler(handler_id: number): void;
@@ -7647,6 +7800,7 @@ export namespace Atk {
          * `component` in its parent, this only makes the parents scroll so that the
          * object shows up on the screen, given its current position within the parents.
          * @param type specify where the object should be made visible.
+         * @since 2.30
          * @virtual
          */
         vfunc_scroll_to(type: ScrollType): boolean;
@@ -7657,6 +7811,7 @@ export namespace Atk {
          * @param coords specify whether coordinates are relative to the screen or to the parent object.
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
+         * @since 2.30
          * @virtual
          */
         vfunc_scroll_to_point(coords: CoordType, x: number, y: number): boolean;
@@ -8082,29 +8237,34 @@ export namespace Atk {
         /**
          * Returns a new {@link Atk.Range} that is a exact copy of `src`
          * @returns a new {@link Atk.Range} copy of `src`
+         * @since 2.12
          */
         copy(): Range;
 
         /**
          * Free `range`
+         * @since 2.12
          */
         free(): void;
 
         /**
          * Returns the human readable description of `range`
          * @returns the human-readable description of `range`
+         * @since 2.12
          */
         get_description(): string;
 
         /**
          * Returns the lower limit of `range`
          * @returns the lower limit of `range`
+         * @since 2.12
          */
         get_lower_limit(): number;
 
         /**
          * Returns the upper limit of `range`
          * @returns the upper limit of `range`
+         * @since 2.12
          */
         get_upper_limit(): number;
     }
@@ -8517,6 +8677,16 @@ export namespace Atk {
     };
 
     namespace Component {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The 'bounds-changed" signal is emitted when the position or
+             * size of the component changes.
+             * @signal
+             * @run-last
+             */
+            "bounds-changed": (arg1: Rectangle) => void;
+        }
         /**
          * Interface for implementing Component.
          * Contains only the virtual methods that need to be implemented.
@@ -8547,6 +8717,7 @@ export namespace Atk {
              * Returns the alpha value (i.e. the opacity) for this
              * `component`, on a scale from 0 (fully transparent) to 1.0
              * (fully opaque).
+             * @since 1.12
              * @virtual
              */
             vfunc_get_alpha(): number;
@@ -8581,6 +8752,7 @@ export namespace Atk {
              * If the position can not be obtained (e.g. a non-embedded plug or missing
              * support), x and y are set to -1.
              * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+             * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
              * @virtual
              */
             vfunc_get_position(coord_type: CoordType): [number, number];
@@ -8590,6 +8762,7 @@ export namespace Atk {
              * 
              * If the size can not be obtained (e.g. a non-embedded plug or missing
              * support), width and height are set to -1.
+             * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
              * @virtual
              */
             vfunc_get_size(): [number, number];
@@ -8615,6 +8788,7 @@ export namespace Atk {
              * functions to be executed when this object receives focus events
              * (in or out).
              * @param handler_id the handler id of the focus handler to be removed from `component`
+             * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
              * @virtual
              */
             vfunc_remove_focus_handler(handler_id: number): void;
@@ -8626,6 +8800,7 @@ export namespace Atk {
              * `component` in its parent, this only makes the parents scroll so that the
              * object shows up on the screen, given its current position within the parents.
              * @param type specify where the object should be made visible.
+             * @since 2.30
              * @virtual
              */
             vfunc_scroll_to(type: ScrollType): boolean;
@@ -8636,6 +8811,7 @@ export namespace Atk {
              * @param coords specify whether coordinates are relative to the screen or to the parent object.
              * @param x x-position where to scroll to
              * @param y y-position where to scroll to
+             * @since 2.30
              * @virtual
              */
             vfunc_scroll_to_point(coords: CoordType, x: number, y: number): boolean;
@@ -8719,6 +8895,7 @@ export namespace Atk {
          * `component`, on a scale from 0 (fully transparent) to 1.0
          * (fully opaque).
          * @returns An alpha value from 0 to 1.0, inclusive.
+         * @since 1.12
          */
         get_alpha(): number;
 
@@ -8751,6 +8928,7 @@ export namespace Atk {
          * If the position can not be obtained (e.g. a non-embedded plug or missing
          * support), x and y are set to -1.
          * @param coord_type specifies whether the coordinates are relative to the screen or to the components top level window
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_position(coord_type: CoordType): [number, number];
 
@@ -8759,6 +8937,7 @@ export namespace Atk {
          * 
          * If the size can not be obtained (e.g. a non-embedded plug or missing
          * support), width and height are set to -1.
+         * @deprecated Since 2.12. Use `atk_component_get_extents()` instead.
          */
         get_size(): [number, number];
 
@@ -8783,6 +8962,7 @@ export namespace Atk {
          * functions to be executed when this object receives focus events
          * (in or out).
          * @param handler_id the handler id of the focus handler to be removed from `component`
+         * @deprecated since 2.9.4: If you need to track when an object gains or lose the focus, use the {@link Atk.Object.SignalSignatures.state_change | Atk.Object::state-change} "focused" notification instead.
          */
         remove_focus_handler(handler_id: number): void;
 
@@ -8794,6 +8974,7 @@ export namespace Atk {
          * object shows up on the screen, given its current position within the parents.
          * @param type specify where the object should be made visible.
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to(type: ScrollType): boolean;
 
@@ -8804,6 +8985,7 @@ export namespace Atk {
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
          * @returns whether scrolling was successful.
+         * @since 2.30
          */
         scroll_to_point(coords: CoordType, x: number, y: number): boolean;
 
@@ -8845,6 +9027,62 @@ export namespace Atk {
     };
 
     namespace Document {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The "document-attribute-changed" signal should be emitted when there is a
+             * change to one of the document attributes returned by
+             * atk_document_get_attributes.
+             * @signal
+             * @since 2.52
+             * @run-last
+             */
+            "document-attribute-changed": (arg1: string, arg2: string) => void;
+            /**
+             * The 'load-complete' signal is emitted when a pending load of
+             * a static document has completed.  This signal is to be
+             * expected by ATK clients if and when AtkDocument implementors
+             * expose ATK_STATE_BUSY.  If the state of an AtkObject which
+             * implements AtkDocument does not include ATK_STATE_BUSY, it
+             * should be safe for clients to assume that the AtkDocument's
+             * static contents are fully loaded into the container.
+             * (Dynamic document contents should be exposed via other
+             * signals.)
+             * @signal
+             * @run-last
+             */
+            "load-complete": () => void;
+            /**
+             * The 'load-stopped' signal is emitted when a pending load of
+             * document contents is cancelled, paused, or otherwise
+             * interrupted by the user or application logic.  It should not
+             * however be emitted while waiting for a resource (for instance
+             * while blocking on a file or network read) unless a
+             * user-significant timeout has occurred.
+             * @signal
+             * @run-last
+             */
+            "load-stopped": () => void;
+            /**
+             * The 'page-changed' signal is emitted when the current page of
+             * a document changes, e.g. pressing page up/down in a document
+             * viewer.
+             * @signal
+             * @since 2.12
+             * @run-last
+             */
+            "page-changed": (page_number: number) => void;
+            /**
+             * The 'reload' signal is emitted when the contents of a
+             * document is refreshed from its source.  Once 'reload' has
+             * been emitted, a matching 'load-complete' or 'load-stopped'
+             * signal should follow, which clients may await before
+             * interrogating ATK for the latest document content.
+             * @signal
+             * @run-last
+             */
+            reload: () => void;
+        }
         /**
          * Interface for implementing Document.
          * Contains only the virtual methods that need to be implemented.
@@ -8854,6 +9092,7 @@ export namespace Atk {
             // Virtual methods
             /**
              * Retrieves the current page number inside `document`.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_current_page_number(): number;
@@ -8862,6 +9101,7 @@ export namespace Atk {
              * Gets a %gpointer that points to an instance of the DOM.  It is
              * up to the caller to check atk_document_get_type to determine
              * how to cast this pointer.
+             * @deprecated Since 2.12. `document` is already a representation of the document. Use it directly, or one of its children, as an instance of the DOM.
              * @virtual
              */
             vfunc_get_document(): null;
@@ -8869,6 +9109,7 @@ export namespace Atk {
             /**
              * Retrieves the value of the given `attribute_name` inside `document`.
              * @param attribute_name a character string representing the name of the attribute   whose value is being queried.
+             * @since 1.12
              * @virtual
              */
             vfunc_get_document_attribute_value(attribute_name: string): string | null;
@@ -8876,6 +9117,7 @@ export namespace Atk {
             /**
              * Gets an AtkAttributeSet which describes document-wide
              *          attributes as name-value pairs.
+             * @since 1.12
              * @virtual
              */
             vfunc_get_document_attributes(): AttributeSet;
@@ -8886,24 +9128,28 @@ export namespace Atk {
              *          text substrings or images within this document may have
              *          a different locale, see atk_text_get_attributes and
              *          atk_image_get_image_locale.
+             * @deprecated since 2.7.90: Please use `atk_object_get_object_locale()` instead.
              * @virtual
              */
             vfunc_get_document_locale(): string;
 
             /**
              * Gets a string indicating the document type.
+             * @deprecated Since 2.12. Please use `atk_document_get_attributes()` to ask for the document type if it applies.
              * @virtual
              */
             vfunc_get_document_type(): string;
 
             /**
              * Retrieves the total number of pages inside `document`.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_page_count(): number;
 
             /**
              * Returns an array of AtkTextSelections within this document.
+             * @since 2.52
              * @virtual
              */
             vfunc_get_text_selections(): TextSelection[];
@@ -8912,6 +9158,7 @@ export namespace Atk {
              * Sets the value for the given `attribute_name` inside `document`.
              * @param attribute_name a character string representing the name of the attribute   whose value is being set.
              * @param attribute_value a string value to be associated with `attribute_name`.
+             * @since 1.12
              * @virtual
              */
             vfunc_set_document_attribute(attribute_name: string, attribute_value: string): boolean;
@@ -8923,6 +9170,7 @@ export namespace Atk {
              * the given selection ranges must be descendants of this document. Otherwise
              * FALSE will be returned.
              * @param selections a GArray of AtkTextSelections              to be selected.
+             * @since 2.52
              * @virtual
              */
             vfunc_set_text_selections(selections: TextSelection[]): boolean;
@@ -8957,6 +9205,7 @@ export namespace Atk {
          * Retrieves the value of the given `attribute_name` inside `document`.
          * @param attribute_name a character string representing the name of the attribute   whose value is being queried.
          * @returns a string value associated with the named    attribute for this document, or `null` if a value for    `attribute_name` has not been specified for this document.
+         * @since 1.12
          */
         get_attribute_value(attribute_name: string): string | null;
 
@@ -8964,12 +9213,14 @@ export namespace Atk {
          * Gets an AtkAttributeSet which describes document-wide
          *          attributes as name-value pairs.
          * @returns An AtkAttributeSet containing the explicitly          set name-value-pair attributes associated with this document          as a whole.
+         * @since 1.12
          */
         get_attributes(): AttributeSet;
 
         /**
          * Retrieves the current page number inside `document`.
          * @returns the current page number inside `document`, or -1 if   not implemented, not know by the implementor, or irrelevant.
+         * @since 2.12
          */
         get_current_page_number(): number;
 
@@ -8978,12 +9229,14 @@ export namespace Atk {
          * up to the caller to check atk_document_get_type to determine
          * how to cast this pointer.
          * @returns a %gpointer that points to an instance of the DOM.
+         * @deprecated Since 2.12. `document` is already a representation of the document. Use it directly, or one of its children, as an instance of the DOM.
          */
         get_document(): null;
 
         /**
          * Gets a string indicating the document type.
          * @returns a string indicating the document type
+         * @deprecated Since 2.12. Please use `atk_document_get_attributes()` to ask for the document type if it applies.
          */
         get_document_type(): string;
 
@@ -8994,18 +9247,21 @@ export namespace Atk {
          *          a different locale, see atk_text_get_attributes and
          *          atk_image_get_image_locale.
          * @returns a UTF-8 string indicating the POSIX-style LC_MESSAGES          locale of the document content as a whole, or NULL if          the document content does not specify a locale.
+         * @deprecated since 2.7.90: Please use `atk_object_get_object_locale()` instead.
          */
         get_locale(): string;
 
         /**
          * Retrieves the total number of pages inside `document`.
          * @returns total page count of `document`, or -1 if not implemented,   not know by the implementor or irrelevant.
+         * @since 2.12
          */
         get_page_count(): number;
 
         /**
          * Returns an array of AtkTextSelections within this document.
          * @returns a GArray of AtkTextSelection structures representing the selection.
+         * @since 2.52
          */
         get_text_selections(): TextSelection[];
 
@@ -9014,6 +9270,7 @@ export namespace Atk {
          * @param attribute_name a character string representing the name of the attribute   whose value is being set.
          * @param attribute_value a string value to be associated with `attribute_name`.
          * @returns `true` if `attribute_value` is successfully associated   with `attribute_name` for this `document`, and `false` if if the   document does not allow the attribute to be modified
+         * @since 1.12
          */
         set_attribute_value(attribute_name: string, attribute_value: string): boolean;
 
@@ -9025,6 +9282,7 @@ export namespace Atk {
          * FALSE will be returned.
          * @param selections a GArray of AtkTextSelections              to be selected.
          * @returns TRUE if the selection was made successfully; FALSE otherwise.
+         * @since 2.52
          */
         set_text_selections(selections: TextSelection[]): boolean;
     }
@@ -9201,6 +9459,7 @@ export namespace Atk {
             // Virtual methods
             /**
              * Gets the hyperlink associated with this object.
+             * @since 1.12
              * @virtual
              */
             vfunc_get_hyperlink(): Hyperlink;
@@ -9229,6 +9488,7 @@ export namespace Atk {
         /**
          * Gets the hyperlink associated with this object.
          * @returns an AtkHyperlink object which points to this implementing AtkObject.
+         * @since 1.12
          */
         get_hyperlink(): Hyperlink;
     }
@@ -9239,6 +9499,17 @@ export namespace Atk {
     };
 
     namespace Hypertext {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The "link-selected" signal is emitted by an AtkHyperText
+             * object when one of the hyperlinks associated with the object
+             * is selected.
+             * @signal
+             * @run-last
+             */
+            "link-selected": (arg1: number) => void;
+        }
         /**
          * Interface for implementing Hypertext.
          * Contains only the virtual methods that need to be implemented.
@@ -9344,6 +9615,7 @@ export namespace Atk {
 
             /**
              * Retrieves the locale identifier associated to the {@link Atk.Image}.
+             * @since 1.12
              * @virtual
              */
             vfunc_get_image_locale(): string | null;
@@ -9418,6 +9690,7 @@ export namespace Atk {
         /**
          * Retrieves the locale identifier associated to the {@link Atk.Image}.
          * @returns a string corresponding to the POSIX   `LC_MESSAGES` locale used by the image description, or   `null` if the image does not specify a locale.
+         * @since 1.12
          */
         get_image_locale(): string | null;
 
@@ -9479,6 +9752,16 @@ export namespace Atk {
     };
 
     namespace Selection {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The "selection-changed" signal is emitted by an object which
+             * implements AtkSelection interface when the selection changes.
+             * @signal
+             * @run-last
+             */
+            "selection-changed": () => void;
+        }
         /**
          * Interface for implementing Selection.
          * Contains only the virtual methods that need to be implemented.
@@ -9688,6 +9971,7 @@ export namespace Atk {
              * Note that it is possible for get_uri to return NULL but for
              * get_stream to work nonetheless, since not all GIOChannels connect to URIs.
              * @param mime_type a gchar* representing the mime type, or NULL to request a URI for the default mime type.
+             * @since 1.12
              * @virtual
              */
             vfunc_get_uri(mime_type: string): string | null;
@@ -9758,6 +10042,7 @@ export namespace Atk {
          * get_stream to work nonetheless, since not all GIOChannels connect to URIs.
          * @param mime_type a gchar* representing the mime type, or NULL to request a URI for the default mime type.
          * @returns Returns a string representing a URI, or `null` if no corresponding URI can be constructed.
+         * @since 1.12
          */
         get_uri(mime_type: string): string | null;
     }
@@ -9768,6 +10053,61 @@ export namespace Atk {
     };
 
     namespace Table {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The "column-deleted" signal is emitted by an object which
+             * implements the AtkTable interface when a column is deleted.
+             * @signal
+             * @run-last
+             */
+            "column-deleted": (arg1: number, arg2: number) => void;
+            /**
+             * The "column-inserted" signal is emitted by an object which
+             * implements the AtkTable interface when a column is inserted.
+             * @signal
+             * @run-last
+             */
+            "column-inserted": (arg1: number, arg2: number) => void;
+            /**
+             * The "column-reordered" signal is emitted by an object which
+             * implements the AtkTable interface when the columns are
+             * reordered.
+             * @signal
+             * @run-last
+             */
+            "column-reordered": () => void;
+            /**
+             * The "model-changed" signal is emitted by an object which
+             * implements the AtkTable interface when the model displayed by
+             * the table changes.
+             * @signal
+             * @run-last
+             */
+            "model-changed": () => void;
+            /**
+             * The "row-deleted" signal is emitted by an object which
+             * implements the AtkTable interface when a row is deleted.
+             * @signal
+             * @run-last
+             */
+            "row-deleted": (arg1: number, arg2: number) => void;
+            /**
+             * The "row-inserted" signal is emitted by an object which
+             * implements the AtkTable interface when a row is inserted.
+             * @signal
+             * @run-last
+             */
+            "row-inserted": (arg1: number, arg2: number) => void;
+            /**
+             * The "row-reordered" signal is emitted by an object which
+             * implements the AtkTable interface when the rows are
+             * reordered.
+             * @signal
+             * @run-last
+             */
+            "row-reordered": () => void;
+        }
         /**
          * Interface for implementing Table.
          * Contains only the virtual methods that need to be implemented.
@@ -9817,6 +10157,7 @@ export namespace Atk {
             /**
              * Gets a `gint` representing the column at the specified `index_`.
              * @param index_ a `gint` representing an index in `table`
+             * @deprecated Since 2.12.
              * @virtual
              */
             vfunc_get_column_at_index(index_: number): number;
@@ -9849,6 +10190,7 @@ export namespace Atk {
              * `column`.
              * @param row a `gint` representing a row in `table`
              * @param column a `gint` representing a column in `table`
+             * @deprecated Since 2.12. Use `atk_table_ref_at()` in order to get the accessible that represents the cell at (`row`, `column`)
              * @virtual
              */
             vfunc_get_index_at(row: number, column: number): number;
@@ -9868,6 +10210,7 @@ export namespace Atk {
             /**
              * Gets a `gint` representing the row at the specified `index_`.
              * @param index_ a `gint` representing an index in `table`
+             * @deprecated since 2.12.
              * @virtual
              */
             vfunc_get_row_at_index(index_: number): number;
@@ -10105,6 +10448,7 @@ export namespace Atk {
          * Gets a `gint` representing the column at the specified `index_`.
          * @param index_ a `gint` representing an index in `table`
          * @returns a gint representing the column at the specified index, or -1 if the table does not implement this method.
+         * @deprecated Since 2.12.
          */
         get_column_at_index(index_: number): number;
 
@@ -10137,6 +10481,7 @@ export namespace Atk {
          * @param row a `gint` representing a row in `table`
          * @param column a `gint` representing a column in `table`
          * @returns a `gint` representing the index at specified position. The value -1 is returned if the object at row,column is not a child of table or table does not implement this interface.
+         * @deprecated Since 2.12. Use `atk_table_ref_at()` in order to get the accessible that represents the cell at (`row`, `column`)
          */
         get_index_at(row: number, column: number): number;
 
@@ -10156,6 +10501,7 @@ export namespace Atk {
          * Gets a `gint` representing the row at the specified `index_`.
          * @param index_ a `gint` representing an index in `table`
          * @returns a gint representing the row at the specified index, or -1 if the table does not implement this method.
+         * @deprecated since 2.12.
          */
         get_row_at_index(index_: number): number;
 
@@ -10308,18 +10654,21 @@ export namespace Atk {
             // Virtual methods
             /**
              * Returns the column headers as an array of cell accessibles.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_column_header_cells(): Object[];
 
             /**
              * Returns the number of columns occupied by this cell accessible.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_column_span(): number;
 
             /**
              * Retrieves the tabular position of this cell.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_position(): [boolean, number, number];
@@ -10330,24 +10679,28 @@ export namespace Atk {
              * Note: If the object does not implement this function, then, by default, atk
              * will implement this function by calling get_row_span and get_column_span
              * on the object.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_row_column_span(): [boolean, number, number, number, number];
 
             /**
              * Returns the row headers as an array of cell accessibles.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_row_header_cells(): Object[];
 
             /**
              * Returns the number of rows occupied by this cell accessible.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_row_span(): number;
 
             /**
              * Returns a reference to the accessible of the containing table.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_table(): Object;
@@ -10378,18 +10731,21 @@ export namespace Atk {
         /**
          * Returns the column headers as an array of cell accessibles.
          * @returns a GPtrArray of AtkObjects representing the column header cells.
+         * @since 2.12
          */
         get_column_header_cells(): Object[];
 
         /**
          * Returns the number of columns occupied by this cell accessible.
          * @returns a gint representing the number of columns occupied by this cell, or 0 if the cell does not implement this method.
+         * @since 2.12
          */
         get_column_span(): number;
 
         /**
          * Retrieves the tabular position of this cell.
          * @returns TRUE if successful; FALSE otherwise.
+         * @since 2.12
          */
         get_position(): [boolean, number, number];
 
@@ -10400,24 +10756,28 @@ export namespace Atk {
          * will implement this function by calling get_row_span and get_column_span
          * on the object.
          * @returns TRUE if successful; FALSE otherwise.
+         * @since 2.12
          */
         get_row_column_span(): [boolean, number, number, number, number];
 
         /**
          * Returns the row headers as an array of cell accessibles.
          * @returns a GPtrArray of AtkObjects representing the row header cells.
+         * @since 2.12
          */
         get_row_header_cells(): Object[];
 
         /**
          * Returns the number of rows occupied by this cell accessible.
          * @returns a gint representing the number of rows occupied by this cell, or 0 if the cell does not implement this method.
+         * @since 2.12
          */
         get_row_span(): number;
 
         /**
          * Returns a reference to the accessible of the containing table.
          * @returns the atk object for the containing table.
+         * @since 2.12
          */
         get_table(): Object;
     }
@@ -10428,6 +10788,67 @@ export namespace Atk {
     };
 
     namespace Text {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The "text-attributes-changed" signal is emitted when the text
+             * attributes of the text of an object which implements AtkText
+             * changes.
+             * @signal
+             * @run-last
+             */
+            "text-attributes-changed": () => void;
+            /**
+             * The "text-caret-moved" signal is emitted when the caret
+             * position of the text of an object which implements AtkText
+             * changes.
+             * @signal
+             * @run-last
+             */
+            "text-caret-moved": (arg1: number) => void;
+            /**
+             * The "text-changed" signal is emitted when the text of the
+             * object which implements the AtkText interface changes, This
+             * signal will have a detail which is either "insert" or
+             * "delete" which identifies whether the text change was an
+             * insertion or a deletion.
+             * @signal
+             * @deprecated since 2.9.4: Use {@link Atk.Object.SignalSignatures.text_insert | Atk.Object::text-insert} or {@link Atk.Object.SignalSignatures.text_remove | Atk.Object::text-remove} instead.
+             * @detailed
+             * @run-last
+             */
+            "text-changed": (arg1: number, arg2: number) => void;
+            /**
+             * The "text-insert" signal is emitted when a new text is
+             * inserted. If the signal was not triggered by the user
+             * (e.g. typing or pasting text), the "system" detail should be
+             * included.
+             * @signal
+             * @detailed
+             * @run-last
+             */
+            "text-insert": (arg1: number, arg2: number, arg3: string) => void;
+            /**
+             * The "text-remove" signal is emitted when a new text is
+             * removed. If the signal was not triggered by the user
+             * (e.g. typing or pasting text), the "system" detail should be
+             * included.
+             * @signal
+             * @detailed
+             * @run-last
+             */
+            "text-remove": (arg1: number, arg2: number, arg3: string) => void;
+            /**
+             * The "text-selection-changed" signal is emitted when the
+             * selected text of an object which implements AtkText changes.
+             * @signal
+             * @run-last
+             */
+            "text-selection-changed": () => void;
+            [key: `text-changed::${string}`]: (arg1: number, arg2: number) => void;
+            [key: `text-insert::${string}`]: (arg1: number, arg2: number, arg3: string) => void;
+            [key: `text-remove::${string}`]: (arg1: number, arg2: number, arg3: string) => void;
+        }
         /**
          * Interface for implementing Text.
          * Contains only the virtual methods that need to be implemented.
@@ -10449,6 +10870,7 @@ export namespace Atk {
              * @param coord_type Specify whether coordinates are relative to the screen or widget window.
              * @param x_clip_type Specify the horizontal clip type.
              * @param y_clip_type Specify the vertical clip type.
+             * @since 1.3
              * @virtual
              */
             vfunc_get_bounded_ranges(rect: TextRectangle, coord_type: CoordType, x_clip_type: TextClipType, y_clip_type: TextClipType): TextRange[];
@@ -10518,6 +10940,7 @@ export namespace Atk {
              * @param start_offset The offset of the first text character for which boundary        information is required.
              * @param end_offset The offset of the text character after the last character        for which boundary information is required.
              * @param coord_type Specify whether coordinates are relative to the screen or widget window.
+             * @since 1.3
              * @virtual
              */
             vfunc_get_range_extents(start_offset: number, end_offset: number, coord_type: CoordType): TextRectangle;
@@ -10575,6 +10998,7 @@ export namespace Atk {
              * of the following paragraph after the offset.
              * @param offset position
              * @param granularity An {@link Atk.TextGranularity}
+             * @since 2.10
              * @virtual
              */
             vfunc_get_string_at_offset(offset: number, granularity: TextGranularity): [string | null, number, number];
@@ -10591,6 +11015,7 @@ export namespace Atk {
              * Gets the specified text.
              * @param offset position
              * @param boundary_type An {@link Atk.TextBoundary}
+             * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
              * @virtual
              */
             vfunc_get_text_after_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
@@ -10622,6 +11047,7 @@ export namespace Atk {
              * start after the offset.
              * @param offset position
              * @param boundary_type An {@link Atk.TextBoundary}
+             * @deprecated This method is deprecated since ATK version 2.9.4. Please use `atk_text_get_string_at_offset()` instead.
              * @virtual
              */
             vfunc_get_text_at_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
@@ -10630,6 +11056,7 @@ export namespace Atk {
              * Gets the specified text.
              * @param offset position
              * @param boundary_type An {@link Atk.TextBoundary}
+             * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
              * @virtual
              */
             vfunc_get_text_before_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
@@ -10646,6 +11073,7 @@ export namespace Atk {
              * @param start_offset start offset in the `text`
              * @param end_offset end offset in the `text`, or -1 for the end of the text.
              * @param type specify where the object should be made visible.
+             * @since 2.32
              * @virtual
              */
             vfunc_scroll_substring_to(start_offset: number, end_offset: number, type: ScrollType): boolean;
@@ -10658,6 +11086,7 @@ export namespace Atk {
              * @param coords specify whether coordinates are relative to the screen or to the parent object.
              * @param x x-position where to scroll to
              * @param y y-position where to scroll to
+             * @since 2.32
              * @virtual
              */
             vfunc_scroll_substring_to_point(start_offset: number, end_offset: number, coords: CoordType, x: number, y: number): boolean;
@@ -10779,6 +11208,7 @@ export namespace Atk {
          * @param x_clip_type Specify the horizontal clip type.
          * @param y_clip_type Specify the vertical clip type.
          * @returns Array of AtkTextRange. The last          element of the array returned by this function will be NULL.
+         * @since 1.3
          */
         get_bounded_ranges(rect: TextRectangle, coord_type: CoordType, x_clip_type: TextClipType, y_clip_type: TextClipType): TextRange[];
 
@@ -10846,6 +11276,7 @@ export namespace Atk {
          * @param start_offset The offset of the first text character for which boundary        information is required.
          * @param end_offset The offset of the text character after the last character        for which boundary information is required.
          * @param coord_type Specify whether coordinates are relative to the screen or widget window.
+         * @since 1.3
          */
         get_range_extents(start_offset: number, end_offset: number, coord_type: CoordType): TextRectangle;
 
@@ -10903,6 +11334,7 @@ export namespace Atk {
          * @param offset position
          * @param granularity An {@link Atk.TextGranularity}
          * @returns a newly allocated string containing the text at          the `offset` bounded by the specified `granularity`. Use `g_free()`          to free the returned string.  Returns `null` if the offset is invalid          or no implementation is available.
+         * @since 2.10
          */
         get_string_at_offset(offset: number, granularity: TextGranularity): [string | null, number, number];
 
@@ -10919,6 +11351,7 @@ export namespace Atk {
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
          * @returns a newly allocated string containing the text after `offset` bounded          by the specified `boundary_type`. Use `g_free()` to free the returned          string.
+         * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
          */
         get_text_after_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
 
@@ -10950,6 +11383,7 @@ export namespace Atk {
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
          * @returns a newly allocated string containing the text at `offset` bounded          by the specified `boundary_type`. Use `g_free()` to free the returned          string.
+         * @deprecated This method is deprecated since ATK version 2.9.4. Please use `atk_text_get_string_at_offset()` instead.
          */
         get_text_at_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
 
@@ -10958,6 +11392,7 @@ export namespace Atk {
          * @param offset position
          * @param boundary_type An {@link Atk.TextBoundary}
          * @returns a newly allocated string containing the text before `offset` bounded          by the specified `boundary_type`. Use `g_free()` to free the returned          string.
+         * @deprecated since 2.9.3: Please use `atk_text_get_string_at_offset()` instead.
          */
         get_text_before_offset(offset: number, boundary_type: TextBoundary): [string, number, number];
 
@@ -10974,6 +11409,7 @@ export namespace Atk {
          * @param end_offset end offset in the `text`, or -1 for the end of the text.
          * @param type specify where the object should be made visible.
          * @returns whether scrolling was successful.
+         * @since 2.32
          */
         scroll_substring_to(start_offset: number, end_offset: number, type: ScrollType): boolean;
 
@@ -10986,6 +11422,7 @@ export namespace Atk {
          * @param x x-position where to scroll to
          * @param y y-position where to scroll to
          * @returns whether scrolling was successful.
+         * @since 2.32
          */
         scroll_substring_to_point(start_offset: number, end_offset: number, coords: CoordType, x: number, y: number): boolean;
 
@@ -11028,6 +11465,27 @@ export namespace Atk {
     };
 
     namespace Value {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The 'value-changed' signal is emitted when the current value
+             * that represent the object changes. `value` is the numerical
+             * representation of this new value.  `text` is the human
+             * readable text alternative of `value`, and can be NULL if it is
+             * not available. Note that if there is a textual description
+             * associated with the new numeric value, that description
+             * should be included regardless of whether or not it has also
+             * changed.
+             * 
+             * Example: a password meter whose value changes as the user
+             * types their new password. Appropiate value text would be
+             * "weak", "acceptable" and "strong".
+             * @signal
+             * @since 2.12
+             * @run-last
+             */
+            "value-changed": (value: number, text: string) => void;
+        }
         /**
          * Interface for implementing Value.
          * Contains only the virtual methods that need to be implemented.
@@ -11037,6 +11495,7 @@ export namespace Atk {
             // Virtual methods
             /**
              * Gets the value of this object.
+             * @deprecated Since 2.12. Use `atk_value_get_value_and_text()` instead.
              * @virtual
              */
             vfunc_get_current_value(): GObject.Value | any;
@@ -11046,12 +11505,14 @@ export namespace Atk {
              * changed.  If zero, the minimum increment is undefined, which may
              * mean that it is limited only by the floating point precision of the
              * platform.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_increment(): number;
 
             /**
              * Gets the maximum value of this object.
+             * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
              * @virtual
              */
             vfunc_get_maximum_value(): GObject.Value | any;
@@ -11060,18 +11521,22 @@ export namespace Atk {
              * Gets the minimum increment by which the value of this object may be changed.  If zero,
              * the minimum increment is undefined, which may mean that it is limited only by the
              * floating point precision of the platform.
+             * @since 1.12
+             * @deprecated Since 2.12. Use `atk_value_get_increment()` instead.
              * @virtual
              */
             vfunc_get_minimum_increment(): GObject.Value | any;
 
             /**
              * Gets the minimum value of this object.
+             * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
              * @virtual
              */
             vfunc_get_minimum_value(): GObject.Value | any;
 
             /**
              * Gets the range of this object.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_range(): Range | null;
@@ -11079,6 +11544,7 @@ export namespace Atk {
             /**
              * Gets the list of subranges defined for this object. See {@link Atk.Value}
              * introduction for examples of subranges and when to expose them.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_sub_ranges(): Range[];
@@ -11087,6 +11553,7 @@ export namespace Atk {
              * Gets the current value and the human readable text alternative of
              * `obj`. `text` is a newly created string, that must be freed by the
              * caller. Can be NULL if no descriptor is available.
+             * @since 2.12
              * @virtual
              */
             vfunc_get_value_and_text(): [number, string];
@@ -11094,6 +11561,7 @@ export namespace Atk {
             /**
              * Sets the value of this object.
              * @param value a {@link GObject.Value} which is the desired new accessible value.
+             * @deprecated Since 2.12. Use `atk_value_set_value()` instead.
              * @virtual
              */
             vfunc_set_current_value(value: unknown): boolean;
@@ -11114,6 +11582,7 @@ export namespace Atk {
              * required anymore to return if the value was properly assigned or
              * not.
              * @param new_value a double which is the desired new accessible value.
+             * @since 2.12
              * @virtual
              */
             vfunc_set_value(new_value: number): void;
@@ -11278,6 +11747,7 @@ export namespace Atk {
         // Methods
         /**
          * Gets the value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_value_and_text()` instead.
          */
         get_current_value(): unknown;
 
@@ -11287,11 +11757,13 @@ export namespace Atk {
          * mean that it is limited only by the floating point precision of the
          * platform.
          * @returns the minimum increment by which the value of this object may be changed. zero if undefined.
+         * @since 2.12
          */
         get_increment(): number;
 
         /**
          * Gets the maximum value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
          */
         get_maximum_value(): unknown;
 
@@ -11299,17 +11771,21 @@ export namespace Atk {
          * Gets the minimum increment by which the value of this object may be changed.  If zero,
          * the minimum increment is undefined, which may mean that it is limited only by the
          * floating point precision of the platform.
+         * @since 1.12
+         * @deprecated Since 2.12. Use `atk_value_get_increment()` instead.
          */
         get_minimum_increment(): unknown;
 
         /**
          * Gets the minimum value of this object.
+         * @deprecated Since 2.12. Use `atk_value_get_range()` instead.
          */
         get_minimum_value(): unknown;
 
         /**
          * Gets the range of this object.
          * @returns a newly allocated {@link Atk.Range} that represents the minimum, maximum and descriptor (if available) of `obj`. NULL if that range is not defined.
+         * @since 2.12
          */
         get_range(): Range | null;
 
@@ -11317,6 +11793,7 @@ export namespace Atk {
          * Gets the list of subranges defined for this object. See {@link Atk.Value}
          * introduction for examples of subranges and when to expose them.
          * @returns an {@link GLib.SList} of {@link Atk.Range} which each of the subranges defined for this object. Free the returns list with `g_slist_free()`.
+         * @since 2.12
          */
         get_sub_ranges(): Range[];
 
@@ -11324,6 +11801,7 @@ export namespace Atk {
          * Gets the current value and the human readable text alternative of
          * `obj`. `text` is a newly created string, that must be freed by the
          * caller. Can be NULL if no descriptor is available.
+         * @since 2.12
          */
         get_value_and_text(): [number, string];
 
@@ -11331,6 +11809,7 @@ export namespace Atk {
          * Sets the value of this object.
          * @param value a {@link GObject.Value} which is the desired new accessible value.
          * @returns `true` if new value is successfully set, `false` otherwise.
+         * @deprecated Since 2.12. Use `atk_value_set_value()` instead.
          */
         set_current_value(value: GObject.Value | any): boolean;
 
@@ -11350,6 +11829,7 @@ export namespace Atk {
          * required anymore to return if the value was properly assigned or
          * not.
          * @param new_value a double which is the desired new accessible value.
+         * @since 2.12
          */
         set_value(new_value: number): void;
     }
@@ -11360,6 +11840,81 @@ export namespace Atk {
     };
 
     namespace Window {
+        // Signal signatures
+        interface SignalSignatures {
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.activate | Atk.Window::activate} is emitted when a window
+             * becomes the active window of the application or session.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            activate: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.create | Atk.Window::create} is emitted when a new window
+             * is created.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            create: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.deactivate | Atk.Window::deactivate} is emitted when a window is
+             * no longer the active window of the application or session.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            deactivate: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.destroy | Atk.Window::destroy} is emitted when a window is
+             * destroyed.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            destroy: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.maximize | Atk.Window::maximize} is emitted when a window
+             * is maximized.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            maximize: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.minimize | Atk.Window::minimize} is emitted when a window
+             * is minimized.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            minimize: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.move | Atk.Window::move} is emitted when a window
+             * is moved.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            move: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.resize | Atk.Window::resize} is emitted when a window
+             * is resized.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            resize: () => void;
+            /**
+             * The signal {@link Atk.Window.SignalSignatures.restore | Atk.Window::restore} is emitted when a window
+             * is restored.
+             * @signal
+             * @since 2.2
+             * @run-last
+             */
+            restore: () => void;
+        }
 
         // Constructor properties interface
         interface ConstructorProps extends Object.ConstructorProps {}

@@ -37,6 +37,7 @@ in
                 gjs
                 astal4
                 pkgs.networkmanager
+                apps
 
                 cava
                 bluetooth 

@@ -365,6 +365,7 @@ export namespace PangoCairo {
          * The scaled font can be referenced and kept using
          * `cairo_scaled_font_reference()`.
          * @returns the `cairo_scaled_font_t`   used by `font`
+         * @since 1.18
          */
         get_scaled_font(): cairo.ScaledFont | null;
     }
@@ -447,6 +448,7 @@ export namespace PangoCairo {
         /**
          * Gets the type of Cairo font backend that `fontmap` uses.
          * @returns the `cairo_font_type_t` cairo font backend type
+         * @since 1.18
          */
         get_font_type(): cairo.FontType;
 
@@ -455,6 +457,7 @@ export namespace PangoCairo {
          * 
          * See {@link PangoCairo.FontMap.set_resolution}.
          * @returns the resolution in "dots per inch"
+         * @since 1.10
          */
         get_resolution(): number;
 
@@ -474,6 +477,7 @@ export namespace PangoCairo {
          * A value of `null` for `fontmap` will cause the current default
          * font map to be released and a new default font map to be created
          * on demand, using {@link PangoCairo.FontMap.new}.
+         * @since 1.22
          */
         set_default(): void;
 
@@ -485,6 +489,7 @@ export namespace PangoCairo {
          * default value is 96, meaning that a 10 point font will be 13
          * units high. (10 * 96. / 72. = 13.3).
          * @param dpi the resolution in "dots per inch". (Physical inches aren't actually   involved; the terminology is conventional.)
+         * @since 1.10
          */
         set_resolution(dpi: number): void;
     }

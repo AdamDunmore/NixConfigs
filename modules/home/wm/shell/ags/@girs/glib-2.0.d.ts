@@ -1223,23 +1223,23 @@ export class VariantType<S extends string = any> {
         /**
          * Use the MD5 hashing algorithm
          */
-        MD5,
+        MD5 = 0,
         /**
          * Use the SHA-1 hashing algorithm
          */
-        SHA1,
+        SHA1 = 1,
         /**
          * Use the SHA-256 hashing algorithm
          */
-        SHA256,
+        SHA256 = 2,
         /**
          * Use the SHA-512 hashing algorithm (Since: 2.36)
          */
-        SHA512,
+        SHA512 = 3,
         /**
          * Use the SHA-384 hashing algorithm (Since: 2.51)
          */
-        SHA384,
+        SHA384 = 4,
     }
 
 
@@ -1310,15 +1310,15 @@ export class VariantType<S extends string = any> {
         /**
          * a day
          */
-        DAY,
+        DAY = 0,
         /**
          * a month
          */
-        MONTH,
+        MONTH = 1,
         /**
          * a year
          */
-        YEAR,
+        YEAR = 2,
     }
 
 
@@ -1331,55 +1331,55 @@ export class VariantType<S extends string = any> {
         /**
          * invalid value
          */
-        BAD_MONTH,
+        BAD_MONTH = 0,
         /**
          * January
          */
-        JANUARY,
+        JANUARY = 1,
         /**
          * February
          */
-        FEBRUARY,
+        FEBRUARY = 2,
         /**
          * March
          */
-        MARCH,
+        MARCH = 3,
         /**
          * April
          */
-        APRIL,
+        APRIL = 4,
         /**
          * May
          */
-        MAY,
+        MAY = 5,
         /**
          * June
          */
-        JUNE,
+        JUNE = 6,
         /**
          * July
          */
-        JULY,
+        JULY = 7,
         /**
          * August
          */
-        AUGUST,
+        AUGUST = 8,
         /**
          * September
          */
-        SEPTEMBER,
+        SEPTEMBER = 9,
         /**
          * October
          */
-        OCTOBER,
+        OCTOBER = 10,
         /**
          * November
          */
-        NOVEMBER,
+        NOVEMBER = 11,
         /**
          * December
          */
-        DECEMBER,
+        DECEMBER = 12,
     }
 
 
@@ -1392,35 +1392,35 @@ export class VariantType<S extends string = any> {
         /**
          * invalid value
          */
-        BAD_WEEKDAY,
+        BAD_WEEKDAY = 0,
         /**
          * Monday
          */
-        MONDAY,
+        MONDAY = 1,
         /**
          * Tuesday
          */
-        TUESDAY,
+        TUESDAY = 2,
         /**
          * Wednesday
          */
-        WEDNESDAY,
+        WEDNESDAY = 3,
         /**
          * Thursday
          */
-        THURSDAY,
+        THURSDAY = 4,
         /**
          * Friday
          */
-        FRIDAY,
+        FRIDAY = 5,
         /**
          * Saturday
          */
-        SATURDAY,
+        SATURDAY = 6,
         /**
          * Sunday
          */
-        SUNDAY,
+        SUNDAY = 7,
     }
 
 
@@ -1433,35 +1433,35 @@ export class VariantType<S extends string = any> {
         /**
          * unknown error
          */
-        UNKNOWN,
+        UNKNOWN = 0,
         /**
          * unexpected end of file
          */
-        UNEXP_EOF,
+        UNEXP_EOF = 1,
         /**
          * unterminated string constant
          */
-        UNEXP_EOF_IN_STRING,
+        UNEXP_EOF_IN_STRING = 2,
         /**
          * unterminated comment
          */
-        UNEXP_EOF_IN_COMMENT,
+        UNEXP_EOF_IN_COMMENT = 3,
         /**
          * non-digit character in a number
          */
-        NON_DIGIT_IN_CONST,
+        NON_DIGIT_IN_CONST = 4,
         /**
          * digit beyond radix in a number
          */
-        DIGIT_RADIX,
+        DIGIT_RADIX = 5,
         /**
          * non-decimal floating point number
          */
-        FLOAT_RADIX,
+        FLOAT_RADIX = 6,
         /**
          * malformed floating point number
          */
-        FLOAT_MALFORMED,
+        FLOAT_MALFORMED = 7,
     }
 
 
@@ -1723,19 +1723,19 @@ export class VariantType<S extends string = any> {
         /**
          * no error
          */
-        NONE,
+        NONE = 0,
         /**
          * an EAGAIN error occurred
          */
-        AGAIN,
+        AGAIN = 1,
         /**
          * an EINVAL error occurred
          */
-        INVAL,
+        INVAL = 2,
         /**
          * another error occurred
          */
-        UNKNOWN,
+        UNKNOWN = 3,
     }
 
 
@@ -1747,19 +1747,19 @@ export class VariantType<S extends string = any> {
         /**
          * An error occurred.
          */
-        ERROR,
+        ERROR = 0,
         /**
          * Success.
          */
-        NORMAL,
+        NORMAL = 1,
         /**
          * End of file.
          */
-        EOF,
+        EOF = 2,
         /**
          * Resource temporarily unavailable.
          */
-        AGAIN,
+        AGAIN = 3,
     }
 
 
@@ -1821,11 +1821,11 @@ export class VariantType<S extends string = any> {
         /**
          * Log writer has handled the log entry.
          */
-        HANDLED,
+        HANDLED = 1,
         /**
          * Log writer could not handle the log entry.
          */
-        UNHANDLED,
+        UNHANDLED = 0,
     }
 
 
@@ -1901,20 +1901,20 @@ export class VariantType<S extends string = any> {
          * standardize differences that do not affect the
          *     text content, such as the above-mentioned accent representation
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * another name for {@link GLib.NormalizeMode.DEFAULT}
          */
-        NFD,
+        NFD = 0,
         /**
          * like {@link GLib.NormalizeMode.DEFAULT}, but with
          *     composed forms rather than a maximally decomposed form
          */
-        DEFAULT_COMPOSE,
+        DEFAULT_COMPOSE = 1,
         /**
          * another name for {@link GLib.NormalizeMode.DEFAULT_COMPOSE}
          */
-        NFC,
+        NFC = 1,
         /**
          * beyond {@link GLib.NormalizeMode.DEFAULT} also standardize the
          *     "compatibility" characters in Unicode, such as SUPERSCRIPT THREE
@@ -1922,20 +1922,20 @@ export class VariantType<S extends string = any> {
          *     information may be lost but for most text operations such
          *     characters should be considered the same
          */
-        ALL,
+        ALL = 2,
         /**
          * another name for {@link GLib.NormalizeMode.ALL}
          */
-        NFKD,
+        NFKD = 2,
         /**
          * like {@link GLib.NormalizeMode.ALL}, but with composed
          *     forms rather than a maximally decomposed form
          */
-        ALL_COMPOSE,
+        ALL_COMPOSE = 3,
         /**
          * another name for {@link GLib.NormalizeMode.ALL_COMPOSE}
          */
-        NFKC,
+        NFKC = 3,
     }
 
 
@@ -1972,15 +1972,15 @@ export class VariantType<S extends string = any> {
         /**
          * the function has not been called yet.
          */
-        NOTCALLED,
+        NOTCALLED = 0,
         /**
          * the function call is currently in progress.
          */
-        PROGRESS,
+        PROGRESS = 1,
         /**
          * the function has been called.
          */
-        READY,
+        READY = 2,
     }
 
 
@@ -1995,48 +1995,48 @@ export class VariantType<S extends string = any> {
         /**
          * No extra argument. This is useful for simple flags or booleans.
          */
-        NONE,
+        NONE = 0,
         /**
          * The option takes a UTF-8 string argument.
          */
-        STRING,
+        STRING = 1,
         /**
          * The option takes an integer argument.
          */
-        INT,
+        INT = 2,
         /**
          * The option provides a callback (of type {@link GLib.OptionArgFunc})
          *   to parse the extra argument.
          */
-        CALLBACK,
+        CALLBACK = 3,
         /**
          * The option takes a filename as argument, which will
          *      be in the GLib filename encoding rather than UTF-8.
          */
-        FILENAME,
+        FILENAME = 4,
         /**
          * The option takes a string argument, multiple
          *   uses of the option are collected into an array of strings.
          */
-        STRING_ARRAY,
+        STRING_ARRAY = 5,
         /**
          * The option takes a filename as argument,
          *   multiple uses of the option are collected into an array of strings.
          */
-        FILENAME_ARRAY,
+        FILENAME_ARRAY = 6,
         /**
          * The option takes a double argument. The argument
          *   can be formatted either for the user's locale or for the "C" locale.
          *   Since 2.12
          */
-        DOUBLE,
+        DOUBLE = 7,
         /**
          * The option takes a 64-bit integer. Like
          *   {@link GLib.OptionArg.INT} but for larger numbers. The number can be in
          *   decimal base, or in hexadecimal (when prefixed with `0x`, for
          *   example, `0xffffffff`). Since 2.12
          */
-        INT64,
+        INT64 = 8,
     }
 
 
@@ -2420,15 +2420,15 @@ export class VariantType<S extends string = any> {
         /**
          * the current position in the file.
          */
-        CUR,
+        CUR = 0,
         /**
          * the start of the file.
          */
-        SET,
+        SET = 1,
         /**
          * the end of the file.
          */
-        END,
+        END = 2,
     }
 
 
@@ -2464,12 +2464,12 @@ export class VariantType<S extends string = any> {
      * @gir-type Enum
      */
     enum SliceConfig {
-        ALWAYS_MALLOC,
-        BYPASS_MAGAZINES,
-        WORKING_SET_MSECS,
-        COLOR_INCREMENT,
-        CHUNK_SIZES,
-        CONTENTION_COUNTER,
+        ALWAYS_MALLOC = 1,
+        BYPASS_MAGAZINES = 2,
+        WORKING_SET_MSECS = 3,
+        COLOR_INCREMENT = 4,
+        CHUNK_SIZES = 5,
+        CONTENTION_COUNTER = 6,
     }
 
 
@@ -2617,11 +2617,11 @@ export class VariantType<S extends string = any> {
         /**
          * a file that was included in the distribution tarball
          */
-        DIST,
+        DIST = 0,
         /**
          * a file that was built on the compiling machine
          */
-        BUILT,
+        BUILT = 1,
     }
 
 
@@ -2629,18 +2629,18 @@ export class VariantType<S extends string = any> {
      * @gir-type Enum
      */
     enum TestLogType {
-        NONE,
-        ERROR,
-        START_BINARY,
-        LIST_CASE,
-        SKIP_CASE,
-        START_CASE,
-        STOP_CASE,
-        MIN_RESULT,
-        MAX_RESULT,
-        MESSAGE,
-        START_SUITE,
-        STOP_SUITE,
+        NONE = 0,
+        ERROR = 1,
+        START_BINARY = 2,
+        LIST_CASE = 3,
+        SKIP_CASE = 4,
+        START_CASE = 5,
+        STOP_CASE = 6,
+        MIN_RESULT = 7,
+        MAX_RESULT = 8,
+        MESSAGE = 9,
+        START_SUITE = 10,
+        STOP_SUITE = 11,
     }
 
 
@@ -2648,10 +2648,10 @@ export class VariantType<S extends string = any> {
      * @gir-type Enum
      */
     enum TestResult {
-        SUCCESS,
-        SKIPPED,
-        FAILURE,
-        INCOMPLETE,
+        SUCCESS = 0,
+        SKIPPED = 1,
+        FAILURE = 2,
+        INCOMPLETE = 3,
     }
 
 
@@ -2689,15 +2689,15 @@ export class VariantType<S extends string = any> {
         /**
          * the time is in local standard time
          */
-        STANDARD,
+        STANDARD = 0,
         /**
          * the time is in local daylight time
          */
-        DAYLIGHT,
+        DAYLIGHT = 1,
         /**
          * the time is in UTC
          */
-        UNIVERSAL,
+        UNIVERSAL = 2,
     }
 
 
@@ -2710,95 +2710,95 @@ export class VariantType<S extends string = any> {
         /**
          * the end of the file
          */
-        EOF,
+        EOF = 0,
         /**
          * a '(' character
          */
-        LEFT_PAREN,
+        LEFT_PAREN = 40,
         /**
          * a ')' character
          */
-        RIGHT_PAREN,
+        RIGHT_PAREN = 41,
         /**
          * a '{' character
          */
-        LEFT_CURLY,
+        LEFT_CURLY = 123,
         /**
          * a '}' character
          */
-        RIGHT_CURLY,
+        RIGHT_CURLY = 125,
         /**
          * a '[' character
          */
-        LEFT_BRACE,
+        LEFT_BRACE = 91,
         /**
          * a ']' character
          */
-        RIGHT_BRACE,
+        RIGHT_BRACE = 93,
         /**
          * a '=' character
          */
-        EQUAL_SIGN,
+        EQUAL_SIGN = 61,
         /**
          * a ',' character
          */
-        COMMA,
+        COMMA = 44,
         /**
          * not a token
          */
-        NONE,
+        NONE = 256,
         /**
          * an error occurred
          */
-        ERROR,
+        ERROR = 257,
         /**
          * a character
          */
-        CHAR,
+        CHAR = 258,
         /**
          * a binary integer
          */
-        BINARY,
+        BINARY = 259,
         /**
          * an octal integer
          */
-        OCTAL,
+        OCTAL = 260,
         /**
          * an integer
          */
-        INT,
+        INT = 261,
         /**
          * a hex integer
          */
-        HEX,
+        HEX = 262,
         /**
          * a floating point number
          */
-        FLOAT,
+        FLOAT = 263,
         /**
          * a string
          */
-        STRING,
+        STRING = 264,
         /**
          * a symbol
          */
-        SYMBOL,
+        SYMBOL = 265,
         /**
          * an identifier
          */
-        IDENTIFIER,
+        IDENTIFIER = 266,
         /**
          * a null identifier
          */
-        IDENTIFIER_NULL,
+        IDENTIFIER_NULL = 267,
         /**
          * one line comment
          */
-        COMMENT_SINGLE,
+        COMMENT_SINGLE = 268,
         /**
          * multi line comment
          */
-        COMMENT_MULTI,
+        COMMENT_MULTI = 269,
     }
 
 
@@ -2845,15 +2845,15 @@ export class VariantType<S extends string = any> {
          *              want the output sorted according to the compare
          *              function.
          */
-        IN_ORDER,
+        IN_ORDER = 0,
         /**
          * visits a node, then its children.
          */
-        PRE_ORDER,
+        PRE_ORDER = 1,
         /**
          * visits the node's children, then the node itself.
          */
-        POST_ORDER,
+        POST_ORDER = 2,
         /**
          * is not implemented for
          *              [balanced binary trees](https://docs.gtk.org/glib/data-structures.html#binary-trees).
@@ -2862,7 +2862,7 @@ export class VariantType<S extends string = any> {
          *              its grandchildren, and so on. Note that this is less
          *              efficient than the other orders.
          */
-        LEVEL_ORDER,
+        LEVEL_ORDER = 3,
     }
 
 
@@ -2886,199 +2886,199 @@ export class VariantType<S extends string = any> {
         /**
          * Mandatory Break (BK)
          */
-        MANDATORY,
+        MANDATORY = 0,
         /**
          * Carriage Return (CR)
          */
-        CARRIAGE_RETURN,
+        CARRIAGE_RETURN = 1,
         /**
          * Line Feed (LF)
          */
-        LINE_FEED,
+        LINE_FEED = 2,
         /**
          * Attached Characters and Combining Marks (CM)
          */
-        COMBINING_MARK,
+        COMBINING_MARK = 3,
         /**
          * Surrogates (SG)
          */
-        SURROGATE,
+        SURROGATE = 4,
         /**
          * Zero Width Space (ZW)
          */
-        ZERO_WIDTH_SPACE,
+        ZERO_WIDTH_SPACE = 5,
         /**
          * Inseparable (IN)
          */
-        INSEPARABLE,
+        INSEPARABLE = 6,
         /**
          * Non-breaking ("Glue") (GL)
          */
-        NON_BREAKING_GLUE,
+        NON_BREAKING_GLUE = 7,
         /**
          * Contingent Break Opportunity (CB)
          */
-        CONTINGENT,
+        CONTINGENT = 8,
         /**
          * Space (SP)
          */
-        SPACE,
+        SPACE = 9,
         /**
          * Break Opportunity After (BA)
          */
-        AFTER,
+        AFTER = 10,
         /**
          * Break Opportunity Before (BB)
          */
-        BEFORE,
+        BEFORE = 11,
         /**
          * Break Opportunity Before and After (B2)
          */
-        BEFORE_AND_AFTER,
+        BEFORE_AND_AFTER = 12,
         /**
          * Hyphen (HY)
          */
-        HYPHEN,
+        HYPHEN = 13,
         /**
          * Nonstarter (NS)
          */
-        NON_STARTER,
+        NON_STARTER = 14,
         /**
          * Opening Punctuation (OP)
          */
-        OPEN_PUNCTUATION,
+        OPEN_PUNCTUATION = 15,
         /**
          * Closing Punctuation (CL)
          */
-        CLOSE_PUNCTUATION,
+        CLOSE_PUNCTUATION = 16,
         /**
          * Ambiguous Quotation (QU)
          */
-        QUOTATION,
+        QUOTATION = 17,
         /**
          * Exclamation/Interrogation (EX)
          */
-        EXCLAMATION,
+        EXCLAMATION = 18,
         /**
          * Ideographic (ID)
          */
-        IDEOGRAPHIC,
+        IDEOGRAPHIC = 19,
         /**
          * Numeric (NU)
          */
-        NUMERIC,
+        NUMERIC = 20,
         /**
          * Infix Separator (Numeric) (IS)
          */
-        INFIX_SEPARATOR,
+        INFIX_SEPARATOR = 21,
         /**
          * Symbols Allowing Break After (SY)
          */
-        SYMBOL,
+        SYMBOL = 22,
         /**
          * Ordinary Alphabetic and Symbol Characters (AL)
          */
-        ALPHABETIC,
+        ALPHABETIC = 23,
         /**
          * Prefix (Numeric) (PR)
          */
-        PREFIX,
+        PREFIX = 24,
         /**
          * Postfix (Numeric) (PO)
          */
-        POSTFIX,
+        POSTFIX = 25,
         /**
          * Complex Content Dependent (South East Asian) (SA)
          */
-        COMPLEX_CONTEXT,
+        COMPLEX_CONTEXT = 26,
         /**
          * Ambiguous (Alphabetic or Ideographic) (AI)
          */
-        AMBIGUOUS,
+        AMBIGUOUS = 27,
         /**
          * Unknown (XX)
          */
-        UNKNOWN,
+        UNKNOWN = 28,
         /**
          * Next Line (NL)
          */
-        NEXT_LINE,
+        NEXT_LINE = 29,
         /**
          * Word Joiner (WJ)
          */
-        WORD_JOINER,
+        WORD_JOINER = 30,
         /**
          * Hangul L Jamo (JL)
          */
-        HANGUL_L_JAMO,
+        HANGUL_L_JAMO = 31,
         /**
          * Hangul V Jamo (JV)
          */
-        HANGUL_V_JAMO,
+        HANGUL_V_JAMO = 32,
         /**
          * Hangul T Jamo (JT)
          */
-        HANGUL_T_JAMO,
+        HANGUL_T_JAMO = 33,
         /**
          * Hangul LV Syllable (H2)
          */
-        HANGUL_LV_SYLLABLE,
+        HANGUL_LV_SYLLABLE = 34,
         /**
          * Hangul LVT Syllable (H3)
          */
-        HANGUL_LVT_SYLLABLE,
+        HANGUL_LVT_SYLLABLE = 35,
         /**
          * Closing Parenthesis (CP). Since 2.28. Deprecated: 2.70: Use {@link GLib.UnicodeBreakType.CLOSE_PARENTHESIS} instead.
          */
-        CLOSE_PARANTHESIS,
+        CLOSE_PARANTHESIS = 36,
         /**
          * Closing Parenthesis (CP). Since 2.70
          */
-        CLOSE_PARENTHESIS,
+        CLOSE_PARENTHESIS = 36,
         /**
          * Conditional Japanese Starter (CJ). Since: 2.32
          */
-        CONDITIONAL_JAPANESE_STARTER,
+        CONDITIONAL_JAPANESE_STARTER = 37,
         /**
          * Hebrew Letter (HL). Since: 2.32
          */
-        HEBREW_LETTER,
+        HEBREW_LETTER = 38,
         /**
          * Regional Indicator (RI). Since: 2.36
          */
-        REGIONAL_INDICATOR,
+        REGIONAL_INDICATOR = 39,
         /**
          * Emoji Base (EB). Since: 2.50
          */
-        EMOJI_BASE,
+        EMOJI_BASE = 40,
         /**
          * Emoji Modifier (EM). Since: 2.50
          */
-        EMOJI_MODIFIER,
+        EMOJI_MODIFIER = 41,
         /**
          * Zero Width Joiner (ZWJ). Since: 2.50
          */
-        ZERO_WIDTH_JOINER,
+        ZERO_WIDTH_JOINER = 42,
         /**
          * Aksara (AK). Since: 2.80
          */
-        AKSARA,
+        AKSARA = 43,
         /**
          * Aksara Pre-Base (AP). Since: 2.80
          */
-        AKSARA_PRE_BASE,
+        AKSARA_PRE_BASE = 44,
         /**
          * Aksara Start (AS). Since: 2.80
          */
-        AKSARA_START,
+        AKSARA_START = 45,
         /**
          * Virama Final (VF). Since: 2.80
          */
-        VIRAMA_FINAL,
+        VIRAMA_FINAL = 46,
         /**
          * Virama (VI). Since: 2.80
          */
-        VIRAMA,
+        VIRAMA = 47,
     }
 
 
@@ -3104,696 +3104,696 @@ export class VariantType<S extends string = any> {
         /**
          * a value never returned from `g_unichar_get_script()`
          */
-        INVALID_CODE,
+        INVALID_CODE = -1,
         /**
          * a character used by multiple different scripts
          */
-        COMMON,
+        COMMON = 0,
         /**
          * a mark glyph that takes its script from the
          *                               base glyph to which it is attached
          */
-        INHERITED,
+        INHERITED = 1,
         /**
          * Arabic
          */
-        ARABIC,
+        ARABIC = 2,
         /**
          * Armenian
          */
-        ARMENIAN,
+        ARMENIAN = 3,
         /**
          * Bengali
          */
-        BENGALI,
+        BENGALI = 4,
         /**
          * Bopomofo
          */
-        BOPOMOFO,
+        BOPOMOFO = 5,
         /**
          * Cherokee
          */
-        CHEROKEE,
+        CHEROKEE = 6,
         /**
          * Coptic
          */
-        COPTIC,
+        COPTIC = 7,
         /**
          * Cyrillic
          */
-        CYRILLIC,
+        CYRILLIC = 8,
         /**
          * Deseret
          */
-        DESERET,
+        DESERET = 9,
         /**
          * Devanagari
          */
-        DEVANAGARI,
+        DEVANAGARI = 10,
         /**
          * Ethiopic
          */
-        ETHIOPIC,
+        ETHIOPIC = 11,
         /**
          * Georgian
          */
-        GEORGIAN,
+        GEORGIAN = 12,
         /**
          * Gothic
          */
-        GOTHIC,
+        GOTHIC = 13,
         /**
          * Greek
          */
-        GREEK,
+        GREEK = 14,
         /**
          * Gujarati
          */
-        GUJARATI,
+        GUJARATI = 15,
         /**
          * Gurmukhi
          */
-        GURMUKHI,
+        GURMUKHI = 16,
         /**
          * Han
          */
-        HAN,
+        HAN = 17,
         /**
          * Hangul
          */
-        HANGUL,
+        HANGUL = 18,
         /**
          * Hebrew
          */
-        HEBREW,
+        HEBREW = 19,
         /**
          * Hiragana
          */
-        HIRAGANA,
+        HIRAGANA = 20,
         /**
          * Kannada
          */
-        KANNADA,
+        KANNADA = 21,
         /**
          * Katakana
          */
-        KATAKANA,
+        KATAKANA = 22,
         /**
          * Khmer
          */
-        KHMER,
+        KHMER = 23,
         /**
          * Lao
          */
-        LAO,
+        LAO = 24,
         /**
          * Latin
          */
-        LATIN,
+        LATIN = 25,
         /**
          * Malayalam
          */
-        MALAYALAM,
+        MALAYALAM = 26,
         /**
          * Mongolian
          */
-        MONGOLIAN,
+        MONGOLIAN = 27,
         /**
          * Myanmar
          */
-        MYANMAR,
+        MYANMAR = 28,
         /**
          * Ogham
          */
-        OGHAM,
+        OGHAM = 29,
         /**
          * Old Italic
          */
-        OLD_ITALIC,
+        OLD_ITALIC = 30,
         /**
          * Oriya
          */
-        ORIYA,
+        ORIYA = 31,
         /**
          * Runic
          */
-        RUNIC,
+        RUNIC = 32,
         /**
          * Sinhala
          */
-        SINHALA,
+        SINHALA = 33,
         /**
          * Syriac
          */
-        SYRIAC,
+        SYRIAC = 34,
         /**
          * Tamil
          */
-        TAMIL,
+        TAMIL = 35,
         /**
          * Telugu
          */
-        TELUGU,
+        TELUGU = 36,
         /**
          * Thaana
          */
-        THAANA,
+        THAANA = 37,
         /**
          * Thai
          */
-        THAI,
+        THAI = 38,
         /**
          * Tibetan
          */
-        TIBETAN,
+        TIBETAN = 39,
         /**
          * Canadian Aboriginal
          */
-        CANADIAN_ABORIGINAL,
+        CANADIAN_ABORIGINAL = 40,
         /**
          * Yi
          */
-        YI,
+        YI = 41,
         /**
          * Tagalog
          */
-        TAGALOG,
+        TAGALOG = 42,
         /**
          * Hanunoo
          */
-        HANUNOO,
+        HANUNOO = 43,
         /**
          * Buhid
          */
-        BUHID,
+        BUHID = 44,
         /**
          * Tagbanwa
          */
-        TAGBANWA,
+        TAGBANWA = 45,
         /**
          * Braille
          */
-        BRAILLE,
+        BRAILLE = 46,
         /**
          * Cypriot
          */
-        CYPRIOT,
+        CYPRIOT = 47,
         /**
          * Limbu
          */
-        LIMBU,
+        LIMBU = 48,
         /**
          * Osmanya
          */
-        OSMANYA,
+        OSMANYA = 49,
         /**
          * Shavian
          */
-        SHAVIAN,
+        SHAVIAN = 50,
         /**
          * Linear B
          */
-        LINEAR_B,
+        LINEAR_B = 51,
         /**
          * Tai Le
          */
-        TAI_LE,
+        TAI_LE = 52,
         /**
          * Ugaritic
          */
-        UGARITIC,
+        UGARITIC = 53,
         /**
          * New Tai Lue
          */
-        NEW_TAI_LUE,
+        NEW_TAI_LUE = 54,
         /**
          * Buginese
          */
-        BUGINESE,
+        BUGINESE = 55,
         /**
          * Glagolitic
          */
-        GLAGOLITIC,
+        GLAGOLITIC = 56,
         /**
          * Tifinagh
          */
-        TIFINAGH,
+        TIFINAGH = 57,
         /**
          * Syloti Nagri
          */
-        SYLOTI_NAGRI,
+        SYLOTI_NAGRI = 58,
         /**
          * Old Persian
          */
-        OLD_PERSIAN,
+        OLD_PERSIAN = 59,
         /**
          * Kharoshthi
          */
-        KHAROSHTHI,
+        KHAROSHTHI = 60,
         /**
          * an unassigned code point
          */
-        UNKNOWN,
+        UNKNOWN = 61,
         /**
          * Balinese
          */
-        BALINESE,
+        BALINESE = 62,
         /**
          * Cuneiform
          */
-        CUNEIFORM,
+        CUNEIFORM = 63,
         /**
          * Phoenician
          */
-        PHOENICIAN,
+        PHOENICIAN = 64,
         /**
          * Phags-pa
          */
-        PHAGS_PA,
+        PHAGS_PA = 65,
         /**
          * N'Ko
          */
-        NKO,
+        NKO = 66,
         /**
          * Kayah Li. Since 2.16.3
          */
-        KAYAH_LI,
+        KAYAH_LI = 67,
         /**
          * Lepcha. Since 2.16.3
          */
-        LEPCHA,
+        LEPCHA = 68,
         /**
          * Rejang. Since 2.16.3
          */
-        REJANG,
+        REJANG = 69,
         /**
          * Sundanese. Since 2.16.3
          */
-        SUNDANESE,
+        SUNDANESE = 70,
         /**
          * Saurashtra. Since 2.16.3
          */
-        SAURASHTRA,
+        SAURASHTRA = 71,
         /**
          * Cham. Since 2.16.3
          */
-        CHAM,
+        CHAM = 72,
         /**
          * Ol Chiki. Since 2.16.3
          */
-        OL_CHIKI,
+        OL_CHIKI = 73,
         /**
          * Vai. Since 2.16.3
          */
-        VAI,
+        VAI = 74,
         /**
          * Carian. Since 2.16.3
          */
-        CARIAN,
+        CARIAN = 75,
         /**
          * Lycian. Since 2.16.3
          */
-        LYCIAN,
+        LYCIAN = 76,
         /**
          * Lydian. Since 2.16.3
          */
-        LYDIAN,
+        LYDIAN = 77,
         /**
          * Avestan. Since 2.26
          */
-        AVESTAN,
+        AVESTAN = 78,
         /**
          * Bamum. Since 2.26
          */
-        BAMUM,
+        BAMUM = 79,
         /**
          * Egyptian Hieroglpyhs. Since 2.26
          */
-        EGYPTIAN_HIEROGLYPHS,
+        EGYPTIAN_HIEROGLYPHS = 80,
         /**
          * Imperial Aramaic. Since 2.26
          */
-        IMPERIAL_ARAMAIC,
+        IMPERIAL_ARAMAIC = 81,
         /**
          * Inscriptional Pahlavi. Since 2.26
          */
-        INSCRIPTIONAL_PAHLAVI,
+        INSCRIPTIONAL_PAHLAVI = 82,
         /**
          * Inscriptional Parthian. Since 2.26
          */
-        INSCRIPTIONAL_PARTHIAN,
+        INSCRIPTIONAL_PARTHIAN = 83,
         /**
          * Javanese. Since 2.26
          */
-        JAVANESE,
+        JAVANESE = 84,
         /**
          * Kaithi. Since 2.26
          */
-        KAITHI,
+        KAITHI = 85,
         /**
          * Lisu. Since 2.26
          */
-        LISU,
+        LISU = 86,
         /**
          * Meetei Mayek. Since 2.26
          */
-        MEETEI_MAYEK,
+        MEETEI_MAYEK = 87,
         /**
          * Old South Arabian. Since 2.26
          */
-        OLD_SOUTH_ARABIAN,
+        OLD_SOUTH_ARABIAN = 88,
         /**
          * Old Turkic. Since 2.28
          */
-        OLD_TURKIC,
+        OLD_TURKIC = 89,
         /**
          * Samaritan. Since 2.26
          */
-        SAMARITAN,
+        SAMARITAN = 90,
         /**
          * Tai Tham. Since 2.26
          */
-        TAI_THAM,
+        TAI_THAM = 91,
         /**
          * Tai Viet. Since 2.26
          */
-        TAI_VIET,
+        TAI_VIET = 92,
         /**
          * Batak. Since 2.28
          */
-        BATAK,
+        BATAK = 93,
         /**
          * Brahmi. Since 2.28
          */
-        BRAHMI,
+        BRAHMI = 94,
         /**
          * Mandaic. Since 2.28
          */
-        MANDAIC,
+        MANDAIC = 95,
         /**
          * Chakma. Since: 2.32
          */
-        CHAKMA,
+        CHAKMA = 96,
         /**
          * Meroitic Cursive. Since: 2.32
          */
-        MEROITIC_CURSIVE,
+        MEROITIC_CURSIVE = 97,
         /**
          * Meroitic Hieroglyphs. Since: 2.32
          */
-        MEROITIC_HIEROGLYPHS,
+        MEROITIC_HIEROGLYPHS = 98,
         /**
          * Miao. Since: 2.32
          */
-        MIAO,
+        MIAO = 99,
         /**
          * Sharada. Since: 2.32
          */
-        SHARADA,
+        SHARADA = 100,
         /**
          * Sora Sompeng. Since: 2.32
          */
-        SORA_SOMPENG,
+        SORA_SOMPENG = 101,
         /**
          * Takri. Since: 2.32
          */
-        TAKRI,
+        TAKRI = 102,
         /**
          * Bassa. Since: 2.42
          */
-        BASSA_VAH,
+        BASSA_VAH = 103,
         /**
          * Caucasian Albanian. Since: 2.42
          */
-        CAUCASIAN_ALBANIAN,
+        CAUCASIAN_ALBANIAN = 104,
         /**
          * Duployan. Since: 2.42
          */
-        DUPLOYAN,
+        DUPLOYAN = 105,
         /**
          * Elbasan. Since: 2.42
          */
-        ELBASAN,
+        ELBASAN = 106,
         /**
          * Grantha. Since: 2.42
          */
-        GRANTHA,
+        GRANTHA = 107,
         /**
          * Kjohki. Since: 2.42
          */
-        KHOJKI,
+        KHOJKI = 108,
         /**
          * Khudawadi, Sindhi. Since: 2.42
          */
-        KHUDAWADI,
+        KHUDAWADI = 109,
         /**
          * Linear A. Since: 2.42
          */
-        LINEAR_A,
+        LINEAR_A = 110,
         /**
          * Mahajani. Since: 2.42
          */
-        MAHAJANI,
+        MAHAJANI = 111,
         /**
          * Manichaean. Since: 2.42
          */
-        MANICHAEAN,
+        MANICHAEAN = 112,
         /**
          * Mende Kikakui. Since: 2.42
          */
-        MENDE_KIKAKUI,
+        MENDE_KIKAKUI = 113,
         /**
          * Modi. Since: 2.42
          */
-        MODI,
+        MODI = 114,
         /**
          * Mro. Since: 2.42
          */
-        MRO,
+        MRO = 115,
         /**
          * Nabataean. Since: 2.42
          */
-        NABATAEAN,
+        NABATAEAN = 116,
         /**
          * Old North Arabian. Since: 2.42
          */
-        OLD_NORTH_ARABIAN,
+        OLD_NORTH_ARABIAN = 117,
         /**
          * Old Permic. Since: 2.42
          */
-        OLD_PERMIC,
+        OLD_PERMIC = 118,
         /**
          * Pahawh Hmong. Since: 2.42
          */
-        PAHAWH_HMONG,
+        PAHAWH_HMONG = 119,
         /**
          * Palmyrene. Since: 2.42
          */
-        PALMYRENE,
+        PALMYRENE = 120,
         /**
          * Pau Cin Hau. Since: 2.42
          */
-        PAU_CIN_HAU,
+        PAU_CIN_HAU = 121,
         /**
          * Psalter Pahlavi. Since: 2.42
          */
-        PSALTER_PAHLAVI,
+        PSALTER_PAHLAVI = 122,
         /**
          * Siddham. Since: 2.42
          */
-        SIDDHAM,
+        SIDDHAM = 123,
         /**
          * Tirhuta. Since: 2.42
          */
-        TIRHUTA,
+        TIRHUTA = 124,
         /**
          * Warang Citi. Since: 2.42
          */
-        WARANG_CITI,
+        WARANG_CITI = 125,
         /**
          * Ahom. Since: 2.48
          */
-        AHOM,
+        AHOM = 126,
         /**
          * Anatolian Hieroglyphs. Since: 2.48
          */
-        ANATOLIAN_HIEROGLYPHS,
+        ANATOLIAN_HIEROGLYPHS = 127,
         /**
          * Hatran. Since: 2.48
          */
-        HATRAN,
+        HATRAN = 128,
         /**
          * Multani. Since: 2.48
          */
-        MULTANI,
+        MULTANI = 129,
         /**
          * Old Hungarian. Since: 2.48
          */
-        OLD_HUNGARIAN,
+        OLD_HUNGARIAN = 130,
         /**
          * Signwriting. Since: 2.48
          */
-        SIGNWRITING,
+        SIGNWRITING = 131,
         /**
          * Adlam. Since: 2.50
          */
-        ADLAM,
+        ADLAM = 132,
         /**
          * Bhaiksuki. Since: 2.50
          */
-        BHAIKSUKI,
+        BHAIKSUKI = 133,
         /**
          * Marchen. Since: 2.50
          */
-        MARCHEN,
+        MARCHEN = 134,
         /**
          * Newa. Since: 2.50
          */
-        NEWA,
+        NEWA = 135,
         /**
          * Osage. Since: 2.50
          */
-        OSAGE,
+        OSAGE = 136,
         /**
          * Tangut. Since: 2.50
          */
-        TANGUT,
+        TANGUT = 137,
         /**
          * Masaram Gondi. Since: 2.54
          */
-        MASARAM_GONDI,
+        MASARAM_GONDI = 138,
         /**
          * Nushu. Since: 2.54
          */
-        NUSHU,
+        NUSHU = 139,
         /**
          * Soyombo. Since: 2.54
          */
-        SOYOMBO,
+        SOYOMBO = 140,
         /**
          * Zanabazar Square. Since: 2.54
          */
-        ZANABAZAR_SQUARE,
+        ZANABAZAR_SQUARE = 141,
         /**
          * Dogra. Since: 2.58
          */
-        DOGRA,
+        DOGRA = 142,
         /**
          * Gunjala Gondi. Since: 2.58
          */
-        GUNJALA_GONDI,
+        GUNJALA_GONDI = 143,
         /**
          * Hanifi Rohingya. Since: 2.58
          */
-        HANIFI_ROHINGYA,
+        HANIFI_ROHINGYA = 144,
         /**
          * Makasar. Since: 2.58
          */
-        MAKASAR,
+        MAKASAR = 145,
         /**
          * Medefaidrin. Since: 2.58
          */
-        MEDEFAIDRIN,
+        MEDEFAIDRIN = 146,
         /**
          * Old Sogdian. Since: 2.58
          */
-        OLD_SOGDIAN,
+        OLD_SOGDIAN = 147,
         /**
          * Sogdian. Since: 2.58
          */
-        SOGDIAN,
+        SOGDIAN = 148,
         /**
          * Elym. Since: 2.62
          */
-        ELYMAIC,
+        ELYMAIC = 149,
         /**
          * Nand. Since: 2.62
          */
-        NANDINAGARI,
+        NANDINAGARI = 150,
         /**
          * Rohg. Since: 2.62
          */
-        NYIAKENG_PUACHUE_HMONG,
+        NYIAKENG_PUACHUE_HMONG = 151,
         /**
          * Wcho. Since: 2.62
          */
-        WANCHO,
+        WANCHO = 152,
         /**
          * Chorasmian. Since: 2.66
          */
-        CHORASMIAN,
+        CHORASMIAN = 153,
         /**
          * Dives Akuru. Since: 2.66
          */
-        DIVES_AKURU,
+        DIVES_AKURU = 154,
         /**
          * Khitan small script. Since: 2.66
          */
-        KHITAN_SMALL_SCRIPT,
+        KHITAN_SMALL_SCRIPT = 155,
         /**
          * Yezidi. Since: 2.66
          */
-        YEZIDI,
+        YEZIDI = 156,
         /**
          * Cypro-Minoan. Since: 2.72
          */
-        CYPRO_MINOAN,
+        CYPRO_MINOAN = 157,
         /**
          * Old Uyghur. Since: 2.72
          */
-        OLD_UYGHUR,
+        OLD_UYGHUR = 158,
         /**
          * Tangsa. Since: 2.72
          */
-        TANGSA,
+        TANGSA = 159,
         /**
          * Toto. Since: 2.72
          */
-        TOTO,
+        TOTO = 160,
         /**
          * Vithkuqi. Since: 2.72
          */
-        VITHKUQI,
+        VITHKUQI = 161,
         /**
          * Mathematical notation. Since: 2.72
          */
-        MATH,
+        MATH = 162,
         /**
          * Kawi. Since 2.74
          */
-        KAWI,
+        KAWI = 163,
         /**
          * Nag Mundari. Since 2.74
          */
-        NAG_MUNDARI,
+        NAG_MUNDARI = 164,
         /**
          * Todhri. Since: 2.84
          */
-        TODHRI,
+        TODHRI = 165,
         /**
          * Garay. Since: 2.84
          */
-        GARAY,
+        GARAY = 166,
         /**
          * Tulu-Tigalari. Since: 2.84
          */
-        TULU_TIGALARI,
+        TULU_TIGALARI = 167,
         /**
          * Sunuwar. Since: 2.84
          */
-        SUNUWAR,
+        SUNUWAR = 168,
         /**
          * Gurung Khema. Since: 2.84
          */
-        GURUNG_KHEMA,
+        GURUNG_KHEMA = 169,
         /**
          * Kirat Rai. Since: 2.84
          */
-        KIRAT_RAI,
+        KIRAT_RAI = 170,
         /**
          * Ol Onal. Since: 2.84
          */
-        OL_ONAL,
+        OL_ONAL = 171,
     }
 
 
@@ -3814,123 +3814,123 @@ export class VariantType<S extends string = any> {
         /**
          * General category "Other, Control" (Cc)
          */
-        CONTROL,
+        CONTROL = 0,
         /**
          * General category "Other, Format" (Cf)
          */
-        FORMAT,
+        FORMAT = 1,
         /**
          * General category "Other, Not Assigned" (Cn)
          */
-        UNASSIGNED,
+        UNASSIGNED = 2,
         /**
          * General category "Other, Private Use" (Co)
          */
-        PRIVATE_USE,
+        PRIVATE_USE = 3,
         /**
          * General category "Other, Surrogate" (Cs)
          */
-        SURROGATE,
+        SURROGATE = 4,
         /**
          * General category "Letter, Lowercase" (Ll)
          */
-        LOWERCASE_LETTER,
+        LOWERCASE_LETTER = 5,
         /**
          * General category "Letter, Modifier" (Lm)
          */
-        MODIFIER_LETTER,
+        MODIFIER_LETTER = 6,
         /**
          * General category "Letter, Other" (Lo)
          */
-        OTHER_LETTER,
+        OTHER_LETTER = 7,
         /**
          * General category "Letter, Titlecase" (Lt)
          */
-        TITLECASE_LETTER,
+        TITLECASE_LETTER = 8,
         /**
          * General category "Letter, Uppercase" (Lu)
          */
-        UPPERCASE_LETTER,
+        UPPERCASE_LETTER = 9,
         /**
          * General category "Mark, Spacing" (Mc)
          */
-        SPACING_MARK,
+        SPACING_MARK = 10,
         /**
          * General category "Mark, Enclosing" (Me)
          */
-        ENCLOSING_MARK,
+        ENCLOSING_MARK = 11,
         /**
          * General category "Mark, Nonspacing" (Mn)
          */
-        NON_SPACING_MARK,
+        NON_SPACING_MARK = 12,
         /**
          * General category "Number, Decimal Digit" (Nd)
          */
-        DECIMAL_NUMBER,
+        DECIMAL_NUMBER = 13,
         /**
          * General category "Number, Letter" (Nl)
          */
-        LETTER_NUMBER,
+        LETTER_NUMBER = 14,
         /**
          * General category "Number, Other" (No)
          */
-        OTHER_NUMBER,
+        OTHER_NUMBER = 15,
         /**
          * General category "Punctuation, Connector" (Pc)
          */
-        CONNECT_PUNCTUATION,
+        CONNECT_PUNCTUATION = 16,
         /**
          * General category "Punctuation, Dash" (Pd)
          */
-        DASH_PUNCTUATION,
+        DASH_PUNCTUATION = 17,
         /**
          * General category "Punctuation, Close" (Pe)
          */
-        CLOSE_PUNCTUATION,
+        CLOSE_PUNCTUATION = 18,
         /**
          * General category "Punctuation, Final quote" (Pf)
          */
-        FINAL_PUNCTUATION,
+        FINAL_PUNCTUATION = 19,
         /**
          * General category "Punctuation, Initial quote" (Pi)
          */
-        INITIAL_PUNCTUATION,
+        INITIAL_PUNCTUATION = 20,
         /**
          * General category "Punctuation, Other" (Po)
          */
-        OTHER_PUNCTUATION,
+        OTHER_PUNCTUATION = 21,
         /**
          * General category "Punctuation, Open" (Ps)
          */
-        OPEN_PUNCTUATION,
+        OPEN_PUNCTUATION = 22,
         /**
          * General category "Symbol, Currency" (Sc)
          */
-        CURRENCY_SYMBOL,
+        CURRENCY_SYMBOL = 23,
         /**
          * General category "Symbol, Modifier" (Sk)
          */
-        MODIFIER_SYMBOL,
+        MODIFIER_SYMBOL = 24,
         /**
          * General category "Symbol, Math" (Sm)
          */
-        MATH_SYMBOL,
+        MATH_SYMBOL = 25,
         /**
          * General category "Symbol, Other" (So)
          */
-        OTHER_SYMBOL,
+        OTHER_SYMBOL = 26,
         /**
          * General category "Separator, Line" (Zl)
          */
-        LINE_SEPARATOR,
+        LINE_SEPARATOR = 27,
         /**
          * General category "Separator, Paragraph" (Zp)
          */
-        PARAGRAPH_SEPARATOR,
+        PARAGRAPH_SEPARATOR = 28,
         /**
          * General category "Separator, Space" (Zs)
          */
-        SPACE_SEPARATOR,
+        SPACE_SEPARATOR = 29,
     }
 
 
@@ -3943,11 +3943,11 @@ export class VariantType<S extends string = any> {
         /**
          * The readable file descriptor 0
          */
-        READ,
+        READ = 0,
         /**
          * The writable file descriptor 1
          */
-        WRITE,
+        WRITE = 1,
     }
 
 
@@ -4030,39 +4030,39 @@ export class VariantType<S extends string = any> {
         /**
          * the user's Desktop directory
          */
-        DIRECTORY_DESKTOP,
+        DIRECTORY_DESKTOP = 0,
         /**
          * the user's Documents directory
          */
-        DIRECTORY_DOCUMENTS,
+        DIRECTORY_DOCUMENTS = 1,
         /**
          * the user's Downloads directory
          */
-        DIRECTORY_DOWNLOAD,
+        DIRECTORY_DOWNLOAD = 2,
         /**
          * the user's Music directory
          */
-        DIRECTORY_MUSIC,
+        DIRECTORY_MUSIC = 3,
         /**
          * the user's Pictures directory
          */
-        DIRECTORY_PICTURES,
+        DIRECTORY_PICTURES = 4,
         /**
          * the user's shared directory
          */
-        DIRECTORY_PUBLIC_SHARE,
+        DIRECTORY_PUBLIC_SHARE = 5,
         /**
          * the user's Templates directory
          */
-        DIRECTORY_TEMPLATES,
+        DIRECTORY_TEMPLATES = 6,
         /**
          * the user's Movies directory
          */
-        DIRECTORY_VIDEOS,
+        DIRECTORY_VIDEOS = 7,
         /**
          * the number of enum values
          */
-        N_DIRECTORIES,
+        N_DIRECTORIES = 8,
     }
 
 
@@ -4075,77 +4075,77 @@ export class VariantType<S extends string = any> {
         /**
          * The {@link GLib.Variant} is a boolean.
          */
-        BOOLEAN,
+        BOOLEAN = 98,
         /**
          * The {@link GLib.Variant} is a byte.
          */
-        BYTE,
+        BYTE = 121,
         /**
          * The {@link GLib.Variant} is a signed 16 bit integer.
          */
-        INT16,
+        INT16 = 110,
         /**
          * The {@link GLib.Variant} is an unsigned 16 bit integer.
          */
-        UINT16,
+        UINT16 = 113,
         /**
          * The {@link GLib.Variant} is a signed 32 bit integer.
          */
-        INT32,
+        INT32 = 105,
         /**
          * The {@link GLib.Variant} is an unsigned 32 bit integer.
          */
-        UINT32,
+        UINT32 = 117,
         /**
          * The {@link GLib.Variant} is a signed 64 bit integer.
          */
-        INT64,
+        INT64 = 120,
         /**
          * The {@link GLib.Variant} is an unsigned 64 bit integer.
          */
-        UINT64,
+        UINT64 = 116,
         /**
          * The {@link GLib.Variant} is a file handle index.
          */
-        HANDLE,
+        HANDLE = 104,
         /**
          * The {@link GLib.Variant} is a double precision floating
          *                          point value.
          */
-        DOUBLE,
+        DOUBLE = 100,
         /**
          * The {@link GLib.Variant} is a normal string.
          */
-        STRING,
+        STRING = 115,
         /**
          * The {@link GLib.Variant} is a D-Bus object path
          *                               string.
          */
-        OBJECT_PATH,
+        OBJECT_PATH = 111,
         /**
          * The {@link GLib.Variant} is a D-Bus signature string.
          */
-        SIGNATURE,
+        SIGNATURE = 103,
         /**
          * The {@link GLib.Variant} is a variant.
          */
-        VARIANT,
+        VARIANT = 118,
         /**
          * The {@link GLib.Variant} is a maybe-typed value.
          */
-        MAYBE,
+        MAYBE = 109,
         /**
          * The {@link GLib.Variant} is an array.
          */
-        ARRAY,
+        ARRAY = 97,
         /**
          * The {@link GLib.Variant} is a tuple.
          */
-        TUPLE,
+        TUPLE = 40,
         /**
          * The {@link GLib.Variant} is a dictionary entry.
          */
-        DICT_ENTRY,
+        DICT_ENTRY = 123,
     }
 
 
@@ -4259,29 +4259,37 @@ export class VariantType<S extends string = any> {
 
     /**
      * @deprecated since 2.10
+     * @default 1
      */
     const ALLOCATOR_LIST: number;
 
     /**
      * @deprecated since 2.10
+     * @default 3
      */
     const ALLOCATOR_NODE: number;
 
     /**
      * @deprecated since 2.10
+     * @default 2
      */
     const ALLOCATOR_SLIST: number;
 
     /**
      * @deprecated since 2.10
+     * @default 2
      */
     const ALLOC_AND_FREE: number;
 
     /**
      * @deprecated since 2.10
+     * @default 1
      */
     const ALLOC_ONLY: number;
 
+    /**
+     * @default 1
+     */
     const ANALYZER_ANALYZING: number;
 
     /**
@@ -4295,6 +4303,7 @@ export class VariantType<S extends string = any> {
      * 
      * fprintf (out, "value=%s\n", g_ascii_dtostr (buf, sizeof (buf), value));
      * ```
+     * @default 39
      */
     const ASCII_DTOSTR_BUF_SIZE: number;
 
@@ -4320,12 +4329,14 @@ export class VariantType<S extends string = any> {
      * ```
      * 
      * @since 2.78
+     * @default 1
      */
     const ATOMIC_REF_COUNT_INIT: number;
 
     /**
      * Specifies one of the possible types of byte order.
      * See `G_BYTE_ORDER`.
+     * @default 4321
      */
     const BIG_ENDIAN: number;
 
@@ -4333,6 +4344,7 @@ export class VariantType<S extends string = any> {
      * The set of uppercase ASCII alphabet characters.
      * Used for specifying valid identifier characters
      * in {@link GLib.ScannerConfig}.
+     * @default ABCDEFGHIJKLMNOPQRSTUVWXYZ
      */
     const CSET_A_2_Z: string;
 
@@ -4340,6 +4352,7 @@ export class VariantType<S extends string = any> {
      * The set of ASCII digits.
      * Used for specifying valid identifier characters
      * in {@link GLib.ScannerConfig}.
+     * @default 0123456789
      */
     const CSET_DIGITS: string;
 
@@ -4347,6 +4360,7 @@ export class VariantType<S extends string = any> {
      * The set of lowercase ASCII alphabet characters.
      * Used for specifying valid identifier characters
      * in {@link GLib.ScannerConfig}.
+     * @default abcdefghijklmnopqrstuvwxyz
      */
     const CSET_a_2_z: string;
 
@@ -4361,6 +4375,7 @@ export class VariantType<S extends string = any> {
      * 
      * See also: `G_C_STD_CHECK_VERSION` and `G_CXX_STD_VERSION`
      * @since 2.76
+     * @default 199000
      */
     const C_STD_VERSION: number;
 
@@ -4368,21 +4383,25 @@ export class VariantType<S extends string = any> {
      * A bitmask that restricts the possible flags passed to
      * `g_datalist_set_flags()`. Passing a flags value where
      * flags & ~G_DATALIST_FLAGS_MASK != 0 is an error.
+     * @default 3
      */
     const DATALIST_FLAGS_MASK: number;
 
     /**
      * Represents an invalid {@link GLib.DateDay}.
+     * @default 0
      */
     const DATE_BAD_DAY: number;
 
     /**
      * Represents an invalid Julian day number.
+     * @default 0
      */
     const DATE_BAD_JULIAN: number;
 
     /**
      * Represents an invalid year.
+     * @default 0
      */
     const DATE_BAD_YEAR: number;
 
@@ -4390,6 +4409,7 @@ export class VariantType<S extends string = any> {
      * The directory separator character.
      * 
      * This is `'/'` on UNIX machines and `'\'` under Windows.
+     * @default 47
      */
     const DIR_SEPARATOR: number;
 
@@ -4397,28 +4417,51 @@ export class VariantType<S extends string = any> {
      * The directory separator as a string.
      * 
      * This is `"/"` on UNIX machines and `"\"` under Windows.
+     * @default /
      */
     const DIR_SEPARATOR_S: string;
 
     /**
      * The base of natural logarithms.
+     * @default 2.718282
      */
     const E: number;
 
+    /**
+     * @default hi
+     */
     const GINT16_FORMAT: string;
 
+    /**
+     * @default h
+     */
     const GINT16_MODIFIER: string;
 
+    /**
+     * @default i
+     */
     const GINT32_FORMAT: string;
 
     const GINT32_MODIFIER: string;
 
+    /**
+     * @default li
+     */
     const GINT64_FORMAT: string;
 
+    /**
+     * @default l
+     */
     const GINT64_MODIFIER: string;
 
+    /**
+     * @default li
+     */
     const GINTPTR_FORMAT: string;
 
+    /**
+     * @default l
+     */
     const GINTPTR_MODIFIER: string;
 
     /**
@@ -4435,33 +4478,70 @@ export class VariantType<S extends string = any> {
      */
     const GNUC_PRETTY_FUNCTION: string;
 
+    /**
+     * @default lu
+     */
     const GSIZE_FORMAT: string;
 
+    /**
+     * @default l
+     */
     const GSIZE_MODIFIER: string;
 
+    /**
+     * @default li
+     */
     const GSSIZE_FORMAT: string;
 
+    /**
+     * @default l
+     */
     const GSSIZE_MODIFIER: string;
 
+    /**
+     * @default hu
+     */
     const GUINT16_FORMAT: string;
 
+    /**
+     * @default u
+     */
     const GUINT32_FORMAT: string;
 
+    /**
+     * @default lu
+     */
     const GUINT64_FORMAT: string;
 
+    /**
+     * @default lu
+     */
     const GUINTPTR_FORMAT: string;
 
+    /**
+     * @default 1
+     */
     const HAVE_GINT64: number;
 
+    /**
+     * @default 1
+     */
     const HAVE_GNUC_VARARGS: number;
 
     /**
      * Defined to 1 if gcc-style visibility handling is supported.
+     * @default 1
      */
     const HAVE_GNUC_VISIBILITY: number;
 
+    /**
+     * @default 0
+     */
     const HAVE_GROWING_STACK: number;
 
+    /**
+     * @default 1
+     */
     const HAVE_ISO_VARARGS: number;
 
     /**
@@ -4469,16 +4549,19 @@ export class VariantType<S extends string = any> {
      * use be the {@link GLib.Hook} implementation, i.e.
      * `1 << G_HOOK_FLAG_USER_SHIFT` is the first
      * bit which can be used for application-defined flags.
+     * @default 4
      */
     const HOOK_FLAG_USER_SHIFT: number;
 
     /**
      * The bias by which exponents in double-precision floats are offset.
+     * @default 1023
      */
     const IEEE754_DOUBLE_BIAS: number;
 
     /**
      * The bias by which exponents in single-precision floats are offset.
+     * @default 127
      */
     const IEEE754_FLOAT_BIAS: number;
 
@@ -4489,6 +4572,7 @@ export class VariantType<S extends string = any> {
      * Consult the specification for more
      * details about the meanings of the keys below.
      * @since 2.14
+     * @default Desktop Entry
      */
     const KEY_FILE_DESKTOP_GROUP: string;
 
@@ -4496,6 +4580,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a string list
      * giving the available application actions.
      * @since 2.38
+     * @default Actions
      */
     const KEY_FILE_DESKTOP_KEY_ACTIONS: string;
 
@@ -4504,6 +4589,7 @@ export class VariantType<S extends string = any> {
      * of strings giving the categories in which the desktop entry
      * should be shown in a menu.
      * @since 2.14
+     * @default Categories
      */
     const KEY_FILE_DESKTOP_KEY_CATEGORIES: string;
 
@@ -4511,6 +4597,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a localized
      * string giving the tooltip for the desktop entry.
      * @since 2.14
+     * @default Comment
      */
     const KEY_FILE_DESKTOP_KEY_COMMENT: string;
 
@@ -4518,6 +4605,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a boolean
      * set to true if the application is D-Bus activatable.
      * @since 2.38
+     * @default DBusActivatable
      */
     const KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE: string;
 
@@ -4527,6 +4615,7 @@ export class VariantType<S extends string = any> {
      * 
      * It is only valid for desktop entries with the `Application` type.
      * @since 2.14
+     * @default Exec
      */
     const KEY_FILE_DESKTOP_KEY_EXEC: string;
 
@@ -4534,6 +4623,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a localized
      * string giving the generic name of the desktop entry.
      * @since 2.14
+     * @default GenericName
      */
     const KEY_FILE_DESKTOP_KEY_GENERIC_NAME: string;
 
@@ -4541,6 +4631,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a boolean
      * stating whether the desktop entry has been deleted by the user.
      * @since 2.14
+     * @default Hidden
      */
     const KEY_FILE_DESKTOP_KEY_HIDDEN: string;
 
@@ -4549,6 +4640,7 @@ export class VariantType<S extends string = any> {
      * string giving the name of the icon to be displayed for the desktop
      * entry.
      * @since 2.14
+     * @default Icon
      */
     const KEY_FILE_DESKTOP_KEY_ICON: string;
 
@@ -4556,6 +4648,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a list
      * of strings giving the MIME types supported by this desktop entry.
      * @since 2.14
+     * @default MimeType
      */
     const KEY_FILE_DESKTOP_KEY_MIME_TYPE: string;
 
@@ -4563,6 +4656,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a localized
      * string giving the specific name of the desktop entry.
      * @since 2.14
+     * @default Name
      */
     const KEY_FILE_DESKTOP_KEY_NAME: string;
 
@@ -4571,6 +4665,7 @@ export class VariantType<S extends string = any> {
      * strings identifying the environments that should not display the
      * desktop entry.
      * @since 2.14
+     * @default NotShowIn
      */
     const KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN: string;
 
@@ -4578,6 +4673,7 @@ export class VariantType<S extends string = any> {
      * A key under {@link GLib.KEY_FILE_DESKTOP_GROUP}, whose value is a boolean
      * stating whether the desktop entry should be shown in menus.
      * @since 2.14
+     * @default NoDisplay
      */
     const KEY_FILE_DESKTOP_KEY_NO_DISPLAY: string;
 
@@ -4586,6 +4682,7 @@ export class VariantType<S extends string = any> {
      * strings identifying the environments that should display the
      * desktop entry.
      * @since 2.14
+     * @default OnlyShowIn
      */
     const KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN: string;
 
@@ -4595,6 +4692,7 @@ export class VariantType<S extends string = any> {
      * 
      * It is only valid for desktop entries with the `Application` type.
      * @since 2.14
+     * @default Path
      */
     const KEY_FILE_DESKTOP_KEY_PATH: string;
 
@@ -4603,6 +4701,7 @@ export class VariantType<S extends string = any> {
      * stating whether the application supports the
      * [Startup Notification Protocol Specification](https://specifications.freedesktop.org/startup-notification-spec/latest/).
      * @since 2.14
+     * @default StartupNotify
      */
     const KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY: string;
 
@@ -4613,6 +4712,7 @@ export class VariantType<S extends string = any> {
      * [Startup Notification](https://specifications.freedesktop.org/startup-notification-spec/latest/)
      * with older applications.
      * @since 2.14
+     * @default StartupWMClass
      */
     const KEY_FILE_DESKTOP_KEY_STARTUP_WM_CLASS: string;
 
@@ -4622,6 +4722,7 @@ export class VariantType<S extends string = any> {
      * 
      * It is only valid for desktop entries with the `Application` type.
      * @since 2.14
+     * @default Terminal
      */
     const KEY_FILE_DESKTOP_KEY_TERMINAL: string;
 
@@ -4632,6 +4733,7 @@ export class VariantType<S extends string = any> {
      * 
      * It is only valid for desktop entries with the `Application` type.
      * @since 2.14
+     * @default TryExec
      */
     const KEY_FILE_DESKTOP_KEY_TRY_EXEC: string;
 
@@ -4643,6 +4745,7 @@ export class VariantType<S extends string = any> {
      * {@link GLib.KEY_FILE_DESKTOP_TYPE_LINK}, or
      * {@link GLib.KEY_FILE_DESKTOP_TYPE_DIRECTORY}.
      * @since 2.14
+     * @default Type
      */
     const KEY_FILE_DESKTOP_KEY_TYPE: string;
 
@@ -4652,6 +4755,7 @@ export class VariantType<S extends string = any> {
      * 
      * It is only valid for desktop entries with the `Link` type.
      * @since 2.14
+     * @default URL
      */
     const KEY_FILE_DESKTOP_KEY_URL: string;
 
@@ -4660,6 +4764,7 @@ export class VariantType<S extends string = any> {
      * giving the version of the Desktop Entry Specification used for
      * the desktop entry file.
      * @since 2.14
+     * @default Version
      */
     const KEY_FILE_DESKTOP_KEY_VERSION: string;
 
@@ -4667,6 +4772,7 @@ export class VariantType<S extends string = any> {
      * The value of the {@link GLib.KEY_FILE_DESKTOP_KEY_TYPE}, key for desktop
      * entries representing applications.
      * @since 2.14
+     * @default Application
      */
     const KEY_FILE_DESKTOP_TYPE_APPLICATION: string;
 
@@ -4674,6 +4780,7 @@ export class VariantType<S extends string = any> {
      * The value of the {@link GLib.KEY_FILE_DESKTOP_KEY_TYPE}, key for desktop
      * entries representing directories.
      * @since 2.14
+     * @default Directory
      */
     const KEY_FILE_DESKTOP_TYPE_DIRECTORY: string;
 
@@ -4681,27 +4788,32 @@ export class VariantType<S extends string = any> {
      * The value of the {@link GLib.KEY_FILE_DESKTOP_KEY_TYPE}, key for desktop
      * entries representing links to documents.
      * @since 2.14
+     * @default Link
      */
     const KEY_FILE_DESKTOP_TYPE_LINK: string;
 
     /**
      * Specifies one of the possible types of byte order.
      * See `G_BYTE_ORDER`.
+     * @default 1234
      */
     const LITTLE_ENDIAN: number;
 
     /**
      * The natural logarithm of 10.
+     * @default 2.302585
      */
     const LN10: number;
 
     /**
      * The natural logarithm of 2.
+     * @default 0.693147
      */
     const LN2: number;
 
     /**
      * Multiplying the base 2 exponent by this number yields the base 10 exponent.
+     * @default 0.301030
      */
     const LOG_2_BASE_10: number;
 
@@ -4731,6 +4843,7 @@ export class VariantType<S extends string = any> {
      * Applications can choose to leave it as the default `null` (or `""`)
      * domain. However, defining the domain offers the same advantages as
      * above.
+     * @default 0
      */
     const LOG_DOMAIN: number;
 
@@ -4739,12 +4852,14 @@ export class VariantType<S extends string = any> {
      * 
      * This is not used if structured logging is enabled; see
      * [Using Structured Logging](https://docs.gtk.org/glib/logging.html#using-structured-logging).
+     * @default 5
      */
     const LOG_FATAL_MASK: number;
 
     /**
      * Log levels below `1<<G_LOG_LEVEL_USER_SHIFT` are used by GLib.
      * Higher bits can be used for user-defined log levels.
+     * @default 8
      */
     const LOG_LEVEL_USER_SHIFT: number;
 
@@ -4754,23 +4869,48 @@ export class VariantType<S extends string = any> {
      * Like `glib_major_version`, but from the headers used at
      * application compile time, rather than from the library
      * linked against at application run time.
+     * @default 2
      */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 32767
+     */
     const MAXINT16: number;
 
+    /**
+     * @default 2147483647
+     */
     const MAXINT32: number;
 
+    /**
+     * @default 9223372036854775807
+     */
     const MAXINT64: number;
 
+    /**
+     * @default 127
+     */
     const MAXINT8: number;
 
+    /**
+     * @default 65535
+     */
     const MAXUINT16: number;
 
+    /**
+     * @default 4294967295
+     */
     const MAXUINT32: number;
 
+    /**
+     * @default 18446744073709551615
+     */
     const MAXUINT64: number;
 
+    /**
+     * @default 255
+     */
     const MAXUINT8: number;
 
     /**
@@ -4779,29 +4919,34 @@ export class VariantType<S extends string = any> {
      * Like `gtk_micro_version`, but from the headers used at
      * application compile time, rather than from the library
      * linked against at application run time.
+     * @default 3
      */
     const MICRO_VERSION: number;
 
     /**
      * The minimum value which can be held in a `gint16`.
      * @since 2.4
+     * @default -32768
      */
     const MININT16: number;
 
     /**
      * The minimum value which can be held in a `gint32`.
      * @since 2.4
+     * @default -2147483648
      */
     const MININT32: number;
 
     /**
      * The minimum value which can be held in a `gint64`.
+     * @default -9223372036854775808
      */
     const MININT64: number;
 
     /**
      * The minimum value which can be held in a `gint8`.
      * @since 2.4
+     * @default -128
      */
     const MININT8: number;
 
@@ -4811,9 +4956,13 @@ export class VariantType<S extends string = any> {
      * Like `gtk_minor_version`, but from the headers used at
      * application compile time, rather than from the library
      * linked against at application run time.
+     * @default 86
      */
     const MINOR_VERSION: number;
 
+    /**
+     * @default so
+     */
     const MODULE_SUFFIX: string;
 
     /**
@@ -4834,11 +4983,13 @@ export class VariantType<S extends string = any> {
     /**
      * Specifies one of the possible types of byte order
      * (currently unused). See `G_BYTE_ORDER`.
+     * @default 3412
      */
     const PDP_ENDIAN: number;
 
     /**
      * The value of pi (ratio of circle's circumference to its diameter).
+     * @default 3.141593
      */
     const PI: number;
 
@@ -4846,22 +4997,26 @@ export class VariantType<S extends string = any> {
      * A format specifier that can be used in `printf()`-style format strings
      * when printing a {@link GLib.Pid}.
      * @since 2.50
+     * @default i
      */
     const PID_FORMAT: string;
 
     /**
      * Pi divided by 2.
+     * @default 1.570796
      */
     const PI_2: number;
 
     /**
      * Pi divided by 4.
+     * @default 0.785398
      */
     const PI_4: number;
 
     /**
      * A format specifier that can be used in `printf()`-style format strings
      * when printing the `fd` member of a {@link GLib.PollFD}.
+     * @default %d
      */
     const POLLFD_FORMAT: string;
 
@@ -4871,6 +5026,7 @@ export class VariantType<S extends string = any> {
      * In GLib this priority is used when adding timeout functions
      * with {@link GLib.timeout_add}. In GDK this priority is used for events
      * from the X server.
+     * @default 0
      */
     const PRIORITY_DEFAULT: number;
 
@@ -4879,6 +5035,7 @@ export class VariantType<S extends string = any> {
      * 
      * In GLib this priority is used when adding idle functions with
      * {@link GLib.idle_add}.
+     * @default 200
      */
     const PRIORITY_DEFAULT_IDLE: number;
 
@@ -4886,6 +5043,7 @@ export class VariantType<S extends string = any> {
      * Use this for high priority event sources.
      * 
      * It is not used within GLib or GTK.
+     * @default -100
      */
     const PRIORITY_HIGH: number;
 
@@ -4896,6 +5054,7 @@ export class VariantType<S extends string = any> {
      * and `G_PRIORITY_HIGH_IDLE` + 20 for redrawing operations. (This is
      * done to ensure that any pending resizes are processed before any
      * pending redraws, so that widgets are not redrawn twice unnecessarily.)
+     * @default 100
      */
     const PRIORITY_HIGH_IDLE: number;
 
@@ -4903,6 +5062,7 @@ export class VariantType<S extends string = any> {
      * Use this for very low priority background tasks.
      * 
      * It is not used within GLib or GTK.
+     * @default 300
      */
     const PRIORITY_LOW: number;
 
@@ -4928,33 +5088,49 @@ export class VariantType<S extends string = any> {
      * ```
      * 
      * @since 2.78
+     * @default -1
      */
     const REF_COUNT_INIT: number;
 
     /**
      * The search path separator character.
      * This is ':' on UNIX machines and ';' under Windows.
+     * @default 58
      */
     const SEARCHPATH_SEPARATOR: number;
 
     /**
      * The search path separator as a string.
      * This is ":" on UNIX machines and ";" under Windows.
+     * @default :
      */
     const SEARCHPATH_SEPARATOR_S: string;
 
+    /**
+     * @default 8
+     */
     const SIZEOF_LONG: number;
 
+    /**
+     * @default 8
+     */
     const SIZEOF_SIZE_T: number;
 
+    /**
+     * @default 8
+     */
     const SIZEOF_SSIZE_T: number;
 
+    /**
+     * @default 8
+     */
     const SIZEOF_VOID_P: number;
 
     /**
      * Use this macro as the return value of a {@link GLib.SourceFunc} to leave
      * the {@link GLib.Source} in the main loop.
      * @since 2.32
+     * @default true
      */
     const SOURCE_CONTINUE: boolean;
 
@@ -4962,29 +5138,50 @@ export class VariantType<S extends string = any> {
      * Use this macro as the return value of a {@link GLib.SourceFunc} to remove
      * the {@link GLib.Source} from the main loop.
      * @since 2.32
+     * @default false
      */
     const SOURCE_REMOVE: boolean;
 
     /**
      * The square root of two.
+     * @default 1.414214
      */
     const SQRT2: number;
 
     /**
      * The standard delimiters, used in {@link GLib.strdelimit}.
+     * @default _-|> <.
      */
     const STR_DELIMITERS: string;
 
+    /**
+     * @default 2
+     */
     const SYSDEF_AF_INET: number;
 
+    /**
+     * @default 10
+     */
     const SYSDEF_AF_INET6: number;
 
+    /**
+     * @default 1
+     */
     const SYSDEF_AF_UNIX: number;
 
+    /**
+     * @default 4
+     */
     const SYSDEF_MSG_DONTROUTE: number;
 
+    /**
+     * @default 1
+     */
     const SYSDEF_MSG_OOB: number;
 
+    /**
+     * @default 2
+     */
     const SYSDEF_MSG_PEEK: number;
 
     /**
@@ -5016,6 +5213,7 @@ export class VariantType<S extends string = any> {
      * calls to functions like {@link GLib.get_user_cache_dir}, the caller must
      * be prepared to create the directory if it doesn’t exist.
      * @since 2.60
+     * @default isolate_dirs
      */
     const TEST_OPTION_ISOLATE_DIRS: string;
 
@@ -5025,6 +5223,7 @@ export class VariantType<S extends string = any> {
      * If this option is given, assertions will not abort the process, but
      * call {@link GLib.test_fail}. Equivalent to {@link GLib.test_set_nonfatal_assertions}.
      * @since 2.84
+     * @default nonfatal-assertions
      */
     const TEST_OPTION_NONFATAL_ASSERTIONS: string;
 
@@ -5033,36 +5232,42 @@ export class VariantType<S extends string = any> {
      * 
      * If this option is given, {@link GLib.test_init} will not call {@link GLib.set_prgname}.
      * @since 2.84
+     * @default no_g_set_prgname
      */
     const TEST_OPTION_NO_PRGNAME: string;
 
     /**
      * Evaluates to a time span of one day.
      * @since 2.26
+     * @default 86400000000
      */
     const TIME_SPAN_DAY: number;
 
     /**
      * Evaluates to a time span of one hour.
      * @since 2.26
+     * @default 3600000000
      */
     const TIME_SPAN_HOUR: number;
 
     /**
      * Evaluates to a time span of one millisecond.
      * @since 2.26
+     * @default 1000
      */
     const TIME_SPAN_MILLISECOND: number;
 
     /**
      * Evaluates to a time span of one minute.
      * @since 2.26
+     * @default 60000000
      */
     const TIME_SPAN_MINUTE: number;
 
     /**
      * Evaluates to a time span of one second.
      * @since 2.26
+     * @default 1000000
      */
     const TIME_SPAN_SECOND: number;
 
@@ -5072,6 +5277,7 @@ export class VariantType<S extends string = any> {
      * 
      * This is as defined by Unicode 6.1.
      * @since 2.32
+     * @default 18
      */
     const UNICHAR_MAX_DECOMPOSITION_LENGTH: number;
 
@@ -5079,6 +5285,7 @@ export class VariantType<S extends string = any> {
      * Generic delimiters characters as defined in
      * [RFC 3986](https://tools.ietf.org/html/rfc3986). Includes `:/?#[]@`.
      * @since 2.16
+     * @default :/?#[]@
      */
     const URI_RESERVED_CHARS_GENERIC_DELIMITERS: string;
 
@@ -5086,15 +5293,20 @@ export class VariantType<S extends string = any> {
      * Subcomponent delimiter characters as defined in
      * [RFC 3986](https://tools.ietf.org/html/rfc3986). Includes `!$&'()*+,;=`.
      * @since 2.16
+     * @default !$&'()*+,;=
      */
     const URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS: string;
 
     /**
      * Number of microseconds in one second (1 million).
      * This macro is provided for code readability.
+     * @default 1000000
      */
     const USEC_PER_SEC: number;
 
+    /**
+     * @default 1
+     */
     const VA_COPY_AS_ARRAY: number;
 
     /**
@@ -5111,15 +5323,28 @@ export class VariantType<S extends string = any> {
      * `GLIB_VERSION_MIN_REQUIRED` or earlier will cause warnings (but
      * using functions deprecated in later releases will not).
      * @since 2.32
+     * @default 2
      */
     const VERSION_MIN_REQUIRED: number;
 
+    /**
+     * @default 19981206
+     */
     const WIN32_MSG_HANDLE: number;
 
+    /**
+     * @default 0
+     */
     const macro__has_attribute___noreturn__: number;
 
+    /**
+     * @default 0
+     */
     const macro__has_attribute_ifunc: number;
 
+    /**
+     * @default 0
+     */
     const macro__has_attribute_no_sanitize_address: number;
 
     /**
@@ -5305,6 +5530,7 @@ export class VariantType<S extends string = any> {
      * @param max an upper bound (inclusive)
      * @returns true if `str` was a number, false otherwise
      * @since 2.54
+     * @throws GLib.Error
      */
     function ascii_string_to_signed(str: string, base: number, min: bigint | number, max: bigint | number): [boolean, number];
 
@@ -5337,6 +5563,7 @@ export class VariantType<S extends string = any> {
      * @param max an upper bound (inclusive)
      * @returns true if `str` was a number, false otherwise
      * @since 2.54
+     * @throws GLib.Error
      */
     function ascii_string_to_unsigned(str: string, base: number, min: bigint | number, max: bigint | number): [boolean, number];
 
@@ -6684,6 +6911,7 @@ export class VariantType<S extends string = any> {
     /**
      * If `err` or `*err` is `null`, does nothing. Otherwise,
      * calls `g_error_free()` on `*err` and sets `*err` to `null`.
+     * @throws GLib.Error
      */
     function clear_error(): void;
 
@@ -6708,6 +6936,7 @@ export class VariantType<S extends string = any> {
      * @param fd A file descriptor
      * @returns `true` on success, `false` if there was an error.
      * @since 2.36
+     * @throws GLib.Error
      */
     function close(fd: number): boolean;
 
@@ -6831,6 +7060,7 @@ export class VariantType<S extends string = any> {
      * @param to_codeset name of character set into which to convert `str`
      * @param from_codeset character set of `str`.
      * @returns If the conversion was successful, a newly allocated buffer          containing the converted string, which must be freed with `g_free()`.          Otherwise `null` and `error` will be set.
+     * @throws GLib.Error
      */
     function convert(str: Uint8Array | string, to_codeset: string, from_codeset: string): [Uint8Array, number];
 
@@ -6859,6 +7089,7 @@ export class VariantType<S extends string = any> {
      * @param from_codeset character set of `str`.
      * @param fallback UTF-8 string to use in place of characters not                present in the target encoding. (The string must be                representable in the target encoding).                If `null`, characters not in the target encoding will                be represented as Unicode escapes \uxxxx or \Uxxxxyyyy.
      * @returns If the conversion was successful, a newly allocated buffer          containing the converted string, which must be freed with `g_free()`.          Otherwise `null` and `error` will be set.
+     * @throws GLib.Error
      */
     function convert_with_fallback(str: Uint8Array | string, to_codeset: string, from_codeset: string, fallback: string): [Uint8Array, number];
 
@@ -7200,6 +7431,7 @@ export class VariantType<S extends string = any> {
      * @param tmpl Template for directory name,   as in `g_mkdtemp()`, basename only, or `null` for a default template
      * @returns The actual name used. This string   should be freed with `g_free()` when not needed any longer and is   is in the GLib file name encoding. In case of errors, `null` is   returned and `error` will be set.
      * @since 2.30
+     * @throws GLib.Error
      */
     function dir_make_tmp(tmpl: string | null): string;
 
@@ -7436,6 +7668,7 @@ export class VariantType<S extends string = any> {
      * `contents` is set to `null` and `length` is set to zero.
      * @param filename name of a file to read contents from, in the GLib file name encoding
      * @returns `true` on success, `false` if an error occurred
+     * @throws GLib.Error
      */
     function file_get_contents(filename: string): [boolean, Uint8Array];
 
@@ -7458,6 +7691,7 @@ export class VariantType<S extends string = any> {
      * name encoding.
      * @param tmpl Template for file name, as in   `g_mkstemp()`, basename only, or `null` for a default template
      * @returns A file handle (as from `open()`) to the file opened for   reading and writing. The file is opened in binary mode on platforms   where there is a difference. The file handle should be closed with   `close()`. In case of errors, -1 is returned and `error` will be set.
+     * @throws GLib.Error
      */
     function file_open_tmp(tmpl: string | null): [number, string];
 
@@ -7490,6 +7724,7 @@ export class VariantType<S extends string = any> {
      * @param filename the symbolic link
      * @returns A newly-allocated string with   the contents of the symbolic link, or `null` if an error occurred.
      * @since 2.4
+     * @throws GLib.Error
      */
     function file_read_link(filename: string): string;
 
@@ -7502,6 +7737,7 @@ export class VariantType<S extends string = any> {
      * @param contents string to write to the file
      * @returns `true` on success, `false` if an error occurred
      * @since 2.8
+     * @throws GLib.Error
      */
     function file_set_contents(filename: string, contents: Uint8Array | string): boolean;
 
@@ -7566,6 +7802,7 @@ export class VariantType<S extends string = any> {
      * @param mode file mode, as passed to `open()`; typically this will be `0666`
      * @returns `true` on success, `false` if an error occurred
      * @since 2.66
+     * @throws GLib.Error
      */
     function file_set_contents_full(filename: string, contents: Uint8Array | string, flags: FileSetContentsFlags, mode: number): boolean;
 
@@ -7692,6 +7929,7 @@ export class VariantType<S extends string = any> {
      * but we don't support the entire standard.
      * @param uri a uri describing a filename (escaped, encoded in ASCII).
      * @returns a newly-allocated string holding               the resulting filename, or `null` on an error.
+     * @throws GLib.Error
      */
     function filename_from_uri(uri: string): [string, string];
 
@@ -7709,6 +7947,7 @@ export class VariantType<S extends string = any> {
      * @param utf8string a UTF-8 encoded string.
      * @param len the length of the string, or -1 if the string is                 nul-terminated.
      * @returns The converted string, or `null` on an error.
+     * @throws GLib.Error
      */
     function filename_from_utf8(utf8string: string, len: bigint | number): [string, number, number];
 
@@ -7718,6 +7957,7 @@ export class VariantType<S extends string = any> {
      * @param filename an absolute filename specified in the GLib file     name encoding, which is the on-disk file name bytes on Unix, and UTF-8     on Windows
      * @param hostname A UTF-8 encoded hostname, or `null` for none.
      * @returns a newly-allocated string holding the resulting               URI, or `null` on an error.
+     * @throws GLib.Error
      */
     function filename_to_uri(filename: string, hostname: string | null): string;
 
@@ -7737,6 +7977,7 @@ export class VariantType<S extends string = any> {
      * @param opsysstring a string in the encoding for filenames
      * @param len the length of the string, or -1 if the string is                 nul-terminated (Note that some encodings may allow nul                 bytes to occur inside strings. In that case, using -1                 for the `len` parameter is unsafe)
      * @returns The converted string, or `null` on an error.
+     * @throws GLib.Error
      */
     function filename_to_utf8(opsysstring: string, len: bigint | number): [string, number, number];
 
@@ -9078,6 +9319,7 @@ export class VariantType<S extends string = any> {
      * @param utf8string a UTF-8 encoded string
      * @param len the length of the string, or -1 if the string is                 nul-terminated.
      * @returns A newly-allocated buffer containing the converted string,          or `null` on an error, and error will be set.
+     * @throws GLib.Error
      */
     function locale_from_utf8(utf8string: string, len: bigint | number): [Uint8Array, number];
 
@@ -9095,6 +9337,7 @@ export class VariantType<S extends string = any> {
      * may contain embedded nul characters.
      * @param opsysstring a string in the                 encoding of the current locale. On Windows                 this means the system codepage.
      * @returns The converted string, or `null` on an error.
+     * @throws GLib.Error
      */
     function locale_to_utf8(opsysstring: Uint8Array | string): [string, number, number];
 
@@ -10661,6 +10904,7 @@ export class VariantType<S extends string = any> {
      * @param replacement the replacement string
      * @returns whether `replacement` is a valid replacement string
      * @since 2.14
+     * @throws GLib.Error
      */
     function regex_check_replacement(replacement: string): [boolean, boolean];
 
@@ -11057,6 +11301,7 @@ export class VariantType<S extends string = any> {
      * Free the returned vector with `g_strfreev()`.
      * @param command_line command line to parse
      * @returns `true` on success, `false` if error set
+     * @throws GLib.Error
      */
     function shell_parse_argv(command_line: string): [boolean, string[] | null];
 
@@ -11106,6 +11351,7 @@ export class VariantType<S extends string = any> {
      * preserve things literally.
      * @param quoted_string shell-quoted string
      * @returns an unquoted string
+     * @throws GLib.Error
      */
     function shell_unquote(quoted_string: string): string;
 
@@ -11328,6 +11574,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags from {@link GLib.SpawnFlags}
      * @param child_setup function to run     in the child just before `exec()`
      * @returns `true` on success, `false` if error is set
+     * @throws GLib.Error
      */
     function spawn_async(working_directory: string | null, argv: string[], envp: string[] | null, flags: SpawnFlags, child_setup: SpawnChildSetupFunc | null): [boolean, Pid | null];
 
@@ -11346,6 +11593,7 @@ export class VariantType<S extends string = any> {
      * @param stderr_fd file descriptor to use for child's stderr, or `-1`
      * @returns `true` on success, `false` if an error was set
      * @since 2.58
+     * @throws GLib.Error
      */
     function spawn_async_with_fds(working_directory: string | null, argv: string[], envp: string[] | null, flags: SpawnFlags, child_setup: SpawnChildSetupFunc | null, stdin_fd: number, stdout_fd: number, stderr_fd: number): [boolean, Pid | null];
 
@@ -11358,6 +11606,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags from {@link GLib.SpawnFlags}
      * @param child_setup function to run     in the child just before `exec()`
      * @returns `true` on success, `false` if an error was set
+     * @throws GLib.Error
      */
     function spawn_async_with_pipes(working_directory: string | null, argv: string[], envp: string[] | null, flags: SpawnFlags, child_setup: SpawnChildSetupFunc | null): [boolean, Pid | null, number, number, number];
 
@@ -11568,6 +11817,7 @@ export class VariantType<S extends string = any> {
      * @param target_fds array of FDs to remap    `source_fds` to in the child process
      * @returns `true` on success, `false` if an error was set
      * @since 2.68
+     * @throws GLib.Error
      */
     function spawn_async_with_pipes_and_fds(working_directory: string | null, argv: string[], envp: string[] | null, flags: SpawnFlags, child_setup: SpawnChildSetupFunc | null, stdin_fd: number, stdout_fd: number, stderr_fd: number, source_fds: number[] | null, target_fds: number[] | null): [boolean, Pid | null, number, number, number];
 
@@ -11584,6 +11834,7 @@ export class VariantType<S extends string = any> {
      * @returns `true` if child exited successfully, `false` otherwise (and     `error` will be set)
      * @since 2.34
      * @deprecated since 2.70: Use `g_spawn_check_wait_status()` instead, and check whether your code is conflating wait and exit statuses.
+     * @throws GLib.Error
      */
     function spawn_check_exit_status(wait_status: number): boolean;
 
@@ -11630,6 +11881,7 @@ export class VariantType<S extends string = any> {
      * @param wait_status A platform-specific wait status as returned from `g_spawn_sync()`
      * @returns `true` if child exited successfully, `false` otherwise (and   `error` will be set)
      * @since 2.70
+     * @throws GLib.Error
      */
     function spawn_check_wait_status(wait_status: number): boolean;
 
@@ -11655,6 +11907,7 @@ export class VariantType<S extends string = any> {
      * The same concerns on Windows apply as for `g_spawn_command_line_sync()`.
      * @param command_line a command line
      * @returns `true` on success, `false` if error is set
+     * @throws GLib.Error
      */
     function spawn_command_line_async(command_line: string): boolean;
 
@@ -11690,6 +11943,7 @@ export class VariantType<S extends string = any> {
      * "'c:\\program files\\app\\app.exe' 'e:\\folder\\argument.txt'".
      * @param command_line a command line
      * @returns `true` on success, `false` if an error was set
+     * @throws GLib.Error
      */
     function spawn_command_line_sync(command_line: string): [boolean, Uint8Array | null, Uint8Array | null, number];
 
@@ -11727,6 +11981,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags from {@link GLib.SpawnFlags}
      * @param child_setup function to run     in the child just before `exec()`
      * @returns `true` on success, `false` if an error was set
+     * @throws GLib.Error
      */
     function spawn_sync(working_directory: string | null, argv: string[], envp: string[] | null, flags: SpawnFlags, child_setup: SpawnChildSetupFunc | null): [boolean, Uint8Array | null, Uint8Array | null, number];
 
@@ -13380,6 +13635,7 @@ export class VariantType<S extends string = any> {
      * A nul character (U+0000) will be added to the result after the converted text.
      * @param str a UCS-4 encoded string
      * @returns a pointer to a newly allocated UTF-16 string.   This value must be freed with {@link GLib.free}.
+     * @throws GLib.Error
      */
     function ucs4_to_utf16(str: string): [number, number, number];
 
@@ -13390,6 +13646,7 @@ export class VariantType<S extends string = any> {
      * The result will be terminated with a nul byte.
      * @param str a UCS-4 encoded string
      * @returns a pointer to a newly allocated UTF-8 string.   This value must be freed with {@link GLib.free}. If an error occurs,   `items_read` will be set to the position of the first invalid input   character.
+     * @throws GLib.Error
      */
     function ucs4_to_utf8(str: string): [string, number, number];
 
@@ -13863,6 +14120,7 @@ export class VariantType<S extends string = any> {
      * @param user_name the username to get the passwd file entry for
      * @returns passwd entry, or `null` on error; free the returned    value with `g_free()`
      * @since 2.64
+     * @throws GLib.Error
      */
     function unix_get_passwd_entry(user_name: string): null;
 
@@ -13890,6 +14148,7 @@ export class VariantType<S extends string = any> {
      * @param flags Bitfield of file descriptor flags, as for `fcntl()`
      * @returns `true` on success, `false` if not (and errno will be set).
      * @since 2.30
+     * @throws GLib.Error
      */
     function unix_open_pipe(fds: number[], flags: number): boolean;
 
@@ -13901,6 +14160,7 @@ export class VariantType<S extends string = any> {
      * @param nonblock If `true`, set the descriptor to be non-blocking
      * @returns `true` if successful
      * @since 2.30
+     * @throws GLib.Error
      */
     function unix_set_fd_nonblocking(fd: number, nonblock: boolean): boolean;
 
@@ -14077,6 +14337,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags for parsing `uri_string`
      * @returns `true` if `uri_string` is a valid absolute URI, `false` on error.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_is_valid(uri_string: string, flags: UriFlags): boolean;
 
@@ -14151,6 +14412,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags describing how to parse `uri_string`
      * @returns a new {@link GLib.Uri}, or NULL on error.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_parse(uri_string: string, flags: UriFlags): Uri;
 
@@ -14185,6 +14447,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags to modify the way the parameters are handled.
      * @returns A hash table of attribute/value pairs, with both names and values     fully-decoded; or `null` on error.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_parse_params(params: string, length: bigint | number, separators: string, flags: UriParamsFlags): { [key: string]: string };
 
@@ -14236,6 +14499,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags describing how to parse `uri_ref`
      * @returns the resolved URI string, or NULL on error.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_resolve_relative(base_uri_string: string | null, uri_ref: string, flags: UriFlags): string;
 
@@ -14260,6 +14524,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags for parsing `uri_ref`
      * @returns `true` if `uri_ref` parsed successfully, `false`   on error.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_split(uri_ref: string, flags: UriFlags): [boolean, string, string, string, number, string, string, string];
 
@@ -14274,6 +14539,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags for parsing `uri_string`
      * @returns `true` if `uri_string` parsed successfully,   `false` on error.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_split_network(uri_string: string, flags: UriFlags): [boolean, string, string, number];
 
@@ -14293,6 +14559,7 @@ export class VariantType<S extends string = any> {
      * @param flags flags for parsing `uri_ref`
      * @returns `true` if `uri_ref` parsed successfully, `false`   on error.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_split_with_user(uri_ref: string, flags: UriFlags): [boolean, string, string, string, string, string, number, string, string, string];
 
@@ -14312,6 +14579,7 @@ export class VariantType<S extends string = any> {
      * @param illegal_characters a string of illegal characters   not to be allowed, or `null`.
      * @returns an unescaped version of `escaped_string`     or `null` on error (if decoding failed, using {@link GLib.UriError.FAILED} error     code). The returned {@link GLib.Bytes} should be unreffed when no longer needed.
      * @since 2.66
+     * @throws GLib.Error
      */
     function uri_unescape_bytes(escaped_string: string, length: bigint | number, illegal_characters: string | null): Bytes;
 
@@ -14366,6 +14634,7 @@ export class VariantType<S extends string = any> {
      * The result will be nul-terminated.
      * @param str a UTF-16 encoded string
      * @returns a pointer to a newly allocated UCS-4 string.   This value must be freed with {@link GLib.free}.
+     * @throws GLib.Error
      */
     function utf16_to_ucs4(str: number[]): [string, number, number];
 
@@ -14386,6 +14655,7 @@ export class VariantType<S extends string = any> {
      * unpaired surrogates or partial character sequences.
      * @param str a UTF-16 encoded string
      * @returns a pointer to a newly allocated UTF-8 string.   This value must be freed with {@link GLib.free}.
+     * @throws GLib.Error
      */
     function utf16_to_utf8(str: number[]): [string, number, number];
 
@@ -14739,6 +15009,7 @@ export class VariantType<S extends string = any> {
      * @param str a UTF-8 encoded string
      * @param len the maximum length of `str` to use, in bytes. If `len` is negative,   then the string is nul-terminated.
      * @returns a pointer to a newly allocated UCS-4 string.   This value must be freed with {@link GLib.free}.
+     * @throws GLib.Error
      */
     function utf8_to_ucs4(str: string, len: bigint | number): [string, number, number];
 
@@ -14762,6 +15033,7 @@ export class VariantType<S extends string = any> {
      * @param str a UTF-8 encoded string
      * @param len the maximum length (number of bytes) of `str` to use.   If `len` is negative, then the string is nul-terminated.
      * @returns a pointer to a newly allocated UTF-16 string.   This value must be freed with {@link GLib.free}.
+     * @throws GLib.Error
      */
     function utf8_to_utf16(str: string, len: bigint | number): [number, number, number];
 
@@ -14921,6 +15193,7 @@ export class VariantType<S extends string = any> {
      * @param limit a pointer to the end of `text`, or `null`
      * @param endptr a location to store the end pointer, or `null`
      * @returns a non-floating reference to a {@link GLib.Variant}, or `null`
+     * @throws GLib.Error
      */
     function variant_parse(type: VariantType | null, text: string, limit: string | null, endptr: string | null): Variant;
 
@@ -15447,17 +15720,17 @@ export class VariantType<S extends string = any> {
      * @gir-type Flags
      */
     enum AsciiType {
-        ALNUM,
-        ALPHA,
-        CNTRL,
-        DIGIT,
-        GRAPH,
-        LOWER,
-        PRINT,
-        PUNCT,
-        SPACE,
-        UPPER,
-        XDIGIT,
+        ALNUM = 1,
+        ALPHA = 2,
+        CNTRL = 4,
+        DIGIT = 8,
+        GRAPH = 16,
+        LOWER = 32,
+        PRINT = 64,
+        PUNCT = 128,
+        SPACE = 256,
+        UPPER = 512,
+        XDIGIT = 1024,
     }
 
 
@@ -15472,7 +15745,7 @@ export class VariantType<S extends string = any> {
          * No guarantees about file consistency or durability.
          *   The most dangerous setting, which is slightly faster than other settings.
          */
-        NONE,
+        NONE = 0,
         /**
          * Guarantee file consistency: after a crash,
          *   either the old version of the file or the new version of the file will be
@@ -15480,7 +15753,7 @@ export class VariantType<S extends string = any> {
          *   on the file and use of an atomic `rename()` of the new version of the file
          *   over the old.
          */
-        CONSISTENT,
+        CONSISTENT = 1,
         /**
          * Guarantee file durability: after a crash, the
          *   new version of the file will be available. On Unix systems this equates to
@@ -15488,14 +15761,14 @@ export class VariantType<S extends string = any> {
          *   the effects of {@link GLib.FileSetContentsFlags.CONSISTENT} plus an `fsync()` on the
          *   directory containing the file after calling `rename()`.
          */
-        DURABLE,
+        DURABLE = 2,
         /**
          * Only apply consistency and durability
          *   guarantees if the file already exists. This may speed up file operations
          *   if the file doesn’t currently exist, but may result in a corrupted version
          *   of the new file if the system crashes while writing it.
          */
-        ONLY_EXISTING,
+        ONLY_EXISTING = 4,
     }
 
 
@@ -15509,24 +15782,24 @@ export class VariantType<S extends string = any> {
          *     (not a directory). Note that this test will also return `true`
          *     if the tested file is a symlink to a regular file.
          */
-        IS_REGULAR,
+        IS_REGULAR = 1,
         /**
          * `true` if the file is a symlink.
          */
-        IS_SYMLINK,
+        IS_SYMLINK = 2,
         /**
          * `true` if the file is a directory.
          */
-        IS_DIR,
+        IS_DIR = 4,
         /**
          * `true` if the file is executable.
          */
-        IS_EXECUTABLE,
+        IS_EXECUTABLE = 8,
         /**
          * `true` if the file exists. It may or may not
          *     be a regular file.
          */
-        EXISTS,
+        EXISTS = 16,
     }
 
 
@@ -15538,36 +15811,36 @@ export class VariantType<S extends string = any> {
         /**
          * behave the same as `g_format_size()`
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * include the exact number of bytes as part
          *     of the returned string.  For example, "45.6 kB (45,612 bytes)".
          */
-        LONG_FORMAT,
+        LONG_FORMAT = 1,
         /**
          * use IEC (base 1024) units with "KiB"-style
          *     suffixes. IEC units should only be used for reporting things with
          *     a strong "power of 2" basis, like RAM sizes or RAID stripe sizes.
          *     Network and storage sizes should be reported in the normal SI units.
          */
-        IEC_UNITS,
+        IEC_UNITS = 2,
         /**
          * set the size as a quantity in bits, rather than
          *     bytes, and return units in bits. For example, ‘Mbit’ rather than ‘MB’.
          */
-        BITS,
+        BITS = 4,
         /**
          * return only value, without unit; this should
          *     not be used together with `G_FORMAT_SIZE_LONG_FORMAT`
          *     nor `G_FORMAT_SIZE_ONLY_UNIT`. Since: 2.74
          */
-        ONLY_VALUE,
+        ONLY_VALUE = 8,
         /**
          * return only unit, without value; this should
          *     not be used together with `G_FORMAT_SIZE_LONG_FORMAT`
          *     nor `G_FORMAT_SIZE_ONLY_VALUE`. Since: 2.74
          */
-        ONLY_UNIT,
+        ONLY_UNIT = 16,
     }
 
 
@@ -15579,16 +15852,16 @@ export class VariantType<S extends string = any> {
         /**
          * set if the hook has not been destroyed
          */
-        ACTIVE,
+        ACTIVE = 1,
         /**
          * set if the hook is currently being run
          */
-        IN_CALL,
+        IN_CALL = 2,
         /**
          * A mask covering all bits reserved for
          *   hook flags; see `G_HOOK_FLAG_USER_SHIFT`
          */
-        MASK,
+        MASK = 15,
     }
 
 
@@ -15608,28 +15881,28 @@ export class VariantType<S extends string = any> {
         /**
          * There is data to read.
          */
-        IN,
+        IN = 1,
         /**
          * Data can be written (without blocking).
          */
-        OUT,
+        OUT = 4,
         /**
          * There is urgent data to read.
          */
-        PRI,
+        PRI = 2,
         /**
          * Error condition.
          */
-        ERR,
+        ERR = 8,
         /**
          * Hung up (the connection has been broken, usually for
          *            pipes and sockets).
          */
-        HUP,
+        HUP = 16,
         /**
          * Invalid request. The file descriptor is not open.
          */
-        NVAL,
+        NVAL = 32,
     }
 
 
@@ -15643,54 +15916,54 @@ export class VariantType<S extends string = any> {
         /**
          * no special flags set. Since: 2.74
          */
-        NONE,
+        NONE = 0,
         /**
          * turns on append mode, corresponds to `O_APPEND`
          *     (see the documentation of the UNIX `open()` syscall)
          */
-        APPEND,
+        APPEND = 1,
         /**
          * turns on nonblocking mode, corresponds to
          *     `O_NONBLOCK`/`O_NDELAY` (see the documentation of the UNIX `open()`
          *     syscall)
          */
-        NONBLOCK,
+        NONBLOCK = 2,
         /**
          * indicates that the io channel is readable.
          *     This flag cannot be changed.
          */
-        IS_READABLE,
+        IS_READABLE = 4,
         /**
          * indicates that the io channel is writable.
          *     This flag cannot be changed.
          */
-        IS_WRITABLE,
+        IS_WRITABLE = 8,
         /**
          * a misspelled version of `G_IO_FLAG_IS_WRITABLE`
          *     that existed before the spelling was fixed in GLib 2.30. It is kept
          *     here for compatibility reasons. Deprecated since 2.30
          */
-        IS_WRITEABLE,
+        IS_WRITEABLE = 8,
         /**
          * indicates that the io channel is seekable,
          *     i.e. that `g_io_channel_seek_position()` can be used on it.
          *     This flag cannot be changed.
          */
-        IS_SEEKABLE,
+        IS_SEEKABLE = 16,
         /**
          * the mask that specifies all the valid flags.
          */
-        MASK,
+        MASK = 31,
         /**
          * the mask of the flags that are returned from
          *     `g_io_channel_get_flags()`
          */
-        GET_MASK,
+        GET_MASK = 31,
         /**
          * the mask of the flags that the user can modify
          *     with `g_io_channel_set_flags()`
          */
-        SET_MASK,
+        SET_MASK = 3,
     }
 
 
@@ -15702,21 +15975,21 @@ export class VariantType<S extends string = any> {
         /**
          * No flags, default behaviour
          */
-        NONE,
+        NONE = 0,
         /**
          * Use this flag if you plan to write the
          *   (possibly modified) contents of the key file back to a file;
          *   otherwise all comments will be lost when the key file is
          *   written back.
          */
-        KEEP_COMMENTS,
+        KEEP_COMMENTS = 1,
         /**
          * Use this flag if you plan to write the
          *   (possibly modified) contents of the key file back to a file;
          *   otherwise only the translations for the current language will be
          *   written back.
          */
-        KEEP_TRANSLATIONS,
+        KEEP_TRANSLATIONS = 2,
     }
 
 
@@ -15731,42 +16004,42 @@ export class VariantType<S extends string = any> {
         /**
          * internal flag
          */
-        FLAG_RECURSION,
+        FLAG_RECURSION = 1,
         /**
          * internal flag
          */
-        FLAG_FATAL,
+        FLAG_FATAL = 2,
         /**
          * log level for errors, see {@link GLib.error}.
          *   This level is also used for messages produced by {@link GLib.assert}.
          */
-        LEVEL_ERROR,
+        LEVEL_ERROR = 4,
         /**
          * log level for critical warning messages, see
          *   {@link GLib.critical}. This level is also used for messages produced by
          *   {@link GLib.return_if_fail} and {@link GLib.return_val_if_fail}.
          */
-        LEVEL_CRITICAL,
+        LEVEL_CRITICAL = 8,
         /**
          * log level for warnings, see {@link GLib.warning}
          */
-        LEVEL_WARNING,
+        LEVEL_WARNING = 16,
         /**
          * log level for messages, see {@link GLib.message}
          */
-        LEVEL_MESSAGE,
+        LEVEL_MESSAGE = 32,
         /**
          * log level for informational messages, see {@link GLib.info}
          */
-        LEVEL_INFO,
+        LEVEL_INFO = 64,
         /**
          * log level for debug messages, see {@link GLib.debug}
          */
-        LEVEL_DEBUG,
+        LEVEL_DEBUG = 128,
         /**
          * a mask including all log levels
          */
-        LEVEL_MASK,
+        LEVEL_MASK = -4,
     }
 
 
@@ -15780,14 +16053,14 @@ export class VariantType<S extends string = any> {
         /**
          * Default behaviour.
          */
-        NONE,
+        NONE = 0,
         /**
          * Assume that polling for events will
          * free the thread to process other jobs. That's useful if you're using
          * `g_main_context_{prepare,query,check,dispatch}` to integrate GMainContext in
          * other event loops.
          */
-        OWNERLESS_POLLING,
+        OWNERLESS_POLLING = 1,
     }
 
 
@@ -15805,20 +16078,20 @@ export class VariantType<S extends string = any> {
          * used to terminate the list of attributes
          *     to collect
          */
-        INVALID,
+        INVALID = 0,
         /**
          * collect the string pointer directly from
          *     the attribute_values[] array. Expects a parameter of type (const
          *     char **). If {@link GLib.MarkupCollectType.OPTIONAL} is specified and the
          *     attribute isn't present then the pointer will be set to `null`
          */
-        STRING,
+        STRING = 1,
         /**
          * as with {@link GLib.MarkupCollectType.STRING}, but
          *     expects a parameter of type (char **) and `g_strdup()`s the
          *     returned pointer. The pointer must be freed with `g_free()`
          */
-        STRDUP,
+        STRDUP = 2,
         /**
          * expects a parameter of type (`gboolean *`)
          *     and parses the attribute value as a boolean. Sets `false` if the
@@ -15826,20 +16099,20 @@ export class VariantType<S extends string = any> {
          *     (case-insensitive) "false", "f", "no", "n", "0" and "true", "t",
          *     "yes", "y", "1"
          */
-        BOOLEAN,
+        BOOLEAN = 3,
         /**
          * as with {@link GLib.MarkupCollectType.BOOLEAN}, but
          *     in the case of a missing attribute a value is set that compares
          *     equal to neither `false` nor `true` {@link GLib.MarkupCollectType.OPTIONAL} is
          *     implied
          */
-        TRISTATE,
+        TRISTATE = 4,
         /**
          * can be bitwise ORed with the other fields.
          *     If present, allows the attribute not to appear. A default value
          *     is set depending on what value type is used
          */
-        OPTIONAL,
+        OPTIONAL = 65536,
     }
 
 
@@ -15851,11 +16124,11 @@ export class VariantType<S extends string = any> {
         /**
          * No special behaviour. Since: 2.74
          */
-        DEFAULT_FLAGS,
+        DEFAULT_FLAGS = 0,
         /**
          * flag you should not use
          */
-        DO_NOT_USE_THIS_UNSUPPORTED_FLAG,
+        DO_NOT_USE_THIS_UNSUPPORTED_FLAG = 1,
         /**
          * When this flag is set, CDATA marked
          *     sections are not passed literally to the `passthrough` function of
@@ -15863,7 +16136,7 @@ export class VariantType<S extends string = any> {
          *     `<![CDATA[` and `]]>`) is
          *     passed to the `text` function. This flag was added in GLib 2.12
          */
-        TREAT_CDATA_AS_TEXT,
+        TREAT_CDATA_AS_TEXT = 2,
         /**
          * Normally errors caught by GMarkup
          *     itself have line/column information prefixed to them to let the
@@ -15871,14 +16144,14 @@ export class VariantType<S extends string = any> {
          *     location information is also prefixed to errors generated by the
          *     {@link GLib.MarkupParser} implementation functions
          */
-        PREFIX_ERROR_POSITION,
+        PREFIX_ERROR_POSITION = 4,
         /**
          * Ignore (don't report) qualified
          *     attributes and tags, along with their contents.  A qualified
          *     attribute or tag is one that contains ':' in its name (ie: is in
          *     another namespace).  Since: 2.40.
          */
-        IGNORE_QUALIFIED,
+        IGNORE_QUALIFIED = 8,
     }
 
 
@@ -15889,42 +16162,43 @@ export class VariantType<S extends string = any> {
     enum OptionFlags {
         /**
          * No flags.
+         * @since 2.42
          */
-        NONE,
+        NONE = 0,
         /**
          * The option doesn't appear in `--help` output.
          */
-        HIDDEN,
+        HIDDEN = 1,
         /**
          * The option appears in the main section of the
          *   `--help` output, even if it is defined in a group.
          */
-        IN_MAIN,
+        IN_MAIN = 2,
         /**
          * For options of the {@link GLib.OptionArg.NONE} kind, this
          *   flag indicates that the sense of the option is reversed. i.e. `false` will
          *   be stored into the argument rather than `true`.
          */
-        REVERSE,
+        REVERSE = 4,
         /**
          * For options of the {@link GLib.OptionArg.CALLBACK} kind,
          *   this flag indicates that the callback does not take any argument
          *   (like a {@link GLib.OptionArg.NONE} option). Since 2.8
          */
-        NO_ARG,
+        NO_ARG = 8,
         /**
          * For options of the {@link GLib.OptionArg.CALLBACK}
          *   kind, this flag indicates that the argument should be passed to the
          *   callback in the GLib filename encoding rather than UTF-8. Since 2.8
          */
-        FILENAME,
+        FILENAME = 16,
         /**
          * For options of the {@link GLib.OptionArg.CALLBACK}
          *   kind, this flag indicates that the argument supply is optional.
          *   If no argument is given then data of %GOptionParseFunc will be
          *   set to NULL. Since 2.8
          */
-        OPTIONAL_ARG,
+        OPTIONAL_ARG = 32,
         /**
          * This flag turns off the automatic conflict
          *   resolution which prefixes long option names with `groupname-` if
@@ -15933,15 +16207,16 @@ export class VariantType<S extends string = any> {
          *   It is not safe to use this option, unless all option groups are under
          *   your direct control. Since 2.8.
          */
-        NOALIAS,
+        NOALIAS = 64,
         /**
          * This flag marks the option as deprecated in the `--help`.
          * 
          * You should update the description of the option to describe what
          * the user should do in response to the deprecation, for instance:
          * remove the option, or replace it with another one.
+         * @since 2.84
          */
-        DEPRECATED,
+        DEPRECATED = 128,
     }
 
 
@@ -15954,13 +16229,13 @@ export class VariantType<S extends string = any> {
         /**
          * No special options set. Since: 2.74
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * Letters in the pattern match both upper- and
          *     lowercase letters. This option can be changed within a pattern
          *     by a "(?i)" option setting.
          */
-        CASELESS,
+        CASELESS = 1,
         /**
          * By default, GRegex treats the strings as consisting
          *     of a single line of characters (even if it actually contains
@@ -15974,13 +16249,13 @@ export class VariantType<S extends string = any> {
          *     and end. This can be changed within a pattern by a "(?m)" option
          *     setting.
          */
-        MULTILINE,
+        MULTILINE = 2,
         /**
          * A dot metacharacter (".") in the pattern matches all
          *     characters, including newlines. Without it, newlines are excluded.
          *     This option can be changed within a pattern by a ("?s") option setting.
          */
-        DOTALL,
+        DOTALL = 4,
         /**
          * Whitespace data characters in the pattern are
          *     totally ignored except when escaped or inside a character class.
@@ -15989,7 +16264,7 @@ export class VariantType<S extends string = any> {
          *     the next newline character, inclusive, are also ignored. This can
          *     be changed within a pattern by a "(?x)" option setting.
          */
-        EXTENDED,
+        EXTENDED = 8,
         /**
          * The pattern is forced to be "anchored", that is,
          *     it is constrained to match only at the first matching point in the
@@ -15997,7 +16272,7 @@ export class VariantType<S extends string = any> {
          *     appropriate constructs in the pattern itself such as the "^"
          *     metacharacter.
          */
-        ANCHORED,
+        ANCHORED = 16,
         /**
          * A dollar metacharacter ("$") in the pattern
          *     matches only at the end of the string. Without this option, a
@@ -16005,18 +16280,18 @@ export class VariantType<S extends string = any> {
          *     it is a newline (but not before any other newlines). This option
          *     is ignored if {@link GLib.RegexCompileFlags.MULTILINE} is set.
          */
-        DOLLAR_ENDONLY,
+        DOLLAR_ENDONLY = 32,
         /**
          * Inverts the "greediness" of the quantifiers so that
          *     they are not greedy by default, but become greedy if followed by "?".
          *     It can also be set by a "(?U)" option setting within the pattern.
          */
-        UNGREEDY,
+        UNGREEDY = 512,
         /**
          * Usually strings must be valid UTF-8 strings, using this
          *     flag they are considered as a raw sequence of bytes.
          */
-        RAW,
+        RAW = 2048,
         /**
          * Disables the use of numbered capturing
          *     parentheses in the pattern. Any opening parenthesis that is not
@@ -16024,7 +16299,7 @@ export class VariantType<S extends string = any> {
          *     parentheses can still be used for capturing (and they acquire numbers
          *     in the usual way).
          */
-        NO_AUTO_CAPTURE,
+        NO_AUTO_CAPTURE = 4096,
         /**
          * Since 2.74 and the port to pcre2, requests JIT
          *     compilation, which, if the just-in-time compiler is available, further
@@ -16034,55 +16309,55 @@ export class VariantType<S extends string = any> {
          *     compiled pattern is used for matching many times. Before 2.74 this
          *     option used the built-in non-JIT optimizations in pcre1.
          */
-        OPTIMIZE,
+        OPTIMIZE = 8192,
         /**
          * Limits an unanchored pattern to match before (or at) the
          *     first newline. Since: 2.34
          */
-        FIRSTLINE,
+        FIRSTLINE = 262144,
         /**
          * Names used to identify capturing subpatterns need not
          *     be unique. This can be helpful for certain types of pattern when it
          *     is known that only one instance of the named subpattern can ever be
          *     matched.
          */
-        DUPNAMES,
+        DUPNAMES = 524288,
         /**
          * Usually any newline character or character sequence is
          *     recognized. If this option is set, the only recognized newline character
          *     is '\r'.
          */
-        NEWLINE_CR,
+        NEWLINE_CR = 1048576,
         /**
          * Usually any newline character or character sequence is
          *     recognized. If this option is set, the only recognized newline character
          *     is '\n'.
          */
-        NEWLINE_LF,
+        NEWLINE_LF = 2097152,
         /**
          * Usually any newline character or character sequence is
          *     recognized. If this option is set, the only recognized newline character
          *     sequence is '\r\n'.
          */
-        NEWLINE_CRLF,
+        NEWLINE_CRLF = 3145728,
         /**
          * Usually any newline character or character sequence
          *     is recognized. If this option is set, the only recognized newline character
          *     sequences are '\r', '\n', and '\r\n'. Since: 2.34
          */
-        NEWLINE_ANYCRLF,
+        NEWLINE_ANYCRLF = 5242880,
         /**
          * Usually any newline character or character sequence
          *     is recognised. If this option is set, then "\R" only recognizes the newline
          *    characters '\r', '\n' and '\r\n'. Since: 2.34
          */
-        BSR_ANYCRLF,
+        BSR_ANYCRLF = 8388608,
         /**
          * Changes behaviour so that it is compatible with
          *     JavaScript rather than PCRE. Since GLib 2.74 this is no longer supported,
          *     as libpcre2 does not support it. Since: 2.34 Deprecated: 2.74
          */
-        JAVASCRIPT_COMPAT,
+        JAVASCRIPT_COMPAT = 33554432,
     }
 
 
@@ -16095,7 +16370,7 @@ export class VariantType<S extends string = any> {
         /**
          * No special options set. Since: 2.74
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * The pattern is forced to be "anchored", that is,
          *     it is constrained to match only at the first matching point in the
@@ -16103,7 +16378,7 @@ export class VariantType<S extends string = any> {
          *     appropriate constructs in the pattern itself such as the "^"
          *     metacharacter.
          */
-        ANCHORED,
+        ANCHORED = 16,
         /**
          * Specifies that first character of the string is
          *     not the beginning of a line, so the circumflex metacharacter should
@@ -16112,7 +16387,7 @@ export class VariantType<S extends string = any> {
          *     only the behaviour of the circumflex metacharacter, it does not
          *     affect "\A".
          */
-        NOTBOL,
+        NOTBOL = 128,
         /**
          * Specifies that the end of the subject string is
          *     not the end of a line, so the dollar metacharacter should not match
@@ -16121,7 +16396,7 @@ export class VariantType<S extends string = any> {
          *     dollar never to match. This option affects only the behaviour of
          *     the dollar metacharacter, it does not affect "\Z" or "\z".
          */
-        NOTEOL,
+        NOTEOL = 256,
         /**
          * An empty string is not considered to be a valid
          *     match if this option is set. If there are alternatives in the pattern,
@@ -16132,27 +16407,27 @@ export class VariantType<S extends string = any> {
          *     valid, so GRegex searches further into the string for occurrences
          *     of "a" or "b".
          */
-        NOTEMPTY,
+        NOTEMPTY = 1024,
         /**
          * Turns on the partial matching feature, for more
          *     documentation on partial matching see `g_match_info_is_partial_match()`.
          */
-        PARTIAL,
+        PARTIAL = 32768,
         /**
          * Overrides the newline definition set when
          *     creating a new {@link GLib.Regex}, setting the '\r' character as line terminator.
          */
-        NEWLINE_CR,
+        NEWLINE_CR = 1048576,
         /**
          * Overrides the newline definition set when
          *     creating a new {@link GLib.Regex}, setting the '\n' character as line terminator.
          */
-        NEWLINE_LF,
+        NEWLINE_LF = 2097152,
         /**
          * Overrides the newline definition set when
          *     creating a new {@link GLib.Regex}, setting the '\r\n' characters sequence as line terminator.
          */
-        NEWLINE_CRLF,
+        NEWLINE_CRLF = 3145728,
         /**
          * Overrides the newline definition set when
          *     creating a new {@link GLib.Regex}, any Unicode newline sequence
@@ -16161,19 +16436,19 @@ export class VariantType<S extends string = any> {
          *     U+0085 NEXT LINE (NEL), U+2028 LINE SEPARATOR and
          *     U+2029 PARAGRAPH SEPARATOR.
          */
-        NEWLINE_ANY,
+        NEWLINE_ANY = 4194304,
         /**
          * Overrides the newline definition set when
          *     creating a new {@link GLib.Regex}; any '\r', '\n', or '\r\n' character sequence
          *     is recognized as a newline. Since: 2.34
          */
-        NEWLINE_ANYCRLF,
+        NEWLINE_ANYCRLF = 5242880,
         /**
          * Overrides the newline definition for "\R" set when
          *     creating a new {@link GLib.Regex}; only '\r', '\n', or '\r\n' character sequences
          *     are recognized as a newline by "\R". Since: 2.34
          */
-        BSR_ANYCRLF,
+        BSR_ANYCRLF = 8388608,
         /**
          * Overrides the newline definition for "\R" set when
          *     creating a new {@link GLib.Regex}; any Unicode newline character or character sequence
@@ -16182,24 +16457,24 @@ export class VariantType<S extends string = any> {
          *     U+0085 NEXT LINE (NEL), U+2028 LINE SEPARATOR and
          *     U+2029 PARAGRAPH SEPARATOR. Since: 2.34
          */
-        BSR_ANY,
+        BSR_ANY = 16777216,
         /**
          * An alias for {@link GLib.RegexMatchFlags.PARTIAL}. Since: 2.34
          */
-        PARTIAL_SOFT,
+        PARTIAL_SOFT = 32768,
         /**
          * Turns on the partial matching feature. In contrast to
          *     to {@link GLib.RegexMatchFlags.PARTIAL_SOFT}, this stops matching as soon as a partial match
          *     is found, without continuing to search for a possible complete match. See
          *     `g_match_info_is_partial_match()` for more information. Since: 2.34
          */
-        PARTIAL_HARD,
+        PARTIAL_HARD = 134217728,
         /**
          * Like {@link GLib.RegexMatchFlags.NOTEMPTY}, but only applied to
          *     the start of the matched string. For anchored
          *     patterns this can only happen for pattern containing "\K". Since: 2.34
          */
-        NOTEMPTY_ATSTART,
+        NOTEMPTY_ATSTART = 268435456,
     }
 
 
@@ -16211,68 +16486,71 @@ export class VariantType<S extends string = any> {
         /**
          * no flags, default behaviour
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * the parent's open file descriptors will
          *     be inherited by the child; otherwise all descriptors except stdin,
          *     stdout and stderr will be closed before calling `exec()` in the child.
          */
-        LEAVE_DESCRIPTORS_OPEN,
+        LEAVE_DESCRIPTORS_OPEN = 1,
         /**
          * the child will not be automatically reaped;
          *     you must use `g_child_watch_add()` yourself (or call `waitpid()` or handle
          *     `SIGCHLD` yourself), or the child will become a zombie.
          */
-        DO_NOT_REAP_CHILD,
+        DO_NOT_REAP_CHILD = 2,
         /**
          * `argv[0]` need not be an absolute path, it will be
          *     looked for in the user's `PATH`.
          */
-        SEARCH_PATH,
+        SEARCH_PATH = 4,
         /**
          * the child's standard output will be discarded,
          *     instead of going to the same location as the parent's standard output.
          */
-        STDOUT_TO_DEV_NULL,
+        STDOUT_TO_DEV_NULL = 8,
         /**
          * the child's standard error will be discarded.
          */
-        STDERR_TO_DEV_NULL,
+        STDERR_TO_DEV_NULL = 16,
         /**
          * the child will inherit the parent's standard
          *     input (by default, the child's standard input is attached to `/dev/null`).
          */
-        CHILD_INHERITS_STDIN,
+        CHILD_INHERITS_STDIN = 32,
         /**
          * the first element of `argv` is the file to
          *     execute, while the remaining elements are the actual argument vector
          *     to pass to the file. Normally `g_spawn_async_with_pipes()` uses `argv[0]`
          *     as the file to execute, and passes all of `argv` to the child.
          */
-        FILE_AND_ARGV_ZERO,
+        FILE_AND_ARGV_ZERO = 64,
         /**
          * if `argv[0]` is not an absolute path,
          *     it will be looked for in the `PATH` from the passed child environment.
          *     Since: 2.34
          */
-        SEARCH_PATH_FROM_ENVP,
+        SEARCH_PATH_FROM_ENVP = 128,
         /**
          * create all pipes with the `O_CLOEXEC` flag set.
          *     Since: 2.40
          */
-        CLOEXEC_PIPES,
+        CLOEXEC_PIPES = 256,
         /**
          * The child will inherit the parent's standard output.
+         * @since 2.74
          */
-        CHILD_INHERITS_STDOUT,
+        CHILD_INHERITS_STDOUT = 512,
         /**
          * The child will inherit the parent's standard error.
+         * @since 2.74
          */
-        CHILD_INHERITS_STDERR,
+        CHILD_INHERITS_STDERR = 1024,
         /**
          * The child's standard input is attached to `/dev/null`.
+         * @since 2.74
          */
-        STDIN_FROM_DEV_NULL,
+        STDIN_FROM_DEV_NULL = 2048,
     }
 
 
@@ -16288,27 +16566,27 @@ export class VariantType<S extends string = any> {
         /**
          * Default behaviour. Since: 2.74
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * If this flag is given, the child
          *   process will inherit the parent's stdin. Otherwise, the child's
          *   stdin is redirected to `/dev/null`.
          */
-        INHERIT_STDIN,
+        INHERIT_STDIN = 1,
         /**
          * If this flag is given, the child
          *   process will inherit the parent's stdout. Otherwise, the child's
          *   stdout will not be visible, but it will be captured to allow
          *   later tests with {@link GLib.test_trap_assert_stdout}.
          */
-        INHERIT_STDOUT,
+        INHERIT_STDOUT = 2,
         /**
          * If this flag is given, the child
          *   process will inherit the parent's stderr. Otherwise, the child's
          *   stderr will not be visible, but it will be captured to allow
          *   later tests with {@link GLib.test_trap_assert_stderr}.
          */
-        INHERIT_STDERR,
+        INHERIT_STDERR = 4,
     }
 
 
@@ -16323,27 +16601,27 @@ export class VariantType<S extends string = any> {
         /**
          * Default behaviour. Since: 2.74
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * Redirect stdout of the test child to
          *     `/dev/null` so it cannot be observed on the console during test
          *     runs. The actual output is still captured though to allow later
          *     tests with `g_test_trap_assert_stdout()`.
          */
-        SILENCE_STDOUT,
+        SILENCE_STDOUT = 128,
         /**
          * Redirect stderr of the test child to
          *     `/dev/null` so it cannot be observed on the console during test
          *     runs. The actual output is still captured though to allow later
          *     tests with `g_test_trap_assert_stderr()`.
          */
-        SILENCE_STDERR,
+        SILENCE_STDERR = 256,
         /**
          * If this flag is given, stdin of the
          *     child process is shared with stdin of its parent process.
          *     It is redirected to `/dev/null` otherwise.
          */
-        INHERIT_STDIN,
+        INHERIT_STDIN = 512,
     }
 
 
@@ -16358,29 +16636,29 @@ export class VariantType<S extends string = any> {
          *                     been introduced in 2.6, for older version use
          *                     {@link GLib.TraverseFlags.LEAFS}.
          */
-        LEAVES,
+        LEAVES = 1,
         /**
          * only non-leaf nodes should be visited. This
          *                         name has been introduced in 2.6, for older
          *                         version use {@link GLib.TraverseFlags.NON_LEAFS}.
          */
-        NON_LEAVES,
+        NON_LEAVES = 2,
         /**
          * all nodes should be visited.
          */
-        ALL,
+        ALL = 3,
         /**
          * a mask of all traverse flags.
          */
-        MASK,
+        MASK = 3,
         /**
          * identical to {@link GLib.TraverseFlags.LEAVES}.
          */
-        LEAFS,
+        LEAFS = 1,
         /**
          * identical to {@link GLib.TraverseFlags.NON_LEAVES}.
          */
-        NON_LEAFS,
+        NON_LEAFS = 2,
     }
 
 
@@ -16398,7 +16676,7 @@ export class VariantType<S extends string = any> {
         /**
          * No flags set.
          */
-        NONE,
+        NONE = 0,
         /**
          * Parse the URI more relaxedly than the
          *     [RFC 3986](https://tools.ietf.org/html/rfc3986) grammar specifies,
@@ -16406,18 +16684,18 @@ export class VariantType<S extends string = any> {
          *     sources. This is also needed for some obscure URI schemes where `;`
          *     separates the host from the path. Don’t use this flag unless you need to.
          */
-        PARSE_RELAXED,
+        PARSE_RELAXED = 1,
         /**
          * The userinfo field may contain a password,
          *     which will be separated from the username by `:`.
          */
-        HAS_PASSWORD,
+        HAS_PASSWORD = 2,
         /**
          * The userinfo may contain additional
          *     authentication-related parameters, which will be separated from
          *     the username and/or password by `;`.
          */
-        HAS_AUTH_PARAMS,
+        HAS_AUTH_PARAMS = 4,
         /**
          * When parsing a URI, this indicates that `%`-encoded
          *     characters in the userinfo, path, query, and fragment fields
@@ -16426,34 +16704,34 @@ export class VariantType<S extends string = any> {
          *     that you have already `%`-encoded the components, and so {@link GLib.Uri}
          *     should not do any encoding itself.
          */
-        ENCODED,
+        ENCODED = 8,
         /**
          * The host component should not be assumed to be a
          *     DNS hostname or IP address (for example, for `smb` URIs with NetBIOS
          *     hostnames).
          */
-        NON_DNS,
+        NON_DNS = 16,
         /**
          * Same as {@link GLib.UriFlags.ENCODED}, for the query
          *     field only.
          */
-        ENCODED_QUERY,
+        ENCODED_QUERY = 32,
         /**
          * Same as {@link GLib.UriFlags.ENCODED}, for the path only.
          */
-        ENCODED_PATH,
+        ENCODED_PATH = 64,
         /**
          * Same as {@link GLib.UriFlags.ENCODED}, for the
          *     fragment only.
          */
-        ENCODED_FRAGMENT,
+        ENCODED_FRAGMENT = 128,
         /**
          * A scheme-based normalization will be applied.
          *     For example, when parsing an HTTP URI changing omitted path to `/` and
          *     omitted port to `80`; and when building a URI, changing empty path to `/`
          *     and default port `80`). This only supports a subset of known schemes. (Since: 2.68)
          */
-        SCHEME_NORMALIZE,
+        SCHEME_NORMALIZE = 256,
     }
 
 
@@ -16469,27 +16747,27 @@ export class VariantType<S extends string = any> {
         /**
          * No flags set.
          */
-        NONE,
+        NONE = 0,
         /**
          * Hide the userinfo.
          */
-        USERINFO,
+        USERINFO = 1,
         /**
          * Hide the password.
          */
-        PASSWORD,
+        PASSWORD = 2,
         /**
          * Hide the auth_params.
          */
-        AUTH_PARAMS,
+        AUTH_PARAMS = 4,
         /**
          * Hide the query.
          */
-        QUERY,
+        QUERY = 8,
         /**
          * Hide the fragment.
          */
-        FRAGMENT,
+        FRAGMENT = 16,
     }
 
 
@@ -16503,20 +16781,20 @@ export class VariantType<S extends string = any> {
         /**
          * No flags set.
          */
-        NONE,
+        NONE = 0,
         /**
          * Parameter names are case insensitive.
          */
-        CASE_INSENSITIVE,
+        CASE_INSENSITIVE = 1,
         /**
          * Replace `+` with space character. Only useful for
          *     URLs on the web, using the `https` or `http` schemas.
          */
-        WWW_FORM,
+        WWW_FORM = 2,
         /**
          * See {@link GLib.UriFlags.PARSE_RELAXED}.
          */
-        PARSE_RELAXED,
+        PARSE_RELAXED = 4,
     }
 
 
@@ -16528,6 +16806,9 @@ export class VariantType<S extends string = any> {
         static $gtype: GObject.GType<Allocator>;
 
         // Methods
+        /**
+         * @deprecated since 2.10
+         */
         free(): void;
     }
 
@@ -16556,6 +16837,7 @@ export class VariantType<S extends string = any> {
          * Creates a shallow copy of a {@link GLib.Array}. If the array elements consist of
          * pointers to data, the pointers are copied but the actual data is not.
          * @param array an array
+         * @since 2.62
          */
         static copy(array: never[]): null[];
 
@@ -16583,6 +16865,7 @@ export class VariantType<S extends string = any> {
          * Atomically increments the reference count of `array` by one.
          * This function is thread-safe and may be called from any thread.
          * @param array an array
+         * @since 2.22
          */
         static ref(array: never[]): null[];
 
@@ -16592,6 +16875,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.Array.free} with `free_segment` set to true. This function is
          * thread-safe and may be called from any thread.
          * @param array an array
+         * @since 2.22
          */
         static unref(array: never[]): void;
     }
@@ -16616,6 +16900,7 @@ export class VariantType<S extends string = any> {
          * Creates a new asynchronous queue and sets up a destroy notify
          * function that is used to free any remaining queue items when
          * the queue is destroyed after the final unref.
+         * @since 2.16
          */
         static new_full(): AsyncQueue;
 
@@ -16691,6 +16976,7 @@ export class VariantType<S extends string = any> {
          * pushes the new item ahead of the items already in the queue,
          * so that it will be the next one to be popped off the queue.
          * @param item data to push into the `queue`
+         * @since 2.46
          */
         push_front(item: never): void;
 
@@ -16702,6 +16988,7 @@ export class VariantType<S extends string = any> {
          * 
          * This function must be called while holding the `queue`'s lock.
          * @param item data to push into the `queue`
+         * @since 2.46
          */
         push_front_unlocked(item: never): void;
 
@@ -16718,6 +17005,7 @@ export class VariantType<S extends string = any> {
          * For an example of `func` see `g_async_queue_sort()`.
          * @param data the `data` to push into the `queue`
          * @param func the {@link GLib.CompareDataFunc} is used to sort `queue`
+         * @since 2.10
          */
         push_sorted(data: never, func: CompareDataFunc): void;
 
@@ -16739,6 +17027,7 @@ export class VariantType<S extends string = any> {
          * For an example of `func` see `g_async_queue_sort()`.
          * @param data the data to push into the `queue`
          * @param func the {@link GLib.CompareDataFunc} is used to sort `queue`
+         * @since 2.10
          */
         push_sorted_unlocked(data: never, func: CompareDataFunc): void;
 
@@ -16761,6 +17050,7 @@ export class VariantType<S extends string = any> {
 
         /**
          * Increases the reference count of the asynchronous `queue` by 1.
+         * @deprecated since 2.8: Reference counting is done atomically. so `g_async_queue_ref()` can be used regardless of the `queue`'s lock.
          */
         ref_unlocked(): void;
 
@@ -16768,6 +17058,7 @@ export class VariantType<S extends string = any> {
          * Remove an item from the queue.
          * @param item the data to remove from the `queue`
          * @returns `true` if the item was removed
+         * @since 2.46
          */
         remove(item: never): boolean;
 
@@ -16777,6 +17068,7 @@ export class VariantType<S extends string = any> {
          * This function must be called while holding the `queue`'s lock.
          * @param item the data to remove from the `queue`
          * @returns `true` if the item was removed
+         * @since 2.46
          */
         remove_unlocked(item: never): boolean;
 
@@ -16806,6 +17098,7 @@ export class VariantType<S extends string = any> {
          * ```
          * 
          * @param func the {@link GLib.CompareDataFunc} is used to sort `queue`
+         * @since 2.10
          */
         sort(func: CompareDataFunc): void;
 
@@ -16820,6 +17113,7 @@ export class VariantType<S extends string = any> {
          * 
          * This function must be called while holding the `queue`'s lock.
          * @param func the {@link GLib.CompareDataFunc} is used to sort `queue`
+         * @since 2.10
          */
         sort_unlocked(func: CompareDataFunc): void;
 
@@ -16833,6 +17127,7 @@ export class VariantType<S extends string = any> {
          * and `g_time_val_add()` can be used.
          * @param end_time a {@link GLib.TimeVal}, determining the final time
          * @returns data from the queue or `null`, when no   data is received before `end_time`.
+         * @deprecated use `g_async_queue_timeout_pop()`.
          */
         timed_pop(end_time: TimeVal): null;
 
@@ -16848,6 +17143,7 @@ export class VariantType<S extends string = any> {
          * This function must be called while holding the `queue`'s lock.
          * @param end_time a {@link GLib.TimeVal}, determining the final time
          * @returns data from the queue or `null`, when no   data is received before `end_time`.
+         * @deprecated use `g_async_queue_timeout_pop_unlocked()`.
          */
         timed_pop_unlocked(end_time: TimeVal): null;
 
@@ -16913,6 +17209,7 @@ export class VariantType<S extends string = any> {
          * and releases the lock. This function must be called while holding
          * the `queue`'s lock. If the reference count went to 0, the `queue`
          * will be destroyed and the memory allocated will be freed.
+         * @deprecated since 2.8: Reference counting is done atomically. so `g_async_queue_unref()` can be used regardless of the `queue`'s lock.
          */
         unref_and_unlock(): void;
     }
@@ -16997,6 +17294,7 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param name the name of the application registering the bookmark   or `null`
          * @param exec command line to be used to launch the bookmark or `null`
+         * @since 2.12
          */
         add_application(uri: string, name: string | null, exec: string | null): void;
 
@@ -17007,17 +17305,20 @@ export class VariantType<S extends string = any> {
          * If no bookmark for `uri` is found then it is created.
          * @param uri a valid URI
          * @param group the group name to be added
+         * @since 2.12
          */
         add_group(uri: string, group: string): void;
 
         /**
          * Deeply copies a `bookmark` {@link GLib.BookmarkFile} object to a new one.
          * @returns the copy of `bookmark`. Use   `g_bookmark_free()` when finished using it.
+         * @since 2.76
          */
         copy(): BookmarkFile;
 
         /**
          * Frees a {@link GLib.BookmarkFile}.
+         * @since 2.12
          */
         free(): void;
 
@@ -17028,6 +17329,9 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a timestamp
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_get_added_date_time()` instead, as    `time_t` is deprecated due to the year 2038 problem.
+         * @throws GLib.Error
          */
         get_added(uri: string): number;
 
@@ -17038,6 +17342,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a {@link GLib.DateTime}
+         * @since 2.66
+         * @throws GLib.Error
          */
         get_added_date_time(uri: string): DateTime;
 
@@ -17058,6 +17364,9 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param name an application's name
          * @returns `true` on success.
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_get_application_info()` instead, as    `time_t` is deprecated due to the year 2038 problem.
+         * @throws GLib.Error
          */
         get_app_info(uri: string, name: string): [boolean, string, number, number];
 
@@ -17078,6 +17387,8 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param name an application's name
          * @returns `true` on success.
+         * @since 2.66
+         * @throws GLib.Error
          */
         get_application_info(uri: string, name: string): [boolean, string, number, DateTime | null];
 
@@ -17089,6 +17400,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a newly allocated `null`-terminated array of strings.   Use `g_strfreev()` to free it.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_applications(uri: string): string[];
 
@@ -17099,6 +17412,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a newly allocated string or `null` if the specified   URI cannot be found.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_description(uri: string): string;
 
@@ -17112,6 +17427,8 @@ export class VariantType<S extends string = any> {
          * be `null`.
          * @param uri a valid URI
          * @returns a newly allocated `null`-terminated array of group names.   Use `g_strfreev()` to free it.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_groups(uri: string): string[];
 
@@ -17122,6 +17439,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns `true` if the icon for the bookmark for the URI was found.   You should free the returned strings.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_icon(uri: string): [boolean, string, string];
 
@@ -17134,6 +17453,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.INVALID_VALUE}.
          * @param uri a valid URI
          * @returns `true` if the private flag is set, `false` otherwise.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_is_private(uri: string): boolean;
 
@@ -17146,6 +17467,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.INVALID_VALUE}.
          * @param uri a valid URI
          * @returns a newly allocated string or `null` if the specified   URI cannot be found.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_mime_type(uri: string): string;
 
@@ -17156,6 +17479,9 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a timestamp
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_get_modified_date_time()` instead, as    `time_t` is deprecated due to the year 2038 problem.
+         * @throws GLib.Error
          */
         get_modified(uri: string): number;
 
@@ -17166,12 +17492,15 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a {@link GLib.DateTime}
+         * @since 2.66
+         * @throws GLib.Error
          */
         get_modified_date_time(uri: string): DateTime;
 
         /**
          * Gets the number of bookmarks inside `bookmark`.
          * @returns the number of bookmarks
+         * @since 2.12
          */
         get_size(): number;
 
@@ -17184,6 +17513,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI or `null`
          * @returns a newly allocated string or `null` if the specified   URI cannot be found.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_title(uri: string | null): string;
 
@@ -17192,6 +17523,7 @@ export class VariantType<S extends string = any> {
          * The array of returned URIs will be `null`-terminated, so `length` may
          * optionally be `null`.
          * @returns a newly allocated `null`-terminated array of strings.   Use `g_strfreev()` to free it.
+         * @since 2.12
          */
         get_uris(): string[];
 
@@ -17202,6 +17534,9 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a timestamp.
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_get_visited_date_time()` instead, as    `time_t` is deprecated due to the year 2038 problem.
+         * @throws GLib.Error
          */
         get_visited(uri: string): number;
 
@@ -17212,6 +17547,8 @@ export class VariantType<S extends string = any> {
          * `error` is set to {@link GLib.BookmarkFileError.URI_NOT_FOUND}.
          * @param uri a valid URI
          * @returns a {@link GLib.DateTime}
+         * @since 2.66
+         * @throws GLib.Error
          */
         get_visited_date_time(uri: string): DateTime;
 
@@ -17224,6 +17561,8 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param name the name of the application
          * @returns `true` if the application `name` was found
+         * @since 2.12
+         * @throws GLib.Error
          */
         has_application(uri: string, name: string): boolean;
 
@@ -17236,6 +17575,8 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param group the group name to be searched
          * @returns `true` if `group` was found.
+         * @since 2.12
+         * @throws GLib.Error
          */
         has_group(uri: string, group: string): boolean;
 
@@ -17243,6 +17584,7 @@ export class VariantType<S extends string = any> {
          * Looks whether the desktop bookmark has an item with its URI set to `uri`.
          * @param uri a valid URI
          * @returns `true` if `uri` is inside `bookmark`, `false` otherwise
+         * @since 2.12
          */
         has_item(uri: string): boolean;
 
@@ -17252,6 +17594,8 @@ export class VariantType<S extends string = any> {
          * {@link GLib.BookmarkFileError}.
          * @param data desktop bookmarks    loaded in memory
          * @returns `true` if a desktop bookmark could be loaded.
+         * @since 2.12
+         * @throws GLib.Error
          */
         load_from_data(data: Uint8Array | string): boolean;
 
@@ -17263,6 +17607,8 @@ export class VariantType<S extends string = any> {
          * set to either a {@link GLib.FileError} or {@link GLib.BookmarkFileError}.
          * @param file a relative path to a filename to open and parse
          * @returns `true` if a key file could be loaded, `false` otherwise
+         * @since 2.12
+         * @throws GLib.Error
          */
         load_from_data_dirs(file: string): [boolean, string];
 
@@ -17272,6 +17618,8 @@ export class VariantType<S extends string = any> {
          * or {@link GLib.BookmarkFileError}.
          * @param filename the path of a filename to load, in the     GLib file name encoding
          * @returns `true` if a desktop bookmark file could be loaded
+         * @since 2.12
+         * @throws GLib.Error
          */
         load_from_file(filename: string): boolean;
 
@@ -17285,6 +17633,8 @@ export class VariantType<S extends string = any> {
          * @param old_uri a valid URI
          * @param new_uri a valid URI, or `null`
          * @returns `true` if the URI was successfully changed
+         * @since 2.12
+         * @throws GLib.Error
          */
         move_item(old_uri: string, new_uri: string | null): boolean;
 
@@ -17300,6 +17650,8 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param name the name of the application
          * @returns `true` if the application was successfully removed.
+         * @since 2.12
+         * @throws GLib.Error
          */
         remove_application(uri: string, name: string): boolean;
 
@@ -17314,6 +17666,8 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param group the group name to be removed
          * @returns `true` if `group` was successfully removed.
+         * @since 2.12
+         * @throws GLib.Error
          */
         remove_group(uri: string, group: string): boolean;
 
@@ -17321,6 +17675,8 @@ export class VariantType<S extends string = any> {
          * Removes the bookmark for `uri` from the bookmark file `bookmark`.
          * @param uri a valid URI
          * @returns `true` if the bookmark was removed successfully.
+         * @since 2.12
+         * @throws GLib.Error
          */
         remove_item(uri: string): boolean;
 
@@ -17330,6 +17686,8 @@ export class VariantType<S extends string = any> {
          * If no bookmark for `uri` is found then it is created.
          * @param uri a valid URI
          * @param added a timestamp or -1 to use the current time
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_set_added_date_time()` instead, as    `time_t` is deprecated due to the year 2038 problem.
          */
         set_added(uri: string, added: bigint | number): void;
 
@@ -17339,6 +17697,7 @@ export class VariantType<S extends string = any> {
          * If no bookmark for `uri` is found then it is created.
          * @param uri a valid URI
          * @param added a {@link GLib.DateTime}
+         * @since 2.66
          */
         set_added_date_time(uri: string, added: DateTime): void;
 
@@ -17377,6 +17736,9 @@ export class VariantType<S extends string = any> {
          * @param count the number of registrations done for this application
          * @param stamp the time of the last registration for this application
          * @returns `true` if the application's meta-data was successfully   changed.
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_set_application_info()` instead, as    `time_t` is deprecated due to the year 2038 problem.
+         * @throws GLib.Error
          */
         set_app_info(uri: string, name: string, exec: string, count: number, stamp: bigint | number): boolean;
 
@@ -17414,6 +17776,8 @@ export class VariantType<S extends string = any> {
          * @param count the number of registrations done for this application
          * @param stamp the time of the last registration for this application,    which may be `null` if `count` is 0
          * @returns `true` if the application's meta-data was successfully   changed.
+         * @since 2.66
+         * @throws GLib.Error
          */
         set_application_info(uri: string, name: string, exec: string, count: number, stamp: DateTime | null): boolean;
 
@@ -17425,6 +17789,7 @@ export class VariantType<S extends string = any> {
          * If a bookmark for `uri` cannot be found then it is created.
          * @param uri a valid URI or `null`
          * @param description a string
+         * @since 2.12
          */
         set_description(uri: string | null, description: string): void;
 
@@ -17435,6 +17800,7 @@ export class VariantType<S extends string = any> {
          * If `uri` cannot be found then an item for it is created.
          * @param uri an item's URI
          * @param groups an array of    group names, or `null` to remove all groups
+         * @since 2.12
          */
         set_groups(uri: string, groups: string[] | null): void;
 
@@ -17447,6 +17813,7 @@ export class VariantType<S extends string = any> {
          * @param uri a valid URI
          * @param href the URI of the icon for the bookmark, or `null`
          * @param mime_type the MIME type of the icon for the bookmark
+         * @since 2.12
          */
         set_icon(uri: string, href: string | null, mime_type: string): void;
 
@@ -17456,6 +17823,7 @@ export class VariantType<S extends string = any> {
          * If a bookmark for `uri` cannot be found then it is created.
          * @param uri a valid URI
          * @param is_private `true` if the bookmark should be marked as private
+         * @since 2.12
          */
         set_is_private(uri: string, is_private: boolean): void;
 
@@ -17465,6 +17833,7 @@ export class VariantType<S extends string = any> {
          * If a bookmark for `uri` cannot be found then it is created.
          * @param uri a valid URI
          * @param mime_type a MIME type
+         * @since 2.12
          */
         set_mime_type(uri: string, mime_type: string): void;
 
@@ -17479,6 +17848,8 @@ export class VariantType<S extends string = any> {
          * `g_bookmark_file_set_visited_date_time()`.
          * @param uri a valid URI
          * @param modified a timestamp or -1 to use the current time
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_set_modified_date_time()` instead, as    `time_t` is deprecated due to the year 2038 problem.
          */
         set_modified(uri: string, modified: bigint | number): void;
 
@@ -17493,6 +17864,7 @@ export class VariantType<S extends string = any> {
          * `g_bookmark_file_set_visited_date_time()`.
          * @param uri a valid URI
          * @param modified a {@link GLib.DateTime}
+         * @since 2.66
          */
         set_modified_date_time(uri: string, modified: DateTime): void;
 
@@ -17505,6 +17877,7 @@ export class VariantType<S extends string = any> {
          * If a bookmark for `uri` cannot be found then it is created.
          * @param uri a valid URI or `null`
          * @param title a UTF-8 encoded string
+         * @since 2.12
          */
         set_title(uri: string | null, title: string): void;
 
@@ -17520,6 +17893,8 @@ export class VariantType<S extends string = any> {
          * does not affect the "modified" time.
          * @param uri a valid URI
          * @param visited a timestamp or -1 to use the current time
+         * @since 2.12
+         * @deprecated since 2.66: Use `g_bookmark_file_set_visited_date_time()` instead, as    `time_t` is deprecated due to the year 2038 problem.
          */
         set_visited(uri: string, visited: bigint | number): void;
 
@@ -17535,12 +17910,15 @@ export class VariantType<S extends string = any> {
          * does not affect the "modified" time.
          * @param uri a valid URI
          * @param visited a {@link GLib.DateTime}
+         * @since 2.66
          */
         set_visited_date_time(uri: string, visited: DateTime): void;
 
         /**
          * This function outputs `bookmark` as a string.
          * @returns a newly allocated string holding the contents of the {@link GLib.BookmarkFile}
+         * @since 2.12
+         * @throws GLib.Error
          */
         to_data(): Uint8Array;
 
@@ -17549,6 +17927,8 @@ export class VariantType<S extends string = any> {
          * guaranteed to be atomic by using `g_file_set_contents()` internally.
          * @param filename path of the output file
          * @returns `true` if the file was successfully written.
+         * @since 2.12
+         * @throws GLib.Error
          */
         to_file(filename: string): boolean;
     }
@@ -17603,6 +17983,7 @@ export class VariantType<S extends string = any> {
          * This is identical to using {@link GLib.Bytes.new_take} and
          * {@link GLib.ByteArray.free} together.
          * @param array a byte array
+         * @since 2.32
          */
         static free_to_bytes(array: Uint8Array | string): Bytes;
 
@@ -17621,6 +18002,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.ByteArray} stores the length of its data in `guint`, which may be shorter
          * than `gsize`.
          * @param data the byte data for the array
+         * @since 2.32
          */
         static new_take(data: Uint8Array | string): Uint8Array;
 
@@ -17636,6 +18018,7 @@ export class VariantType<S extends string = any> {
          * Atomically increments the reference count of `array` by one.
          * This function is thread-safe and may be called from any thread.
          * @param array a byte array
+         * @since 2.22
          */
         static ref(array: Uint8Array | string): Uint8Array;
 
@@ -17663,6 +18046,7 @@ export class VariantType<S extends string = any> {
          * @param array a byte array
          * @param index_ the index of the first byte to remove
          * @param length the number of bytes to remove
+         * @since 2.4
          */
         static remove_range(array: Uint8Array | string, index_: number, length: number): Uint8Array;
 
@@ -17711,6 +18095,7 @@ export class VariantType<S extends string = any> {
          * the underlying array is preserved for use elsewhere and returned
          * to the caller.
          * @param array a byte array
+         * @since 2.64
          */
         static steal(array: Uint8Array | string): Uint8Array;
 
@@ -17720,6 +18105,7 @@ export class VariantType<S extends string = any> {
          * released. This function is thread-safe and may be called from any
          * thread.
          * @param array a byte array
+         * @since 2.22
          */
         static unref(array: Uint8Array | string): void;
     }
@@ -17780,6 +18166,7 @@ export class VariantType<S extends string = any> {
          * considered less, otherwise greater than `bytes2`.
          * @param bytes2 a pointer to a {@link GLib.Bytes} to compare with `bytes1`
          * @returns a negative value if `bytes1` is less than `bytes2`, a positive value   if `bytes1` is greater than `bytes2`, and zero if `bytes1` is equal to `bytes2`
+         * @since 2.32
          */
         compare(bytes2: Bytes | Uint8Array): number;
 
@@ -17792,6 +18179,7 @@ export class VariantType<S extends string = any> {
          * a {@link GLib.HashTable}.
          * @param bytes2 a pointer to a {@link GLib.Bytes} to compare with `bytes1`
          * @returns `TRUE` if the two keys match.
+         * @since 2.32
          */
         equal(bytes2: Bytes | Uint8Array): boolean;
 
@@ -17806,6 +18194,7 @@ export class VariantType<S extends string = any> {
          * may represent an empty string with `data` non-`NULL` and `size` as 0. `NULL`
          * will not be returned if `size` is non-zero.
          * @returns a pointer to the byte data
+         * @since 2.32
          */
         get_data(): Uint8Array | null;
 
@@ -17834,6 +18223,7 @@ export class VariantType<S extends string = any> {
          * @param offset an offset to the start of the region within the `bytes`
          * @param n_elements the number of elements in the region
          * @returns the requested region, or `NULL` in case of an error
+         * @since 2.70
          */
         get_region(element_size: bigint | number, offset: bigint | number, n_elements: bigint | number): null;
 
@@ -17842,6 +18232,7 @@ export class VariantType<S extends string = any> {
          * 
          * This function will always return the same value for a given {@link GLib.Bytes}.
          * @returns the size
+         * @since 2.32
          */
         get_size(): number;
 
@@ -17852,6 +18243,7 @@ export class VariantType<S extends string = any> {
          * `key_hash_func` parameter, when using non-`NULL` {@link GLib.Bytes} pointers as keys in
          * a {@link GLib.HashTable}.
          * @returns a hash value corresponding to the key.
+         * @since 2.32
          */
         hash(): number;
 
@@ -17871,12 +18263,14 @@ export class VariantType<S extends string = any> {
          * @param offset offset which subsection starts at
          * @param length length of subsection
          * @returns a new {@link GLib.Bytes}
+         * @since 2.32
          */
         new_from_bytes(offset: bigint | number, length: bigint | number): Bytes;
 
         /**
          * Increase the reference count on `bytes`.
          * @returns the {@link GLib.Bytes}
+         * @since 2.32
          */
         ref(): Bytes;
 
@@ -17885,6 +18279,7 @@ export class VariantType<S extends string = any> {
          * 
          * This may result in the bytes being freed. If `bytes` is `NULL`, it will
          * return immediately.
+         * @since 2.32
          */
         unref(): void;
 
@@ -17903,6 +18298,7 @@ export class VariantType<S extends string = any> {
          * bytes. {@link GLib.ByteArray} stores the length of its data in `guint`,
          * which may be shorter than `gsize`, that `bytes` is using.
          * @returns a new mutable {@link GLib.ByteArray} containing   the same byte data
+         * @since 2.32
          */
         unref_to_array(): Uint8Array;
 
@@ -17917,6 +18313,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.Bytes} may internalize within its allocation. In all other cases
          * the data is copied.
          * @returns a pointer to the same byte data, which should be freed with {@link GLib.free}
+         * @since 2.32
          */
         unref_to_data(): Uint8Array;
 
@@ -17945,6 +18342,7 @@ export class VariantType<S extends string = any> {
          * 
          * Note that it does not destroy the keys and values which were
          * contained in the {@link GLib.Cache}.
+         * @deprecated since 2.32: Use a {@link GLib.HashTable} instead
          */
         destroy(): void;
 
@@ -17959,6 +18357,7 @@ export class VariantType<S extends string = any> {
          * are inserted into the {@link GLib.Cache}.
          * @param key a key describing a {@link GLib.Cache} object
          * @returns a pointer to a {@link GLib.Cache} value
+         * @deprecated since 2.32: Use a {@link GLib.HashTable} instead
          */
         insert(key: null): null;
 
@@ -17970,6 +18369,7 @@ export class VariantType<S extends string = any> {
          * from the order in which `g_hash_table_foreach()` passes key-value
          * pairs to its callback function !
          * @param func the function to call with each {@link GLib.Cache} key
+         * @deprecated since 2.32: Use a {@link GLib.HashTable} instead
          */
         key_foreach(func: HFunc): void;
 
@@ -17978,12 +18378,14 @@ export class VariantType<S extends string = any> {
          * then the value and its corresponding key are destroyed, using the
          * `value_destroy_func` and `key_destroy_func` passed to `g_cache_new()`.
          * @param value the value to remove
+         * @deprecated since 2.32: Use a {@link GLib.HashTable} instead
          */
         remove(value: null): void;
 
         /**
          * Calls the given function for each of the values in the {@link GLib.Cache}.
          * @param func the function to call with each {@link GLib.Cache} value
+         * @deprecated since 2.10: The reason is that it passes pointers to internal    data structures to `func`; use `g_cache_key_foreach()` instead
          */
         value_foreach(func: HFunc): void;
     }
@@ -18021,6 +18423,7 @@ export class VariantType<S extends string = any> {
         /**
          * Gets the length in bytes of digests of type `checksum_type`
          * @param checksum_type a {@link GLib.ChecksumType}
+         * @since 2.16
          */
         static type_get_length(checksum_type: ChecksumType): number;
 
@@ -18030,11 +18433,13 @@ export class VariantType<S extends string = any> {
          * `g_checksum_get_string()` or `g_checksum_get_digest()`, the copied
          * checksum will be closed as well.
          * @returns the copy of the passed {@link GLib.Checksum}. Use   `g_checksum_free()` when finished using it.
+         * @since 2.16
          */
         copy(): Checksum;
 
         /**
          * Frees the memory allocated for `checksum`.
+         * @since 2.16
          */
         free(): void;
 
@@ -18046,11 +18451,13 @@ export class VariantType<S extends string = any> {
          * 
          * The hexadecimal characters will be lower case.
          * @returns the hexadecimal representation of the checksum. The   returned string is owned by the checksum and should not be modified   or freed.
+         * @since 2.16
          */
         get_string(): string;
 
         /**
          * Resets the state of the `checksum` back to its initial state.
+         * @since 2.18
          */
         reset(): void;
 
@@ -18059,6 +18466,7 @@ export class VariantType<S extends string = any> {
          * open, that is `g_checksum_get_string()` or `g_checksum_get_digest()` must
          * not have been called on `checksum`.
          * @param data buffer used to compute the checksum
+         * @since 2.16
          */
         update(data: Uint8Array | string): void;
     }
@@ -18108,6 +18516,7 @@ export class VariantType<S extends string = any> {
          * Removes all items from the {@link GLib.Completion}. The items are not freed, so if the
          * memory was dynamically allocated, it should be freed after calling this
          * function.
+         * @deprecated since 2.26: Rarely used API
          */
         clear_items(): void;
 
@@ -18122,6 +18531,8 @@ export class VariantType<S extends string = any> {
          * @param prefix the prefix string, typically used by the user, which is compared    with each of the items
          * @param new_prefix if non-`null`, returns the longest prefix which is common to all    items that matched `prefix`, or `null` if no items matched `prefix`.    This string should be freed when no longer needed.
          * @returns the list of items whose strings begin with `prefix`. This should not be changed.
+         * @since 2.4
+         * @deprecated since 2.26: Rarely used API
          */
         complete_utf8(prefix: string, new_prefix: string): string[];
 
@@ -18129,6 +18540,7 @@ export class VariantType<S extends string = any> {
          * Frees all memory used by the {@link GLib.Completion}. The items are not freed, so if
          * the memory was dynamically allocated, it should be freed after calling this
          * function.
+         * @deprecated since 2.26: Rarely used API
          */
         free(): void;
     }
@@ -18227,6 +18639,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_cond_clear()` for a {@link GLib.Cond} on which threads are
          * blocking leads to undefined behaviour.
+         * @since 2.32
          */
         clear(): void;
 
@@ -18235,6 +18648,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_cond_free()` for a {@link GLib.Cond} on which threads are
          * blocking leads to undefined behaviour.
+         * @deprecated since 2.32: GCond can now be statically allocated, or embedded in structures and initialised with `g_cond_init()`.
          */
         free(): void;
 
@@ -18250,6 +18664,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_cond_init()` on an already-initialised {@link GLib.Cond} leads
          * to undefined behaviour.
+         * @since 2.32
          */
         init(): void;
 
@@ -18334,6 +18749,7 @@ export class VariantType<S extends string = any> {
          * @param mutex a {@link GLib.Mutex} that is currently locked
          * @param end_time the monotonic time to wait until
          * @returns `true` on a signal, `false` on a timeout
+         * @since 2.32
          */
         wait_until(mutex: Mutex, end_time: bigint | number): boolean;
     }
@@ -18470,6 +18886,7 @@ export class VariantType<S extends string = any> {
          * the year.
          * @param year year to count weeks in
          * @param first_day_of_week the day which is considered the first day of the week    (for example, this would be {@link GLib.DateWeekday.SUNDAY} in US locales,    {@link GLib.DateWeekday.MONDAY} in British locales, and    {@link GLib.DateWeekday.SATURDAY} in Egyptian locales
+         * @since 2.86
          */
         static get_weeks_in_year(year: DateYear, first_day_of_week: DateWeekday): number;
 
@@ -18611,6 +19028,7 @@ export class VariantType<S extends string = any> {
          * (as determined by `g_date_valid()`), the invalid state will be copied
          * as is into the new object.
          * @returns a newly-allocated {@link GLib.Date} initialized from `date`
+         * @since 2.56
          */
         copy(): Date;
 
@@ -18645,6 +19063,7 @@ export class VariantType<S extends string = any> {
          * Returns the week of the year, where weeks are interpreted according
          * to ISO 8601.
          * @returns ISO 8601 week number of the year.
+         * @since 2.6
          */
         get_iso8601_week_of_year(): number;
 
@@ -18690,6 +19109,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.DateWeekday.MONDAY}) then zero will be returned.
          * @param first_day_of_week the day which is considered the first day of the week    (for example, this would be {@link GLib.DateWeekday.SUNDAY} in US locales,    {@link GLib.DateWeekday.MONDAY} in British locales, and    {@link GLib.DateWeekday.SATURDAY} in Egyptian locales
          * @returns week number (starting from 1), or `0` if `date` is before the start    of the first week of the year
+         * @since 2.86
          */
         get_week_of_year(first_day_of_week: DateWeekday): number;
 
@@ -18777,6 +19197,7 @@ export class VariantType<S extends string = any> {
          * Sets the value of a date from a {@link GLib.Time} value.
          * The time to date conversion is done using the user's current timezone.
          * @param time_ {@link GLib.Time} value to set.
+         * @deprecated since 2.10: Use `g_date_set_time_t()` instead.
          */
         set_time(time_: Time): void;
 
@@ -18795,6 +19216,7 @@ export class VariantType<S extends string = any> {
          * ```
          * 
          * @param timet time_t value to set
+         * @since 2.10
          */
         set_time_t(timet: bigint | number): void;
 
@@ -18805,6 +19227,8 @@ export class VariantType<S extends string = any> {
          * 
          * The time to date conversion is done using the user's current timezone.
          * @param timeval {@link GLib.TimeVal} value to set
+         * @since 2.10
+         * @deprecated since 2.62: {@link GLib.TimeVal} is not year-2038-safe. Use `g_date_set_time_t()`    instead.
          */
         set_time_val(timeval: TimeVal): void;
 
@@ -18925,6 +19349,7 @@ export class VariantType<S extends string = any> {
          * Creates a copy of `datetime` and adds the specified timespan to the copy.
          * @param timespan a {@link GLib.TimeSpan}
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add(timespan: TimeSpan): DateTime | null;
 
@@ -18933,6 +19358,7 @@ export class VariantType<S extends string = any> {
          * copy. Add negative values to subtract days.
          * @param days the number of days
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_days(days: number): DateTime | null;
 
@@ -18946,6 +19372,7 @@ export class VariantType<S extends string = any> {
          * @param minutes the number of minutes to add
          * @param seconds the number of seconds to add
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_full(years: number, months: number, days: number, hours: number, minutes: number, seconds: number): DateTime | null;
 
@@ -18954,6 +19381,7 @@ export class VariantType<S extends string = any> {
          * Add negative values to subtract hours.
          * @param hours the number of hours to add
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_hours(hours: number): DateTime | null;
 
@@ -18962,6 +19390,7 @@ export class VariantType<S extends string = any> {
          * Add negative values to subtract minutes.
          * @param minutes the number of minutes to add
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_minutes(minutes: number): DateTime | null;
 
@@ -18975,6 +19404,7 @@ export class VariantType<S extends string = any> {
          * year), the result would be 29th February.
          * @param months the number of months
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_months(months: number): DateTime | null;
 
@@ -18983,6 +19413,7 @@ export class VariantType<S extends string = any> {
          * Add negative values to subtract seconds.
          * @param seconds the number of seconds to add
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_seconds(seconds: number): DateTime | null;
 
@@ -18991,6 +19422,7 @@ export class VariantType<S extends string = any> {
          * copy. Add negative values to subtract weeks.
          * @param weeks the number of weeks
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_weeks(weeks: number): DateTime | null;
 
@@ -19002,6 +19434,7 @@ export class VariantType<S extends string = any> {
          * February on a non-leap year, the day will be clamped to 28th February.
          * @param years the number of years
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         add_years(years: number): DateTime | null;
 
@@ -19010,6 +19443,7 @@ export class VariantType<S extends string = any> {
          * as a {@link GLib.CompareFunc}. Both `GDateTimes` must be non-`null`.
          * @param dt2 second {@link GLib.DateTime} to compare
          * @returns -1, 0 or 1 if `dt1` is less than, equal to or greater   than `dt2`.
+         * @since 2.26
          */
         compare(dt2: DateTime): number;
 
@@ -19019,6 +19453,7 @@ export class VariantType<S extends string = any> {
          * positive if the first parameter is larger).
          * @param begin a {@link GLib.DateTime}
          * @returns the difference between the two {@link GLib.DateTime}, as a time   span expressed in microseconds.
+         * @since 2.26
          */
         difference(begin: DateTime): TimeSpan;
 
@@ -19029,6 +19464,7 @@ export class VariantType<S extends string = any> {
          * them to the same time zone.
          * @param dt2 a {@link GLib.DateTime}
          * @returns `true` if `dt1` and `dt2` are equal
+         * @since 2.26
          */
         equal(dt2: DateTime): boolean;
 
@@ -19159,6 +19595,7 @@ export class VariantType<S extends string = any> {
          * - ``EY``: the full alternative year representation
          * @param format a valid UTF-8 string, containing the format for the          {@link GLib.DateTime}
          * @returns a newly allocated string formatted to    the requested format or `null` in the case that there was an error (such    as a format specifier not being supported in the current locale). The    string should be freed with `g_free()`.
+         * @since 2.26
          */
         format(format: string): string | null;
 
@@ -19169,6 +19606,7 @@ export class VariantType<S extends string = any> {
          * 
          * Since GLib 2.66, this will output to sub-second precision if needed.
          * @returns a newly allocated string formatted in   ISO 8601 format or `null` in the case that there was an error. The string   should be freed with `g_free()`.
+         * @since 2.62
          */
         format_iso8601(): string | null;
 
@@ -19176,6 +19614,7 @@ export class VariantType<S extends string = any> {
          * Retrieves the day of the month represented by `datetime` in the gregorian
          * calendar.
          * @returns the day of the month
+         * @since 2.26
          */
         get_day_of_month(): number;
 
@@ -19183,6 +19622,7 @@ export class VariantType<S extends string = any> {
          * Retrieves the ISO 8601 day of the week on which `datetime` falls (1 is
          * Monday, 2 is Tuesday... 7 is Sunday).
          * @returns the day of the week
+         * @since 2.26
          */
         get_day_of_week(): number;
 
@@ -19190,24 +19630,28 @@ export class VariantType<S extends string = any> {
          * Retrieves the day of the year represented by `datetime` in the Gregorian
          * calendar.
          * @returns the day of the year
+         * @since 2.26
          */
         get_day_of_year(): number;
 
         /**
          * Retrieves the hour of the day represented by `datetime`
          * @returns the hour of the day
+         * @since 2.26
          */
         get_hour(): number;
 
         /**
          * Retrieves the microsecond of the date represented by `datetime`
          * @returns the microsecond of the second
+         * @since 2.26
          */
         get_microsecond(): number;
 
         /**
          * Retrieves the minute of the hour represented by `datetime`
          * @returns the minute of the hour
+         * @since 2.26
          */
         get_minute(): number;
 
@@ -19215,12 +19659,14 @@ export class VariantType<S extends string = any> {
          * Retrieves the month of the year represented by `datetime` in the Gregorian
          * calendar.
          * @returns the month represented by `datetime`
+         * @since 2.26
          */
         get_month(): number;
 
         /**
          * Retrieves the second of the minute represented by `datetime`
          * @returns the second represented by `datetime`
+         * @since 2.26
          */
         get_second(): number;
 
@@ -19228,12 +19674,14 @@ export class VariantType<S extends string = any> {
          * Retrieves the number of seconds since the start of the last minute,
          * including the fractional part.
          * @returns the number of seconds
+         * @since 2.26
          */
         get_seconds(): number;
 
         /**
          * Get the time zone for this `datetime`.
          * @returns the time zone
+         * @since 2.58
          */
         get_timezone(): TimeZone;
 
@@ -19245,6 +19693,7 @@ export class VariantType<S extends string = any> {
          * months and "EDT" during the summer months when daylight savings
          * time is in effect.
          * @returns the time zone abbreviation. The returned          string is owned by the {@link GLib.DateTime} and it should not be          modified or freed
+         * @since 2.26
          */
         get_timezone_abbreviation(): string;
 
@@ -19258,6 +19707,7 @@ export class VariantType<S extends string = any> {
          * 
          * If `datetime` represents UTC time, then the offset is always zero.
          * @returns the number of microseconds that should be added to UTC to          get the local time
+         * @since 2.26
          */
         get_utc_offset(): TimeSpan;
 
@@ -19294,6 +19744,7 @@ export class VariantType<S extends string = any> {
          * Note that January 1 0001 in the proleptic Gregorian calendar is a
          * Monday, so this function never returns 0.
          * @returns the ISO 8601 week-numbering year for `datetime`
+         * @since 2.26
          */
         get_week_numbering_year(): number;
 
@@ -19314,23 +19765,27 @@ export class VariantType<S extends string = any> {
          * considered as being part of the first ISO 8601 week of the next year
          * if 4 or more days of that week are contained within the new year.
          * @returns the ISO 8601 week number for `datetime`.
+         * @since 2.26
          */
         get_week_of_year(): number;
 
         /**
          * Retrieves the year represented by `datetime` in the Gregorian calendar.
          * @returns the year represented by `datetime`
+         * @since 2.26
          */
         get_year(): number;
 
         /**
          * Retrieves the Gregorian day, month, and year of a given {@link GLib.DateTime}.
+         * @since 2.26
          */
         get_ymd(): [number, number, number];
 
         /**
          * Hashes `datetime` into a `guint`, suitable for use within {@link GLib.HashTable}.
          * @returns a `guint` containing the hash
+         * @since 2.26
          */
         hash(): number;
 
@@ -19338,12 +19793,14 @@ export class VariantType<S extends string = any> {
          * Determines if daylight savings time is in effect at the time and in
          * the time zone of `datetime`.
          * @returns `true` if daylight savings time is in effect
+         * @since 2.26
          */
         is_daylight_savings(): boolean;
 
         /**
          * Atomically increments the reference count of `datetime` by one.
          * @returns the {@link GLib.DateTime} with the reference count increased
+         * @since 2.26
          */
         ref(): DateTime;
 
@@ -19354,6 +19811,7 @@ export class VariantType<S extends string = any> {
          * This call is equivalent to calling `g_date_time_to_timezone()` with the
          * time zone returned by `g_time_zone_new_local()`.
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         to_local(): DateTime | null;
 
@@ -19373,6 +19831,8 @@ export class VariantType<S extends string = any> {
          * On systems where 'long' is 64bit, this function never fails.
          * @param tv a {@link GLib.TimeVal} to modify
          * @returns `true` if successful, else `false`
+         * @since 2.26
+         * @deprecated since 2.62: {@link GLib.TimeVal} is not year-2038-safe. Use    `g_date_time_to_unix()` instead.
          */
         to_timeval(tv: TimeVal): boolean;
 
@@ -19385,6 +19845,7 @@ export class VariantType<S extends string = any> {
          * Greenwich will fail (due to the year 0 being out of range).
          * @param tz the new {@link GLib.TimeZone}
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         to_timezone(tz: TimeZone): DateTime | null;
 
@@ -19395,6 +19856,7 @@ export class VariantType<S extends string = any> {
          * Unix time is the number of seconds that have elapsed since 1970-01-01
          * 00:00:00 UTC, regardless of the time zone associated with `datetime`.
          * @returns the Unix time corresponding to `datetime`
+         * @since 2.26
          */
         to_unix(): number;
 
@@ -19404,6 +19866,7 @@ export class VariantType<S extends string = any> {
          * Unix time is the number of microseconds that have elapsed since 1970-01-01
          * 00:00:00 UTC, regardless of the time zone associated with `datetime`.
          * @returns the Unix time corresponding to `datetime`
+         * @since 2.80
          */
         to_unix_usec(): number;
 
@@ -19414,6 +19877,7 @@ export class VariantType<S extends string = any> {
          * This call is equivalent to calling `g_date_time_to_timezone()` with the
          * time zone returned by `g_time_zone_new_utc()`.
          * @returns the newly created {@link GLib.DateTime} which   should be freed with `g_date_time_unref()`, or `null`
+         * @since 2.26
          */
         to_utc(): DateTime | null;
 
@@ -19422,6 +19886,7 @@ export class VariantType<S extends string = any> {
          * 
          * When the reference count reaches zero, the resources allocated by
          * `datetime` are freed
+         * @since 2.26
          */
         unref(): void;
     }
@@ -19475,6 +19940,7 @@ export class VariantType<S extends string = any> {
          * Note that in contrast to `g_mkdtemp()` (and `mkdtemp()`) `tmpl` is not
          * modified, and might thus be a read-only literal string.
          * @param tmpl Template for directory name,   as in `g_mkdtemp()`, basename only, or `null` for a default template
+         * @since 2.30
          */
         static make_tmp(tmpl: string | null): string;
 
@@ -19512,6 +19978,7 @@ export class VariantType<S extends string = any> {
         /**
          * Increment the reference count of `dir`.
          * @returns the same pointer as `dir`
+         * @since 2.80
          */
         ref(): Dir;
 
@@ -19533,6 +20000,7 @@ export class VariantType<S extends string = any> {
          * It is an error to call any of the {@link GLib.Dir} methods other than
          * {@link GLib.Dir.ref} and {@link GLib.Dir.unref} on a {@link GLib.Dir} after calling
          * {@link GLib.Dir.close} on it.
+         * @since 2.80
          */
         unref(): void;
     }
@@ -19575,6 +20043,7 @@ export class VariantType<S extends string = any> {
          * @param error_type_init function initializing fields of the private error data
          * @param error_type_copy function copying fields of the private error data
          * @param error_type_clear function freeing fields of the private error data
+         * @since 2.68
          */
         static domain_register(error_type_name: string, error_type_private_size: bigint | number, error_type_init: ErrorInitFunc, error_type_copy: ErrorCopyFunc, error_type_clear: ErrorClearFunc): Quark;
 
@@ -19601,6 +20070,7 @@ export class VariantType<S extends string = any> {
          * @param error_type_init function initializing fields of the private error data
          * @param error_type_copy function copying fields of the private error data
          * @param error_type_clear function freeing fields of the private error data
+         * @since 2.68
          */
         static domain_register_static(error_type_name: string, error_type_private_size: bigint | number, error_type_init: ErrorInitFunc, error_type_copy: ErrorCopyFunc, error_type_clear: ErrorClearFunc): Quark;
 
@@ -19666,6 +20136,7 @@ export class VariantType<S extends string = any> {
          * or not.
          * @param hash_table a {@link GLib.HashTable}
          * @param key a key to insert
+         * @since 2.32
          */
         static add(hash_table: never, key: null): boolean;
 
@@ -19673,6 +20144,7 @@ export class VariantType<S extends string = any> {
          * Checks if `key` is in `hash_table`.
          * @param hash_table a {@link GLib.HashTable}
          * @param key a key to check
+         * @since 2.32
          */
         static contains(hash_table: never, key: null): boolean;
 
@@ -19703,6 +20175,7 @@ export class VariantType<S extends string = any> {
          * values in a hash table ends up needing O(n*n) operations).
          * @param hash_table a {@link GLib.HashTable}
          * @param predicate function to test the key/value pairs for a certain property
+         * @since 2.4
          */
         static find(hash_table: never, predicate: HRFunc): null;
 
@@ -19804,6 +20277,7 @@ export class VariantType<S extends string = any> {
          * The returned hash table will be empty; it will not contain the keys
          * or values from `other_hash_table`.
          * @param other_hash_table Another {@link GLib.HashTable}
+         * @since 2.72
          */
         static new_similar(other_hash_table: never): never;
 
@@ -19811,6 +20285,7 @@ export class VariantType<S extends string = any> {
          * Atomically increments the reference count of `hash_table` by one.
          * This function is MT-safe and may be called from any thread.
          * @param hash_table a valid {@link GLib.HashTable}
+         * @since 2.10
          */
         static ref(hash_table: never): never;
 
@@ -19834,6 +20309,7 @@ export class VariantType<S extends string = any> {
          * otherwise you have to make sure that any dynamically allocated
          * values are freed yourself.
          * @param hash_table a {@link GLib.HashTable}
+         * @since 2.12
          */
         static remove_all(hash_table: never): void;
 
@@ -19873,6 +20349,7 @@ export class VariantType<S extends string = any> {
          * Removes all keys and their associated values from a {@link GLib.HashTable}
          * without calling the key and value destroy functions.
          * @param hash_table a {@link GLib.HashTable}
+         * @since 2.12
          */
         static steal_all(hash_table: never): void;
 
@@ -19896,6 +20373,7 @@ export class VariantType<S extends string = any> {
          * `null`. Since 2.82, the returned value and key will be the same.
          * @param hash_table a {@link GLib.HashTable}
          * @param lookup_key the key to look up
+         * @since 2.58
          */
         static steal_extended(hash_table: never, lookup_key: null): [boolean, null, null];
 
@@ -19905,6 +20383,7 @@ export class VariantType<S extends string = any> {
          * destroyed, and all memory allocated by the hash table is released.
          * This function is MT-safe and may be called from any thread.
          * @param hash_table a valid {@link GLib.HashTable}
+         * @since 2.10
          */
         static unref(hash_table: never): void;
     }
@@ -19930,6 +20409,7 @@ export class VariantType<S extends string = any> {
         /**
          * Returns the {@link GLib.HashTable} associated with `iter`.
          * @returns the {@link GLib.HashTable} associated with `iter`.
+         * @since 2.16
          */
         get_hash_table(): never;
 
@@ -19954,6 +20434,7 @@ export class VariantType<S extends string = any> {
          * ```
          * 
          * @param hash_table a {@link GLib.HashTable}
+         * @since 2.16
          */
         init(hash_table: never): void;
 
@@ -19962,6 +20443,7 @@ export class VariantType<S extends string = any> {
          * pointed to as a result of this advancement. If `false` is returned,
          * `key` and `value` are not set, and the iterator becomes invalid.
          * @returns `false` if the end of the {@link GLib.HashTable} has been reached.
+         * @since 2.16
          */
         next(): [boolean, null, null];
 
@@ -19986,6 +20468,7 @@ export class VariantType<S extends string = any> {
          *   }
          * ```
          * 
+         * @since 2.16
          */
         remove(): void;
 
@@ -19997,6 +20480,7 @@ export class VariantType<S extends string = any> {
          * If you supplied a `value_destroy_func` when creating the
          * {@link GLib.HashTable}, the old value is freed using that function.
          * @param value the value to replace with
+         * @since 2.30
          */
         replace(value: null): void;
 
@@ -20006,6 +20490,7 @@ export class VariantType<S extends string = any> {
          * the key and value destroy functions. Can only be called
          * after `g_hash_table_iter_next()` returned `true`, and cannot
          * be called more than once for the same key/value pair.
+         * @since 2.16
          */
         steal(): void;
     }
@@ -20044,6 +20529,7 @@ export class VariantType<S extends string = any> {
          * `g_hmac_get_string()` or `g_hmac_get_digest()`, the copied
          * HMAC will be closed as well.
          * @returns the copy of the passed {@link GLib.Hmac}. Use `g_hmac_unref()`   when finished using it.
+         * @since 2.30
          */
         copy(): Hmac;
 
@@ -20054,6 +20540,7 @@ export class VariantType<S extends string = any> {
          * Once this function has been called, the {@link GLib.Hmac} is closed and can
          * no longer be updated with `g_checksum_update()`.
          * @param buffer output buffer
+         * @since 2.30
          */
         get_digest(buffer: Uint8Array | string): void;
 
@@ -20065,6 +20552,7 @@ export class VariantType<S extends string = any> {
          * 
          * The hexadecimal characters will be lower case.
          * @returns the hexadecimal representation of the HMAC. The   returned string is owned by the HMAC and should not be modified   or freed.
+         * @since 2.30
          */
         get_string(): string;
 
@@ -20073,6 +20561,7 @@ export class VariantType<S extends string = any> {
          * 
          * This function is MT-safe and may be called from any thread.
          * @returns the passed in {@link GLib.Hmac}.
+         * @since 2.30
          */
         ref(): Hmac;
 
@@ -20083,6 +20572,7 @@ export class VariantType<S extends string = any> {
          * destroyed, and all memory allocated by the hash table is released.
          * This function is MT-safe and may be called from any thread.
          * Frees the memory allocated for `hmac`.
+         * @since 2.30
          */
         unref(): void;
 
@@ -20092,6 +20582,7 @@ export class VariantType<S extends string = any> {
          * The HMAC must still be open, that is `g_hmac_get_string()` or
          * `g_hmac_get_digest()` must not have been called on `hmac`.
          * @param data buffer used to compute the checksum
+         * @since 2.30
          */
         update(data: Uint8Array | string): void;
     }
@@ -20317,12 +20808,14 @@ export class VariantType<S extends string = any> {
          * Close an IO channel. Any pending data to be written will be
          * flushed, ignoring errors. The channel will not be freed until the
          * last reference is dropped using `g_io_channel_unref()`.
+         * @deprecated since 2.2: Use `g_io_channel_shutdown()` instead.
          */
         close(): void;
 
         /**
          * Flushes the write buffer for the GIOChannel.
          * @returns the status of the operation: One of   {@link GLib.IOStatus.NORMAL}, {@link GLib.IOStatus.AGAIN}, or   {@link GLib.IOStatus.ERROR}.
+         * @throws GLib.Error
          */
         flush(): IOStatus;
 
@@ -20401,12 +20894,14 @@ export class VariantType<S extends string = any> {
          * @param count the number of bytes to read from the {@link GLib.IOChannel}
          * @param bytes_read returns the number of bytes actually read
          * @returns {@link GLib.IOError.NONE} if the operation was successful.
+         * @deprecated since 2.2: Use `g_io_channel_read_chars()` instead.
          */
         read(buf: string, count: bigint | number, bytes_read: bigint | number): IOError;
 
         /**
          * Replacement for `g_io_channel_read()` with the new API.
          * @returns the status of the operation.
+         * @throws GLib.Error
          */
         read_chars(): [IOStatus, Uint8Array, number];
 
@@ -20416,6 +20911,7 @@ export class VariantType<S extends string = any> {
          * `str_return` will contain allocated memory if the return
          * is {@link GLib.IOStatus.NORMAL}.
          * @returns the status of the operation.
+         * @throws GLib.Error
          */
         read_line(): [IOStatus, string, number, number];
 
@@ -20424,12 +20920,14 @@ export class VariantType<S extends string = any> {
          * @param buffer a {@link GLib.String} into which the line will be written.          If `buffer` already contains data, the old data will          be overwritten.
          * @param terminator_pos location to store position of line terminator, or `null`
          * @returns the status of the operation.
+         * @throws GLib.Error
          */
         read_line_string(buffer: String, terminator_pos: bigint | number | null): IOStatus;
 
         /**
          * Reads all the remaining data from the file.
          * @returns {@link GLib.IOStatus.NORMAL} on success.     This function never returns {@link GLib.IOStatus.EOF}.
+         * @throws GLib.Error
          */
         read_to_end(): [IOStatus, Uint8Array];
 
@@ -20437,6 +20935,7 @@ export class VariantType<S extends string = any> {
          * Reads a Unicode character from `channel`.
          * This function cannot be called on a channel with `null` encoding.
          * @returns a {@link GLib.IOStatus}
+         * @throws GLib.Error
          */
         read_unichar(): [IOStatus, string];
 
@@ -20452,6 +20951,7 @@ export class VariantType<S extends string = any> {
          * @param offset an offset, in bytes, which is added to the position specified          by `type`
          * @param type the position in the file, which can be {@link GLib.SeekType.CUR} (the current        position), {@link GLib.SeekType.SET} (the start of the file), or {@link GLib.SeekType.END}        (the end of the file)
          * @returns {@link GLib.IOError.NONE} if the operation was successful.
+         * @deprecated since 2.2: Use `g_io_channel_seek_position()` instead.
          */
         seek(offset: bigint | number, type: SeekType): IOError;
 
@@ -20460,6 +20960,7 @@ export class VariantType<S extends string = any> {
          * @param offset The offset in bytes from the position specified by `type`
          * @param type a {@link GLib.SeekType}. The type {@link GLib.SeekType.CUR} is only allowed in those                      cases where a call to g_io_channel_set_encoding ()                      is allowed. See the documentation for                      g_io_channel_set_encoding () for details.
          * @returns the status of the operation.
+         * @throws GLib.Error
          */
         seek_position(offset: bigint | number, type: SeekType): IOStatus;
 
@@ -20541,6 +21042,7 @@ export class VariantType<S extends string = any> {
          * calling one of the API "read" functions.
          * @param encoding the encoding type
          * @returns {@link GLib.IOStatus.NORMAL} if the encoding was successfully set
+         * @throws GLib.Error
          */
         set_encoding(encoding: string | null): IOStatus;
 
@@ -20548,6 +21050,7 @@ export class VariantType<S extends string = any> {
          * Sets the (writeable) flags in `channel` to (`flags` & {@link GLib.IOFlags.SET_MASK}).
          * @param flags the flags to set on the IO channel
          * @returns the status of the operation.
+         * @throws GLib.Error
          */
         set_flags(flags: IOFlags): IOStatus;
 
@@ -20565,6 +21068,7 @@ export class VariantType<S extends string = any> {
          * last reference is dropped using `g_io_channel_unref()`.
          * @param flush if `true`, flush pending
          * @returns the status of the operation.
+         * @throws GLib.Error
          */
         shutdown(flush: boolean): IOStatus;
 
@@ -20588,6 +21092,7 @@ export class VariantType<S extends string = any> {
          * @param count the number of bytes to write
          * @param bytes_written the number of bytes actually written
          * @returns {@link GLib.IOError.NONE} if the operation was successful.
+         * @deprecated since 2.2: Use `g_io_channel_write_chars()` instead.
          */
         write(buf: string, count: bigint | number, bytes_written: bigint | number): IOError;
 
@@ -20601,6 +21106,7 @@ export class VariantType<S extends string = any> {
          * @param buf a buffer to write data from
          * @param count the size of the buffer. If -1, the buffer         is taken to be a nul-terminated string.
          * @returns the status of the operation.
+         * @throws GLib.Error
          */
         write_chars(buf: Uint8Array | string, count: bigint | number): [IOStatus, number];
 
@@ -20609,6 +21115,7 @@ export class VariantType<S extends string = any> {
          * This function cannot be called on a channel with `null` encoding.
          * @param thechar a character
          * @returns a {@link GLib.IOStatus}
+         * @throws GLib.Error
          */
         write_unichar(thechar: string): IOStatus;
     }
@@ -20778,6 +21285,7 @@ export class VariantType<S extends string = any> {
          * 
          * If the reference count reaches zero, frees the key file and all its allocated
          * memory.
+         * @since 2.6
          */
         free(): void;
 
@@ -20791,6 +21299,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the value associated with the key as a boolean,    or false if the key was not found or could not be parsed.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_boolean(group_name: string, key: string): boolean;
 
@@ -20804,6 +21314,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the values associated with the key as a list of booleans, or `NULL` if the    key was not found or could not be parsed. The returned list of booleans    should be freed with {@link GLib.free} when no longer needed.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_boolean_list(group_name: string, key: string): boolean[];
 
@@ -20820,6 +21332,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name, or `NULL` to get a top-level comment
          * @param key a key, or `NULL` to get a group comment
          * @returns a comment that should be freed with {@link GLib.free}
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_comment(group_name: string | null, key: string | null): string;
 
@@ -20832,6 +21346,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the value associated with the key as a double, or     `0.0` if the key was not found or could not be parsed.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_double(group_name: string, key: string): number;
 
@@ -20845,6 +21361,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the values associated with the key as a list of doubles, or `NULL` if the     key was not found or could not be parsed. The returned list of doubles     should be freed with {@link GLib.free} when no longer needed.
+         * @since 2.12
+         * @throws GLib.Error
          */
         get_double_list(group_name: string, key: string): number[];
 
@@ -20854,6 +21372,7 @@ export class VariantType<S extends string = any> {
          * The array of returned groups will be `NULL`-terminated, so
          * `length` may optionally be `NULL`.
          * @returns a newly-allocated    `NULL`-terminated array of strings. Use {@link GLib.strfreev} to free it.
+         * @since 2.6
          */
         get_groups(): [string[], number];
 
@@ -20866,6 +21385,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the value associated with the key as a signed 64-bit integer, or    `0` if the key was not found or could not be parsed.
+         * @since 2.26
+         * @throws GLib.Error
          */
         get_int64(group_name: string, key: string): number;
 
@@ -20880,6 +21401,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the value associated with the key as an integer, or     `0` if the key was not found or could not be parsed.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_integer(group_name: string, key: string): number;
 
@@ -20894,6 +21417,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the values associated with the key as a list of integers, or `NULL` if     the key was not found or could not be parsed. The returned list of     integers should be freed with {@link GLib.free} when no longer needed.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_integer_list(group_name: string, key: string): number[];
 
@@ -20905,6 +21430,8 @@ export class VariantType<S extends string = any> {
          * {@link GLib.KeyFileError.GROUP_NOT_FOUND} is returned.
          * @param group_name a group name
          * @returns a newly-allocated    `NULL`-terminated array of strings. Use {@link GLib.strfreev} to free it.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_keys(group_name: string): [string[], number];
 
@@ -20922,6 +21449,7 @@ export class VariantType<S extends string = any> {
          * @param key a key
          * @param locale a locale identifier or `NULL` to use the current locale
          * @returns the locale from the file, or `NULL` if the key was not   found or the entry in the file was was untranslated
+         * @since 2.56
          */
         get_locale_for_key(group_name: string, key: string, locale: string | null): string | null;
 
@@ -20946,6 +21474,8 @@ export class VariantType<S extends string = any> {
          * @param key a key
          * @param locale a locale identifier or `NULL` to use the current locale
          * @returns a newly allocated string or `NULL` if the specified   key cannot be found.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_locale_string(group_name: string, key: string, locale: string | null): string;
 
@@ -20972,12 +21502,15 @@ export class VariantType<S extends string = any> {
          * @param key a key
          * @param locale a locale identifier or `NULL` to use the current locale
          * @returns a newly allocated `NULL`-terminated string array or `NULL` if the key    isn’t found. The string array should be freed with {@link GLib.strfreev}.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_locale_string_list(group_name: string, key: string, locale: string | null): string[];
 
         /**
          * Returns the name of the start group of the file.
          * @returns The start group of the key file.
+         * @since 2.6
          */
         get_start_group(): string | null;
 
@@ -20993,6 +21526,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns a newly allocated string or `NULL` if the specified   key cannot be found.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_string(group_name: string, key: string): string;
 
@@ -21005,6 +21540,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns a `NULL`-terminated string array or `NULL` if the specified  key cannot be found. The array should be freed with {@link GLib.strfreev}.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_string_list(group_name: string, key: string): string[];
 
@@ -21017,6 +21554,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns the value associated with the key as an unsigned 64-bit integer,    or `0` if the key was not found or could not be parsed.
+         * @since 2.26
+         * @throws GLib.Error
          */
         get_uint64(group_name: string, key: string): number;
 
@@ -21031,6 +21570,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @returns a newly allocated string or `NULL` if the specified  key cannot be found.
+         * @since 2.6
+         * @throws GLib.Error
          */
         get_value(group_name: string, key: string): string;
 
@@ -21038,6 +21579,7 @@ export class VariantType<S extends string = any> {
          * Looks whether the key file has the group `group_name`.
          * @param group_name a group name
          * @returns true if `group_name` is a part of `key_file`, false otherwise.
+         * @since 2.6
          */
         has_group(group_name: string): boolean;
 
@@ -21049,6 +21591,8 @@ export class VariantType<S extends string = any> {
          * @param bytes a {@link GLib.Bytes}
          * @param flags flags from {@link GLib.KeyFileFlags}
          * @returns true if a key file could be loaded, false otherwise
+         * @since 2.50
+         * @throws GLib.Error
          */
         load_from_bytes(bytes: Bytes | Uint8Array, flags: KeyFileFlags): boolean;
 
@@ -21060,6 +21604,8 @@ export class VariantType<S extends string = any> {
          * @param length the length of `data` in bytes (or `(gsize)-1` if data is nul-terminated)
          * @param flags flags from {@link GLib.KeyFileFlags}
          * @returns true if a key file could be loaded, false otherwise
+         * @since 2.6
+         * @throws GLib.Error
          */
         load_from_data(data: string, length: bigint | number, flags: KeyFileFlags): boolean;
 
@@ -21076,6 +21622,8 @@ export class VariantType<S extends string = any> {
          * @param file a relative path to a filename to open and parse
          * @param flags flags from {@link GLib.KeyFileFlags}
          * @returns true if a key file could be loaded, false otherwise
+         * @since 2.6
+         * @throws GLib.Error
          */
         load_from_data_dirs(file: string, flags: KeyFileFlags): [boolean, string];
 
@@ -21099,6 +21647,8 @@ export class VariantType<S extends string = any> {
          * @param search_dirs `NULL`-terminated    array of directories to search
          * @param flags flags from {@link GLib.KeyFileFlags}
          * @returns true if a key file could be loaded, false otherwise
+         * @since 2.14
+         * @throws GLib.Error
          */
         load_from_dirs(file: string, search_dirs: string[], flags: KeyFileFlags): [boolean, string];
 
@@ -21114,12 +21664,15 @@ export class VariantType<S extends string = any> {
          * @param file the path of a filename to load, in the GLib filename encoding
          * @param flags flags from {@link GLib.KeyFileFlags}
          * @returns true if a key file could be loaded, false otherwise
+         * @since 2.6
+         * @throws GLib.Error
          */
         load_from_file(file: string, flags: KeyFileFlags): boolean;
 
         /**
          * Increases the reference count of `key_file`.
          * @returns the same `key_file`.
+         * @since 2.32
          */
         ref(): KeyFile;
 
@@ -21132,6 +21685,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name, or `NULL` to get a top-level comment
          * @param key a key, or `NULL` to get a group comment
          * @returns true if the comment was removed, false otherwise
+         * @since 2.6
+         * @throws GLib.Error
          */
         remove_comment(group_name: string | null, key: string | null): boolean;
 
@@ -21140,6 +21695,8 @@ export class VariantType<S extends string = any> {
          * from the key file.
          * @param group_name a group name
          * @returns true if the group was removed, false otherwise
+         * @since 2.6
+         * @throws GLib.Error
          */
         remove_group(group_name: string): boolean;
 
@@ -21148,6 +21705,8 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key name to remove
          * @returns true if the key was removed, false otherwise
+         * @since 2.6
+         * @throws GLib.Error
          */
         remove_key(group_name: string, key: string): boolean;
 
@@ -21164,6 +21723,8 @@ export class VariantType<S extends string = any> {
          * {@link GLib.file_set_contents} may fail.
          * @param filename the name of the file to write to
          * @returns true if successful, false otherwise
+         * @since 2.40
+         * @throws GLib.Error
          */
         save_to_file(filename: string): boolean;
 
@@ -21174,6 +21735,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param value true or false
+         * @since 2.6
          */
         set_boolean(group_name: string, key: string, value: boolean): void;
 
@@ -21184,6 +21746,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param list an array of boolean values
+         * @since 2.6
          */
         set_boolean_list(group_name: string, key: string, list: boolean[]): void;
 
@@ -21205,6 +21768,8 @@ export class VariantType<S extends string = any> {
          * @param key a key, or `NULL` to write a group comment
          * @param comment a comment
          * @returns true if the comment was written, false otherwise
+         * @since 2.6
+         * @throws GLib.Error
          */
         set_comment(group_name: string | null, key: string | null, comment: string): boolean;
 
@@ -21215,6 +21780,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param value a double value
+         * @since 2.12
          */
         set_double(group_name: string, key: string, value: number): void;
 
@@ -21225,6 +21791,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param list an array of double values
+         * @since 2.12
          */
         set_double_list(group_name: string, key: string, list: number[]): void;
 
@@ -21235,6 +21802,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param value an integer value
+         * @since 2.26
          */
         set_int64(group_name: string, key: string, value: bigint | number): void;
 
@@ -21245,6 +21813,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param value an integer value
+         * @since 2.6
          */
         set_integer(group_name: string, key: string, value: number): void;
 
@@ -21255,6 +21824,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param list an array of integer values
+         * @since 2.6
          */
         set_integer_list(group_name: string, key: string, list: number[]): void;
 
@@ -21264,6 +21834,7 @@ export class VariantType<S extends string = any> {
          * Typically `;` or `,` are used as separators. The default list separator
          * is `;`.
          * @param separator the separator
+         * @since 2.6
          */
         set_list_separator(separator: number): void;
 
@@ -21277,6 +21848,7 @@ export class VariantType<S extends string = any> {
          * @param key a key
          * @param locale a locale identifier
          * @param string a string
+         * @since 2.6
          */
         set_locale_string(group_name: string, key: string, locale: string, string: string): void;
 
@@ -21291,6 +21863,7 @@ export class VariantType<S extends string = any> {
          * @param key a key
          * @param locale a locale identifier
          * @param list a `NULL`-terminated array of    locale string values
+         * @since 2.6
          */
         set_locale_string_list(group_name: string, key: string, locale: string, list: string[]): void;
 
@@ -21304,6 +21877,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param string a string
+         * @since 2.6
          */
         set_string(group_name: string, key: string, string: string): void;
 
@@ -21315,6 +21889,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param list an array    of string values
+         * @since 2.6
          */
         set_string_list(group_name: string, key: string, list: string[]): void;
 
@@ -21325,6 +21900,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param value an integer value
+         * @since 2.26
          */
         set_uint64(group_name: string, key: string, value: bigint | number): void;
 
@@ -21338,6 +21914,7 @@ export class VariantType<S extends string = any> {
          * @param group_name a group name
          * @param key a key
          * @param value a string
+         * @since 2.6
          */
         set_value(group_name: string, key: string, value: string): void;
 
@@ -21346,6 +21923,8 @@ export class VariantType<S extends string = any> {
          * 
          * Note that this function never reports an error.
          * @returns a newly allocated string holding the contents of the key file
+         * @since 2.6
+         * @throws GLib.Error
          */
         to_data(): [string, number];
 
@@ -21354,6 +21933,7 @@ export class VariantType<S extends string = any> {
          * 
          * If the reference count reaches zero, frees the key file and all its allocated
          * memory.
+         * @since 2.32
          */
         unref(): void;
     }
@@ -21410,10 +21990,14 @@ export class VariantType<S extends string = any> {
          */
         static free(list: never[]): void;
 
+        /**
+         * @deprecated since 2.10
+         */
         static pop_allocator(): void;
 
         /**
          * @param allocator 
+         * @deprecated since 2.10
          */
         static push_allocator(allocator: Allocator): void;
     }
@@ -21481,6 +22065,7 @@ export class VariantType<S extends string = any> {
          * 
          * If you need to hold a reference on the context, use
          * {@link GLib.MainContext.ref_thread_default} instead.
+         * @since 2.22
          */
         static get_thread_default(): MainContext | null;
 
@@ -21495,6 +22080,7 @@ export class VariantType<S extends string = any> {
          * is the global-default context, this will return that
          * {@link GLib.MainContext} (with a ref added to it) rather than returning
          * `NULL`.
+         * @since 2.32
          */
         static ref_thread_default(): MainContext;
 
@@ -21612,6 +22198,7 @@ export class VariantType<S extends string = any> {
          * thread or with any particular context acquired.
          * @param priority the priority at which to run `function`
          * @param _function function to call
+         * @since 2.28
          */
         invoke_full(priority: number, _function: SourceFunc): void;
 
@@ -21623,6 +22210,7 @@ export class VariantType<S extends string = any> {
          * know before waiting on another thread that may be
          * blocking to get ownership of `context`.
          * @returns true if current thread is owner of `context`, false otherwise
+         * @since 2.10
          */
         is_owner(): boolean;
 
@@ -21654,6 +22242,7 @@ export class VariantType<S extends string = any> {
         /**
          * Pops `context` off the thread-default context stack (verifying that
          * it was on the top of the stack).
+         * @since 2.22
          */
         pop_thread_default(): void;
 
@@ -21709,6 +22298,7 @@ export class VariantType<S extends string = any> {
          * Beware that libraries that predate this function may not correctly
          * handle being used from a thread with a thread-default context. For example,
          * see `g_file_supports_thread_contexts()`.
+         * @since 2.22
          */
         push_thread_default(): void;
 
@@ -21753,6 +22343,7 @@ export class VariantType<S extends string = any> {
          * ```
          * 
          * @returns a {@link GLib.MainContextPusher}
+         * @since 2.64
          */
         pusher_new(): MainContextPusher;
 
@@ -21815,6 +22406,7 @@ export class VariantType<S extends string = any> {
          * @param cond a condition variable
          * @param mutex a mutex, currently held
          * @returns true if this thread is now the owner of `context`, false otherwise
+         * @deprecated since 2.58: Use {@link GLib.MainContext.is_owner} and separate    locking instead.
          */
         wait(cond: Cond, mutex: Mutex): boolean;
 
@@ -21941,6 +22533,8 @@ export class VariantType<S extends string = any> {
         /**
          * This call existed before {@link GLib.MappedFile} had refcounting and is currently
          * exactly the same as `g_mapped_file_unref()`.
+         * @since 2.8
+         * @deprecated since 2.22: Use `g_mapped_file_unref()` instead.
          */
         free(): void;
 
@@ -21949,6 +22543,7 @@ export class VariantType<S extends string = any> {
          * The mapped contents of the file must not be modified after creating this
          * bytes object, because a {@link GLib.Bytes} should be immutable.
          * @returns A newly allocated {@link GLib.Bytes} referencing data     from `file`
+         * @since 2.34
          */
         get_bytes(): Bytes;
 
@@ -21960,12 +22555,14 @@ export class VariantType<S extends string = any> {
          * 
          * If the file is empty then `null` is returned.
          * @returns the contents of `file`, or `null`.
+         * @since 2.8
          */
         get_contents(): string | null;
 
         /**
          * Returns the length of the contents of a {@link GLib.MappedFile}.
          * @returns the length of the contents of `file`.
+         * @since 2.8
          */
         get_length(): number;
 
@@ -21973,6 +22570,7 @@ export class VariantType<S extends string = any> {
          * Increments the reference count of `file` by one.  It is safe to call
          * this function from any thread.
          * @returns the passed in {@link GLib.MappedFile}.
+         * @since 2.22
          */
         ref(): MappedFile;
 
@@ -22012,6 +22610,7 @@ export class VariantType<S extends string = any> {
          * This function reports an error if the document isn't complete,
          * for example if elements are still open.
          * @returns `true` on success, `false` if an error was set
+         * @throws GLib.Error
          */
         end_parse(): boolean;
 
@@ -22030,6 +22629,7 @@ export class VariantType<S extends string = any> {
          * give the element_name as passed to those functions. For the parent
          * elements, see `g_markup_parse_context_get_element_stack()`.
          * @returns the name of the currently open element, or `null`
+         * @since 2.2
          */
         get_element(): string;
 
@@ -22046,6 +22646,7 @@ export class VariantType<S extends string = any> {
          * would merely return the name of the element that is being
          * processed.
          * @returns the element stack, which must not be modified
+         * @since 2.16
          */
         get_element_stack(): string[];
 
@@ -22064,6 +22665,7 @@ export class VariantType<S extends string = any> {
          * `g_markup_parse_context_new()` or to the most recent call
          * of `g_markup_parse_context_push()`.
          * @returns the provided user_data. The returned data belongs to     the markup context and will be freed when     `g_markup_parse_context_free()` is called.
+         * @since 2.18
          */
         get_user_data(): null;
 
@@ -22081,6 +22683,7 @@ export class VariantType<S extends string = any> {
          * @param text chunk of text to parse
          * @param text_len length of `text` in bytes
          * @returns `false` if an error occurred, `true` on success
+         * @throws GLib.Error
          */
         parse(text: string, text_len: bigint | number): boolean;
 
@@ -22099,6 +22702,7 @@ export class VariantType<S extends string = any> {
          * be used by the subparsers themselves to implement a higher-level
          * interface.
          * @returns the user data passed to `g_markup_parse_context_push()`
+         * @since 2.18
          */
         pop(): null;
 
@@ -22225,18 +22829,21 @@ export class VariantType<S extends string = any> {
          * 
          * @param parser a {@link GLib.MarkupParser}
          * @param user_data user data to pass to {@link GLib.MarkupParser} functions
+         * @since 2.18
          */
         push(parser: MarkupParser, user_data: null): void;
 
         /**
          * Increases the reference count of `context`.
          * @returns the same `context`
+         * @since 2.36
          */
         ref(): MarkupParseContext;
 
         /**
          * Decreases the reference count of `context`.  When its reference count
          * drops to 0, it is freed.
+         * @since 2.36
          */
         unref(): void;
     }
@@ -22290,6 +22897,8 @@ export class VariantType<S extends string = any> {
          * contains references.
          * @param string_to_expand the string to expand
          * @returns the expanded string, or `null` if an error occurred
+         * @since 2.14
+         * @throws GLib.Error
          */
         expand_references(string_to_expand: string): string | null;
 
@@ -22312,6 +22921,7 @@ export class VariantType<S extends string = any> {
          * so you cannot call this function after freeing the string.
          * @param match_num number of the sub expression
          * @returns The matched substring, or `null` if an error     occurred. You have to free the string yourself
+         * @since 2.14
          */
         fetch(match_num: number): string | null;
 
@@ -22333,6 +22943,7 @@ export class VariantType<S extends string = any> {
          * The strings are fetched from the string passed to the match function,
          * so you cannot call this function after freeing the string.
          * @returns a `null`-terminated array of gchar *     pointers.  It must be freed using `g_strfreev()`. If the previous     match failed `null` is returned
+         * @since 2.14
          */
         fetch_all(): string[];
 
@@ -22347,6 +22958,7 @@ export class VariantType<S extends string = any> {
          * so you cannot call this function after freeing the string.
          * @param name name of the subexpression
          * @returns The matched substring, or `null` if an error     occurred. You have to free the string yourself
+         * @since 2.14
          */
         fetch_named(name: string): string | null;
 
@@ -22361,6 +22973,7 @@ export class VariantType<S extends string = any> {
          * the length of the match can be calculated as `end_pos - start_pos`.
          * @param name name of the subexpression
          * @returns `true` if the position was fetched, `false` otherwise.     If the position cannot be fetched, `start_pos` and `end_pos`     are left unchanged.
+         * @since 2.14
          */
         fetch_named_pos(name: string): [boolean, number, number];
 
@@ -22570,12 +23183,14 @@ export class VariantType<S extends string = any> {
          * ```
          * @param match_num number of the capture parenthesis
          * @returns True if `match_num` is within range, false otherwise. If   the capture paren has a match, `start_pos` and `end_pos` contain the   start and end positions (in bytes) of the matching substring. If the   capture paren has no match, `start_pos` and `end_pos` are `-1`. If   `match_num` is out of range, `start_pos` and `end_pos` are left unchanged.
+         * @since 2.14
          */
         fetch_pos(match_num: number): [boolean, number, number];
 
         /**
          * If `match_info` is not `null`, calls `g_match_info_unref()`; otherwise does
          * nothing.
+         * @since 2.14
          */
         free(): void;
 
@@ -22589,6 +23204,7 @@ export class VariantType<S extends string = any> {
          * count is not that of the number of capturing parentheses but that of
          * the number of matched substrings.
          * @returns Number of matched substrings, or -1 if an error occurred
+         * @since 2.14
          */
         get_match_count(): number;
 
@@ -22597,6 +23213,7 @@ export class VariantType<S extends string = any> {
          * and must not be freed. Use `g_regex_ref()` if you need to keep it
          * after you free `match_info` object.
          * @returns {@link GLib.Regex} object used in `match_info`
+         * @since 2.14
          */
         get_regex(): Regex;
 
@@ -22605,6 +23222,7 @@ export class VariantType<S extends string = any> {
          * string passed to `g_regex_match()` or `g_regex_replace()` so
          * you may not free it before calling this function.
          * @returns the string searched with `match_info`
+         * @since 2.14
          */
         get_string(): string;
 
@@ -22643,12 +23261,14 @@ export class VariantType<S extends string = any> {
          * 
          * See pcrepartial(3) for more information on partial matching.
          * @returns `true` if the match was partial, `false` otherwise
+         * @since 2.14
          */
         is_partial_match(): boolean;
 
         /**
          * Returns whether the previous match operation succeeded.
          * @returns `true` if the previous match operation succeeded,   `false` otherwise
+         * @since 2.14
          */
         matches(): boolean;
 
@@ -22660,18 +23280,22 @@ export class VariantType<S extends string = any> {
          * The match is done on the string passed to the match function, so you
          * cannot free it before calling this function.
          * @returns `true` is the string matched, `false` otherwise
+         * @since 2.14
+         * @throws GLib.Error
          */
         next(): boolean;
 
         /**
          * Increases reference count of `match_info` by 1.
          * @returns `match_info`
+         * @since 2.30
          */
         ref(): MatchInfo;
 
         /**
          * Decreases reference count of `match_info` by 1. When reference count drops
          * to zero, it frees all the memory associated with the match_info structure.
+         * @since 2.30
          */
         unref(): void;
     }
@@ -22685,24 +23309,46 @@ export class VariantType<S extends string = any> {
         static $gtype: GObject.GType<MemChunk>;
 
         // Static methods
+        /**
+         * @deprecated since 2.10
+         */
         static info(): void;
 
         // Methods
+        /**
+         * @deprecated since 2.10
+         */
         alloc(): null;
 
+        /**
+         * @deprecated since 2.10
+         */
         alloc0(): null;
 
+        /**
+         * @deprecated since 2.10
+         */
         clean(): void;
 
+        /**
+         * @deprecated since 2.10
+         */
         destroy(): void;
 
         /**
          * @param mem 
+         * @deprecated since 2.10
          */
         free(mem: null): void;
 
+        /**
+         * @deprecated since 2.10
+         */
         print(): void;
 
+        /**
+         * @deprecated since 2.10
+         */
         reset(): void;
     }
 
@@ -22731,10 +23377,14 @@ export class VariantType<S extends string = any> {
         data: null;
 
         // Static methods
+        /**
+         * @deprecated since 2.10
+         */
         static pop_allocator(): void;
 
         /**
          * @param allocator 
+         * @deprecated since 2.10
          */
         static push_allocator(allocator: Allocator): void;
 
@@ -22889,6 +23539,7 @@ export class VariantType<S extends string = any> {
          * While `location` has a `volatile` qualifier, this is a historical artifact and
          * the pointer passed to it should not be `volatile`.
          * @param location location of a static initializable variable    containing 0
+         * @since 2.14
          */
         static init_enter(location: never): [boolean, null];
 
@@ -22916,6 +23567,7 @@ export class VariantType<S extends string = any> {
          * ```
          * 
          * @param location location of a static initializable variable    containing `NULL`
+         * @since 2.80
          */
         static init_enter_pointer(location: never): boolean;
 
@@ -22930,6 +23582,7 @@ export class VariantType<S extends string = any> {
          * the pointer passed to it should not be `volatile`.
          * @param location location of a static initializable variable    containing 0
          * @param result new non-0 value for `*value_location`
+         * @since 2.14
          */
         static init_leave(location: never, result: bigint | number): null;
 
@@ -22944,6 +23597,7 @@ export class VariantType<S extends string = any> {
          * can be used to initialize pointers (or `guintptr`) instead of `gsize`.
          * @param location location of a static initializable variable    containing `NULL`
          * @param result new non-`NULL` value for `*location`
+         * @since 2.80
          */
         static init_leave_pointer(location: never, result: null): void;
     }
@@ -22964,6 +23618,7 @@ export class VariantType<S extends string = any> {
          * will recognize the options in the group. Note that this will take
          * ownership of the `group` and thus the `group` should not be freed.
          * @param group the group to add
+         * @since 2.6
          */
         add_group(group: OptionGroup): void;
 
@@ -22972,6 +23627,7 @@ export class VariantType<S extends string = any> {
          * exist, adds the `entries` to it and sets the translation domain.
          * @param entries a `null`-terminated array of `GOptionEntrys`
          * @param translation_domain a translation domain to use for translating    the `--help` output for the options in `entries`    with `gettext()`, or `null`
+         * @since 2.6
          */
         add_main_entries(entries: OptionEntry[], translation_domain: string | null): void;
 
@@ -22981,12 +23637,14 @@ export class VariantType<S extends string = any> {
          * 
          * Please note that parsed arguments need to be freed separately (see
          * {@link GLib.OptionEntry}).
+         * @since 2.6
          */
         free(): void;
 
         /**
          * Returns the description. See `g_option_context_set_description()`.
          * @returns the description
+         * @since 2.12
          */
         get_description(): string;
 
@@ -23001,6 +23659,7 @@ export class VariantType<S extends string = any> {
          * @param main_help if `true`, only include the main group
          * @param group the {@link GLib.OptionGroup} to create help for, or `null`
          * @returns A newly allocated string containing the help text
+         * @since 2.14
          */
         get_help(main_help: boolean, group: OptionGroup | null): string;
 
@@ -23008,6 +23667,7 @@ export class VariantType<S extends string = any> {
          * Returns whether automatic `--help` generation
          * is turned on for `context`. See `g_option_context_set_help_enabled()`.
          * @returns `true` if automatic help generation is turned on.
+         * @since 2.6
          */
         get_help_enabled(): boolean;
 
@@ -23015,12 +23675,14 @@ export class VariantType<S extends string = any> {
          * Returns whether unknown options are ignored or not. See
          * `g_option_context_set_ignore_unknown_options()`.
          * @returns `true` if unknown options are ignored.
+         * @since 2.6
          */
         get_ignore_unknown_options(): boolean;
 
         /**
          * Returns a pointer to the main group of `context`.
          * @returns the main group of `context`, or `null` if  `context` doesn't have a main group. Note that group belongs to  `context` and should not be modified or freed.
+         * @since 2.6
          */
         get_main_group(): OptionGroup;
 
@@ -23029,12 +23691,14 @@ export class VariantType<S extends string = any> {
          * 
          * See `g_option_context_set_strict_posix()` for more information.
          * @returns `true` if strict POSIX is enabled, `false` otherwise.
+         * @since 2.44
          */
         get_strict_posix(): boolean;
 
         /**
          * Returns the summary. See `g_option_context_set_summary()`.
          * @returns the summary
+         * @since 2.12
          */
         get_summary(): string;
 
@@ -23062,6 +23726,8 @@ export class VariantType<S extends string = any> {
          * character set conversion of string and filename arguments.
          * @param argv a pointer to the array of command line arguments
          * @returns `true` if the parsing was successful,               `false` if an error occurred
+         * @since 2.6
+         * @throws GLib.Error
          */
         parse(argv?: string[]): [boolean, string[]];
 
@@ -23084,6 +23750,8 @@ export class VariantType<S extends string = any> {
          * `GApplication`.
          * @param _arguments a pointer    to the command line arguments (which must be in UTF-8 on Windows).    Starting with GLib 2.62, `arguments` can be `null`, which matches    `g_option_context_parse()`.
          * @returns `true` if the parsing was successful,          `false` if an error occurred
+         * @since 2.40
+         * @throws GLib.Error
          */
         parse_strv(_arguments?: string[]): [boolean, string[]];
 
@@ -23094,6 +23762,7 @@ export class VariantType<S extends string = any> {
          * Note that the summary is translated (see
          * `g_option_context_set_translate_func()`).
          * @param description a string to be shown in `--help` output   after the list of options, or `null`
+         * @since 2.12
          */
         set_description(description: string | null): void;
 
@@ -23103,6 +23772,7 @@ export class VariantType<S extends string = any> {
          * `-?`, `--help-all` and `--help-groupname` and creates suitable
          * output to stdout.
          * @param help_enabled `true` to enable `--help`, `false` to disable it
+         * @since 2.6
          */
         set_help_enabled(help_enabled: boolean): void;
 
@@ -23115,6 +23785,7 @@ export class VariantType<S extends string = any> {
          * which don't start with a dash). But note that GOption cannot reliably
          * determine whether a non-option belongs to a preceding unknown option.
          * @param ignore_unknown `true` to ignore unknown options, `false` to produce    an error when unknown options are met
+         * @since 2.6
          */
         set_ignore_unknown_options(ignore_unknown: boolean): void;
 
@@ -23124,6 +23795,7 @@ export class VariantType<S extends string = any> {
          * the only difference is that the options in the main group are
          * treated differently when generating `--help` output.
          * @param group the group to set as main group
+         * @since 2.6
          */
         set_main_group(group: OptionGroup): void;
 
@@ -23153,6 +23825,7 @@ export class VariantType<S extends string = any> {
          * examining the verb name, which should be present in argv[1] after
          * parsing).
          * @param strict_posix the new value
+         * @since 2.44
          */
         set_strict_posix(strict_posix: boolean): void;
 
@@ -23164,6 +23837,7 @@ export class VariantType<S extends string = any> {
          * `g_option_context_set_translate_func()` and
          * `g_option_context_set_translation_domain()`).
          * @param summary a string to be shown in `--help` output  before the list of options, or `null`
+         * @since 2.12
          */
         set_summary(summary: string | null): void;
 
@@ -23180,6 +23854,7 @@ export class VariantType<S extends string = any> {
          * If you are using `gettext()`, you only need to set the translation
          * domain, see `g_option_context_set_translation_domain()`.
          * @param func the {@link GLib.TranslateFunc}, or `null`
+         * @since 2.12
          */
         set_translate_func(func: TranslateFunc | null): void;
 
@@ -23187,6 +23862,7 @@ export class VariantType<S extends string = any> {
          * A convenience function to use `gettext()` for translating
          * user-visible strings.
          * @param domain the domain to use
+         * @since 2.12
          */
         set_translation_domain(domain: string): void;
     }
@@ -23253,18 +23929,22 @@ export class VariantType<S extends string = any> {
         /**
          * Adds the options specified in `entries` to `group`.
          * @param entries a `null`-terminated array of `GOptionEntrys`
+         * @since 2.6
          */
         add_entries(entries: OptionEntry[]): void;
 
         /**
          * Frees a {@link GLib.OptionGroup}. Note that you must not free groups
          * which have been added to a {@link GLib.OptionContext}.
+         * @since 2.6
+         * @deprecated since 2.44: Use `g_option_group_unref()` instead.
          */
         free(): void;
 
         /**
          * Increments the reference count of `group` by one.
          * @returns a {@link GLib.OptionGroup}
+         * @since 2.44
          */
         ref(): OptionGroup;
 
@@ -23276,6 +23956,7 @@ export class VariantType<S extends string = any> {
          * If you are using `gettext()`, you only need to set the translation
          * domain, see `g_option_group_set_translation_domain()`.
          * @param func the {@link GLib.TranslateFunc}, or `null`
+         * @since 2.6
          */
         set_translate_func(func: TranslateFunc | null): void;
 
@@ -23283,6 +23964,7 @@ export class VariantType<S extends string = any> {
          * A convenience function to use `gettext()` for translating
          * user-visible strings.
          * @param domain the domain to use
+         * @since 2.6
          */
         set_translation_domain(domain: string): void;
 
@@ -23290,6 +23972,7 @@ export class VariantType<S extends string = any> {
          * Decrements the reference count of `group` by one.
          * If the reference count drops to 0, the `group` will be freed.
          * and all memory allocated by the `group` is released.
+         * @since 2.44
          */
         unref(): void;
     }
@@ -23348,6 +24031,7 @@ export class VariantType<S extends string = any> {
          * `key_equal_func` parameter.
          * @param v1 a path buffer to compare
          * @param v2 a path buffer to compare
+         * @since 2.76
          */
         static equal(v1: never, v2: never): boolean;
 
@@ -23358,6 +24042,7 @@ export class VariantType<S extends string = any> {
          * This function should be use to free the resources in a stack-allocated
          * {@link GLib.PathBuf} initialized using `g_path_buf_init()` or
          * `g_path_buf_init_from_path()`.
+         * @since 2.76
          */
         clear(): void;
 
@@ -23368,17 +24053,20 @@ export class VariantType<S extends string = any> {
          * 
          * See also: `g_path_buf_to_path()`
          * @returns the built path
+         * @since 2.76
          */
         clear_to_path(): string | null;
 
         /**
          * Copies the contents of a path buffer into a new {@link GLib.PathBuf}.
          * @returns the newly allocated path buffer
+         * @since 2.76
          */
         copy(): PathBuf;
 
         /**
          * Frees a {@link GLib.PathBuf} allocated by `g_path_buf_new()`.
+         * @since 2.76
          */
         free(): void;
 
@@ -23390,12 +24078,14 @@ export class VariantType<S extends string = any> {
          * 
          * See also: `g_path_buf_to_path()`
          * @returns the path
+         * @since 2.76
          */
         free_to_path(): string | null;
 
         /**
          * Initializes a {@link GLib.PathBuf} instance.
          * @returns the initialized path builder
+         * @since 2.76
          */
         init(): PathBuf;
 
@@ -23403,6 +24093,7 @@ export class VariantType<S extends string = any> {
          * Initializes a {@link GLib.PathBuf} instance with the given path.
          * @param path a file system path
          * @returns the initialized path builder
+         * @since 2.76
          */
         init_from_path(path: string | null): PathBuf;
 
@@ -23433,6 +24124,7 @@ export class VariantType<S extends string = any> {
          * ```
          * 
          * @returns `TRUE` if the buffer was modified and `FALSE` otherwise
+         * @since 2.76
          */
         pop(): boolean;
 
@@ -23468,6 +24160,7 @@ export class VariantType<S extends string = any> {
          * 
          * @param path a path
          * @returns the same pointer to `buf`, for convenience
+         * @since 2.76
          */
         push(path: string): PathBuf;
 
@@ -23480,6 +24173,7 @@ export class VariantType<S extends string = any> {
          * `FALSE` and leaves the path buffer unmodified.
          * @param extension the file extension
          * @returns `TRUE` if the extension was replaced, and `FALSE` otherwise
+         * @since 2.76
          */
         set_extension(extension: string | null): boolean;
 
@@ -23518,6 +24212,7 @@ export class VariantType<S extends string = any> {
          * 
          * @param file_name the file name in the path
          * @returns `TRUE` if the file name was replaced, and `FALSE` otherwise
+         * @since 2.76
          */
         set_filename(file_name: string): boolean;
 
@@ -23529,6 +24224,7 @@ export class VariantType<S extends string = any> {
          * 
          * If the path buffer is empty, this function returns `NULL`.
          * @returns the path
+         * @since 2.76
          */
         to_path(): string | null;
     }
@@ -23565,6 +24261,7 @@ export class VariantType<S extends string = any> {
         /**
          * Copies `pspec` in a new {@link GLib.PatternSpec}.
          * @returns a copy of `pspec`.
+         * @since 2.70
          */
         copy(): PatternSpec;
 
@@ -23605,6 +24302,7 @@ export class VariantType<S extends string = any> {
          * @param string the UTF-8 encoded string to match
          * @param string_reversed the reverse of `string`
          * @returns `true` if `string` matches `pspec`
+         * @since 2.70
          */
         match(string_length: bigint | number, string: string, string_reversed: string | null): boolean;
 
@@ -23616,6 +24314,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.PatternSpec.match} instead while supplying the reversed string.
          * @param string the UTF-8 encoded string to match
          * @returns `true` if `string` matches `pspec`
+         * @since 2.70
          */
         match_string(string: string): boolean;
     }
@@ -23688,6 +24387,7 @@ export class VariantType<S extends string = any> {
          * the previous value was non-`null` then the {@link GLib.DestroyNotify} handler for
          * `key` is run on it.
          * @param value the new value
+         * @since 2.32
          */
         replace(value: null): void;
 
@@ -23742,6 +24442,7 @@ export class VariantType<S extends string = any> {
          * array is.
          * @param array a pointer array to duplicate
          * @param func a copy function used to copy every element in the array
+         * @since 2.62
          */
         static copy(array: never[], func: CopyFunc | null): null[];
 
@@ -23773,6 +24474,7 @@ export class VariantType<S extends string = any> {
          * Atomically increments the reference count of `array` by one.
          * This function is thread-safe and may be called from any thread.
          * @param array a pointer array
+         * @since 2.22
          */
         static ref(array: never[]): null[];
 
@@ -23782,6 +24484,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.PtrArray.free} with `free_segment` set to true. This function
          * is thread-safe and may be called from any thread.
          * @param array a pointer array
+         * @since 2.22
          */
         static unref(array: never[]): void;
     }
@@ -23812,12 +24515,14 @@ export class VariantType<S extends string = any> {
         /**
          * Removes all the elements in `queue`. If queue elements contain
          * dynamically-allocated memory, they should be freed first.
+         * @since 2.14
          */
         clear(): void;
 
         /**
          * Convenience method, which frees all the memory used by a {@link GLib.Queue},
          * and calls the provided `free_func` on each item in the {@link GLib.Queue}.
+         * @since 2.60
          */
         clear_full(): void;
 
@@ -23826,6 +24531,7 @@ export class VariantType<S extends string = any> {
          * queue consist of pointers to data, the pointers are copied, but the
          * actual data is not.
          * @returns a copy of `queue`
+         * @since 2.4
          */
         copy(): Queue;
 
@@ -23836,6 +24542,7 @@ export class VariantType<S extends string = any> {
          * It is safe for `func` to remove the element from `queue`, but it must
          * not modify any part of the queue after that element.
          * @param func the function to call for each element's data
+         * @since 2.4
          */
         foreach(func: Func): void;
 
@@ -23855,12 +24562,14 @@ export class VariantType<S extends string = any> {
          * 
          * `free_func` should not modify the queue (eg, by removing the freed
          * element from it).
+         * @since 2.32
          */
         free_full(): void;
 
         /**
          * Returns the number of items in `queue`.
          * @returns the number of items in `queue`
+         * @since 2.4
          */
         get_length(): number;
 
@@ -23868,6 +24577,7 @@ export class VariantType<S extends string = any> {
          * Returns the position of the first element in `queue` which contains `data`.
          * @param data the data to find
          * @returns the position of the first element in `queue` which     contains `data`, or -1 if no element in `queue` contains `data`
+         * @since 2.4
          */
         index(data: null): number;
 
@@ -23876,6 +24586,7 @@ export class VariantType<S extends string = any> {
          * before it can be used. Alternatively you can initialize it with
          * `G_QUEUE_INIT`. It is not necessary to initialize queues created with
          * `g_queue_new()`.
+         * @since 2.14
          */
         init(): void;
 
@@ -23883,6 +24594,7 @@ export class VariantType<S extends string = any> {
          * Inserts `data` into `queue` using `func` to determine the new position.
          * @param data the data to insert
          * @param func the {@link GLib.CompareDataFunc} used to compare elements in the queue. It is     called with two elements of the `queue` and `user_data`. It should     return 0 if the elements are equal, a negative value if the first     element comes before the second, and a positive value if the second     element comes before the first.
+         * @since 2.4
          */
         insert_sorted(data: null, func: CompareDataFunc): void;
 
@@ -23902,6 +24614,7 @@ export class VariantType<S extends string = any> {
          * Returns the `n`'th element of `queue`.
          * @param n the position of the element
          * @returns the data for the `n`'th element of `queue`,     or `null` if `n` is off the end of `queue`
+         * @since 2.4
          */
         peek_nth(n: number): null;
 
@@ -23921,6 +24634,7 @@ export class VariantType<S extends string = any> {
          * Removes the `n`'th element of `queue` and returns its data.
          * @param n the position of the element
          * @returns the element's data, or `null` if `n` is off the end of `queue`
+         * @since 2.4
          */
         pop_nth(n: number): null;
 
@@ -23940,6 +24654,7 @@ export class VariantType<S extends string = any> {
          * Inserts a new element into `queue` at the given position.
          * @param data the data for the new element
          * @param n the position to insert the new element. If `n` is negative or     larger than the number of elements in the `queue`, the element is     added to the end of the queue.
+         * @since 2.4
          */
         push_nth(data: null, n: number): void;
 
@@ -23953,6 +24668,7 @@ export class VariantType<S extends string = any> {
          * Removes the first element in `queue` that contains `data`.
          * @param data the data to remove
          * @returns `true` if `data` was found and removed from `queue`
+         * @since 2.4
          */
         remove(data: null): boolean;
 
@@ -23960,17 +24676,20 @@ export class VariantType<S extends string = any> {
          * Remove all elements whose data equals `data` from `queue`.
          * @param data the data to remove
          * @returns the number of elements removed from `queue`
+         * @since 2.4
          */
         remove_all(data: null): number;
 
         /**
          * Reverses the order of the items in `queue`.
+         * @since 2.4
          */
         reverse(): void;
 
         /**
          * Sorts `queue` using `compare_func`.
          * @param compare_func the {@link GLib.CompareDataFunc} used to sort `queue`. This function     is passed two elements of the queue and should return 0 if they are     equal, a negative value if the first comes before the second, and     a positive value if the second comes before the first.
+         * @since 2.4
          */
         sort(compare_func: CompareDataFunc): void;
     }
@@ -24060,6 +24779,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_rw_lock_clear()` when any thread holds the lock
          * leads to undefined behaviour.
+         * @since 2.32
          */
         clear(): void;
 
@@ -24090,6 +24810,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_rw_lock_init()` on an already initialized {@link GLib.RWLock} leads
          * to undefined behaviour.
+         * @since 2.32
          */
         init(): void;
 
@@ -24109,6 +24830,7 @@ export class VariantType<S extends string = any> {
          * It is implementation-defined how many read locks are allowed to be
          * held on the same lock simultaneously. If the limit is hit,
          * or if a deadlock is detected, a critical warning will be emitted.
+         * @since 2.32
          */
         reader_lock(): void;
 
@@ -24117,6 +24839,7 @@ export class VariantType<S extends string = any> {
          * the read lock was successfully obtained. Otherwise it
          * returns `false`.
          * @returns `true` if `rw_lock` could be locked
+         * @since 2.32
          */
         reader_trylock(): boolean;
 
@@ -24125,6 +24848,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_rw_lock_reader_unlock()` on a lock that is not held
          * by the current thread leads to undefined behaviour.
+         * @since 2.32
          */
         reader_unlock(): void;
 
@@ -24135,6 +24859,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_rw_lock_writer_lock()` while the current thread already
          * owns a read or write lock on `rw_lock` leads to undefined behaviour.
+         * @since 2.32
          */
         writer_lock(): void;
 
@@ -24144,6 +24869,7 @@ export class VariantType<S extends string = any> {
          * returns `false`.
          * Otherwise it locks `rw_lock` and returns `true`.
          * @returns `true` if `rw_lock` could be locked
+         * @since 2.32
          */
         writer_trylock(): boolean;
 
@@ -24152,6 +24878,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_rw_lock_writer_unlock()` on a lock that is not held
          * by the current thread leads to undefined behaviour.
+         * @since 2.32
          */
         writer_unlock(): void;
     }
@@ -24180,6 +24907,7 @@ export class VariantType<S extends string = any> {
          * This way you can take a snapshot of the random number generator for
          * replaying later.
          * @returns the new {@link GLib.Rand}
+         * @since 2.4
          */
         copy(): Rand;
 
@@ -24234,6 +24962,7 @@ export class VariantType<S extends string = any> {
          * your application.
          * @param seed array to initialize with
          * @param seed_length length of array
+         * @since 2.4
          */
         set_seed_array(seed: number, seed_length: number): void;
     }
@@ -24271,6 +25000,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_rec_mutex_clear()` on a locked recursive mutex leads
          * to undefined behaviour.
+         * @since 2.32
          */
         clear(): void;
 
@@ -24303,6 +25033,7 @@ export class VariantType<S extends string = any> {
          * 
          * To undo the effect of `g_rec_mutex_init()` when a recursive mutex
          * is no longer needed, use `g_rec_mutex_clear()`.
+         * @since 2.32
          */
         init(): void;
 
@@ -24313,6 +25044,7 @@ export class VariantType<S extends string = any> {
          * by the current thread, the 'lock count' of `rec_mutex` is increased.
          * The mutex will only become available again when it is unlocked
          * as many times as it has been locked.
+         * @since 2.32
          */
         lock(): void;
 
@@ -24321,6 +25053,7 @@ export class VariantType<S extends string = any> {
          * by another thread, it immediately returns `false`. Otherwise
          * it locks `rec_mutex` and returns `true`.
          * @returns `true` if `rec_mutex` could be locked
+         * @since 2.32
          */
         trylock(): boolean;
 
@@ -24331,6 +25064,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_rec_mutex_unlock()` on a recursive mutex that is not
          * locked by the current thread leads to undefined behaviour.
+         * @since 2.32
          */
         unlock(): void;
     }
@@ -24488,6 +25222,7 @@ export class VariantType<S extends string = any> {
          * about actual match, but '\0\1' (whole match followed by first
          * subpattern) requires valid {@link GLib.MatchInfo} object.
          * @param replacement the replacement string
+         * @since 2.14
          */
         static check_replacement(replacement: string): [boolean, boolean];
 
@@ -24501,6 +25236,7 @@ export class VariantType<S extends string = any> {
          * In this case the output string will be of course equal to `string`.
          * @param string the string to escape
          * @param length the length of `string`
+         * @since 2.30
          */
         static escape_nul(string: string, length: number): string;
 
@@ -24514,6 +25250,7 @@ export class VariantType<S extends string = any> {
          * in `length`.
          * @param string the string to escape
          * @param length the length of `string`, in bytes, or -1 if `string` is nul-terminated
+         * @since 2.14
          */
         static escape_string(string: string, length: number): string;
 
@@ -24532,6 +25269,7 @@ export class VariantType<S extends string = any> {
          * @param string the string to scan for matches
          * @param compile_options compile options for the regular expression, or 0
          * @param match_options match options, or 0
+         * @since 2.14
          */
         static match_simple(pattern: string, string: string, compile_options: RegexCompileFlags, match_options: RegexMatchFlags): boolean;
 
@@ -24567,6 +25305,7 @@ export class VariantType<S extends string = any> {
          * @param string the string to scan for matches
          * @param compile_options compile options for the regular expression, or 0
          * @param match_options match options, or 0
+         * @since 2.14
          */
         static split_simple(pattern: string, string: string, compile_options: RegexCompileFlags, match_options: RegexMatchFlags): string[];
 
@@ -24574,6 +25313,7 @@ export class VariantType<S extends string = any> {
         /**
          * Returns the number of capturing subpatterns in the pattern.
          * @returns the number of capturing subpatterns
+         * @since 2.14
          */
         get_capture_count(): number;
 
@@ -24584,18 +25324,21 @@ export class VariantType<S extends string = any> {
          * include flags set by option expressions such as `(?i)` found at the
          * top-level within the compiled pattern.
          * @returns flags from {@link GLib.RegexCompileFlags}
+         * @since 2.26
          */
         get_compile_flags(): RegexCompileFlags;
 
         /**
          * Checks whether the pattern contains explicit CR or LF references.
          * @returns `true` if the pattern contains explicit CR or LF references
+         * @since 2.34
          */
         get_has_cr_or_lf(): boolean;
 
         /**
          * Returns the match options that `regex` was created with.
          * @returns flags from {@link GLib.RegexMatchFlags}
+         * @since 2.26
          */
         get_match_flags(): RegexMatchFlags;
 
@@ -24604,6 +25347,7 @@ export class VariantType<S extends string = any> {
          * in the pattern, or 0 if the pattern does not contain
          * back references.
          * @returns the number of the highest back reference
+         * @since 2.14
          */
         get_max_backref(): number;
 
@@ -24612,6 +25356,7 @@ export class VariantType<S extends string = any> {
          * pattern. This information is useful when doing multi-segment matching using
          * the partial matching facilities.
          * @returns the number of characters in the longest lookbehind assertion.
+         * @since 2.38
          */
         get_max_lookbehind(): number;
 
@@ -24619,6 +25364,7 @@ export class VariantType<S extends string = any> {
          * Gets the pattern string associated with `regex`, i.e. a copy of
          * the string passed to `g_regex_new()`.
          * @returns the pattern of `regex`
+         * @since 2.14
          */
         get_pattern(): string;
 
@@ -24626,6 +25372,7 @@ export class VariantType<S extends string = any> {
          * Retrieves the number of the subexpression named `name`.
          * @param name name of the subexpression
          * @returns The number of the subexpression or -1 if `name`   does not exists
+         * @since 2.14
          */
         get_string_number(name: string): number;
 
@@ -24675,6 +25422,7 @@ export class VariantType<S extends string = any> {
          * @param string the string to scan for matches
          * @param match_options match options
          * @returns `true` is the string matched, `false` otherwise
+         * @since 2.14
          */
         match(string: string, match_options: RegexMatchFlags): [boolean, MatchInfo | null];
 
@@ -24696,6 +25444,7 @@ export class VariantType<S extends string = any> {
          * @param string the string to scan for matches
          * @param match_options match options
          * @returns `true` is the string matched, `false` otherwise
+         * @since 2.14
          */
         match_all(string: string, match_options: RegexMatchFlags): [boolean, MatchInfo | null];
 
@@ -24742,6 +25491,8 @@ export class VariantType<S extends string = any> {
          * @param start_position starting index of the string to match, in bytes
          * @param match_options match options
          * @returns `true` is the string matched, `false` otherwise
+         * @since 2.14
+         * @throws GLib.Error
          */
         match_all_full(string: string[], start_position: number, match_options: RegexMatchFlags): [boolean, MatchInfo | null];
 
@@ -24803,12 +25554,15 @@ export class VariantType<S extends string = any> {
          * @param start_position starting index of the string to match, in bytes
          * @param match_options match options
          * @returns `true` is the string matched, `false` otherwise
+         * @since 2.14
+         * @throws GLib.Error
          */
         match_full(string: string[], start_position: number, match_options: RegexMatchFlags): [boolean, MatchInfo | null];
 
         /**
          * Increases reference count of `regex` by 1.
          * @returns `regex`
+         * @since 2.14
          */
         ref(): Regex;
 
@@ -24844,6 +25598,8 @@ export class VariantType<S extends string = any> {
          * @param replacement text to replace each match with
          * @param match_options options for the match
          * @returns a newly allocated string containing the replacements
+         * @since 2.14
+         * @throws GLib.Error
          */
         replace(string: string[], start_position: number, replacement: string, match_options: RegexMatchFlags): string;
 
@@ -24900,6 +25656,8 @@ export class VariantType<S extends string = any> {
          * @param match_options options for the match
          * @param _eval a function to call for each match
          * @returns a newly allocated string containing the replacements
+         * @since 2.14
+         * @throws GLib.Error
          */
         replace_eval(string: string[], start_position: number, match_options: RegexMatchFlags, _eval: RegexEvalCallback): string;
 
@@ -24917,6 +25675,8 @@ export class VariantType<S extends string = any> {
          * @param replacement text to replace each match with
          * @param match_options options for the match
          * @returns a newly allocated string containing the replacements
+         * @since 2.14
+         * @throws GLib.Error
          */
         replace_literal(string: string[], start_position: number, replacement: string, match_options: RegexMatchFlags): string;
 
@@ -24941,6 +25701,7 @@ export class VariantType<S extends string = any> {
          * @param string the string to split with the pattern
          * @param match_options match time option flags
          * @returns a `null`-terminated gchar ** array. Free it using `g_strfreev()`
+         * @since 2.14
          */
         split(string: string, match_options: RegexMatchFlags): string[];
 
@@ -24971,12 +25732,15 @@ export class VariantType<S extends string = any> {
          * @param match_options match time option flags
          * @param max_tokens the maximum number of tokens to split `string` into.   If this is less than 1, the string is split completely
          * @returns a `null`-terminated gchar ** array. Free it using `g_strfreev()`
+         * @since 2.14
+         * @throws GLib.Error
          */
         split_full(string: string[], start_position: number, match_options: RegexMatchFlags, max_tokens: number): string[];
 
         /**
          * Decreases reference count of `regex` by 1. When reference count drops
          * to zero, it frees all the memory associated with the regex structure.
+         * @since 2.14
          */
         unref(): void;
     }
@@ -25035,6 +25799,7 @@ export class VariantType<S extends string = any> {
          * @param key the value to compare with.
          * @param field the field of each record to match.
          * @returns the number of matches.
+         * @deprecated since 2.26: Rarely used API
          */
         count(key: null, field: number): number;
 
@@ -25044,6 +25809,7 @@ export class VariantType<S extends string = any> {
          * @param key the value to compare with.
          * @param field the field of each record to match.
          * @returns the number of records deleted.
+         * @deprecated since 2.26: Rarely used API
          */
         ["delete"](key: null, field: number): number;
 
@@ -25051,12 +25817,14 @@ export class VariantType<S extends string = any> {
          * Destroys the {@link GLib.Relation}, freeing all memory allocated. However, it
          * does not free memory allocated for the tuple data, so you should
          * free that first if appropriate.
+         * @deprecated since 2.26: Rarely used API
          */
         destroy(): void;
 
         /**
          * Outputs information about all records in a {@link GLib.Relation}, as well as
          * the indexes. It is for debugging.
+         * @deprecated since 2.26: Rarely used API
          */
         print(): void;
     }
@@ -25113,10 +25881,14 @@ export class VariantType<S extends string = any> {
          */
         static free(list: never[]): void;
 
+        /**
+         * @deprecated since 2.10
+         */
         static pop_allocator(): void;
 
         /**
          * @param allocator 
+         * @deprecated since 2.10
          */
         static push_allocator(allocator: Allocator): void;
     }
@@ -25429,12 +26201,14 @@ export class VariantType<S extends string = any> {
          * @param begin a {@link GLib.SequenceIter}
          * @param end a {@link GLib.SequenceIter}
          * @param func a {@link GLib.Func}
+         * @since 2.14
          */
         static foreach_range(begin: SequenceIter, end: SequenceIter, func: Func): void;
 
         /**
          * Returns the data that `iter` points to.
          * @param iter a {@link GLib.SequenceIter}
+         * @since 2.14
          */
         static get(iter: SequenceIter): null;
 
@@ -25442,6 +26216,7 @@ export class VariantType<S extends string = any> {
          * Inserts a new item just before the item pointed to by `iter`.
          * @param iter a {@link GLib.SequenceIter}
          * @param data the data for the new item
+         * @since 2.14
          */
         static insert_before(iter: SequenceIter, data: null): SequenceIter;
 
@@ -25452,6 +26227,7 @@ export class VariantType<S extends string = any> {
          * sequences.
          * @param src a {@link GLib.SequenceIter} pointing to the item to move
          * @param dest a {@link GLib.SequenceIter} pointing to the position to which     the item is moved
+         * @since 2.14
          */
         static move(src: SequenceIter, dest: SequenceIter): void;
 
@@ -25467,6 +26243,7 @@ export class VariantType<S extends string = any> {
          * @param dest a {@link GLib.SequenceIter}
          * @param begin a {@link GLib.SequenceIter}
          * @param end a {@link GLib.SequenceIter}
+         * @since 2.14
          */
         static move_range(dest: SequenceIter, begin: SequenceIter, end: SequenceIter): void;
 
@@ -25479,6 +26256,7 @@ export class VariantType<S extends string = any> {
          * and `begin` must come before or be equal to `end` in the sequence.
          * @param begin a {@link GLib.SequenceIter}
          * @param end a {@link GLib.SequenceIter}
+         * @since 2.14
          */
         static range_get_midpoint(begin: SequenceIter, end: SequenceIter): SequenceIter;
 
@@ -25489,6 +26267,7 @@ export class VariantType<S extends string = any> {
          * If the sequence has a data destroy function associated with it, this
          * function is called on the data for the removed item.
          * @param iter a {@link GLib.SequenceIter}
+         * @since 2.14
          */
         static remove(iter: SequenceIter): void;
 
@@ -25499,6 +26278,7 @@ export class VariantType<S extends string = any> {
          * function is called on the data for the removed items.
          * @param begin a {@link GLib.SequenceIter}
          * @param end a {@link GLib.SequenceIter}
+         * @since 2.14
          */
         static remove_range(begin: SequenceIter, end: SequenceIter): void;
 
@@ -25508,6 +26288,7 @@ export class VariantType<S extends string = any> {
          * function is called on the existing data that `iter` pointed to.
          * @param iter a {@link GLib.SequenceIter}
          * @param data new data for the item
+         * @since 2.14
          */
         static set(iter: SequenceIter, data: null): void;
 
@@ -25524,6 +26305,7 @@ export class VariantType<S extends string = any> {
          * the second item comes before the first.
          * @param iter A {@link GLib.SequenceIter}
          * @param cmp_func the function used to compare items in the sequence
+         * @since 2.14
          */
         static sort_changed(iter: SequenceIter, cmp_func: CompareDataFunc): void;
 
@@ -25539,6 +26321,7 @@ export class VariantType<S extends string = any> {
          * iterator comes before the first.
          * @param iter a {@link GLib.SequenceIter}
          * @param iter_cmp the function used to compare iterators in the sequence
+         * @since 2.14
          */
         static sort_changed_iter(iter: SequenceIter, iter_cmp: SequenceIterCompareFunc): void;
 
@@ -25547,6 +26330,7 @@ export class VariantType<S extends string = any> {
          * to point into difference sequences.
          * @param a a {@link GLib.SequenceIter}
          * @param b a {@link GLib.SequenceIter}
+         * @since 2.14
          */
         static swap(a: SequenceIter, b: SequenceIter): void;
 
@@ -25555,6 +26339,7 @@ export class VariantType<S extends string = any> {
          * Adds a new item to the end of `seq`.
          * @param data the data for the new item
          * @returns an iterator pointing to the new item
+         * @since 2.14
          */
         append(data: null): SequenceIter;
 
@@ -25562,6 +26347,7 @@ export class VariantType<S extends string = any> {
          * Calls `func` for each item in the sequence passing `user_data`
          * to the function. `func` must not modify the sequence itself.
          * @param func the function to call for each item in `seq`
+         * @since 2.14
          */
         foreach(func: Func): void;
 
@@ -25569,18 +26355,21 @@ export class VariantType<S extends string = any> {
          * Frees the memory allocated for `seq`. If `seq` has a data destroy
          * function associated with it, that function is called on all items
          * in `seq`.
+         * @since 2.14
          */
         free(): void;
 
         /**
          * Returns the begin iterator for `seq`.
          * @returns the begin iterator for `seq`.
+         * @since 2.14
          */
         get_begin_iter(): SequenceIter;
 
         /**
          * Returns the end iterator for `seg`
          * @returns the end iterator for `seq`
+         * @since 2.14
          */
         get_end_iter(): SequenceIter;
 
@@ -25589,6 +26378,7 @@ export class VariantType<S extends string = any> {
          * than the number of items in `seq`, the end iterator is returned.
          * @param pos a position in `seq`, or -1 for the end
          * @returns The {@link GLib.SequenceIter} at position `pos`
+         * @since 2.14
          */
         get_iter_at_pos(pos: number): SequenceIter;
 
@@ -25597,6 +26387,7 @@ export class VariantType<S extends string = any> {
          * O(h) where `h' is the height of the tree. It is thus more efficient
          * to use `g_sequence_is_empty()` when comparing the length to zero.
          * @returns the length of `seq`
+         * @since 2.14
          */
         get_length(): number;
 
@@ -25616,6 +26407,7 @@ export class VariantType<S extends string = any> {
          * @param data the data to insert
          * @param cmp_func the function used to compare items in the sequence
          * @returns a {@link GLib.SequenceIter} pointing to the new item.
+         * @since 2.14
          */
         insert_sorted(data: null, cmp_func: CompareDataFunc): SequenceIter;
 
@@ -25635,6 +26427,7 @@ export class VariantType<S extends string = any> {
          * @param data data for the new item
          * @param iter_cmp the function used to compare iterators in the sequence
          * @returns a {@link GLib.SequenceIter} pointing to the new item
+         * @since 2.14
          */
         insert_sorted_iter(data: null, iter_cmp: SequenceIterCompareFunc): SequenceIter;
 
@@ -25645,6 +26438,7 @@ export class VariantType<S extends string = any> {
          * `g_sequence_get_length()` being equal to zero. However this function is
          * implemented in O(1) running time.
          * @returns `true` if the sequence is empty, otherwise `false`.
+         * @since 2.48
          */
         is_empty(): boolean;
 
@@ -25665,6 +26459,7 @@ export class VariantType<S extends string = any> {
          * @param data data to look up
          * @param cmp_func the function used to compare items in the sequence
          * @returns an {@link GLib.SequenceIter} pointing to the position of the     first item found equal to `data` according to `cmp_func` and     `cmp_data`, or `null` if no such item exists
+         * @since 2.28
          */
         lookup(data: null, cmp_func: CompareDataFunc): SequenceIter | null;
 
@@ -25682,6 +26477,7 @@ export class VariantType<S extends string = any> {
          * @param data data to look up
          * @param iter_cmp the function used to compare iterators in the sequence
          * @returns an {@link GLib.SequenceIter} pointing to the position of     the first item found equal to `data` according to `iter_cmp`     and `cmp_data`, or `null` if no such item exists
+         * @since 2.28
          */
         lookup_iter(data: null, iter_cmp: SequenceIterCompareFunc): SequenceIter | null;
 
@@ -25689,6 +26485,7 @@ export class VariantType<S extends string = any> {
          * Adds a new item to the front of `seq`
          * @param data the data for the new item
          * @returns an iterator pointing to the new item
+         * @since 2.14
          */
         prepend(data: null): SequenceIter;
 
@@ -25709,6 +26506,7 @@ export class VariantType<S extends string = any> {
          * @param data data for the new item
          * @param cmp_func the function used to compare items in the sequence
          * @returns an {@link GLib.SequenceIter} pointing to the position where `data`     would have been inserted according to `cmp_func` and `cmp_data`
+         * @since 2.14
          */
         search(data: null, cmp_func: CompareDataFunc): SequenceIter;
 
@@ -25729,6 +26527,7 @@ export class VariantType<S extends string = any> {
          * @param data data for the new item
          * @param iter_cmp the function used to compare iterators in the sequence
          * @returns a {@link GLib.SequenceIter} pointing to the position in `seq`     where `data` would have been inserted according to `iter_cmp`     and `cmp_data`
+         * @since 2.14
          */
         search_iter(data: null, iter_cmp: SequenceIterCompareFunc): SequenceIter;
 
@@ -25740,6 +26539,7 @@ export class VariantType<S extends string = any> {
          * first comes before the second, and a positive value
          * if the second comes before the first.
          * @param cmp_func the function used to sort the sequence
+         * @since 2.14
          */
         sort(cmp_func: CompareDataFunc): void;
 
@@ -25752,6 +26552,7 @@ export class VariantType<S extends string = any> {
          * iterator comes before the second, and a positive value if the second
          * iterator comes before the first.
          * @param cmp_func the function used to compare iterators in the sequence
+         * @since 2.14
          */
         sort_iter(cmp_func: SequenceIterCompareFunc): void;
     }
@@ -25773,30 +26574,35 @@ export class VariantType<S extends string = any> {
          * The `a` and `b` iterators must point into the same sequence.
          * @param b a {@link GLib.SequenceIter}
          * @returns a negative number if `a` comes before `b`, 0 if they are     equal, and a positive number if `a` comes after `b`
+         * @since 2.14
          */
         compare(b: SequenceIter): number;
 
         /**
          * Returns the position of `iter`
          * @returns the position of `iter`
+         * @since 2.14
          */
         get_position(): number;
 
         /**
          * Returns the {@link GLib.Sequence} that `iter` points into.
          * @returns the {@link GLib.Sequence} that `iter` points into
+         * @since 2.14
          */
         get_sequence(): Sequence;
 
         /**
          * Returns whether `iter` is the begin iterator
          * @returns whether `iter` is the begin iterator
+         * @since 2.14
          */
         is_begin(): boolean;
 
         /**
          * Returns whether `iter` is the end iterator
          * @returns Whether `iter` is the end iterator
+         * @since 2.14
          */
         is_end(): boolean;
 
@@ -25807,6 +26613,7 @@ export class VariantType<S extends string = any> {
          * to the end of the sequence, the end iterator is returned.
          * @param delta A positive or negative number indicating how many positions away    from `iter` the returned {@link GLib.SequenceIter} will be
          * @returns a {@link GLib.SequenceIter} which is `delta` positions away from `iter`
+         * @since 2.14
          */
         move(delta: number): SequenceIter;
 
@@ -25814,6 +26621,7 @@ export class VariantType<S extends string = any> {
          * Returns an iterator pointing to the next position after `iter`.
          * If `iter` is the end iterator, the end iterator is returned.
          * @returns a {@link GLib.SequenceIter} pointing to the next position after `iter`
+         * @since 2.14
          */
         next(): SequenceIter;
 
@@ -25821,6 +26629,7 @@ export class VariantType<S extends string = any> {
          * Returns an iterator pointing to the previous position before `iter`.
          * If `iter` is the begin iterator, the begin iterator is returned.
          * @returns a {@link GLib.SequenceIter} pointing to the previous position     before `iter`
+         * @since 2.14
          */
         prev(): SequenceIter;
     }
@@ -25906,6 +26715,7 @@ export class VariantType<S extends string = any> {
          * wrong source.
          * @param tag a source ID
          * @param name debug name for the source
+         * @since 2.26
          */
         static set_name_by_id(tag: number, name: string): void;
 
@@ -25931,6 +26741,7 @@ export class VariantType<S extends string = any> {
          * This API is only intended to be used by implementations of {@link GLib.Source}.
          * Do not call this API on a {@link GLib.Source} that you did not create.
          * @param child_source a second source that `source` should ‘poll’
+         * @since 2.28
          */
         add_child_source(child_source: Source): void;
 
@@ -25970,6 +26781,7 @@ export class VariantType<S extends string = any> {
          * @param fd the file descriptor to monitor
          * @param events an event mask
          * @returns an opaque tag
+         * @since 2.36
          */
         add_unix_fd(fd: number, events: IOCondition): null;
 
@@ -26015,6 +26827,7 @@ export class VariantType<S extends string = any> {
          * always call this function on the source returned from
          * {@link GLib.main_current_source}.
          * @returns the {@link GLib.MainContext} with which   the source is associated, or `NULL` if the context has not yet been added   to a source
+         * @since 2.86
          */
         dup_context(): MainContext | null;
 
@@ -26047,6 +26860,7 @@ export class VariantType<S extends string = any> {
          * This function ignores `source` and is otherwise the same as
          * {@link GLib.get_current_time}.
          * @param timeval {@link GLib.TimeVal} structure in which to store current time
+         * @deprecated since 2.28: use {@link GLib.Source.get_time} instead
          */
         get_current_time(timeval: TimeVal): void;
 
@@ -26073,6 +26887,7 @@ export class VariantType<S extends string = any> {
          * The
          * name may be `NULL` if it has never been set with {@link GLib.Source.set_name}.
          * @returns the name of the source
+         * @since 2.26
          */
         get_name(): string | null;
 
@@ -26103,6 +26918,7 @@ export class VariantType<S extends string = any> {
          * The time here is the system monotonic time, if available, or some
          * other reasonable alternative otherwise.  See {@link GLib.get_monotonic_time}.
          * @returns the monotonic time in microseconds
+         * @since 2.28
          */
         get_time(): number;
 
@@ -26186,6 +27002,7 @@ export class VariantType<S extends string = any> {
          * returns. However, once a source is destroyed it cannot be un-destroyed, so
          * this function can be used for opportunistic checks from any thread.
          * @returns true if the source has been destroyed, false otherwise
+         * @since 2.12
          */
         is_destroyed(): boolean;
 
@@ -26203,6 +27020,7 @@ export class VariantType<S extends string = any> {
          * As the name suggests, this function is not available on Windows.
          * @param tag the tag from {@link GLib.Source.add_unix_fd}
          * @param new_events the new event mask to watch
+         * @since 2.36
          */
         modify_unix_fd(tag: never, new_events: IOCondition): void;
 
@@ -26219,6 +27037,7 @@ export class VariantType<S extends string = any> {
          * As the name suggests, this function is not available on Windows.
          * @param tag the tag from {@link GLib.Source.add_unix_fd}
          * @returns the conditions reported on the file descriptor
+         * @since 2.36
          */
         query_unix_fd(tag: never): IOCondition;
 
@@ -26234,6 +27053,7 @@ export class VariantType<S extends string = any> {
          * This API is only intended to be used by implementations of {@link GLib.Source}.
          * Do not call this API on a {@link GLib.Source} that you did not create.
          * @param child_source a source previously passed to   {@link GLib.Source.add_child_source}
+         * @since 2.28
          */
         remove_child_source(child_source: Source): void;
 
@@ -26259,6 +27079,7 @@ export class VariantType<S extends string = any> {
          * 
          * As the name suggests, this function is not available on Windows.
          * @param tag the tag from {@link GLib.Source.add_unix_fd}
+         * @since 2.36
          */
         remove_unix_fd(tag: never): void;
 
@@ -26322,6 +27143,7 @@ export class VariantType<S extends string = any> {
          * These can be used to override the default implementations for the type
          * of `source`.
          * @param funcs the new source functions
+         * @since 2.12
          */
         set_funcs(funcs: SourceFuncs): void;
 
@@ -26347,6 +27169,7 @@ export class VariantType<S extends string = any> {
          * 
          * Also see {@link GLib.Source.set_static_name}.
          * @param name debug name for the source
+         * @since 2.26
          */
         set_name(name: string): void;
 
@@ -26391,6 +27214,7 @@ export class VariantType<S extends string = any> {
          * This API is only intended to be used by implementations of {@link GLib.Source}.
          * Do not call this API on a {@link GLib.Source} that you did not create.
          * @param ready_time the monotonic time at which the source will be ready;   `0` for ‘immediately’, `-1` for ‘never’
+         * @since 2.36
          */
         set_ready_time(ready_time: bigint | number): void;
 
@@ -26399,6 +27223,7 @@ export class VariantType<S extends string = any> {
          * duplicate the `name`, and can only be used with
          * string literals.
          * @param name debug name for the source
+         * @since 2.70
          */
         set_static_name(name: string): void;
 
@@ -26559,6 +27384,7 @@ export class VariantType<S extends string = any> {
          * @param reserved_chars_allowed a string of reserved characters allowed     to be used, or `null`
          * @param allow_utf8 set `true` if the escaped string may include UTF8 characters
          * @returns `string`
+         * @since 2.16
          */
         append_uri_escaped(unescaped: string, reserved_chars_allowed: string, allow_utf8: boolean): String;
 
@@ -26590,12 +27416,14 @@ export class VariantType<S extends string = any> {
          * This will preserve the allocation length of the {@link GLib.String} in the
          * copy.
          * @returns a copy of `string`
+         * @since 2.86
          */
         copy(): String;
 
         /**
          * Converts a {@link GLib.String} to lowercase.
          * @returns the {@link GLib.String}
+         * @deprecated since 2.2: This function uses the locale-specific     `tolower()` function, which is almost never the right thing.     Use `g_string_ascii_down()` or `g_utf8_strdown()` instead.
          */
         down(): String;
 
@@ -26635,6 +27463,7 @@ export class VariantType<S extends string = any> {
          * The caller gains ownership of the buffer and
          * must free it after use with `g_free()`.
          * @returns the character data of `string`
+         * @since 2.76
          */
         free_and_steal(): string;
 
@@ -26648,6 +27477,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.Bytes} does not include this extra nul; i.e. it has length exactly
          * equal to the "len" member.
          * @returns A newly allocated {@link GLib.Bytes} containing contents of `string`; `string` itself is freed
+         * @since 2.34
          */
         free_to_bytes(): Bytes;
 
@@ -26706,6 +27536,7 @@ export class VariantType<S extends string = any> {
          * @param pos the position at which to start overwriting
          * @param val the string that will overwrite the `string` starting at `pos`
          * @returns `string`
+         * @since 2.14
          */
         overwrite(pos: bigint | number, val: string): String;
 
@@ -26716,6 +27547,7 @@ export class VariantType<S extends string = any> {
          * @param val the string that will overwrite the `string` starting at `pos`
          * @param len the number of bytes to write from `val`
          * @returns `string`
+         * @since 2.14
          */
         overwrite_len(pos: bigint | number, val: string, len: bigint | number): String;
 
@@ -26773,6 +27605,7 @@ export class VariantType<S extends string = any> {
          * @param replace the string to insert in place of `find`
          * @param limit the maximum instances of `find` to replace with `replace`, or `0` for no limit
          * @returns the number of find and replace operations performed.
+         * @since 2.68
          */
         replace(find: string, replace: string, limit: number): number;
 
@@ -26797,6 +27630,7 @@ export class VariantType<S extends string = any> {
         /**
          * Converts a {@link GLib.String} to uppercase.
          * @returns `string`
+         * @deprecated since 2.2: This function uses the locale-specific     `toupper()` function, which is almost never the right thing.     Use `g_string_ascii_up()` or `g_utf8_strup()` instead.
          */
         up(): String;
     }
@@ -26836,6 +27670,7 @@ export class VariantType<S extends string = any> {
          * Frees all strings contained within the {@link GLib.StringChunk}.
          * After calling `g_string_chunk_clear()` it is not safe to
          * access any of the strings which were contained within it.
+         * @since 2.14
          */
         clear(): void;
 
@@ -26895,6 +27730,7 @@ export class VariantType<S extends string = any> {
          * @param string bytes to insert
          * @param len number of bytes of `string` to insert, or -1 to insert a     nul-terminated string
          * @returns a pointer to the copy of `string` within the {@link GLib.StringChunk}
+         * @since 2.4
          */
         insert_len(string: string, len: bigint | number): string;
     }
@@ -26954,6 +27790,7 @@ export class VariantType<S extends string = any> {
          * Atomically increments the reference count of `builder` by one.
          * This function is thread-safe and may be called from any thread.
          * @returns The passed in {@link GLib.StrvBuilder}
+         * @since 2.68
          */
         ref(): StrvBuilder;
 
@@ -26971,6 +27808,7 @@ export class VariantType<S extends string = any> {
          * 
          * In the event that there are no more references, releases all memory
          * associated with the {@link GLib.StrvBuilder}.
+         * @since 2.68
          */
         unref(): void;
 
@@ -26993,6 +27831,7 @@ export class VariantType<S extends string = any> {
          * g_strfreev (array);
          * ```
          * @returns the constructed string   array
+         * @since 2.82
          */
         unref_to_strv(): string[];
     }
@@ -27008,6 +27847,7 @@ export class VariantType<S extends string = any> {
         // Methods
         /**
          * Free the `test_case`.
+         * @since 2.70
          */
         free(): void;
     }
@@ -27100,17 +27940,20 @@ export class VariantType<S extends string = any> {
         /**
          * Adds `test_case` to `suite`.
          * @param test_case a test case
+         * @since 2.16
          */
         add(test_case: TestCase): void;
 
         /**
          * Adds `nestedsuite` to `suite`.
          * @param nestedsuite another test suite
+         * @since 2.16
          */
         add_suite(nestedsuite: TestSuite): void;
 
         /**
          * Frees the `suite` and all nested suites.
+         * @since 2.70
          */
         free(): void;
     }
@@ -27190,6 +28033,7 @@ export class VariantType<S extends string = any> {
          * 
          * This function is intended for debugging purposes.
          * @returns the name of the thread
+         * @since 2.84
          */
         get_name(): string;
 
@@ -27217,6 +28061,7 @@ export class VariantType<S extends string = any> {
         /**
          * Increase the reference count on `thread`.
          * @returns a new reference to `thread`
+         * @since 2.32
          */
         ref(): Thread;
 
@@ -27227,6 +28072,7 @@ export class VariantType<S extends string = any> {
          * Note that each thread holds a reference to its {@link GLib.Thread} while
          * it is running, so it is safe to drop your own reference to it
          * if you don't need it anymore.
+         * @since 2.32
          */
         unref(): void;
     }
@@ -27279,6 +28125,7 @@ export class VariantType<S extends string = any> {
          * 
          * If this function returns 0, threads waiting in the thread
          * pool for new work are not stopped.
+         * @since 2.10
          */
         static get_max_idle_time(): number;
 
@@ -27303,6 +28150,7 @@ export class VariantType<S extends string = any> {
          * 
          * The default value is 15000 (15 seconds).
          * @param interval the maximum `interval` (in milliseconds)     a thread can be idle
+         * @since 2.10
          */
         static set_max_idle_time(interval: number): void;
 
@@ -27361,6 +28209,7 @@ export class VariantType<S extends string = any> {
          * items, so that it will be processed next.
          * @param data an unprocessed item in the pool
          * @returns `true` if the item was found and moved
+         * @since 2.46
          */
         move_to_front(data: null): boolean;
 
@@ -27381,6 +28230,7 @@ export class VariantType<S extends string = any> {
          * Before version 2.32, this function did not return a success status.
          * @param data a new task for `pool`
          * @returns `true` on success, `false` if an error occurred
+         * @throws GLib.Error
          */
         push(data: null): boolean;
 
@@ -27407,6 +28257,7 @@ export class VariantType<S extends string = any> {
          * Before version 2.32, this function did not return a success status.
          * @param max_threads a new maximal number of threads for `pool`,     or -1 for unlimited
          * @returns `true` on success, `false` if an error occurred
+         * @throws GLib.Error
          */
         set_max_threads(max_threads: number): boolean;
 
@@ -27462,6 +28313,8 @@ export class VariantType<S extends string = any> {
          * ```
          * 
          * @param iso_date an ISO 8601 encoded date string
+         * @since 2.12
+         * @deprecated since 2.62: {@link GLib.TimeVal} is not year-2038-safe. Use    `g_date_time_new_from_iso8601()` instead.
          */
         static from_iso8601(iso_date: string): [boolean, TimeVal];
 
@@ -27470,6 +28323,7 @@ export class VariantType<S extends string = any> {
          * Adds the given number of microseconds to `time_`. `microseconds` can
          * also be negative to decrease the value of `time_`.
          * @param microseconds number of microseconds to add to `time`
+         * @deprecated since 2.62: {@link GLib.TimeVal} is not year-2038-safe. Use `guint64` for    representing microseconds since the epoch, or use {@link GLib.DateTime}.
          */
         add(microseconds: bigint | number): void;
 
@@ -27511,6 +28365,8 @@ export class VariantType<S extends string = any> {
          * The return value of `g_time_val_to_iso8601()` has been nullable since GLib
          * 2.54; before then, GLib would crash under the same conditions.
          * @returns a newly allocated string containing an ISO 8601 date,    or `null` if `time_` was too large
+         * @since 2.12
+         * @deprecated since 2.62: {@link GLib.TimeVal} is not year-2038-safe. Use    g_date_time_format_iso8601(dt) instead.
          */
         to_iso8601(): string | null;
     }
@@ -27583,6 +28439,7 @@ export class VariantType<S extends string = any> {
          * @param type the {@link GLib.TimeType} of `time_`
          * @param time_ a pointer to a number of seconds since January 1, 1970
          * @returns the interval containing `time_`, never -1
+         * @since 2.26
          */
         adjust_time(type: TimeType, time_: bigint | number): [number, number];
 
@@ -27608,6 +28465,7 @@ export class VariantType<S extends string = any> {
          * @param type the {@link GLib.TimeType} of `time_`
          * @param time_ a number of seconds since January 1, 1970
          * @returns the interval containing `time_`, or -1 in case of failure
+         * @since 2.26
          */
         find_interval(type: TimeType, time_: bigint | number): number;
 
@@ -27620,6 +28478,7 @@ export class VariantType<S extends string = any> {
          * is in effect.
          * @param interval an interval within the timezone
          * @returns the time zone abbreviation, which belongs to `tz`
+         * @since 2.26
          */
         get_abbreviation(interval: number): string;
 
@@ -27633,6 +28492,7 @@ export class VariantType<S extends string = any> {
          * construction time: if provided as a time offset, that will be returned by
          * this function.
          * @returns identifier for this timezone
+         * @since 2.58
          */
         get_identifier(): string;
 
@@ -27645,6 +28505,7 @@ export class VariantType<S extends string = any> {
          * west of GMT, positive numbers for east).
          * @param interval an interval within the timezone
          * @returns the number of seconds that should be added to UTC to get the          local time in `tz`
+         * @since 2.26
          */
         get_offset(interval: number): number;
 
@@ -27653,17 +28514,20 @@ export class VariantType<S extends string = any> {
          * `interval` of time in the time zone `tz`.
          * @param interval an interval within the timezone
          * @returns `true` if daylight savings time is in effect
+         * @since 2.26
          */
         is_dst(interval: number): boolean;
 
         /**
          * Increases the reference count on `tz`.
          * @returns a new reference to `tz`.
+         * @since 2.26
          */
         ref(): TimeZone;
 
         /**
          * Decreases the reference count on `tz`.
+         * @since 2.26
          */
         unref(): void;
     }
@@ -27685,6 +28549,7 @@ export class VariantType<S extends string = any> {
          * Resumes a timer that has previously been stopped with
          * `g_timer_stop()`. `g_timer_stop()` must be called before using this
          * function.
+         * @since 2.4
          */
         ["continue"](): void;
 
@@ -27708,6 +28573,7 @@ export class VariantType<S extends string = any> {
         /**
          * Exposes whether the timer is currently active.
          * @returns `true` if the timer is running, `false` otherwise
+         * @since 2.62
          */
         is_active(): boolean;
 
@@ -27761,6 +28627,7 @@ export class VariantType<S extends string = any> {
          * Note that execution of this function is of O(N) complexity
          * where N denotes the number of items on the stack.
          * @param stack_p a {@link GLib.TrashStack}
+         * @deprecated since 2.48: {@link GLib.TrashStack} is deprecated without replacement
          */
         static height(stack_p: TrashStack): number;
 
@@ -27768,12 +28635,14 @@ export class VariantType<S extends string = any> {
          * Returns the element at the top of a {@link GLib.TrashStack}
          * which may be `null`.
          * @param stack_p a {@link GLib.TrashStack}
+         * @deprecated since 2.48: {@link GLib.TrashStack} is deprecated without replacement
          */
         static peek(stack_p: TrashStack): null;
 
         /**
          * Pops a piece of memory off a {@link GLib.TrashStack}.
          * @param stack_p a {@link GLib.TrashStack}
+         * @deprecated since 2.48: {@link GLib.TrashStack} is deprecated without replacement
          */
         static pop(stack_p: TrashStack): null;
 
@@ -27781,6 +28650,7 @@ export class VariantType<S extends string = any> {
          * Pushes a piece of memory onto a {@link GLib.TrashStack}.
          * @param stack_p a {@link GLib.TrashStack}
          * @param data_p the piece of memory to push on the stack
+         * @deprecated since 2.48: {@link GLib.TrashStack} is deprecated without replacement
          */
         static push(stack_p: TrashStack, data_p: never): void;
     }
@@ -27834,6 +28704,7 @@ export class VariantType<S extends string = any> {
          * to add each item to a list in your {@link GLib.TraverseFunc} as you walk over
          * the tree, then walk the list and remove each item.
          * @param func the function to call for each node visited.     If this function returns `true`, the traversal is stopped.
+         * @since 2.68
          */
         foreach_node(func: TraverseNodeFunc): void;
 
@@ -27874,6 +28745,7 @@ export class VariantType<S extends string = any> {
          * @param key the key to insert
          * @param value the value corresponding to the key
          * @returns the inserted (or set) node or `null` if insertion would overflow the tree node counter.
+         * @since 2.68
          */
         insert_node(key: null, value: null): TreeNode | null;
 
@@ -27902,6 +28774,7 @@ export class VariantType<S extends string = any> {
          * is O(log n) (where n is the number of key/value pairs in the tree).
          * @param key the key to look up
          * @returns the tree node corresponding to          the key, or `null` if the key was not found
+         * @since 2.68
          */
         lookup_node(key: null): TreeNode | null;
 
@@ -27914,6 +28787,7 @@ export class VariantType<S extends string = any> {
          * than or equal to the searched key.
          * @param key the key to calculate the lower bound for
          * @returns the tree node corresponding to          the lower bound, or `null` if the tree is empty or has only          keys strictly lower than the searched key.
+         * @since 2.68
          */
         lower_bound(key: null): TreeNode | null;
 
@@ -27927,6 +28801,7 @@ export class VariantType<S extends string = any> {
          * Returns the first in-order node of the tree, or `null`
          * for an empty tree.
          * @returns the first node in the tree
+         * @since 2.68
          */
         node_first(): TreeNode | null;
 
@@ -27934,6 +28809,7 @@ export class VariantType<S extends string = any> {
          * Returns the last in-order node of the tree, or `null`
          * for an empty tree.
          * @returns the last node in the tree
+         * @since 2.68
          */
         node_last(): TreeNode | null;
 
@@ -27942,6 +28818,7 @@ export class VariantType<S extends string = any> {
          * 
          * It is safe to call this function from any thread.
          * @returns the passed in {@link GLib.Tree}
+         * @since 2.22
          */
         ref(): Tree;
 
@@ -27964,6 +28841,7 @@ export class VariantType<S extends string = any> {
         /**
          * Removes all nodes from a {@link GLib.Tree} and destroys their keys and values,
          * then resets the {@link GLib.Tree}’s root to `null`.
+         * @since 2.70
          */
         remove_all(): void;
 
@@ -27988,6 +28866,7 @@ export class VariantType<S extends string = any> {
          * @param key the key to insert
          * @param value the value corresponding to the key
          * @returns the inserted (or set) node or `null` if insertion would overflow the tree node counter.
+         * @since 2.68
          */
         replace_node(key: null, value: null): TreeNode | null;
 
@@ -28018,6 +28897,7 @@ export class VariantType<S extends string = any> {
          * pairs that have a larger key.
          * @param search_func a function used to search the {@link GLib.Tree}
          * @returns the node corresponding to the          found key, or `null` if the key was not found
+         * @since 2.68
          */
         search_node(search_func: CompareFunc): TreeNode | null;
 
@@ -28035,6 +28915,7 @@ export class VariantType<S extends string = any> {
          * Calls the given function for each node in the {@link GLib.Tree}.
          * @param traverse_func the function to call for each node visited. If this   function returns `true`, the traversal is stopped.
          * @param traverse_type the order in which nodes are visited, one of {@link GLib.TraverseType.IN_ORDER},   {@link GLib.TraverseType.PRE_ORDER} and {@link GLib.TraverseType.POST_ORDER}
+         * @deprecated since 2.2: The order of a balanced tree is somewhat arbitrary.     If you just want to visit all nodes in sorted order, use     `g_tree_foreach()` instead. If you really need to visit nodes in     a different order, consider using an [n-ary tree](https://docs.gtk.org/glib/data-structures.html#n-ary-trees).
          */
         traverse(traverse_func: TraverseFunc, traverse_type: TraverseType): void;
 
@@ -28045,6 +28926,7 @@ export class VariantType<S extends string = any> {
          * memory allocated by `tree` will be released.
          * 
          * It is safe to call this function from any thread.
+         * @since 2.22
          */
         unref(): void;
 
@@ -28057,6 +28939,7 @@ export class VariantType<S extends string = any> {
          * than the searched key.
          * @param key the key to calculate the upper bound for
          * @returns the tree node corresponding to the          upper bound, or `null` if the tree is empty or has only keys          lower than or equal to the searched key.
+         * @since 2.68
          */
         upper_bound(key: null): TreeNode | null;
     }
@@ -28074,6 +28957,7 @@ export class VariantType<S extends string = any> {
         /**
          * Gets the key stored at a particular tree node.
          * @returns the key at the node.
+         * @since 2.68
          */
         key(): null;
 
@@ -28081,6 +28965,7 @@ export class VariantType<S extends string = any> {
          * Returns the next in-order node of the tree, or `null`
          * if the passed node was already the last one.
          * @returns the next node in the tree
+         * @since 2.68
          */
         next(): TreeNode | null;
 
@@ -28088,12 +28973,14 @@ export class VariantType<S extends string = any> {
          * Returns the previous in-order node of the tree, or `null`
          * if the passed node was already the first one.
          * @returns the previous node in the tree
+         * @since 2.68
          */
         previous(): TreeNode | null;
 
         /**
          * Gets the value stored at a particular tree node.
          * @returns the value at the node.
+         * @since 2.68
          */
         value(): null;
     }
@@ -28125,6 +29012,7 @@ export class VariantType<S extends string = any> {
          * should always be called after `g_relation_select()` when you are
          * finished with the records. The records are not removed from the
          * {@link GLib.Relation}.
+         * @deprecated since 2.26: Rarely used API
          */
         destroy(): void;
 
@@ -28135,6 +29023,7 @@ export class VariantType<S extends string = any> {
          * @param index_ the index of the record.
          * @param field the field to return.
          * @returns the field of the record.
+         * @deprecated since 2.26: Rarely used API
          */
         index(index_: number, field: number): null;
     }
@@ -28343,6 +29232,7 @@ export class VariantType<S extends string = any> {
          * @param path the path component
          * @param query the query component, or `null`
          * @param fragment the fragment, or `null`
+         * @since 2.66
          */
         static build(flags: UriFlags, scheme: string, userinfo: string | null, host: string | null, port: number, path: string, query: string | null, fragment: string | null): Uri;
 
@@ -28365,6 +29255,7 @@ export class VariantType<S extends string = any> {
          * @param path the path component
          * @param query the query component, or `null`
          * @param fragment the fragment, or `null`
+         * @since 2.66
          */
         static build_with_user(flags: UriFlags, scheme: string, user: string | null, password: string | null, auth_params: string | null, host: string | null, port: number, path: string, query: string | null, fragment: string | null): Uri;
 
@@ -28384,6 +29275,7 @@ export class VariantType<S extends string = any> {
          * bytes as `%``00`.
          * @param unescaped the unescaped input data.
          * @param reserved_chars_allowed a string of reserved   characters that are allowed to be used, or `null`.
+         * @since 2.66
          */
         static escape_bytes(unescaped: Uint8Array | string, reserved_chars_allowed: string | null): string;
 
@@ -28399,6 +29291,7 @@ export class VariantType<S extends string = any> {
          * @param unescaped the unescaped input string.
          * @param reserved_chars_allowed a string of reserved   characters that are allowed to be used, or `null`.
          * @param allow_utf8 `true` if the result can include UTF-8 characters.
+         * @since 2.16
          */
         static escape_string(unescaped: string, reserved_chars_allowed: string | null, allow_utf8: boolean): string;
 
@@ -28413,6 +29306,7 @@ export class VariantType<S extends string = any> {
          * information on the effect of `flags`.
          * @param uri_string a string containing an absolute URI
          * @param flags flags for parsing `uri_string`
+         * @since 2.66
          */
         static is_valid(uri_string: string, flags: UriFlags): boolean;
 
@@ -28439,6 +29333,7 @@ export class VariantType<S extends string = any> {
          * @param path the path component
          * @param query the query component, or `null`
          * @param fragment the fragment, or `null`
+         * @since 2.66
          */
         static join(flags: UriFlags, scheme: string | null, userinfo: string | null, host: string | null, port: number, path: string, query: string | null, fragment: string | null): string;
 
@@ -28462,6 +29357,7 @@ export class VariantType<S extends string = any> {
          * @param path the path component
          * @param query the query component, or `null`
          * @param fragment the fragment, or `null`
+         * @since 2.66
          */
         static join_with_user(flags: UriFlags, scheme: string | null, user: string | null, password: string | null, auth_params: string | null, host: string | null, port: number, path: string, query: string | null, fragment: string | null): string;
 
@@ -28470,6 +29366,7 @@ export class VariantType<S extends string = any> {
          * mime type defined in RFC 2483 into individual URIs,
          * discarding any comments. The URIs are not validated.
          * @param uri_list an URI list
+         * @since 2.6
          */
         static list_extract_uris(uri_list: string): string[];
 
@@ -28479,6 +29376,7 @@ export class VariantType<S extends string = any> {
          * error returned.
          * @param uri_string a string representing an absolute URI
          * @param flags flags describing how to parse `uri_string`
+         * @since 2.66
          */
         static parse(uri_string: string, flags: UriFlags): Uri;
 
@@ -28511,6 +29409,7 @@ export class VariantType<S extends string = any> {
          * @param length the length of `params`, or `-1` if it is nul-terminated
          * @param separators the separator byte character set between parameters. (usually   `&`, but sometimes `;` or both `&;`). Note that this function works on   bytes not characters, so it can't be used to delimit UTF-8 strings for   anything but ASCII characters. You may pass an empty set, in which case   no splitting will occur.
          * @param flags flags to modify the way the parameters are handled.
+         * @since 2.66
          */
         static parse_params(params: string, length: bigint | number, separators: string, flags: UriParamsFlags): { [key: string]: string };
 
@@ -28525,6 +29424,7 @@ export class VariantType<S extends string = any> {
          * 
          * Common schemes include `file`, `https`, `svn+ssh`, etc.
          * @param uri a valid URI.
+         * @since 2.16
          */
         static parse_scheme(uri: string): string | null;
 
@@ -28542,6 +29442,7 @@ export class VariantType<S extends string = any> {
          * Unlike `g_uri_parse_scheme()`, the returned scheme is normalized to
          * all-lowercase and does not need to be freed.
          * @param uri a valid URI.
+         * @since 2.66
          */
         static peek_scheme(uri: string): string | null;
 
@@ -28556,6 +29457,7 @@ export class VariantType<S extends string = any> {
          * @param base_uri_string a string representing a base URI
          * @param uri_ref a string representing a relative or absolute URI
          * @param flags flags describing how to parse `uri_ref`
+         * @since 2.66
          */
         static resolve_relative(base_uri_string: string | null, uri_ref: string, flags: UriFlags): string;
 
@@ -28578,6 +29480,7 @@ export class VariantType<S extends string = any> {
          * `g_uri_split_with_user()` if you want it split up.
          * @param uri_ref a string containing a relative or absolute URI
          * @param flags flags for parsing `uri_ref`
+         * @since 2.66
          */
         static split(uri_ref: string, flags: UriFlags): [boolean, string, string, string, number, string, string, string];
 
@@ -28590,6 +29493,7 @@ export class VariantType<S extends string = any> {
          * or does not contain a hostname component.
          * @param uri_string a string containing an absolute URI
          * @param flags flags for parsing `uri_string`
+         * @since 2.66
          */
         static split_network(uri_string: string, flags: UriFlags): [boolean, string, string, number];
 
@@ -28607,6 +29511,7 @@ export class VariantType<S extends string = any> {
          * {@link GLib.UriFlags.HAS_AUTH_PARAMS}.
          * @param uri_ref a string containing a relative or absolute URI
          * @param flags flags for parsing `uri_ref`
+         * @since 2.66
          */
         static split_with_user(uri_ref: string, flags: UriFlags): [boolean, string, string, string, string, string, number, string, string, string];
 
@@ -28624,6 +29529,7 @@ export class VariantType<S extends string = any> {
          * @param escaped_string A URI-escaped string
          * @param length the length (in bytes) of `escaped_string` to escape, or `-1` if it   is nul-terminated.
          * @param illegal_characters a string of illegal characters   not to be allowed, or `null`.
+         * @since 2.66
          */
         static unescape_bytes(escaped_string: string, length: bigint | number, illegal_characters: string | null): Bytes;
 
@@ -28641,6 +29547,7 @@ export class VariantType<S extends string = any> {
          * @param escaped_string A string, may be `null`
          * @param escaped_string_end Pointer to end of `escaped_string`,   may be `null`
          * @param illegal_characters An optional string of illegal   characters not to be allowed, may be `null`
+         * @since 2.16
          */
         static unescape_segment(escaped_string: string | null, escaped_string_end: string | null, illegal_characters: string | null): string | null;
 
@@ -28654,6 +29561,7 @@ export class VariantType<S extends string = any> {
          * escaped path element, which might confuse pathname handling.
          * @param escaped_string an escaped string to be unescaped.
          * @param illegal_characters a string of illegal characters   not to be allowed, or `null`.
+         * @since 2.16
          */
         static unescape_string(escaped_string: string, illegal_characters: string | null): string | null;
 
@@ -28667,12 +29575,14 @@ export class VariantType<S extends string = any> {
          * Depending on the URI scheme, `g_uri_parse_params()` may be useful for
          * further parsing this information.
          * @returns `uri`'s authentication parameters.
+         * @since 2.66
          */
         get_auth_params(): string | null;
 
         /**
          * Gets `uri`'s flags set upon construction.
          * @returns `uri`'s flags.
+         * @since 2.66
          */
         get_flags(): UriFlags;
 
@@ -28680,6 +29590,7 @@ export class VariantType<S extends string = any> {
          * Gets `uri`'s fragment, which may contain `%`-encoding, depending on
          * the flags with which `uri` was created.
          * @returns `uri`'s fragment.
+         * @since 2.66
          */
         get_fragment(): string | null;
 
@@ -28694,6 +29605,7 @@ export class VariantType<S extends string = any> {
          * be a scope ID attached to the address. Eg, `fe80::1234%``em1` (or
          * `fe80::1234%``25em1` if the string is still encoded).
          * @returns `uri`'s host.
+         * @since 2.66
          */
         get_host(): string | null;
 
@@ -28702,6 +29614,7 @@ export class VariantType<S extends string = any> {
          * the flags with which `uri` was created. (If `uri` was not created
          * with {@link GLib.UriFlags.HAS_PASSWORD} then this will be `null`.)
          * @returns `uri`'s password.
+         * @since 2.66
          */
         get_password(): string | null;
 
@@ -28709,12 +29622,14 @@ export class VariantType<S extends string = any> {
          * Gets `uri`'s path, which may contain `%`-encoding, depending on the
          * flags with which `uri` was created.
          * @returns `uri`'s path.
+         * @since 2.66
          */
         get_path(): string;
 
         /**
          * Gets `uri`'s port.
          * @returns `uri`'s port, or `-1` if no port was specified.
+         * @since 2.66
          */
         get_port(): number;
 
@@ -28725,6 +29640,7 @@ export class VariantType<S extends string = any> {
          * For queries consisting of a series of `name=value` parameters,
          * {@link GLib.UriParamsIter} or `g_uri_parse_params()` may be useful.
          * @returns `uri`'s query.
+         * @since 2.66
          */
         get_query(): string | null;
 
@@ -28732,6 +29648,7 @@ export class VariantType<S extends string = any> {
          * Gets `uri`'s scheme. Note that this will always be all-lowercase,
          * regardless of the string or strings that `uri` was created from.
          * @returns `uri`'s scheme.
+         * @since 2.66
          */
         get_scheme(): string;
 
@@ -28741,6 +29658,7 @@ export class VariantType<S extends string = any> {
          * If `uri` was not created with {@link GLib.UriFlags.HAS_PASSWORD} or
          * {@link GLib.UriFlags.HAS_AUTH_PARAMS}, this is the same as `g_uri_get_userinfo()`.
          * @returns `uri`'s user.
+         * @since 2.66
          */
         get_user(): string | null;
 
@@ -28748,6 +29666,7 @@ export class VariantType<S extends string = any> {
          * Gets `uri`'s userinfo, which may contain `%`-encoding, depending on
          * the flags with which `uri` was created.
          * @returns `uri`'s userinfo.
+         * @since 2.66
          */
         get_userinfo(): string | null;
 
@@ -28759,12 +29678,15 @@ export class VariantType<S extends string = any> {
          * @param uri_ref a string representing a relative or absolute URI
          * @param flags flags describing how to parse `uri_ref`
          * @returns a new {@link GLib.Uri}, or NULL on error.
+         * @since 2.66
+         * @throws GLib.Error
          */
         parse_relative(uri_ref: string, flags: UriFlags): Uri;
 
         /**
          * Increments the reference count of `uri` by one.
          * @returns `uri`
+         * @since 2.66
          */
         ref(): Uri;
 
@@ -28782,6 +29704,7 @@ export class VariantType<S extends string = any> {
          * or private data in its query string, and the returned string is going to be
          * logged, then consider using `g_uri_to_string_partial()` to redact parts.
          * @returns a string representing `uri`,     which the caller must free.
+         * @since 2.66
          */
         to_string(): string;
 
@@ -28790,6 +29713,7 @@ export class VariantType<S extends string = any> {
          * `flags`. See `g_uri_to_string()` and {@link GLib.UriHideFlags} for more details.
          * @param flags flags describing what parts of `uri` to hide
          * @returns a string representing     `uri`, which the caller must free.
+         * @since 2.66
          */
         to_string_partial(flags: UriHideFlags): string;
 
@@ -28798,6 +29722,7 @@ export class VariantType<S extends string = any> {
          * 
          * When the reference count reaches zero, the resources allocated by
          * `uri` are freed
+         * @since 2.66
          */
         unref(): void;
     }
@@ -28863,6 +29788,7 @@ export class VariantType<S extends string = any> {
          * @param length the length of `params`, or `-1` if it is nul-terminated
          * @param separators the separator byte character set between parameters. (usually   `&`, but sometimes `;` or both `&;`). Note that this function works on   bytes not characters, so it can't be used to delimit UTF-8 strings for   anything but ASCII characters. You may pass an empty set, in which case   no splitting will occur.
          * @param flags flags to modify the way the parameters are handled.
+         * @since 2.66
          */
         init(params: string, length: bigint | number, separators: string, flags: UriParamsFlags): void;
 
@@ -28877,6 +29803,8 @@ export class VariantType<S extends string = any> {
          * Note that the same `attribute` may be returned multiple times, since URIs
          * allow repeated attributes.
          * @returns `false` if the end of the parameters has been reached or an error was     encountered. `true` otherwise.
+         * @since 2.66
+         * @throws GLib.Error
          */
         next(): [boolean, string, string];
     }
@@ -28990,6 +29918,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_mutex_clear()` on a locked mutex leads to undefined
          * behaviour.
+         * @since 2.32
          */
         clear(): void;
 
@@ -28998,6 +29927,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_mutex_free()` on a locked mutex may result
          * in undefined behaviour.
+         * @deprecated since 2.32: GMutex can now be statically allocated, or embedded in structures and initialised with `g_mutex_init()`.
          */
         free(): void;
 
@@ -29028,6 +29958,7 @@ export class VariantType<S extends string = any> {
          * 
          * Calling `g_mutex_init()` on an already initialized {@link GLib.Mutex} leads
          * to undefined behaviour.
+         * @since 2.32
          */
         init(): void;
 

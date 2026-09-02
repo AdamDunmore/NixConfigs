@@ -27,12 +27,24 @@ export namespace AstalBluetooth {
      */
 
 
+    /**
+     * @default 0
+     */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 1
+     */
     const MINOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MICRO_VERSION: number;
 
+    /**
+     * @default 0.1.0
+     */
     const VERSION: string;
 
     /**
@@ -207,18 +219,21 @@ export namespace AstalBluetooth {
          * This removes the remote device and the pairing information.
          * Possible errors: `InvalidArguments`, `Failed`.
          * @param device 
+         * @throws GLib.Error
          */
         remove_device(device: Device): void;
 
         /**
          * This method starts the device discovery procedure.
          * Possible errors: `NotReady`, `Failed`.
+         * @throws GLib.Error
          */
         start_discovery(): void;
 
         /**
          * This method will cancel any previous {@link AstalBluetooth.Adapter.start_discovery} procedure.
          * Possible errors: `NotReady`, `Failed`, `NotAuthorized`.
+         * @throws GLib.Error
          */
         stop_discovery(): void;
 
@@ -285,22 +300,22 @@ export namespace AstalBluetooth {
              * Emitted when a new device is registered on the `org.bluez` bus.
              * @signal
              */
-            "device-added": (arg0: Device) => void;
+            "device-added": (device: Device) => void;
             /**
              * Emitted when a device is unregistered on the `org.bluez` bus.
              * @signal
              */
-            "device-removed": (arg0: Device) => void;
+            "device-removed": (device: Device) => void;
             /**
              * Emitted when an adapter is registered on the `org.bluez` bus.
              * @signal
              */
-            "adapter-added": (arg0: Adapter) => void;
+            "adapter-added": (adapter: Adapter) => void;
             /**
              * Emitted when an adapter is unregistered on the `org.bluez` bus.
              * @signal
              */
-            "adapter-removed": (arg0: Adapter) => void;
+            "adapter-removed": (adapter: Adapter) => void;
             "notify::is-powered": (pspec: GObject.ParamSpec) => void;
             "notify::is-connected": (pspec: GObject.ParamSpec) => void;
             "notify::adapter": (pspec: GObject.ParamSpec) => void;
@@ -643,6 +658,7 @@ export namespace AstalBluetooth {
 
         /**
          * @param _res_ 
+         * @throws GLib.Error
          */
         connect_device_finish(_res_: Gio.AsyncResult): void;
 
@@ -668,6 +684,7 @@ export namespace AstalBluetooth {
 
         /**
          * @param _res_ 
+         * @throws GLib.Error
          */
         disconnect_device_finish(_res_: Gio.AsyncResult): void;
 
@@ -675,6 +692,7 @@ export namespace AstalBluetooth {
          * This method connects a specific profile of this device. The UUID provided is the remote service UUID for the profile.
          * Possible errors: `Failed`, `InProgress`, `InvalidArguments`, `NotAvailable`, `NotReady`.
          * @param uuid the remote service UUID.
+         * @throws GLib.Error
          */
         connect_profile(uuid: string): void;
 
@@ -682,6 +700,7 @@ export namespace AstalBluetooth {
          * This method disconnects a specific profile of this device.
          * Possible errors: `Failed`, `InProgress`, `InvalidArguments`, `NotSupported`.
          * @param uuid the remote service UUID.
+         * @throws GLib.Error
          */
         disconnect_profile(uuid: string): void;
 
@@ -689,12 +708,14 @@ export namespace AstalBluetooth {
          * This method will connect to the remote device and initiate pairing.
          * Possible errors: `InvalidArguments`, `Failed`, `AlreadyExists`, `AuthenticationCanceled`, `AuthenticationFailed`, `AuthenticationRejected`, 
          * `AuthenticationTimeout`, `ConnectionAttemptFailed`.
+         * @throws GLib.Error
          */
         pair(): void;
 
         /**
          * This method can be used to cancel a pairing operation initiated by {@link AstalBluetooth.Device.pair}.
          * Possible errors: `DoesNotExist`, `Failed`.
+         * @throws GLib.Error
          */
         cancel_pairing(): void;
 

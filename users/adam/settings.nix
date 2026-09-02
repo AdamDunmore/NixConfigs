@@ -15,6 +15,7 @@
                     apps.media.kodi.enable = false;
                     terminal.shell.zellij.enable = true;
                     wm = {
+                        shell.wofi.enable = true; # TODO remove when ags is tested
                         defaults = {
                             locker = pkgs.hyprlock;
                             terminal = pkgs.ghostty;

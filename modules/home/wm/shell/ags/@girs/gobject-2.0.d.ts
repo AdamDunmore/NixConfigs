@@ -360,6 +360,7 @@ export function registerClass<
 
     /**
      * Mask containing the bits of {@link GObject.ParamSpec}.flags which are reserved for GLib.
+     * @default 255
      */
     const PARAM_MASK: number;
 
@@ -373,72 +374,85 @@ export function registerClass<
      * nickname or blurb.
      * 
      * Since 2.13.0
+     * @default 224
      */
     const PARAM_STATIC_STRINGS: number;
 
     /**
      * Minimum shift count to be used for user defined flags, to be stored in
      * {@link GObject.ParamSpec}.flags. The maximum allowed is 10.
+     * @default 8
      */
     const PARAM_USER_SHIFT: number;
 
     /**
      * A mask for all {@link GObject.SignalFlags} bits.
+     * @default 511
      */
     const SIGNAL_FLAGS_MASK: number;
 
     /**
      * A mask for all {@link GObject.SignalMatchType} bits.
+     * @default 63
      */
     const SIGNAL_MATCH_MASK: number;
 
     /**
      * A bit in the type number that's supposed to be left untouched.
+     * @default 1
      */
     const TYPE_FLAG_RESERVED_ID_BIT: Type;
 
     /**
      * An integer constant that represents the number of identifiers reserved
      * for types that are assigned at compile-time.
+     * @default 1020
      */
     const TYPE_FUNDAMENTAL_MAX: number;
 
     /**
      * Shift value used in converting numbers to type IDs.
+     * @default 2
      */
     const TYPE_FUNDAMENTAL_SHIFT: number;
 
     /**
      * First fundamental type number to create a new fundamental type id with
      * G_TYPE_MAKE_FUNDAMENTAL() reserved for BSE.
+     * @default 32
      */
     const TYPE_RESERVED_BSE_FIRST: number;
 
     /**
      * Last fundamental type number reserved for BSE.
+     * @default 48
      */
     const TYPE_RESERVED_BSE_LAST: number;
 
     /**
      * First fundamental type number to create a new fundamental type id with
      * G_TYPE_MAKE_FUNDAMENTAL() reserved for GLib.
+     * @default 22
      */
     const TYPE_RESERVED_GLIB_FIRST: number;
 
     /**
      * Last fundamental type number reserved for GLib.
+     * @default 31
      */
     const TYPE_RESERVED_GLIB_LAST: number;
 
     /**
      * First available fundamental type number to create new fundamental
      * type id with G_TYPE_MAKE_FUNDAMENTAL().
+     * @default 49
      */
     const TYPE_RESERVED_USER_FIRST: number;
 
     /**
      * The maximal number of `GTypeCValues` which can be collected for a
      * single {@link GObject.Value}.
+     * @default 8
      */
     const VALUE_COLLECT_FORMAT_MAX_LENGTH: number;
 
@@ -452,6 +466,7 @@ export function registerClass<
      * {@link GObject.TypeValueFreeFunc}, {@link GObject.TypeValueCollectFunc}
      * and {@link GObject.TypeValueLCopyFunc}.
      * @since 2.66
+     * @default 268435456
      */
     const VALUE_INTERNED_STRING: number;
 
@@ -468,6 +483,7 @@ export function registerClass<
      * This flag should be checked by implementations of
      * {@link GObject.TypeValueFreeFunc}, {@link GObject.TypeValueCollectFunc}
      * and {@link GObject.TypeValueLCopyFunc}.
+     * @default 134217728
      */
     const VALUE_NOCOPY_CONTENTS: number;
 
@@ -2778,19 +2794,19 @@ export function registerClass<
          * The default binding; if the source property
          *   changes, the target property is updated with its value.
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * Bidirectional binding; if either the
          *   property of the source or the property of the target changes,
          *   the other is updated.
          */
-        BIDIRECTIONAL,
+        BIDIRECTIONAL = 1,
         /**
          * Synchronize the values of the source and
          *   target properties when creating the binding; the direction of
          *   the synchronization is always from the source to the target.
          */
-        SYNC_CREATE,
+        SYNC_CREATE = 2,
         /**
          * If the two properties being bound are
          *   booleans, setting one to `true` will result in the other being
@@ -2798,7 +2814,7 @@ export function registerClass<
          *   boolean properties, and cannot be used when passing custom
          *   transformation functions to `g_object_bind_property_full()`.
          */
-        INVERT_BOOLEAN,
+        INVERT_BOOLEAN = 4,
     }
 
 
@@ -2811,18 +2827,18 @@ export function registerClass<
         /**
          * Default behaviour (no special flags). Since: 2.74
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * If set, the handler should be called after the
          *  default handler of the signal. Normally, the handler is called before
          *  the default handler.
          */
-        AFTER,
+        AFTER = 1,
         /**
          * If set, the instance and data should be swapped when
          *  calling the handler; see `g_signal_connect_swapped()` for an example.
          */
-        SWAPPED,
+        SWAPPED = 2,
     }
 
 
@@ -2837,12 +2853,12 @@ export function registerClass<
      * @gir-type Flags
      */
     enum IOCondition {
-        IN,
-        OUT,
-        PRI,
-        ERR,
-        HUP,
-        NVAL,
+        IN = 1,
+        OUT = 4,
+        PRI = 2,
+        ERR = 8,
+        HUP = 16,
+        NVAL = 32,
     }
 
 
@@ -2857,69 +2873,69 @@ export function registerClass<
         /**
          * the parameter is readable
          */
-        READABLE,
+        READABLE = 1,
         /**
          * the parameter is writable
          */
-        WRITABLE,
+        WRITABLE = 2,
         /**
          * alias for {@link GObject.ParamFlags.READABLE} | {@link GObject.ParamFlags.WRITABLE}
          */
-        READWRITE,
+        READWRITE = 3,
         /**
          * the parameter will be set upon object construction.
          *   See {@link Object.constructed} for more details
          */
-        CONSTRUCT,
+        CONSTRUCT = 4,
         /**
          * the parameter can only be set upon object construction.
          *   See {@link Object.constructed} for more details
          */
-        CONSTRUCT_ONLY,
+        CONSTRUCT_ONLY = 8,
         /**
          * upon parameter conversion (see `g_param_value_convert()`)
          *  strict validation is not required
          */
-        LAX_VALIDATION,
+        LAX_VALIDATION = 16,
         /**
          * the string used as name when constructing the
          *  parameter is guaranteed to remain valid and
          *  unmodified for the lifetime of the parameter.
          *  Since 2.8
          */
-        STATIC_NAME,
+        STATIC_NAME = 32,
         /**
          * internal
          */
-        PRIVATE,
+        PRIVATE = 32,
         /**
          * the string used as nick when constructing the
          *  parameter is guaranteed to remain valid and
          *  unmmodified for the lifetime of the parameter.
          *  Since 2.8
          */
-        STATIC_NICK,
+        STATIC_NICK = 64,
         /**
          * the string used as blurb when constructing the
          *  parameter is guaranteed to remain valid and
          *  unmodified for the lifetime of the parameter.
          *  Since 2.8
          */
-        STATIC_BLURB,
+        STATIC_BLURB = 128,
         /**
          * calls to `g_object_set_property()` for this
          *   property will not automatically result in a "notify" signal being
          *   emitted: the implementation must call `g_object_notify()` themselves
          *   in case the property actually changes.  Since: 2.42.
          */
-        EXPLICIT_NOTIFY,
+        EXPLICIT_NOTIFY = 1073741824,
         /**
          * the parameter is deprecated and will be removed
          *  in a future version. A warning will be generated if it is used
          *  while running with G_ENABLE_DIAGNOSTIC=1.
          *  Since 2.26
          */
-        DEPRECATED,
+        DEPRECATED = 2147483648,
     }
 
 
@@ -2931,26 +2947,26 @@ export function registerClass<
         /**
          * Invoke the object method handler in the first emission stage.
          */
-        RUN_FIRST,
+        RUN_FIRST = 1,
         /**
          * Invoke the object method handler in the third emission stage.
          */
-        RUN_LAST,
+        RUN_LAST = 2,
         /**
          * Invoke the object method handler in the last emission stage.
          */
-        RUN_CLEANUP,
+        RUN_CLEANUP = 4,
         /**
          * Signals being emitted for an object while currently being in
          *  emission for this very object will not be emitted recursively,
          *  but instead cause the first emission to be restarted.
          */
-        NO_RECURSE,
+        NO_RECURSE = 8,
         /**
          * This signal supports "::detail" appendices to the signal name
          *  upon handler connections and emissions.
          */
-        DETAILED,
+        DETAILED = 16,
         /**
          * Action signals are signals that may freely be emitted on alive
          *  objects from user code via `g_signal_emit()` and friends, without
@@ -2959,31 +2975,34 @@ export function registerClass<
          *  of as object methods which can be called generically by
          *  third-party code.
          */
-        ACTION,
+        ACTION = 32,
         /**
          * No emissions hooks are supported for this signal.
          */
-        NO_HOOKS,
+        NO_HOOKS = 64,
         /**
          * Varargs signal emission will always collect the arguments, even if there
          * are no signal handlers connected.
+         * @since 2.30
          */
-        MUST_COLLECT,
+        MUST_COLLECT = 128,
         /**
          * The signal is deprecated and will be removed in a future version.
          * 
          * A warning will be generated if it is connected while running with
          * `G_ENABLE_DIAGNOSTIC=1`.
+         * @since 2.32
          */
-        DEPRECATED,
+        DEPRECATED = 256,
         /**
          * The signal accumulator was invoked for the first time.
          * 
          * This flag is only used in {@link GObject.SignalAccumulator}[accumulator functions]
          * for the `run_type` field of the {@link GObject.SignalInvocationHint}, to
          * mark the first call to the accumulator function for a signal emission.
+         * @since 2.68
          */
-        ACCUMULATOR_FIRST_RUN,
+        ACCUMULATOR_FIRST_RUN = 131072,
     }
 
 
@@ -2997,27 +3016,27 @@ export function registerClass<
         /**
          * The signal id must be equal.
          */
-        ID,
+        ID = 1,
         /**
          * The signal detail must be equal.
          */
-        DETAIL,
+        DETAIL = 2,
         /**
          * The closure must be the same.
          */
-        CLOSURE,
+        CLOSURE = 4,
         /**
          * The C closure callback must be the same.
          */
-        FUNC,
+        FUNC = 8,
         /**
          * The closure data must be the same.
          */
-        DATA,
+        DATA = 16,
         /**
          * Only unblocked signals may be matched.
          */
-        UNBLOCKED,
+        UNBLOCKED = 32,
     }
 
 
@@ -3034,23 +3053,23 @@ export function registerClass<
         /**
          * Print no messages
          */
-        NONE,
+        NONE = 0,
         /**
          * Print messages about object bookkeeping
          */
-        OBJECTS,
+        OBJECTS = 1,
         /**
          * Print messages about signal emissions
          */
-        SIGNALS,
+        SIGNALS = 2,
         /**
          * Keep a count of instances of each type
          */
-        INSTANCE_COUNT,
+        INSTANCE_COUNT = 4,
         /**
          * Mask covering all debug flags
          */
-        MASK,
+        MASK = 7,
     }
 
 
@@ -3062,29 +3081,29 @@ export function registerClass<
         /**
          * No special flags. Since: 2.74
          */
-        NONE,
+        NONE = 0,
         /**
          * Indicates an abstract type. No instances can be
          *  created for an abstract type
          */
-        ABSTRACT,
+        ABSTRACT = 16,
         /**
          * Indicates an abstract value type, i.e. a type
          *  that introduces a value table, but can't be used for
          *  `g_value_init()`
          */
-        VALUE_ABSTRACT,
+        VALUE_ABSTRACT = 32,
         /**
          * Indicates a final type. A final type is a non-derivable
          *  leaf node in a deep derivable type hierarchy tree. Since: 2.70
          */
-        FINAL,
+        FINAL = 64,
         /**
          * The type is deprecated and may be removed in a
          *  future version. A warning will be emitted if it is instantiated while
          *  running with `G_ENABLE_DIAGNOSTIC=1`. Since 2.76
          */
-        DEPRECATED,
+        DEPRECATED = 128,
     }
 
 
@@ -3097,19 +3116,19 @@ export function registerClass<
         /**
          * Indicates a classed type
          */
-        CLASSED,
+        CLASSED = 1,
         /**
          * Indicates an instantiatable type (implies classed)
          */
-        INSTANTIATABLE,
+        INSTANTIATABLE = 2,
         /**
          * Indicates a flat derivable type
          */
-        DERIVABLE,
+        DERIVABLE = 4,
         /**
          * Indicates a deep derivable type (implies derivable)
          */
-        DEEP_DERIVABLE,
+        DEEP_DERIVABLE = 8,
     }
 
 
@@ -3323,6 +3342,7 @@ export function registerClass<
          * strong reference to the source. If the source is destroyed before the
          * binding then this function will return `null`.
          * @returns the source {@link GObject.Object}, or `null` if the     source does not exist any more.
+         * @since 2.68
          */
         dup_source<T = Object>(): T;
 
@@ -3333,12 +3353,14 @@ export function registerClass<
          * strong reference to the target. If the target is destroyed before the
          * binding then this function will return `null`.
          * @returns the target {@link GObject.Object}, or `null` if the     target does not exist any more.
+         * @since 2.68
          */
         dup_target<T = Object>(): T;
 
         /**
          * Retrieves the flags passed when constructing the {@link GObject.Binding}.
          * @returns the {@link GObject.BindingFlags} used by the {@link GObject.Binding}
+         * @since 2.26
          */
         get_flags(): BindingFlags;
 
@@ -3353,6 +3375,8 @@ export function registerClass<
          * threads as otherwise the pointer returned from this function might become
          * invalid if the source is finalized from another thread in the meantime.
          * @returns the source {@link GObject.Object}, or `null` if the     source does not exist any more.
+         * @since 2.26
+         * @deprecated since 2.68: Use `g_binding_dup_source()` for a safer version of this function.
          */
         get_source<T = Object>(): T;
 
@@ -3360,6 +3384,7 @@ export function registerClass<
          * Retrieves the name of the property of {@link GObject.Binding.source} used as the source
          * of the binding.
          * @returns the name of the source property
+         * @since 2.26
          */
         get_source_property(): string;
 
@@ -3374,6 +3399,8 @@ export function registerClass<
          * threads as otherwise the pointer returned from this function might become
          * invalid if the target is finalized from another thread in the meantime.
          * @returns the target {@link GObject.Object}, or `null` if the     target does not exist any more.
+         * @since 2.26
+         * @deprecated since 2.68: Use `g_binding_dup_target()` for a safer version of this function.
          */
         get_target<T = Object>(): T;
 
@@ -3381,6 +3408,7 @@ export function registerClass<
          * Retrieves the name of the property of {@link GObject.Binding.target} used as the target
          * of the binding.
          * @returns the name of the target property
+         * @since 2.26
          */
         get_target_property(): string;
 
@@ -3396,6 +3424,7 @@ export function registerClass<
          * Note however that this function does not take ownership of `binding`, it
          * only unrefs the reference that was initially created by
          * `g_object_bind_property()` and is owned by the binding.
+         * @since 2.38
          */
         unbind(): void;
     }
@@ -3476,6 +3505,7 @@ export function registerClass<
          * @param target the target {@link GObject.Object}
          * @param target_property the property on `target` to bind
          * @param flags the flags used to create the {@link GObject.Binding}
+         * @since 2.72
          */
         bind(source_property: string, target: Object, target_property: string, flags: BindingFlags): void;
 
@@ -3496,12 +3526,14 @@ export function registerClass<
          * @param flags the flags used to create the {@link GObject.Binding}
          * @param transform_to a {@link GObject.Closure} wrapping the     transformation function from the source object to the `target`,     or `null` to use the default
          * @param transform_from a {@link GObject.Closure} wrapping the     transformation function from the `target` to the source object,     or `null` to use the default
+         * @since 2.72
          */
         bind_full(source_property: string, target: Object, target_property: string, flags: BindingFlags, transform_to: Closure | null, transform_from: Closure | null): void;
 
         /**
          * Gets the source object used for binding properties.
          * @returns a {@link GObject.Object} or `null`.
+         * @since 2.72
          */
         dup_source<T = Object>(): T;
 
@@ -3512,6 +3544,7 @@ export function registerClass<
          * 
          * Note that all properties that have been bound must exist on `source`.
          * @param source the source {@link GObject.Object},   or `null` to clear it
+         * @since 2.72
          */
         set_source(source: Object | null): void;
     }
@@ -3600,7 +3633,7 @@ export function registerClass<
              * @action
              * @run-first
              */
-            notify: (arg0: ParamSpec) => void;
+            notify: (pspec: ParamSpec) => void;
             [key: `notify::${string}`]: (pspec: ParamSpec) => void;
         }
 
@@ -3680,6 +3713,7 @@ export function registerClass<
          * `g_type_default_interface_peek()`.
          * @param g_iface any interface vtable for the  interface, or the default vtable for the interface
          * @param property_name name of a property to look up.
+         * @since 2.4
          */
         static interface_find_property(g_iface: TypeInterface, property_name: string): ParamSpec;
 
@@ -3702,6 +3736,7 @@ export function registerClass<
          * If `pspec` is a floating reference, it will be consumed.
          * @param g_iface any interface vtable for the    interface, or the default  vtable for the interface.
          * @param pspec the {@link GObject.ParamSpec} for the new property
+         * @since 2.4
          */
         static interface_install_property(g_iface: TypeInterface, pspec: ParamSpec): void;
 
@@ -3711,6 +3746,7 @@ export function registerClass<
          * `g_type_default_interface_ref()`, or, if you know the interface has
          * already been loaded, `g_type_default_interface_peek()`.
          * @param g_iface any interface vtable for the  interface, or the default vtable for the interface
+         * @since 2.4
          */
         static interface_list_properties(g_iface: TypeInterface): ParamSpec[];
 
@@ -3863,6 +3899,7 @@ export function registerClass<
          * @param target_property the property on `target` to bind
          * @param flags flags to pass to {@link GObject.Binding}
          * @returns the {@link GObject.Binding} instance representing the     binding between the two {@link GObject.Object} instances. The binding is released     whenever the {@link GObject.Binding} reference count reaches zero.
+         * @since 2.26
          */
         bind_property(source_property: string, target: Object, target_property: string, flags: BindingFlags): Binding;
 
@@ -3881,6 +3918,7 @@ export function registerClass<
          * @param transform_to a {@link GObject.Closure} wrapping the transformation function     from the `source` to the `target`, or `null` to use the default
          * @param transform_from a {@link GObject.Closure} wrapping the transformation function     from the `target` to the `source`, or `null` to use the default
          * @returns the {@link GObject.Binding} instance representing the     binding between the two {@link GObject.Object} instances. The binding is released     whenever the {@link GObject.Binding} reference count reaches zero.
+         * @since 2.26
          */
         bind_property_full(source_property: string, target: Object, target_property: string, flags: BindingFlags, transform_to: Closure | null, transform_from: Closure | null): Binding;
 
@@ -3889,6 +3927,7 @@ export function registerClass<
          * a [floating][floating-ref] object reference. Doing this is seldom
          * required: all `GInitiallyUnowneds` are created with a floating reference
          * which usually just needs to be sunken by calling `g_object_ref_sink()`.
+         * @since 2.10
          */
         force_floating(): void;
 
@@ -3943,12 +3982,14 @@ export function registerClass<
          * properties are passed in.
          * @param names the names of each property to get
          * @param values the values of each property to get
+         * @since 2.54
          */
         getv(names: string[], values: (Value | any)[]): void;
 
         /**
          * Checks whether `object` has a [floating][floating-ref] reference.
          * @returns `true` if `object` has a floating reference
+         * @since 2.10
          */
         is_floating(): boolean;
 
@@ -4010,6 +4051,7 @@ export function registerClass<
          * ```
          * 
          * @param pspec the {@link GObject.ParamSpec} of a property installed on the class of `object`.
+         * @since 2.26
          */
         notify_by_pspec(pspec: ParamSpec): void;
 
@@ -4037,6 +4079,7 @@ export function registerClass<
          * Since GLib 2.56, the type of `object` will be propagated to the return type
          * under the same conditions as for `g_object_ref()`.
          * @returns `object`
+         * @since 2.10
          */
         ref_sink(): Object;
 
@@ -4239,6 +4282,7 @@ export function registerClass<
          * See [canonical parameter names][class@GObject.ParamSpec#parameter-names]
          * for details of the rules for valid names.
          * @param name the canonical name of the property
+         * @since 2.66
          */
         static is_valid_name(name: string): boolean;
 
@@ -4499,6 +4543,7 @@ export function registerClass<
          * 
          * The {@link GObject.Value} will remain valid for the life of `pspec`.
          * @returns a pointer to a {@link GObject.Value} which must not be modified
+         * @since 2.38
          */
         get_default_value(): unknown;
 
@@ -4514,6 +4559,7 @@ export function registerClass<
         /**
          * Gets the GQuark for the name.
          * @returns the GQuark for `pspec`->name.
+         * @since 2.46
          */
         get_name_quark(): GLib.Quark;
 
@@ -4539,6 +4585,7 @@ export function registerClass<
          * of type {@link GObject.ParamSpecOverride}. See `g_object_class_override_property()`
          * for an example of the use of this capability.
          * @returns paramspec to which requests on this          paramspec should be redirected, or `null` if none.
+         * @since 2.4
          */
         get_redirect_target(): ParamSpec | null;
 
@@ -4601,7 +4648,7 @@ export function registerClass<
              * @since 2.72
              * @run-last
              */
-            bind: (arg0: Object) => void;
+            bind: (instance: Object) => void;
             /**
              * This signal is emitted when the target instance of `self` is set to a
              * new {@link GObject.Object}.
@@ -4709,6 +4756,7 @@ export function registerClass<
          * the same number of times it has been blocked to become active again.
          * 
          * This blocked state will be kept across changes of the target instance.
+         * @since 2.72
          */
         block(): void;
 
@@ -4719,6 +4767,7 @@ export function registerClass<
          * @param detailed_signal a string of the form `signal-name` with optional `::signal-detail`
          * @param closure the closure to connect.
          * @param after whether the handler should be called before or after the  default handler of the signal.
+         * @since 2.74
          */
         connect_closure(detailed_signal: string, closure: Closure, after: boolean): void;
 
@@ -4731,6 +4780,7 @@ export function registerClass<
          * @param c_handler the {@link GObject.Callback} to connect
          * @param notify function to be called when disposing of `self`
          * @param flags the flags used to create the signal connection
+         * @since 2.72
          */
         connect_data(detailed_signal: string, c_handler: Callback, notify: ClosureNotify, flags: ConnectFlags): void;
 
@@ -4744,12 +4794,14 @@ export function registerClass<
          * You cannot connect a signal handler after {@link GObject.SignalGroup.target} has been set.
          * @param detailed_signal a string of the form "signal-name::detail"
          * @param c_handler the {@link GObject.Callback} to connect
+         * @since 2.72
          */
         connect_swapped(detailed_signal: string, c_handler: Callback): void;
 
         /**
          * Gets the target instance used when connecting signals.
          * @returns The target instance
+         * @since 2.72
          */
         dup_target<T = Object>(): T;
 
@@ -4761,6 +4813,7 @@ export function registerClass<
          * If the target instance was previously set, signals will be
          * disconnected from that object prior to connecting to `target`.
          * @param target The target instance used     when connecting signals.
+         * @since 2.72
          */
         set_target(target: Object | null): void;
 
@@ -4769,6 +4822,7 @@ export function registerClass<
          * called again during any signal emissions unless it is blocked
          * again. Must be unblocked exactly the same number of times it
          * has been blocked to become active again.
+         * @since 2.72
          */
         unblock(): void;
     }
@@ -4900,6 +4954,7 @@ export function registerClass<
          * @param name name for the type
          * @param const_static_values an array of {@link GObject.EnumValue}  structs for the possible enumeration values. The array is terminated by a  struct with all members being 0.
          * @returns the new or existing type ID
+         * @since 2.6
          */
         register_enum(name: string, const_static_values: EnumValue[]): GType;
 
@@ -4917,6 +4972,7 @@ export function registerClass<
          * @param name name for the type
          * @param const_static_values an array of {@link GObject.FlagsValue}  structs for the possible flags values. The array is terminated by a struct  with all members being 0.
          * @returns the new or existing type ID
+         * @since 2.6
          */
         register_flags(name: string, const_static_values: FlagsValue[]): GType;
 
@@ -5290,6 +5346,7 @@ export function registerClass<
          * @param param_values An array of `GValues` holding the arguments   on which to invoke the callback of closure.
          * @param invocation_hint The invocation hint given as the last argument to   `g_closure_invoke()`.
          * @param marshal_data Additional data specified when registering the   marshaller, see `g_closure_set_marshal()` and   `g_closure_set_meta_marshal()`
+         * @since 2.30
          */
         static marshal_generic(closure: Closure, return_gvalue: Value | any, n_param_values: number, param_values: Value | any, invocation_hint: null, marshal_data: null): void;
     }
@@ -5453,6 +5510,7 @@ export function registerClass<
         // Methods
         /**
          * Frees the resources allocated by a {@link GObject.ParamSpecPool}.
+         * @since 2.80
          */
         free(): void;
 
@@ -5598,6 +5656,7 @@ export function registerClass<
          * 
          * If you don't want to create the class, use `g_type_class_peek()` instead.
          * @param type type ID of a classed type
+         * @since 2.84
          */
         static get(type: GType): TypeClass;
 
@@ -5618,6 +5677,7 @@ export function registerClass<
          * A more efficient version of `g_type_class_peek()` which works only for
          * static types.
          * @param type type ID of a classed type
+         * @since 2.4
          */
         static peek_static(type: GType): TypeClass | null;
 
@@ -5627,6 +5687,7 @@ export function registerClass<
          * 
          * This function will demand-create the class if it doesn't exist already.
          * @param type type ID of a classed type
+         * @deprecated since 2.84: Use `g_type_class_get()` instead
          */
         static ref(type: GType): TypeClass;
 
@@ -5697,6 +5758,8 @@ export function registerClass<
          * ```
          * 
          * @param private_size size of private structure
+         * @since 2.4
+         * @deprecated since 2.58: Use the G_ADD_PRIVATE() macro with the `G_DEFINE_*`   family of macros to add instance private data to a type
          */
         add_private(private_size: bigint | number): void;
 
@@ -5726,6 +5789,7 @@ export function registerClass<
          * Once the last reference count of a class has been released, classes
          * may be finalized by the type system, so further dereferencing of a
          * class pointer after `g_type_class_unref()` are invalid.
+         * @deprecated since 2.84: Type class reference counting has been removed and type    classes now cannot be finalized. This function no longer does anything.
          */
         unref(): void;
     }
@@ -5832,6 +5896,7 @@ export function registerClass<
          * See `g_type_interface_add_prerequisite()` for more information
          * about prerequisites.
          * @param interface_type an interface type
+         * @since 2.68
          */
         static instantiatable_prerequisite(interface_type: GType): GType;
 
@@ -5846,6 +5911,7 @@ export function registerClass<
         /**
          * Returns the prerequisites of an interfaces type.
          * @param interface_type an interface type
+         * @since 2.2
          */
         static prerequisites(interface_type: GType): GType[];
 
@@ -6013,6 +6079,7 @@ export function registerClass<
          * Get the contents of a variant {@link GObject.Value}, increasing its refcount. The returned
          * {@link GLib.Variant} is never floating.
          * @returns variant contents of `value` (may be `null`);    should be unreffed using `g_variant_unref()` when no longer needed
+         * @since 2.26
          */
         dup_variant(): GLib.Variant | null;
 
@@ -6042,6 +6109,7 @@ export function registerClass<
          * 
          * Get the contents of a `G_TYPE_CHAR` {@link GObject.Value}.
          * @returns character contents of `value`
+         * @deprecated since 2.32: This function's return type is broken, see `g_value_get_schar()`
          */
         get_char(): number;
 
@@ -6072,6 +6140,7 @@ export function registerClass<
         /**
          * Get the contents of a `G_TYPE_GTYPE` {@link GObject.Value}.
          * @returns the {@link GObject.GType} stored in `value`
+         * @since 2.12
          */
         get_gtype(): GType;
 
@@ -6114,6 +6183,7 @@ export function registerClass<
         /**
          * Get the contents of a `G_TYPE_CHAR` {@link GObject.Value}.
          * @returns signed 8 bit integer contents of `value`
+         * @since 2.32
          */
         get_schar(): number;
 
@@ -6150,6 +6220,7 @@ export function registerClass<
         /**
          * Get the contents of a variant {@link GObject.Value}.
          * @returns variant contents of `value` (may be `null`)
+         * @since 2.26
          */
         get_variant(): GLib.Variant | null;
 
@@ -6183,6 +6254,7 @@ export function registerClass<
          * {@link GObject.Type} (such as a parent class type), you need to manually call
          * {@link GObject.Value.init} and {@link GObject.Value.set_instance}.
          * @param instance the instance
+         * @since 2.42
          */
         init_from_instance(instance: TypeInstance): void;
 
@@ -6220,12 +6292,14 @@ export function registerClass<
         /**
          * This is an internal function introduced mainly for C marshallers.
          * @param v_boxed duplicated unowned boxed value to be set
+         * @deprecated since 2.4: Use `g_value_take_boxed()` instead.
          */
         set_boxed_take_ownership(v_boxed: null): void;
 
         /**
          * Set the contents of a `G_TYPE_CHAR` {@link GObject.Value} to `v_char`.
          * @param v_char character value to be set
+         * @deprecated since 2.32: This function's input type is broken, see `g_value_set_schar()`
          */
         set_char(v_char: number): void;
 
@@ -6256,6 +6330,7 @@ export function registerClass<
         /**
          * Set the contents of a `G_TYPE_GTYPE` {@link GObject.Value} to `v_gtype`.
          * @param v_gtype {@link GObject.GType} to be set
+         * @since 2.12
          */
         set_gtype(v_gtype: GType): void;
 
@@ -6285,6 +6360,7 @@ export function registerClass<
          * assumed to be static and interned (canonical, for example from
          * `g_intern_string()`), and is thus not duplicated when setting the {@link GObject.Value}.
          * @param v_string static string to be set
+         * @since 2.66
          */
         set_interned_string(v_string: string | null): void;
 
@@ -6325,6 +6401,7 @@ export function registerClass<
         /**
          * Set the contents of a `G_TYPE_CHAR` {@link GObject.Value} to `v_char`.
          * @param v_char signed 8 bit integer to be set
+         * @since 2.32
          */
         set_schar(v_char: number): void;
 
@@ -6357,6 +6434,7 @@ export function registerClass<
         /**
          * This is an internal function introduced mainly for C marshallers.
          * @param v_string duplicated unowned string to be set
+         * @deprecated since 2.4: Use `g_value_take_string()` instead.
          */
         set_string_take_ownership(v_string: string | null): void;
 
@@ -6388,6 +6466,7 @@ export function registerClass<
          * Set the contents of a variant {@link GObject.Value} to `variant`.
          * If the variant is floating, it is consumed.
          * @param variant a {@link GLib.Variant}, or `null`
+         * @since 2.26
          */
         set_variant(variant: GLib.Variant | null): void;
 
@@ -6402,6 +6481,7 @@ export function registerClass<
          * static string, or an interned one, this function will return a copy
          * of the string. Otherwise the transfer notation would be ambiguous.
          * @returns string content of `value`;  Should be freed with `g_free()` when no longer needed.
+         * @since 2.80
          */
         steal_string(): string | null;
 
@@ -6410,12 +6490,14 @@ export function registerClass<
          * and takes over the ownership of the caller’s reference to `v_boxed`;
          * the caller doesn’t have to unref it any more.
          * @param v_boxed duplicated unowned boxed value to be set
+         * @since 2.4
          */
         take_boxed(v_boxed: null): void;
 
         /**
          * Sets the contents of a `G_TYPE_STRING` {@link GObject.Value} to `v_string`.
          * @param v_string string to take ownership of
+         * @since 2.4
          */
         take_string(v_string: string | null): void;
 
@@ -6433,6 +6515,7 @@ export function registerClass<
          * 
          * This is an internal function introduced mainly for C marshallers.
          * @param variant a {@link GLib.Variant}, or `null`
+         * @since 2.26
          */
         take_variant(variant: GLib.Variant | null): void;
 
@@ -6509,6 +6592,7 @@ export function registerClass<
          * `null`, an uninitialized value is appended.
          * @param value {@link GObject.Value} to copy into {@link GObject.ValueArray}, or `null`
          * @returns the {@link GObject.ValueArray} passed in as `value_array`
+         * @deprecated since 2.32: Use {@link GLib.Array} and `g_array_append_val()` instead.
          */
         append(value: Value | any | null): ValueArray;
 
@@ -6516,11 +6600,13 @@ export function registerClass<
          * Construct an exact copy of a {@link GObject.ValueArray} by duplicating all its
          * contents.
          * @returns Newly allocated copy of {@link GObject.ValueArray}
+         * @deprecated since 2.32: Use {@link GLib.Array} and `g_array_ref()` instead.
          */
         copy(): ValueArray;
 
         /**
          * Free a {@link GObject.ValueArray} including its contents.
+         * @deprecated since 2.32: Use {@link GLib.Array} and `g_array_unref()` instead.
          */
         free(): void;
 
@@ -6528,6 +6614,7 @@ export function registerClass<
          * Return a pointer to the value at `index_` contained in `value_array`.
          * @param index_ index of the value of interest
          * @returns pointer to a value at `index_` in `value_array`
+         * @deprecated since 2.32: Use `g_array_index()` instead.
          */
         get_nth(index_: number): unknown;
 
@@ -6537,6 +6624,7 @@ export function registerClass<
          * @param index_ insertion position, must be <= value_array->;n_values
          * @param value {@link GObject.Value} to copy into {@link GObject.ValueArray}, or `null`
          * @returns the {@link GObject.ValueArray} passed in as `value_array`
+         * @deprecated since 2.32: Use {@link GLib.Array} and `g_array_insert_val()` instead.
          */
         insert(index_: number, value: Value | any | null): ValueArray;
 
@@ -6545,6 +6633,7 @@ export function registerClass<
          * `null`, an uninitialized value is prepended.
          * @param value {@link GObject.Value} to copy into {@link GObject.ValueArray}, or `null`
          * @returns the {@link GObject.ValueArray} passed in as `value_array`
+         * @deprecated since 2.32: Use {@link GLib.Array} and `g_array_prepend_val()` instead.
          */
         prepend(value: Value | any | null): ValueArray;
 
@@ -6552,6 +6641,7 @@ export function registerClass<
          * Remove the value at position `index_` from `value_array`.
          * @param index_ position of value to remove, which must be less than     `value_array`->n_values
          * @returns the {@link GObject.ValueArray} passed in as `value_array`
+         * @deprecated since 2.32: Use {@link GLib.Array} and `g_array_remove_index()` instead.
          */
         remove(index_: number): ValueArray;
 
@@ -6563,6 +6653,7 @@ export function registerClass<
          * C `qsort()` function.
          * @param compare_func function to compare elements
          * @returns the {@link GObject.ValueArray} passed in as `value_array`
+         * @deprecated since 2.32: Use {@link GLib.Array} and `g_array_sort_with_data()`.
          */
         sort(compare_func: GLib.CompareDataFunc): ValueArray;
     }

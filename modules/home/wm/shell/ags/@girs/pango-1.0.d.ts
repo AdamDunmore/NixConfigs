@@ -56,15 +56,15 @@ export namespace Pango {
         /**
          * Put all available space on the right
          */
-        LEFT,
+        LEFT = 0,
         /**
          * Center the line within the available space
          */
-        CENTER,
+        CENTER = 1,
         /**
          * Put all available space on the left
          */
-        RIGHT,
+        RIGHT = 2,
     }
 
 
@@ -88,152 +88,152 @@ export namespace Pango {
         /**
          * does not happen
          */
-        INVALID,
+        INVALID = 0,
         /**
          * language ({@link Pango.AttrLanguage})
          */
-        LANGUAGE,
+        LANGUAGE = 1,
         /**
          * font family name list ({@link Pango.AttrString})
          */
-        FAMILY,
+        FAMILY = 2,
         /**
          * font slant style ({@link Pango.AttrInt})
          */
-        STYLE,
+        STYLE = 3,
         /**
          * font weight ({@link Pango.AttrInt})
          */
-        WEIGHT,
+        WEIGHT = 4,
         /**
          * font variant (normal or small caps) ({@link Pango.AttrInt})
          */
-        VARIANT,
+        VARIANT = 5,
         /**
          * font stretch ({@link Pango.AttrInt})
          */
-        STRETCH,
+        STRETCH = 6,
         /**
          * font size in points scaled by `PANGO_SCALE` ({@link Pango.AttrInt})
          */
-        SIZE,
+        SIZE = 7,
         /**
          * font description ({@link Pango.AttrFontDesc})
          */
-        FONT_DESC,
+        FONT_DESC = 8,
         /**
          * foreground color ({@link Pango.AttrColor})
          */
-        FOREGROUND,
+        FOREGROUND = 9,
         /**
          * background color ({@link Pango.AttrColor})
          */
-        BACKGROUND,
+        BACKGROUND = 10,
         /**
          * whether the text has an underline ({@link Pango.AttrInt})
          */
-        UNDERLINE,
+        UNDERLINE = 11,
         /**
          * whether the text is struck-through ({@link Pango.AttrInt})
          */
-        STRIKETHROUGH,
+        STRIKETHROUGH = 12,
         /**
          * baseline displacement ({@link Pango.AttrInt})
          */
-        RISE,
+        RISE = 13,
         /**
          * shape ({@link Pango.AttrShape})
          */
-        SHAPE,
+        SHAPE = 14,
         /**
          * font size scale factor ({@link Pango.AttrFloat})
          */
-        SCALE,
+        SCALE = 15,
         /**
          * whether fallback is enabled ({@link Pango.AttrInt})
          */
-        FALLBACK,
+        FALLBACK = 16,
         /**
          * letter spacing ({@link PangoAttrInt})
          */
-        LETTER_SPACING,
+        LETTER_SPACING = 17,
         /**
          * underline color ({@link Pango.AttrColor})
          */
-        UNDERLINE_COLOR,
+        UNDERLINE_COLOR = 18,
         /**
          * strikethrough color ({@link Pango.AttrColor})
          */
-        STRIKETHROUGH_COLOR,
+        STRIKETHROUGH_COLOR = 19,
         /**
          * font size in pixels scaled by `PANGO_SCALE` ({@link Pango.AttrInt})
          */
-        ABSOLUTE_SIZE,
+        ABSOLUTE_SIZE = 20,
         /**
          * base text gravity ({@link Pango.AttrInt})
          */
-        GRAVITY,
+        GRAVITY = 21,
         /**
          * gravity hint ({@link Pango.AttrInt})
          */
-        GRAVITY_HINT,
+        GRAVITY_HINT = 22,
         /**
          * OpenType font features ({@link Pango.AttrFontFeatures}). Since 1.38
          */
-        FONT_FEATURES,
+        FONT_FEATURES = 23,
         /**
          * foreground alpha ({@link Pango.AttrInt}). Since 1.38
          */
-        FOREGROUND_ALPHA,
+        FOREGROUND_ALPHA = 24,
         /**
          * background alpha ({@link Pango.AttrInt}). Since 1.38
          */
-        BACKGROUND_ALPHA,
+        BACKGROUND_ALPHA = 25,
         /**
          * whether breaks are allowed ({@link Pango.AttrInt}). Since 1.44
          */
-        ALLOW_BREAKS,
+        ALLOW_BREAKS = 26,
         /**
          * how to render invisible characters ({@link Pango.AttrInt}). Since 1.44
          */
-        SHOW,
+        SHOW = 27,
         /**
          * whether to insert hyphens at intra-word line breaks ({@link Pango.AttrInt}). Since 1.44
          */
-        INSERT_HYPHENS,
+        INSERT_HYPHENS = 28,
         /**
          * whether the text has an overline ({@link Pango.AttrInt}). Since 1.46
          */
-        OVERLINE,
+        OVERLINE = 29,
         /**
          * overline color ({@link Pango.AttrColor}). Since 1.46
          */
-        OVERLINE_COLOR,
+        OVERLINE_COLOR = 30,
         /**
          * line height factor ({@link Pango.AttrFloat}). Since: 1.50
          */
-        LINE_HEIGHT,
+        LINE_HEIGHT = 31,
         /**
          * line height ({@link Pango.AttrInt}). Since: 1.50
          */
-        ABSOLUTE_LINE_HEIGHT,
-        TEXT_TRANSFORM,
+        ABSOLUTE_LINE_HEIGHT = 32,
+        TEXT_TRANSFORM = 33,
         /**
          * override segmentation to classify the range of the attribute as a single word ({@link Pango.AttrInt}). Since 1.50
          */
-        WORD,
+        WORD = 34,
         /**
          * override segmentation to classify the range of the attribute as a single sentence ({@link Pango.AttrInt}). Since 1.50
          */
-        SENTENCE,
+        SENTENCE = 35,
         /**
          * baseline displacement ({@link Pango.AttrInt}). Since 1.50
          */
-        BASELINE_SHIFT,
+        BASELINE_SHIFT = 36,
         /**
          * font-relative size change ({@link Pango.AttrInt}). Since 1.50
          */
-        FONT_SCALE,
+        FONT_SCALE = 37,
     }
 
 
@@ -253,17 +253,17 @@ export namespace Pango {
         /**
          * Leave the baseline unchanged
          */
-        NONE,
+        NONE = 0,
         /**
          * Shift the baseline to the superscript position,
          *   relative to the previous run
          */
-        SUPERSCRIPT,
+        SUPERSCRIPT = 1,
         /**
          * Shift the baseline to the subscript position,
          *   relative to the previous run
          */
-        SUBSCRIPT,
+        SUBSCRIPT = 2,
     }
 
 
@@ -288,95 +288,95 @@ export namespace Pango {
         /**
          * Left-to-Right
          */
-        L,
+        L = 0,
         /**
          * Left-to-Right Embedding
          */
-        LRE,
+        LRE = 1,
         /**
          * Left-to-Right Override
          */
-        LRO,
+        LRO = 2,
         /**
          * Right-to-Left
          */
-        R,
+        R = 3,
         /**
          * Right-to-Left Arabic
          */
-        AL,
+        AL = 4,
         /**
          * Right-to-Left Embedding
          */
-        RLE,
+        RLE = 5,
         /**
          * Right-to-Left Override
          */
-        RLO,
+        RLO = 6,
         /**
          * Pop Directional Format
          */
-        PDF,
+        PDF = 7,
         /**
          * European Number
          */
-        EN,
+        EN = 8,
         /**
          * European Number Separator
          */
-        ES,
+        ES = 9,
         /**
          * European Number Terminator
          */
-        ET,
+        ET = 10,
         /**
          * Arabic Number
          */
-        AN,
+        AN = 11,
         /**
          * Common Number Separator
          */
-        CS,
+        CS = 12,
         /**
          * Nonspacing Mark
          */
-        NSM,
+        NSM = 13,
         /**
          * Boundary Neutral
          */
-        BN,
+        BN = 14,
         /**
          * Paragraph Separator
          */
-        B,
+        B = 15,
         /**
          * Segment Separator
          */
-        S,
+        S = 16,
         /**
          * Whitespace
          */
-        WS,
+        WS = 17,
         /**
          * Other Neutrals
          */
-        ON,
+        ON = 18,
         /**
          * Left-to-Right isolate. Since 1.48.6
          */
-        LRI,
+        LRI = 19,
         /**
          * Right-to-Left isolate. Since 1.48.6
          */
-        RLI,
+        RLI = 20,
         /**
          * First strong isolate. Since 1.48.6
          */
-        FSI,
+        FSI = 21,
         /**
          * Pop directional isolate. Since 1.48.6
          */
-        PDI,
+        PDI = 22,
     }
 
 
@@ -400,7 +400,7 @@ export namespace Pango {
          * The character is not representable with
          *   the font.
          */
-        NONE,
+        NONE = 0,
         /**
          * The character is represented in a
          *   way that may be comprehensible but is not the correct
@@ -408,18 +408,18 @@ export namespace Pango {
          *   as a a sequence of Jamos, or a Latin transliteration of a
          *   Cyrillic word.
          */
-        FALLBACK,
+        FALLBACK = 1,
         /**
          * The character is represented as
          *   basically the correct graphical form, but with a stylistic
          *   variant inappropriate for the current script.
          */
-        APPROXIMATE,
+        APPROXIMATE = 2,
         /**
          * The character is represented as the
          *   correct graphical form.
          */
-        EXACT,
+        EXACT = 3,
     }
 
 
@@ -455,33 +455,33 @@ export namespace Pango {
         /**
          * A strong left-to-right direction
          */
-        LTR,
+        LTR = 0,
         /**
          * A strong right-to-left direction
          */
-        RTL,
+        RTL = 1,
         /**
          * Deprecated value; treated the
          *   same as `PANGO_DIRECTION_RTL`.
          */
-        TTB_LTR,
+        TTB_LTR = 2,
         /**
          * Deprecated value; treated the
          *   same as `PANGO_DIRECTION_LTR`
          */
-        TTB_RTL,
+        TTB_RTL = 3,
         /**
          * A weak left-to-right direction
          */
-        WEAK_LTR,
+        WEAK_LTR = 4,
         /**
          * A weak right-to-left direction
          */
-        WEAK_RTL,
+        WEAK_RTL = 5,
         /**
          * No direction specified
          */
-        NEUTRAL,
+        NEUTRAL = 6,
     }
 
 
@@ -505,19 +505,19 @@ export namespace Pango {
         /**
          * No ellipsization
          */
-        NONE,
+        NONE = 0,
         /**
          * Omit characters at the start of the text
          */
-        START,
+        START = 1,
         /**
          * Omit characters in the middle of the text
          */
-        MIDDLE,
+        MIDDLE = 2,
         /**
          * Omit characters at the end of the text
          */
-        END,
+        END = 3,
     }
 
 
@@ -537,15 +537,15 @@ export namespace Pango {
         /**
          * The font should not have color glyphs
          */
-        FORBIDDEN,
+        FORBIDDEN = 0,
         /**
          * The font should have color glyphs
          */
-        REQUIRED,
+        REQUIRED = 1,
         /**
          * The font may or may not use color
          */
-        DONT_CARE,
+        DONT_CARE = 2,
     }
 
 
@@ -566,19 +566,19 @@ export namespace Pango {
         /**
          * Leave the font size unchanged
          */
-        NONE,
+        NONE = 0,
         /**
          * Change the font to a size suitable for superscripts
          */
-        SUPERSCRIPT,
+        SUPERSCRIPT = 1,
         /**
          * Change the font to a size suitable for subscripts
          */
-        SUBSCRIPT,
+        SUBSCRIPT = 2,
         /**
          * Change the font to a size suitable for Small Caps
          */
-        SMALL_CAPS,
+        SMALL_CAPS = 3,
     }
 
 
@@ -610,23 +610,23 @@ export namespace Pango {
         /**
          * Glyphs stand upright (default) <img align="right" valign="center" src="https://docs.gtk.org/Pango/m-south.png">
          */
-        SOUTH,
+        SOUTH = 0,
         /**
          * Glyphs are rotated 90 degrees counter-clockwise. <img align="right" valign="center" src="https://docs.gtk.org/Pango/m-east.png">
          */
-        EAST,
+        EAST = 1,
         /**
          * Glyphs are upside-down. <img align="right" valign="cener" src="https://docs.gtk.org/Pango/m-north.png">
          */
-        NORTH,
+        NORTH = 2,
         /**
          * Glyphs are rotated 90 degrees clockwise. <img align="right" valign="center" src="https://docs.gtk.org/Pango/m-west.png">
          */
-        WEST,
+        WEST = 3,
         /**
          * Gravity is resolved from the context matrix
          */
-        AUTO,
+        AUTO = 4,
     }
 
 
@@ -652,19 +652,19 @@ export namespace Pango {
          * scripts will take their natural gravity based
          *   on the base gravity and the script.  This is the default.
          */
-        NATURAL,
+        NATURAL = 0,
         /**
          * always use the base gravity set, regardless of
          *   the script.
          */
-        STRONG,
+        STRONG = 1,
         /**
          * for scripts not in their natural direction (eg.
          *   Latin in East gravity), choose per-script gravity such that every script
          *   respects the line progression. This means, Latin and Arabic will take
          *   opposite gravities and both flow top-to-bottom for example.
          */
-        LINE,
+        LINE = 2,
     }
 
 
@@ -718,12 +718,12 @@ export namespace Pango {
         /**
          * no overline should be drawn
          */
-        NONE,
+        NONE = 0,
         /**
          * Draw a single line above the ink
          *   extents of the text being underlined.
          */
-        SINGLE,
+        SINGLE = 1,
     }
 
 
@@ -744,23 +744,23 @@ export namespace Pango {
         /**
          * the text itself
          */
-        FOREGROUND,
+        FOREGROUND = 0,
         /**
          * the area behind the text
          */
-        BACKGROUND,
+        BACKGROUND = 1,
         /**
          * underlines
          */
-        UNDERLINE,
+        UNDERLINE = 2,
         /**
          * strikethrough lines
          */
-        STRIKETHROUGH,
+        STRIKETHROUGH = 3,
         /**
          * overlines
          */
-        OVERLINE,
+        OVERLINE = 4,
     }
 
 
@@ -788,476 +788,476 @@ export namespace Pango {
         /**
          * a value never returned from `pango_script_for_unichar()`
          */
-        INVALID_CODE,
+        INVALID_CODE = -1,
         /**
          * a character used by multiple different scripts
          */
-        COMMON,
+        COMMON = 0,
         /**
          * a mark glyph that takes its script from the
          * base glyph to which it is attached
          */
-        INHERITED,
+        INHERITED = 1,
         /**
          * Arabic
          */
-        ARABIC,
+        ARABIC = 2,
         /**
          * Armenian
          */
-        ARMENIAN,
+        ARMENIAN = 3,
         /**
          * Bengali
          */
-        BENGALI,
+        BENGALI = 4,
         /**
          * Bopomofo
          */
-        BOPOMOFO,
+        BOPOMOFO = 5,
         /**
          * Cherokee
          */
-        CHEROKEE,
+        CHEROKEE = 6,
         /**
          * Coptic
          */
-        COPTIC,
+        COPTIC = 7,
         /**
          * Cyrillic
          */
-        CYRILLIC,
+        CYRILLIC = 8,
         /**
          * Deseret
          */
-        DESERET,
+        DESERET = 9,
         /**
          * Devanagari
          */
-        DEVANAGARI,
+        DEVANAGARI = 10,
         /**
          * Ethiopic
          */
-        ETHIOPIC,
+        ETHIOPIC = 11,
         /**
          * Georgian
          */
-        GEORGIAN,
+        GEORGIAN = 12,
         /**
          * Gothic
          */
-        GOTHIC,
+        GOTHIC = 13,
         /**
          * Greek
          */
-        GREEK,
+        GREEK = 14,
         /**
          * Gujarati
          */
-        GUJARATI,
+        GUJARATI = 15,
         /**
          * Gurmukhi
          */
-        GURMUKHI,
+        GURMUKHI = 16,
         /**
          * Han
          */
-        HAN,
+        HAN = 17,
         /**
          * Hangul
          */
-        HANGUL,
+        HANGUL = 18,
         /**
          * Hebrew
          */
-        HEBREW,
+        HEBREW = 19,
         /**
          * Hiragana
          */
-        HIRAGANA,
+        HIRAGANA = 20,
         /**
          * Kannada
          */
-        KANNADA,
+        KANNADA = 21,
         /**
          * Katakana
          */
-        KATAKANA,
+        KATAKANA = 22,
         /**
          * Khmer
          */
-        KHMER,
+        KHMER = 23,
         /**
          * Lao
          */
-        LAO,
+        LAO = 24,
         /**
          * Latin
          */
-        LATIN,
+        LATIN = 25,
         /**
          * Malayalam
          */
-        MALAYALAM,
+        MALAYALAM = 26,
         /**
          * Mongolian
          */
-        MONGOLIAN,
+        MONGOLIAN = 27,
         /**
          * Myanmar
          */
-        MYANMAR,
+        MYANMAR = 28,
         /**
          * Ogham
          */
-        OGHAM,
+        OGHAM = 29,
         /**
          * Old Italic
          */
-        OLD_ITALIC,
+        OLD_ITALIC = 30,
         /**
          * Oriya
          */
-        ORIYA,
+        ORIYA = 31,
         /**
          * Runic
          */
-        RUNIC,
+        RUNIC = 32,
         /**
          * Sinhala
          */
-        SINHALA,
+        SINHALA = 33,
         /**
          * Syriac
          */
-        SYRIAC,
+        SYRIAC = 34,
         /**
          * Tamil
          */
-        TAMIL,
+        TAMIL = 35,
         /**
          * Telugu
          */
-        TELUGU,
+        TELUGU = 36,
         /**
          * Thaana
          */
-        THAANA,
+        THAANA = 37,
         /**
          * Thai
          */
-        THAI,
+        THAI = 38,
         /**
          * Tibetan
          */
-        TIBETAN,
+        TIBETAN = 39,
         /**
          * Canadian Aboriginal
          */
-        CANADIAN_ABORIGINAL,
+        CANADIAN_ABORIGINAL = 40,
         /**
          * Yi
          */
-        YI,
+        YI = 41,
         /**
          * Tagalog
          */
-        TAGALOG,
+        TAGALOG = 42,
         /**
          * Hanunoo
          */
-        HANUNOO,
+        HANUNOO = 43,
         /**
          * Buhid
          */
-        BUHID,
+        BUHID = 44,
         /**
          * Tagbanwa
          */
-        TAGBANWA,
+        TAGBANWA = 45,
         /**
          * Braille
          */
-        BRAILLE,
+        BRAILLE = 46,
         /**
          * Cypriot
          */
-        CYPRIOT,
+        CYPRIOT = 47,
         /**
          * Limbu
          */
-        LIMBU,
+        LIMBU = 48,
         /**
          * Osmanya
          */
-        OSMANYA,
+        OSMANYA = 49,
         /**
          * Shavian
          */
-        SHAVIAN,
+        SHAVIAN = 50,
         /**
          * Linear B
          */
-        LINEAR_B,
+        LINEAR_B = 51,
         /**
          * Tai Le
          */
-        TAI_LE,
+        TAI_LE = 52,
         /**
          * Ugaritic
          */
-        UGARITIC,
+        UGARITIC = 53,
         /**
          * New Tai Lue. Since 1.10
          */
-        NEW_TAI_LUE,
+        NEW_TAI_LUE = 54,
         /**
          * Buginese. Since 1.10
          */
-        BUGINESE,
+        BUGINESE = 55,
         /**
          * Glagolitic. Since 1.10
          */
-        GLAGOLITIC,
+        GLAGOLITIC = 56,
         /**
          * Tifinagh. Since 1.10
          */
-        TIFINAGH,
+        TIFINAGH = 57,
         /**
          * Syloti Nagri. Since 1.10
          */
-        SYLOTI_NAGRI,
+        SYLOTI_NAGRI = 58,
         /**
          * Old Persian. Since 1.10
          */
-        OLD_PERSIAN,
+        OLD_PERSIAN = 59,
         /**
          * Kharoshthi. Since 1.10
          */
-        KHAROSHTHI,
+        KHAROSHTHI = 60,
         /**
          * an unassigned code point. Since 1.14
          */
-        UNKNOWN,
+        UNKNOWN = 61,
         /**
          * Balinese. Since 1.14
          */
-        BALINESE,
+        BALINESE = 62,
         /**
          * Cuneiform. Since 1.14
          */
-        CUNEIFORM,
+        CUNEIFORM = 63,
         /**
          * Phoenician. Since 1.14
          */
-        PHOENICIAN,
+        PHOENICIAN = 64,
         /**
          * Phags-pa. Since 1.14
          */
-        PHAGS_PA,
+        PHAGS_PA = 65,
         /**
          * N'Ko. Since 1.14
          */
-        NKO,
+        NKO = 66,
         /**
          * Kayah Li. Since 1.20.1
          */
-        KAYAH_LI,
+        KAYAH_LI = 67,
         /**
          * Lepcha. Since 1.20.1
          */
-        LEPCHA,
+        LEPCHA = 68,
         /**
          * Rejang. Since 1.20.1
          */
-        REJANG,
+        REJANG = 69,
         /**
          * Sundanese. Since 1.20.1
          */
-        SUNDANESE,
+        SUNDANESE = 70,
         /**
          * Saurashtra. Since 1.20.1
          */
-        SAURASHTRA,
+        SAURASHTRA = 71,
         /**
          * Cham. Since 1.20.1
          */
-        CHAM,
+        CHAM = 72,
         /**
          * Ol Chiki. Since 1.20.1
          */
-        OL_CHIKI,
+        OL_CHIKI = 73,
         /**
          * Vai. Since 1.20.1
          */
-        VAI,
+        VAI = 74,
         /**
          * Carian. Since 1.20.1
          */
-        CARIAN,
+        CARIAN = 75,
         /**
          * Lycian. Since 1.20.1
          */
-        LYCIAN,
+        LYCIAN = 76,
         /**
          * Lydian. Since 1.20.1
          */
-        LYDIAN,
+        LYDIAN = 77,
         /**
          * Batak. Since 1.32
          */
-        BATAK,
+        BATAK = 78,
         /**
          * Brahmi. Since 1.32
          */
-        BRAHMI,
+        BRAHMI = 79,
         /**
          * Mandaic. Since 1.32
          */
-        MANDAIC,
+        MANDAIC = 80,
         /**
          * Chakma. Since: 1.32
          */
-        CHAKMA,
+        CHAKMA = 81,
         /**
          * Meroitic Cursive. Since: 1.32
          */
-        MEROITIC_CURSIVE,
+        MEROITIC_CURSIVE = 82,
         /**
          * Meroitic Hieroglyphs. Since: 1.32
          */
-        MEROITIC_HIEROGLYPHS,
+        MEROITIC_HIEROGLYPHS = 83,
         /**
          * Miao. Since: 1.32
          */
-        MIAO,
+        MIAO = 84,
         /**
          * Sharada. Since: 1.32
          */
-        SHARADA,
+        SHARADA = 85,
         /**
          * Sora Sompeng. Since: 1.32
          */
-        SORA_SOMPENG,
+        SORA_SOMPENG = 86,
         /**
          * Takri. Since: 1.32
          */
-        TAKRI,
+        TAKRI = 87,
         /**
          * Bassa. Since: 1.40
          */
-        BASSA_VAH,
+        BASSA_VAH = 88,
         /**
          * Caucasian Albanian. Since: 1.40
          */
-        CAUCASIAN_ALBANIAN,
+        CAUCASIAN_ALBANIAN = 89,
         /**
          * Duployan. Since: 1.40
          */
-        DUPLOYAN,
+        DUPLOYAN = 90,
         /**
          * Elbasan. Since: 1.40
          */
-        ELBASAN,
+        ELBASAN = 91,
         /**
          * Grantha. Since: 1.40
          */
-        GRANTHA,
+        GRANTHA = 92,
         /**
          * Kjohki. Since: 1.40
          */
-        KHOJKI,
+        KHOJKI = 93,
         /**
          * Khudawadi, Sindhi. Since: 1.40
          */
-        KHUDAWADI,
+        KHUDAWADI = 94,
         /**
          * Linear A. Since: 1.40
          */
-        LINEAR_A,
+        LINEAR_A = 95,
         /**
          * Mahajani. Since: 1.40
          */
-        MAHAJANI,
+        MAHAJANI = 96,
         /**
          * Manichaean. Since: 1.40
          */
-        MANICHAEAN,
+        MANICHAEAN = 97,
         /**
          * Mende Kikakui. Since: 1.40
          */
-        MENDE_KIKAKUI,
+        MENDE_KIKAKUI = 98,
         /**
          * Modi. Since: 1.40
          */
-        MODI,
+        MODI = 99,
         /**
          * Mro. Since: 1.40
          */
-        MRO,
+        MRO = 100,
         /**
          * Nabataean. Since: 1.40
          */
-        NABATAEAN,
+        NABATAEAN = 101,
         /**
          * Old North Arabian. Since: 1.40
          */
-        OLD_NORTH_ARABIAN,
+        OLD_NORTH_ARABIAN = 102,
         /**
          * Old Permic. Since: 1.40
          */
-        OLD_PERMIC,
+        OLD_PERMIC = 103,
         /**
          * Pahawh Hmong. Since: 1.40
          */
-        PAHAWH_HMONG,
+        PAHAWH_HMONG = 104,
         /**
          * Palmyrene. Since: 1.40
          */
-        PALMYRENE,
+        PALMYRENE = 105,
         /**
          * Pau Cin Hau. Since: 1.40
          */
-        PAU_CIN_HAU,
+        PAU_CIN_HAU = 106,
         /**
          * Psalter Pahlavi. Since: 1.40
          */
-        PSALTER_PAHLAVI,
+        PSALTER_PAHLAVI = 107,
         /**
          * Siddham. Since: 1.40
          */
-        SIDDHAM,
+        SIDDHAM = 108,
         /**
          * Tirhuta. Since: 1.40
          */
-        TIRHUTA,
+        TIRHUTA = 109,
         /**
          * Warang Citi. Since: 1.40
          */
-        WARANG_CITI,
+        WARANG_CITI = 110,
         /**
          * Ahom. Since: 1.40
          */
-        AHOM,
+        AHOM = 111,
         /**
          * Anatolian Hieroglyphs. Since: 1.40
          */
-        ANATOLIAN_HIEROGLYPHS,
+        ANATOLIAN_HIEROGLYPHS = 112,
         /**
          * Hatran. Since: 1.40
          */
-        HATRAN,
+        HATRAN = 113,
         /**
          * Multani. Since: 1.40
          */
-        MULTANI,
+        MULTANI = 114,
         /**
          * Old Hungarian. Since: 1.40
          */
-        OLD_HUNGARIAN,
+        OLD_HUNGARIAN = 115,
         /**
          * Signwriting. Since: 1.40
          */
-        SIGNWRITING,
+        SIGNWRITING = 116,
     }
 
 
@@ -1277,39 +1277,39 @@ export namespace Pango {
         /**
          * ultra condensed width
          */
-        ULTRA_CONDENSED,
+        ULTRA_CONDENSED = 0,
         /**
          * extra condensed width
          */
-        EXTRA_CONDENSED,
+        EXTRA_CONDENSED = 1,
         /**
          * condensed width
          */
-        CONDENSED,
+        CONDENSED = 2,
         /**
          * semi condensed width
          */
-        SEMI_CONDENSED,
+        SEMI_CONDENSED = 3,
         /**
          * the normal width
          */
-        NORMAL,
+        NORMAL = 4,
         /**
          * semi expanded width
          */
-        SEMI_EXPANDED,
+        SEMI_EXPANDED = 5,
         /**
          * expanded width
          */
-        EXPANDED,
+        EXPANDED = 6,
         /**
          * extra expanded width
          */
-        EXTRA_EXPANDED,
+        EXTRA_EXPANDED = 7,
         /**
          * ultra expanded width
          */
-        ULTRA_EXPANDED,
+        ULTRA_EXPANDED = 8,
     }
 
 
@@ -1328,15 +1328,15 @@ export namespace Pango {
         /**
          * the font is upright.
          */
-        NORMAL,
+        NORMAL = 0,
         /**
          * the font is slanted, but in a roman style.
          */
-        OBLIQUE,
+        OBLIQUE = 1,
         /**
          * the font is slanted in an italic style.
          */
-        ITALIC,
+        ITALIC = 2,
     }
 
 
@@ -1356,23 +1356,23 @@ export namespace Pango {
         /**
          * the text appears to the right of the tab stop position
          */
-        LEFT,
+        LEFT = 0,
         /**
          * the text appears to the left of the tab stop position
          *   until the available space is filled. Since: 1.50
          */
-        RIGHT,
+        RIGHT = 1,
         /**
          * the text is centered at the tab stop position
          *   until the available space is filled. Since: 1.50
          */
-        CENTER,
+        CENTER = 2,
         /**
          * text before the first occurrence of the decimal point
          *   character appears to the left of the tab stop position (until the available
          *   space is filled), the rest to the right. Since: 1.50
          */
-        DECIMAL,
+        DECIMAL = 3,
     }
 
 
@@ -1392,20 +1392,20 @@ export namespace Pango {
         /**
          * Leave text unchanged
          */
-        NONE,
+        NONE = 0,
         /**
          * Display letters and numbers as lowercase
          */
-        LOWERCASE,
+        LOWERCASE = 1,
         /**
          * Display letters and numbers as uppercase
          */
-        UPPERCASE,
+        UPPERCASE = 2,
         /**
          * Display the first character of a word
          *   in titlecase
          */
-        CAPITALIZE,
+        CAPITALIZE = 3,
     }
 
 
@@ -1425,15 +1425,15 @@ export namespace Pango {
         /**
          * no underline should be drawn
          */
-        NONE,
+        NONE = 0,
         /**
          * a single underline should be drawn
          */
-        SINGLE,
+        SINGLE = 1,
         /**
          * a double underline should be drawn
          */
-        DOUBLE,
+        DOUBLE = 2,
         /**
          * a single underline should be drawn at a
          *   position beneath the ink extents of the text being
@@ -1442,7 +1442,7 @@ export namespace Pango {
          *   {@link Pango.Underline.SINGLE} should be used for extended
          *   portions of text.
          */
-        LOW,
+        LOW = 3,
         /**
          * an underline indicating an error should
          *   be drawn below. The exact style of rendering is up to the
@@ -1453,25 +1453,25 @@ export namespace Pango {
          *   may automatically be used. This type of underlining is
          *   available since Pango 1.4.
          */
-        ERROR,
+        ERROR = 4,
         /**
          * Like `PANGO_UNDERLINE_SINGLE`, but
          *   drawn continuously across multiple runs. This type
          *   of underlining is available since Pango 1.46.
          */
-        SINGLE_LINE,
+        SINGLE_LINE = 5,
         /**
          * Like `PANGO_UNDERLINE_DOUBLE`, but
          *   drawn continuously across multiple runs. This type
          *   of underlining is available since Pango 1.46.
          */
-        DOUBLE_LINE,
+        DOUBLE_LINE = 6,
         /**
          * Like `PANGO_UNDERLINE_ERROR`, but
          *   drawn continuously across multiple runs. This type
          *   of underlining is available since Pango 1.46.
          */
-        ERROR_LINE,
+        ERROR_LINE = 7,
     }
 
 
@@ -1490,39 +1490,39 @@ export namespace Pango {
         /**
          * A normal font.
          */
-        NORMAL,
+        NORMAL = 0,
         /**
          * A font with the lower case characters
          *   replaced by smaller variants of the capital characters.
          */
-        SMALL_CAPS,
+        SMALL_CAPS = 1,
         /**
          * A font with all characters
          *   replaced by smaller variants of the capital characters. Since: 1.50
          */
-        ALL_SMALL_CAPS,
+        ALL_SMALL_CAPS = 2,
         /**
          * A font with the lower case characters
          *   replaced by smaller variants of the capital characters.
          *   Petite Caps can be even smaller than Small Caps. Since: 1.50
          */
-        PETITE_CAPS,
+        PETITE_CAPS = 3,
         /**
          * A font with all characters
          *   replaced by smaller variants of the capital characters.
          *   Petite Caps can be even smaller than Small Caps. Since: 1.50
          */
-        ALL_PETITE_CAPS,
+        ALL_PETITE_CAPS = 4,
         /**
          * A font with the upper case characters
          *   replaced by smaller variants of the capital letters. Since: 1.50
          */
-        UNICASE,
+        UNICASE = 5,
         /**
          * A font with capital letters that
          *   are more suitable for all-uppercase titles. Since: 1.50
          */
-        TITLE_CAPS,
+        TITLE_CAPS = 6,
     }
 
 
@@ -1544,51 +1544,51 @@ export namespace Pango {
         /**
          * the thin weight (= 100) Since: 1.24
          */
-        THIN,
+        THIN = 100,
         /**
          * the ultralight weight (= 200)
          */
-        ULTRALIGHT,
+        ULTRALIGHT = 200,
         /**
          * the light weight (= 300)
          */
-        LIGHT,
+        LIGHT = 300,
         /**
          * the semilight weight (= 350) Since: 1.36.7
          */
-        SEMILIGHT,
+        SEMILIGHT = 350,
         /**
          * the book weight (= 380) Since: 1.24)
          */
-        BOOK,
+        BOOK = 380,
         /**
          * the default weight (= 400)
          */
-        NORMAL,
+        NORMAL = 400,
         /**
          * the medium weight (= 500) Since: 1.24
          */
-        MEDIUM,
+        MEDIUM = 500,
         /**
          * the semibold weight (= 600)
          */
-        SEMIBOLD,
+        SEMIBOLD = 600,
         /**
          * the bold weight (= 700)
          */
-        BOLD,
+        BOLD = 700,
         /**
          * the ultrabold weight (= 800)
          */
-        ULTRABOLD,
+        ULTRABOLD = 800,
         /**
          * the heavy weight (= 900)
          */
-        HEAVY,
+        HEAVY = 900,
         /**
          * the ultraheavy weight (= 1000) Since: 1.24
          */
-        ULTRAHEAVY,
+        ULTRAHEAVY = 1000,
     }
 
 
@@ -1613,20 +1613,21 @@ export namespace Pango {
         /**
          * wrap lines at word boundaries.
          */
-        WORD,
+        WORD = 0,
         /**
          * wrap lines at character boundaries.
          */
-        CHAR,
+        CHAR = 1,
         /**
          * wrap lines at word boundaries, but fall back to
          *   character boundaries if there is not enough space for a full word.
          */
-        WORD_CHAR,
+        WORD_CHAR = 2,
         /**
          * do not wrap.
+         * @since 1.56
          */
-        NONE,
+        NONE = 3,
     }
 
 
@@ -1635,18 +1636,21 @@ export namespace Pango {
      * 
      * This is mainly used in vertical writing directions.
      * @since 1.16
+     * @default 1
      */
     const ANALYSIS_FLAG_CENTERED_BASELINE: number;
 
     /**
      * Whether this run holds ellipsized text.
      * @since 1.36.7
+     * @default 2
      */
     const ANALYSIS_FLAG_IS_ELLIPSIS: number;
 
     /**
      * Whether to add a hyphen at the end of the run during shaping.
      * @since 1.44
+     * @default 4
      */
     const ANALYSIS_FLAG_NEED_HYPHEN: number;
 
@@ -1654,6 +1658,7 @@ export namespace Pango {
      * Value for `start_index` in {@link Pango.Attribute} that indicates
      * the beginning of the text.
      * @since 1.24
+     * @default 0
      */
     const ATTR_INDEX_FROM_TEXT_BEGINNING: number;
 
@@ -1661,6 +1666,7 @@ export namespace Pango {
      * Value for `end_index` in {@link Pango.Attribute} that indicates
      * the end of the text.
      * @since 1.24
+     * @default 4294967295
      */
     const ATTR_INDEX_TO_TEXT_END: number;
 
@@ -1669,6 +1675,7 @@ export namespace Pango {
      * 
      * This is useful for example in shaper modules, to use as the glyph for
      * various zero-width Unicode characters (those passing {@link is_zero_width}).
+     * @default 268435455
      */
     const GLYPH_EMPTY: Glyph;
 
@@ -1681,6 +1688,7 @@ export namespace Pango {
      * Note that this value is defined such that it has the `PANGO_GLYPH_UNKNOWN_FLAG`
      * set.
      * @since 1.20
+     * @default 4294967295
      */
     const GLYPH_INVALID_INPUT: Glyph;
 
@@ -1689,6 +1697,7 @@ export namespace Pango {
      * character into an unknown-character glyph for that `gunichar`.
      * 
      * Such unknown-character glyphs may be rendered as a 'hex box'.
+     * @default 268435456
      */
     const GLYPH_UNKNOWN_FLAG: Glyph;
 
@@ -1701,26 +1710,31 @@ export namespace Pango {
      * 
      * When setting font sizes, device units are always considered to be
      * points (as in "12 point font"), rather than pixels.
+     * @default 1024
      */
     const SCALE: number;
 
     /**
      * The major component of the version of Pango available at compile-time.
+     * @default 1
      */
     const VERSION_MAJOR: number;
 
     /**
      * The micro component of the version of Pango available at compile-time.
+     * @default 0
      */
     const VERSION_MICRO: number;
 
     /**
      * The minor component of the version of Pango available at compile-time.
+     * @default 57
      */
     const VERSION_MINOR: number;
 
     /**
      * A string literal containing the version of Pango available at compile-time.
+     * @default 1.57.0
      */
     const VERSION_STRING: string;
 
@@ -2536,6 +2550,7 @@ export namespace Pango {
      * @param context A valid parse context that was returned from {@link markup_parser_new}
      * @returns `false` if `error` is set, otherwise `true`
      * @since 1.31.0
+     * @throws GLib.Error
      */
     function markup_parser_finish(context: GLib.MarkupParseContext): [boolean, AttrList | null, string, string];
 
@@ -2610,6 +2625,7 @@ export namespace Pango {
      * @param length length of `markup_text`, or -1 if nul-terminated
      * @param accel_marker character that precedes an accelerator, or 0 for none
      * @returns `false` if `error` is set, otherwise `true`
+     * @throws GLib.Error
      */
     function parse_markup(markup_text: string, length: number, accel_marker: string): [boolean, AttrList | null, string, string];
 
@@ -3081,43 +3097,47 @@ export namespace Pango {
         /**
          * the font family is specified.
          */
-        FAMILY,
+        FAMILY = 1,
         /**
          * the font style is specified.
          */
-        STYLE,
+        STYLE = 2,
         /**
          * the font variant is specified.
          */
-        VARIANT,
+        VARIANT = 4,
         /**
          * the font weight is specified.
          */
-        WEIGHT,
+        WEIGHT = 8,
         /**
          * the font stretch is specified.
          */
-        STRETCH,
+        STRETCH = 16,
         /**
          * the font size is specified.
          */
-        SIZE,
+        SIZE = 32,
         /**
          * The font gravity is specified.
+         * @since 1.16
          */
-        GRAVITY,
+        GRAVITY = 64,
         /**
          * OpenType font variations are specified.
+         * @since 1.42
          */
-        VARIATIONS,
+        VARIATIONS = 128,
         /**
          * OpenType font features are specified.
+         * @since 1.56
          */
-        FEATURES,
+        FEATURES = 256,
         /**
          * Font color is specified.
+         * @since 1.57
          */
-        COLOR,
+        COLOR = 512,
     }
 
 
@@ -3139,12 +3159,12 @@ export namespace Pango {
         /**
          * Default behavior
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * Apply context information
          *   from the serialization to the {@link Pango.Context}
          */
-        CONTEXT,
+        CONTEXT = 1,
     }
 
 
@@ -3166,15 +3186,15 @@ export namespace Pango {
         /**
          * Default behavior
          */
-        DEFAULT,
+        DEFAULT = 0,
         /**
          * Include context information
          */
-        CONTEXT,
+        CONTEXT = 1,
         /**
          * Include information about the formatted output
          */
-        OUTPUT,
+        OUTPUT = 2,
     }
 
 
@@ -3196,12 +3216,12 @@ export namespace Pango {
         /**
          * Default value
          */
-        NONE,
+        NONE = 0,
         /**
          * Round glyph positions and widths to whole device units
          *   This option should be set if the target renderer can't do subpixel positioning of glyphs
          */
-        ROUND_POSITIONS,
+        ROUND_POSITIONS = 1,
     }
 
 
@@ -3222,20 +3242,20 @@ export namespace Pango {
         /**
          * No special treatment for invisible characters
          */
-        NONE,
+        NONE = 0,
         /**
          * Render spaces, tabs and newlines visibly
          */
-        SPACES,
+        SPACES = 1,
         /**
          * Render line breaks visibly
          */
-        LINE_BREAKS,
+        LINE_BREAKS = 2,
         /**
          * Render default-ignorable Unicode
          *   characters visibly
          */
-        IGNORABLES,
+        IGNORABLES = 4,
     }
 
 
@@ -3299,6 +3319,7 @@ export namespace Pango {
          * for Pango, something applications won't do. Backends should
          * call this function if they have attached extra data to the context
          * and such data is changed.
+         * @since 1.32.4
          */
         changed(): void;
 
@@ -3315,6 +3336,7 @@ export namespace Pango {
          * 
          * See {@link Pango.Context.set_base_gravity}.
          * @returns the base gravity for the context.
+         * @since 1.16
          */
         get_base_gravity(): Gravity;
 
@@ -3327,6 +3349,7 @@ export namespace Pango {
         /**
          * Gets the {@link Pango.FontMap} used to look up fonts for this context.
          * @returns the font map for the.   {@link Pango.Context} This value is owned by Pango and should not be   unreferenced.
+         * @since 1.6
          */
         get_font_map(): FontMap | null;
 
@@ -3338,6 +3361,7 @@ export namespace Pango {
          * which {@link Pango.Gravity.get_for_matrix} is used to return the
          * gravity from the current context matrix.
          * @returns the resolved gravity for the context.
+         * @since 1.16
          */
         get_gravity(): Gravity;
 
@@ -3346,6 +3370,7 @@ export namespace Pango {
          * 
          * See {@link Pango.Context.set_gravity_hint} for details.
          * @returns the gravity hint for the context.
+         * @since 1.16
          */
         get_gravity_hint(): GravityHint;
 
@@ -3361,6 +3386,7 @@ export namespace Pango {
          * 
          * See {@link Pango.Context.set_matrix}.
          * @returns the matrix, or `null` if no   matrix has been set (which is the same as the identity matrix).   The returned matrix is owned by Pango and must not be modified   or freed.
+         * @since 1.6
          */
         get_matrix(): Matrix | null;
 
@@ -3385,6 +3411,7 @@ export namespace Pango {
         /**
          * Returns whether font rendering with this context should
          * round glyph positions and widths.
+         * @since 1.44
          */
         get_round_glyph_positions(): boolean;
 
@@ -3402,6 +3429,7 @@ export namespace Pango {
          * and is only useful when implementing objects that need update when their
          * {@link Pango.Context} changes, like {@link Pango.Layout}.
          * @returns The current serial number of `context`.
+         * @since 1.32.4
          */
         get_serial(): number;
 
@@ -3445,6 +3473,7 @@ export namespace Pango {
          * 
          * The base gravity is used in laying vertical text out.
          * @param gravity the new base gravity
+         * @since 1.16
          */
         set_base_gravity(gravity: Gravity): void;
 
@@ -3473,6 +3502,7 @@ export namespace Pango {
          * {@link Pango.Context.get_gravity} is set to {@link Pango.Gravity.EAST}
          * or {@link Pango.Gravity.WEST}.
          * @param hint the new gravity hint
+         * @since 1.16
          */
         set_gravity_hint(hint: GravityHint): void;
 
@@ -3495,6 +3525,7 @@ export namespace Pango {
          * they may change slightly for different matrices, depending on how the
          * text is fit to the pixel grid.
          * @param matrix a {@link Pango.Matrix}, or `null` to unset any existing matrix. (No matrix set is the same as setting the identity matrix.)
+         * @since 1.6
          */
         set_matrix(matrix: Matrix | null): void;
 
@@ -3509,6 +3540,7 @@ export namespace Pango {
          * The default value is to round glyph positions, to remain
          * compatible with previous Pango behavior.
          * @param round_positions whether to round glyph positions
+         * @since 1.44
          */
         set_round_glyph_positions(round_positions: boolean): void;
     }
@@ -3570,6 +3602,7 @@ export namespace Pango {
          * Convert data generated from {@link Pango.Coverage.to_bytes}
          * back to a {@link Pango.Coverage}.
          * @param bytes binary data   representing a {@link Pango.Coverage}
+         * @deprecated since 1.44: This returns `null`
          */
         static from_bytes(bytes: Uint8Array | string): Coverage | null;
 
@@ -3592,12 +3625,14 @@ export namespace Pango {
          * value of the current coverage for the index and the coverage for
          * the corresponding index in `other`.
          * @param other another {@link Pango.Coverage}
+         * @deprecated since 1.44: This function does nothing
          */
         max(other: Coverage): void;
 
         /**
          * Increase the reference count on the {@link Pango.Coverage} by one.
          * @returns `coverage`
+         * @deprecated since 1.52: Use g_object_ref instead
          */
         ref(): Coverage;
 
@@ -3616,6 +3651,7 @@ export namespace Pango {
 
         /**
          * Convert a {@link Pango.Coverage} structure into a flat binary format.
+         * @deprecated since 1.44: This returns `null`
          */
         to_bytes(): Uint8Array;
 
@@ -3623,6 +3659,7 @@ export namespace Pango {
          * Decrease the reference count on the {@link Pango.Coverage} by one.
          * 
          * If the result is zero, free the coverage and all associated memory.
+         * @deprecated since 1.52: Use g_object_unref instead
          */
         unref(): void;
     }
@@ -3675,6 +3712,7 @@ export namespace Pango {
         /**
          * Frees an array of font descriptions.
          * @param descs a pointer   to an array of {@link Pango.FontDescription}, may be `null`
+         * @deprecated since 1.56: Just use pango_font_description_free in a loop
          */
         static descriptions_free(descs: FontDescription[] | null): void;
 
@@ -3688,6 +3726,7 @@ export namespace Pango {
          * result of serializing the font again.
          * @param context a {@link Pango.Context}
          * @param bytes the bytes containing the data
+         * @since 1.50
          */
         static deserialize(context: Context, bytes: GLib.Bytes | Uint8Array): Font | null;
 
@@ -3727,6 +3766,7 @@ export namespace Pango {
          * Note that this does not include OpenType features which the
          * rendering system enables by default.
          * @param num_features the number of used items in `features`
+         * @since 1.44
          * @virtual
          */
         vfunc_get_features(num_features: number): [HarfBuzz.feature_t[], number];
@@ -3743,6 +3783,7 @@ export namespace Pango {
          * It is the responsibility of the user to ensure that the
          * font map is kept alive. In most uses this is not an issue
          * as a {@link Pango.Context} holds a reference to the font map.
+         * @since 1.10
          * @virtual
          */
         vfunc_get_font_map(): FontMap | null;
@@ -3794,6 +3835,7 @@ export namespace Pango {
          * 
          * Use {@link Pango.Font.describe} if you want the font size in points.
          * @returns a newly-allocated {@link Pango.FontDescription} object.
+         * @since 1.14
          */
         describe_with_absolute_size(): FontDescription;
 
@@ -3810,6 +3852,7 @@ export namespace Pango {
          * Note that this function can return `NULL` in cases
          * where the font outlives its font map.
          * @returns the {@link Pango.FontFace}
+         * @since 1.46
          */
         get_face(): FontFace | null;
 
@@ -3822,6 +3865,7 @@ export namespace Pango {
          * Note that this does not include OpenType features which the
          * rendering system enables by default.
          * @param num_features the number of used items in `features`
+         * @since 1.44
          */
         get_features(num_features: number): [HarfBuzz.feature_t[], number];
 
@@ -3838,6 +3882,7 @@ export namespace Pango {
          * font map is kept alive. In most uses this is not an issue
          * as a {@link Pango.Context} holds a reference to the font map.
          * @returns the {@link Pango.FontMap}   for the font
+         * @since 1.10
          */
         get_font_map(): FontMap | null;
 
@@ -3867,6 +3912,7 @@ export namespace Pango {
          * The returned array is only valid as long as the font
          * and its fontmap are valid.
          * @returns an array of {@link Pango.Language}
+         * @since 1.50
          */
         get_languages(): Language[] | null;
 
@@ -3888,6 +3934,7 @@ export namespace Pango {
          * Returns whether the font provides a glyph for this character.
          * @param wc a Unicode character
          * @returns `TRUE` if `font` can render `wc`
+         * @since 1.44
          */
         has_char(wc: string): boolean;
 
@@ -3902,6 +3949,7 @@ export namespace Pango {
          * 
          * To recreate a font from its serialized form, use {@link Pango.Font.deserialize}.
          * @returns a {@link GLib.Bytes} containing the serialized form of `font`
+         * @since 1.50
          */
         serialize(): GLib.Bytes;
     }
@@ -3973,6 +4021,7 @@ export namespace Pango {
 
         /**
          * Gets the {@link Pango.FontFamily} that `face` belongs to.
+         * @since 1.46
          * @virtual
          */
         vfunc_get_family(): FontFamily;
@@ -3983,6 +4032,7 @@ export namespace Pango {
          * This will be the case if the underlying font rendering engine
          * creates this face from another face, by shearing, emboldening,
          * lightening or modifying it in some other way.
+         * @since 1.18
          * @virtual
          */
         vfunc_is_synthesized(): boolean;
@@ -3994,6 +4044,7 @@ export namespace Pango {
          * `null` at the location pointed to by `sizes` and 0 at the location pointed
          * to by `n_sizes`. The sizes returned are in Pango units and are sorted
          * in ascending order.
+         * @since 1.4
          * @virtual
          */
         vfunc_list_sizes(): number[] | null;
@@ -4022,6 +4073,7 @@ export namespace Pango {
         /**
          * Gets the {@link Pango.FontFamily} that `face` belongs to.
          * @returns the {@link Pango.FontFamily}
+         * @since 1.46
          */
         get_family(): FontFamily;
 
@@ -4032,6 +4084,7 @@ export namespace Pango {
          * creates this face from another face, by shearing, emboldening,
          * lightening or modifying it in some other way.
          * @returns whether `face` is synthesized
+         * @since 1.18
          */
         is_synthesized(): boolean;
 
@@ -4042,6 +4095,7 @@ export namespace Pango {
          * `null` at the location pointed to by `sizes` and 0 at the location pointed
          * to by `n_sizes`. The sizes returned are in Pango units and are sorted
          * in ascending order.
+         * @since 1.4
          */
         list_sizes(): number[] | null;
     }
@@ -4049,7 +4103,7 @@ export namespace Pango {
 
     namespace FontFamily {
         // Signal signatures
-        interface SignalSignatures extends GObject.Object.SignalSignatures {
+        interface SignalSignatures extends GObject.Object.SignalSignatures, Gio.ListModel.SignalSignatures {
             "notify::is-monospace": (pspec: GObject.ParamSpec) => void;
             "notify::is-variable": (pspec: GObject.ParamSpec) => void;
             "notify::item-type": (pspec: GObject.ParamSpec) => void;
@@ -4184,6 +4238,7 @@ export namespace Pango {
         /**
          * Gets the {@link Pango.FontFace} of `family` with the given name.
          * @param name the name of a face. If the name is `null`,   the family's default face (fontconfig calls it "Regular")   will be returned.
+         * @since 1.46
          * @virtual
          */
         vfunc_get_face(name: string | null): FontFace | null;
@@ -4213,6 +4268,7 @@ export namespace Pango {
          * {@link Pango.FontMetrics.get_approximate_digit_width}, since the
          * results of {@link Pango.FontMetrics.get_approximate_char_width} may
          * be affected by double-width characters.
+         * @since 1.4
          * @virtual
          */
         vfunc_is_monospace(): boolean;
@@ -4223,6 +4279,7 @@ export namespace Pango {
          * 
          * Such axes are also known as _variations_; see
          * {@link Pango.FontDescription.set_variations} for more information.
+         * @since 1.44
          * @virtual
          */
         vfunc_is_variable(): boolean;
@@ -4247,6 +4304,7 @@ export namespace Pango {
          * Gets the {@link Pango.FontFace} of `family` with the given name.
          * @param name the name of a face. If the name is `null`,   the family's default face (fontconfig calls it "Regular")   will be returned.
          * @returns the {@link Pango.FontFace},   or `null` if no face with the given name exists.
+         * @since 1.46
          */
         get_face(name: string | null): FontFace | null;
 
@@ -4284,6 +4342,7 @@ export namespace Pango {
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
          * @returns the {@link GObject.GType} of the items contained in `list`.
+         * @since 2.44
          */
         get_item_type(): GObject.GType;
 
@@ -4294,6 +4353,7 @@ export namespace Pango {
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
          * @returns the number of items in `list`.
+         * @since 2.44
          */
         get_n_items(): number;
 
@@ -4312,6 +4372,7 @@ export namespace Pango {
          * See also: `g_list_model_get_n_items()`
          * @param position the position of the item to fetch
          * @returns the object at `position`.
+         * @since 2.44
          */
         get_item(position: number): A | null;
 
@@ -4339,6 +4400,7 @@ export namespace Pango {
          * @param position the position at which `list` changed
          * @param removed the number of items removed
          * @param added the number of items added
+         * @since 2.44
          */
         items_changed(position: number, removed: number, added: number): void;
 
@@ -4351,6 +4413,7 @@ export namespace Pango {
          * 
          * The same {@link GObject.Object} instance may not appear more than once in a {@link Gio.ListModel}.
          * @param position the position of the item to fetch
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item(position: number): A | null;
@@ -4364,6 +4427,7 @@ export namespace Pango {
          * 
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item_type(): GObject.GType;
@@ -4374,6 +4438,7 @@ export namespace Pango {
          * Depending on the model implementation, calling this function may be
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_n_items(): number;
@@ -4382,7 +4447,7 @@ export namespace Pango {
 
     namespace FontMap {
         // Signal signatures
-        interface SignalSignatures extends GObject.Object.SignalSignatures {
+        interface SignalSignatures extends GObject.Object.SignalSignatures, Gio.ListModel.SignalSignatures {
             "notify::item-type": (pspec: GObject.ParamSpec) => void;
             "notify::n-items": (pspec: GObject.ParamSpec) => void;
         }
@@ -4474,6 +4539,7 @@ export namespace Pango {
          * for Pango, something applications won't do. Backends should
          * call this function if they have attached extra data to the
          * fontmap and such data is changed.
+         * @since 1.34
          * @virtual
          */
         vfunc_changed(): void;
@@ -4481,6 +4547,7 @@ export namespace Pango {
         /**
          * Gets a font family by name.
          * @param name a family name
+         * @since 1.46
          * @virtual
          */
         vfunc_get_family(name: string): FontFamily;
@@ -4498,6 +4565,7 @@ export namespace Pango {
          * 
          * This can be used to automatically detect changes to a {@link Pango.FontMap},
          * like in {@link Pango.Context}.
+         * @since 1.32.4
          * @virtual
          */
         vfunc_get_serial(): number;
@@ -4539,6 +4607,8 @@ export namespace Pango {
          * fonts with the same name.
          * @param filename Path to the font file
          * @returns True if the font file is successfully loaded     into the fontmap, false if an error occurred.
+         * @since 1.56
+         * @throws GLib.Error
          */
         add_font_file(filename: string): boolean;
 
@@ -4550,6 +4620,7 @@ export namespace Pango {
          * for Pango, something applications won't do. Backends should
          * call this function if they have attached extra data to the
          * fontmap and such data is changed.
+         * @since 1.34
          */
         changed(): void;
 
@@ -4564,6 +4635,7 @@ export namespace Pango {
          * For instance, the GTK toolkit has, among others,
          * `gtk_widget_get_pango_context()`. Use those instead.
          * @returns the newly allocated {@link Pango.Context},   which should be freed with `g_object_unref()`.
+         * @since 1.22
          */
         create_context(): Context;
 
@@ -4571,6 +4643,7 @@ export namespace Pango {
          * Gets a font family by name.
          * @param name a family name
          * @returns the {@link Pango.FontFamily}
+         * @since 1.46
          */
         get_family(name: string): FontFamily;
 
@@ -4588,6 +4661,7 @@ export namespace Pango {
          * This can be used to automatically detect changes to a {@link Pango.FontMap},
          * like in {@link Pango.Context}.
          * @returns The current serial number of `fontmap`.
+         * @since 1.32.4
          */
         get_serial(): number;
 
@@ -4633,6 +4707,7 @@ export namespace Pango {
          * @param context a {@link Pango.Context}
          * @param variations font variations to use
          * @returns the modified font
+         * @since 1.52
          */
         reload_font(font: Font, scale: number, context: Context | null, variations: string | null): Font;
 
@@ -4646,6 +4721,7 @@ export namespace Pango {
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
          * @returns the {@link GObject.GType} of the items contained in `list`.
+         * @since 2.44
          */
         get_item_type(): GObject.GType;
 
@@ -4656,6 +4732,7 @@ export namespace Pango {
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
          * @returns the number of items in `list`.
+         * @since 2.44
          */
         get_n_items(): number;
 
@@ -4674,6 +4751,7 @@ export namespace Pango {
          * See also: `g_list_model_get_n_items()`
          * @param position the position of the item to fetch
          * @returns the object at `position`.
+         * @since 2.44
          */
         get_item(position: number): A | null;
 
@@ -4701,6 +4779,7 @@ export namespace Pango {
          * @param position the position at which `list` changed
          * @param removed the number of items removed
          * @param added the number of items added
+         * @since 2.44
          */
         items_changed(position: number, removed: number, added: number): void;
 
@@ -4713,6 +4792,7 @@ export namespace Pango {
          * 
          * The same {@link GObject.Object} instance may not appear more than once in a {@link Gio.ListModel}.
          * @param position the position of the item to fetch
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item(position: number): A | null;
@@ -4726,6 +4806,7 @@ export namespace Pango {
          * 
          * The item type of a {@link Gio.ListModel} can not change during the life of the
          * model.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_item_type(): GObject.GType;
@@ -4736,6 +4817,7 @@ export namespace Pango {
          * Depending on the model implementation, calling this function may be
          * less efficient than iterating the list with increasing values for
          * `position` until `g_list_model_get_item()` returns `null`.
+         * @since 2.44
          * @virtual
          */
         vfunc_get_n_items(): number;
@@ -4796,6 +4878,7 @@ export namespace Pango {
          * 
          * If `func` returns `true`, that stops the iteration.
          * @param func Callback function
+         * @since 1.4
          * @virtual
          */
         vfunc_foreach(func: FontsetForeachFunc): void;
@@ -4827,6 +4910,7 @@ export namespace Pango {
          * 
          * If `func` returns `true`, that stops the iteration.
          * @param func Callback function
+         * @since 1.4
          */
         foreach(func: FontsetForeachFunc): void;
 
@@ -5004,6 +5088,7 @@ export namespace Pango {
          * @param context a {@link Pango.Context}
          * @param bytes the bytes containing the data
          * @param flags {@link Pango.LayoutDeserializeFlags}
+         * @since 1.50
          */
         static deserialize(context: Context, bytes: GLib.Bytes | Uint8Array, flags: LayoutDeserializeFlags): Layout | null;
 
@@ -5045,12 +5130,14 @@ export namespace Pango {
          * 
          * See {@link Pango.Layout.set_auto_dir}.
          * @returns `true` if the bidirectional base direction   is computed from the layout's contents, `false` otherwise
+         * @since 1.4
          */
         get_auto_dir(): boolean;
 
         /**
          * Gets the Y position of baseline of the first line in `layout`.
          * @returns baseline of first line, from top of `layout`
+         * @since 1.22
          */
         get_baseline(): number;
 
@@ -5067,6 +5154,7 @@ export namespace Pango {
          *   <img alt="Caret metrics" src="https://docs.gtk.org/Pango/caret-metrics-light.png">
          * </picture>
          * @param index_ the byte index of the cursor
+         * @since 1.50
          */
         get_caret_pos(index_: number): [Rectangle | null, Rectangle | null];
 
@@ -5074,6 +5162,7 @@ export namespace Pango {
          * Returns the number of Unicode characters in the
          * the text of `layout`.
          * @returns the number of Unicode characters   in the text of `layout`
+         * @since 1.30
          */
         get_character_count(): number;
 
@@ -5119,6 +5208,7 @@ export namespace Pango {
          * Gets the text direction at the given character position in `layout`.
          * @param index the byte index of the char
          * @returns the text direction at `index`
+         * @since 1.46
          */
         get_direction(index: number): Direction;
 
@@ -5130,6 +5220,7 @@ export namespace Pango {
          * Use {@link Pango.Layout.is_ellipsized} to query whether any
          * paragraphs were actually ellipsized.
          * @returns the current ellipsization mode for `layout`
+         * @since 1.6
          */
         get_ellipsize(): EllipsizeMode;
 
@@ -5150,6 +5241,7 @@ export namespace Pango {
         /**
          * Gets the font description for the layout, if any.
          * @returns a pointer to the   layout's font description, or `null` if the font description   from the layout's context is inherited.
+         * @since 1.8
          */
         get_font_description(): FontDescription | null;
 
@@ -5158,6 +5250,7 @@ export namespace Pango {
          * 
          * See {@link Pango.Layout.set_height} for details.
          * @returns the height, in Pango units if positive,   or number of lines if negative.
+         * @since 1.20
          */
         get_height(): number;
 
@@ -5186,6 +5279,7 @@ export namespace Pango {
          * Gets whether the last line should be stretched
          * to fill the entire width of the layout.
          * @returns the justify value
+         * @since 1.50
          */
         get_justify_last_line(): boolean;
 
@@ -5213,6 +5307,7 @@ export namespace Pango {
          * (glyphs, glyph widths, etc.).
          * @param line the index of a line, which must be between 0 and   `pango_layout_get_line_count(layout) - 1`, inclusive.
          * @returns the requested {@link Pango.LayoutLine},   or `null` if the index is out of range. This layout line can be ref'ed   and retained, but will become invalid if changes are made to the   {@link Pango.Layout}. No changes should be made to the line.
+         * @since 1.16
          */
         get_line_readonly(line: number): LayoutLine | null;
 
@@ -5220,6 +5315,7 @@ export namespace Pango {
          * Gets the line spacing factor of `layout`.
          * 
          * See {@link Pango.Layout.set_line_spacing}.
+         * @since 1.44
          */
         get_line_spacing(): number;
 
@@ -5239,6 +5335,7 @@ export namespace Pango {
          * but the user is not expected to modify the contents of the lines
          * (glyphs, glyph widths, etc.).
          * @returns a {@link GLib.SList}   containing the lines in the layout. This points to internal data of the   {@link Pango.Layout} and must be used with care. It will become invalid on any   change to the layout's text or properties. No changes should be made to   the lines.
+         * @since 1.16
          */
         get_lines_readonly(): LayoutLine[];
 
@@ -5261,6 +5358,7 @@ export namespace Pango {
          * need to be attributes corresponding to both the position before
          * the first character and the position after the last character.
          * @returns an array of logical attributes
+         * @since 1.30
          */
         get_log_attrs_readonly(): LogAttr[];
 
@@ -5298,6 +5396,7 @@ export namespace Pango {
          * To force the serial to be increased, use
          * {@link Pango.Layout.context_changed}.
          * @returns The current serial number of `layout`.
+         * @since 1.32.4
          */
         get_serial(): number;
 
@@ -5350,6 +5449,7 @@ export namespace Pango {
          * used in combination with {@link Pango.AttrType.FALLBACK}, to check if a
          * certain font supports all the characters in the string.
          * @returns The number of unknown glyphs in `layout`
+         * @since 1.16
          */
         get_unknown_glyphs_count(): number;
 
@@ -5397,6 +5497,7 @@ export namespace Pango {
          * and there are paragraphs exceeding that width that have to be
          * ellipsized.
          * @returns `true` if any paragraphs had to be ellipsized,   `false` otherwise
+         * @since 1.16
          */
         is_ellipsized(): boolean;
 
@@ -5407,6 +5508,7 @@ export namespace Pango {
          * and there are paragraphs exceeding the layout width that have
          * to be wrapped.
          * @returns `true` if any paragraphs had to be wrapped, `false`   otherwise
+         * @since 1.16
          */
         is_wrapped(): boolean;
 
@@ -5444,6 +5546,7 @@ export namespace Pango {
          * The format is not meant as a permanent storage format.
          * @param flags {@link Pango.LayoutSerializeFlags}
          * @returns a {@link GLib.Bytes} containing the serialized form of `layout`
+         * @since 1.50
          */
         serialize(flags: LayoutSerializeFlags): GLib.Bytes;
 
@@ -5482,6 +5585,7 @@ export namespace Pango {
          * base direction of the context, the interpretation of
          * {@link Pango.Alignment.LEFT} and {@link Pango.Alignment.RIGHT} are swapped.
          * @param auto_dir if `true`, compute the bidirectional base direction   from the layout's contents
+         * @since 1.4
          */
         set_auto_dir(auto_dir: boolean): void;
 
@@ -5502,6 +5606,7 @@ export namespace Pango {
          * 
          * See {@link Pango.Layout.set_height} for details.
          * @param ellipsize the new ellipsization mode for `layout`
+         * @since 1.6
          */
         set_ellipsize(ellipsize: EllipsizeMode): void;
 
@@ -5541,6 +5646,7 @@ export namespace Pango {
          * ellipsization mode is set to {@link Pango.EllipsizeMode.NONE}, and may change in the
          * future.
          * @param height the desired height of the layout in Pango units if positive,   or desired number of lines if negative.
+         * @since 1.20
          */
         set_height(height: number): void;
 
@@ -5590,6 +5696,7 @@ export namespace Pango {
          * 
          * The default value is `false`.
          * @param justify whether the last line in the layout should be justified
+         * @since 1.50
          */
         set_justify_last_line(justify: boolean): void;
 
@@ -5611,6 +5718,7 @@ export namespace Pango {
          * Note: for semantics that are closer to the CSS line-height
          * property, see {@link Pango.attr_line_height_new}.
          * @param factor the new line spacing factor
+         * @since 1.44
          */
         set_line_spacing(factor: number): void;
 
@@ -5750,6 +5858,8 @@ export namespace Pango {
          * @param flags {@link Pango.LayoutSerializeFlags}
          * @param filename the file to save it to
          * @returns `true` if saving was successful
+         * @since 1.50
+         * @throws GLib.Error
          */
         write_to_file(flags: LayoutSerializeFlags, filename: string): boolean;
 
@@ -5843,6 +5953,7 @@ export namespace Pango {
          * @param y Y coordinate of underline, in Pango units in user coordinate system
          * @param width width of underline, in Pango units in user coordinate system
          * @param height height of underline, in Pango units in user coordinate system
+         * @since 1.8
          * @virtual
          */
         vfunc_draw_error_underline(x: number, y: number, width: number, height: number): void;
@@ -5853,6 +5964,7 @@ export namespace Pango {
          * @param glyph the glyph index of a single glyph
          * @param x X coordinate of left edge of baseline of glyph
          * @param y Y coordinate of left edge of baseline of glyph
+         * @since 1.8
          * @virtual
          */
         vfunc_draw_glyph(font: Font, glyph: Glyph, x: number, y: number): void;
@@ -5880,6 +5992,7 @@ export namespace Pango {
          * @param glyph_item a {@link Pango.GlyphItem}
          * @param x X position of left edge of baseline, in user space coordinates   in Pango units
          * @param y Y position of left edge of baseline, in user space coordinates   in Pango units
+         * @since 1.22
          * @virtual
          */
         vfunc_draw_glyph_item(text: string | null, glyph_item: GlyphItem, x: number, y: number): void;
@@ -5890,6 +6003,7 @@ export namespace Pango {
          * @param glyphs a {@link Pango.GlyphString}
          * @param x X position of left edge of baseline, in user space coordinates   in Pango units.
          * @param y Y position of left edge of baseline, in user space coordinates   in Pango units.
+         * @since 1.8
          * @virtual
          */
         vfunc_draw_glyphs(font: Font, glyphs: GlyphString, x: number, y: number): void;
@@ -5905,6 +6019,7 @@ export namespace Pango {
          * @param y Y position at which to draw rectangle, in user space coordinates   in Pango units
          * @param width width of rectangle in Pango units
          * @param height height of rectangle in Pango units
+         * @since 1.8
          * @virtual
          */
         vfunc_draw_rectangle(part: RenderPart, x: number, y: number, width: number, height: number): void;
@@ -5930,6 +6045,7 @@ export namespace Pango {
          * @param y2 Y coordinate of bottom of trapezoid
          * @param x12 X coordinate of left end of bottom of trapezoid
          * @param x22 X coordinate of right end of bottom of trapezoid
+         * @since 1.8
          * @virtual
          */
         vfunc_draw_trapezoid(part: RenderPart, y1_: number, x11: number, x21: number, y2: number, x12: number, x22: number): void;
@@ -5957,6 +6073,7 @@ export namespace Pango {
          * might be joined together. Pango automatically calls this for
          * changes to colors. (See {@link Pango.Renderer.set_color})
          * @param part the part for which rendering has changed.
+         * @since 1.8
          * @virtual
          */
         vfunc_part_changed(part: RenderPart): void;
@@ -5979,6 +6096,7 @@ export namespace Pango {
          * Calls to {@link Pango.Renderer.activate} and
          * {@link Pango.Renderer.deactivate} can be nested and the
          * renderer will only be initialized and deinitialized once.
+         * @since 1.8
          */
         activate(): void;
 
@@ -5986,6 +6104,7 @@ export namespace Pango {
          * Cleans up after rendering operations on `renderer`.
          * 
          * See docs for {@link Pango.Renderer.activate}.
+         * @since 1.8
          */
         deactivate(): void;
 
@@ -6003,6 +6122,7 @@ export namespace Pango {
          * @param y Y coordinate of underline, in Pango units in user coordinate system
          * @param width width of underline, in Pango units in user coordinate system
          * @param height height of underline, in Pango units in user coordinate system
+         * @since 1.8
          */
         draw_error_underline(x: number, y: number, width: number, height: number): void;
 
@@ -6012,6 +6132,7 @@ export namespace Pango {
          * @param glyph the glyph index of a single glyph
          * @param x X coordinate of left edge of baseline of glyph
          * @param y Y coordinate of left edge of baseline of glyph
+         * @since 1.8
          */
         draw_glyph(font: Font, glyph: Glyph, x: number, y: number): void;
 
@@ -6038,6 +6159,7 @@ export namespace Pango {
          * @param glyph_item a {@link Pango.GlyphItem}
          * @param x X position of left edge of baseline, in user space coordinates   in Pango units
          * @param y Y position of left edge of baseline, in user space coordinates   in Pango units
+         * @since 1.22
          */
         draw_glyph_item(text: string | null, glyph_item: GlyphItem, x: number, y: number): void;
 
@@ -6047,6 +6169,7 @@ export namespace Pango {
          * @param glyphs a {@link Pango.GlyphString}
          * @param x X position of left edge of baseline, in user space coordinates   in Pango units.
          * @param y Y position of left edge of baseline, in user space coordinates   in Pango units.
+         * @since 1.8
          */
         draw_glyphs(font: Font, glyphs: GlyphString, x: number, y: number): void;
 
@@ -6058,6 +6181,7 @@ export namespace Pango {
          * @param layout a {@link Pango.Layout}
          * @param x X position of left edge of baseline, in user space coordinates   in Pango units.
          * @param y Y position of left edge of baseline, in user space coordinates   in Pango units.
+         * @since 1.8
          */
         draw_layout(layout: Layout, x: number, y: number): void;
 
@@ -6070,6 +6194,7 @@ export namespace Pango {
          * @param line a {@link Pango.LayoutLine}
          * @param x X position of left edge of baseline, in user space coordinates   in Pango units.
          * @param y Y position of left edge of baseline, in user space coordinates   in Pango units.
+         * @since 1.8
          */
         draw_layout_line(line: LayoutLine, x: number, y: number): void;
 
@@ -6084,6 +6209,7 @@ export namespace Pango {
          * @param y Y position at which to draw rectangle, in user space coordinates   in Pango units
          * @param width width of rectangle in Pango units
          * @param height height of rectangle in Pango units
+         * @since 1.8
          */
         draw_rectangle(part: RenderPart, x: number, y: number, width: number, height: number): void;
 
@@ -6097,6 +6223,7 @@ export namespace Pango {
          * @param y2 Y coordinate of bottom of trapezoid
          * @param x12 X coordinate of left end of bottom of trapezoid
          * @param x22 X coordinate of right end of bottom of trapezoid
+         * @since 1.8
          */
         draw_trapezoid(part: RenderPart, y1_: number, x11: number, x21: number, y2: number, x12: number, x22: number): void;
 
@@ -6104,6 +6231,7 @@ export namespace Pango {
          * Gets the current alpha for the specified part.
          * @param part the part to get the alpha for
          * @returns the alpha for the specified part,   or 0 if it hasn't been set and should be   inherited from the environment.
+         * @since 1.38
          */
         get_alpha(part: RenderPart): number;
 
@@ -6111,6 +6239,7 @@ export namespace Pango {
          * Gets the current rendering color for the specified part.
          * @param part the part to get the color for
          * @returns the color for the   specified part, or `null` if it hasn't been set and should be   inherited from the environment.
+         * @since 1.8
          */
         get_color(part: RenderPart): Color | null;
 
@@ -6123,6 +6252,7 @@ export namespace Pango {
          * The returned layout should not be modified while still being
          * rendered.
          * @returns the layout, or `null` if   no layout is being rendered using `renderer` at this time.
+         * @since 1.20
          */
         get_layout(): Layout | null;
 
@@ -6135,6 +6265,7 @@ export namespace Pango {
          * The returned layout line should not be modified while still being
          * rendered.
          * @returns the layout line, or `null`   if no layout line is being rendered using `renderer` at this time.
+         * @since 1.20
          */
         get_layout_line(): LayoutLine | null;
 
@@ -6144,6 +6275,7 @@ export namespace Pango {
          * 
          * See {@link Pango.Renderer.set_matrix}.
          * @returns the matrix, or `null` if no matrix has   been set (which is the same as the identity matrix). The returned   matrix is owned by Pango and must not be modified or freed.
+         * @since 1.8
          */
         get_matrix(): Matrix | null;
 
@@ -6164,6 +6296,7 @@ export namespace Pango {
          * might be joined together. Pango automatically calls this for
          * changes to colors. (See {@link Pango.Renderer.set_color})
          * @param part the part for which rendering has changed.
+         * @since 1.8
          */
         part_changed(part: RenderPart): void;
 
@@ -6174,6 +6307,7 @@ export namespace Pango {
          * specified for `part` as well.
          * @param part the part to set the alpha for
          * @param alpha an alpha value between 1 and 65536, or 0 to unset the alpha
+         * @since 1.38
          */
         set_alpha(part: RenderPart, alpha: number): void;
 
@@ -6183,12 +6317,14 @@ export namespace Pango {
          * Also see {@link Pango.Renderer.set_alpha}.
          * @param part the part to change the color of
          * @param color the new color or `null` to unset the current color
+         * @since 1.8
          */
         set_color(part: RenderPart, color: Color | null): void;
 
         /**
          * Sets the transformation matrix that will be applied when rendering.
          * @param matrix a {@link Pango.Matrix}, or `null` to unset any existing matrix  (No matrix set is the same as setting the identity matrix.)
+         * @since 1.8
          */
         set_matrix(matrix: Matrix | null): void;
     }
@@ -6302,6 +6438,7 @@ export namespace Pango {
          * You can use this attribute to select OpenType font features like small-caps,
          * alternative glyphs, ligatures, etc. for fonts that support them.
          * @param features a string with OpenType font features, with the syntax of the [CSS font-feature-settings property](https://www.w3.org/TR/css-fonts-4/#font-rend-desc)
+         * @since 1.38
          */
         static ["new"](features: string): Attribute;
     }
@@ -6361,6 +6498,7 @@ export namespace Pango {
          * Gets a list of all attributes at the current position of the
          * iterator.
          * @returns a list of all attributes for the current range. To free   this value, call {@link Pango.Attribute.destroy} on each   value and `g_slist_free()` on the list.
+         * @since 1.2
          */
         get_attrs(): Attribute[];
 
@@ -6435,6 +6573,7 @@ export namespace Pango {
          * This is the counterpart to {@link Pango.AttrList.to_string}.
          * See that functions for details about the format.
          * @param text a string
+         * @since 1.50
          */
         static from_string(text: string): AttrList | null;
 
@@ -6471,6 +6610,7 @@ export namespace Pango {
          * contains duplicates.
          * @param other_list the other {@link Pango.AttrList}
          * @returns `true` if the lists are equal, `false` if   they aren't
+         * @since 1.46
          */
         equal(other_list: AttrList): boolean;
 
@@ -6480,12 +6620,14 @@ export namespace Pango {
          * inserts them into a new list.
          * @param func callback function;   returns `true` if an attribute should be filtered out
          * @returns the new   {@link Pango.AttrList} or `null` if no attributes of the   given types were found
+         * @since 1.2
          */
         filter(func: AttrFilterFunc): AttrList | null;
 
         /**
          * Gets a list of all attributes in `list`.
          * @returns a list of all attributes in `list`. To free this value,   call {@link Pango.Attribute.destroy} on each value and   `g_slist_free()` on the list.
+         * @since 1.44
          */
         get_attributes(): Attribute[];
 
@@ -6519,6 +6661,7 @@ export namespace Pango {
          * Increase the reference count of the given attribute
          * list by one.
          * @returns The attribute list passed in
+         * @since 1.10
          */
         ref(): AttrList;
 
@@ -6583,6 +6726,7 @@ export namespace Pango {
          * 
          * Note that shape attributes can not be serialized.
          * @returns a newly allocated string
+         * @since 1.50
          */
         to_string(): string;
 
@@ -6613,6 +6757,7 @@ export namespace Pango {
          * @param pos the position of the change
          * @param remove the number of removed bytes
          * @param add the number of added bytes
+         * @since 1.44
          */
         update(pos: number, remove: number, add: number): void;
     }
@@ -6660,6 +6805,7 @@ export namespace Pango {
          * @param logical_rect logical rectangle to assign to each character
          * @param data user data pointer
          * @param copy_func function to copy `data` when the   attribute is copied. If `null`, `data` is simply copied   as a pointer
+         * @since 1.8
          */
         static new_with_data(ink_rect: Rectangle, logical_rect: Rectangle, data: null, copy_func: AttrDataCopyFunc | null): Attribute;
     }
@@ -6688,6 +6834,7 @@ export namespace Pango {
         /**
          * Create a new font-size attribute in device units.
          * @param size the font size, in `PANGO_SCALE`-ths of a device unit
+         * @since 1.8
          */
         static new_absolute(size: number): Attribute;
     }
@@ -6731,6 +6878,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrColor},   or `null` if it's not a color attribute
+         * @since 1.50
          */
         as_color(): AttrColor | null;
 
@@ -6739,6 +6887,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrFloat},   or `null` if it's not a floating point attribute
+         * @since 1.50
          */
         as_float(): AttrFloat | null;
 
@@ -6747,6 +6896,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrFontDesc},   or `null` if it's not a font description attribute
+         * @since 1.50
          */
         as_font_desc(): AttrFontDesc | null;
 
@@ -6755,6 +6905,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrFontFeatures},   or `null` if it's not a font features attribute
+         * @since 1.50
          */
         as_font_features(): AttrFontFeatures | null;
 
@@ -6763,6 +6914,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrInt},   or `null` if it's not an integer attribute
+         * @since 1.50
          */
         as_int(): AttrInt | null;
 
@@ -6771,6 +6923,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrLanguage},   or `null` if it's not a language attribute
+         * @since 1.50
          */
         as_language(): AttrLanguage | null;
 
@@ -6779,6 +6932,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrShape},   or `null` if it's not a shape attribute
+         * @since 1.50
          */
         as_shape(): AttrShape | null;
 
@@ -6787,6 +6941,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrSize},   or NULL if it's not a size attribute
+         * @since 1.50
          */
         as_size(): AttrSize | null;
 
@@ -6795,6 +6950,7 @@ export namespace Pango {
          * 
          * This is mainly useful for language bindings.
          * @returns The attribute as {@link Pango.AttrString},   or `null` if it's not a string attribute
+         * @since 1.50
          */
         as_string(): AttrString | null;
 
@@ -6826,6 +6982,7 @@ export namespace Pango {
          * `PANGO_ATTR_INDEX_TO_TEXT_END` such that the attribute applies
          * to the entire text by default.
          * @param klass a {@link Pango.AttrClass}
+         * @since 1.20
          */
         init(klass: AttrClass): void;
     }
@@ -6904,6 +7061,7 @@ export namespace Pango {
          * solid color).
          * @param spec a string specifying the new color
          * @returns `true` if parsing of the specifier succeeded,   otherwise `false`
+         * @since 1.46
          */
         parse_with_alpha(spec: string): [boolean, number];
 
@@ -6914,6 +7072,7 @@ export namespace Pango {
          * where `r`, `g` and `b` are hex digits representing the
          * red, green, and blue components respectively.
          * @returns a newly-allocated text string that must   be freed with `g_free()`.
+         * @since 1.16
          */
         to_string(): string;
     }
@@ -7063,6 +7222,7 @@ export namespace Pango {
          * 
          * This field determines whether the font description should
          * match fonts that have color glyphs, or fonts that don't.
+         * @since 1.57
          */
         get_color(): FontColor;
 
@@ -7079,6 +7239,7 @@ export namespace Pango {
          * 
          * See {@link Pango.FontDescription.set_features}.
          * @returns the features field for the font   description, or `null` if not previously set. This has the same   life-time as the font description itself and should not be freed.
+         * @since 1.56
          */
         get_features(): string | null;
 
@@ -7087,6 +7248,7 @@ export namespace Pango {
          * 
          * See {@link Pango.FontDescription.set_gravity}.
          * @returns the gravity field for the font description.   Use {@link Pango.FontDescription.get_set_fields} to find out   if the field was explicitly set or not.
+         * @since 1.16
          */
         get_gravity(): Gravity;
 
@@ -7111,6 +7273,7 @@ export namespace Pango {
          * See {@link Pango.FontDescription.set_size}
          * and {@link Pango.FontDescription.set_absolute_size}.
          * @returns whether the size for the font description is in   points or device units. Use {@link Pango.FontDescription.get_set_fields}   to find out if the size field of the font description was explicitly   set or not.
+         * @since 1.8
          */
         get_size_is_absolute(): boolean;
 
@@ -7143,6 +7306,7 @@ export namespace Pango {
          * 
          * See {@link Pango.FontDescription.set_variations}.
          * @returns the variations field for the font   description, or `null` if not previously set. This has the same   life-time as the font description itself and should not be freed.
+         * @since 1.42
          */
         get_variations(): string | null;
 
@@ -7196,6 +7360,7 @@ export namespace Pango {
          * This is mutually exclusive with {@link Pango.FontDescription.set_size}
          * which sets the font size in points.
          * @param size the new size, in Pango units. There are `PANGO_SCALE` Pango units   in one device unit. For an output backend where a device unit is a pixel,   a `size` value of 10 * PANGO_SCALE gives a 10 pixel font.
+         * @since 1.8
          */
         set_absolute_size(size: number): void;
 
@@ -7205,6 +7370,7 @@ export namespace Pango {
          * This field determines whether the font description should
          * match fonts that have color glyphs, or fonts that don't.
          * @param color the {@link Pango.FontColor} value
+         * @since 1.57
          */
         set_color(color: FontColor): void;
 
@@ -7258,6 +7424,7 @@ export namespace Pango {
          * 
          * Features that are not supported by the font are silently ignored.
          * @param features a string representing the features
+         * @since 1.56
          */
         set_features(features: string | null): void;
 
@@ -7271,6 +7438,7 @@ export namespace Pango {
          * `features` is a static string such as a C string literal,
          * or if `desc` is only needed temporarily.
          * @param features a string representing the features
+         * @since 1.56
          */
         set_features_static(features: string): void;
 
@@ -7285,6 +7453,7 @@ export namespace Pango {
          * This function is seldom useful to the user. Gravity should normally
          * be set on a {@link Pango.Context}.
          * @param gravity the gravity for the font description.
+         * @since 1.16
          */
         set_gravity(gravity: Gravity): void;
 
@@ -7348,6 +7517,7 @@ export namespace Pango {
          * a font. Both harfbuzz and freetype have API for this. See
          * for example [hb_ot_var_get_axis_infos](https://harfbuzz.github.io/harfbuzz-hb-ot-var.html#hb-ot-var-get-axis-infos).
          * @param variations a string representing the variations
+         * @since 1.42
          */
         set_variations(variations: string | null): void;
 
@@ -7361,6 +7531,7 @@ export namespace Pango {
          * `variations` is a static string such as a C string literal,
          * or if `desc` is only needed temporarily.
          * @param variations a string representing the variations
+         * @since 1.42
          */
         set_variations_static(variations: string): void;
 
@@ -7498,6 +7669,7 @@ export namespace Pango {
          * 
          * If the line height is not available, 0 is returned.
          * @returns the height, in Pango units
+         * @since 1.44
          */
         get_height(): number;
 
@@ -7507,12 +7679,14 @@ export namespace Pango {
          * The value returned is the distance *above* the
          * baseline of the top of the strikethrough.
          * @returns the suggested strikethrough position, in Pango units.
+         * @since 1.6
          */
         get_strikethrough_position(): number;
 
         /**
          * Gets the suggested thickness to draw for the strikethrough.
          * @returns the suggested strikethrough thickness, in Pango units.
+         * @since 1.6
          */
         get_strikethrough_thickness(): number;
 
@@ -7523,12 +7697,14 @@ export namespace Pango {
          * of the underline. Since most fonts have underline positions beneath
          * the baseline, this value is typically negative.
          * @returns the suggested underline position, in Pango units.
+         * @since 1.6
          */
         get_underline_position(): number;
 
         /**
          * Gets the suggested thickness to draw for the underline.
          * @returns the suggested underline thickness, in Pango units.
+         * @since 1.6
          */
         get_underline_thickness(): number;
 
@@ -7663,17 +7839,20 @@ export namespace Pango {
          * @param text text that `list` applies to
          * @param list a {@link Pango.AttrList}
          * @returns a   list of glyph items resulting from splitting `glyph_item`. Free   the elements using {@link Pango.GlyphItem.free}, the list using   `g_slist_free()`.
+         * @since 1.2
          */
         apply_attrs(text: string, list: AttrList): GlyphItem[];
 
         /**
          * Make a deep copy of an existing {@link Pango.GlyphItem} structure.
          * @returns the newly allocated {@link Pango.GlyphItem}
+         * @since 1.20
          */
         copy(): GlyphItem | null;
 
         /**
          * Frees a {@link Pango.GlyphItem} and resources to which it points.
+         * @since 1.6
          */
         free(): void;
 
@@ -7686,6 +7865,7 @@ export namespace Pango {
          * 
          * See also {@link Pango.GlyphString.get_logical_widths}.
          * @param text text that `glyph_item` corresponds to   (glyph_item->item->offset is an offset from the   start of `text`)
+         * @since 1.26
          */
         get_logical_widths(text: string): number[];
 
@@ -7695,6 +7875,7 @@ export namespace Pango {
          * @param text text that `glyph_item` corresponds to   (glyph_item->item->offset is an offset from the   start of `text`)
          * @param log_attrs logical attributes for the item   (the first logical attribute refers to the position   before the first character in the item)
          * @param letter_spacing amount of letter spacing to add   in Pango units. May be negative, though too large   negative values will give ugly results.
+         * @since 1.6
          */
         letter_space(text: string, log_attrs: LogAttr[], letter_spacing: number): void;
 
@@ -7713,6 +7894,7 @@ export namespace Pango {
          * @param text text to which positions in `orig` apply
          * @param split_index byte index of position to split item, relative to the   start of the item
          * @returns the newly allocated item   representing text before `split_index`, which should be freed   with `pango_glyph_item_free()`.
+         * @since 1.2
          */
         split(text: string, split_index: number): GlyphItem | null;
     }
@@ -7784,11 +7966,13 @@ export namespace Pango {
         /**
          * Make a shallow copy of an existing {@link Pango.GlyphItemIter} structure.
          * @returns the newly allocated {@link Pango.GlyphItemIter}
+         * @since 1.22
          */
         copy(): GlyphItemIter | null;
 
         /**
          * Frees a {@link Pango.GlyphItem}Iter.
+         * @since 1.22
          */
         free(): void;
 
@@ -7800,6 +7984,7 @@ export namespace Pango {
          * @param glyph_item the glyph item to iterate over
          * @param text text corresponding to the glyph item
          * @returns `false` if there are no clusters in the glyph item
+         * @since 1.22
          */
         init_end(glyph_item: GlyphItem, text: string): boolean;
 
@@ -7811,6 +7996,7 @@ export namespace Pango {
          * @param glyph_item the glyph item to iterate over
          * @param text text corresponding to the glyph item
          * @returns `false` if there are no clusters in the glyph item
+         * @since 1.22
          */
         init_start(glyph_item: GlyphItem, text: string): boolean;
 
@@ -7819,6 +8005,7 @@ export namespace Pango {
          * 
          * See {@link Pango.GlyphItemIter} for details of cluster orders.
          * @returns `true` if the iterator was advanced,   `false` if we were already on the  last cluster.
+         * @since 1.22
          */
         next_cluster(): boolean;
 
@@ -7826,6 +8013,7 @@ export namespace Pango {
          * Moves the iterator to the preceding cluster in the glyph item.
          * See {@link Pango.GlyphItemIter} for details of cluster orders.
          * @returns `true` if the iterator was moved,   `false` if we were already on the first cluster.
+         * @since 1.22
          */
         prev_cluster(): boolean;
     }
@@ -7918,6 +8106,7 @@ export namespace Pango {
          * is in fact only a convenience function that computes the sum of
          * `geometry`.width for each glyph in the `glyphs`.
          * @returns the logical width of the glyph string.
+         * @since 1.14
          */
         get_width(): number;
 
@@ -7954,6 +8143,7 @@ export namespace Pango {
          * @param attrs {@link Pango.LogAttr} array for `text`
          * @param index_ the byte index within `text`
          * @param trailing whether we should compute the result for the beginning (`false`)   or end (`true`) of the character.
+         * @since 1.50
          */
         index_to_x_full(text: string, length: number, analysis: Analysis, attrs: LogAttr | null, index_: number, trailing: boolean): number;
 
@@ -8052,6 +8242,7 @@ export namespace Pango {
          * in a loop over the items resulting from itemization, while passing
          * the iter to each call.
          * @param iter a {@link Pango.AttrIterator}
+         * @since 1.44
          */
         apply_attrs(iter: AttrIterator): void;
 
@@ -8074,6 +8265,7 @@ export namespace Pango {
          * machinery, then the character offset is not available. In
          * that case, this function returns -1.
          * @returns the character offset of the item from the beginning   of the itemized text, or -1
+         * @since 1.54
          */
         get_char_offset(): number;
 
@@ -8159,6 +8351,7 @@ export namespace Pango {
          * Also note that this function will not do the right thing if you
          * use per-thread locales with `uselocale()`. In that case, you should
          * just call `pango_language_from_string()` yourself.
+         * @since 1.16
          */
         static get_default(): Language;
 
@@ -8174,6 +8367,7 @@ export namespace Pango {
          * text returned by {@link Pango.Language.get_sample_string},
          * you should first try the default language, followed by the
          * languages returned by this function.
+         * @since 1.48
          */
         static get_preferred(): Language[] | null;
 
@@ -8227,6 +8421,7 @@ export namespace Pango {
          * returned values are from the {@link GLib.UnicodeScript} enumeration, which
          * may have more values. Callers need to handle unknown values.
          * @returns An array of {@link Pango.Script} values, with the number of entries in   the array stored in `num_scripts`, or `null` if Pango does not have   any information about this particular language tag (also the case   if `language` is `null`).
+         * @since 1.22
          */
         get_scripts(): Script[] | null;
 
@@ -8246,6 +8441,7 @@ export namespace Pango {
          * This function uses {@link Pango.Language.get_scripts} internally.
          * @param script a {@link Pango.Script}
          * @returns `true` if `script` is one of the scripts used   to write `language` or if nothing is known about `language`   (including the case that `language` is `null`), `false` otherwise.
+         * @since 1.4
          */
         includes_script(script: Script): boolean;
 
@@ -8297,6 +8493,7 @@ export namespace Pango {
         /**
          * Copies a {@link Pango.LayoutIter}.
          * @returns the newly allocated {@link Pango.LayoutIter}
+         * @since 1.20
          */
         copy(): LayoutIter | null;
 
@@ -8345,6 +8542,7 @@ export namespace Pango {
         /**
          * Gets the layout associated with a {@link Pango.LayoutIter}.
          * @returns the layout associated with `iter`
+         * @since 1.20
          */
         get_layout(): Layout | null;
 
@@ -8380,6 +8578,7 @@ export namespace Pango {
          * but the user is not expected to modify the contents of the line
          * (glyphs, glyph widths, etc.).
          * @returns the current line, that should not be   modified
+         * @since 1.16
          */
         get_line_readonly(): LayoutLine | null;
 
@@ -8420,6 +8619,7 @@ export namespace Pango {
          * 
          * The run baseline can be different from the line baseline, for
          * example due to superscript or subscript positioning.
+         * @since 1.50
          */
         get_run_baseline(): number;
 
@@ -8442,6 +8642,7 @@ export namespace Pango {
          * but the user is not expected to modify the contents of the run (glyphs,
          * glyph widths, etc.).
          * @returns the current run, that   should not be modified
+         * @since 1.16
          */
         get_run_readonly(): LayoutRun | null;
 
@@ -8519,12 +8720,14 @@ export namespace Pango {
          * of text is influenced by other factors, such as
          * {@link Pango.Layout.set_spacing} and
          * {@link Pango.Layout.set_line_spacing}.
+         * @since 1.44
          */
         get_height(): number;
 
         /**
          * Returns the length of the line, in bytes.
          * @returns the length of the line
+         * @since 1.50
          */
         get_length(): number;
 
@@ -8541,6 +8744,7 @@ export namespace Pango {
         /**
          * Returns the resolved direction of the line.
          * @returns the resolved direction of the line
+         * @since 1.50
          */
         get_resolved_direction(): Direction;
 
@@ -8548,6 +8752,7 @@ export namespace Pango {
          * Returns the start index of the line, as byte index
          * into the text of the layout.
          * @returns the start index of the line
+         * @since 1.50
          */
         get_start_index(): number;
 
@@ -8573,12 +8778,14 @@ export namespace Pango {
         /**
          * Returns whether this is the first line of the paragraph.
          * @returns `true` if this is the first line
+         * @since 1.50
          */
         is_paragraph_start(): boolean;
 
         /**
          * Increase the reference count of a {@link Pango.LayoutLine} by one.
          * @returns the line passed in.
+         * @since 1.10
          */
         ref(): LayoutLine | null;
 
@@ -8719,17 +8926,20 @@ export namespace Pango {
          * transformation given by first applying transformation
          * given by `new_matrix` then applying the original transformation.
          * @param new_matrix a {@link Pango.Matrix}
+         * @since 1.6
          */
         concat(new_matrix: Matrix): void;
 
         /**
          * Copies a {@link Pango.Matrix}.
          * @returns the newly allocated {@link Pango.Matrix}
+         * @since 1.6
          */
         copy(): Matrix | null;
 
         /**
          * Free a {@link Pango.Matrix}.
+         * @since 1.6
          */
         free(): void;
 
@@ -8740,6 +8950,7 @@ export namespace Pango {
          * vector that the X coordinate is mapped to.  If the scale in the X
          * coordinate is needed as well, use {@link Pango.Matrix.get_font_scale_factors}.
          * @returns the scale factor of `matrix` on the height of the font,   or 1.0 if `matrix` is `null`.
+         * @since 1.12
          */
         get_font_scale_factor(): number;
 
@@ -8751,6 +8962,7 @@ export namespace Pango {
          * vector that the X coordinate is mapped to.
          * 
          * Note that output numbers will always be non-negative.
+         * @since 1.38
          */
         get_font_scale_factors(): [number, number];
 
@@ -8764,6 +8976,7 @@ export namespace Pango {
          * 
          * this is simply λ.
          * @returns the slant ratio of `matrix`
+         * @since 1.50
          */
         get_slant_ratio(): number;
 
@@ -8772,6 +8985,7 @@ export namespace Pango {
          * transformation given by first rotating by `degrees` degrees
          * counter-clockwise then applying the original transformation.
          * @param degrees degrees to rotate counter-clockwise
+         * @since 1.6
          */
         rotate(degrees: number): void;
 
@@ -8782,6 +8996,7 @@ export namespace Pango {
          * transformation.
          * @param scale_x amount to scale by in X direction
          * @param scale_y amount to scale by in Y direction
+         * @since 1.6
          */
         scale(scale_x: number, scale_y: number): void;
 
@@ -8803,6 +9018,7 @@ export namespace Pango {
          * (`x1`+`dx2`,`y1`+`dy2`) for all values of `x1` and `x2`.
          * @param dx in/out X component of a distance vector
          * @param dy in/out Y component of a distance vector
+         * @since 1.16
          */
         transform_distance(dx: number, dy: number): [number, number];
 
@@ -8818,6 +9034,7 @@ export namespace Pango {
          * on original rectangle in Pango units and convert to pixels afterward
          * using {@link extents_to_pixels}'s first argument.
          * @param rect in/out bounding box in device units
+         * @since 1.16
          */
         transform_pixel_rectangle(rect?: Rectangle): Rectangle;
 
@@ -8825,6 +9042,7 @@ export namespace Pango {
          * Transforms the point (`x`, `y`) by `matrix`.
          * @param x in/out X position
          * @param y in/out Y position
+         * @since 1.16
          */
         transform_point(x: number, y: number): [number, number];
 
@@ -8848,6 +9066,7 @@ export namespace Pango {
          * coordinates may overflow in Pango units (large matrix translation for
          * example).
          * @param rect in/out bounding box in Pango units
+         * @since 1.16
          */
         transform_rectangle(rect?: Rectangle): Rectangle;
 
@@ -8857,6 +9076,7 @@ export namespace Pango {
          * then applying the original transformation.
          * @param tx amount to translate in the X direction
          * @param ty amount to translate in the Y direction
+         * @since 1.6
          */
         translate(tx: number, ty: number): void;
     }
@@ -8922,6 +9142,7 @@ export namespace Pango {
         // Methods
         /**
          * Frees a {@link Pango.ScriptIter}.
+         * @since 1.4
          */
         free(): void;
 
@@ -8935,6 +9156,7 @@ export namespace Pango {
          * as {@link Pango.Script}, as of Pango 1.18, this function simply returns
          * {@link GLib.UnicodeScript} values. Callers must be prepared to handle unknown
          * values.
+         * @since 1.4
          */
         get_range(): [string, string, Script | null];
 
@@ -8944,6 +9166,7 @@ export namespace Pango {
          * If `iter` is already at the end, it is left unchanged
          * and `false` is returned.
          * @returns `true` if `iter` was successfully advanced
+         * @since 1.4
          */
         next(): boolean;
     }
@@ -8972,6 +9195,7 @@ export namespace Pango {
          * This is the counterpart to {@link Pango.TabArray.to_string}.
          * See that functions for details about the format.
          * @param text a string
+         * @since 1.50
          */
         static from_string(text: string): TabArray | null;
 
@@ -8997,6 +9221,7 @@ export namespace Pango {
          * The default value of 0 means that Pango will use the
          * decimal point according to the current locale.
          * @param tab_index the index of a tab stop
+         * @since 1.50
          */
         get_decimal_point(tab_index: number): string;
 
@@ -9048,6 +9273,7 @@ export namespace Pango {
          * to the current locale.
          * @param tab_index the index of a tab stop
          * @param decimal_point the decimal point to use
+         * @since 1.50
          */
         set_decimal_point(tab_index: number, decimal_point: string): void;
 
@@ -9055,6 +9281,7 @@ export namespace Pango {
          * Sets whether positions in this array are specified in
          * pixels.
          * @param positions_in_pixels whether positions are in pixels
+         * @since 1.50
          */
         set_positions_in_pixels(positions_in_pixels: boolean): void;
 
@@ -9068,6 +9295,7 @@ export namespace Pango {
 
         /**
          * Utility function to ensure that the tab stops are in increasing order.
+         * @since 1.50
          */
         sort(): void;
 
@@ -9091,6 +9319,7 @@ export namespace Pango {
          * 
          *     100px 200px center:300px right:400px
          * @returns a newly allocated string
+         * @since 1.50
          */
         to_string(): string;
     }

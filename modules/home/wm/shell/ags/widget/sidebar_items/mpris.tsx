@@ -18,6 +18,7 @@ export default function MprisItem(){
     const [isInteracting, setIsInteracting] = createState<boolean>(false);
 
     const MAX_TITLE_LENGTH: number = 30;
+    const IMAGE_SIZE: number = 300;
 
     const cava = Cava.get_default();
     const mpris = Mpris.get_default();
@@ -65,7 +66,7 @@ export default function MprisItem(){
         setCavaValues(cava.get_values());
     })
     return (
-        <box valign={1} halign={3} orientation={1} spacing={6} name="Mpris Box" class="sidebar_mpris_window">
+        <box valign={Gtk.Align.START} halign={Gtk.Align.CENTER} class="sidebar_mpris_window">
             <Gtk.EventControllerMotion
                 onLeave={() => {
                     setIsInteracting(false)
@@ -82,8 +83,8 @@ export default function MprisItem(){
                             @borders ${(p / length())* 100}%,
                             @theme_bg_color ${(p / length())* 100}%
                         );
-                        min-width: 250px;
-                        min-height: 250px;
+                        min-width: ${IMAGE_SIZE}px;
+                        min-height: ${IMAGE_SIZE}px;
                     `)}
                 />
 

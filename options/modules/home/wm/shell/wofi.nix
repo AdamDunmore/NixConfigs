@@ -6,8 +6,8 @@ in
     options.settings.modules.home.wm.shell.wofi = {
         enable = mkOption {
             type = lib.types.bool;
-            default = config.settings.modules.home.wm.shell.enable;
-            example = false;
+            default = false;
+            example = true;
             description = "Enables the wofi modules";
         };
     };

@@ -43,18 +43,31 @@ export namespace AstalIO {
     }
 
 
+    /**
+     * @default 0
+     */
     const MAJOR_VERSION: number;
 
+    /**
+     * @default 1
+     */
     const MINOR_VERSION: number;
 
+    /**
+     * @default 0
+     */
     const MICRO_VERSION: number;
 
+    /**
+     * @default 0.1.0
+     */
     const VERSION: string;
 
     /**
      * Starts a {@link Gio.SocketService} and binds `XDG_RUNTIME_DIR/astal/<instance_name>.sock`. This socket is then used by the astal 
      * cli. Not meant for public usage, but for {@link AstalIO.Application.acquire_socket}.
      * @param app 
+     * @throws GLib.Error
      */
     function acquire_socket(app: Application): [Gio.SocketService, string];
 
@@ -66,12 +79,14 @@ export namespace AstalIO {
     /**
      * Quit an an Astal instances. It is the equivalent of `astal --quit -i instance`.
      * @param instance 
+     * @throws GLib.Error
      */
     function quit_instance(instance: string): void;
 
     /**
      * Open the Gtk debug tool of an an Astal instances. It is the equivalent of `astal --inspector -i instance`.
      * @param instance 
+     * @throws GLib.Error
      */
     function open_inspector(instance: string): void;
 
@@ -79,6 +94,7 @@ export namespace AstalIO {
      * Toggle a Window of an Astal instances. It is the equivalent of `astal -i instance --toggle window`.
      * @param instance 
      * @param window 
+     * @throws GLib.Error
      */
     function toggle_window_by_name(instance: string, window: string): void;
 
@@ -87,6 +103,7 @@ export namespace AstalIO {
      * @param instance 
      * @param request 
      * @deprecated
+     * @throws GLib.Error
      */
     function send_message(instance: string, request: string): string;
 
@@ -94,6 +111,7 @@ export namespace AstalIO {
      * Send a request to an Astal instances. It is the equivalent of `astal -i instance "request content"`.
      * @param instance 
      * @param request 
+     * @throws GLib.Error
      */
     function send_request(instance: string, request: string): string;
 
@@ -117,6 +135,7 @@ export namespace AstalIO {
 
     /**
      * @param _res_ 
+     * @throws GLib.Error
      */
     function read_sock_finish(_res_: Gio.AsyncResult): string;
 
@@ -143,6 +162,7 @@ export namespace AstalIO {
 
     /**
      * @param _res_ 
+     * @throws GLib.Error
      */
     function write_sock_finish(_res_: Gio.AsyncResult): void;
 
@@ -177,6 +197,7 @@ export namespace AstalIO {
     /**
      * @param _res_ 
      * @deprecated
+     * @throws GLib.Error
      */
     function read_file_finish(_res_: Gio.AsyncResult): string;
 
@@ -215,6 +236,7 @@ export namespace AstalIO {
     /**
      * @param _res_ 
      * @deprecated
+     * @throws GLib.Error
      */
     function write_file_finish(_res_: Gio.AsyncResult): void;
 
@@ -307,15 +329,25 @@ export namespace AstalIO {
         get instanceName(): string;
         set instanceName(val: string);
 
+        /**
+         * @throws GLib.Error
+         */
         quit(): void;
 
+        /**
+         * @throws GLib.Error
+         */
         inspector(): void;
 
         /**
          * @param window 
+         * @throws GLib.Error
          */
         toggle_window(window: string): void;
 
+        /**
+         * @throws GLib.Error
+         */
         acquire_socket(): void;
 
         get_instance_name(): string;
@@ -366,17 +398,17 @@ export namespace AstalIO {
              * When the underlying subprocess writes to its stdout.
              * @signal
              */
-            stdout: (arg0: string) => void;
+            stdout: (out: string) => void;
             /**
              * When the underlying subprocess writes to its stderr.
              * @signal
              */
-            stderr: (arg0: string) => void;
+            stderr: (err: string) => void;
             /**
              * When the underlying subprocess exits or is terminated.
              * @signal
              */
-            exit: (arg0: number, arg1: boolean) => void;
+            exit: (code: number, terminated: boolean) => void;
             "notify::argv": (pspec: GObject.ParamSpec) => void;
         }
 
@@ -494,6 +526,7 @@ export namespace AstalIO {
         /**
          * Write a line to the subprocess' stdin synchronously.
          * @param _in String to be written to stdin
+         * @throws GLib.Error
          */
         write(_in: string): void;
 
@@ -631,7 +664,7 @@ export namespace AstalIO {
             /**
              * @signal
              */
-            error: (arg0: string) => void;
+            error: (err: string) => void;
         }
 
         // Constructor properties interface
@@ -746,6 +779,7 @@ export namespace AstalIO {
          * @param interval 
          * @param exec 
          * @param transform 
+         * @throws GLib.Error
          */
         poll(interval: number, exec: string, transform: GObject.Closure | null): Variable;
 
@@ -753,29 +787,39 @@ export namespace AstalIO {
          * @param interval 
          * @param execv 
          * @param transform 
+         * @throws GLib.Error
          */
         pollv(interval: number, execv: string[], transform: GObject.Closure | null): Variable;
 
         /**
          * @param interval 
          * @param fn 
+         * @throws GLib.Error
          */
         pollfn(interval: number, fn: GObject.Closure): Variable;
 
         /**
          * @param exec 
          * @param transform 
+         * @throws GLib.Error
          */
         watch(exec: string, transform: GObject.Closure | null): Variable;
 
         /**
          * @param execv 
          * @param transform 
+         * @throws GLib.Error
          */
         watchv(execv: string[], transform: GObject.Closure | null): Variable;
 
+        /**
+         * @throws GLib.Error
+         */
         start_poll(): void;
 
+        /**
+         * @throws GLib.Error
+         */
         start_watch(): void;
 
         stop_poll(): void;
@@ -940,20 +984,31 @@ export namespace AstalIO {
         set instanceName(val: string);
 
         // Methods
+        /**
+         * @throws GLib.Error
+         */
         quit(): void;
 
+        /**
+         * @throws GLib.Error
+         */
         inspector(): void;
 
         /**
          * @param window 
+         * @throws GLib.Error
          */
         toggle_window(window: string): void;
 
+        /**
+         * @throws GLib.Error
+         */
         acquire_socket(): void;
 
         /**
          * @param request 
          * @param conn 
+         * @throws GLib.Error
          */
         request(request: string, conn: Gio.SocketConnection): void;
 

@@ -25,15 +25,15 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum AccentColor {
-        BLUE,
-        TEAL,
-        GREEN,
-        YELLOW,
-        ORANGE,
-        RED,
-        PINK,
-        PURPLE,
-        SLATE,
+        BLUE = 0,
+        TEAL = 1,
+        GREEN = 2,
+        YELLOW = 3,
+        ORANGE = 4,
+        RED = 5,
+        PINK = 6,
+        PURPLE = 7,
+        SLATE = 8,
     }
 
 
@@ -41,9 +41,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum BackgroundShading {
-        SOLID,
-        VERTICAL,
-        HORIZONTAL,
+        SOLID = 0,
+        VERTICAL = 1,
+        HORIZONTAL = 2,
     }
 
 
@@ -51,13 +51,13 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum BackgroundStyle {
-        NONE,
-        WALLPAPER,
-        CENTERED,
-        SCALED,
-        STRETCHED,
-        ZOOM,
-        SPANNED,
+        NONE = 0,
+        WALLPAPER = 1,
+        CENTERED = 2,
+        SCALED = 3,
+        STRETCHED = 4,
+        ZOOM = 5,
+        SPANNED = 6,
     }
 
 
@@ -65,8 +65,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum ClockFormat {
-        "24H",
-        "12H",
+        "24H" = 0,
+        "12H" = 1,
     }
 
 
@@ -74,9 +74,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum ColorScheme {
-        DEFAULT,
-        PREFER_DARK,
-        PREFER_LIGHT,
+        DEFAULT = 0,
+        PREFER_DARK = 1,
+        PREFER_LIGHT = 2,
     }
 
 
@@ -84,9 +84,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum DeviceSendEvents {
-        ENABLED,
-        DISABLED,
-        DISABLED_ON_EXTERNAL_MOUSE,
+        ENABLED = 0,
+        DISABLED = 1,
+        DISABLED_ON_EXTERNAL_MOUSE = 2,
     }
 
 
@@ -94,9 +94,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum FocusMode {
-        CLICK,
-        SLOPPY,
-        MOUSE,
+        CLICK = 0,
+        SLOPPY = 1,
+        MOUSE = 2,
     }
 
 
@@ -104,8 +104,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum FocusNewWindows {
-        SMART,
-        STRICT,
+        SMART = 0,
+        STRICT = 1,
     }
 
 
@@ -113,9 +113,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum FontAntialiasingMode {
-        NONE,
-        GRAYSCALE,
-        RGBA,
+        NONE = 0,
+        GRAYSCALE = 1,
+        RGBA = 2,
     }
 
 
@@ -123,10 +123,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum FontHinting {
-        NONE,
-        SLIGHT,
-        MEDIUM,
-        FULL,
+        NONE = 0,
+        SLIGHT = 1,
+        MEDIUM = 2,
+        FULL = 3,
     }
 
 
@@ -134,8 +134,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum FontRendering {
-        AUTOMATIC,
-        MANUAL,
+        AUTOMATIC = 0,
+        MANUAL = 1,
     }
 
 
@@ -143,11 +143,11 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum FontRgbaOrder {
-        RGBA,
-        RGB,
-        BGR,
-        VRGB,
-        VBGR,
+        RGBA = 0,
+        RGB = 1,
+        BGR = 2,
+        VRGB = 3,
+        VBGR = 4,
     }
 
 
@@ -155,11 +155,11 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum LocationAccuracyLevel {
-        COUNTRY,
-        CITY,
-        NEIGHBORHOOD,
-        STREET,
-        EXACT,
+        COUNTRY = 0,
+        CITY = 1,
+        NEIGHBORHOOD = 2,
+        STREET = 3,
+        EXACT = 4,
     }
 
 
@@ -167,10 +167,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum MagnifierCaretTrackingMode {
-        NONE,
-        CENTERED,
-        PROPORTIONAL,
-        PUSH,
+        NONE = 0,
+        CENTERED = 1,
+        PROPORTIONAL = 2,
+        PUSH = 3,
     }
 
 
@@ -178,10 +178,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum MagnifierFocusTrackingMode {
-        NONE,
-        CENTERED,
-        PROPORTIONAL,
-        PUSH,
+        NONE = 0,
+        CENTERED = 1,
+        PROPORTIONAL = 2,
+        PUSH = 3,
     }
 
 
@@ -189,10 +189,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum MagnifierMouseTrackingMode {
-        NONE,
-        CENTERED,
-        PROPORTIONAL,
-        PUSH,
+        NONE = 0,
+        CENTERED = 1,
+        PROPORTIONAL = 2,
+        PUSH = 3,
     }
 
 
@@ -200,12 +200,12 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum MagnifierScreenPosition {
-        NONE,
-        FULL_SCREEN,
-        TOP_HALF,
-        BOTTOM_HALF,
-        LEFT_HALF,
-        RIGHT_HALF,
+        NONE = 0,
+        FULL_SCREEN = 1,
+        TOP_HALF = 2,
+        BOTTOM_HALF = 3,
+        LEFT_HALF = 4,
+        RIGHT_HALF = 5,
     }
 
 
@@ -213,10 +213,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum MouseDwellDirection {
-        LEFT,
-        RIGHT,
-        UP,
-        DOWN,
+        LEFT = 0,
+        RIGHT = 1,
+        UP = 2,
+        DOWN = 3,
     }
 
 
@@ -224,8 +224,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum MouseDwellMode {
-        WINDOW,
-        GESTURE,
+        WINDOW = 0,
+        GESTURE = 1,
     }
 
 
@@ -233,10 +233,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum PadButtonAction {
-        NONE,
-        HELP,
-        SWITCH_MONITOR,
-        KEYBINDING,
+        NONE = 0,
+        HELP = 1,
+        SWITCH_MONITOR = 2,
+        KEYBINDING = 3,
     }
 
 
@@ -244,9 +244,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum PointerAccelProfile {
-        DEFAULT,
-        FLAT,
-        ADAPTIVE,
+        DEFAULT = 0,
+        FLAT = 1,
+        ADAPTIVE = 2,
     }
 
 
@@ -254,9 +254,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum PointingStickScrollMethod {
-        DEFAULT,
-        NONE,
-        ON_BUTTON_DOWN,
+        DEFAULT = 0,
+        NONE = 1,
+        ON_BUTTON_DOWN = 2,
     }
 
 
@@ -264,9 +264,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum ProxyMode {
-        NONE,
-        MANUAL,
-        AUTO,
+        NONE = 0,
+        MANUAL = 1,
+        AUTO = 2,
     }
 
 
@@ -274,9 +274,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum ScreensaverMode {
-        BLANK_ONLY,
-        RANDOM,
-        SINGLE,
+        BLANK_ONLY = 0,
+        RANDOM = 1,
+        SINGLE = 2,
     }
 
 
@@ -284,13 +284,13 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum StylusButtonAction {
-        DEFAULT,
-        MIDDLE,
-        RIGHT,
-        BACK,
-        FORWARD,
-        SWITCH_MONITOR,
-        KEYBINDING,
+        DEFAULT = 0,
+        MIDDLE = 1,
+        RIGHT = 2,
+        BACK = 3,
+        FORWARD = 4,
+        SWITCH_MONITOR = 5,
+        KEYBINDING = 6,
     }
 
 
@@ -298,8 +298,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum TabletMapping {
-        ABSOLUTE,
-        RELATIVE,
+        ABSOLUTE = 0,
+        RELATIVE = 1,
     }
 
 
@@ -307,14 +307,14 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum TitlebarAction {
-        TOGGLE_SHADE,
-        TOGGLE_MAXIMIZE,
-        TOGGLE_MAXIMIZE_HORIZONTALLY,
-        TOGGLE_MAXIMIZE_VERTICALLY,
-        MINIMIZE,
-        NONE,
-        LOWER,
-        MENU,
+        TOGGLE_SHADE = 0,
+        TOGGLE_MAXIMIZE = 1,
+        TOGGLE_MAXIMIZE_HORIZONTALLY = 2,
+        TOGGLE_MAXIMIZE_VERTICALLY = 3,
+        MINIMIZE = 4,
+        NONE = 5,
+        LOWER = 6,
+        MENU = 7,
     }
 
 
@@ -322,8 +322,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum ToolbarIconSize {
-        SMALL,
-        LARGE,
+        SMALL = 0,
+        LARGE = 1,
     }
 
 
@@ -331,10 +331,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum ToolbarStyle {
-        BOTH,
-        BOTH_HORIZ,
-        ICONS,
-        TEXT,
+        BOTH = 0,
+        BOTH_HORIZ = 1,
+        ICONS = 2,
+        TEXT = 3,
     }
 
 
@@ -342,10 +342,10 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum TouchpadClickMethod {
-        DEFAULT,
-        NONE,
-        AREAS,
-        FINGERS,
+        DEFAULT = 0,
+        NONE = 1,
+        AREAS = 2,
+        FINGERS = 3,
     }
 
 
@@ -353,9 +353,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum TouchpadHandedness {
-        RIGHT,
-        LEFT,
-        MOUSE,
+        RIGHT = 0,
+        LEFT = 1,
+        MOUSE = 2,
     }
 
 
@@ -363,9 +363,9 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum TouchpadTapButtonMap {
-        DEFAULT,
-        LRM,
-        LMR,
+        DEFAULT = 0,
+        LRM = 1,
+        LMR = 2,
     }
 
 
@@ -373,8 +373,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum UsbProtection {
-        LOCKSCREEN,
-        ALWAYS,
+        LOCKSCREEN = 0,
+        ALWAYS = 1,
     }
 
 
@@ -382,8 +382,8 @@ export namespace GDesktopEnums {
      * @gir-type Enum
      */
     enum VisualBellType {
-        FULLSCREEN_FLASH,
-        FRAME_FLASH,
+        FULLSCREEN_FLASH = 0,
+        FRAME_FLASH = 1,
     }
 
 
