@@ -1,9 +1,10 @@
-{ pkgs, lib, config, user, ... }:
+{ pkgs, lib, config, user, inputs, ... }:
 let
     cfg = config.settings.modules.home.apps.scripts;
+    waybar = import ../../../../pkgs/waybar.nix { inherit pkgs; inherit inputs; };
     cw = pkgs.writeShellScriptBin "check_wm" ''
         bins=("waybar" "ags" "kanshi" "wpaperd")
-        commands=("${pkgs.waybar}/bin/waybar" "/etc/profiles/per-user/${user}/bin/ags run" "${pkgs.kanshi}/bin/kanshi" "${pkgs.wpaperd}/bin/wpaperd")
+        commands=("${waybar}/bin/waybar" "/etc/profiles/per-user/${user}/bin/ags run" "${pkgs.kanshi}/bin/kanshi" "${pkgs.wpaperd}/bin/wpaperd")
 
         for i in "''${!commands[@]}"; do
             output=$(ps -A | grep ''${bins[i]})

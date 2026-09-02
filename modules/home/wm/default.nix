@@ -157,14 +157,8 @@ in
                 smartBorders = false;
             };
 
-            startup = [
-                "${pkgs.wpaperd}/bin/wpaperd"
-                "${pkgs.kanshi}/bin/kanshi"
-                "${pkgs.waybar}/bin/waybar"
-            ];
-
             startup_always = [
-                "ags quit & ags run"
+                "check_wm"
                 # ( mkIf (cfg.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.values.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays")
                 "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd PATH XDG_DATA_DIRS"
             ];

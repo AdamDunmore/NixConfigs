@@ -1,20 +1,16 @@
-{ config, lib, inputs, system, ... }:
+{ config, lib, inputs, pkgs, ... }:
 
 let
     cfg = config.settings.modules.home.wm.shell.waybar;
     colours = config.settings.values.colours;
+    waybar = import ../../../../pkgs/waybar.nix { inherit pkgs; inherit inputs; };
     inherit (lib) mkIf;
 in
 {
     config = mkIf cfg.enable {
         programs.waybar = {
             enable = true;
-            package = inputs.waybar.packages.${system}.waybar.overrideAttrs(old: {
-                doCheck = false;
-                mesonFlags = (old.mesonFlags or []) ++ [
-                    "-Dtests=disabled"
-                ];
-            });
+            package = waybar;
             settings = {
                 mainBar = {
                     layer = "top";
