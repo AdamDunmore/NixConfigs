@@ -15,6 +15,8 @@ import Notifications from "./menu_items/notifications.tsx";
 import Mixer from "./menu_items/mixer.tsx";
 import MenuBar from "./menu_bar.tsx";
 
+import { toggle_app } from "../scripts/window_managment.ts";
+
 const { LEFT, BOTTOM } = Astal.WindowAnchor
 
 export default function Menu(){
@@ -30,8 +32,6 @@ export default function Menu(){
     const [isBluetoothPowered, setIsBluetoothPowered] = createState<boolean>(false);
     const [isWifiPowered, setIsWifiPowered] = createState<boolean>(false);
 
-    const TRANSITION_LENGTH: number = 300;
-
     const open = (window: string) => {
         setActiveWindow(window);
     };
@@ -40,21 +40,9 @@ export default function Menu(){
         setActiveWindow("none");
     };
 
-    const toggleCalled = () => {
-        const v_status = isWindowVisible();
-        if (!v_status) {
-            setIsWindowVisible(!v_status);        
-            setTimeout(() => { setIsVisible(!v_status) }, 1)
-            close()
-        } else{
-            setIsVisible(!v_status);
-            setTimeout(() => { setIsWindowVisible(!v_status) }, TRANSITION_LENGTH / 2)
-        }
-    };
-
     app.connect("request", (app, [cmd, arg, ...rest], response) => {
         if (cmd === "toggle_menu") {
-            toggleCalled()
+            toggle_app(isWindowVisible, setIsWindowVisible, setIsVisible)
             response("ok")
         }
     })
@@ -81,12 +69,7 @@ export default function Menu(){
 
     return (
         <window visible={isWindowVisible(v => v)} name="menu" $={(self) => app.add_window(self)} anchor={BOTTOM | LEFT } keymode={Astal.Keymode.ON_DEMAND}> 
-            <revealer
-                class = "menu_window window"
-                revealChild={isVisible(v => v)} // Broken?
-                transitionDuration={TRANSITION_LENGTH}
-                transitionType={Gtk.RevealerTransitionType.SLIDE_RIGHT}
-            >
+            <revealer class = "menu_window window" revealChild={isVisible(v => v)} transitionType={Gtk.RevealerTransitionType.SLIDE_RIGHT} transitionDuration={400}>
                 <With value={activeWindow}>
                     {(w) => {
                         switch(w) {
