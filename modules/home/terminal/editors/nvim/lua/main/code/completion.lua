@@ -1,6 +1,17 @@
 local ls = require('luasnip');
 local cmp = require('blink.cmp');
 
+local sources = {
+    'snippets',
+    'buffer',
+    'lsp',
+    'path'
+}
+
+if _G.nvim_options.enableAi then
+    table.insert(sources, 'minuet')
+end
+
 cmp.setup({
     completion = {
         trigger = {
@@ -29,7 +40,7 @@ cmp.setup({
     },
     snippets = { preset = "luasnip" },
     sources = {
-        default = { 'snippets', 'buffer', 'lsp', 'path', 'minuet'},
+        default = sources,
         providers = {
             minuet = {
                 name = "minuet",

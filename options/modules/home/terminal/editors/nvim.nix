@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-    inherit (lib) mkOption;
+    inherit (lib) mkOption mkEnableOption;
 in
 {
     options.settings.modules.home.terminal.editors.nvim = {

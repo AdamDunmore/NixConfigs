@@ -78,6 +78,10 @@ in
                         "${pkgs.vue-language-server}/lib/language-tools/packages/typescript-plugin";
                 }
 
+                 _G.options = {
+                    enableAi = ${lib.boolToString config.settings.modules.nixos.services.ai.enable},
+                }
+
                 require("main")
                 '';
         };
