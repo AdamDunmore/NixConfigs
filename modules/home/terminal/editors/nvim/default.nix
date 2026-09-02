@@ -26,12 +26,14 @@ in
                     luajitPackages.luarocks 
                     openssl
 
-                    (pkgs.vue-language-server.overrideAttrs (old: {
-                        postInstall = (old.postInstall or "") + ''
-                            ln -s ${pkgs.vue-language-server}/lib/language-tools/node_modules/.pnpm/typescript@6.0.3/node_modules/typescript \
-                              $out/lib/language-tools/packages/typescript-plugin/node_modules/typescript
-                        '';
-                    }))
+                    vue-language-server
+                    # (pkgs.vue-language-server.overrideAttrs (old: { FIX readd if problems with vuels
+                    #     postInstall = (old.postInstall or "") + ''
+                    #         ln -s \
+                    #           $out/lib/language-tools/node_modules/.pnpm/typescript@6.0.3/node_modules/typescript \
+                    #           $out/lib/language-tools/packages/typescript-plugin/node_modules/typescript
+                    #     '';
+                    # }))
                     vtsls
 
                     # Deps
