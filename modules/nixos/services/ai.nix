@@ -14,9 +14,9 @@ in
                 "llama3.1"
                 "deepseek-r1"
                 # "qwen3-coder"
-                # "qwen2.5-coder:7b"
-                qwen3.8:27b
-                granite4.1:3b
+                "qwen2.5-coder:3b"
+                "qwen3.8:27b"
+                # granite4.1:3b
             ];
             environmentVariables = {
                 OLLAMA_CONTEXT_LENGTH = "16384";
