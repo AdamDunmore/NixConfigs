@@ -1,6 +1,4 @@
-import { Astal } from "ags/gtk4";
 import { createState, With } from "ags";
-import app from "ags/gtk4/app";
 import { execAsync } from "ags/process";
 import Gtk from "gi://Gtk";
 import AstalBluetooth from "gi://AstalBluetooth"
@@ -13,11 +11,7 @@ import System from "./menu_items/system.tsx";
 import Wifi from "./menu_items/wifi.tsx";
 import Notifications from "./menu_items/notifications.tsx";
 import Mixer from "./menu_items/mixer.tsx";
-import MenuBar from "./menu_bar.tsx";
-
-import { toggle_app } from "../scripts/window_managment.ts";
-
-const { LEFT, BOTTOM } = Astal.WindowAnchor
+import PowerItems from "./power_items.tsx";
 
 export default function Menu(){
     const bluetooth: AstalBluetooth.Bluetooth = AstalBluetooth.get_default();
@@ -25,8 +19,6 @@ export default function Menu(){
     const wifi: AstalNetwork.Wifi | null = network.get_wifi();
     const powerprofiles: AstalPowerProfiles.PowerProfiles = AstalPowerProfiles.get_default();
 
-    const [isVisible, setIsVisible] = createState<boolean>(false);
-    const [isWindowVisible, setIsWindowVisible] = createState<boolean>(false);
     const [activeWindow, setActiveWindow] = createState<string>("none");
     const [powerProfile, setPowerProfile] = createState<string>("");
     const [isBluetoothPowered, setIsBluetoothPowered] = createState<boolean>(false);
@@ -39,13 +31,6 @@ export default function Menu(){
     const close = () => {
         setActiveWindow("none");
     };
-
-    app.connect("request", (app, [cmd, arg, ...rest], response) => {
-        if (cmd === "toggle_menu") {
-            toggle_app(isWindowVisible, setIsWindowVisible, setIsVisible)
-            response("ok")
-        }
-    })
 
     wifi?.connect("access-point-added", () => {
         setIsWifiPowered(wifi.accessPoints.length > 0);
@@ -68,52 +53,45 @@ export default function Menu(){
     }); setPowerProfile(powerprofiles.active_profile);
 
     return (
-        <window visible={isWindowVisible(v => v)} name="menu" $={(self) => app.add_window(self)} anchor={BOTTOM | LEFT } keymode={Astal.Keymode.ON_DEMAND}> 
-            <revealer class = "menu_window window" revealChild={isVisible(v => v)} transitionType={Gtk.RevealerTransitionType.SLIDE_RIGHT} transitionDuration={400}>
-                <With value={activeWindow}>
-                    {(w) => {
-                        switch(w) {
-                            case "system":
-                                return ( <System backCallback={close} /> )
-                            case "wifi":
-                                return ( <Wifi network={network} backCallback={close}/> )
-                            
-                            case "bluetooth": // TODO redesign
-                                return ( <Bluetooth bluetooth={bluetooth} backCallback={close} /> )
+        <box class="menu_container" valign={Gtk.Align.START}>
+            <With value={activeWindow}>
+                {(w) => {
+                    switch(w) {
+                        case "system":
+                            return ( <System backCallback={close} /> )
+                        case "wifi":
+                            return ( <Wifi network={network} backCallback={close}/> )
+                        
+                        case "bluetooth": // TODO redesign
+                            return ( <Bluetooth bluetooth={bluetooth} backCallback={close} /> )
 
-                            case "notifications":
-                                return ( <Notifications backCallback={close} /> )
+                        case "notifications":
+                            return ( <Notifications backCallback={close} /> )
 
-                            case "mixer":
-                                return ( <Mixer backCallback={close} /> )
+                        case "mixer":
+                            return ( <Mixer backCallback={close} /> )
 
-                            default:
-                                return (
-                                    <box orientation={Gtk.Orientation.HORIZONTAL}>
-                                        <MenuBar backCallback={() => toggleCalled()}>
-                                            <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="menu_button" label="" />
-                                            <button hexpand={true} onClicked={() => { execAsync("systemctl suspend") }} class="menu_button" label="󰤄" />
-                                            <button hexpand={true} onClicked={() => { execAsync("reboot") }} class="menu_button" label="󰜉" />
-                                            <button hexpand={true} onClicked={() => { execAsync("shutdown now") }} class="menu_button" label="⏻" />
-                                        </MenuBar>
-                                        <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}>
-                                            <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
-                                                <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
-                                                <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
-                                                <MenuSplitButton icon="" callback={() => {open("system")}} />
-                                            </box>
-                                            <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
-                                                <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
-                                                <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
-                                                <MenuSplitButton icon="󱡫" callback={() => { open("mixer") }}/>
-                                            </box>
+                        default:
+                            return (
+                                <box orientation={Gtk.Orientation.HORIZONTAL}>
+                                    <PowerItems />
+                                    <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}>
+                                        <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
+                                            <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
+                                            <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
+                                            <MenuSplitButton icon="" callback={() => {open("system")}} />
+                                        </box>
+                                        <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
+                                            <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
+                                            <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
+                                            <MenuSplitButton icon="󱡫" callback={() => { open("mixer") }}/>
                                         </box>
                                     </box>
-                                )
-                        }
-                    }}
-                </With>
-            </revealer>
-        </window>
+                                </box>
+                            )
+                    }
+                }}
+            </With>
+        </box>
     );
 }

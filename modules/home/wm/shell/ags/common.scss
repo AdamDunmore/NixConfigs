@@ -26,7 +26,7 @@ window {
 button {
   all: unset;
   color: $fg;
-  background-color: gtk-alpha($bg, 0.6);
+  background-color: gtk-alpha($bg, 0.8);
   padding: 5px;
 
   border-style:solid;
@@ -72,6 +72,10 @@ levelbar block.empty {
 
   opacity: 0;
   transition: opacity 0.5s;
+}
+
+.sidebar_mpris_window {
+  margin-left: 10px;
 }
 
 .sidebar_mpris_window:hover .sidebar_mpris_label, .sidebar_mpris_window:hover .sidebar_mpris_media {
@@ -151,14 +155,9 @@ levelbar block.empty {
   background-color: gtk-alpha($bg_selected,0.8);
 }
 
-.menu_window {
-  background-color: gtk-alpha($base, 0.6);
-  border-style: solid;
-  border-color: gtk-alpha($border, 0.5);
-  border-width: 1px;
+.menu_container {
   min-height: 200px;
   min-width: 480px;
-  padding: 10px;
 }
 
 .menu_split_button_container {
@@ -197,6 +196,14 @@ levelbar block.empty {
   border-color: gtk-alpha($border, 0.5);
 }
 
+.menu_power_box:hover .menu_power_button {
+
+}
+
+.menu_power_button {
+
+}
+
 .menu_notification {
   margin: 5px;
   background-color: gtk-alpha($bg, 0.4);
@@ -221,6 +228,12 @@ levelbar block.empty {
   background-color: gtk-alpha($bg, 0.5);
   border-radius: 10px;
   margin: 5px;
+}
+
+.menu_mixer_box {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: gtk-alpha($base, 0.6);
 }
 
 .menu_mixer_bar {

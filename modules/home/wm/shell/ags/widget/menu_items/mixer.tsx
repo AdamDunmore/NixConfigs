@@ -19,7 +19,7 @@ export default function Mixer({ backCallback }: { backCallback: () => void }){
     audio.connect("stream-added",updateStreams);
     audio.connect("stream-removed",updateStreams);
     return (
-        <box vexpand={true} hexpand={true}>
+        <box vexpand={true} hexpand={true} class="menu_mixer_box">
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.HORIZONTAL} hexpand={true} vexpand={true}>
                 <scrolledwindow vexpand={true} hexpand={true}>
