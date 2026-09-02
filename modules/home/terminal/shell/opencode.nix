@@ -2,8 +2,8 @@
 
 let
     cfg = config.settings.modules.home.terminal.shell.opencode;
-    model_small = "qwen2.5-coder:7b";
-    model_large = "qwen3-coder:latest";
+    model_small = "granite4.1:3b";
+    model_large = "qwen3.8:27b";
     inherit (lib) mkIf;
 in
 {

@@ -6,7 +6,7 @@ require("minuet").setup({
             end_point = "http://127.0.0.1:11434/v1/completions",
             api_key = "TERM",
             name = "Ollama",
-            model = "qwen2.5-coder:7b",
+            model = "granite4.1:3b",
 
             optional = {
                 max_tokens = 256,
