@@ -10,6 +10,8 @@ in
 
         boot.loader.grub.efiSupport = true;
 
+        users.users.${user}.password = "";
+
         # Create Steam CEF debugging file if it doesn't exist for Decky Loader. 
         systemd.services.steam-cef-debug = mkIf config.jovian.decky-loader.enable {
             description = "Create Steam CEF debugging file";
