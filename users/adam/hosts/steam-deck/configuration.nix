@@ -11,10 +11,13 @@ in
         boot.loader.grub.efiSupport = true;
 
         users.users.${user}.password = "";
-        security.pam.services.sddm.text = ''
-            auth sufficient pam_succeed_if.so user = adam
-            auth include login
-        '';
+        services.displayManager= {
+            defaultSession = "gamescope-wayland";
+            autoLogin = {
+                enable = true;
+                inherit user;
+            };
+        };
 
         # Create Steam CEF debugging file if it doesn't exist for Decky Loader. 
         systemd.services.steam-cef-debug = mkIf config.jovian.decky-loader.enable {
@@ -41,8 +44,8 @@ in
             steam = {
                 enable = true;
                 inherit user;
-                autoStart = false;
-                desktopSession = "mango-ext";
+                autoStart = true;
+                desktopSession = "sway";
             };
         }; 
     };
