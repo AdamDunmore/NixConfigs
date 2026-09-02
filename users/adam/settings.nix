@@ -12,7 +12,7 @@
                     base = {
                         secrets.user_password = false; # TODO change when in live
                     };
-                    services.ai.enable = true;
+                    services.ai.enable = false;
                 };
                 home = {
                     apps.media.kodi.enable = false;
