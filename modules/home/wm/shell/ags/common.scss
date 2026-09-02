@@ -142,11 +142,13 @@ levelbar block.empty {
 }
 
 .sidebar_appmenu_button {
-  background-color: gtk-alpha($bg, 0.5);
+  background-color: gtk-alpha($bg, 0.8);
+  transition: background-color 0.5s;
 }
 
 .sidebar_appmenu_button.selected {
-  background-color: $bg;
+  color: $fg_selected;
+  background-color: gtk-alpha($bg_selected,0.8);
 }
 
 .menu_window {

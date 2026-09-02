@@ -66,7 +66,7 @@ export default function MprisItem(){
         setCavaValues(cava.get_values());
     })
     return (
-        <box valign={Gtk.Align.START} halign={Gtk.Align.CENTER} class="sidebar_mpris_window">
+        <box halign={Gtk.Align.CENTER} class="sidebar_mpris_window">
             <Gtk.EventControllerMotion
                 onLeave={() => {
                     setIsInteracting(false)
@@ -75,7 +75,6 @@ export default function MprisItem(){
             <overlay>
                 <box
                     hexpand
-                    vexpand
                     class="sidebar_mpris_art"
                     css={position(p => `
                          background: linear-gradient(

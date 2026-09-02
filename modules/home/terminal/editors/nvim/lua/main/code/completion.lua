@@ -8,7 +8,7 @@ local sources = {
     'path'
 }
 
-if _G.nvim_options.enableAi then
+if _G.options.enableAi then
     table.insert(sources, 'minuet')
 end
 

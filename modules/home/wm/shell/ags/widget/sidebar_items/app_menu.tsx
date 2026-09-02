@@ -45,7 +45,9 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
                     controller.connect("key-pressed", (_, keyval) => {
                         const s = selected();
                         if (keyval === Gdk.KEY_Down) {
-                            setSelected(s + 1)
+                            if (s < appsList().length - 1){
+                                setSelected(s + 1)
+                            }
                             return true;
                         }
 
