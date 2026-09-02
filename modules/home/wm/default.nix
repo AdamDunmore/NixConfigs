@@ -70,15 +70,14 @@ in
             keybinds = [
                 { mod = true; key = "Return"; dispatch = "spawn"; arg = "${cfg.defaults.terminal}/bin/${cfg.defaults.terminal.meta.mainProgram}"; }
                 { mod = true; sub_mod = "SHIFT"; key = "Q"; dispatch = "kill"; }
-                { mod = true; key = "D"; dispatch = "spawn_shell"; arg = "ags request toggle_sidebar"; }
+                { mod = true; key = "D"; dispatch = "spawn_shell"; arg = "ags request toggle"; }
                 { mod = true; sub_mod = "SHIFT"; key = "C"; dispatch = "reload"; }
                 { mod = true; key = "L"; dispatch = "spawn"; arg = "${cfg.defaults.locker}/bin/${cfg.defaults.locker.meta.mainProgram}"; }
                 { mod = true; key = "N"; dispatch = "spawn"; arg = "togglenight"; }
                 { mod = true; key = "C"; dispatch = "spawn_shell"; arg = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""; }
                 { mod = true; key = "B"; dispatch = "spawn_shell"; arg = "btwofi"; }
                 { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; } # Broken
-                (mkIf cfg_ags.enable { mod = true; key = "Q"; dispatch = "spawn_shell"; arg = "ags request toggle_sidebar"; })
-                (mkIf cfg_ags.enable { mod = true; key = "Z"; dispatch = "spawn_shell"; arg = "ags request toggle_menu"; })
+                (mkIf cfg_ags.enable { mod = true; key = "Q"; dispatch = "spawn_shell"; arg = "ags request toggle"; })
                 # (mkIf cfg.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\""; })
 
                 { mod = true; key = "Left"; dispatch = "focus"; arg = "left"; }

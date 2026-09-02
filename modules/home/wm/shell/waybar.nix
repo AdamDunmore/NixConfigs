@@ -23,7 +23,7 @@ in
 
                     modules-left = [ "custom/margin" "sway/workspaces" "mango/workspaces" "custom/margin" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/settings" "custom/sidebar" "custom/margin" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" "custom/margin" ];
 
                     "backlight" = {
                         format = "{icon} {percent}%";
@@ -73,13 +73,7 @@ in
 
                     "custom/sidebar" = {
                         format = " 󰍜 ";
-                        on-click = "ags request toggle_menu";
-                        tooltip = false;
-                    };
-
-                    "custom/settings" = {
-                        format = " 󰝚 ";
-                        on-click = "ags request toggle_sidebar";
+                        on-click = "ags request toggle";
                         tooltip = false;
                     };
 
@@ -118,8 +112,7 @@ in
                 #date,
                 #pulseaudio,
                 #network,
-                #custom-sidebar,
-                #custom-settings {
+                #custom-sidebar {
                     color: ${colours.white.one};
                     background-color: alpha(${colours.blue.one}, 0.5);
                     padding-left: 10px;

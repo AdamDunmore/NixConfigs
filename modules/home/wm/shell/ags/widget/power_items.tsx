@@ -1,4 +1,5 @@
 import Gtk from "gi://Gtk";
+import GLib from "gi://GLib";
 import { execAsync } from "ags/process";
 import { createState } from "ags";
 
@@ -23,9 +24,10 @@ export default function PowerItems(){
                 transitionDuration={400}
             >
                 <box orientation={Gtk.Orientation.VERTICAL}>
-                    <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="menu_button" label="" />
-                    <button hexpand={true} onClicked={() => { execAsync("systemctl suspend") }} class="menu_button" label="󰤄" />
                     <button hexpand={true} onClicked={() => { execAsync("reboot") }} class="menu_button" label="󰜉" />
+                    <button hexpand={true} onClicked={() => { execAsync("systemctl suspend") }} class="menu_button" label="󰤄" />
+                    <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="menu_button" label="" />
+                    <button hexpand={true} onClicked={() => { execAsync(["pkill", "-f", GLib.getenv("XDG_CURRENT_DESKTOP") ?? ""]) }} class="menu_button" label="󰍃" />
                 </box>
             </revealer>
         </box>
