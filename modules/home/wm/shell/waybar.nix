@@ -21,7 +21,7 @@ in
                     margin-bottom = 5;
                     fixed-center = true;
 
-                    modules-left = [ "custom/margin" "sway/workspaces" "mango/workspaces" "custom/margin" ];
+                    modules-left = [ "custom/margin" "niri/workspaces" "sway/workspaces" "mango/workspaces" "custom/margin" ];
                     modules-center = [ "clock" "clock#date" ];
                     modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" "custom/margin" ];
 

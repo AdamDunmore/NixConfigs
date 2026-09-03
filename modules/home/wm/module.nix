@@ -312,6 +312,97 @@ in
                 default_dim_inactive ${toString (1 - cfg.window.dim.inactive)}
             '';
         };
+        wayland.windowManager.niri = let
+            mod = ( 
+                if cfg.modifier == "SUPER" then "Mod"
+                else if cfg.modifier == "ALT" then "Alt"
+                else "Mod"
+            );
+            bindsToActions = binds: lib.mergeAttrsList (map (b: {
+                ${
+                    "${if b.mod then mod + "+" else ""}" + 
+                    "${if b.sub_mod == "" then "" else "${b.sub_mod}+"}" +
+                    "${b.key}"
+                }
+                .
+                "${
+                    if b.dispatch == "spawn" then "spawn" 
+                    else if b.dispatch == "spawn_shell" then "spawn-sh"
+                    else if b.dispatch == "kill" then "close-window" 
+                    else if b.dispatch == "reload" then "spawn"
+                    else if b.dispatch == "focus" then (if b.arg == "left" || b.arg == "right" then "focus-column-${b.arg}" else "focus-window-${b.arg}")
+                    else if b.dispatch == "move" then (if b.arg == "left" || b.arg == "right" then "move-column-${b.arg}" else "move-window-${b.arg}")
+                    else if b.dispatch == "view_workspace" then "focus-workspace"
+                    else if b.dispatch == "move_workspace" then "move-window-to-workspace"
+                    else if b.dispatch == "fullscreen" then "fullscreen-window"
+                    else if b.dispatch == "floating" then "switch-focus-between-floating-and-tiling"
+                    else if b.dispatch == "mode" then "spawn" # TODO change
+                    else if b.dispatch == "resizev" then ""
+                    else if b.dispatch == "resizeh" then ""
+                    else "spawn"
+                }" = (
+                    if b.dispatch == "resizev" || b.dispatch == "resizeh" then {} 
+                    else if b.dispatch == "focus" || b.dispatch == "move" then {}
+                    else if b.dispatch == "view_workspace" || b.dispatch == "move_workspace" then [ (lib.toInt b.arg) ]
+                    else if b.arg == "" then {}
+                    else [ b.arg ]
+                );
+            }) binds);
+        in {
+            settings = {
+                binds = bindsToActions cfg.keybinds;
+ 
+                # keymode = builtins.listToAttrs (map (m: { # Doesnt exist on niri?
+                #     name = m.name;
+                #     value = {
+                #         bind = bindsToActions m.keybinds;
+                #     };
+                # }) cfg.modes );
+                #
+                _children = 
+                    (map (v: {
+                        spawn-at-startup = v;
+                    }) cfg.startup_always)
+                    ++
+                    (map (v: {
+                        spawn-at-startup = v;
+                    }) cfg.startup)
+                    ++
+                    [
+                        {
+                            window-rule = {
+                                clip-to-geometry = true;
+                                geometry-corner-radius = cfg.window.border_radius;
+                            }; 
+                        }
+                        {
+                            window-rule._children = [
+                                { match._props = { is-active=false; }; }
+                                { opacity = cfg.window.dim.inactive; }
+                            ];
+                        }
+                    ];
+
+                input = {
+                    keyboard.xkb.layout = cfg.input.keyboard.layout;
+                    touchpad = {
+                        tap = if cfg.input.mouse.tap then {} else null;
+                        natural-scroll = if cfg.input.mouse.natural_scroll then {} else null;
+                        accel-profile = if cfg.input.mouse.accel then "adaptive" else "flat";
+                    };
+                    mouse.accel-profile = if cfg.input.mouse.accel then "adaptive" else "flat";
+                };
+
+                layout = {
+                    gaps = cfg.gaps.outer;
+                    border = {
+                        width = cfg.window.border;
+                        inactive-color = cfg.colours.focused.border; 
+                        active-color = cfg.colours.focused.indicator;        
+                    };
+                };
+            };
+        };
     };
 }
 

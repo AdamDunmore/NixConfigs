@@ -16,6 +16,7 @@ in
 
         ./hyprland.nix
         ./river.nix
+        ./niri.nix
         ./mango.nix
         ./sway.nix
 

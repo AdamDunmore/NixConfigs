@@ -119,5 +119,9 @@ in
         ( mkIf config.settings.modules.home.wm.mango.enable {
             programs.mango-ext.enable = true;
         })
+
+        ( mkIf config.settings.modules.home.wm.niri.enable {
+            programs.niri.enable = true;
+        })
     ];
 }
