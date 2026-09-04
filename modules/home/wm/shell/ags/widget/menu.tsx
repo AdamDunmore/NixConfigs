@@ -53,7 +53,7 @@ export default function Menu(){
     }); setPowerProfile(powerprofiles.active_profile);
 
     return (
-        <box valign={Gtk.Align.START} halign={Gtk.Align.FILL} class="menu">
+        <box valign={Gtk.Align.START} hexpand class="menu">
             <With value={activeWindow}>
                 {(w) => {
                     switch(w) {
