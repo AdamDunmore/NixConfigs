@@ -17,7 +17,7 @@ export default function MprisItem(){
     const [cavaValues, setCavaValues] = createState<number[]>([]);
     const [isInteracting, setIsInteracting] = createState<boolean>(false);
 
-    const MAX_TITLE_LENGTH: number = 30;
+    const MAX_TITLE_LENGTH: number = 25;
     const IMAGE_SIZE: number = 300;
 
     const cava = Cava.get_default();
@@ -30,7 +30,7 @@ export default function MprisItem(){
 
     const update_track = function(player: Mpris.Player){
             setTitle(player.title.slice(0,MAX_TITLE_LENGTH)); 
-            setArtist(player.artist.slice(0,MAX_TITLE_LENGTH + 5)); 
+            setArtist(player.artist.slice(0,MAX_TITLE_LENGTH)); 
             setArtUrl(player.art_url);
             setLength(player.length);
             setPlaybackStatus(player.playback_status);
@@ -102,8 +102,8 @@ export default function MprisItem(){
                         >
                         </box>
                         <box $type="overlay" orientation={Gtk.Orientation.VERTICAL} halign={Gtk.Align.CENTER} valign={Gtk.Align.START} visible={isInteracting(i => i)}>
-                            <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label sidebar_mpris_title" label={title(t => t ?? "No Title")} />
-                            <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label sidebar_mpris_artist" label={artist(a => a ?? "No Artist")} />
+                            <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={title(t => t ?? "No Title")} />
+                            <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={artist(a => a ? `by ${a}` : "No Artist")} />
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={volume(v => ` ${Math.floor(v * 100)}%`)} />                        
                             <label halign={Gtk.Align.CENTER} class="sidebar_mpris_label" label={position(p => `${Math.floor(p/60).toString().padStart(2, "0")}:${(p % 60).toString().padStart(2, "0")}/${Math.floor(length() / 60).toString().padStart(2, "0")}:${(length() % 60).toString().padStart(2, "0")}`)} />                        
                         </box>

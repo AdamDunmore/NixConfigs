@@ -15,18 +15,23 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
 
     let scrolled: Gtk.ScrolledWindow;
     let viewport: Gtk.Viewport;
-    const buttons: Gtk.Button[] = [];
+    let buttons: Gtk.Button[] = [];
 
     createEffect(() => {
-        const index = selected();
-        const button = buttons[index];
+        const index = selected(s => ((s + 1) < buttons.length) ? s + 1 : s);
+        const button = buttons[index()];
 
         if (button) {
             viewport.scroll_to(button, null);
         }
     });
 
-    setAppsList(apps.list);
+    const startup = function(entry?: Gtk.Entry){
+        if (entry) entry.text = "";
+        setAppsList([])
+        setAppsList(apps.list);
+        setSelected(0);
+    }; startup()
 
     const open = function(app: Apps.Application){
         app.launch()
@@ -34,7 +39,7 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
     }
 
     return (
-        <box orientation={Gtk.Orientation.VERTICAL} class="sidebar_appmenu_window">
+        <box orientation={Gtk.Orientation.VERTICAL} class="sidebar_appmenu_box">
             <entry 
                 class="sidebar_appmenu_entry"
                 onActivate={() => { appsList()[selected()].launch(); close() }}
@@ -67,7 +72,8 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
                             s.grab_focus()
                         }
                         else { 
-                            s.text = "" 
+                            startup(s);
+
                         }
                     }) 
                 }}
@@ -78,7 +84,7 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
                     viewport = self.get_child() as Gtk.Viewport;
                 }}
             >
-                <box vexpand hexpand orientation={Gtk.Orientation.VERTICAL} spacing={4}>
+                <box vexpand hexpand orientation={Gtk.Orientation.VERTICAL}>
                     <For each={appsList}>
                         {(app: Apps.Application, i) => {
                             return (

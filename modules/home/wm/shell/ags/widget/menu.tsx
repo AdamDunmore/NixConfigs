@@ -53,7 +53,7 @@ export default function Menu(){
     }); setPowerProfile(powerprofiles.active_profile);
 
     return (
-        <box class="menu_container" valign={Gtk.Align.START}>
+        <box valign={Gtk.Align.START} halign={Gtk.Align.FILL} class="menu">
             <With value={activeWindow}>
                 {(w) => {
                     switch(w) {
@@ -75,14 +75,16 @@ export default function Menu(){
                             return (
                                 <box orientation={Gtk.Orientation.HORIZONTAL}>
                                     <PowerItems />
-                                    <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}>
-                                        <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
+                                    <box orientation={Gtk.Orientation.VERTICAL} spacing={5} valign={Gtk.Align.START}>
+                                        <box hexpand spacing={5}>
                                             <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
                                             <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
+                                        </box>
+                                        <box hexpand spacing={5}>
+                                            <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
                                             <MenuSplitButton icon="" callback={() => {open("system")}} />
                                         </box>
-                                        <box vexpand={true} hexpand={true} valign={Gtk.Align.START} halign={Gtk.Align.START}>
-                                            <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
+                                        <box hexpand spacing={5}>
                                             <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
                                             <MenuSplitButton icon="󱡫" callback={() => { open("mixer") }}/>
                                         </box>

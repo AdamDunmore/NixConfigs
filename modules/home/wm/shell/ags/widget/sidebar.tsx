@@ -24,9 +24,11 @@ export default function Sidebar(){
     return (
         <window visible={isWindowVisible(v => v)} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM } keymode={Astal.Keymode.ON_DEMAND}>
             <revealer class = "window" revealChild={isVisible(v => v)} transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT} transitionDuration={400} >
-                <box vexpand>
-                    <Menu />
-                    <box vexpand orientation={Gtk.Orientation.VERTICAL} spacing={8}>
+                <box vexpand spacing={5} hexpand>
+                    <box vexpand hexpand>
+                        <Menu />
+                    </box>
+                    <box vexpand halign={Gtk.Align.END} orientation={Gtk.Orientation.VERTICAL} spacing={8}>
                         <MprisItem />
                         <AppMenu app_visible={isVisible} close={() => {toggle_app(isWindowVisible, setIsWindowVisible, setIsVisible)}}/>
                     </box>

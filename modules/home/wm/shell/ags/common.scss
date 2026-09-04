@@ -23,6 +23,10 @@ window {
   background-color: rgba(0,0,0,0);
 }
 
+box {
+  border-radius: 10px;
+}
+
 button {
   all: unset;
   color: $fg;
@@ -47,6 +51,11 @@ button:active {
   background-color: $bg;
 }
 
+label {
+  border-radius: 10px;
+  padding: 5px;
+}
+
 levelbar block.filled {
   background-color: gtk-alpha($bg, 0.9);
   border: none;
@@ -57,37 +66,27 @@ levelbar block.empty {
   border: none;
 }
 
+scrollbar {
+  opacity: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
 .disabled, .disabled:hover, .disabled:active {
   opacity: 0.5;
   background-color: $bg;
 }
 
 .sidebar_mpris_label {
-  all: unset;
   background-color: gtk-alpha($bg, 0.7);
-  padding: 5px;
   margin-top: 10px;
-
-  border-radius: 5px;
 
   opacity: 0;
   transition: opacity 0.5s;
 }
 
-.sidebar_mpris_window {
-  margin-left: 10px;
-}
-
 .sidebar_mpris_window:hover .sidebar_mpris_label, .sidebar_mpris_window:hover .sidebar_mpris_media {
   opacity: 1;
-}
-
-.sidebar_mpris_art {
-  border-radius: 25px;
-}
-
-.sidebar_mpris_media {
-  opacity: 0;
 }
 
 .sidebar_mpris_media {
@@ -99,6 +98,7 @@ levelbar block.empty {
   border-radius: 45px;
   margin: 5px;
   background-color: gtk-alpha($bg, 0.2);
+  opacity: 0;
 }
 
 .sidebar_mpris_media:hover {
@@ -106,36 +106,33 @@ levelbar block.empty {
 }
 
 .sidebar_cava_box {
-  margin-left: 17px;
-  margin-right: 17px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-bottom: 5px;
 }
 
 .sidebar_cava_bar {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   background-color: gtk-alpha($base, 0.7);
 }
 
-.sidebar_mpris_title {
-  font-size: 12px;
-}
-
-.sidebar_mpris_artist {
-  font-size: 10px;
-}
-
-.sidebar_volume_label {
-  font-size: 14px;
-  padding-right: 12px;
-  padding-left: 12px;
-}
-
-.sidebar_appmenu_window {
-  padding: 5px;
+.sidebar_appmenu_box {
+  border-style: solid;
+  border-width: 2px;
+  border-color: $border;
+  border-radius: 10px;
+  background-color: gtk-alpha($base, 0.8); 
 }
 
 .sidebar_appmenu_entry {
-  margin-bottom: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
   background-color: gtk-alpha($bg, 0.2);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .sidebar_appmenu_entry:focus-within {
@@ -146,35 +143,41 @@ levelbar block.empty {
 }
 
 .sidebar_appmenu_button {
-  background-color: gtk-alpha($bg, 0.8);
+  border-radius: 0px;
+  border: none;
+  background-color: rgba(0,0,0,0);
   transition: background-color 0.5s;
 }
 
 .sidebar_appmenu_button.selected {
   color: $fg_selected;
-  background-color: gtk-alpha($bg_selected,0.8);
+  background-color: gtk-alpha($bg,0.9);
 }
 
-.menu_container {
-  min-height: 200px;
-  min-width: 480px;
+.menu {
+  background-color: rgba(0,0,0,0);
+  min-width: 300px;
+}
+
+.menu_bar {
+  margin-right: 5px;
+}
+
+.menu_list_box {
+  min-height: 400px;
 }
 
 .menu_split_button_container {
-  min-width: 150px;
-  min-height: 60px;
-
-  margin-left: 5px;
-  margin-bottom: 5px;
+  min-width: 120px;
+  min-height: 50px;
 }
 
 .menu_split_button {
   border-radius: 0px; 
-  border-color: gtk-alpha($border, 0.5);
-  font-size: 20px;
 }
 
 .menu_split_button_left {
+  font-size: 20px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-right-style: none;
@@ -188,26 +191,18 @@ levelbar block.empty {
 }
 
 .menu_button {
-  margin: 2px;
   padding-left: 12px;
   padding-right: 12px;
-  font-size: 18px; 
+  font-size: 10px; 
   min-height: 20px;
   border-color: gtk-alpha($border, 0.5);
 }
 
-.menu_power_box:hover .menu_power_button {
 
-}
-
-.menu_power_button {
-
-}
 
 .menu_notification {
   margin: 5px;
   background-color: gtk-alpha($bg, 0.4);
-  border-radius: 10px;
 }
 .menu_notification_expand {
   background-color: rgba(0,0,0,0);
@@ -218,35 +213,23 @@ levelbar block.empty {
   font-size: 12px;
 }
 
-.menu_system_label {
-  padding: 20px;
-  padding-left: auto;
-  padding-right: auto;
-}
-
 .menu_system_box {
   background-color: gtk-alpha($bg, 0.5);
-  border-radius: 10px;
   margin: 5px;
 }
 
 .menu_mixer_box {
-  border-radius: 10px;
-  padding: 10px;
-  background-color: gtk-alpha($base, 0.6);
-}
-
-.menu_mixer_bar {
-  margin: 5px;
-  padding: 10px;
-
-  border-radius: 5px;
-  min-width: 20px;
+  margin: 2px;
+  padding: 5px;
   font-size: 8px;
   background-color: gtk-alpha($bg, 0.5);
 }
 
+.menu_mixer_bar {
+  transform: rotate(180deg);
+}
+
 .menu_mixer_label {
-  min-height: 40px;
-  font-size: 8px;
+  font-size: 6px;
+  min-width: 40px;
 }

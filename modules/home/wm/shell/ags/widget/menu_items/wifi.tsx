@@ -55,7 +55,7 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
                     <button class="menu_button" valign={Gtk.Align.CENTER} halign={Gtk.Align.START} label="󰌑" onClicked={handleConnection}/>
                     <entry placeholderText={newActiveAccessPoint(ap => `${ap.ssid} password`)} hexpand={true} onNotifyText={t => setCurrentPassword(t.text)} onActivate={handleConnection}/>
                 </box>
-                <scrolledwindow vexpand={true} hexpand={true}>
+                <scrolledwindow vexpand={true} hexpand={true} class="menu_list_box">
                     <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
                         <For each={accessPoints}>
                             {(access_point: Network.AccessPoint) => {   

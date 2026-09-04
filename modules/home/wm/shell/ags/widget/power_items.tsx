@@ -7,7 +7,7 @@ export default function PowerItems(){
     let [hovered, setHovered] = createState<boolean>(false);
 
     return (
-        <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START}
+        <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START} spacing={5} class="menu_bar"
             $={(self) => {
                 const motion = new Gtk.EventControllerMotion();
 
@@ -23,7 +23,7 @@ export default function PowerItems(){
                 transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
                 transitionDuration={400}
             >
-                <box orientation={Gtk.Orientation.VERTICAL}>
+                <box orientation={Gtk.Orientation.VERTICAL} spacing={5}>
                     <button hexpand={true} onClicked={() => { execAsync("reboot") }} class="menu_button" label="󰜉" />
                     <button hexpand={true} onClicked={() => { execAsync("systemctl suspend") }} class="menu_button" label="󰤄" />
                     <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="menu_button" label="" />

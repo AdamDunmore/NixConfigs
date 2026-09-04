@@ -57,7 +57,7 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
         <box vexpand={true} hexpand={true}>
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                <scrolledwindow vexpand={true} hexpand={true}>
+                <scrolledwindow vexpand={true} hexpand={true} class="menu_list_box">
                     <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
                         <For each={history}>
                             {(n: MakoNotification) => {
@@ -65,7 +65,7 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
                                 return (
                                     <button onClicked={() => setFocused(!focused())}>
                                         <box orientation={Gtk.Orientation.VERTICAL} class="menu_notification">
-                                            <label label={n.app_name} halign={Gtk.Align.START}/>
+                                            <label label={n.app_name}/>
                                             <label class="menu_notification_content" label={n.summary} wrap wrap_mode={Pango.WrapMode.WORD_CHAR} />
                                             <label class="menu_notification_content" label={n.body} visible={focused} wrap wrap_mode={Pango.WrapMode.WORD_CHAR} />
                                         </box>

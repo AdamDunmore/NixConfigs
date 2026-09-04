@@ -36,7 +36,7 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
                         }}/>
             </MenuBar>
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                <scrolledwindow vexpand={true} hexpand={true}>
+                <scrolledwindow vexpand={true} hexpand={true} class="menu_list_box">
                     <box name="Bluetooth Box" orientation={1} spacing={4}>
                         <For each={devices}>
                             {(d: AstalBluetooth.Device) => {
