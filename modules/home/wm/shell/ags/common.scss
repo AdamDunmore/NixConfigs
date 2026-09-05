@@ -166,7 +166,7 @@ scrollbar {
 }
 
 .menu_list_box {
-  min-height: 400px;
+  min-height: 300px;
 }
 
 .menu_split_button_container {
@@ -200,7 +200,32 @@ scrollbar {
   border-color: gtk-alpha($border, 0.5);
 }
 
+.menu_calendar_box {
+  min-height: 350px;
+}
 
+.menu_calendar_container, .menu_calendar_event {
+  min-width: 220px;
+}
+
+.menu_calendar_event {
+  background-color: gtk-alpha($bg, 0.6);
+  margin-bottom: 5px;
+  transition: background-color 0.5s;
+  font-size: 12px;
+}
+
+.menu_calendar_event.selected {
+  background-color: gtk-alpha($bg, 1);
+}
+
+.menu_calendar_event.selected:hover {
+  background-color: gtk-alpha($bg, 1);
+}
+
+.menu_calendar_event:hover {
+  background-color: gtk-alpha($bg, 0.9);
+}
 
 .menu_notification {
   margin: 5px;

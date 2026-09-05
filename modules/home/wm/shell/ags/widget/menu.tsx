@@ -53,7 +53,7 @@ export default function Menu(){
     }); setPowerProfile(powerprofiles.active_profile);
 
     return (
-        <box valign={Gtk.Align.START} hexpand class="menu">
+        <box valign={Gtk.Align.START} hexpand class="menu menu_list_box">
             <With value={activeWindow}>
                 {(w) => {
                     switch(w) {
@@ -75,17 +75,15 @@ export default function Menu(){
                             return (
                                 <box orientation={Gtk.Orientation.HORIZONTAL}>
                                     <PowerItems />
-                                    <box orientation={Gtk.Orientation.VERTICAL} spacing={5} valign={Gtk.Align.START}>
-                                        <box hexpand spacing={5}>
+                                    <box orientation={Gtk.Orientation.HORIZONTAL} spacing={5} valign={Gtk.Align.START}>
+                                        <box vexpand spacing={5} orientation={Gtk.Orientation.VERTICAL}>
                                             <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
-                                            <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
-                                        </box>
-                                        <box hexpand spacing={5}>
                                             <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
-                                            <MenuSplitButton icon="" callback={() => {open("system")}} />
-                                        </box>
-                                        <box hexpand spacing={5}>
                                             <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
+                                        </box>
+                                        <box vexpand spacing={5} orientation={Gtk.Orientation.VERTICAL}>
+                                            <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
+                                            <MenuSplitButton icon="" callback={() => {open("system")}} />
                                             <MenuSplitButton icon="󱡫" callback={() => { open("mixer") }}/>
                                         </box>
                                     </box>

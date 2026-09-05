@@ -11,6 +11,7 @@ in
             gammastep 
             mpdris2
             lm_sensors
+            gcalcli
         ];
 
         systemd.user.services.mpdris2 = {
