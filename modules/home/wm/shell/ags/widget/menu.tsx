@@ -79,10 +79,12 @@ export default function Menu(){
                                         <box vexpand spacing={5} orientation={Gtk.Orientation.VERTICAL}>
                                             <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
                                             <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
+                                            <MenuSplitButton icon="󱩌" callback={() => { }}/>
                                             <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
                                         </box>
                                         <box vexpand spacing={5} orientation={Gtk.Orientation.VERTICAL}>
                                             <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
+                                            <MenuSplitButton icon="󱩌" callback={() => { execAsync("togglenight") }}/>
                                             <MenuSplitButton icon="" callback={() => {open("system")}} />
                                             <MenuSplitButton icon="󱡫" callback={() => { open("mixer") }}/>
                                         </box>
