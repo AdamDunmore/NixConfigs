@@ -8,10 +8,12 @@ import MenuBar from "../menu_bar";
 export default function Notifications({ backCallback }: { backCallback: () => void }){
     interface MakoNotification {
         id: number;
+        app_icon: string;
         app_name: string;
         summary: string;
         body: string;
         urgency: number;
+        actions: [];
     }
 
     const [ history, setHistory ] = createState<MakoNotification[]>([]);
@@ -34,15 +36,17 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
             -1,
             null
         );
-
         const h: MakoNotification[] = result.deepUnpack()[0].map((notification: any) => ({
             id: notification.id.deepUnpack(),
+            app_icon: notification["app-icon"].deep_unpack(),
             app_name: notification["app-name"].deepUnpack(),
             summary: notification.summary.deepUnpack(),
             body: notification.body.deepUnpack(),
-            urgency: notification.urgency.deepUnpack()
+            urgency: notification.urgency.deepUnpack(),
+            actions: notification.actions.deep_unpack()
         }));
         setHistory(h)
+        // console.log(history()[0].actions) // TODO test actions
     }
 
     const handler = proxy.connect(
@@ -65,7 +69,10 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
                                 return (
                                     <button onClicked={() => setFocused(!focused())}>
                                         <box orientation={Gtk.Orientation.VERTICAL} class="menu_notification">
-                                            <label label={n.app_name}/>
+                                            <box hexpand>
+                                                <image halign={Gtk.Align.START} iconName={(n.app_icon.slice(0,4) != "file") ? n.app_icon : "" }/>
+                                                <label label={n.app_name} hexpand/>
+                                            </box>
                                             <label class="menu_notification_content" label={n.summary} wrap wrap_mode={Pango.WrapMode.WORD_CHAR} />
                                             <label class="menu_notification_content" label={n.body} visible={focused} wrap wrap_mode={Pango.WrapMode.WORD_CHAR} />
                                         </box>
