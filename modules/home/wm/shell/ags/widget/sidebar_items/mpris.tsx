@@ -18,7 +18,6 @@ export default function MprisItem(){
     const [isInteracting, setIsInteracting] = createState<boolean>(false);
 
     const MAX_TITLE_LENGTH: number = 25;
-    const IMAGE_SIZE: number = 300;
 
     const cava = Cava.get_default();
     const mpris = Mpris.get_default();
@@ -77,7 +76,8 @@ export default function MprisItem(){
                     hexpand
                     class="sidebar_mpris_art"
                     css={position(p => `
-                         background: linear-gradient(
+                        min-width: 340px;
+                        background: linear-gradient(
                             to top,
                             @borders ${(p / length())* 100}%,
                             @theme_bg_color ${(p / length())* 100}%
@@ -130,9 +130,9 @@ export default function MprisItem(){
                                     setIsInteracting(true)
                                 }}
                             />
-                            <box $type="center" halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} orientation={Gtk.Orientation.VERTICAL} spacing={8}>
+                            <box $type="center" halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} orientation={Gtk.Orientation.VERTICAL} spacing={20}>
                                 <button halign={Gtk.Align.CENTER} onClicked={() => { execAsync("rmpc volume +5") }} class="button sidebar_mpris_media" label="󰝝" />
-                                <box>
+                                <box spacing={20}>
                                     <button hexpand={true} onClicked={() => { execAsync("rmpc prev") }} class="button sidebar_mpris_media" label="" />
                                     <button onClicked={() => { execAsync("rmpc togglepause") }} class="button sidebar_mpris_media" label={playbackStatus(p => p ? "" : "")} />
                                     <button hexpand={true} onClicked={() => { execAsync("rmpc next") }} class="button sidebar_mpris_media" label="" />

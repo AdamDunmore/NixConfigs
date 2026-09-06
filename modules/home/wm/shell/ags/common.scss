@@ -88,16 +88,16 @@ scrollbar {
 .sidebar_mpris_media {
   background: none;
   border: none;
-  font-size: 16px;
-  min-height: 30px;
-  min-width: 30px;
+  font-size: 24px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 45px;
-  background-color: gtk-alpha($bg, 0.2);
+  background-color: gtk-alpha($bg, 0.4);
   opacity: 0;
 }
 
 .sidebar_mpris_media:hover {
-  background-color: gtk-alpha($bg, 0.8);
+  background-color: gtk-alpha($bg, 0.6);
 }
 
 .sidebar_cava_box {
