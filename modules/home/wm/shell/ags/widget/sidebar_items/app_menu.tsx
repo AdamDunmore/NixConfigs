@@ -1,9 +1,10 @@
 import { Accessor, For, createState, createEffect } from "ags";
+import app from "ags/gtk4/app";
 import Gtk from "gi://Gtk";
 import Gdk from "gi://Gdk";
 import Apps from "gi://AstalApps"
 
-export default function AppMenu({ app_visible, close } : { app_visible: Accessor<boolean>, close: () => void }){
+export default function AppMenu({ app_visible, close, show_app } : { app_visible: Accessor<boolean>, close: () => void, show_app: () => void }){
     const apps = new Apps.Apps({
         nameMultiplier: 2,
         entryMultiplier: 0,
@@ -16,6 +17,7 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
     let scrolled: Gtk.ScrolledWindow;
     let viewport: Gtk.Viewport;
     let buttons: Gtk.Button[] = [];
+    let entry: Gtk.Entry;
 
     createEffect(() => {
         const index = selected(s => ((s + 1) < buttons.length) ? s + 1 : s);
@@ -38,6 +40,15 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
         close()
     }
 
+    app.connect("request", (app, [cmd, arg, ...rest], response) => {
+        if (cmd === "app_menu") {
+            show_app()
+            startup()
+            entry.grab_focus()
+            response("ok")
+        }
+    })
+
     return (
         <box orientation={Gtk.Orientation.VERTICAL} class="sidebar_appmenu_box">
             <entry 
@@ -45,6 +56,7 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
                 onActivate={() => { appsList()[selected()].launch(); close() }}
                 onChanged={({ text }) => { const list = apps.fuzzy_query(text); setAppsList(list); setSelected(0)}} 
                 $={(s) => { 
+                    entry = s;
                     const controller = new Gtk.EventControllerKey();
 
                     controller.connect("key-pressed", (_, keyval) => {

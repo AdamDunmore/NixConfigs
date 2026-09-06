@@ -32,7 +32,7 @@ export default function Sidebar(){
                     </box>
                     <box vexpand orientation={Gtk.Orientation.HORIZONTAL} spacing={5} homogeneous>
                         <Calendar />
-                        <AppMenu app_visible={isVisible} close={() => {toggle_app(isWindowVisible, setIsWindowVisible, setIsVisible)}}/>
+                        <AppMenu app_visible={isVisible} close={() => {toggle_app(isWindowVisible, setIsWindowVisible, setIsVisible)}} show_app={() => { setIsVisible(true); setIsWindowVisible(true) }}/>
                     </box>
                 </box>
             </revealer>
