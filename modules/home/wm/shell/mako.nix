@@ -12,7 +12,7 @@ in
             settings = {
                 actions = true;
                 anchor = "top-left";
-                background-color = "${colours.blue.one}DD";
+                background-color = "${colours.blue.one}AA";
                 border-color = "${colours.blue.two}FF";
                 border-radius = 10;
                 border-size = 1;

@@ -14,7 +14,7 @@ let
             new_profile=performance 
         fi
 
-        notify-send "Power Profile Changed" $new_profile 
+        notify-send "Power Profile Changed" "New profile: $new_profile" 
     '';
     inherit (lib) mkIf;
 in

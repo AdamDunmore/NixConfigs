@@ -152,7 +152,7 @@ in
             };
             gaps = {
                 inner = 5;
-                outer = 4;
+                outer = 10;
                 smartGaps = false;
                 smartBorders = false;
             };
