@@ -112,13 +112,19 @@ export class Event {
     title: string
     start_date: EventDate
     end_date: EventDate
+    location: string
+    calendar: string
+    email: string
     start_time?: EventTime
     end_time?: EventTime
 
-    constructor(title: string, start_date: EventDate, end_date: EventDate, start_time?: EventTime, end_time?: EventTime){
+    constructor(title: string, start_date: EventDate, end_date: EventDate, location: string, calendar: string, email: string, start_time?: EventTime, end_time?: EventTime){
        this.title = title; 
        this.start_date = start_date;
        this.end_date = end_date;
+       this.location = location;
+       this.calendar = calendar;
+       this.email = email;
        this.start_time = start_time;
        this.end_time = end_time;
     }
@@ -134,7 +140,7 @@ const getEvents = function(){
     const formatDate = (date: Date) =>
         `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 
-    execAsync(`gcalcli agenda --tsv "${formatDate(start)}" "${formatDate(end)}"`)
+    execAsync(`gcalcli agenda --tsv --details calendar --details location --details email "${formatDate(start)}" "${formatDate(end)}"`)
         .then(v => { 
             const events: Event[] = v
                 .trim()
@@ -142,7 +148,15 @@ const getEvents = function(){
                 .map(row => row.split('\t'))
                 .slice(1)
                 .map(event => {
-                    return new Event(event[4], new EventDate(event[2]), new EventDate(event[0]), new EventTime(event[1]), new EventTime(event[3]))
+                    return new Event(
+                        event[4], //Title
+                        new EventDate(event[0]), //Start date
+                        new EventDate(event[2]), //End date
+                        event[5], // Location
+                        event[6], // Calendar
+                        event[7], // Email
+                        new EventTime(event[1]), // Start time
+                        new EventTime(event[3])) //End time
                 })
 
             setEvents(events)
@@ -162,17 +176,27 @@ export default function Calendar(){
                         <button class="menu_calendar_sync" label=" Sync" onClicked={getEvents}/>
                         <For each={events}>
                             { (event: Event) => {
+                                const [isInteracting, setIsInteracting] = createState<boolean>(false)
                                 return (
-                                    <box hexpand orientation={Gtk.Orientation.VERTICAL} class={`menu_calendar_event ${event.start_date.isToday() ? "selected" : "" } ${event.start_date.isUpcoming() ? "upcoming" : ""}`}>
-                                        <box hexpand>
-                                            <label label={`${event.start_date.isToday() ? "󰃶 " : (event.start_date.isUpcoming() ? "󰨳" : "")} ${event.title}`} wrap wrapMode={Pango.WrapMode.WORD_CHAR} maxWidthChars={25}/>
+                                    <button onClicked={_ => setIsInteracting(!isInteracting())} class={isInteracting(i => {
+                                        const base_class = "menu_calendar_event ";
+                                        return (event.start_date.isToday() || i) ? base_class + "selected" : base_class
+                                    })}>
+                                        <box hexpand orientation={Gtk.Orientation.VERTICAL}>
+                                            <box hexpand>
+                                                <label label={`${event.start_date.isToday() ? "󰃶 " : (event.start_date.isUpcoming() ? "󰨳" : "")} ${event.title}`} wrap wrapMode={Pango.WrapMode.WORD_CHAR} maxWidthChars={25}/>
+                                            </box>
+                                            <box hexpand>
+                                                <label visible={(event.start_date.isValid() && event.end_date.isValid())} label={`${event.start_date.toStr()}${(event.start_date.toStr() != event.end_date.toStr()) ? ` - ${event.end_date.toStr()}` : ""}`} />
+                                                <box hexpand />
+                                                <label halign={Gtk.Align.END} visible={(event.start_time?.isValid() && event.end_time?.isValid())} label={`${event.start_time?.toStr()}-${event.end_time?.toStr()}`} />
+                                            </box>
+                                            <box hexpand visible={isInteracting}>
+                                                <label visible={event.location != ""}label={` ${event.location}`}/>
+                                                <label visible={event.calendar != event.email} label={"󰻗 " + event.calendar} />
+                                            </box>
                                         </box>
-                                        <box hexpand>
-                                            <label visible={(event.start_date.isValid() && event.end_date.isValid())} label={`${event.start_date.toStr()}${(event.start_date.toStr() != event.end_date.toStr()) ? ` - ${event.end_date.toStr()}` : ""}`} />
-                                            <box hexpand />
-                                            <label halign={Gtk.Align.END} visible={(event.start_time?.isValid() && event.end_time?.isValid())} label={`${event.start_time?.toStr()}-${event.end_time?.toStr()}`} />
-                                        </box>
-                                    </box>
+                                    </button>
                                 )
                             }}
                         </For>
