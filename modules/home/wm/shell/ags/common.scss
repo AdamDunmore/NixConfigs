@@ -229,6 +229,11 @@ scrolledwindow {
   border-radius: 0px;
 }
 
+.menu_calendar_event.upcoming {
+  background-color: gtk-alpha($bg, 0.5);
+  border-radius: 0px;
+}
+
 .menu_notification {
   margin: 5px;
   background-color: gtk-alpha($bg, 0.4);

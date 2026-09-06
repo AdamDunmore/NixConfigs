@@ -60,6 +60,20 @@ export class EventDate {
             this.year == today.getFullYear()
         )
     }
+
+    public isUpcoming(){
+        const today = new Date();
+        const nextWeek = new Date();
+        nextWeek.setDate(today.getDate() + 7)
+        const event = new Date();
+        event.setDate(this.day)
+        event.setMonth(Number(this.month) - 1)
+        event.setFullYear(this.year)
+        return (
+            event.getTime() > today.getTime() &&
+            event.getTime() < nextWeek.getTime()
+        )
+    }
 }
 
 export class EventTime {
@@ -149,9 +163,9 @@ export default function Calendar(){
                         <For each={events}>
                             { (event: Event) => {
                                 return (
-                                    <box hexpand orientation={Gtk.Orientation.VERTICAL} class={`menu_calendar_event ${event.start_date.isToday() ? "selected" : "" }`}>
+                                    <box hexpand orientation={Gtk.Orientation.VERTICAL} class={`menu_calendar_event ${event.start_date.isToday() ? "selected" : "" } ${event.start_date.isUpcoming() ? "upcoming" : ""}`}>
                                         <box hexpand>
-                                            <label label={`${event.start_date.isToday() ? "󰃶 " : ""} ${event.title}`} wrap wrapMode={Pango.WrapMode.WORD_CHAR} maxWidthChars={25}/>
+                                            <label label={`${event.start_date.isToday() ? "󰃶 " : (event.start_date.isUpcoming() ? "󰨳" : "")} ${event.title}`} wrap wrapMode={Pango.WrapMode.WORD_CHAR} maxWidthChars={25}/>
                                         </box>
                                         <box hexpand>
                                             <label visible={(event.start_date.isValid() && event.end_date.isValid())} label={`${event.start_date.toStr()}${(event.start_date.toStr() != event.end_date.toStr()) ? ` - ${event.end_date.toStr()}` : ""}`} />
