@@ -2,7 +2,23 @@ import { Accessor, For, createState, createEffect } from "ags";
 import app from "ags/gtk4/app";
 import Gtk from "gi://Gtk";
 import Gdk from "gi://Gdk";
+import GLib from "gi://GLib";
 import Apps from "gi://AstalApps"
+import { execAsync } from "ags/process";
+
+export class Command {
+    name: string
+    command: string
+
+    constructor(name: string, command: string){
+        this.name = name;
+        this.command = command;
+    }
+
+    launch(){
+        execAsync(this.command)
+    }
+}
 
 export default function AppMenu({ app_visible, close, show_app } : { app_visible: Accessor<boolean>, close: () => void, show_app: () => void }){
     const apps = new Apps.Apps({
@@ -11,7 +27,15 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
         executableMultiplier: 2,
     })
 
-    const [appsList, setAppsList] = createState<Apps.Application[]>([]);
+    const commands = [ // TODO move to something nix configurable
+        { name: "⏻ shutdown", command: "showdown now" },
+        { name: "󰜉 reboot", command: "reboot" },
+        { name: "󰤄 sleep", command: "systemctl suspend" },
+        { name: " lock", command: "hyprlock" }, // TODO change to system default
+        { name: "󰍃 logout", command: `pkill -f ${GLib.getenv("XDG_CURRENT_DESKTOP")}` },
+    ];
+
+    const [appsList, setAppsList] = createState<Apps.Application[] | Command[]>([]);
     const [selected, setSelected] = createState<number>(0);
 
     let scrolled: Gtk.ScrolledWindow;
@@ -28,6 +52,19 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
         }
     });
 
+    const fuzzyMatch = (value: string, query: string) => {
+        if (!query) return true
+
+        let i = 0
+
+        for (const char of value.toLowerCase()) {
+            if (char === query[i].toLowerCase()) i++
+            if (i === query.length) return true
+        }
+
+        return false
+    }
+
     const startup = function(entry?: Gtk.Entry){
         if (entry) entry.text = "";
         setAppsList([])
@@ -35,7 +72,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
         setSelected(0);
     }; startup()
 
-    const open = function(app: Apps.Application){
+    const open = function(app: Apps.Application | Command){
         app.launch()
         close()
     }
@@ -54,7 +91,13 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
             <entry 
                 class="sidebar_appmenu_entry"
                 onActivate={() => { appsList()[selected()].launch(); close() }}
-                onChanged={({ text }) => { const list = apps.fuzzy_query(text); setAppsList(list); setSelected(0)}} 
+                onChanged={({ text }) => { 
+                    const list: Apps.Application[] | Command[] = (text.slice(0,1) != ":") ? apps.fuzzy_query(text) : commands
+                            .map(command => new Command(command.name, command.command))
+                            .filter(v => fuzzyMatch(v.name, text.slice(1)))
+                    setAppsList(list); 
+                    setSelected(0)
+                }} 
                 $={(s) => { 
                     entry = s;
                     const controller = new Gtk.EventControllerKey();
@@ -99,7 +142,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
             >
                 <box vexpand hexpand orientation={Gtk.Orientation.VERTICAL}>
                     <For each={appsList}>
-                        {(app: Apps.Application, i) => {
+                        {(app: Apps.Application | Command, i) => {
                             return (
                                 <button 
                                     $={(self) => {
@@ -111,7 +154,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                                     class={selected(s => s == i() ? "sidebar_appmenu_button selected" : "sidebar_appmenu_button")}
                                 >
                                     <box spacing={4} hexpand>
-                                        <image icon_name={app.icon_name} />
+                                        <image icon_name={app.icon_name ?? ""} />
                                         <label label={app.name.slice(0, 28)} hexpand halign={Gtk.Align.START}/>
                                     </box>
                                 </button>
