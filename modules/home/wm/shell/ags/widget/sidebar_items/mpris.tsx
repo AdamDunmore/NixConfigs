@@ -17,7 +17,7 @@ export default function MprisItem(){
     const [cavaValues, setCavaValues] = createState<number[]>([]);
     const [isInteracting, setIsInteracting] = createState<boolean>(false);
 
-    const MAX_TITLE_LENGTH: number = 25;
+    const MAX_TITLE_LENGTH: number = 35;
 
     const cava = Cava.get_default();
     const mpris = Mpris.get_default();
@@ -29,7 +29,7 @@ export default function MprisItem(){
 
     const update_track = function(player: Mpris.Player){
             setTitle(player.title.slice(0,MAX_TITLE_LENGTH)); 
-            setArtist(player.artist.slice(0,MAX_TITLE_LENGTH)); 
+            setArtist(player.artist.slice(0,MAX_TITLE_LENGTH - 5)); 
             setArtUrl(player.art_url);
             setLength(player.length);
             setPlaybackStatus(player.playback_status);

@@ -11,7 +11,6 @@ import System from "./menu_items/system.tsx";
 import Wifi from "./menu_items/wifi.tsx";
 import Notifications from "./menu_items/notifications.tsx";
 import Mixer from "./menu_items/mixer.tsx";
-import PowerItems from "./power_items.tsx";
 
 export default function Menu(){
     const bluetooth: AstalBluetooth.Bluetooth = AstalBluetooth.get_default();
@@ -74,7 +73,7 @@ export default function Menu(){
                         default:
                             return (
                                 <box orientation={Gtk.Orientation.HORIZONTAL} vexpand class="menu menu_container">
-                                    <PowerItems />
+
                                     <box orientation={Gtk.Orientation.HORIZONTAL} spacing={5} vexpand class="menu_button_container">
                                         <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START} spacing={5}>
                                             <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>

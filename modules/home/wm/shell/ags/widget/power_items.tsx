@@ -17,17 +17,17 @@ export default function PowerItems(){
                 self.add_controller(motion);
             }}
         >
-            <button hexpand={true} onClicked={() => { execAsync("shutdown now") }} class="menu_button" label="⏻" />
+            <button onClicked={() => { execAsync("shutdown now") }} class="menu_button" label="⏻" />
             <revealer
                 revealChild={hovered}
                 transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
                 transitionDuration={400}
             >
                 <box orientation={Gtk.Orientation.VERTICAL} spacing={5}>
-                    <button hexpand={true} onClicked={() => { execAsync("reboot") }} class="menu_button" label="󰜉" />
-                    <button hexpand={true} onClicked={() => { execAsync("systemctl suspend") }} class="menu_button" label="󰤄" />
-                    <button hexpand={true} onClicked={() => { execAsync("hyprlock") }} class="menu_button" label="" />
-                    <button hexpand={true} onClicked={() => { execAsync(["pkill", "-f", GLib.getenv("XDG_CURRENT_DESKTOP") ?? ""]) }} class="menu_button" label="󰍃" />
+                    <button onClicked={() => { execAsync("reboot") }} class="menu_button" label="󰜉" />
+                    <button onClicked={() => { execAsync("systemctl suspend") }} class="menu_button" label="󰤄" />
+                    <button onClicked={() => { execAsync("hyprlock") }} class="menu_button" label="" />
+                    <button onClicked={() => { execAsync(["pkill", "-f", GLib.getenv("XDG_CURRENT_DESKTOP") ?? ""]) }} class="menu_button" label="󰍃" />
                 </box>
             </revealer>
         </box>
