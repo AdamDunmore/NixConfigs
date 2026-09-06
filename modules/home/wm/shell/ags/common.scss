@@ -16,11 +16,7 @@ window {
 }
 
 .window {
-  min-width: 200px;
-  margin: 10px;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: rgba(0,0,0,0);
+  padding: 10px;
 }
 
 box {
@@ -70,6 +66,11 @@ scrollbar {
   opacity: 0;
   min-width: 0;
   min-height: 0;
+}
+
+scrolledwindow {
+  background-color: gtk-alpha($base, 0.5);
+  border-radius: 10px;
 }
 
 .disabled, .disabled:hover, .disabled:active {
@@ -123,6 +124,7 @@ scrollbar {
   border-color: $border;
   border-radius: 10px;
   background-color: gtk-alpha($base, 0.8); 
+  min-width: 300px;
 }
 
 .sidebar_appmenu_entry {
@@ -158,8 +160,14 @@ scrollbar {
   margin: 0px;
   padding: 0px;
   background-color: rgba(0,0,0,0);
-  min-width: 300px;
+  min-width: 260px;
 }
+
+.menu_button_container {
+  background-color: gtk-alpha($base, 0.5);
+  border-radius: 10px;
+
+} 
 
 .menu_bar {
   margin-right: 5px;
@@ -170,6 +178,7 @@ scrollbar {
 }
 
 .menu_split_button_container {
+  margin-top: 5px;
   min-width: 120px;
   min-height: 50px;
 }
@@ -204,27 +213,20 @@ scrollbar {
   min-height: 350px;
 }
 
-.menu_calendar_container, .menu_calendar_event {
-  min-width: 220px;
+.menu_calendar_sync {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: none;
 }
 
 .menu_calendar_event {
-  background-color: gtk-alpha($bg, 0.6);
-  margin-bottom: 5px;
-  transition: background-color 0.5s;
+  transition: background-color 0.5s border-radius 0.5s;
   font-size: 12px;
 }
 
-.menu_calendar_event.selected {
+.menu_calendar_event.selected, .menu_calendar_event:hover {
   background-color: gtk-alpha($bg, 1);
-}
-
-.menu_calendar_event.selected:hover {
-  background-color: gtk-alpha($bg, 1);
-}
-
-.menu_calendar_event:hover {
-  background-color: gtk-alpha($bg, 0.9);
+  border-radius: 0px;
 }
 
 .menu_notification {

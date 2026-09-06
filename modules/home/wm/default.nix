@@ -174,8 +174,8 @@ in
             };
 
             window = {
-                border = 2;
-                border_radius = 5;
+                border = 1;
+                border_radius = 10;
                 dim = {
                     inactive = 0.8;
                 };

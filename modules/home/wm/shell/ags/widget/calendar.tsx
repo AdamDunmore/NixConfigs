@@ -139,14 +139,13 @@ const getEvents = function(){
 export default function Calendar(){
 
     return (
-        <box halign={Gtk.Align.END} class="menu menu_calendar_box" spacing={5}>
-            <box valign={Gtk.Align.START} halign={Gtk.Align.END}>
-                <button class="menu_button" label="" onClicked={getEvents}/>
-            </box>
+        <box hexpand class="menu menu_calendar_box" spacing={5}>
             <box orientation={Gtk.Orientation.VERTICAL} class="menu_calendar_container">
                 <label visible={events(e => e.length > 0 ? false : true)} label={"No connected to Google Calendar \n Please authenticate gcalcli"} /> 
+                
                 <scrolledwindow>
                     <box class="menu_list_box" orientation={Gtk.Orientation.VERTICAL} vexpand>
+                        <button class="menu_calendar_sync" label=" Sync" onClicked={getEvents}/>
                         <For each={events}>
                             { (event: Event) => {
                                 return (

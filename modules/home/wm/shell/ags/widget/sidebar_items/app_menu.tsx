@@ -79,6 +79,7 @@ export default function AppMenu({ app_visible, close } : { app_visible: Accessor
                 }}
             />
             <scrolledwindow vexpand hexpand 
+                css="padding: 0px;"
                 $={(self) => {
                     scrolled = self;
                     viewport = self.get_child() as Gtk.Viewport;

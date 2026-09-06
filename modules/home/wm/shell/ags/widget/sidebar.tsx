@@ -7,6 +7,7 @@ import MprisItem from "./sidebar_items/mpris.tsx";
 import AppMenu from "./sidebar_items/app_menu.tsx";
 import Menu from "./menu.tsx";
 import Calendar from "./calendar.tsx";
+import PowerItems from "./power_items.tsx";
 
 import { toggle_app } from "../scripts/window_managment.ts";
 
@@ -25,13 +26,14 @@ export default function Sidebar(){
     return (
         <window visible={isWindowVisible(v => v)} name="sidebar" $={(self) => app.add_window(self)} anchor={TOP | RIGHT | BOTTOM } keymode={Astal.Keymode.ON_DEMAND}>
             <revealer class = "window" revealChild={isVisible(v => v)} transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT} transitionDuration={400} >
-                <box vexpand spacing={5} hexpand>
-                    <box vexpand halign={Gtk.Align.END} orientation={Gtk.Orientation.VERTICAL}>
+                <PowerItems />
+                <box vexpand spacing={5} orientation={Gtk.Orientation.VERTICAL}>
+                    <box vexpand orientation={Gtk.Orientation.HORIZONTAL} spacing={5}>
                         <Menu />
-                        <Calendar />
-                    </box>
-                    <box vexpand halign={Gtk.Align.END} orientation={Gtk.Orientation.VERTICAL} spacing={8}>
                         <MprisItem />
+                    </box>
+                    <box vexpand orientation={Gtk.Orientation.HORIZONTAL} spacing={5}>
+                        <Calendar />
                         <AppMenu app_visible={isVisible} close={() => {toggle_app(isWindowVisible, setIsWindowVisible, setIsVisible)}}/>
                     </box>
                 </box>
