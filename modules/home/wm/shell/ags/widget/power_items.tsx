@@ -7,7 +7,7 @@ export default function PowerItems(){
     let [hovered, setHovered] = createState<boolean>(false);
 
     return (
-        <box orientation={Gtk.Orientation.VERTICAL} spacing={5} class="menu_bar"
+        <box orientation={Gtk.Orientation.VERTICAL} spacing={5} class="menu_bar" valign={Gtk.Align.START}
             $={(self) => {
                 const motion = new Gtk.EventControllerMotion();
 

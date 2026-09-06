@@ -68,11 +68,6 @@ scrollbar {
   min-height: 0;
 }
 
-scrolledwindow {
-  background-color: gtk-alpha($base, 0.5);
-  border-radius: 10px;
-}
-
 .disabled, .disabled:hover, .disabled:active {
   opacity: 0.5;
   background-color: $bg;
@@ -123,7 +118,7 @@ scrolledwindow {
   border-color: $border;
   border-radius: 10px;
   background-color: gtk-alpha($base, 0.8); 
-  min-width: 300px;
+  min-width: 250px;
 }
 
 .sidebar_appmenu_entry {
@@ -158,15 +153,13 @@ scrolledwindow {
 .menu {
   margin: 0px;
   padding: 0px;
-  background-color: rgba(0,0,0,0);
-  min-width: 260px;
+  background-color: gtk-alpha($bg, 0.4);
+
 }
 
-.menu_button_container {
-  background-color: gtk-alpha($base, 0.5);
-  border-radius: 10px;
-
-} 
+.menu_container {
+  padding: 5px;
+}
 
 .menu_bar {
   margin-right: 5px;
@@ -177,7 +170,6 @@ scrolledwindow {
 }
 
 .menu_split_button_container {
-  margin-top: 5px;
   min-width: 120px;
   min-height: 50px;
 }

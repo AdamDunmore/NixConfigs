@@ -66,7 +66,7 @@ export default function MprisItem(){
         setCavaValues(cava.get_values());
     })
     return (
-        <box halign={Gtk.Align.CENTER} class="sidebar_mpris_window">
+        <box hexpand class="sidebar_mpris_window">
             <Gtk.EventControllerMotion
                 onLeave={() => {
                     setIsInteracting(false)
@@ -82,8 +82,6 @@ export default function MprisItem(){
                             @borders ${(p / length())* 100}%,
                             @theme_bg_color ${(p / length())* 100}%
                         );
-                        min-width: ${IMAGE_SIZE}px;
-                        min-height: ${IMAGE_SIZE}px;
                     `)}
                 />
 
