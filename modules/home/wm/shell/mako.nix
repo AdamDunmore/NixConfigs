@@ -24,12 +24,7 @@ in
                 height = 300;
                 icons = true;
                 icon-border-radius=10;
-                ignore-timeout = true;
-                margin = "10,10,10,10";
-                max-icon-size = 64;
-                padding = "5,5,5,5";
-                text-color = "${colours.white.one}";
-                width = 400;
+                icon-path = "${config.gtk.iconTheme.package}/share/icons/${config.gtk.iconTheme.name}";
             };
         };
     };

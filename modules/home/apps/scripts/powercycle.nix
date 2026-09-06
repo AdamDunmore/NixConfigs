@@ -7,14 +7,17 @@ let
         if [[ $profile = "performance" ]]; then
             powerprofilesctl set power-saver
             new_profile=power-saver 
+            icon=󱧥
         elif [[ $profile = "power-saver" ]]; then 
             powerprofilesctl set performance 
             new_profile=performance 
+            icon=
         else
             new_profile=performance 
+            icon=
         fi
 
-        notify-send "Power Profile Changed" "New profile: $new_profile" 
+        notify-send "$icon Power Profile Changed" "New profile: $new_profile" 
     '';
     inherit (lib) mkIf;
 in

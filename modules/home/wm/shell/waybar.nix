@@ -49,11 +49,11 @@ in
                             critical = 15;
                         };
                         events = {
-                            on-discharging-warning = "notify-send -u normal 'Low Battery' 'Please charge soon' & powerprofilesctl set power-saver";
-                            on-discharging-critical = "notify-send -u normal 'Battery Critical' 'Device must be charged' & powerprofilesctl set power-saver";
-                            on-charging-100 = "notify-send -u normal 'Battery Full' 'Remove from charger to preserve battery health'";
-                            on-discharging = "notify-send -u normal 'Power Switch' 'Charger removed'";
-                            on-charging = ''notify-send -u normal 'Power Switch' 'Device now charging' && powerprofilesctl set performance'';
+                            on-discharging-warning = "notify-send -u normal '󰁽 Low Battery' 'Please charge soon' & powerprofilesctl set power-saver";
+                            on-discharging-critical = "notify-send -u normal '󰁻 Battery Critical' 'Device must be charged' & powerprofilesctl set power-saver";
+                            on-charging-100 = "notify-send -u normal '󰁹 Battery Full' 'Remove from charger to preserve battery health'";
+                            on-discharging = "notify-send -u normal '󰚦 Power Switch' 'Charger removed'";
+                            on-charging = ''notify-send -u normal '󰚥 Power Switch' 'Device now charging' && powerprofilesctl set performance'';
                         };
                     };
 
