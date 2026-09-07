@@ -18,7 +18,7 @@ in
                     height = 20;
                     spacing = 5;
                     margin-top = 5;
-                    margin-bottom = 5;
+                    # margin-bottom = 5;
                     fixed-center = true;
 
                     modules-left = [ "custom/margin" "niri/workspaces" "sway/workspaces" "mango/workspaces" "custom/margin" ];
