@@ -15,15 +15,16 @@ in
                 mainBar = {
                     layer = "top";
                     position = "top";
+                    fixed-center = true;
                     height = 20;
                     spacing = 5;
                     margin-top = 5;
-                    # margin-bottom = 5;
-                    fixed-center = true;
+                    margin-left = 10;
+                    margin-right = 10;
 
-                    modules-left = [ "custom/margin" "niri/workspaces" "sway/workspaces" "mango/workspaces" "custom/margin" ];
+                    modules-left = [ "niri/workspaces" "sway/workspaces" "mango/workspaces" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" "custom/margin" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" ];
 
                     "backlight" = {
                         format = "{icon} {percent}%";
@@ -85,10 +86,6 @@ in
             };
             style = ''
                 window#waybar {
-                    background-color: rgba(0,0,0,0);
-                }
-
-                #custom-margin {
                     background-color: rgba(0,0,0,0);
                 }
 
