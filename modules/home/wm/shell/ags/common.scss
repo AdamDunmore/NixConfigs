@@ -86,8 +86,6 @@ scrollbar {
   background: none;
   border: none;
   font-size: 24px;
-  min-width: 50px;
-  min-height: 50px;
   border-radius: 45px;
   background-color: gtk-alpha($bg, 0.4);
   opacity: 0;
@@ -116,7 +114,6 @@ scrollbar {
   border-color: $border;
   border-radius: 10px;
   background-color: gtk-alpha($base, 0.8); 
-  min-width: 250px;
 }
 
 .sidebar_appmenu_entry {
@@ -163,10 +160,6 @@ scrollbar {
   margin-right: 5px;
 }
 
-.menu_list_box {
-  min-height: 300px;
-}
-
 .menu_split_button_container {
   min-width: 120px;
   min-height: 50px;
@@ -200,7 +193,6 @@ scrollbar {
 
 .menu_calendar_box {
   padding: 0px;
-  min-height: 350px;
 }
 
 .menu_calendar_sync {

@@ -61,7 +61,7 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
         <box vexpand={true} hexpand={true}>
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
-                <scrolledwindow vexpand={true} hexpand={true} class="menu_list_box">
+                <scrolledwindow vexpand={true} hexpand={true}>
                     <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
                         <For each={history}>
                             {(n: MakoNotification) => {

@@ -87,7 +87,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
     })
 
     return (
-        <box orientation={Gtk.Orientation.VERTICAL} class="sidebar_appmenu_box">
+        <box orientation={Gtk.Orientation.VERTICAL} class="sidebar_appmenu_box" vexpand>
             <entry 
                 class="sidebar_appmenu_entry"
                 onActivate={() => { appsList()[selected()].launch(); close() }}

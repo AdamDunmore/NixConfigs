@@ -22,7 +22,7 @@ export default function Mixer({ backCallback }: { backCallback: () => void }){
         <box vexpand={true} hexpand={true}>
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.HORIZONTAL} hexpand={true} vexpand={true}>
-                <scrolledwindow vexpand={true} hexpand={true} class="menu_list_box">
+                <scrolledwindow vexpand={true} hexpand={true}>
                     <box orientation={Gtk.Orientation.VERTICAL} spacing={4} vexpand={true}>
                         <For each={streams}>
                             {(s) => {

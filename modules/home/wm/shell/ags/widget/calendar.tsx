@@ -170,7 +170,7 @@ export default function Calendar(){
         <box hexpand class="menu menu_calendar_box" spacing={5}>
             <box orientation={Gtk.Orientation.VERTICAL} class="menu_calendar_container" hexpand>    
                 <scrolledwindow>
-                    <box class="menu_list_box" orientation={Gtk.Orientation.VERTICAL} vexpand>
+                    <box orientation={Gtk.Orientation.VERTICAL} vexpand>
                         <button class="menu_calendar_sync" label=" Sync" onClicked={getEvents}/>
                         <button visible={events(e => e.length > 0 ? false : true)} label={"No connected to Google Calendar \n Please authenticate gcalcli"} class="menu_calendar_event" css="font-size: 12px;"/> 
                         <For each={events}>
