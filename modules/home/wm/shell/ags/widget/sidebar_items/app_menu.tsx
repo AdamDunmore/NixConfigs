@@ -28,22 +28,25 @@ export class Nixpkg extends MenuEntry {
     full_name: string
     version: string
     programs: string[]
+    description: string
 
-    constructor(name: string, full_name: string, version: string, programs: string[]){
+    constructor(name: string, full_name: string, version: string, programs: string[], description: string){
         super(name, "")
         this.full_name = full_name;
         this.version = version;
         this.programs = programs;
+        this.description = description;
     }
 
-    launch(){ this.install() }
-    install() {
+    launch(){ 
         execAsync([
             "notify-send",
             "Package Info",
             [ this.full_name,
             this.version,
-            this.programs.join(" ") ].join("\n"),
+            this.programs.join(" "),
+            this.description
+            ].join("\n"),
             "-A",
             "install=Install App",
             "-A",
@@ -136,10 +139,6 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                 class="sidebar_appmenu_entry"
                 onActivate={() => { appsList()[selected()].launch(); close() }}
                 onChanged={({ text }) => { 
-                    // const list: Apps.Application[] | Command[] = (text.slice(0,1) == ":") ? commands : ((text.slice(0,1) == "@") ? [] : apps.fuzzy_query(text))                            
-                    //         .map(command => new Command(command.name, command.command))
-                    //         .filter(v => fuzzyMatch(v.name, text.slice(1)))
-
                     let list: Apps.Application[] | Command[] | Nixpkg[];
                     switch (text.slice(0, 1)) {
                         case ":":
@@ -149,16 +148,13 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                             break
 
                         case "@":
-                            // list = commands
-                            //     .map(command => new Command(command.name, command.command))
-                            //     .filter(v => fuzzyMatch(v.name, text.slice(1)))
                             if(text.length < 2) return
                             list = [];
                             execAsync(`nh search -j "${text.slice(1)}"`)
                                 .then(pkgs_s => {
                                     const pkgs_json = JSON.parse(pkgs_s)["results"]
                                     for (let pkg of pkgs_json){
-                                        list.push(new Nixpkg(pkg.package_pname, pkg.package_attr_name, pkg.package_pversion, pkg.package_programs))
+                                        list.push(new Nixpkg(pkg.package_pname, pkg.package_attr_name, pkg.package_pversion, pkg.package_programs, pkg.package_description))
                                     }
                                     setAppsList(list)
                                     setSelected(0)
