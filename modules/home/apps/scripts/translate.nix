@@ -1,16 +1,19 @@
 { pkgs, lib, config, ... }:
 
 let
-    trans = pkgs.writeShellScriptBin "translate" ''
-        IMGDIR="/tmp/translate-scr"
+    tr = pkgs.writeShellScriptBin "translate" ''
+        IMGDIR="/tmp/trlate-scr"
 
         TEXT=""
         TRANSLATED=""
 
-        grim -g "$(${pkgs.slurp}/bin/slurp)" $IMGDIR
+        grim -g "$(${pkgs.slurp}/bin/slurp)" "$IMGDIR"
         TEXT=$(tesseract "$IMGDIR" - -l eng+rus+ara 2>/dev/null)
-        TRANSLATED=$(trans -brief :en "$TEXT")
-        notify-send "Translated" "$TRANSLATED"
+        TRANSLATED=$(${pkgs.translate-shell}/bin/trans -brief :en "$TEXT")
+        action=$(notify-send "Translated" "$TRANSLATED" -A "copy=Copy Translation" --wait)
+        if [ "$action" = "copy" ]; then
+            wl-copy "$TRANSLATED"
+        fi
     '';
     cfg = config.settings.modules.home.apps.scripts;
     inherit (lib) mkIf;
@@ -21,12 +24,12 @@ in
             pkgs.tesseract
             pkgs.translate-shell
 
-            trans 
+            tr 
         ];
         xdg.desktopEntries.translate = {
-            name = "trans";
+            name = "tr";
             genericName = "Translate";
-            exec = "${trans}/bin/translate";
+            exec = "${tr}/bin/translate";
             terminal = false;
         }; 
     };
