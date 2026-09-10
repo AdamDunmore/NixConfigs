@@ -21,6 +21,10 @@ in
                     border: none;
                 }
 
+                image {
+                    border-radius: 10px;
+                }
+
                 button:hover{
                     background-color: alpha(@theme_bg_color, 0.9);
                 }
@@ -28,6 +32,7 @@ in
                 .notification {
                     background-color: alpha(@theme_base_color, 0.7);
                     font-size: 10px; 
+                    padding: 5px;
                 }
 
                 .notification:hover, .notification-default-action:hover {
