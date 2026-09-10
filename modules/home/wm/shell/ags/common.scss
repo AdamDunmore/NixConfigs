@@ -70,6 +70,10 @@ scrollbar {
   background-color: $bg;
 }
 
+.col_1 {
+  min-width: 300px;
+}
+
 .sidebar_mpris_label {
   background-color: gtk-alpha($bg, 0.7);
   margin-top: 10px;
@@ -146,6 +150,7 @@ scrollbar {
 }
 
 .menu {
+  min-height: 200px;
   margin: 0px;
   padding: 10px;
   background-color: gtk-alpha($bg, 0.4);
