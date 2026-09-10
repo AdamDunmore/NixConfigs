@@ -6,7 +6,7 @@ import GLib from "gi://GLib";
 import Apps from "gi://AstalApps"
 import { execAsync } from "ags/process";
 
-export class Command {
+abstract class MenuEntry {
     name: string
     command: string
 
@@ -15,8 +15,30 @@ export class Command {
         this.command = command;
     }
 
+    abstract launch(): void;
+}
+
+export class Command extends MenuEntry {
     launch(){
         execAsync(this.command)
+    }
+}
+
+export class Nixpkg extends MenuEntry {
+    full_name: string
+    version: string
+    programs: string[]
+
+    constructor(name: string, full_name: string, version: string, programs: string[]){
+        super(name, "")
+        this.full_name = full_name;
+        this.version = version;
+        this.programs = programs;
+    }
+
+    launch(){ this.install() }
+    install() {
+        execAsync(`notify-send "Package Info" "${this.full_name}\n${this.version}\n${this.programs[0]}"`)
     }
 }
 
@@ -35,7 +57,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
         { name: "󰍃 logout", command: `pkill -f ${GLib.getenv("XDG_CURRENT_DESKTOP")}` },
     ];
 
-    const [appsList, setAppsList] = createState<Apps.Application[] | Command[]>([]);
+    const [appsList, setAppsList] = createState<Apps.Application[] | Command[] | Nixpkg[]>([]);
     const [selected, setSelected] = createState<number>(0);
 
     let scrolled: Gtk.ScrolledWindow;
@@ -92,9 +114,40 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                 class="sidebar_appmenu_entry"
                 onActivate={() => { appsList()[selected()].launch(); close() }}
                 onChanged={({ text }) => { 
-                    const list: Apps.Application[] | Command[] = (text.slice(0,1) != ":") ? apps.fuzzy_query(text) : commands
-                            .map(command => new Command(command.name, command.command))
-                            .filter(v => fuzzyMatch(v.name, text.slice(1)))
+                    // const list: Apps.Application[] | Command[] = (text.slice(0,1) == ":") ? commands : ((text.slice(0,1) == "@") ? [] : apps.fuzzy_query(text))                            
+                    //         .map(command => new Command(command.name, command.command))
+                    //         .filter(v => fuzzyMatch(v.name, text.slice(1)))
+
+                    let list: Apps.Application[] | Command[] | Nixpkg[];
+                    switch (text.slice(0, 1)) {
+                        case ":":
+                            list = commands
+                                .map(command => new Command(command.name, command.command))
+                                .filter(v => fuzzyMatch(v.name, text.slice(1)))
+                            break
+
+                        case "@":
+                            // list = commands
+                            //     .map(command => new Command(command.name, command.command))
+                            //     .filter(v => fuzzyMatch(v.name, text.slice(1)))
+                            if(text.length < 2) return
+                            list = [];
+                            execAsync(`nh search -j "${text.slice(1)}"`)
+                                .then(pkgs_s => {
+                                    const pkgs_json = JSON.parse(pkgs_s)["results"]
+                                    for (let pkg of pkgs_json){
+                                        list.push(new Nixpkg(pkg.package_pname, pkg.package_attr_name, pkg.package_pversion, pkg.package_programs))
+                                    }
+                                    setAppsList(list)
+                                    setSelected(0)
+                                })
+                                .catch(e => console.log(e))
+                            break;
+
+                        default:
+                            list = apps.fuzzy_query(text);
+                    }
+
                     setAppsList(list); 
                     setSelected(0)
                 }} 
