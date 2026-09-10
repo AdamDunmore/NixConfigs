@@ -4,8 +4,9 @@ let
 in
 {
     imports = [
+        ./notifications
+
         ./ags.nix
-        ./mako.nix
         ./waybar.nix
         ./wpaperd.nix
         ./wofi.nix

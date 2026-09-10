@@ -1,7 +1,8 @@
 {
     imports = [
         ./ags
-        ./mako.nix
+        ./notifications
+
         ./waybar.nix
         ./wpaperd.nix
         ./wofi.nix

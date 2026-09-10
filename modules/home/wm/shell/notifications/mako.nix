@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-    cfg = config.settings.modules.home.wm.shell.mako;
+    cfg = config.settings.modules.home.wm.shell.notifications.mako;
     colours = config.settings.values.colours;
     font = config.settings.values.font;
     inherit (lib) mkIf;
