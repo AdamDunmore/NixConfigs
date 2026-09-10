@@ -77,9 +77,9 @@ in
                 { mod = true; key = "N"; dispatch = "spawn"; arg = "togglenight"; }
                 { mod = true; key = "C"; dispatch = "spawn_shell"; arg = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""; }
                 { mod = true; key = "B"; dispatch = "spawn_shell"; arg = "btwofi"; }
-                { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; } # Broken
+                { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; }
                 (mkIf cfg_ags.enable { mod = true; key = "Q"; dispatch = "spawn_shell"; arg = "ags request toggle"; })
-                # (mkIf cfg.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "killall -SIGUSR1 gpu-screen-recorder && notify-send \"Replay Saved\""; })
+                (mkIf cfg.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "replay"; })
 
                 { mod = true; key = "Left"; dispatch = "focus"; arg = "left"; }
                 { mod = true; key = "Down"; dispatch = "focus"; arg = "down"; }
@@ -159,7 +159,7 @@ in
 
             startup_always = [
                 "check_wm"
-                # ( mkIf (cfg.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.values.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays")
+                ( mkIf (cfg.replays) "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w ${config.settings.values.primary-monitor} -c mp4 -r 300 -restart-replay-on-save yes -o ~/Videos/Replays")
                 "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd PATH XDG_DATA_DIRS"
             ];
 
