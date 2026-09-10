@@ -93,6 +93,8 @@ scrollbar {
 .sidebar_mpris_media {
   background: none;
   border: none;
+  padding-left: 15px;
+  padding-right: 15px;
   font-size: 24px;
   border-radius: 45px;
   background-color: gtk-alpha($bg, 0.4);
@@ -121,7 +123,7 @@ scrollbar {
   border-width: 2px;
   border-color: $border;
   border-radius: 10px;
-  background-color: gtk-alpha($base, 0.8); 
+  background-color: gtk-alpha($base, 0.6); 
 }
 
 .sidebar_appmenu_entry {
@@ -150,7 +152,7 @@ scrollbar {
 
 .sidebar_appmenu_button.selected {
   color: $fg_selected;
-  background-color: gtk-alpha($bg,0.9);
+  background-color: gtk-alpha($bg,0.7);
 }
 
 .menu {
