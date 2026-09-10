@@ -15,7 +15,7 @@ export default function MprisItem(){
     const [position, setPosition] = createState<number>(0);
     const [isInteracting, setIsInteracting] = createState<boolean>(false);
 
-    const MAX_TITLE_LENGTH: number = 35;
+    const MAX_TITLE_LENGTH: number = 25;
     let connected_player: Mpris.Player | null = null;
 
     const mpris = Mpris.get_default();

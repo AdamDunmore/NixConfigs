@@ -20,6 +20,10 @@ box {
   border-radius: 10px;
 }
 
+entry, entry:hover {
+  border: none;
+}
+
 button {
   all: unset;
   color: $fg;
