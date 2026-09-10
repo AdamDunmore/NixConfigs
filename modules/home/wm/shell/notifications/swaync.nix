@@ -11,6 +11,7 @@ in
                 positionX = "left";
                 positionY = "top";
                 layer = "overlay";
+                notification-window-width = 400;
                 ignore-gtk-theme = true;
                 timeout = 8;
             };
