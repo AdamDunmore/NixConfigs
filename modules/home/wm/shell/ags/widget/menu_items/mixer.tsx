@@ -3,7 +3,8 @@ import Gtk from "gi://Gtk";
 import AstalWp from "gi://AstalWp"
 import Pango from "gi://Pango";
 
-import MenuBar from "../menu_bar.tsx"
+import MenuBar from "./menu_bar.tsx"
+import MenuPage from "./menu_page.tsx";
 
 export default function Mixer({ backCallback }: { backCallback: () => void }){
     const wp = AstalWp.get_default()
@@ -19,7 +20,7 @@ export default function Mixer({ backCallback }: { backCallback: () => void }){
     audio.connect("stream-added",updateStreams);
     audio.connect("stream-removed",updateStreams);
     return (
-        <box vexpand={true} hexpand={true}>
+        <MenuPage>
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.HORIZONTAL} hexpand={true} vexpand={true}>
                 <scrolledwindow vexpand={true} hexpand={true}>
@@ -56,6 +57,6 @@ export default function Mixer({ backCallback }: { backCallback: () => void }){
                     </box>
                 </scrolledwindow>
             </box>
-        </box>
+        </MenuPage>
     )
 }

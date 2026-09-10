@@ -6,7 +6,6 @@ import Gtk from "gi://Gtk";
 import MprisItem from "./sidebar_items/mpris.tsx";
 import AppMenu from "./sidebar_items/app_menu.tsx";
 import Menu from "./menu.tsx";
-import Calendar from "./calendar.tsx";
 
 import { toggle_app } from "../scripts/window_managment.ts";
 
@@ -27,7 +26,6 @@ export default function Sidebar(){
             <revealer class = "window" revealChild={isVisible(v => v)} transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT} transitionDuration={400} vexpand>
                 <box vexpand spacing={5} orientation={Gtk.Orientation.HORIZONTAL} homogeneous>
                     <box vexpand orientation={Gtk.Orientation.VERTICAL} spacing={5} homogeneous class="col_2">
-                        <Calendar />
                         <MprisItem />
                     </box>
                     <box vexpand orientation={Gtk.Orientation.VERTICAL} spacing={5} class="col_1">

@@ -2,6 +2,8 @@ import { Gtk } from "ags/gtk4";
 import Pango from "gi://Pango";
 import { execAsync } from "ags/process";
 import { createState, For } from "ags";
+import MenuPage from "./menu_page";
+import MenuBar from "./menu_bar";
 
 export enum EventMonth {
     January,
@@ -164,14 +166,15 @@ const getEvents = function(){
         .catch(_ => { setEvents([]) })  
 }; getEvents()
 
-export default function Calendar(){
-
+export default function Calendar({ backCallback }: { backCallback: () => void }){
     return (
-        <box hexpand class="menu menu_calendar_box" spacing={5}>
+        <MenuPage>
+            <MenuBar backCallback={backCallback}>
+                <button class="menu_button" label="" onClicked={getEvents}/>
+            </MenuBar>
             <box orientation={Gtk.Orientation.VERTICAL} class="menu_calendar_container" hexpand>    
                 <scrolledwindow>
                     <box orientation={Gtk.Orientation.VERTICAL} vexpand>
-                        <button class="menu_calendar_sync" label=" Sync" onClicked={getEvents}/>
                         <button visible={events(e => e.length > 0 ? false : true)} label={"No connected to Google Calendar \n Please authenticate gcalcli"} class="menu_calendar_event" css="font-size: 12px;"/> 
                         <For each={events}>
                             { (event: Event) => {
@@ -202,6 +205,6 @@ export default function Calendar(){
                     </box>
                 </scrolledwindow>
             </box>
-        </box>
+        </MenuPage>
     )
 }

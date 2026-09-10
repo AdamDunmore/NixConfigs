@@ -3,7 +3,8 @@ import Gio from "gi://Gio";
 import Pango from "gi://Pango";
 import { createState, For, onCleanup } from "ags";
 
-import MenuBar from "../menu_bar";
+import MenuBar from "./menu_bar.tsx";
+import MenuPage from "./menu_page.tsx";
 
 export default function Notifications({ backCallback }: { backCallback: () => void }){
     interface MakoNotification {
@@ -29,13 +30,19 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
     );
 
     const updateHistory = function(){
-        const result = proxy.call_sync(
-            "ListHistory",
-            null,
-            Gio.DBusCallFlags.NONE,
-            -1,
-            null
-        );
+        let result;
+        try {
+            result = proxy.call_sync(
+                "ListHistory",
+                null,
+                Gio.DBusCallFlags.NONE,
+                -1,
+                null
+            );
+        } catch(e) {
+            console.log(e)
+            return
+        }
         const h: MakoNotification[] = result.deepUnpack()[0].map((notification: any) => ({
             id: notification.id.deepUnpack(),
             app_icon: notification["app-icon"].deep_unpack(),
@@ -58,7 +65,7 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
 
 
     return (
-        <box vexpand={true} hexpand={true}>
+        <MenuPage>
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true}>
                 <scrolledwindow vexpand={true} hexpand={true}>
@@ -83,6 +90,6 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
                     </box>
                 </scrolledwindow>
             </box>
-        </box>
+        </MenuPage>
     )
 }

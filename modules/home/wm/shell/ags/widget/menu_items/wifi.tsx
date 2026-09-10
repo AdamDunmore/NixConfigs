@@ -3,7 +3,8 @@ import Network from "gi://AstalNetwork"
 import { createState, For, } from "ags";
 import { execAsync } from "ags/process";
 
-import MenuBar from "../menu_bar.tsx";
+import MenuBar from "./menu_bar.tsx";
+import MenuPage from "./menu_page.tsx";
 
 export default function Wifi({ backCallback, network }: { backCallback: () => void, network: Network.Network }){
     const wifi: Network.Wifi | null = network.get_wifi();
@@ -45,7 +46,7 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
 
 
     return (
-        <box vexpand={true} hexpand={true}>
+        <MenuPage>
             <MenuBar backCallback={backCallback}>
                 <button class="menu_button" label="" onClicked={() => { if(!wifi.scanning){ wifi.scan(); } }}/>
             </MenuBar>
@@ -93,6 +94,6 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
                     </box>
                 </scrolledwindow>
             </box>
-        </box>
+        </MenuPage>
     )
 }

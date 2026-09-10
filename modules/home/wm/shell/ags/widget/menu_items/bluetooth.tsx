@@ -2,7 +2,8 @@ import Gtk from "gi://Gtk";
 import AstalBluetooth from "gi://AstalBluetooth"
 import { createState, For } from "ags";
 
-import MenuBar from "../menu_bar.tsx";
+import MenuBar from "./menu_bar.tsx";
+import MenuPage from "./menu_page.tsx";
 
 export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: AstalBluetooth.Bluetooth, backCallback: () => void }){
     const [devices, setDevices] = createState<AstalBluetooth.Device[]>([]);
@@ -25,7 +26,7 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
     }); if (bluetooth.isPowered){ handleBluetooth() }
 
     return (
-        <box vexpand={true} hexpand={true} orientation={Gtk.Orientation.HORIZONTAL}>
+        <MenuPage>
             <MenuBar backCallback={backCallback}>
                 <button class="menu_button" label={discovering(d => d ? "󰘊" : "")} onClicked={() => {
                             let a = bluetooth.get_adapter()
@@ -56,7 +57,6 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
                 </box>
                 </scrolledwindow>
             </box>
-        </box>
-
+        </MenuPage>
     )
 }

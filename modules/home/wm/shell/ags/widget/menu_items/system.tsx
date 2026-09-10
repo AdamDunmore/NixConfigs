@@ -2,7 +2,8 @@ import Gtk from "gi://Gtk";
 import { createState } from "ags";
 import { execAsync } from "ags/process";
 
-import MenuBar from "../menu_bar.tsx";
+import MenuBar from "./menu_bar.tsx";
+import MenuPage from "./menu_page.tsx";
 
 export default function System({ backCallback }: { backCallback: () => void }){
     const [stats, setStats] = createState({
@@ -24,7 +25,7 @@ export default function System({ backCallback }: { backCallback: () => void }){
     setInterval(updateStats, 2000);
 
     return (
-        <box vexpand={true} hexpand={true}>
+        <MenuPage>
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true}>
                 <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} class="menu_system_box" >
@@ -42,6 +43,6 @@ export default function System({ backCallback }: { backCallback: () => void }){
                     <label class="menu_system_label" label={stats(s => ` ${s.ram.toFixed(1)}%`)} />
                 </box>
             </box>
-        </box>
+        </MenuPage>
     );
 }

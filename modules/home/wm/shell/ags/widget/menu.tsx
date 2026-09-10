@@ -5,12 +5,13 @@ import AstalBluetooth from "gi://AstalBluetooth"
 import AstalNetwork from "gi://AstalNetwork"
 import AstalPowerProfiles from "gi://AstalPowerProfiles"
 
-import MenuSplitButton from "./menu_split_button.tsx";
+import MenuSplitButton from "./menu_items/menu_split_button.tsx";
 import Bluetooth from "./menu_items/bluetooth.tsx";
 import System from "./menu_items/system.tsx";
 import Wifi from "./menu_items/wifi.tsx";
 import Notifications from "./menu_items/notifications.tsx";
 import Mixer from "./menu_items/mixer.tsx";
+import Calendar from "./menu_items/calendar.tsx";
 
 export default function Menu(){
     const bluetooth: AstalBluetooth.Bluetooth = AstalBluetooth.get_default();
@@ -69,6 +70,9 @@ export default function Menu(){
 
                         case "mixer":
                             return ( <Mixer backCallback={close} /> )
+                        
+                        case "calendar":
+                            return ( <Calendar backCallback={close} /> )
 
                         default:
                             return (
@@ -80,6 +84,7 @@ export default function Menu(){
                                             <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
                                             <MenuSplitButton icon="󰊿" callback={() => { execAsync("translate") }}/>
                                             <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
+                                            <MenuSplitButton icon="󰃶" callback={() => { open("calendar") }}/>
                                         </box>
                                         <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START} spacing={5}>
                                             <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />

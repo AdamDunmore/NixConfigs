@@ -27,7 +27,7 @@ entry, entry:hover {
 button {
   all: unset;
   color: $fg;
-  background-color: gtk-alpha($bg, 0.8);
+  background-color: gtk-alpha($bg, 0.6);
   padding: 5px;
 
   border-style:solid;
@@ -155,9 +155,15 @@ scrollbar {
 
 .menu {
   min-height: 200px;
+  min-width: 300px;
   margin: 0px;
   padding: 10px;
   background-color: gtk-alpha($bg, 0.4);
+}
+
+.menu_page {
+  min-height: 500px;
+  transition: height 5s;
 }
 
 .menu_container {
@@ -200,14 +206,8 @@ scrollbar {
   border-color: gtk-alpha($border, 0.5);
 }
 
-.menu_calendar_box {
-  padding: 0px;
-}
-
-.menu_calendar_sync {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border: none;
+.menu_calendar_container {
+  background-color: gtk-alpha($base, 0.6);
 }
 
 .menu_calendar_event {
