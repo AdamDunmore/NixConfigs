@@ -38,7 +38,29 @@ export class Nixpkg extends MenuEntry {
 
     launch(){ this.install() }
     install() {
-        execAsync(`notify-send "Package Info" "${this.full_name}\n${this.version}\n${this.programs[0]}"`)
+        execAsync([
+            "notify-send",
+            "Package Info",
+            [ this.full_name,
+            this.version,
+            this.programs.join(" ") ].join("\n"),
+            "-A",
+            "install=Install App",
+            "-A",
+            "copy=Copy Nixpkgs Path"
+        ])
+            .then(v => {
+                if(v == "install") {
+                    execAsync([ "bash", "-c",
+                        `nix profile add "nixpkgs#${this.full_name}" && notify-send "Package Installed Successfully" "${this.full_name}"`
+                    ]);
+                } else if (v == "copy"){
+                    execAsync([ "bash", "-c",
+                        `wl-copy "${this.full_name}" && notify-send "Path Copied Successfully" "${this.full_name}"`
+                    ]);
+                }
+            })
+            .catch(e => console.log(e))
     }
 }
 
