@@ -22,7 +22,7 @@ in
                     margin-left = 10;
                     margin-right = 10;
 
-                    modules-left = [ "niri/workspaces" "sway/workspaces" "mango/workspaces" ];
+                    modules-left = [  "mango/keymode" "niri/workspaces" "sway/workspaces" "mango/workspaces" ];
                     modules-center = [ "clock" "clock#date" ];
                     modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" ];
 
@@ -72,6 +72,11 @@ in
                         on-click = "activate";
                     };
 
+                    "mango/keymode" = {
+                        format-default = " Default";
+                        format-resize = "󰩨 Resize";
+                    };
+
                     "custom/sidebar" = {
                         format = " 󰍜 ";
                         on-click = "ags request toggle";
@@ -109,6 +114,7 @@ in
                 #date,
                 #pulseaudio,
                 #network,
+                #keymode,
                 #custom-sidebar {
                     color: ${colours.white.one};
                     background-color: alpha(${colours.blue.one}, 0.5);
