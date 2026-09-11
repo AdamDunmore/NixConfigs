@@ -53,13 +53,23 @@ label {
   padding: 5px;
 }
 
-levelbar block.filled {
+scale trough {
   background-color: gtk-alpha($bg, 0.9);
   border: none;
 }
 
-levelbar block.empty {
+scale slider {
+  min-width: 14px;
+  min-height: 14px;
   background-color: gtk-alpha($base, 0.9);
+}
+
+scale slider:hover {
+  background-color: gtk-alpha($base, 1);
+}
+
+scale trough highlight {
+  background-color: gtk-alpha($fg, 0.5);
   border: none;
 }
 

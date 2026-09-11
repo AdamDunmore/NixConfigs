@@ -151,25 +151,40 @@ export namespace AstalNetwork {
      */
     const VERSION: string;
 
-    function primary_to_string(): string;
+    /**
+     * @param self 
+     */
+    function primary_to_string(self: Primary): string;
 
     /**
      * @param type 
      */
     function primary_from_connection_type(type: string): Primary;
 
-    function state_to_string(): string;
+    /**
+     * @param self 
+     */
+    function state_to_string(self: State): string;
 
-    function connectivity_to_string(): string;
+    /**
+     * @param self 
+     */
+    function connectivity_to_string(self: Connectivity): string;
 
-    function device_state_to_string(): string;
+    /**
+     * @param self 
+     */
+    function device_state_to_string(self: DeviceState): string;
 
     /**
      * @param device 
      */
     function internet_from_device(device: NM.Device): Internet;
 
-    function internet_to_string(): string;
+    /**
+     * @param self 
+     */
+    function internet_to_string(self: Internet): string;
 
     function get_default(): Network;
 

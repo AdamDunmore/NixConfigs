@@ -11,6 +11,7 @@ import './astal-3.0.d.ts';
 import './astal-4.0.d.ts';
 import './astalapps-0.1.d.ts';
 import './astalbluetooth-0.1.d.ts';
+import './astalbrightness-0.1.d.ts';
 import './astalcava-0.1.d.ts';
 import './astalio-0.1.d.ts';
 import './astalmpris-0.1.d.ts';

@@ -24,20 +24,7 @@ in
 
                     modules-left = [  "mango/keymode" "niri/workspaces" "sway/workspaces" "mango/workspaces" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" "group/power" ];
-
-                    "backlight" = {
-                        format = "{icon} {percent}%";
-                        format-icons = [ "󰃞" "󰃟" "󰃠" ];
-                        tooltip = false;
-                        on-click = "togglenight";
-                    };
-
-                    "pulseaudio" = {
-                        format = "{icon} {volume}%";
-                        format-icons = [ " " "" "" ""];
-                        on-click = "sinkcycle";
-                    };
+                    modules-right = [ "group/power" "battery" "custom/sidebar" ];
 
                     "battery" = {
                         format = "{icon} {capacity}%";
@@ -112,25 +99,25 @@ in
                     };
 
                     "custom/power" = {
-                        format = "⏻";
+                        format = " ⏻ ";
                         tooltip = false;
                         on-click = "shutdown now";
                     };
 
                     "custom/reboot" = {
-                        format = "󰜉";
+                        format = " 󰜉 ";
                         tooltip = false;
                         on-click = "reboot";
                     };
 
                     "custom/sleep" = {
-                        format = "󰤄";
+                        format = " 󰤄 ";
                         tooltip = false;
                         on-click = "systemctl suspend";
                     };
 
                     "custom/lock" = {
-                        format = "";
+                        format = "  ";
                         tooltip = false;
                         on-click = "hyprlock";
                     };
@@ -163,8 +150,10 @@ in
                 #pulseaudio,
                 #network,
                 #keymode,
-                #power label,
-                .not-power label,
+                #custom-power,
+                #custom-reboot,
+                #custom-sleep,
+                #custom-lock,
                 #custom-sidebar {
                     color: ${colours.white.one};
                     background-color: alpha(${colours.blue.one}, 0.5);
@@ -180,10 +169,10 @@ in
                 #backlight:hover,
                 #battery:hover,
                 #pulseaudio:hover,
-                #custom-power:hover label,
-                #custom-reboot:hover label,
-                #custom-sleep:hover label,
-                #custom-lock:hover label,
+                #custom-power:hover,
+                #custom-reboot:hover,
+                #custom-sleep:hover,
+                #custom-lock:hover,
                 #custom-sidebar:hover {
                     background-color: alpha(${colours.blue.one}, 0.8); 
                 }

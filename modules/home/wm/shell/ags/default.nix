@@ -38,8 +38,9 @@ in
                 gjs
                 astal4
                 pkgs.networkmanager
-                apps
 
+                apps
+                brightness
                 cava
                 bluetooth 
                 network
