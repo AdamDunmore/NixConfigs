@@ -13,6 +13,7 @@
                 };
                 home = {
                     apps.media.kodi.enable = false;
+                    apps.misc.discord.flavour = "concord";
                     terminal.shell.zellij.enable = true;
                     wm = {
                         defaults = {

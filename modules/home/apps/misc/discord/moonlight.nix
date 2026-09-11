@@ -8,7 +8,7 @@ in
 {
     imports = [ inputs.moonlight.homeModules.default ];
 
-    config = mkIf cfg.enable {
+    config = mkIf (cfg.enable && cfg.flavour == "moonlight") {
         home.packages = [ discord ];
         
         programs.moonlight = {
