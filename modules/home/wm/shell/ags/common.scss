@@ -194,11 +194,16 @@ scrollbar {
 }
 
 .menu_button {
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 10px; 
-  min-height: 20px;
-  border-color: gtk-alpha($border, 0.5);
+  padding: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 14px; 
+  min-height: 30px;
+  border-color: gtk-alpha($border, 0.4);
+}
+
+.list_button {
+  font-size: 10px;
 }
 
 .menu_calendar_container {
