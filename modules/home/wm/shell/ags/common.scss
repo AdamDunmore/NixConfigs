@@ -90,14 +90,6 @@ scrollbar {
 
 .sidebar_mpris_label {
   background-color: gtk-alpha($bg, 0.7);
-  margin-top: 10px;
-
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.sidebar_mpris_window:hover .sidebar_mpris_label, .sidebar_mpris_window:hover .sidebar_mpris_media {
-  opacity: 1;
 }
 
 .sidebar_mpris_media {
@@ -112,20 +104,12 @@ scrollbar {
   transition: opacity 0.33s, background-color 0.33s;
 }
 
+.sidebar_mpris_window:hover .sidebar_mpris_media {
+  opacity: 1;
+}
+
 .sidebar_mpris_media:hover {
   background-color: gtk-alpha($bg, 0.6);
-}
-
-.sidebar_cava_box {
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
-
-.sidebar_cava_bar {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  background-color: gtk-alpha($base, 0.7);
 }
 
 .sidebar_appmenu_box {
@@ -166,7 +150,6 @@ scrollbar {
 }
 
 .menu {
-  min-height: 200px;
   min-width: 300px;
   margin: 0px;
   padding: 10px;
