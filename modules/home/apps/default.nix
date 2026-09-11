@@ -13,8 +13,6 @@ in
     ];
     config = mkIf cfg.enable {
         home.packages = with pkgs; [
-                firefox
-
                 # Git
                 git
                 git-credential-manager
@@ -63,6 +61,8 @@ in
                 binutils 
                 libnotify
                 ffmpeg_6  
+
+                (mkIf (cfg.misc.firefox.enable == false) firefox)
         ] ++ cfg.user_apps;
     }; 
 }

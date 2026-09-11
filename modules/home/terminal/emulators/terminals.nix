@@ -1,8 +1,9 @@
-{ lib, config, pkgs, colours, font, ... }:
+{ lib, config, pkgs, font, ... }:
 
 let
     cfg = config.settings.home.terminal.terminals;
     cfg_zsh = config.settings.home.terminal.shell.zsh;
+    colours = config.settings.values.colours;
     inherit (lib) mkIf mkMerge;
 in
 {

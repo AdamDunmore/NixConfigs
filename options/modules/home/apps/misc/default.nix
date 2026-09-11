@@ -8,6 +8,7 @@ in
         ./discord.nix
         ./drive.nix
         ./flatpak.nix
+        ./firefox.nix
     ];
     options.settings.modules.home.apps.misc = {
         enable = mkOption {
