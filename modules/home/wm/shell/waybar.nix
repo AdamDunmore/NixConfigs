@@ -58,11 +58,11 @@ in
                             weeks-pos = "right";
                             first-day-of-week = 1;
                             format = {
-                                months = "<span color='${colours.light_blue.two}'><b>{}</b></span>";
-                                days = "<span color='${colours.blue.one}'>{}</span>";
-                                weeks = "<span color='${colours.blue.two}'><b>|{}</b></span>";
-                                weekdays = "<span color='${colours.light_blue.one}'><b>{}</b></span>";
-                                today = "<span color='${colours.light_blue.two}'><b>{}</b></span>";
+                                months = "<span color='${colours.bg_selected}'><b>{}</b></span>";
+                                days = "<span color='${colours.bg}'>{}</span>";
+                                weeks = "<span color='${colours.base}'><b>|{}</b></span>";
+                                weekdays = "<span color='${colours.bg_selected}'><b>{}</b></span>";
+                                today = "<span color='${colours.fg}'><b>{}</b></span>";
                             };
                         };
                     };
@@ -138,7 +138,7 @@ in
                 }
 
                 button:hover, #power label, .not-power label {
-                    color: ${colours.white.one};
+                    color: ${colours.fg};
                     background: none; /* Remove predefined background color (white) */
                     transition: none; /* Disable predefined animations */
                 }
@@ -155,8 +155,8 @@ in
                 #custom-sleep,
                 #custom-lock,
                 #custom-sidebar {
-                    color: ${colours.white.one};
-                    background-color: alpha(${colours.blue.one}, 0.5);
+                    color: ${colours.fg};
+                    background-color: alpha(${colours.bg}, 0.5);
                     padding-left: 10px;
                     padding-right: 10px;
                     border-radius: 10px;
@@ -174,7 +174,7 @@ in
                 #custom-sleep:hover,
                 #custom-lock:hover,
                 #custom-sidebar:hover {
-                    background-color: alpha(${colours.blue.one}, 0.8); 
+                    background-color: alpha(${colours.bg}, 0.8); 
                 }
 
                 #battery.warning {
@@ -199,25 +199,25 @@ in
 
                 #workspaces button {
                     padding: 5px;
-                    background-color: alpha(${colours.blue.one}, 0.5);
+                    background-color: alpha(${colours.bg}, 0.5);
                     border-radius: 0px;
                     transition: background-color 0.75s;
                 }
 
                 #workspaces button.empty {
-                    background-color: alpha(${colours.blue.two}, 0.5);
+                    background-color: alpha(${colours.base}, 0.5);
                 }
 
                 #workspaces button.active {
-                    background-color: ${colours.blue.one};
+                    background-color: ${colours.bg};
                 }
 
                 #workspaces button.urgent {
-                    background-color: ${colours.blue.three};
+                    background-color: ${colours.bg_urgent};
                 }
 
                 #workspaces button:hover {
-                    background-color: ${colours.blue.two};
+                    background-color: ${colours.bg_selected};
                 }
             '';
         };     

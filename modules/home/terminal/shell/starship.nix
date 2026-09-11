@@ -11,22 +11,22 @@ in
             enable = true;
             enableZshIntegration = config.settings.modules.home.terminal.shell.zsh.enable;
             settings = {
-                format = "[ ](${colours.light_blue.one})$username[](fg:${colours.light_blue.one} bg:${colours.blue.one})$hostname[](fg:${colours.blue.one} bg:${colours.light_blue.two})$directory[ ](${colours.light_blue.two})";
+                format = "[ ](${colours.bg_selected})$username[](fg:${colours.bg_selected} bg:${colours.bg})$hostname[](fg:${colours.bg} bg:${colours.bg_selected})$directory[ ](${colours.bg_selected})";
                 add_newline = false;
                 username = {
-                    style_user = "bg:${colours.light_blue.one} fg:${colours.white.one}";
+                    style_user = "bg:${colours.bg_selected} fg:${colours.fg}";
                     disabled = false;
                     show_always = true;
                     format = "[$user ]($style)";
                 };
                 hostname = {
                     format = "[ $hostname ]($style)"; 
-                    style = "bg:${colours.blue.one} fg:${colours.white.one}";
+                    style = "bg:${colours.bg} fg:${colours.fg}";
                     ssh_only = true;
                 };
                 directory = {
                     format = "[ $path ]($style)";
-                    style = "bg:${colours.light_blue.two} fg:${colours.white.one}";
+                    style = "bg:${colours.bg_selected} fg:${colours.fg}";
                 };
             };
         };

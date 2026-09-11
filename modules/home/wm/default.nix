@@ -165,11 +165,11 @@ in
 
             colours = {
                 focused = {
-                    border = "${colours.blue.two}";
-                    indicator = "${colours.blue.one}";
+                    border = "${colours.bg}";
+                    indicator = "${colours.bg_selected}";
                 };
                 unfocused = {
-                    border = "${colours.blue.two}";
+                    border = "${colours.border}";
                 };
             };
 

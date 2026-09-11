@@ -18,13 +18,13 @@ in
                 effect-blur="7x5";
                 effect-vignette="0.5:0.5";
 
-                color = colours.blue.one;
+                color = colours.bg;
                 line-color = "00000000";
                 ring-color = "333355CC";
                 key-hl-color = "555577EE";
                 separator-color = "00000010";
                 inside-color = "00000060";
-                text-color = "FFFFFFAA";
+                text-color = colours.fg;
 
                 indicator = true;
                 indicator-thickness = 15;

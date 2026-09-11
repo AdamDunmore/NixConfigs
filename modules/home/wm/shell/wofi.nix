@@ -42,7 +42,7 @@ in
                 window {
                     font-size: 10px;
                     font-family: "${font.name}";
-                    background-color: ${colours.blue.one};
+                    background-color: ${colours.bg};
                 }
 
                 #inner-box {
@@ -55,7 +55,7 @@ in
                 }
 
                 #entry:selected {        
-                    background-color: ${colours.blue.two};
+                    background-color: ${colours.bg_selected};
                 }
 
                 #text{

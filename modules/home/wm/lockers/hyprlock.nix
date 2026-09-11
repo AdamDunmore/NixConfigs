@@ -16,7 +16,7 @@ in
                 };
                 background = [
                     {
-                        color = colours.blue.one;
+                        color = colours.bg;
                         blur_passes = 3;
                         blur_size = 8;
                     }
@@ -28,7 +28,7 @@ in
                     monitor = "";
                     text = "Locked";
                     font_size = 50;
-                    color = colours.white.one;
+                    color = colours.fg;
                     halign = "center";
                     valign = "center";
                   }

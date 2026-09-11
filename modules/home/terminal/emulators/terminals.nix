@@ -16,8 +16,8 @@ in
                 terminal.shell = mkIf cfg_zsh "${pkgs.zsh}/bin/zsh";
                 colors = {
                     primary = {
-                        background = "${colours.blue.three}";
-                        foreground = "${colours.white.one}";
+                        background = "${colours.bg}";
+                        foreground = "${colours.fg}";
                     };
                 };
                 keyboard.bindings = [

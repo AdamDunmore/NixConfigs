@@ -33,30 +33,34 @@ in
                 };
 
                 userChrome = ''
+                    * {
+                        color: ${colours.fg} !important;
+                    }
+
                     box { 
-                        background: ${colours.blue.three} !important;
+                        background: ${colours.base} !important;
                         border-radius: 10px;
                     }
 
                     #TabsToolbar {  
-                        background: ${colours.blue.two} !important;
+                        background: ${colours.bg} !important;
                         padding: 0px !important;
                     }
 
                     .tabbrowser-tab .tab-background {
-                        background: ${colours.light_blue.two} !important;
+                        background: ${colours.bg} !important;
                     }
 
                     .tab-background[selected] {
-                        background: ${colours.light_blue.one} !important;
+                        background: ${colours.bg_selected} !important;
                     }
 
                     #nav-bar {
-                        background: ${colours.blue.one} !important;
+                        background: ${colours.bg_selected} !important;
                     }
 
                     #PersonalToolbar {
-                        background: ${colours.blue.two} !important;
+                        background: ${colours.bg} !important;
                     }
                 '';
             };

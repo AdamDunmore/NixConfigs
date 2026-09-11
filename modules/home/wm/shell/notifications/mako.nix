@@ -12,8 +12,8 @@ in
             settings = {
                 actions = true;
                 anchor = "top-left";
-                background-color = "${colours.blue.one}AA";
-                border-color = "${colours.blue.two}FF";
+                background-color = "${colours.bg}AA";
+                border-color = "${colours.border}FF";
                 border-radius = 10;
                 border-size = 1;
                 default-timeout = 8000;
