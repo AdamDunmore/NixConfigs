@@ -24,7 +24,7 @@ in
 
                     modules-left = [  "mango/keymode" "niri/workspaces" "sway/workspaces" "mango/workspaces" ];
                     modules-center = [ "clock" "clock#date" ];
-                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" ];
+                    modules-right = [ "backlight" "pulseaudio" "battery" "custom/sidebar" "group/power" ];
 
                     "backlight" = {
                         format = "{icon} {percent}%";
@@ -83,8 +83,43 @@ in
                         tooltip = false;
                     };
 
-                    "custom/margin" = {
-                        format = " ";
+                    "group/power" = {
+                        orientation = "horizontal";
+                        drawer = {
+                            transition-duration = 500;
+                            children-class = "not-power";
+                            transition-left-to-right = false;
+                        };
+                        modules = [
+                            "custom/power"
+                            "custom/reboot"
+                            "custom/sleep"
+                            "custom/lock"
+                        ];
+                    };
+
+                    "custom/power" = {
+                        format = "⏻";
+                        tooltip = false;
+                        on-click = "shutdown now";
+                    };
+
+                    "custom/reboot" = {
+                        format = "󰜉";
+                        tooltip = false;
+                        on-click = "reboot";
+                    };
+
+                    "custom/sleep" = {
+                        format = "󰤄";
+                        tooltip = false;
+                        on-click = "systemctl suspend";
+                    };
+
+                    "custom/lock" = {
+                        format = "";
+                        tooltip = false;
+                        on-click = "hyprlock";
                     };
                 };
 
@@ -94,7 +129,7 @@ in
                     background-color: rgba(0,0,0,0);
                 }
 
-                button {
+                button, #power label, .not-power label {
                     font-size: 14px;
                     padding: 0px;
                     border: none;
@@ -102,7 +137,7 @@ in
                     text-shadow: none; /* Remove predefined text-shadow */
                 }
 
-                button:hover {
+                button:hover, #power label, .not-power label {
                     color: ${colours.white.one};
                     background: none; /* Remove predefined background color (white) */
                     transition: none; /* Disable predefined animations */
@@ -115,6 +150,8 @@ in
                 #pulseaudio,
                 #network,
                 #keymode,
+                #power label,
+                .not-power label,
                 #custom-sidebar {
                     color: ${colours.white.one};
                     background-color: alpha(${colours.blue.one}, 0.5);
@@ -130,8 +167,11 @@ in
                 #backlight:hover,
                 #battery:hover,
                 #pulseaudio:hover,
-                #custom-sidebar:hover,
-                #custom-settings:hover {
+                #custom-power:hover label,
+                #custom-reboot:hover label,
+                #custom-sleep:hover label,
+                #custom-lock:hover label,
+                #custom-sidebar:hover {
                     background-color: alpha(${colours.blue.one}, 0.8); 
                 }
 
@@ -141,6 +181,10 @@ in
 
                 #battery.critical {
                     background-color: #AA5555;
+                }
+
+                #power, .not-power {
+                    background-color: rgba(0,0,0,0);
                 }
 
                 #workspaces button:first-child {
