@@ -63,8 +63,21 @@ in
                         tooltip-format = "{:%H:%M:%S}";
                     };
                     "clock#date" = {
-                        format = "{:%A, %d %b %Y}";
-                        tooltip = false;
+                        format = "{:%a, %d %b %y}";
+                        tooltip-format = "<small>{calendar}</small>";
+                        calendar = {
+                            mode = "year";
+                            mode-mon-col = 4;
+                            weeks-pos = "right";
+                            first-day-of-week = 1;
+                            format = {
+                                months = "<span color='${colours.light_blue.two}'><b>{}</b></span>";
+                                days = "<span color='${colours.blue.one}'>{}</span>";
+                                weeks = "<span color='${colours.blue.two}'><b>|{}</b></span>";
+                                weekdays = "<span color='${colours.light_blue.one}'><b>{}</b></span>";
+                                today = "<span color='${colours.light_blue.two}'><b>{}</b></span>";
+                            };
+                        };
                     };
                     
                     "mango/workspaces" = {
