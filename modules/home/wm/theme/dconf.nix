@@ -22,10 +22,6 @@ with lib.hm.gvariant;
                     "favorite-apps" = ["firefox.desktop" "org.gnome.Nautilus.desktop" "Alacritty.desktop"];
                 };
 
-                "org/gnome/shell/extensions/user-theme" = {
-                    name = "Nordic";
-                };
-
                 "org/gnome/nautilus" = {
                     "default-folder-viewer" = "list-view";
                     "default-visible-columns" = ["name" "size" "type" "date_modified"];

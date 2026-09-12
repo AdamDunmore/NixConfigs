@@ -2,6 +2,10 @@
 
 let
     cfg = config.settings.modules.home.terminal.editors.nvim;
+    nvimTheme = import ./theme.nix {
+        inherit pkgs;
+        colours = config.settings.values.colours;
+    };
     inherit (lib) mkIf;
 in
 {
@@ -51,7 +55,6 @@ in
 
                         # UI #
                         nui-nvim 
-                        nord-nvim
                         bufferline-nvim
                         dashboard-nvim
                         nvim-tree-lua
@@ -78,6 +81,8 @@ in
                 _G.paths = {
                     vue_language_server =
                         "${pkgs.vue-language-server}/lib/language-tools/packages/typescript-plugin";
+                    
+                    gtk_theme = "${nvimTheme}";
                 }
 
                  _G.options = {

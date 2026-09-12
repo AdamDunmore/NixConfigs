@@ -11,6 +11,10 @@ $border: string.unquote("@borders");
     @return string.unquote("alpha(#{$color}, #{$alpha})");
 }
 
+* {
+  color: $fg;
+}
+
 window {
   background-color: rgba(0,0,0,0);
   padding: 10px;

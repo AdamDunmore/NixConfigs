@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }:
 let
     cfg = config.settings.modules.home.apps.media.rmpc;
+    rmpcTheme = import ./theme.nix { inherit pkgs; colours = config.settings.values.colours; };
     inherit (lib) mkIf; 
 in
 {
@@ -16,7 +17,7 @@ in
 
         home.file = {
             ".config/rmpc/config.ron".source = ./config.ron;
-            ".config/rmpc/themes/nord_mini.ron".source = ./nord_mini.ron;
+            ".config/rmpc/themes/theme.ron".source = rmpcTheme;
         };
     };
 }

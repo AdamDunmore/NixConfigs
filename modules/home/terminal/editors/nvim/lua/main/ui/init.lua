@@ -1,4 +1,4 @@
-require('main.ui.theme');
+dofile(paths.gtk_theme)
 require('main.ui.nui');
 require('main.ui.bufferline');
 require('main.ui.dashboard');

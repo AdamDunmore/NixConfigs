@@ -2,6 +2,7 @@
 
 let
     cfg = config.settings.modules.home.terminal.emulators.ghostty;
+    colours = config.settings.values.colours;
     inherit (lib) mkIf;
 in
 {
@@ -12,8 +13,12 @@ in
             clearDefaultKeybinds = true;
             systemd.enable = true;
             settings = {
+                background = colours.bg;
+                foreground = colours.fg;
+                cursor-color = colours.fg;
+                selection-background = colours.bg_selected;
+                selection-foreground = colours.fg_selected;
                 font-family = "IntoneMono NF"; 
-                theme = "Nord"; # TODO add to option
                 notify-on-command-finish = "unfocused";
                 notify-on-command-finish-action = "bell,notify";
                 scrollbar = "never";

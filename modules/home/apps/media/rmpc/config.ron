@@ -2,7 +2,7 @@
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
-    theme: Some("nord_mini"),
+    theme: Some("theme"),
     on_song_change: None,
     volume_step: 5,
     scrolloff: 5,

@@ -7,7 +7,7 @@ in
         ./ghostty.nix
     ];
 
-    options.settings.modules.home.terminal.emulators= {
+    options.settings.modules.home.terminal.emulators = {
         enable = mkOption {
             type = lib.types.bool;
             default = config.settings.modules.home.terminal.enable;
