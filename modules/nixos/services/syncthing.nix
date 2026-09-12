@@ -34,7 +34,14 @@ in
                     "Documents" = {
                         id = "Documents";
                         path = "/home/${user}/Documents";
-                        devices = [ "desktop" "laptop" ];
+                        devices = [ "desktop" "laptop" "server"];
+                        ignorePerms = false;
+                    };
+
+                    "Screenshots" = {
+                        id = "Screenshots";
+                        path = "/home/${user}/Pictures/Screenhots";
+                        devices = [ "desktop" "laptop" "server"];
                         ignorePerms = false;
                     };
                 };
