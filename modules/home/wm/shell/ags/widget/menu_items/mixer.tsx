@@ -39,8 +39,6 @@ export default function Mixer({ backCallback }: { backCallback: () => void }){
                                             maxWidthChars={10}
                                         />
                                         <slider
-                                            class="menu_mixer_bar"
-                                            inverted
                                             hexpand
                                             orientation={Gtk.Orientation.HORIZONTAL}
                                             min={0}
