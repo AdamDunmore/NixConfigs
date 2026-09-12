@@ -8,23 +8,13 @@ import { subprocess } from "ags/process";
 import MenuBar from "./menu_bar.tsx";
 import MenuPage from "./menu_page.tsx";
 
-export default function Notifications({ backCallback }: { backCallback: () => void }){
-    interface Notification {
-        id: number;
-        app_icon: string;
-        app_name: string;
-        summary: string;
-        body: string;
-        urgency: number;
-        actions: [];
-    }
+import { Notification, history, setHistory } from "../../utils/notif_history.ts";
 
+export default function Notifications({ backCallback }: { backCallback: () => void }){
     interface NotificationBackend {
         start(): void;
         updateHistory(): void;
     }
-
-    const [ history, setHistory ] = createState<Notification[]>([]);
 
     const defaultBackend: NotificationBackend = (() => {
         let process: ReturnType<typeof subprocess> | null = null;
