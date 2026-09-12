@@ -31,14 +31,13 @@ in
                 }
 
                 .notification {
-                    background-color: alpha(@theme_base_color, 0.7);
+                    background-color: alpha(@theme_base_color, 0.8);
                     font-size: 10px; 
                     padding: 2.5px;
                 }
 
-                .notification:hover, .notification-default-action:hover {
-                    background-color: alpha(@theme_base_color, 0.8);
-                    color: blue;
+                .notification-default-action:hover {
+                    background-color: alpha(@theme_base_color, 1);
                 }
             '';
         };
