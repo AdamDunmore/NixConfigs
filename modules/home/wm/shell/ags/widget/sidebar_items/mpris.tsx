@@ -106,7 +106,7 @@ export default function MprisItem(){
                                 })} />
                                 <button hexpand={true} onClicked={() => { execAsync("rmpc next") }} class="button sidebar_mpris_media" label="" />
                             </box>
-                            <button halign={Gtk.Align.CENTER} onClicked={() => { execAsync("rmpc volume -5") }} class="button sidebar_mpris_media" label="󰝞" />
+                            <button halign={Gtk.Align.CENTER} onClicked={() => { execAsync("rmpc volume -5") }} class="button sidebar_mpris_media" label="󰝞" $={(self) => { onHover(self)}}/>
                         </box>
                     </centerbox>
                 </overlay>
