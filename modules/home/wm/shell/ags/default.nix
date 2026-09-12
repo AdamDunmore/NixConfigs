@@ -1,6 +1,7 @@
 { inputs, pkgs, config, lib, ... }:
 let
     cfg = config.settings.modules.home.wm.shell.ags;
+    notification_monitor = import ./notification_monitor.nix { inherit pkgs; };
     inherit (lib) mkIf;
 in
 {
@@ -12,6 +13,7 @@ in
             mpdris2
             lm_sensors
             gcalcli
+            notification_monitor
         ];
 
         systemd.user.services.mpdris2 = {

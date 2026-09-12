@@ -1,13 +1,15 @@
 import Gtk from "gi://Gtk";
 import Gio from "gi://Gio";
+import GLib from "gi://GLib";
 import Pango from "gi://Pango";
-import { createState, For, onCleanup } from "ags";
+import { createState, For } from "ags";
+import { subprocess } from "ags/process";
 
 import MenuBar from "./menu_bar.tsx";
 import MenuPage from "./menu_page.tsx";
 
 export default function Notifications({ backCallback }: { backCallback: () => void }){
-    interface MakoNotification {
+    interface Notification {
         id: number;
         app_icon: string;
         app_name: string;
@@ -17,52 +19,134 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
         actions: [];
     }
 
-    const [ history, setHistory ] = createState<MakoNotification[]>([]);
-
-    const proxy = Gio.DBusProxy.new_for_bus_sync(
-        Gio.BusType.SESSION,
-        Gio.DBusProxyFlags.NONE,
-        null,
-        "org.freedesktop.Notifications",
-        "/fr/emersion/Mako",
-        "fr.emersion.Mako",
-        null,
-    );
-
-    const updateHistory = function(){
-        let result;
-        try {
-            result = proxy.call_sync(
-                "ListHistory",
-                null,
-                Gio.DBusCallFlags.NONE,
-                -1,
-                null
-            );
-        } catch(e) {
-            console.log(e)
-            return
-        }
-        const h: MakoNotification[] = result.deepUnpack()[0].map((notification: any) => ({
-            id: notification.id.deepUnpack(),
-            app_icon: notification["app-icon"].deep_unpack(),
-            app_name: notification["app-name"].deepUnpack(),
-            summary: notification.summary.deepUnpack(),
-            body: notification.body.deepUnpack(),
-            urgency: notification.urgency.deepUnpack(),
-            actions: notification.actions.deep_unpack()
-        }));
-        setHistory(h)
-        // console.log(history()[0].actions) // TODO test actions
+    interface NotificationBackend {
+        start(): void;
+        updateHistory(): void;
     }
 
-    const handler = proxy.connect(
-        "g-properties-changed",
-        updateHistory
-    ); updateHistory();
+    const [ history, setHistory ] = createState<Notification[]>([]);
 
-    onCleanup(() => proxy.disconnect(handler));
+    const defaultBackend: NotificationBackend = (() => {
+        let process: ReturnType<typeof subprocess> | null = null;
 
+        const start = () => {
+            process = subprocess(
+                ["notification-monitor"],
+                (stdout) => {
+                    for (const line of stdout.split("\n")) {
+                        if (!line.trim())
+                            continue;
+
+                        try {
+                            const notification: Notification =
+                                JSON.parse(line);
+
+                            setHistory([
+                                notification,
+                                ...history(),
+                            ]);
+                        } catch (e) {
+                            console.error(
+                                "Invalid notification:",
+                                line,
+                                e,
+                            );
+                        }
+                    }
+                },
+                (stderr) => {
+                    console.error(
+                        "notification-monitor:",
+                        stderr,
+                    );
+                },
+            );
+        };
+
+        const updateHistory = () => {
+            // Generic notification protocol has no history API.
+        };
+
+        return {
+            start,
+            updateHistory,
+        };
+    })();
+
+    const makoBackend: NotificationBackend = (() => {
+        const proxy = Gio.DBusProxy.new_for_bus_sync(
+            Gio.BusType.SESSION,
+            Gio.DBusProxyFlags.NONE,
+            null,
+            "org.freedesktop.Notifications",
+            "/fr/emersion/Mako",
+            "fr.emersion.Mako",
+            null,
+        );
+
+        const updateHistory = () => {
+            try {
+                const result = proxy.call_sync(
+                    "ListHistory",
+                    null,
+                    Gio.DBusCallFlags.NONE,
+                    -1,
+                    null,
+                );
+
+                const h: Notification[] = result.deepUnpack()[0].map(
+                    (notification: any) => ({
+                        id: notification.id.deepUnpack(),
+                        app_icon: notification["app-icon"].deepUnpack(),
+                        app_name: notification["app-name"].deepUnpack(),
+                        summary: notification.summary.deepUnpack(),
+                        body: notification.body.deepUnpack(),
+                        urgency: notification.urgency.deepUnpack(),
+                        actions: notification.actions.deepUnpack(),
+                    }),
+                );
+
+                setHistory(h);
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        const start = () => {
+            proxy.connect(
+                "g-properties-changed",
+                updateHistory,
+            );
+
+            updateHistory();
+        };
+
+        return {
+            updateHistory,
+            start,
+        };
+    })();
+
+    const bus = Gio.bus_get_sync(Gio.BusType.SESSION, null);
+
+    const hasName = (name: string): boolean =>
+        bus.call_sync(
+            "org.freedesktop.DBus",
+            "/org/freedesktop/DBus",
+            "org.freedesktop.DBus",
+            "NameHasOwner",
+            new GLib.Variant("(s)", [name]),
+            new GLib.VariantType("(b)"),
+            Gio.DBusCallFlags.NONE,
+            -1,
+            null,
+        ).deepUnpack()[0];
+
+    const backend: NotificationBackend =
+    hasName("fr.emersion.Mako")
+        ? makoBackend
+        : defaultBackend;
+    backend.start();
 
     return (
         <MenuPage>
@@ -71,7 +155,7 @@ export default function Notifications({ backCallback }: { backCallback: () => vo
                 <scrolledwindow vexpand={true} hexpand={true}>
                     <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
                         <For each={history}>
-                            {(n: MakoNotification) => {
+                            {(n: Notification) => {
                                 const [ focused, setFocused ] = createState<boolean>(false);
                                 return (
                                     <button onClicked={() => setFocused(!focused())}>
