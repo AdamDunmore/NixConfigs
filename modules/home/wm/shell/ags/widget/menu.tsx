@@ -28,8 +28,8 @@ export default function Menu(){
     const [isBluetoothPowered, setIsBluetoothPowered] = createState<boolean>(false);
     const [isWifiPowered, setIsWifiPowered] = createState<boolean>(false);
     const [speaker, setSpeaker] = createState<AstalWp.Endpoint>(wireplumber.get_default_speaker())
-    const [getBrightness, setBrightness] = createState<number>(0);
-    const [getVolume, setVolume] = createState<number>(0);
+    const [getBrightness, setBrightness] = createState<number>(-1);
+    const [getVolume, setVolume] = createState<number>(-1);
 
     const open = (window: string) => {
         setActiveWindow(window);
@@ -60,9 +60,9 @@ export default function Menu(){
     }); setPowerProfile(powerprofiles.active_profile);
 
     const backlight = brightness.get_backlights().devices[0];
-    backlight.connect("notify::brightness", () => {
+    backlight?.connect("notify::brightness", () => {
         setBrightness(backlight.brightness) 
-    }); setBrightness(backlight.brightness); 
+    }); setBrightness(backlight?.brightness ?? -1); 
 
     wireplumber.audio.connect("notify::speakers", () => {
         for (const s of wireplumber.audio.speakers) {
@@ -115,7 +115,7 @@ export default function Menu(){
                                             <MenuSplitButton icon="󰊿" callback={() => { execAsync("translate") }}/>
                                         </box>
                                     </box>
-                                    <box hexpand>
+                                    <box hexpand visible={getBrightness(b => b >= 0)}>
                                         <button class="menu_button" label={getBrightness(b => (b > 0.75) ? "󰃠" : (b > 0.25) ? "󰃟" : "󰃞")} onClicked={() => execAsync("togglenight")}/>
                                         <slider
                                             hexpand
