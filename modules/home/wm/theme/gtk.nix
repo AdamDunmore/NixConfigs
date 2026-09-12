@@ -3,60 +3,44 @@ let
     font = config.settings.values.font;
     cfg = config.settings.modules.home.wm.theme.gtk; 
     colours = config.settings.values.colours;
-    # TODO improve css
-    css = '' 
+    css = ''
+        /* GTK3 compatibility */
         @define-color theme_bg_color ${colours.bg};
         @define-color theme_selected_bg_color ${colours.bg_selected};
         @define-color theme_fg_color ${colours.fg};
         @define-color theme_text_color ${colours.fg};
         @define-color theme_selected_fg_color ${colours.fg_selected};
-
         @define-color theme_base_color ${colours.base};
         @define-color borders ${colours.border};
 
-        * {
-            color: @theme_fg_color;
-            border-radius: 10px;
-        }
+        /* GTK4 / libadwaita */
+        :root {
+            --window-bg-color: ${colours.bg};
+            --window-fg-color: ${colours.fg};
 
-        window,
-        windowhandle,
-        deck,
-        headerbar,
-        .background,
-        .horizontal,
-        .vertical {
-            background-image: none;
-            background-color: @theme_bg_color;
-            color: @theme_fg_color;
-        }
+            --view-bg-color: ${colours.base};
+            --view-fg-color: ${colours.fg};
 
-        entry,
-        textview,
-        spinbutton,
-        .view {
-            background-color: @theme_base_color;
-            color: @theme_text_color;
-        }
+            --sidebar-bg-color: ${colours.bg};
+            --sidebar-fg-color: ${colours.fg};
 
-        button, button label, .activatable box, viewport, box.card, widget.sidebar-pane, revealer, .image-button {
-            color: @theme_fg_color;
-            background-color: @theme_bg_color;
-            transition: background-color 0.5s;
-            background-image: none;
-            border: none;
-        }
+            --headerbar-bg-color: ${colours.bg};
+            --headerbar-fg-color: ${colours.fg};
 
-        button:hover, button:hover label, .activatable:hover box, .image-button:hover {
-            background-color: @theme_selected_bg_color;
-            color: @theme_selected_fg_color;
-        }
+            --popover-bg-color: ${colours.bg};
+            --popover-fg-color: ${colours.fg};
 
-        selection {
-            background-color: @theme_selected_bg_color;
-            color: @theme_selected_fg_color;
+            --card-bg-color: ${colours.bg_selected};
+            --card-fg-color: ${colours.fg};
+
+            --accent-bg-color: ${colours.bg_selected};
+            --accent-fg-color: ${colours.fg_selected};
         }
     '';
+    gtkTheme = import ./theme.nix {
+        inherit pkgs;
+        colours = config.settings.values.colours;
+    };
     inherit (lib) mkIf;
 in
 {
@@ -65,6 +49,10 @@ in
             enable = true;
             gtk3.extraCss = mkIf cfg.overrideTheme css;
             gtk4.extraCss = mkIf cfg.overrideTheme css;
+            theme = {
+                name = "GTK-Generated";
+                package = gtkTheme;
+            };
             gtk4.theme = config.gtk.theme;
             iconTheme = {
                 name = "Papirus-Dark";

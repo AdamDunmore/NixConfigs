@@ -203,6 +203,8 @@ in
 
                 #workspaces button {
                     padding: 5px;
+                    padding-left: 10px;
+                    padding-right: 10px;
                     background-color: alpha(${colours.bg}, 0.5);
                     border-radius: 0px;
                     transition: background-color 0.75s;
