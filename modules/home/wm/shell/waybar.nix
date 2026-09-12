@@ -127,6 +127,7 @@ in
             style = ''
                 * {
                     color: ${colours.fg};
+                    border: none;
                 }
 
                 window#waybar {
