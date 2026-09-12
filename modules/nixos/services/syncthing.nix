@@ -40,7 +40,7 @@ in
 
                     "Screenshots" = {
                         id = "Screenshots";
-                        path = "/home/${user}/Pictures/Screenhots";
+                        path = "/home/${user}/Pictures/Screenshots";
                         devices = [ "desktop" "laptop" "server"];
                         ignorePerms = false;
                     };
