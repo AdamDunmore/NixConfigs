@@ -166,6 +166,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                             list = apps.fuzzy_query(text);
                     }
 
+                    setAppsList([])
                     setAppsList(list); 
                     setSelected(0)
                 }} 

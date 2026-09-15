@@ -53,7 +53,7 @@ in
                 name = "GTK-Generated";
                 package = gtkTheme;
             };
-            gtk4.theme = config.gtk.theme;
+            gtk4.theme = null;
             iconTheme = {
                 name = "Papirus-Dark";
                 package = pkgs.papirus-icon-theme;
