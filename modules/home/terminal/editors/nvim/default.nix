@@ -48,18 +48,11 @@ in
                 plugins = {
                     dev.config.pure = ./.;
                     start = with pkgs.vimPlugins; [
-                        # Navigation #
-                        telescope-nvim
-                        telescope-project-nvim
-                        telescope-file-browser-nvim
+                        # Snacks
+                        snacks-nvim
 
                         # UI #
-                        nui-nvim 
                         bufferline-nvim
-                        dashboard-nvim
-                        nvim-tree-lua
-                        noice-nvim
-                        toggleterm-nvim
                         lualine-nvim
                         mini-icons
 

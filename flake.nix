@@ -11,7 +11,7 @@
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
         sops-nix.url = "github:Mic92/sops-nix";
         mnw.url = "github:Gerg-L/mnw";
-        waybar.url = "github:alexays/waybar";
+        waybar.url = "github:alexays/waybar"; 
         ags.url = "github:Aylur/ags";
         nix-flatpak.url = "github:gmodena/nix-flatpak";
         jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
