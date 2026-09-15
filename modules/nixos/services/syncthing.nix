@@ -44,6 +44,13 @@ in
                         devices = [ "desktop" "laptop" "server"];
                         ignorePerms = false;
                     };
+
+                    "Notes" = {
+                        id = "Notes";
+                        path = "/home/${user}/Notes";
+                        devices = [ "desktop" "laptop" "server"];
+                        ignorePerms = false;
+                    };
                 };
             };
         };
