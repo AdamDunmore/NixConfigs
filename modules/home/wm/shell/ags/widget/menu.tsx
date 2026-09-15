@@ -74,7 +74,7 @@ export default function Menu(){
                 }); if (s.volume !== undefined && Number.isFinite(s.volume)) setVolume(s.volume)
             }
         }
-    });
+    }); setSpeaker(wireplumber.audio.default_speaker)
 
     return (
         <box hexpand class="menu" valign={Gtk.Align.START} vexpand={false}>
@@ -121,7 +121,7 @@ export default function Menu(){
                                             hexpand
                                             value={getBrightness}
                                             onChangeValue={(self) => {
-                                                backlight.set_brightness(self.value)
+                                                backlight.set_brightness(+(self.value.toFixed(2)))
                                             }}
                                         />
                                         <label label={getBrightness(b => `${(b * 100).toFixed()}%`)}/>
@@ -132,7 +132,7 @@ export default function Menu(){
                                             hexpand
                                             value={getVolume}
                                             onChangeValue={(self) => {
-                                                speaker().set_volume(self.value)
+                                                speaker().set_volume(+(self.value.toFixed(2)))
                                             }}
                                         />
                                         <label label={getVolume(v => `${(v * 100).toFixed()}%`)}/>
