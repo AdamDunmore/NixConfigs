@@ -29,6 +29,7 @@ in
                     zls
                     luajitPackages.luarocks 
                     openssl
+                    gopls
 
                     vue-language-server
                     # (pkgs.vue-language-server.overrideAttrs (old: { FIX readd if problems with vuels
@@ -44,6 +45,7 @@ in
                     rustc
                     cargo
                     openssl
+                    go
                 ];
                 plugins = {
                     dev.config.pure = ./.;
