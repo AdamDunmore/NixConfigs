@@ -42,8 +42,6 @@ let
         BTN_OUTLINE_OFFSET=-3
         SPACING=3
         GRADIENT=0
-
-        GTK3_GENERATE_DARK=True
     '';
 in
 pkgs.stdenvNoCC.mkDerivation {

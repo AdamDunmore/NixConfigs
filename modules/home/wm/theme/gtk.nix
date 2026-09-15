@@ -49,6 +49,7 @@ in
             enable = true;
             gtk3.extraCss = mkIf cfg.overrideTheme css;
             gtk4.extraCss = mkIf cfg.overrideTheme css;
+            colorScheme = "light";
             theme = {
                 name = "GTK-Generated";
                 package = gtkTheme;
