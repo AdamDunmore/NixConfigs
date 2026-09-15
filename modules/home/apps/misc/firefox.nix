@@ -23,6 +23,7 @@ in
                 };
             };
             profiles.default = {
+                # about:config
                 settings = {
                     "browser.startup.homepage" = "https://start.me/";
                     "browser.tabs.inTitlebar" = 0;
@@ -57,6 +58,10 @@ in
 
                     #nav-bar {
                         background: ${colours.bg_selected} !important;
+                    }
+
+                    #trust-icon-container, #tracking-protection-icon-container, #identity-box {
+                        margin-right: 2px !important;
                     }
 
                     #PersonalToolbar {
