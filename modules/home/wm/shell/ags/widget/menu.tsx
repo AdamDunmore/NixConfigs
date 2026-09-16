@@ -64,17 +64,17 @@ export default function Menu(){
         setBrightness(backlight.brightness) 
     }); setBrightness(backlight?.brightness ?? -1); 
 
-    wireplumber.audio.connect("notify::speakers", () => {
-        for (const s of wireplumber.audio.speakers) {
-            if (s.get_is_default()) {
-                setSpeaker(s);
-                s.connect("notify::volume", () => {
-                    if (s.volume !== undefined && Number.isFinite(s.volume))
-                        setVolume(s.volume)
-                }); if (s.volume !== undefined && Number.isFinite(s.volume)) setVolume(s.volume)
-            }
-        }
-    }); setSpeaker(wireplumber.audio.default_speaker)
+    const get_volume = (s: AstalWp.Endpoint) => {
+        setSpeaker(s);
+        s.connect("notify::volume", () => {
+            if (s.volume !== undefined && Number.isFinite(s.volume))
+                setVolume(s.volume)
+        }); if (s.volume !== undefined && Number.isFinite(s.volume)) setVolume(s.volume)
+    };
+
+    wireplumber.audio.connect("notify::default_speaker", () => {
+        get_volume(wireplumber.audio.default_speaker);
+    }); get_volume(wireplumber.audio.default_speaker)
 
     return (
         <box hexpand class="menu" valign={Gtk.Align.START} vexpand={false}>

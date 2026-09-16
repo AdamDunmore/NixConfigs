@@ -5,15 +5,17 @@ import { createState, For } from "ags";
 import MenuBar from "./menu_bar.tsx";
 import MenuPage from "./menu_page.tsx";
 
+import { SendNotification, NotificationAction } from "../../utils/notifications.ts";
+
 export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: AstalBluetooth.Bluetooth, backCallback: () => void }){
     const [devices, setDevices] = createState<AstalBluetooth.Device[]>([]);
     const [discovering, setDiscovering] = createState<boolean>(false);
 
     const handleBTConnection = (d: AstalBluetooth.Device) => {
         if(d.connected){
-            d.disconnect_device((d) => print("Disconnecting"))
+            d.disconnect_device(d => SendNotification("Disconnecting...", "Disconnecting from device " + d?.name))
         }else {
-            d.connect_device((d) => print("Connecting"))
+            d.connect_device(d => SendNotification("Connected", "Connected to device " + d?.name))
         }
     }
 
@@ -31,6 +33,7 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
                 <button class="menu_button" label={discovering(d => d ? "󰘊" : "")} onClicked={() => {
                             let a = bluetooth.get_adapter()
                             if (a && !a.discovering){
+                                SendNotification("Scanning...", "Adapter is scanning for 10 seconds")
                                 a.start_discovery()
                                 setTimeout(() => { a.stop_discovery() }, 10000)
                             }

@@ -5,6 +5,7 @@ import { execAsync } from "ags/process";
 
 import MenuBar from "./menu_bar.tsx";
 import MenuPage from "./menu_page.tsx";
+import { SendNotification } from "../../utils/notifications.ts";
 
 export default function Wifi({ backCallback, network }: { backCallback: () => void, network: Network.Network }){
     const wifi: Network.Wifi | null = network.get_wifi();
@@ -48,7 +49,7 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
     return (
         <MenuPage>
             <MenuBar backCallback={backCallback}>
-                <button class="menu_button" label="" onClicked={() => { if(!wifi.scanning){ wifi.scan(); } }}/>
+                <button class="menu_button" label="" onClicked={() => { if(!wifi?.scanning){ wifi?.scan(); SendNotification("Scanning...", "Wifi adapter is scanning for networks")} }}/>
             </MenuBar>
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true} spacing={2}>
                 <box spacing={4} visible={newActiveAccessPoint(t => t !== "none")}>
@@ -67,17 +68,20 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
                                         onClicked={() => {
                                             let active_access_point = activeAccessPoint();
                                             if (active_access_point != null && access_point.ssid === active_access_point.ssid){
+                                                SendNotification("Disconnecting...", "Disconnecting from network " + access_point.ssid)
                                                 wifi?.deactivate_connection(null);
                                                 return;
                                             }
 
                                             execAsync(`nmcli device wifi connect ${access_point.bssid}`)
-                                                .then(() => console.log(`Network: connected to '${access_point.ssid}'`))
+                                                .then(() => SendNotification("Connected", "Connected to network " + access_point.ssid)
+)
                                                 .catch((err) => {
                                                     if (String(err).includes("Secrets were required")) {
                                                         setNewActiveAccessPoint(access_point);
                                                     } else { 
                                                         console.error("Connection Failed: " + err);
+                                                        SendNotification("Connection Failed", "Error: " + err)
                                                     }
                                                 });
                                         }

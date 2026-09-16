@@ -6,6 +6,8 @@ import GLib from "gi://GLib";
 import Apps from "gi://AstalApps"
 import { execAsync } from "ags/process";
 
+import { SendNotification, NotificationAction } from "../../utils/notifications.ts";
+
 abstract class MenuEntry {
     name: string
     command: string
@@ -38,29 +40,19 @@ export class Nixpkg extends MenuEntry {
         this.description = description;
     }
 
-    launch(){ 
-        execAsync([
-            "notify-send",
+    async launch(){ 
+        await SendNotification(
             "Package Info",
-            [ this.full_name,
-            this.version,
-            this.programs.join(" "),
-            this.description
-            ].join("\n"),
-            "-A",
-            "install=Install App",
-            "-A",
-            "copy=Copy Nixpkgs Path"
-        ])
+            [ this.full_name, this.version, this.programs.join(" "), this.description ].join("\n"),
+            [ new NotificationAction("install", "Install App"), new NotificationAction("copy", "Copy Nixpkgs Path") ]
+        )
             .then(v => {
                 if(v == "install") {
-                    execAsync([ "bash", "-c",
-                        `nix profile add "nixpkgs#${this.full_name}" && notify-send "Package Installed Successfully" "${this.full_name}"`
-                    ]);
+                    execAsync(`nix profile add "nixpkgs#${this.full_name}"`)
+                    SendNotification("Package Installed Successfully", this.full_name)
                 } else if (v == "copy"){
-                    execAsync([ "bash", "-c",
-                        `wl-copy "${this.full_name}" && notify-send "Path Copied Successfully" "${this.full_name}"`
-                    ]);
+                    execAsync(`wl-copy "${this.full_name}"`)
+                    SendNotification("Path Copied Successfully", this.full_name)
                 }
             })
             .catch(e => console.log(e))
