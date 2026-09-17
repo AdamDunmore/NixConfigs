@@ -2,7 +2,7 @@
 
 let
     cfg = config.settings.modules.home.wm;
-    cfg_ags = config.settings.modules.home.wm.shell.ags;
+    cfg_ags = cfg.shell.ags;
     colours = config.settings.values.colours;
     forEachPkg = builtins.attrValues cfg.defaults;
     
@@ -10,9 +10,9 @@ let
 in
 {
     imports = [
+        ./module.nix
         ./shell
         ./theme
-        ./module.nix
 
         ./hyprland.nix
         ./river.nix
@@ -66,7 +66,7 @@ in
             gnome-settings-daemon
         ]);
 
-        wm = {
+        settings.modules.home.wm.module = {
             modifier = "SUPER";
             keybinds = [
                 { mod = true; key = "Return"; dispatch = "spawn"; arg = "${cfg.defaults.terminal}/bin/${cfg.defaults.terminal.meta.mainProgram}"; }
@@ -203,7 +203,7 @@ in
             package = pkgs.adwaita-icon-theme;
 
             gtk.enable = true;
-            # sway.enable = mkIf (cfg.sway.enable) true; TODO readd after sway
+            sway.enable = mkIf (cfg.sway.enable) true;
         };
 
         xdg = {

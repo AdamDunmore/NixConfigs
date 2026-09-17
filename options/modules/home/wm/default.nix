@@ -4,6 +4,8 @@ let
 in
 {
     imports = [
+        ./module.nix
+
         ./shell
         ./theme
         ./hyprland.nix
