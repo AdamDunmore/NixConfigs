@@ -12,10 +12,10 @@ in
         };
 
         default = mkOption {
-                type = lib.types.enum [ "greetd" "ly" "sddm" "cosmic" "none" ];
+                type = lib.types.enum [ "greetd" "ly" "sddm" "none" ];
                 default = "sddm";
                 example = "ly";
-                description = "String value for what display manager to use. Possible options are 'greetd', 'ly', 'sddm', 'cosmic' or 'none'.";
+                description = "String value for what display manager to use. Possible options are 'greetd', 'ly', 'sddm' or 'none'.";
 
         };
     };

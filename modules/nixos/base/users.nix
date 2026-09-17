@@ -10,7 +10,7 @@ in
             createHome = true;
             isNormalUser = true;
             description = "The devices main user";
-            extraGroups = [ "networkmanager" "wheel" "audio" "dialout" "vboxusers" ];
+            extraGroups = [ "networkmanager" "wheel" "audio" "dialout" "vboxusers" "leds" ];
             shell = mkIf config.settings.modules.home.terminal.shell.zsh.enable pkgs.zsh;
             ignoreShellProgramCheck = true;
             hashedPasswordFile = config.sops.secrets.user_password.path;

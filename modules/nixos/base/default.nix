@@ -51,7 +51,6 @@ in
                 hyprlock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.hyprlock) true;
                 swaylock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.swaylock) true;            
                 sddm.enableGnomeKeyring = mkIf (dm_cfg.default == "sddm") true;
-                # cosmic-greeter.enableGnomeKeyring = mkIf (config.settings.nixos.display_manager == "sddm") true;
             };
 
             # Man pages
@@ -106,12 +105,15 @@ in
             # Default ssh settings
             services.openssh.enable = lib.mkDefault false;
             programs.ssh.askPassword = "";
+
+            # Adds led group which can edit led files
+            users.groups.leds = {};
+            services.udev.extraRules = ''
+                ACTION=="add", SUBSYSTEM=="leds", KERNEL=="chromeos:white:power", RUN+="${pkgs.coreutils}/bin/chgrp leds /sys/class/leds/%k/brightness"
+                ACTION=="add", SUBSYSTEM=="leds", KERNEL=="chromeos:white:power", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
+            '';
         } )
         
-        # ( mkIf (config.settings.nixos.display_manager == "cosmic") {
-        #     services.displayManager.cosmic-greeter.enable = true;
-        # } ) 
-
         ( mkIf config.settings.modules.home.wm.replays { 
             programs.gpu-screen-recorder.enable = true;
         })
