@@ -180,7 +180,7 @@ export default function Calendar({ backCallback }: { backCallback: () => void })
                             { (event: Event) => {
                                 const [isInteracting, setIsInteracting] = createState<boolean>(false)
                                 return (
-                                    <button onClicked={_ => setIsInteracting(!isInteracting())} class={isInteracting(i => {
+                                    <button visible={event.start_date.isUpcoming() || event.start_date.isToday()} onClicked={_ => setIsInteracting(!isInteracting())} class={isInteracting(i => {
                                         const base_class = "menu_calendar_event ";
                                         return (event.start_date.isToday() || i) ? base_class + "selected" : base_class
                                     })}>
