@@ -48,11 +48,14 @@ export class Nixpkg extends MenuEntry {
         )
             .then(v => {
                 if(v == "install") {
-                    execAsync(`nix profile add "nixpkgs#${this.full_name}"`)
-                    SendNotification("Package Installed Successfully", this.full_name)
+                    SendNotification("Installing Package", this.full_name)
+                    execAsync(`nix profile add "nixpkgs#${this.full_name}"`).then(_ => {
+                        SendNotification("Package Installed Successfully", this.full_name)
+                    })
                 } else if (v == "copy"){
-                    execAsync(`wl-copy "${this.full_name}"`)
-                    SendNotification("Path Copied Successfully", this.full_name)
+                    execAsync(`wl-copy "${this.full_name}"`).then(_ => {
+                        SendNotification("Path Copied Successfully", this.full_name)
+                    })
                 }
             })
             .catch(e => console.log(e))
