@@ -207,6 +207,7 @@ in
         };
 
         xdg = {
+            userDirs.setSessionVariables = true;
             mime.enable = true;
             mimeApps = {
                 enable = true;

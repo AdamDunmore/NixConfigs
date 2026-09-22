@@ -102,7 +102,7 @@ pkgs.stdenv.mkDerivation rec {
         mesa
         alsa-lib
         dbus
-        xorg.libX11
+        libX11
     ];
 }
 

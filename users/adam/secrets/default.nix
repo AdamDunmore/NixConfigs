@@ -41,6 +41,12 @@ in
                 key = "tb_key";
                 mode = "0444";
             };
+
+            onedrive_pass = {
+                sopsFile = ./secrets.yaml;
+                key = "onedrive_pass";
+                mode = "0444";
+            };
         };
     };
 }

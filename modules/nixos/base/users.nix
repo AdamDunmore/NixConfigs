@@ -13,7 +13,7 @@ in
             extraGroups = [ "networkmanager" "wheel" "audio" "dialout" "vboxusers" "leds" ];
             shell = mkIf config.settings.modules.home.terminal.shell.zsh.enable pkgs.zsh;
             ignoreShellProgramCheck = true;
-            hashedPasswordFile = config.sops.secrets.user_password.path;
+            hashedPasswordFile = mkIf (config.settings.modules.nixos.base.secrets.user_password) config.sops.secrets.user_password.path;
             initialPassword = mkIf (!config.settings.modules.nixos.base.secrets.user_password) "changeme";
         };
     };
