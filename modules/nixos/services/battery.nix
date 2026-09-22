@@ -24,11 +24,57 @@ in
 
             serviceConfig = {
                 Type = "oneshot";
-
                 ExecStart = limit cfg.chargeLimit;
-
                 ExecStop = limit 100;
             };
+        };
+
+        systemd.services.cpu-power-profile = { 
+            description = "Apply CPU frequency limit based on power profile"; 
+            wantedBy = [ "multi-user.target" ]; 
+            serviceConfig = { 
+                Type = "simple"; 
+                  ExecStart = pkgs.writeShellScript "cpu-power-profile" ''
+                    normal_max="$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq)"
+
+                    set_limit() {
+                        case "$1" in
+                            power-saver)
+                                limit=2000000
+                                ;;
+
+                            performance)
+                                limit=4059140
+                                ;;
+
+                            *)
+                                return
+                                ;;
+                        esac
+
+                        for policy in /sys/devices/system/cpu/cpufreq/policy*; do
+                            if [ -w "$policy/scaling_max_freq" ]; then
+                                echo "$limit" > "$policy/scaling_max_freq"
+                            fi
+                        done
+                    }
+
+                    last_profile=""
+
+                    while true; do
+                        profile="$(${pkgs.power-profiles-daemon}/bin/powerprofilesctl get)"
+
+                        if [ "$profile" != "$last_profile" ]; then
+                            set_limit "$profile"
+                            last_profile="$profile"
+                        fi
+
+                        sleep 1
+                    done
+                '';
+                Restart = "always"; 
+                RestartSec = 1; 
+            }; 
         };
     };
 }

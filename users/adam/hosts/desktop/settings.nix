@@ -14,9 +14,13 @@ in
                     wm.replays = true;
                 };
                 nixos = {
-                    services.ai = {
-                        enable = mkForce true;
-                        enableRocm = true; 
+                    services = {
+                        ai = {
+                            enable = mkForce true;
+                            enableRocm = true; 
+                        };
+                        
+                        battery.enable = false;
                     };
                 };
             };
