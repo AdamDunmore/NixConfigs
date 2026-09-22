@@ -7,7 +7,7 @@ in
 {
     config = mkIf cfg.enable {
         programs.firefox = {
-            configPath = "${config.xdg.configHome}/mozilla/firefox";
+            # configPath = "${config.xdg.configHome}/mozilla/firefox"; Broken?
             enable = true;
             policies = {
                 Sync = {
