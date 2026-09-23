@@ -46,6 +46,9 @@
 
         # Dev
         lib = inputs.nixpkgs.lib;
+        systems = [
+            "x86_64-linux"
+        ];
 
         derivs = lib.listToAttrs (
             lib.concatLists (
@@ -63,6 +66,7 @@
             )
         );
         forEachDeriv = f: lib.mapAttrs f derivs;
+        forEachSystem = lib.genAttrs systems;
     in
     {             
         # nh home switch .
@@ -119,21 +123,27 @@
 
         # Devshell
         # nix develop .#install
-        # devShells.${system}."install" = pkgs.mkShell {
-        #     buildInputs = with pkgs; [
-        #         neovim
-        #         nh
-        #         git
-        #     ];
-        #     shellHook = ''
-        #         echo ""
-        #         echo "Welcome to my nix configuration install" 
-        #         echo ""
-        #         echo "To get started run:"
-        #         echo "    sudo nixos-generate-config"
-        #         echo "    cp /etc/nixos/hardware-configuration.nix ./host/<host>/"
-        #         echo "    nh <os/home> switch . --hostname <host>"
-        #     ''; # TODO fix directory
-        # };
+        devShells = forEachSystem(system: let
+            pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = system; };  
+        in {
+            "install" = pkgs.mkShell {
+                buildInputs = with pkgs; [
+                    neovim
+                    nh
+                    git
+                ];
+                shellHook = ''
+                    echo ""
+                    echo "Welcome to my nix configuration install" 
+                    echo ""
+                    echo "To get started run:"
+                    echo "    sudo nixos-generate-config"
+                    echo "    cp /etc/nixos/hardware-configuration.nix ./users/<user>/hosts/<host>/hardware-configuration.nix"
+                    echo "    nh <os/home> switch . --hostname <user>-<host>"
+                    echo ""
+                    echo "Please note that the recommended user/host layout can be found in ./users/default/"
+                '';
+            };
+        });
     };
 }
