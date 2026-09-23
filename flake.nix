@@ -28,6 +28,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         watch-me.url = "git+ssh://git@github.com/AdamDunmore/watch-me.git";
+        webserver.url = "github:AdamDunmore/WebServer";
     };
 
     outputs = { ... } @inputs:
@@ -41,6 +42,7 @@
                 { name = "laptop"; system = "x86_64-linux"; }
                 { name = "desktop"; system = "x86_64-linux"; }
                 { name = "steam-deck"; system = "x86_64-linux"; }
+                { name = "server"; system = "x86_64-linux"; }
             ];
         };
 
