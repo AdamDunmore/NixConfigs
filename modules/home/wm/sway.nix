@@ -6,6 +6,7 @@ let
 in
 {
     config = mkIf cfg.enable { 
+        home.packages = [ pkgs.swaysome ];
         wayland.windowManager.sway = {
             enable = true;
             package = pkgs.swayfx;

@@ -11,50 +11,53 @@ in
             enableZshIntegration = config.settings.modules.home.terminal.shell.zsh.enable;
             shellWrapperName = "yy";
             settings = {
-                manager = {
-                    show_hidden = true;
-                    show_symlink = true;
-                };
-                opener = {
-                    edit = [
-                        { run = "nvim $@"; block = true; for = "unix"; }
-                    ];
+                yazi = {
+                    mgr = {
+                        show_hidden = true;
+                        show_symlink = true;
+                    };
+                    opener = {
+                        edit = [
+                            { run = "nvim $@"; block = true; for = "unix"; }
+                        ];
 
-                    view = [
-                        { run = "gqview $@ -t  & disown %1 && exit"; block = true; for = "unix"; }
-                    ];
+                        view = [
+                            { run = "gqview $@ -t  & disown %1 && exit"; block = true; for = "unix"; }
+                        ];
 
-                    play = [
-                        { run = "mpv"; for = "unix"; } # TODO Fix
-                    ];
-                };
-                open = {
-                    prepend_rules = [
-                        # Edits
-                        { name = "*.html*"; use = "edit"; }
-                        { name = "*.json*"; use = "edit"; }
-                        { name = "*.js*"; use = "edit"; }
-                        { name = "*.ts*"; use = "edit"; }
-                        { name = "*.py*"; use = "edit"; }
-                        { name = "*.java*"; use = "edit"; }
-                        { name = "*.txt"; use = "edit"; }
-                        { name = "*.c*"; use = "edit"; }
-                        { name = "*.go"; use = "edit"; }
-                        { name = "*.nix"; use = "edit"; }
-                        { name = "*.md"; use = "edit"; }
-                        { name = "*.vue"; use = "edit"; }
-                        { name = "*.h"; use = "edit"; }
-                        { name = "*.rs"; use = "edit"; }
-                        { name = "*.toml"; use = "edit"; }
-                        { name = "*.svg"; use = "edit"; }
+                        play = [
+                            { run = "mpv"; for = "unix"; }
+                        ];
+                    };
+                    open = {
+                        prepend_rules = [
+                            # Edits
+                            { url = "*.html*"; use = "edit"; }
+                            { url = "*.json*"; use = "edit"; }
+                            { url = "*.js*"; use = "edit"; }
+                            { url = "*.ts*"; use = "edit"; }
+                            { url = "*.py*"; use = "edit"; }
+                            { url = "*.java*"; use = "edit"; }
+                            { url = "*.txt"; use = "edit"; }
+                            { url = "*.c*"; use = "edit"; }
+                            { url = "*.go"; use = "edit"; }
+                            { url = "*.nix"; use = "edit"; }
+                            { url = "*.md"; use = "edit"; }
+                            { url = "*.vue"; use = "edit"; }
+                            { url = "*.h"; use = "edit"; }
+                            { url = "*.rs"; use = "edit"; }
+                            { url = "*.toml"; use = "edit"; }
+                            { url = "*.svg"; use = "edit"; }
 
-                        # Images
-                        { name = "*.png"; use = "view"; }
-                        { name = "*.jpg"; use = "view"; }
-                        
-                        # Videos
-                        { name = "*.mp4"; use = "play"; }
-                    ];
+                            # Images
+                            { url = "*.png"; use = "view"; }
+                            { url = "*.jpg"; use = "view"; }
+                            
+                            # Videos
+                            { url = "*.mp4"; use = "play"; }
+                            { url = "*.flac"; use = "play"; }
+                        ];
+                    };
                 };
             };
         };

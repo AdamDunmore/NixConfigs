@@ -48,12 +48,8 @@ in
 
         home.packages = forEachPkg ++ (with pkgs; [
             wl-clipboard
-            swaysome # TODO move to sway module
             grim
             slurp
-            wpaperd
-            wofi
-            kanshi
 
             # Gnome
             nautilus
