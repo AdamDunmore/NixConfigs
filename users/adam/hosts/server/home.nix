@@ -1,4 +1,4 @@
-{ inputs, system, pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
     go-markdown-server = import ../../../../pkgs/go-markdown-server.nix { inherit pkgs; };
 in
@@ -8,8 +8,6 @@ in
         inputs.webserver.homeManagerModules.default
     ];
     config = {
-        home.apps = [ inputs.webserver.packages.${system}.default ]; 
-
         services.webserver = {
             enable = true;
             environmentVariables = {
