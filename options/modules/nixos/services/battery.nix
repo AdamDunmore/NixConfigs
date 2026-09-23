@@ -14,7 +14,7 @@ in
             type = lib.types.int;
             default = 80;
             example = 100;
-            description = "Enables AMD rocm";
+            description = "Sets the battery charge limit as a percentage";
         };
 
     };
