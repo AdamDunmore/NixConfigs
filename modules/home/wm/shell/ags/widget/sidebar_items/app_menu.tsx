@@ -26,7 +26,7 @@ export class Command extends MenuEntry {
     }
 }
 
-export class Nixpkg extends MenuEntry {
+export class NixPkg extends MenuEntry {
     full_name: string
     version: string
     programs: string[]
@@ -62,6 +62,52 @@ export class Nixpkg extends MenuEntry {
     }
 }
 
+export class NixOption extends MenuEntry {
+    description: string 
+    type: string
+    default_value: string
+    example_value: string
+    source: string
+
+    constructor(name: string, description: string, type: string, default_value: string, example_value: string, source: string){
+        super(name, "")
+        this.description = description;
+        this.type = type;
+        this.default_value = default_value;
+        this.example_value = example_value;
+        this.source = source;
+    }
+
+    async launch() {
+        await SendNotification(
+            this.name,
+            [ 
+                `Description: ${this.description
+                    .replaceAll(/<.*>/g, '')
+                    .trimEnd()
+                    // TODO Remove href (it should be done by the regex already)
+                }`,
+                `Option Set: ${(this.source.split('/')[0] == "nixos" ? "Nixos" : "Home-Manager")}`,
+                `Type: ${this.type}`,
+                `Default: ${this.default_value}`,
+                `Example: ${this.example_value}`,
+                `Source: ${this.source}`
+            ].join('\n'),
+            [
+                new NotificationAction("open", "Open Source") // TODO fix copy showing up
+            ]
+        )
+            .then(v => {
+                if(v == "open") {
+                    // TODO open browser to source
+                    console.log("Opening Source (not really)")
+                }
+            })
+            .catch(e => console.log(e))
+    }
+}
+
+
 export default function AppMenu({ app_visible, close, show_app } : { app_visible: Accessor<boolean>, close: () => void, show_app: () => void }){
     const apps = new Apps.Apps({
         nameMultiplier: 2,
@@ -77,7 +123,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
         { name: "󰍃 logout", command: `pkill -f ${GLib.getenv("XDG_CURRENT_DESKTOP")}` },
     ];
 
-    const [appsList, setAppsList] = createState<Apps.Application[] | Command[] | Nixpkg[]>([]);
+    const [appsList, setAppsList] = createState<Apps.Application[] | Command[] | NixPkg[]>([]);
     const [selected, setSelected] = createState<number>(0);
 
     let scrolled: Gtk.ScrolledWindow;
@@ -134,7 +180,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                 class="sidebar_appmenu_entry"
                 onActivate={() => { appsList()[selected()].launch(); close() }}
                 onChanged={({ text }) => { 
-                    let list: Apps.Application[] | Command[] | Nixpkg[];
+                    let list: Apps.Application[] | Command[] | NixPkg[] | NixOption[];
                     switch (text.slice(0, 1)) {
                         case ":":
                             list = commands
@@ -149,13 +195,28 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                                 .then(pkgs_s => {
                                     const pkgs_json = JSON.parse(pkgs_s)["results"]
                                     for (let pkg of pkgs_json){
-                                        list.push(new Nixpkg(pkg.package_pname, pkg.package_attr_name, pkg.package_pversion, pkg.package_programs, pkg.package_description))
+                                        list.push(new NixPkg(pkg.package_pname, pkg.package_attr_name, pkg.package_pversion, pkg.package_programs, pkg.package_description))
                                     }
                                     setAppsList(list)
                                     setSelected(0)
                                 })
                                 .catch(e => console.log(e))
                             break;
+
+                        case "£":
+                            if(text.length < 2) return
+                            list = [];
+                            execAsync(`nh search --default-search options -j "${text.slice(1)}"`)
+                                .then(options_s => {
+                                    const options_json = JSON.parse(options_s)["results"]
+                                    for (let option of options_json){
+                                        list.push(new NixOption(option["option_name"], option["option_description"], option["option_type"], option["option_default"], option["option_example"], option["option_source"]));
+                                    }
+                                    setAppsList(list)
+                                    setSelected(0)
+                                })
+                                .catch(e => console.log(e))
+
 
                         default:
                             list = apps.fuzzy_query(text);
