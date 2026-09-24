@@ -7,7 +7,7 @@ in
 {
     config = mkIf cfg.enable {
         programs.firefox = {
-            # configPath = "${config.xdg.configHome}/mozilla/firefox"; Broken?
+            configPath = "${config.xdg.configHome}/mozilla/firefox";
             enable = true;
             policies = {
                 Sync = {
@@ -26,12 +26,24 @@ in
             profiles.default = {
                 # about:config
                 settings = {
+                    # General
                     "browser.startup.homepage" = "https://start.me/";
                     "browser.tabs.inTitlebar" = 0;
                     "browser.compactmode.show" = true;
                     "browser.urlbar.suggest.searches" = false;
                     "browser.toolbars.bookmarks.visibility" = "always";
+                    "browser.bookmarks.addedImportButton" = false;
+
+                    # Styling
                     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+                    # Sidebar
+                    "sidebar.verticalTabs" = true;
+                    "sidebar.visibility" = "expand-on-hover";
+                    "sidebar.main.tools" = "syncedtabs,history,bookmarks";
+                    "sidebar.expandOnHover" = true;
+                    "sidebar.animation.expand-on-hover.delay-duration-ms" = 0;		
+                    "sidebar.animation.expand-on-hover.duration-ms" = 50;
                 };
 
                 userChrome = ''

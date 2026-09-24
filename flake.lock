@@ -464,6 +464,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_9": {
+      "locked": {
+        "lastModified": 1789149629,
+        "narHash": "sha256-H6GwaZzZf+4npqv0tph94w9tZddSjFjmQrVsW0z78uk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "eaad089433ca2bb662274377d33df3d0e51ef28b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "ags": "ags",
@@ -479,7 +495,8 @@
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "watch-me": "watch-me",
-        "waybar": "waybar"
+        "waybar": "waybar",
+        "webserver": "webserver"
       }
     },
     "scenefx": {
@@ -646,6 +663,24 @@
       "original": {
         "owner": "alexays",
         "repo": "waybar",
+        "type": "github"
+      }
+    },
+    "webserver": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_9"
+      },
+      "locked": {
+        "lastModified": 1790183211,
+        "narHash": "sha256-JlIu9o7gaRRhIWeGQpddbsjLxpIQ6CL/LiYowpOTYhU=",
+        "owner": "AdamDunmore",
+        "repo": "WebServer",
+        "rev": "32948fa033e697f14dcc72567528c4a6fd14ef24",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AdamDunmore",
+        "repo": "WebServer",
         "type": "github"
       }
     }
