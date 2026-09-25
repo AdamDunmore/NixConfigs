@@ -44,6 +44,9 @@
                 { name = "steam-deck"; system = "x86_64-linux"; }
                 { name = "server"; system = "x86_64-linux"; }
             ];
+            louise = [ 
+                { name = "steam-deck"; system = "x86_64-linux"; }
+            ];
         };
 
         # Dev
