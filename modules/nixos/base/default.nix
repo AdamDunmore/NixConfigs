@@ -90,9 +90,9 @@ in
             };
 
             # Music scrobbling
-            services.mpdscribble = mkIf config.settings.modules.home.apps.media.enable {
+            services.mpdscribble = mkIf (config.settings.modules.home.apps.media.enable && config.settings.modules.nixos.base.secrets.enable) {
                 enable = true;
-                endpoints."last.fm" = mkIf config.settings.modules.nixos.base.secrets.enable {
+                endpoints."last.fm" = {
                     passwordFile = config.sops.secrets.lastfm_pass.path;                
                     username = "SkinnySheev";
                 };
