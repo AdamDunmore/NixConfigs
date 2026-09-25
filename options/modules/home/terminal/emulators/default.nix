@@ -5,6 +5,7 @@ in
 {
     imports = [
         ./ghostty.nix
+        ./kitty.nix
     ];
 
     options.settings.modules.home.terminal.emulators = {
