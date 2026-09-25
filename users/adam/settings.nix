@@ -12,7 +12,6 @@
                     services.ai.enable = false;
                 };
                 home = {
-                    apps.media.kodi.enable = false;
                     apps.misc.discord.flavour = "concord";
                     terminal.shell.zellij.enable = true;
                     wm = {
