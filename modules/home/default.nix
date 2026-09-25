@@ -30,7 +30,7 @@ in
             };
 
             # Setup sops for hm
-            sops = mkIf config.settings.modules.nixos.base.secrets {
+            sops = mkIf config.settings.modules.nixos.base.secrets.enable {
                 age.keyFile = "/etc/age.key";
                 defaultSopsFile = ../../users/${user}/secrets/secrets.yaml;
             };
