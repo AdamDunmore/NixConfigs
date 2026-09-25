@@ -8,7 +8,7 @@ in
     config = mkIf cfg.enable {
         services.tailscale = {
             enable = true;
-            authKeyFile = config.sops.secrets.ts_key.path;
+            authKeyFile = mkIf (config.settings.modules.nixos.base.secrets.enable) config.sops.secrets.ts_key.path;
         };
     };
 }
