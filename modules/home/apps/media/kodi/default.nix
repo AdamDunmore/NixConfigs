@@ -9,7 +9,7 @@ in
 {
     imports = [ inputs.sops-nix.homeManagerModules.sops ];
     config = mkIf cfg.enable {
-        sops.secrets.tb_key = {
+        sops.secrets.tb_key = mkIf config.settings.modules.nixos.base.secrets {
             sopsFile = ../../../../../users/${user}/secrets/secrets.yaml;
         };
 
