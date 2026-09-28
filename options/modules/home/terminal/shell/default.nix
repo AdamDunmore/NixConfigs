@@ -5,6 +5,7 @@ in
 {
     imports = [
         ./git.nix
+        ./htop.nix
         ./intellishell.nix
         ./lsd.nix
         ./mpv.nix

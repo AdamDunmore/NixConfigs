@@ -9,8 +9,8 @@ in
         programs.git = {
             enable = true;
             settings = {
-                url."git@github.com:".insteadOf = "https://github.com/";
-                user = {
+                url."git@github.com:".insteadOf = "https://github.com/"; # TODO and this
+                user = { # TODO change this
                     name = "Adam Dunmore";
                     email = "adamfdunmore@gmail.com";
                 };

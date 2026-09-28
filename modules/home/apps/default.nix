@@ -27,7 +27,6 @@ in
                 zip
                 unzip
                 killall
-                htop
                 wget
                 fd
                 ripgrep

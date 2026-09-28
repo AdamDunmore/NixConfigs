@@ -8,6 +8,7 @@ in
         ./git.nix
         ./intellishell.nix
         ./lsd.nix
+        ./htop.nix
         ./mpv.nix
         ./opencode.nix
         ./starship.nix
@@ -30,8 +31,7 @@ in
             shellAliases = {
                 x = "xdg-open";
                 
-                top = "htop";
-
+                # TODO move allias' to modules
                 # ls = "${pkgs.lsd}/bin/lsd -l";
                 lst = "${pkgs.lsd}/bin/lsd --tree -l";
                 dcat = "${pkgs.openssl}/bin/openssl enc -d -aes-256-cbc -salt -pbkdf2 -in";
