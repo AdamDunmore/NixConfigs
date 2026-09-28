@@ -33,6 +33,7 @@ in
                     "browser.urlbar.suggest.searches" = false;
                     "browser.toolbars.bookmarks.visibility" = "always";
                     "browser.bookmarks.addedImportButton" = false;
+                    "browser.ai.control.default" = "blocked";
 
                     # Styling
                     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
