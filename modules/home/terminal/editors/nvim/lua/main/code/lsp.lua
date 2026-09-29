@@ -34,6 +34,14 @@ vim.lsp.config('vtsls', {
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
 
+vim.lsp.config('ltex', {
+    settings = {
+        ltex = {
+            language = "en-GB",  
+        },
+    },
+})
+
 
 vim.lsp.config("*", {    
     capabilities = capabilities,
@@ -52,3 +60,4 @@ vim.lsp.enable("cssls")
 vim.lsp.enable("html")
 vim.lsp.enable({'vtsls', 'vue_ls'})
 vim.lsp.enable("gopls")
+vim.lsp.enable("ltex")

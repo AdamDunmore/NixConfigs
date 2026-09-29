@@ -40,6 +40,7 @@ in
                     #     '';
                     # }))
                     vtsls
+                    ltex-ls
 
                     # Deps
                     rustc
