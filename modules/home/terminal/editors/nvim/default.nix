@@ -30,6 +30,7 @@ in
                     luajitPackages.luarocks 
                     openssl
                     gopls
+                    ltex-ls-plus
 
                     vue-language-server
                     # (pkgs.vue-language-server.overrideAttrs (old: { FIX readd if problems with vuels
@@ -40,7 +41,6 @@ in
                     #     '';
                     # }))
                     vtsls
-                    ltex-ls
 
                     # Deps
                     rustc

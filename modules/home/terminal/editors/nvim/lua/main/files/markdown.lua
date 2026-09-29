@@ -1,6 +1,4 @@
 -- Render markdown
-
-
 vim.api.nvim_create_autocmd("BufReadCmd", {
     pattern = "*md.aes",
     callback = function(args)
@@ -15,6 +13,7 @@ require('render-markdown').setup({
     on = {
         attach = function() 
             vim.cmd("setlocal spell spelllang=en_gb");
+            vim.cmd("lsp enable ltex_plus")
         end,
     },
     heading = {
