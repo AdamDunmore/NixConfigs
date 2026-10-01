@@ -18,22 +18,21 @@ let
 in
 {
     config = mkIf cfg.enable {
-        # TODO debug
-        # environment.systemPackages = [ pkgs.powertop ];
-        # boot = {
-        #     kernel.sysctl = { 
-        #         "vm.dirty_writeback_centisecs" = 1500; # Sets kernel disk writes to every 15 seconds
-        #         "kernel.nmi_watchdog" = 0; # Disabled NMI watchdog to prevent CPU wakeups
-        #     };         
-        #     extraModprobeConfig = ''
-        #         options snd_hda_intel power_save=1
-        #         options snd_ac97_codec power_save=1
-        #     ''; # Power saving for audio codec
-        # };
-        #
-        # services.udev.extraRules = ''
-        #     ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
-        # '';
+        environment.systemPackages = [ pkgs.powertop ];
+        boot = {
+            kernel.sysctl = { 
+                "vm.dirty_writeback_centisecs" = 1500; # Sets kernel disk writes to every 15 seconds
+                "kernel.nmi_watchdog" = 0; # Disabled NMI watchdog to prevent CPU wakeups
+            };         
+            extraModprobeConfig = ''
+                options snd_hda_intel power_save=1
+                options snd_ac97_codec power_save=1
+            ''; # Power saving for audio codec
+        };
+        
+        services.udev.extraRules = ''
+            ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
+        '';
 
         systemd.services.battery-charge-limit = {
             description = "Set battery charge limit";
