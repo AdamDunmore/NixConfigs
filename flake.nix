@@ -12,9 +12,12 @@
         sops-nix.url = "github:Mic92/sops-nix";
         mnw.url = "github:Gerg-L/mnw";
         waybar.url = "github:alexays/waybar"; 
-        ags.url = "github:Aylur/ags";
         nix-flatpak.url = "github:gmodena/nix-flatpak";
         jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+        ags = {
+            url = "github:Aylur/ags";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         spicetify-nix = {
             url = "github:Gerg-L/spicetify-nix";
             inputs.nixpkgs.follows = "nixpkgs";
