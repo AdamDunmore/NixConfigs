@@ -40,8 +40,9 @@ in
                 ];
 
                 # Window Rules
-                windowrule = [
+                windowrule = [ # Move to module?
                     "unfocused_opacity:1.0,appid:firefox"
+                    "unfocused_opacity:1.0,appid:com.stremio.Stremio"
                 ];
 
                 # Monitors
