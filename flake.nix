@@ -14,6 +14,10 @@
         waybar.url = "github:alexays/waybar"; 
         nix-flatpak.url = "github:gmodena/nix-flatpak";
         jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+        neovim = {
+            url = "github:AdamDunmore/NvimConfigs";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         ags = {
             url = "github:Aylur/ags";
             inputs.nixpkgs.follows = "nixpkgs";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, user, ... }:
 
 {
     imports = [
@@ -14,6 +14,11 @@
                 home = {
                     apps.misc.discord.flavour = "concord";
                     terminal.shell.zellij.enable = true;
+                    terminal.editors.nvim = {
+                        enable = true;
+                        ai = false;
+                        localPath = "/home/${user}/Projects/NvimConfigs";
+                    };
                     wm = {
                         defaults = {
                             locker = pkgs.hyprlock;

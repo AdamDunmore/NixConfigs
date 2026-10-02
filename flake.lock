@@ -233,6 +233,21 @@
         "type": "github"
       }
     },
+    "mnw_2": {
+      "locked": {
+        "lastModified": 1790357809,
+        "narHash": "sha256-6IWPAMEotKY/nQvs1kU6qwMwCXTeW5HlOhw2RwFHFdI=",
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "rev": "a582dbedf7c8ec7effa6939ac5bdd23b27267d1b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "type": "github"
+      }
+    },
     "moonlight": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -252,6 +267,24 @@
         "owner": "moonlight-mod",
         "repo": "moonlight",
         "type": "github"
+      }
+    },
+    "neovim": {
+      "inputs": {
+        "mnw": "mnw_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790940445,
+        "narHash": "sha256-Kgn5ElGG7HTTfNu5XX6/KDIXF3SUCWhCKnbef4z3WGI=",
+        "path": "/home/adam/Projects/NvimConfigs",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/adam/Projects/NvimConfigs",
+        "type": "path"
       }
     },
     "nix-flatpak": {
@@ -474,6 +507,7 @@
         "mango": "mango",
         "mnw": "mnw",
         "moonlight": "moonlight",
+        "neovim": "neovim",
         "nix-flatpak": "nix-flatpak",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
