@@ -140,7 +140,7 @@
         in {
             "install" = pkgs.mkShell {
                 buildInputs = with pkgs; [
-                    neovim
+                    inputs.neovim.packages.${system}.default
                     nh
                     git
                 ];
