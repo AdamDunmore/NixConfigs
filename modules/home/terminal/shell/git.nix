@@ -6,6 +6,8 @@ let
 in
 {
     config = mkIf cfg.enable {
+        # TODO move to script which takes i (how far back in the log)
+        home.shellAliases = { gl1 = "wl-copy $(git log -n 1 | grep \"commit\" | cut -d \" \" -f 2)"; };
         programs.git = {
             enable = true;
             settings = {

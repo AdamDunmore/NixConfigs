@@ -29,22 +29,10 @@ in
             };
             shell.enableZshIntegration = cfg.zsh.enable;
             shellAliases = {
-                x = "xdg-open";
-                
                 # TODO move allias' to modules
-                # ls = "${pkgs.lsd}/bin/lsd -l";
-                lst = "${pkgs.lsd}/bin/lsd --tree -l";
+                x = "xdg-open"; 
                 dcat = "${pkgs.openssl}/bin/openssl enc -d -aes-256-cbc -salt -pbkdf2 -in";
-
-                cds = "echo \"Disk usage of current dir: $(du . -sh)\"";
-                gl1 = "wl-copy $(git log -n 1 | grep \"commit\" | cut -d \" \" -f 2)";
-
-                ze = "zellij options --attach-to-session=true --session-name=main"; 
-
-                sync-dir = "${pkgs.rsync}/bin/rsync -Pauv --delete";
-        
-                nix-switch = "sudo nixos-rebuild switch --flake";
-                nix-test = "sudo nixos-rebuild test --fast --flake";
+                cds = "echo \"Disk usage of current dir: $(du . -sh)\"";        
 
                 # emacs = mkIf cfg_editors.emacs "emacs -nw --init-directory ~/.config/emacs";
             };

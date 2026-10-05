@@ -18,6 +18,7 @@ let
 in
 {
     config = mkIf cfg.enable {
+        home.shellAliases = { ze = "zellij options --attach-to-session=true --session-name=main"; }; 
         programs.zellij = {
             enable = true;
 

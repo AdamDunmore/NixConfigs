@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let
     cfg = config.settings.modules.home.terminal.shell.lsd;
@@ -6,6 +6,7 @@ let
 in
 {
     config = mkIf cfg.enable {
+        home.shellAliases = { lst = "${pkgs.lsd}/bin/lsd --tree -l"; };
         programs.lsd = {
             enable = true;
             settings = {

@@ -57,6 +57,14 @@ in
                         border-radius: 10px;
                     }
 
+                    box>image {
+                        margin: 2px !important;
+                    }
+
+                    .unified-extensions-item-row-wrapper {
+                        background: rgba(0,0,0,0) !important; 
+                    }
+
                     #TabsToolbar {  
                         background: ${colours.bg} !important;
                         padding: 0px !important;
