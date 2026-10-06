@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }:
+{ inputs, lib, config, pkgs, pkgs-stable, ... }:
 let
     cfg = config.settings.modules.nixos.base;
     inherit (lib) mkIf mkMerge;

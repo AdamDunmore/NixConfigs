@@ -8,13 +8,14 @@ in
     config = mkIf (cfg.default == "sddm") {
         services.displayManager.sddm = {
             enable = true;
-            wayland.enable = false; # TODO fix for no mouse in SDDM
+            wayland.enable = false; # TODO fix for no mouse in SDDM ( I think its something to do with the cursor theme
+            # wayland.enable = true;
             extraPackages = [
                 pkgs.kdePackages.qtmultimedia
             ];
             settings = {
                 General = {
-                    InputMethod = "";
+                    InputMethod = ""; # Disables virtual keyboard
                 };
             };
             theme = "sddm-astronaut-theme";

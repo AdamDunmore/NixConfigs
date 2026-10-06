@@ -94,13 +94,14 @@ export class NixOption extends MenuEntry {
                 `Source: ${this.source}`
             ].join('\n'),
             [
-                new NotificationAction("open", "Open Source") // TODO fix copy showing up
+                new NotificationAction("open", "Open Source")
             ]
         )
             .then(v => {
                 if(v == "open") {
-                    // TODO open browser to source
-                    console.log("Opening Source (not really)")
+                    const module_url = this.source.split('/')[0] == "nixos" ? "https://github.com/NixOS/nixpkgs/blob/nixos-unstable" : "https://github.com/nix-community/home-manager/blob/master"
+                    SendNotification("Opening Source", `Link: ${module_url}/${this.source}`)
+                    execAsync(`xdg-open "${module_url}/${this.source}"`)
                 }
             })
             .catch(e => console.log(e))
@@ -210,6 +211,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                                 .then(options_s => {
                                     const options_json = JSON.parse(options_s)["results"]
                                     for (let option of options_json){
+                                        console.log(option);
                                         list.push(new NixOption(option["option_name"], option["option_description"], option["option_type"], option["option_default"], option["option_example"], option["option_source"]));
                                     }
                                     setAppsList(list)
