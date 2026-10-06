@@ -8,7 +8,7 @@ in
     config = {
         programs.configuredNeovim = {
             enable = cfg.enable;
-            ai = cfg.ai;
+            ai = config.settings.modules.nixos.services.ai.enable;
             colours = config.settings.values.colours;
             localPath = cfg.localPath;
         };

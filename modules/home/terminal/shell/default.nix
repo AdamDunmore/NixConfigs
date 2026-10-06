@@ -29,7 +29,6 @@ in
             };
             shell.enableZshIntegration = cfg.zsh.enable;
             shellAliases = {
-                # TODO move allias' to modules
                 x = "xdg-open"; 
                 dcat = "${pkgs.openssl}/bin/openssl enc -d -aes-256-cbc -salt -pbkdf2 -in";
                 cds = "echo \"Disk usage of current dir: $(du . -sh)\"";        
