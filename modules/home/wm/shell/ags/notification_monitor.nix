@@ -8,6 +8,7 @@ pkgs.writers.writePython3Bin "notification-monitor" {
 import asyncio
 import json
 import os
+from collections import deque
 
 from dbus_next.aio import MessageBus
 from dbus_next.constants import BusType, MessageType
@@ -37,6 +38,7 @@ def unwrap(value):
 
 def handle_message(message):
     global next_id
+    MAX_LEN = (20 * 2) # Times two because of empty lines
 
     if (
         message.message_type != MessageType.METHOD_CALL
@@ -47,12 +49,20 @@ def handle_message(message):
         return
         
     # TODO fix bug where sometimes notifications are duplicated (it happens on rebuild? (if so not really a big deal))
-    # TODO limit to 20ish lines
     home = os.getenv("HOME")
     file_path = home + "/.local/share/ags_config/notifications.csv"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
-    with open(file_path, 'a') as file:
-        json.dump(unwrap(message.body), file)
+    try:
+        with open(file_path, 'r') as file:
+            entries = deque(file.read().split("\t\n"), maxlen=MAX_LEN)
+
+    except FileNotFoundError:
+        entries = deque(maxlen=MAX_LEN)
+
+    entries.append(json.dumps(unwrap(message.body)))
+
+    with open(file_path, 'w') as file:
+        file.write("\t\n".join(entries))
         file.write("\t\n")
 
     output(unwrap(message.body))
