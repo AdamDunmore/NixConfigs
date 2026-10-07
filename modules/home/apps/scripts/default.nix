@@ -5,6 +5,7 @@
         ./replay.nix
         ./sinkcycle.nix
         ./powercycle.nix
+        ./read_screen.nix
         ./systemstats.nix
         ./togglenight.nix
         ./translate.nix 

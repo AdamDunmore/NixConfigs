@@ -2,14 +2,7 @@
 
 let
     tr = pkgs.writeShellScriptBin "translate" ''
-        IMGDIR="/tmp/trlate-scr"
-
-        TEXT=""
-        TRANSLATED=""
-
-        grim -g "$(${pkgs.slurp}/bin/slurp)" "$IMGDIR"
-        TEXT=$(tesseract "$IMGDIR" - -l eng+rus+ara 2>/dev/null)
-        TRANSLATED=$(${pkgs.translate-shell}/bin/trans -brief :en "$TEXT")
+        TRANSLATED=$(${pkgs.translate-shell}/bin/trans -brief :en "$(read_screen -t)")
         action=$(notify-send "Translated" "$TRANSLATED" -A "copy=Copy Translation" --wait)
         if [ "$action" = "copy" ]; then
             wl-copy "$TRANSLATED"

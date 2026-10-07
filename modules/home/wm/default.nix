@@ -74,6 +74,7 @@ in
                 { mod = true; key = "C"; dispatch = "spawn_shell"; arg = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""; }
                 { mod = true; key = "B"; dispatch = "spawn_shell"; arg = "btwofi"; }
                 { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; }
+                { mod = true; sub_mod = "SHIFT"; key = "T"; dispatch = "spawn_shell"; arg = "read_screen -s"; }
                 (mkIf cfg_ags.enable { mod = true; key = "Q"; dispatch = "spawn_shell"; arg = "ags request toggle"; })
                 (mkIf cfg.replays { mod = true; sub_mod = "SHIFT"; key = "R"; dispatch = "spawn_shell"; arg = "replay"; })
 
