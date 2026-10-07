@@ -49,7 +49,7 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
                                         <button onClicked={() => handleBTConnection(d)} class="menu_button">
                                             <box orientation={Gtk.Orientation.HORIZONTAL}>
                                                 <image iconName={d.icon} halign={Gtk.Align.START}/>
-                                                <label hexpand={true} label={devices(() => `${d.name.slice(0, 8)}`)} />
+                                                <label hexpand={true} label={devices(() => `${d.name.slice(0, 14)}`)} />
                                                 <label visible={d.battery_percentage != -1 && d.connected} label={"[󰁹 " + (d.battery_percentage * 100) + "%]"} />
                                             </box>
                                         </button>
