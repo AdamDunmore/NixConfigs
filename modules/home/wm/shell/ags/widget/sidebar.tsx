@@ -7,11 +7,14 @@ import MprisItem from "./sidebar_items/mpris.tsx";
 import AppMenu from "./sidebar_items/app_menu.tsx";
 import Menu from "./menu.tsx";
 
+import { backend } from "../utils/notif_history.ts"
 import { toggle_app } from "../scripts/window_managment.ts";
 
 const { TOP, RIGHT, BOTTOM } = Astal.WindowAnchor
 
 export default function Sidebar(){ 
+    backend.start() // Starts notification backend
+
     const [isVisible, setIsVisible] = createState<boolean>(false);
     const [isWindowVisible, setIsWindowVisible] = createState<boolean>(false);
 
