@@ -104,7 +104,7 @@ export default function Menu(){
                                     <box orientation={Gtk.Orientation.HORIZONTAL} spacing={5} vexpand class="menu_button_container">
                                         <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.START} spacing={5}>
                                             <MenuSplitButton icon="" callback={() => {wifi?.set_enabled(!isWifiPowered())}} altCallback={() => { if(isWifiPowered()) { open("wifi") }}} enabled={isWifiPowered}/>
-                                            <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
+                                            <MenuSplitButton icon=""  altIcon="󰊿" callback={() => { execAsync("read_screen -s") }} altCallback={() => { execAsync("translate") }}/>
                                             <MenuSplitButton icon="" callback={() => {open("system")}} />
                                             <MenuSplitButton icon={powerProfile(p => p == "performance" ? "" : "󱧥")} callback={() => { execAsync("powercycle") }}/>
                                         </box>
@@ -112,7 +112,7 @@ export default function Menu(){
                                             <MenuSplitButton icon="" callback={() => {if (bluetooth.get_adapter()) { let adapter = bluetooth.get_adapter(); adapter.powered = !adapter.powered }}} altCallback={() => {if (isBluetoothPowered()) { open("bluetooth") }}} enabled={isBluetoothPowered} />
                                             <MenuSplitButton icon="󰃶" callback={() => { open("calendar") }}/>
                                             <MenuSplitButton icon="󱡫" callback={() => { open("mixer") }}/>
-                                            <MenuSplitButton icon="󰊿" callback={() => { execAsync("translate") }}/>
+                                            <MenuSplitButton icon="󰍢" callback={() => { open("notifications") }}/>
                                         </box>
                                     </box>
                                     <box hexpand visible={getBrightness(b => b >= 0)}>
