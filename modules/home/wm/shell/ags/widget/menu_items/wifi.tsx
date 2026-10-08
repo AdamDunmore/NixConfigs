@@ -64,7 +64,10 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
                                 return (
                                     <button 
                                         visible={access_point.ssid != null}
-                                        class="menu_button list_button"
+                                        class={activeAccessPoint(() => {
+                                            let active_access_point = activeAccessPoint();
+                                            return `menu_button list_button ${(active_access_point != null && access_point.ssid === active_access_point.ssid) ? "connected" : ""}`
+                                        })}
                                         onClicked={() => {
                                             let active_access_point = activeAccessPoint();
                                             if (active_access_point != null && access_point.ssid === active_access_point.ssid){

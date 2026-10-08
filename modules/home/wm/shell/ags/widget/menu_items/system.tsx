@@ -1,21 +1,41 @@
 import Gtk from "gi://Gtk";
 import { createState } from "ags";
 import { execAsync } from "ags/process";
+import GLib from "gi://GLib";
 
 import MenuBar from "./menu_bar.tsx";
 import MenuPage from "./menu_page.tsx";
 
 export default function System({ backCallback }: { backCallback: () => void }){
+    const [ osName, setOsName ] = createState<string>("");
+    const [ kernelVersion, setKernelVersion ] = createState<string>("");
+    const [ host, setHost ] = createState<string>("");
+    const [ uptime, setUptime ] = createState<string>("");
     const [ cpu, setCpu ] = createState<number>(0);
     const [ cpu_temp, setCpuTemp ] = createState<number>(0);
     const [ gpu, setGpu ] = createState<number>(0);
     const [ gpu_temp, setGpuTemp ] = createState<number>(0);
     const [ ram, setRam ] = createState<number>(0);
 
+    const [ok, contents] = GLib.file_get_contents("/etc/os-release");
+
+    if (ok) {
+        const osRelease = new TextDecoder().decode(contents);
+        setOsName(`${osRelease.match(/^PRETTY_NAME="?([^"\n]*)"?$/m)?.[1]}`);
+    }
+
+    execAsync("uname -r").then(o => setKernelVersion("Linux " + o))
+
+    execAsync([
+        "cat",
+        "/sys/devices/virtual/dmi/id/product_name",
+    ]).then(o => setHost(o.trim()));
+
     const updateStats = async () => {
         try {
             const output = await execAsync(["systemstats"]);
             const outputJson = JSON.parse(output);
+            execAsync(["sh", "-c", "uptime | awk '{print $1}'"]).then(o => setUptime("Uptime: " + o))
             setCpu(outputJson["cpu"])
             setCpuTemp(outputJson["cpu_temp"])
             setGpu(outputJson["gpu"])
@@ -31,6 +51,12 @@ export default function System({ backCallback }: { backCallback: () => void }){
         <MenuPage>
             <MenuBar backCallback={backCallback} />
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true}>
+                <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} class="menu_system_box">
+                    <label class="menu_system_label" label={osName} />
+                    <label class="menu_system_label" label={kernelVersion} />
+                    <label class="menu_system_label" label={host} />
+                    <label class="menu_system_label" label={uptime} />
+                </box>
                 <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} class="menu_system_box" >
                     <label class="menu_system_label" label=" CPU" />
                     <box hexpand>

@@ -281,7 +281,7 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                                     onClicked={() => {open(app)}} 
                                     hexpand 
                                     halign={Gtk.Align.FILL} 
-                                    class={selected(s => s == i() ? "sidebar_appmenu_button selected" : "sidebar_appmenu_button")}
+                                    class={selected(s => `sidebar_appmenu_button ${s == i() ? "selected" : ""}`)}
                                 >
                                     <box spacing={4} hexpand>
                                         <image icon_name={app.icon_name ?? ""} />

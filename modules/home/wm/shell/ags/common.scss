@@ -154,7 +154,7 @@ scrollbar {
 
 .sidebar_appmenu_button.selected {
   color: $fg_selected;
-  background-color: gtk-alpha($bg,0.7);
+  background-color: gtk-alpha($bg_selected, 0.6);
 }
 
 .menu {
@@ -162,10 +162,11 @@ scrollbar {
   margin: 0px;
   padding: 10px;
   background-color: gtk-alpha($base, 0.8);
+  min-height: 300px;
 }
 
 .menu_page {
-  min-height: 500px;
+  min-height: 300px;
   transition: height 5s;
 }
 
@@ -210,6 +211,14 @@ scrollbar {
   border-color: gtk-alpha($border, 0.4);
 }
 
+.menu_button.connected {
+  background-color: gtk-alpha($bg_selected, 0.6);
+}
+
+.menu_button.connected:hover {
+  background-color: gtk-alpha($bg_selected, 0.8);
+}
+
 .list_button {
   font-size: 10px;
 }
@@ -228,12 +237,12 @@ scrollbar {
 
 .menu_calendar_event.upcoming {
   background-color: gtk-alpha($bg, 0.5);
-  border-radius: 0px;
+  border-radius: 10px;
 }
 
 .menu_calendar_event.selected, .menu_calendar_event:hover {
   background-color: gtk-alpha($bg, 1);
-  border-radius: 0px;
+  border-radius: 10px;
 }
 
 .menu_notification {

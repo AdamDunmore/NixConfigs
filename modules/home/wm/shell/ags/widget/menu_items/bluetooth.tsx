@@ -46,7 +46,7 @@ export default function Bluetooth({ bluetooth, backCallback }: { bluetooth: Asta
                             {(d: AstalBluetooth.Device) => {
                                 if(d.name != null){
                                     return (
-                                        <button onClicked={() => handleBTConnection(d)} class="menu_button">
+                                        <button onClicked={() => handleBTConnection(d)} class={devices(() => `menu_button ${d.connected ? "connected" : ""}`)}>
                                             <box orientation={Gtk.Orientation.HORIZONTAL}>
                                                 <image iconName={d.icon} halign={Gtk.Align.START}/>
                                                 <label hexpand={true} label={devices(() => `${d.name.slice(0, 14)}`)} />

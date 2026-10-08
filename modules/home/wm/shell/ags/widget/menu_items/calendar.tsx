@@ -180,10 +180,14 @@ export default function Calendar({ backCallback }: { backCallback: () => void })
                             { (event: Event) => {
                                 const [isInteracting, setIsInteracting] = createState<boolean>(false)
                                 return (
-                                    <button visible={event.start_date.isUpcoming() || event.start_date.isToday()} onClicked={_ => setIsInteracting(!isInteracting())} class={isInteracting(i => {
+                                    <button visible={event.start_date.isUpcoming() || event.start_date.isToday()} class={isInteracting(i => {
                                         const base_class = "menu_calendar_event ";
                                         return (event.start_date.isToday() || i) ? base_class + "selected" : base_class
                                     })}>
+                                        <Gtk.EventControllerMotion
+                                            onEnter={() => setIsInteracting(true)}
+                                            onLeave={() => setIsInteracting(false)}
+                                        />
                                         <box hexpand orientation={Gtk.Orientation.VERTICAL}>
                                             <box hexpand>
                                                 <label label={`${event.start_date.isToday() ? "󰃶 " : (event.start_date.isUpcoming() ? "󰨳" : "")} ${event.title}`} wrap wrapMode={Pango.WrapMode.WORD_CHAR} maxWidthChars={25}/>
