@@ -125,5 +125,9 @@ in
         ( mkIf config.settings.modules.home.wm.niri.enable {
             programs.niri.enable = true;
         })
+
+        ( mkIf true {
+            programs.localsend.enable = true;
+        })
     ];
 }

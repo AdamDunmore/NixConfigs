@@ -19,5 +19,11 @@ in
             example = false;
             description = "Enables base nixos modules";
         };
+        localsend = mkOption {
+            type = lib.types.bool;
+            default = config.settings.modules.nixos.base.enable;
+            example = false;
+            description = "Enables localsend module";
+        };
     };
 }
