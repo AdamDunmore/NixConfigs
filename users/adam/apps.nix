@@ -30,6 +30,7 @@ in
         godot_4
         parsec-bin
         alvr
+        quantframe
         # openshot-qt #bugs in upstream
 
         custom-pkgs.amethyst
