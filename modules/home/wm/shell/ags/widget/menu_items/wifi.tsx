@@ -10,9 +10,12 @@ import { SendNotification } from "../../utils/notifications.ts";
 export default function Wifi({ backCallback, network }: { backCallback: () => void, network: Network.Network }){
     const wifi: Network.Wifi | null = network.get_wifi();
 
+    if (wifi == null) return (<MenuBar backCallback={backCallback} />);
+
     const [accessPoints, setAccessPoints] = createState<Network.AccessPoint[]>([]);
     const [activeAccessPoint, setActiveAccessPoint] = createState(wifi.get_active_access_point());
     const [newActiveAccessPoint, setNewActiveAccessPoint] = createState<string | Network.AccessPoint>("none");
+    const [scanning, setScanning] = createState<boolean>(false);
     const [currentPassword, setCurrentPassword] = createState<string>("");
 
     const handleWifi = () => {
@@ -21,6 +24,7 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
         ).values()]
         setAccessPoints(uniqueAccessPoints);
         setActiveAccessPoint(wifi.get_active_access_point());
+        setScanning(wifi.scanning)
     }; handleWifi()
 
     const handleConnection = function(){
@@ -49,7 +53,7 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
     return (
         <MenuPage>
             <MenuBar backCallback={backCallback}>
-                <button class="menu_button" label="" onClicked={() => { if(!wifi?.scanning){ wifi?.scan(); SendNotification("Scanning...", "Wifi adapter is scanning for networks")} }}/>
+                <button class="menu_button" label={scanning(s => s ? "󰘊" : "")} onClicked={() => { if(!wifi.scanning){ wifi.scan(); SendNotification("Scanning...", "Wifi adapter is scanning for networks")} }}/>
             </MenuBar>
             <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} vexpand={true} spacing={2}>
                 <box spacing={4} visible={newActiveAccessPoint(t => t !== "none")}>
@@ -72,7 +76,7 @@ export default function Wifi({ backCallback, network }: { backCallback: () => vo
                                             let active_access_point = activeAccessPoint();
                                             if (active_access_point != null && access_point.ssid === active_access_point.ssid){
                                                 SendNotification("Disconnecting...", "Disconnecting from network " + access_point.ssid)
-                                                wifi?.deactivate_connection(null);
+                                                wifi.deactivate_connection(null);
                                                 return;
                                             }
 
