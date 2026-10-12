@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, user_info, ... }:
 
 let
     cfg = config.settings.modules.home.terminal.shell.git;
@@ -9,10 +9,10 @@ in
         programs.git = {
             enable = true;
             settings = {
-                url."git@github.com:".insteadOf = "https://github.com/"; # TODO and this
-                user = { # TODO change this
-                    name = "Adam Dunmore";
-                    email = "adamfdunmore@gmail.com";
+                url."git@github.com:".insteadOf = mkIf cfg.ssh "https://github.com/";
+                user = {
+                    name = user_info.name;
+                    email = user_info.email;
                 };
             };
         };

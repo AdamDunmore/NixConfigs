@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-    inherit (lib) mkOption;
+    inherit (lib) mkOption mkEnableOption;
 in
 {
     options.settings.modules.home.terminal.shell.git = {
@@ -10,5 +10,6 @@ in
             example = false;
             description = "Enables the git module";
         };
+        ssh = mkEnableOption "Enable git ssh";
     };
 }

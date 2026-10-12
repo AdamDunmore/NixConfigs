@@ -41,19 +41,24 @@
     outputs = { ... } @inputs:
     let
         # Options
-        hosts = {
-            default = [
-                { name = "default"; system = "x86_64-linux"; }
-            ];
-            adam = [
-                { name = "laptop"; system = "x86_64-linux"; }
-                { name = "desktop"; system = "x86_64-linux"; }
-                { name = "steam-deck"; system = "x86_64-linux"; }
-                { name = "server"; system = "x86_64-linux"; }
-            ];
-            louise = [ 
-                { name = "steam-deck"; system = "x86_64-linux"; }
-            ];
+        users = {
+            default = {
+                name = "Default";
+                email = "example@example.com";
+                hosts = [
+                    { name = "default"; system = "x86_64-linux"; }
+                ];
+            };
+            adam = {
+                name = "Adam Dunmore";
+                email = "adamfdunmore@gmail.com";
+                hosts = [
+                    { name = "laptop"; system = "x86_64-linux"; }
+                    { name = "desktop"; system = "x86_64-linux"; }
+                    { name = "steam-deck"; system = "x86_64-linux"; }
+                    { name = "server"; system = "x86_64-linux"; }
+                ];
+            };
         };
 
         # Dev
@@ -65,20 +70,24 @@
         derivs = lib.listToAttrs (
             lib.concatLists (
                 lib.mapAttrsToList
-                    (user: hosts:
+                    (user: user_info:
                         map (host:
                             lib.nameValuePair "${user}-${host.name}" {
                                 inherit user;
                                 host = host.name;
                                 inherit (host) system;
                             }
-                        ) hosts
+                        ) user_info.hosts
                     )
-                hosts
+                users
             )
         );
         forEachDeriv = f: lib.mapAttrs f derivs;
         forEachSystem = lib.genAttrs systems;
+        makeArgModule = deriv: {
+                    _module.args.pkgs-stable = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs-stable; system = deriv.system; };
+                    _module.args.user_info = users.${deriv.user};
+        };
     in
     {             
         # nh home switch .
@@ -96,10 +105,8 @@
             inputs.nixpkgs.lib.nixosSystem {
             system = deriv.system;
             modules = [
-                { 
-                    nixpkgs.pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = deriv.system; }; 
-                    _module.args.pkgs-stable = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs-stable; system = deriv.system; };
-                }
+                { nixpkgs.pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = deriv.system; }; }
+                ( makeArgModule deriv )
                 ./options/default.nix
 
                 ./users/${deriv.user}/hosts/${deriv.host}/settings.nix
@@ -110,6 +117,8 @@
                 inputs.home-manager.nixosModules.home-manager  {
                     home-manager = {
                         users.${deriv.user}.imports = [ 
+                            ( makeArgModule deriv )
+
                             ./options/default.nix
                             ./users/${deriv.user}/hosts/${deriv.host}/settings.nix
 

@@ -14,6 +14,7 @@
                 home = {
                     apps.misc.discord.flavour = "concord";
                     terminal.shell.zellij.enable = true;
+                    terminal.shell.git.ssh = true;
                     terminal.editors.nvim = {
                         enable = true;
                         ai = false;
