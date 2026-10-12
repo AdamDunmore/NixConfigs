@@ -55,7 +55,7 @@ export default function System({ backCallback }: { backCallback: () => void }){
                     <label class="menu_system_label" label={osName} />
                     <label class="menu_system_label" label={kernelVersion} />
                     <label class="menu_system_label" label={host} />
-                    <label class="menu_system_label" label={uptime} />
+                    <label class="menu_system_label" label={uptime} visible={uptime(u => u != "")}/>
                 </box>
                 <box orientation={Gtk.Orientation.VERTICAL} hexpand={true} class="menu_system_box" >
                     <label class="menu_system_label" label=" CPU" />
