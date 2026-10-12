@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, user, ... }:
 let
     cfg = config.settings.modules.nixos.services.nh;
     inherit (lib) mkIf;
@@ -9,7 +9,7 @@ in
             enable = true;
             clean.enable = true;
             clean.extraArgs = "--keep-since 4d --keep 3";
-            flake = "/home/adam/NixConfigs/";            
+            flake = "/home/${user}/NixConfigs/";            
         };
 
         nix.gc = mkIf (cfg.enable == false) {

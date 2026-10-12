@@ -15,6 +15,7 @@ in
             ignoreShellProgramCheck = true;
             hashedPasswordFile = mkIf (config.settings.modules.nixos.base.secrets.user_password) config.sops.secrets.user_password.path;
             initialPassword = mkIf (!config.settings.modules.nixos.base.secrets.user_password) "changeme";
+
         };
     };
 }

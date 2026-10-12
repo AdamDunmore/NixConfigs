@@ -35,18 +35,6 @@ with lib.hm.gvariant;
                 "org/gnome/desktop/input-sources" = {
                     sources = [ (mkTuple [ "xkb" "gb" ]) ];
                 };
-
-                "org/gnome/settings-daemon/plugins/media-keys" = {
-                    custom-keybindings = [
-                        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/adam-open-termincal/"
-                    ];
-                };
-
-                "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/adam-open-terminal" = {
-                    name = "Open Terminal";
-                    command = "alacritty";
-                    binding = "<Super>a";
-                };
             };
         };  
     };
