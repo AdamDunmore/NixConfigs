@@ -211,7 +211,6 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
                                 .then(options_s => {
                                     const options_json = JSON.parse(options_s)["results"]
                                     for (let option of options_json){
-                                        console.log(option);
                                         list.push(new NixOption(option["option_name"], option["option_description"], option["option_type"], option["option_default"], option["option_example"], option["option_source"]));
                                     }
                                     setAppsList(list)
