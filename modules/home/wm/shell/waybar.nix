@@ -59,7 +59,7 @@ in
                             first-day-of-week = 1;
                             format = {
                                 months = "<span color='${colours.bg_selected}'><b>{}</b></span>";
-                                days = "<span color='${colours.bg}'>{}</span>";
+                                days = "<span color='${colours.base}'>{}</span>";
                                 weeks = "<span color='${colours.base}'><b>|{}</b></span>";
                                 weekdays = "<span color='${colours.bg_selected}'><b>{}</b></span>";
                                 today = "<span color='${colours.fg}'><b>{}</b></span>";
