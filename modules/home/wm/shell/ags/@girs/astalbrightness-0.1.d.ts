@@ -141,15 +141,12 @@ export namespace AstalBrightness {
         // Signals
         /** @signal */
         connect<K extends keyof Brightness.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Brightness.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Brightness.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Brightness.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Brightness.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Brightness.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Brightness.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Brightness.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -228,15 +225,12 @@ export namespace AstalBrightness {
         // Signals
         /** @signal */
         connect<K extends keyof DeviceList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceList.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DeviceList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceList.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DeviceList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceList.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DeviceList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceList.SignalSignatures[K]>): void;
 
         // Methods
         /**

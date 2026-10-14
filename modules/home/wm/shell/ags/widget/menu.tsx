@@ -5,6 +5,8 @@ import AstalBluetooth from "gi://AstalBluetooth"
 import AstalNetwork from "gi://AstalNetwork"
 import AstalPowerProfiles from "gi://AstalPowerProfiles"
 import AstalBrightness from "gi://AstalBrightness"
+// import AstalWorkspace from "gi://AstalWorkspace"
+import AstalWp from "gi://AstalWp?version=0.1";
 
 import MenuSplitButton from "./menu_items/menu_split_button.tsx";
 import Bluetooth from "./menu_items/bluetooth.tsx";
@@ -13,7 +15,6 @@ import Wifi from "./menu_items/wifi.tsx";
 import Notifications from "./menu_items/notifications.tsx";
 import Mixer from "./menu_items/mixer.tsx";
 import Calendar from "./menu_items/calendar.tsx";
-import AstalWp from "gi://AstalWp?version=0.1";
 
 export default function Menu(){
     const bluetooth: AstalBluetooth.Bluetooth = AstalBluetooth.get_default();
@@ -30,6 +31,12 @@ export default function Menu(){
     const [speaker, setSpeaker] = createState<AstalWp.Endpoint>(wireplumber.get_default_speaker())
     const [getBrightness, setBrightness] = createState<number>(-1);
     const [getVolume, setVolume] = createState<number>(-1);
+
+    // TODO TEST readd when astal.workspace is in nixpkgs
+    // const ws = AstalWorkspace.get_default();
+    // for (const w of ws.workspaces){
+    //     console.log(w.name)
+    // }
 
     const open = (window: string) => {
         setActiveWindow(window);

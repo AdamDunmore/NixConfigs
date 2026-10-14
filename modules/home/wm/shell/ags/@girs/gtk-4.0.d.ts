@@ -256,9 +256,11 @@ export interface Builder {
          */
         DESCRIPTION = 1,
         /**
-         * Indicates the availability and type of
-         *    interactive popup element, such as menu or dialog, that can be triggered
-         *    by an element.
+         * Indicates the availability of interactive
+         *    popup element, such as menu or popover, that can be triggered by an
+         *    element. Contrary to “aria-haspopup”, it doesn't indicate the type of the
+         *    element, as such it cannot be used to indicate the availability of more
+         *    complex elements such as dialog. Value type: boolean
          */
         HAS_POPUP = 2,
         /**
@@ -266,8 +268,14 @@ export interface Builder {
          *    author has implemented to activate or give focus to an element. Value type:
          *    string. The format of the value is a space-separated list of shortcuts, with
          *    each shortcut consisting of one or more modifiers (`Control`, `Alt` or `Shift`),
-         *    followed by a non-modifier key, all separated by `+`.
-         *    Examples: `F2`, `Alt-F`, `Control+Shift+N`
+         *    followed by a non-modifier key, all separated by `+`. The
+         *    [WAI-ARIA](https://www.w3.org/TR/wai-aria/#aria-keyshortcuts) reference
+         *    specifies how to build keyboard shortcuts strings, with specific values
+         *    for each key which are the same regardless of the language, so these
+         *    strings can't be built from localized key names. You can convert an
+         *    accelerator into the matching key shortcuts label with
+         *    {@link Gtk.accelerator_get_accessible_label}.
+         *    Examples: `F2`, `Alt+F`, `Control+Shift+N`
          */
         KEY_SHORTCUTS = 3,
         /**
@@ -1746,32 +1754,32 @@ export interface Builder {
         /**
          * Invalid or unknown symbol
          */
-        static SYMBOL: number;
+        static INVALID_SYMBOL: number;
 
         /**
          * Invalid or unknown attribute
          */
-        static ATTRIBUTE: number;
+        static INVALID_ATTRIBUTE: number;
 
         /**
          * Invalid or unknown view
          */
-        static VIEW: number;
+        static INVALID_VIEW: number;
 
         /**
          * Invalid or unknown metric
          */
-        static METRIC: number;
+        static INVALID_METRIC: number;
 
         /**
          * Invalid or unknown priority
          */
-        static PRIORITY: number;
+        static INVALID_PRIORITY: number;
 
         /**
          * Invalid or unknown relation
          */
-        static RELATION: number;
+        static INVALID_RELATION: number;
 
         // Constructors
         constructor(options: { message: string; code: number });
@@ -3828,6 +3836,37 @@ export interface Builder {
     /**
      * @gir-type Enum
      */
+    export namespace ReducedMotion {
+        export const $gtype: GObject.GType<ReducedMotion>;
+    }
+
+    /**
+     * Values for the {@link Gtk.Settings.gtk_interface_reduced_motion}
+     * and {@link Gtk.CssProvider.prefers_reduced_motion} properties
+     * that indicates the preferred level of motion animations.
+     * 
+     * This information can be used inside CSS via media queries.
+     * @gir-type Enum
+     * @since 4.22
+     */
+    enum ReducedMotion {
+        /**
+         * The user has made no preference known to the system
+         */
+        NO_PREFERENCE = 0,
+        /**
+         * The user has notified the system that they
+         *   prefer an interface that removes or replaces the types of motion-based
+         *   animation that either trigger discomfort for those with vestibular
+         *   motion sensitivity, or distraction for those with attention deficits
+         */
+        REDUCE = 1,
+    }
+
+
+    /**
+     * @gir-type Enum
+     */
     export namespace ResponseType {
         export const $gtype: GObject.GType<ResponseType>;
     }
@@ -3942,6 +3981,30 @@ export interface Builder {
          * Floop in from the top
          */
         SWING_DOWN = 9,
+        /**
+         * Combination of {@link Gtk.RevealerTransitionType.CROSSFADE}
+         * and {@link Gtk.RevealerTransitionType.SLIDE_RIGHT}.
+         * @since 4.22
+         */
+        FADE_SLIDE_RIGHT = 10,
+        /**
+         * Combination of {@link Gtk.RevealerTransitionType.CROSSFADE}
+         * and {@link Gtk.RevealerTransitionType.SLIDE_LEFT}.
+         * @since 4.22
+         */
+        FADE_SLIDE_LEFT = 11,
+        /**
+         * Combination of {@link Gtk.RevealerTransitionType.CROSSFADE}
+         * and {@link Gtk.RevealerTransitionType.SLIDE_UP}.
+         * @since 4.22
+         */
+        FADE_SLIDE_UP = 12,
+        /**
+         * Combination of {@link Gtk.RevealerTransitionType.CROSSFADE}
+         * and {@link Gtk.RevealerTransitionType.SLIDE_DOWN}.
+         * @since 4.22
+         */
+        FADE_SLIDE_DOWN = 13,
     }
 
 
@@ -4608,6 +4671,117 @@ export interface Builder {
 
 
     /**
+     * Error codes in the `GTK_SVG_ERROR` domain for errors
+     * that happen during parsing or rendering of SVG.
+     * @gir-type Struct
+     */
+    class SvgError extends GLib.Error {
+        static $gtype: GObject.GType<GLib.Error>;
+
+        // Static fields
+        /**
+         * The XML syntax is broken
+         *   in some way
+         */
+        static INVALID_SYNTAX: number;
+
+        /**
+         * An XML element is invalid
+         *   (either because it is not part of SVG, or because it is
+         *   in the wrong place, or because it not implemented in GTK)
+         */
+        static INVALID_ELEMENT: number;
+
+        /**
+         * An attribute is invalid
+         *   (either because it is not part of SVG, or because it is
+         *   not implemented in GTK, or its value is problematic)
+         */
+        static INVALID_ATTRIBUTE: number;
+
+        /**
+         * A required attribute is missing
+         */
+        static MISSING_ATTRIBUTE: number;
+
+        /**
+         * A reference does not point to
+         *   a suitable element
+         */
+        static INVALID_REFERENCE: number;
+
+        /**
+         * An animation could not be updated
+         */
+        static FAILED_UPDATE: number;
+
+        /**
+         * Rendering is not according to
+         *   expecations
+         */
+        static FAILED_RENDERING: number;
+
+        /**
+         * An XML element is ignored,
+         *   but it should not affect rendering (this error code is used
+         *   for metadata and exension elements)
+         */
+        static IGNORED_ELEMENT: number;
+
+        /**
+         * An implementation limit has
+         *   been hit, such as the number of loaded shapes.
+         */
+        static LIMITS_EXCEEDED: number;
+
+        /**
+         * The SVG uses features that
+         *   are not supported by {@link Gtk.Svg}. It may be advisable to use
+         *   a different SVG renderer.
+         */
+        static NOT_IMPLEMENTED: number;
+
+        // Constructors
+        constructor(options: { message: string; code: number });
+
+        // Static methods
+        /**
+         * Returns context information about what XML attribute
+         * the parsing error occurred in.
+         * @param error an error in the {@link Gtk.SvgError} domain
+         * @since 4.22
+         */
+        static get_attribute(error: GLib.Error): string | null;
+
+        /**
+         * Returns context information about what XML element
+         * the parsing error occurred in.
+         * @param error an error in the {@link Gtk.SvgError} domain
+         * @since 4.22
+         */
+        static get_element(error: GLib.Error): string | null;
+
+        /**
+         * Returns context information about the end position
+         * in the document where the parsing error occurred.
+         * @param error an error in the {@link Gtk.SvgError} domain
+         * @since 4.22
+         */
+        static get_end(error: GLib.Error): SvgLocation | null;
+
+        /**
+         * Returns context information about the start position
+         * in the document where the parsing error occurred.
+         * @param error an error in the {@link Gtk.SvgError} domain
+         * @since 4.22
+         */
+        static get_start(error: GLib.Error): SvgLocation | null;
+
+        static quark(): GLib.Quark;
+    }
+
+
+    /**
      * @gir-type Enum
      */
     export namespace SymbolicColor {
@@ -4639,6 +4813,11 @@ export interface Builder {
          * Indication color for success
          */
         SUCCESS = 3,
+        /**
+         * The system accent color.
+         * @since 4.22
+         */
+        ACCENT = 4,
     }
 
 
@@ -5344,7 +5523,7 @@ export interface Builder {
      * Like {@link get_binary_age}, but from the headers used at
      * application compile time, rather than from the library linked
      * against at application run time.
-     * @default 2003
+     * @default 2204
      */
     const BINARY_AGE: number;
 
@@ -5367,7 +5546,7 @@ export interface Builder {
      * Like {@link get_interface_age}, but from the headers used at
      * application compile time, rather than from the library linked
      * against at application run time.
-     * @default 3
+     * @default 4
      */
     const INTERFACE_AGE: number;
 
@@ -5429,7 +5608,7 @@ export interface Builder {
      * Like {@link get_micro_version}, but from the headers used at
      * application compile time, rather than from the library linked
      * against at application run time.
-     * @default 3
+     * @default 4
      */
     const MICRO_VERSION: number;
 
@@ -5437,7 +5616,7 @@ export interface Builder {
      * Like {@link get_minor_version}, but from the headers used at
      * application compile time, rather than from the library linked
      * against at application run time.
-     * @default 20
+     * @default 22
      */
     const MINOR_VERSION: number;
 
@@ -5752,6 +5931,13 @@ export interface Builder {
     const STYLE_PROVIDER_PRIORITY_USER: number;
 
     /**
+     * The {@link Gtk.SvgFeatures} that are enabled by default.
+     * @since 4.22
+     * @default 15
+     */
+    const SVG_DEFAULT_FEATURES: number;
+
+    /**
      * The priority at which the text view validates onscreen lines
      * in an idle job in the background.
      * @default 125
@@ -5775,6 +5961,22 @@ export interface Builder {
      * @default -2
      */
     const TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID: number;
+
+    /**
+     * Generates an accessible description of an accelerator.
+     * 
+     * This function is similar to {@link Gtk.accelerator_get_label} but it is meant
+     * for accessibility layers labels rather than user-facing labels. The output
+     * of this function is fit for {@link Gtk.AccessibleProperty.KEY_SHORTCUTS}.
+     * 
+     * For more information, see the [WAI-ARIA](https://www.w3.org/TR/wai-aria/#aria-keyshortcuts)
+     * reference.
+     * @param accelerator_key accelerator keyval
+     * @param accelerator_mods accelerator modifier mask
+     * @returns a newly-allocated string representing the accelerator
+     * @since 4.22
+     */
+    function accelerator_get_accessible_label(accelerator_key: number, accelerator_mods: Gdk.ModifierType): string;
 
     /**
      * Gets the modifier mask.
@@ -6028,6 +6230,15 @@ export interface Builder {
      * @returns the error quark
      */
     function dialog_error_quark(): GLib.Quark;
+
+    /**
+     * Prevents GTK from using the specified portals.
+     * 
+     * This should only be used in portal implementations, apps must not call it.
+     * @param portal_interfaces a `null`-terminated array of portal interface names to disable
+     * @since 4.22
+     */
+    function disable_portal_interfaces(portal_interfaces: string[]): void;
 
     /**
      * Prevents GTK from using portals.
@@ -6656,6 +6867,44 @@ export interface Builder {
      * @throws GLib.Error
      */
     function show_uri_full_finish(parent: Window, result: Gio.AsyncResult): boolean;
+
+    /**
+     * Returns context information about what XML attribute
+     * the parsing error occurred in.
+     * @param error an error in the {@link Gtk.SvgError} domain
+     * @returns the attribute name
+     * @since 4.22
+     */
+    function svg_error_get_attribute(error: GLib.Error): string | null;
+
+    /**
+     * Returns context information about what XML element
+     * the parsing error occurred in.
+     * @param error an error in the {@link Gtk.SvgError} domain
+     * @returns the element name
+     * @since 4.22
+     */
+    function svg_error_get_element(error: GLib.Error): string | null;
+
+    /**
+     * Returns context information about the end position
+     * in the document where the parsing error occurred.
+     * @param error an error in the {@link Gtk.SvgError} domain
+     * @returns the {@link Gtk.SvgLocation}
+     * @since 4.22
+     */
+    function svg_error_get_end(error: GLib.Error): SvgLocation | null;
+
+    /**
+     * Returns context information about the start position
+     * in the document where the parsing error occurred.
+     * @param error an error in the {@link Gtk.SvgError} domain
+     * @returns the {@link Gtk.SvgLocation}
+     * @since 4.22
+     */
+    function svg_error_get_start(error: GLib.Error): SvgLocation | null;
+
+    function svg_error_quark(): GLib.Quark;
 
     /**
      * Prints an assertion message for `gtk_test_accessible_assert_role()`.
@@ -7353,6 +7602,11 @@ export interface Builder {
          * @since 4.18
          */
         BUILDER = 2097152,
+        /**
+         * Information about session saving.
+         * @since 4.22
+         */
+        SESSION = 4194304,
     }
 
 
@@ -7877,6 +8131,56 @@ export interface Builder {
     /**
      * @gir-type Flags
      */
+    export namespace SvgFeatures {
+        export const $gtype: GObject.GType<SvgFeatures>;
+    }
+
+    /**
+     * Features of the SVG renderer that can be enabled or disabled.
+     * 
+     * By default, all features except `GTK_SVG_TRADITIONAL_SYMBOLIC`
+     * are enabled.
+     * 
+     * New values may be added in the future.
+     * @gir-type Flags
+     * @since 4.22
+     */
+    enum SvgFeatures {
+        /**
+         * Whether to run animations. If disabled,
+         *   state changes are applied without transitions
+         */
+        ANIMATIONS = 1,
+        /**
+         * Whether to use system resources,
+         *   such as fonts. If disabled, only embedded fonts are used
+         */
+        SYSTEM_RESOURCES = 2,
+        /**
+         * Whether to load external
+         *   resources, such as images. If disabled, only embedded
+         *   images are loaded
+         */
+        EXTERNAL_RESOURCES = 4,
+        /**
+         * Whether to allow gpa extensions, such
+         *   as states and transitions
+         */
+        EXTENSIONS = 8,
+        /**
+         * This feature is meant for
+         *   compatibility with old symbolic icons. If this is enabled,
+         *   fill and stroke attributes are ignored. The used colors
+         *   are derived from symbolic style classes if present, and
+         *   the default fill color is the symbolic foreground color.
+         */
+        TRADITIONAL_SYMBOLIC = 16,
+    }
+
+
+    /**
+     * @gir-type Flags
+     */
     export namespace TextBufferNotifyFlags {
         export const $gtype: GObject.GType<TextBufferNotifyFlags>;
     }
@@ -7989,6 +8293,7 @@ export interface Builder {
             "notify::accessible": (pspec: GObject.ParamSpec) => void;
             "notify::accessible-role": (pspec: GObject.ParamSpec) => void;
             "notify::display": (pspec: GObject.ParamSpec) => void;
+            "notify::realized": (pspec: GObject.ParamSpec) => void;
         }
 
         // Constructor properties interface
@@ -7997,6 +8302,7 @@ export interface Builder {
             accessible_role: AccessibleRole;
             accessibleRole: AccessibleRole;
             display: Gdk.Display;
+            realized: boolean;
         }
     }
 
@@ -8045,6 +8351,14 @@ export interface Builder {
         set display(val: Gdk.Display);
 
         /**
+         * Whether the {@link Gtk.ATContext} has been realized or not.
+         * @since 4.24
+         * @read-only
+         * @default false
+         */
+        get realized(): boolean;
+
+        /**
          * Compile-time signal type information.
          *
          * This instance property is generated only for TypeScript type checking.
@@ -8063,15 +8377,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ATContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ATContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ATContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ATContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ATContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ATContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ATContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ATContext.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -8540,15 +8851,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AboutDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AboutDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AboutDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AboutDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AboutDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AboutDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AboutDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AboutDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -8877,108 +9185,27 @@ export interface Builder {
     }
 
 
-    namespace ActionBar {
+    namespace AccessibleHyperlink {
         // Signal signatures
-        interface SignalSignatures extends Widget.SignalSignatures {
-            "notify::revealed": (pspec: GObject.ParamSpec) => void;
-            "notify::can-focus": (pspec: GObject.ParamSpec) => void;
-            "notify::can-target": (pspec: GObject.ParamSpec) => void;
-            "notify::css-classes": (pspec: GObject.ParamSpec) => void;
-            "notify::css-name": (pspec: GObject.ParamSpec) => void;
-            "notify::cursor": (pspec: GObject.ParamSpec) => void;
-            "notify::focus-on-click": (pspec: GObject.ParamSpec) => void;
-            "notify::focusable": (pspec: GObject.ParamSpec) => void;
-            "notify::halign": (pspec: GObject.ParamSpec) => void;
-            "notify::has-default": (pspec: GObject.ParamSpec) => void;
-            "notify::has-focus": (pspec: GObject.ParamSpec) => void;
-            "notify::has-tooltip": (pspec: GObject.ParamSpec) => void;
-            "notify::height-request": (pspec: GObject.ParamSpec) => void;
-            "notify::hexpand": (pspec: GObject.ParamSpec) => void;
-            "notify::hexpand-set": (pspec: GObject.ParamSpec) => void;
-            "notify::layout-manager": (pspec: GObject.ParamSpec) => void;
-            "notify::limit-events": (pspec: GObject.ParamSpec) => void;
-            "notify::margin-bottom": (pspec: GObject.ParamSpec) => void;
-            "notify::margin-end": (pspec: GObject.ParamSpec) => void;
-            "notify::margin-start": (pspec: GObject.ParamSpec) => void;
-            "notify::margin-top": (pspec: GObject.ParamSpec) => void;
-            "notify::name": (pspec: GObject.ParamSpec) => void;
-            "notify::opacity": (pspec: GObject.ParamSpec) => void;
-            "notify::overflow": (pspec: GObject.ParamSpec) => void;
-            "notify::parent": (pspec: GObject.ParamSpec) => void;
-            "notify::receives-default": (pspec: GObject.ParamSpec) => void;
-            "notify::root": (pspec: GObject.ParamSpec) => void;
-            "notify::scale-factor": (pspec: GObject.ParamSpec) => void;
-            "notify::sensitive": (pspec: GObject.ParamSpec) => void;
-            "notify::tooltip-markup": (pspec: GObject.ParamSpec) => void;
-            "notify::tooltip-text": (pspec: GObject.ParamSpec) => void;
-            "notify::valign": (pspec: GObject.ParamSpec) => void;
-            "notify::vexpand": (pspec: GObject.ParamSpec) => void;
-            "notify::vexpand-set": (pspec: GObject.ParamSpec) => void;
-            "notify::visible": (pspec: GObject.ParamSpec) => void;
-            "notify::width-request": (pspec: GObject.ParamSpec) => void;
+        interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::accessible-role": (pspec: GObject.ParamSpec) => void;
         }
 
         // Constructor properties interface
-        interface ConstructorProps extends Widget.ConstructorProps, Accessible.ConstructorProps, Buildable.ConstructorProps, ConstraintTarget.ConstructorProps {
-            revealed: boolean;
-        }
+        interface ConstructorProps extends GObject.Object.ConstructorProps, Accessible.ConstructorProps {}
     }
 
     /**
-     * Presents contextual actions.
+     * Represents a link (i.e. a uri).
      * 
-     * <picture>
-     *   <source srcset="https://docs.gtk.org/gtk4/action-bar-dark.png" media="(prefers-color-scheme: dark)">
-     *   <img alt="An example GtkActionBar" src="https://docs.gtk.org/gtk4/action-bar.png">
-     * </picture>
-     * 
-     * {@link Gtk.ActionBar} is expected to be displayed below the content and expand
-     * horizontally to fill the area.
-     * 
-     * It allows placing children at the start or the end. In addition, it
-     * contains an internal centered box which is centered with respect to
-     * the full width of the box, even if the children at either side take
-     * up different amounts of space.
-     * 
-     * # GtkActionBar as GtkBuildable
-     * 
-     * The {@link Gtk.ActionBar} implementation of the {@link Gtk.Buildable} interface supports
-     * adding children at the start or end sides by specifying “start” or “end” as
-     * the “type” attribute of a `<child>` element, or setting the center widget
-     * by specifying “center” value.
-     * 
-     * # CSS nodes
-     * 
-     * ```
-     * actionbar
-     * ╰── revealer
-     *     ╰── box
-     *         ├── box.start
-     *         │   ╰── [start children]
-     *         ├── [center widget]
-     *         ╰── box.end
-     *             ╰── [end children]
-     * ```
-     * 
-     * A {@link Gtk.ActionBar}'s CSS node is called `actionbar`. It contains a `revealer`
-     * subnode, which contains a `box` subnode, which contains two `box` subnodes at
-     * the start and end of the action bar, with `start` and `end` style classes
-     * respectively, as well as a center node that represents the center child.
-     * 
-     * Each of the boxes contains children packed for that side.
+     * A widget that contains one or more links should implement
+     * the {@link Gtk.AccessibleHypertext} interface and return
+     * {@link Gtk.AccessibleHyperlink} objects for each of the links.
      * @gir-type Class
+     * @since 4.22
      */
-    class ActionBar extends Widget implements Accessible, Buildable, ConstraintTarget {
-        static $gtype: GObject.GType<ActionBar>;
-
-        // Properties
-        /**
-         * Controls whether the action bar shows its contents.
-         * @default true
-         */
-        get revealed(): boolean;
-        set revealed(val: boolean);
+    class AccessibleHyperlink extends GObject.Object implements Accessible {
+        static $gtype: GObject.GType<AccessibleHyperlink>;
 
         /**
          * Compile-time signal type information.
@@ -8987,76 +9214,33 @@ export interface Builder {
          * It is not defined at runtime and should not be accessed in JS code.
          * @internal
          */
-        $signals: ActionBar.SignalSignatures;
+        $signals: AccessibleHyperlink.SignalSignatures;
 
         // Constructors
-        constructor(properties?: Partial<ActionBar.ConstructorProps>, ...args: any[]);
+        constructor(properties?: Partial<AccessibleHyperlink.ConstructorProps>, ...args: any[]);
 
         _init(...args: any[]): void;
 
-        static ["new"](): ActionBar;
+        static ["new"](parent: AccessibleHypertext, index: number, uri: string, bounds: AccessibleTextRange): AccessibleHyperlink;
 
         // Signals
         /** @signal */
-        connect<K extends keyof ActionBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ActionBar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
+        connect<K extends keyof AccessibleHyperlink.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AccessibleHyperlink.SignalSignatures[K]>): number;
 
         /** @signal */
-        connect_after<K extends keyof ActionBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ActionBar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
+        connect_after<K extends keyof AccessibleHyperlink.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AccessibleHyperlink.SignalSignatures[K]>): number;
 
         /** @signal */
-        emit<K extends keyof ActionBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ActionBar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AccessibleHyperlink.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AccessibleHyperlink.SignalSignatures[K]>): void;
 
         // Methods
         /**
-         * Retrieves the center bar widget of the bar.
-         * @returns the center widget
+         * Sets a platform state on the accessible.
+         * @param state the platform state to change
+         * @param enabled the new value for the platform state
+         * @since 4.22
          */
-        get_center_widget(): Widget | null;
-
-        /**
-         * Gets whether the contents of the action bar are revealed.
-         * @returns the current value of the {@link Gtk.ActionBar.revealed}   property
-         */
-        get_revealed(): boolean;
-
-        /**
-         * Adds a child to the action bar, packed with reference to the
-         * end of the action bar.
-         * @param child the widget to be added
-         */
-        pack_end(child: Widget): void;
-
-        /**
-         * Adds a child to the action, packed with reference to the
-         * start of the action bar.
-         * @param child the widget to be added
-         */
-        pack_start(child: Widget): void;
-
-        /**
-         * Removes a child from the action bar.
-         * @param child the widget to be removed
-         */
-        remove(child: Widget): void;
-
-        /**
-         * Sets the center widget for the action bar.
-         * @param center_widget a widget to use for the center
-         */
-        set_center_widget(center_widget: Widget | null): void;
-
-        /**
-         * Reveals or conceals the content of the action bar.
-         * 
-         * Note: this does not show or hide the action bar in the
-         * {@link Gtk.Widget.visible} sense, so revealing has
-         * no effect if the action bar is hidden.
-         * @param revealed the new value for the property
-         */
-        set_revealed(revealed: boolean): void;
+        set_platform_state(state: AccessiblePlatformState, enabled: boolean): void;
 
         /**
          * The accessible role of the given {@link Gtk.Accessible} implementation.
@@ -9093,6 +9277,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -9243,6 +9440,464 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
+
+        /**
+         * Retrieves the accessible parent for an accessible object.
+         * 
+         * This function returns `NULL` for top level widgets.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_accessible_parent(): Accessible | null;
+
+        /**
+         * Retrieves the implementation for the given accessible object.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_at_context(): ATContext | null;
+
+        /**
+         * Queries the coordinates and dimensions of this accessible
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get the bounds from an ignored
+         * child widget.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_bounds(): [boolean, number, number, number, number];
+
+        /**
+         * Retrieves the first accessible child of an accessible object.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_first_accessible_child(): Accessible | null;
+
+        /**
+         * Retrieves the next accessible sibling of an accessible object
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_next_accessible_sibling(): Accessible | null;
+
+        /**
+         * Queries a platform state, such as focus.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get platform state from an ignored
+         * child widget, as is the case for {@link Gtk.Text} wrappers.
+         * @param state platform state to query
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_platform_state(state: AccessiblePlatformState): boolean;
+    }
+
+
+    namespace ActionBar {
+        // Signal signatures
+        interface SignalSignatures extends Widget.SignalSignatures {
+            "notify::revealed": (pspec: GObject.ParamSpec) => void;
+            "notify::can-focus": (pspec: GObject.ParamSpec) => void;
+            "notify::can-target": (pspec: GObject.ParamSpec) => void;
+            "notify::css-classes": (pspec: GObject.ParamSpec) => void;
+            "notify::css-name": (pspec: GObject.ParamSpec) => void;
+            "notify::cursor": (pspec: GObject.ParamSpec) => void;
+            "notify::focus-on-click": (pspec: GObject.ParamSpec) => void;
+            "notify::focusable": (pspec: GObject.ParamSpec) => void;
+            "notify::halign": (pspec: GObject.ParamSpec) => void;
+            "notify::has-default": (pspec: GObject.ParamSpec) => void;
+            "notify::has-focus": (pspec: GObject.ParamSpec) => void;
+            "notify::has-tooltip": (pspec: GObject.ParamSpec) => void;
+            "notify::height-request": (pspec: GObject.ParamSpec) => void;
+            "notify::hexpand": (pspec: GObject.ParamSpec) => void;
+            "notify::hexpand-set": (pspec: GObject.ParamSpec) => void;
+            "notify::layout-manager": (pspec: GObject.ParamSpec) => void;
+            "notify::limit-events": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-bottom": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-end": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-start": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-top": (pspec: GObject.ParamSpec) => void;
+            "notify::name": (pspec: GObject.ParamSpec) => void;
+            "notify::opacity": (pspec: GObject.ParamSpec) => void;
+            "notify::overflow": (pspec: GObject.ParamSpec) => void;
+            "notify::parent": (pspec: GObject.ParamSpec) => void;
+            "notify::receives-default": (pspec: GObject.ParamSpec) => void;
+            "notify::root": (pspec: GObject.ParamSpec) => void;
+            "notify::scale-factor": (pspec: GObject.ParamSpec) => void;
+            "notify::sensitive": (pspec: GObject.ParamSpec) => void;
+            "notify::tooltip-markup": (pspec: GObject.ParamSpec) => void;
+            "notify::tooltip-text": (pspec: GObject.ParamSpec) => void;
+            "notify::valign": (pspec: GObject.ParamSpec) => void;
+            "notify::vexpand": (pspec: GObject.ParamSpec) => void;
+            "notify::vexpand-set": (pspec: GObject.ParamSpec) => void;
+            "notify::visible": (pspec: GObject.ParamSpec) => void;
+            "notify::width-request": (pspec: GObject.ParamSpec) => void;
+            "notify::accessible-role": (pspec: GObject.ParamSpec) => void;
+        }
+
+        // Constructor properties interface
+        interface ConstructorProps extends Widget.ConstructorProps, Accessible.ConstructorProps, Buildable.ConstructorProps, ConstraintTarget.ConstructorProps {
+            revealed: boolean;
+        }
+    }
+
+    /**
+     * Presents contextual actions.
+     * 
+     * <picture>
+     *   <source srcset="https://docs.gtk.org/gtk4/action-bar-dark.png" media="(prefers-color-scheme: dark)">
+     *   <img alt="An example GtkActionBar" src="https://docs.gtk.org/gtk4/action-bar.png">
+     * </picture>
+     * 
+     * {@link Gtk.ActionBar} is expected to be displayed below the content and expand
+     * horizontally to fill the area.
+     * 
+     * It allows placing children at the start or the end. In addition, it
+     * contains an internal centered box which is centered with respect to
+     * the full width of the box, even if the children at either side take
+     * up different amounts of space.
+     * 
+     * # GtkActionBar as GtkBuildable
+     * 
+     * The {@link Gtk.ActionBar} implementation of the {@link Gtk.Buildable} interface supports
+     * adding children at the start or end sides by specifying “start” or “end” as
+     * the “type” attribute of a `<child>` element, or setting the center widget
+     * by specifying “center” value.
+     * 
+     * # CSS nodes
+     * 
+     * ```
+     * actionbar
+     * ╰── revealer
+     *     ╰── box
+     *         ├── box.start
+     *         │   ╰── [start children]
+     *         ├── [center widget]
+     *         ╰── box.end
+     *             ╰── [end children]
+     * ```
+     * 
+     * A {@link Gtk.ActionBar}'s CSS node is called `actionbar`. It contains a `revealer`
+     * subnode, which contains a `box` subnode, which contains two `box` subnodes at
+     * the start and end of the action bar, with `start` and `end` style classes
+     * respectively, as well as a center node that represents the center child.
+     * 
+     * Each of the boxes contains children packed for that side.
+     * @gir-type Class
+     */
+    class ActionBar extends Widget implements Accessible, Buildable, ConstraintTarget {
+        static $gtype: GObject.GType<ActionBar>;
+
+        // Properties
+        /**
+         * Controls whether the action bar shows its contents.
+         * @default true
+         */
+        get revealed(): boolean;
+        set revealed(val: boolean);
+
+        /**
+         * Compile-time signal type information.
+         *
+         * This instance property is generated only for TypeScript type checking.
+         * It is not defined at runtime and should not be accessed in JS code.
+         * @internal
+         */
+        $signals: ActionBar.SignalSignatures;
+
+        // Constructors
+        constructor(properties?: Partial<ActionBar.ConstructorProps>, ...args: any[]);
+
+        _init(...args: any[]): void;
+
+        static ["new"](): ActionBar;
+
+        // Signals
+        /** @signal */
+        connect<K extends keyof ActionBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ActionBar.SignalSignatures[K]>): number;
+
+        /** @signal */
+        connect_after<K extends keyof ActionBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ActionBar.SignalSignatures[K]>): number;
+
+        /** @signal */
+        emit<K extends keyof ActionBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ActionBar.SignalSignatures[K]>): void;
+
+        // Methods
+        /**
+         * Retrieves the center bar widget of the bar.
+         * @returns the center widget
+         */
+        get_center_widget(): Widget | null;
+
+        /**
+         * Gets whether the contents of the action bar are revealed.
+         * @returns the current value of the {@link Gtk.ActionBar.revealed}   property
+         */
+        get_revealed(): boolean;
+
+        /**
+         * Adds a child to the action bar, packed with reference to the
+         * end of the action bar.
+         * @param child the widget to be added
+         */
+        pack_end(child: Widget): void;
+
+        /**
+         * Adds a child to the action, packed with reference to the
+         * start of the action bar.
+         * @param child the widget to be added
+         */
+        pack_start(child: Widget): void;
+
+        /**
+         * Removes a child from the action bar.
+         * @param child the widget to be removed
+         */
+        remove(child: Widget): void;
+
+        /**
+         * Sets the center widget for the action bar.
+         * @param center_widget a widget to use for the center
+         */
+        set_center_widget(center_widget: Widget | null): void;
+
+        /**
+         * Reveals or conceals the content of the action bar.
+         * 
+         * Note: this does not show or hide the action bar in the
+         * {@link Gtk.Widget.visible} sense, so revealing has
+         * no effect if the action bar is hidden.
+         * @param revealed the new value for the property
+         */
+        set_revealed(revealed: boolean): void;
+
+        /**
+         * The accessible role of the given {@link Gtk.Accessible} implementation.
+         * 
+         * The accessible role cannot be changed once set.
+         * @default Gtk.AccessibleRole.NONE
+          * @category Inherited from Gtk.Accessible
+         */
+        get accessible_role(): AccessibleRole;
+        set accessible_role(val: AccessibleRole);
+
+        /**
+         * The accessible role of the given {@link Gtk.Accessible} implementation.
+         * 
+         * The accessible role cannot be changed once set.
+         * @default Gtk.AccessibleRole.NONE
+          * @category Inherited from Gtk.Accessible
+         */
+        get accessibleRole(): AccessibleRole;
+        set accessibleRole(val: AccessibleRole);
+
+        /**
+         * Requests the user's screen reader to announce the given message.
+         * 
+         * This kind of notification is useful for messages that
+         * either have only a visual representation or that are not
+         * exposed visually at all, e.g. a notification about a
+         * successful operation.
+         * 
+         * Also, by using this API, you can ensure that the message
+         * does not interrupts the user's current screen reader output.
+         * @param message the string to announce
+         * @param priority the priority of the announcement
+         * @since 4.14
+         */
+        announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
+         * Retrieves the accessible parent for an accessible object.
+         * 
+         * This function returns `NULL` for top level widgets.
+         * @returns the accessible parent
+         * @since 4.10
+         */
+        get_accessible_parent(): Accessible | null;
+
+        /**
+         * Retrieves the accessible role of an accessible object.
+         * @returns the accessible role
+         */
+        get_accessible_role(): AccessibleRole;
+
+        /**
+         * Retrieves the implementation for the given accessible object.
+         * @returns the accessible implementation object
+         * @since 4.10
+         */
+        get_at_context(): ATContext;
+
+        /**
+         * Queries the coordinates and dimensions of this accessible
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get the bounds from an ignored
+         * child widget.
+         * @returns true if the bounds are valid, and false otherwise
+         * @since 4.10
+         */
+        get_bounds(): [boolean, number, number, number, number];
+
+        /**
+         * Retrieves the first accessible child of an accessible object.
+         * @returns the first accessible child
+         * @since 4.10
+         */
+        get_first_accessible_child(): Accessible | null;
+
+        /**
+         * Retrieves the next accessible sibling of an accessible object
+         * @returns the next accessible sibling
+         * @since 4.10
+         */
+        get_next_accessible_sibling(): Accessible | null;
+
+        /**
+         * Queries a platform state, such as focus.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get platform state from an ignored
+         * child widget, as is the case for {@link Gtk.Text} wrappers.
+         * @param state platform state to query
+         * @returns the value of state for the accessible
+         * @since 4.10
+         */
+        get_platform_state(state: AccessiblePlatformState): boolean;
+
+        /**
+         * Resets the accessible property to its default value.
+         * @param property the accessible property
+         */
+        reset_property(property: AccessibleProperty): void;
+
+        /**
+         * Resets the accessible relation to its default value.
+         * @param relation the accessible relation
+         */
+        reset_relation(relation: AccessibleRelation): void;
+
+        /**
+         * Resets the accessible state to its default value.
+         * @param state the accessible state
+         */
+        reset_state(state: AccessibleState): void;
+
+        /**
+         * Sets the parent and sibling of an accessible object.
+         * 
+         * This function is meant to be used by accessible implementations that are
+         * not part of the widget hierarchy, and but act as a logical bridge between
+         * widgets. For instance, if a widget creates an object that holds metadata
+         * for each child, and you want that object to implement the {@link Gtk.Accessible}
+         * interface, you will use this function to ensure that the parent of each
+         * child widget is the metadata object, and the parent of each metadata
+         * object is the container widget.
+         * @param parent the parent accessible object
+         * @param next_sibling the sibling accessible object
+         * @since 4.10
+         */
+        set_accessible_parent(parent: Accessible | null, next_sibling: Accessible | null): void;
+
+        /**
+         * Updates the next accessible sibling.
+         * 
+         * That might be useful when a new child of a custom accessible
+         * is created, and it needs to be linked to a previous child.
+         * @param new_sibling the new next accessible sibling to set
+         * @since 4.10
+         */
+        update_next_accessible_sibling(new_sibling: Accessible | null): void;
+
+        /**
+         * Informs ATs that the platform state has changed.
+         * 
+         * This function should be used by {@link Gtk.Accessible} implementations that
+         * have a platform state but are not widgets. Widgets handle platform
+         * states automatically.
+         * @param state the platform state to update
+         * @since 4.18
+         */
+        update_platform_state(state: AccessiblePlatformState): void;
+
+        /**
+         * Updates an array of accessible properties.
+         * 
+         * This function should be called by {@link Gtk.Widget} types whenever an accessible
+         * property change must be communicated to assistive technologies.
+         * 
+         * This function is meant to be used by language bindings.
+         * @param properties an array of accessible properties
+         * @param values an array of `GValues`, one for each property
+         */
+        update_property(properties: AccessibleProperty[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Updates an array of accessible relations.
+         * 
+         * This function should be called by {@link Gtk.Widget} types whenever an accessible
+         * relation change must be communicated to assistive technologies.
+         * 
+         * This function is meant to be used by language bindings.
+         * @param relations an array of accessible relations
+         * @param values an array of `GValues`, one for each relation
+         */
+        update_relation(relations: AccessibleRelation[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Updates an array of accessible states.
+         * 
+         * This function should be called by {@link Gtk.Widget} types whenever an accessible
+         * state change must be communicated to assistive technologies.
+         * 
+         * This function is meant to be used by language bindings.
+         * @param states an array of accessible states
+         * @param values an array of `GValues`, one for each state
+         */
+        update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -9431,15 +10086,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ActivateAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ActivateAction.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ActivateAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ActivateAction.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ActivateAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ActivateAction.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ActivateAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ActivateAction.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -9604,15 +10256,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Adjustment.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Adjustment.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Adjustment.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Adjustment.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Adjustment.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Adjustment.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Adjustment.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Adjustment.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -9934,15 +10583,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AlertDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AlertDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AlertDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AlertDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AlertDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AlertDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AlertDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AlertDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -10157,15 +10803,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AlternativeTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AlternativeTrigger.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AlternativeTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AlternativeTrigger.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AlternativeTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AlternativeTrigger.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AlternativeTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AlternativeTrigger.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -10229,15 +10872,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AnyFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AnyFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AnyFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AnyFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AnyFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AnyFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AnyFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AnyFilter.SignalSignatures[K]>): void;
 
         /**
          * Gets the type of the items in `list`.
@@ -11051,15 +11691,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AppChooserButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AppChooserButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AppChooserButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AppChooserButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AppChooserButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AppChooserButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AppChooserButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AppChooserButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -11217,6 +11854,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -11365,6 +12015,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -11687,15 +12350,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AppChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AppChooserDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AppChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AppChooserDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AppChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AppChooserDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AppChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AppChooserDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -12011,15 +12671,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AppChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AppChooserWidget.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AppChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AppChooserWidget.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AppChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AppChooserWidget.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AppChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AppChooserWidget.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -12175,6 +12832,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -12323,6 +12993,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -12569,6 +13252,31 @@ export interface Builder {
      * While {@link Gtk.Application} works fine with plain {@link Gtk.Window}s,
      * it is recommended to use it together with {@link Gtk.ApplicationWindow}.
      * 
+     * ## Initialization
+     * 
+     * A typical {@link Gtk.Application} will create a window in its
+     * `GIO.Application::activate`, `GIO.Application::open`
+     * or `GIO.Application::command-line` handlers. Note that all
+     * of these signals may be emitted multiple times, so handlers must
+     * be careful to take existing windows into account.
+     * 
+     * A typical ::activate handler should look like this:
+     * 
+     * ```
+     * static void
+     * activate (GApplication *gapp)
+     * {
+     *   GtkApplication *app = GTK_APPLICATION (gapp);
+     *   GtkWindow *window;
+     * 
+     *   window = gtk_application_get_active_window (app);
+     *   if (!window)
+     *     window = create_window (app);
+     * 
+     *   gtk_window_present (window);
+     * }
+     * ```
+     * 
      * ## Automatic resources
      * 
      * {@link Gtk.Application} will automatically load menus from the {@link Gtk.Builder}
@@ -12604,13 +13312,7 @@ export interface Builder {
      * default window icon. Use {@link Gtk.Window.set_default_icon_name} or
      * {@link Gtk.Window.icon_name} to override that behavior.
      * 
-     * ## A simple application
-     * 
-     * [A simple example](https://gitlab.gnome.org/GNOME/gtk/tree/main/examples/bp/bloatpad.c)
-     * is available in the GTK source code repository
-     * 
-     * {@link Gtk.Application} registers with a session manager if possible and
-     * offers various functionality related to the session life-cycle.
+     * # Inhibiting
      * 
      * An application can block various ways to end the session with
      * the {@link Gtk.Application.inhibit} function. Typical use cases for
@@ -12619,6 +13321,11 @@ export interface Builder {
      * manager may not honor the inhibitor, but it can be expected to
      * inform the user about the negative consequences of ending the
      * session while inhibitors are present.
+     * 
+     * ## A simple application
+     * 
+     * [A simple example](https://gitlab.gnome.org/GNOME/gtk/tree/main/examples/bp/bloatpad.c)
+     * is available in the GTK source code repository
      * 
      * ## See Also
      * 
@@ -12653,7 +13360,7 @@ export interface Builder {
          * 
          * This will make GTK track the session state (such as the
          * {@link Gtk.Application.screensaver_active} property).
-         * @deprecated since 4.20: This property is ignored. GTK always registers with the session manager
+         * @deprecated since 4.22: This property is ignored. GTK always registers with the session manager
          * @default false
          */
         get register_session(): boolean;
@@ -12664,7 +13371,7 @@ export interface Builder {
          * 
          * This will make GTK track the session state (such as the
          * {@link Gtk.Application.screensaver_active} property).
-         * @deprecated since 4.20: This property is ignored. GTK always registers with the session manager
+         * @deprecated since 4.22: This property is ignored. GTK always registers with the session manager
          * @default false
          */
         get registerSession(): boolean;
@@ -12711,15 +13418,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Application.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Application.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Application.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Application.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Application.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Application.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Application.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Application.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -13736,15 +14440,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ApplicationWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ApplicationWindow.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ApplicationWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ApplicationWindow.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ApplicationWindow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ApplicationWindow.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ApplicationWindow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ApplicationWindow.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -14607,15 +15308,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AspectFrame.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AspectFrame.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AspectFrame.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AspectFrame.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AspectFrame.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AspectFrame.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AspectFrame.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AspectFrame.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -14720,6 +15418,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -14870,6 +15581,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -15248,15 +15972,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Assistant.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Assistant.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Assistant.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Assistant.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Assistant.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Assistant.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Assistant.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Assistant.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -15643,15 +16364,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof AssistantPage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AssistantPage.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AssistantPage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AssistantPage.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AssistantPage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AssistantPage.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AssistantPage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AssistantPage.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -15702,15 +16420,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof BinLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BinLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof BinLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BinLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof BinLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BinLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof BinLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BinLayout.SignalSignatures[K]>): void;
     }
 
 
@@ -15838,15 +16553,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof BookmarkList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BookmarkList.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof BookmarkList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BookmarkList.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof BookmarkList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BookmarkList.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof BookmarkList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BookmarkList.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -16062,15 +16774,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof BoolFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BoolFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof BoolFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BoolFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof BoolFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BoolFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof BoolFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BoolFilter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -16271,15 +16980,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Box.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Box.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Box.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Box.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Box.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Box.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Box.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Box.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -16433,6 +17139,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -16581,6 +17300,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -16870,15 +17602,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof BoxLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BoxLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof BoxLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BoxLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof BoxLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BoxLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof BoxLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BoxLayout.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -17408,15 +18137,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Builder.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Builder.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Builder.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Builder.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Builder.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Builder.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Builder.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Builder.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -17754,15 +18480,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof BuilderCScope.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BuilderCScope.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof BuilderCScope.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BuilderCScope.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof BuilderCScope.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BuilderCScope.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof BuilderCScope.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BuilderCScope.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -17913,15 +18636,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof BuilderListItemFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BuilderListItemFactory.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof BuilderListItemFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, BuilderListItemFactory.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof BuilderListItemFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BuilderListItemFactory.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof BuilderListItemFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<BuilderListItemFactory.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -18184,15 +18904,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Button.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Button.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Button.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Button.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Button.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Button.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Button.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Button.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -18383,6 +19100,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -18531,6 +19261,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -18823,15 +19566,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CClosureExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CClosureExpression.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CClosureExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CClosureExpression.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CClosureExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CClosureExpression.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CClosureExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CClosureExpression.SignalSignatures[K]>): void;
     }
 
 
@@ -19088,15 +19828,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Calendar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Calendar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Calendar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Calendar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Calendar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Calendar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Calendar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Calendar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -19284,6 +20021,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -19432,6 +20182,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -19620,15 +20383,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CallbackAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CallbackAction.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CallbackAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CallbackAction.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CallbackAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CallbackAction.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CallbackAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CallbackAction.SignalSignatures[K]>): void;
     }
 
 
@@ -20070,15 +20830,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellArea.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellArea.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellArea.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellArea.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellArea.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellArea.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellArea.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellArea.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -21155,15 +21912,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellAreaBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellAreaBox.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellAreaBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellAreaBox.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellAreaBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellAreaBox.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellAreaBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellAreaBox.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -21659,15 +22413,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellAreaContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellAreaContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellAreaContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellAreaContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellAreaContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellAreaContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellAreaContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellAreaContext.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -22155,15 +22906,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRenderer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRenderer.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRenderer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRenderer.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRenderer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRenderer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRenderer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRenderer.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -22701,15 +23449,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererAccel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererAccel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererAccel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererAccel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererAccel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererAccel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererAccel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererAccel.SignalSignatures[K]>): void;
     }
 
 
@@ -22900,15 +23645,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererCombo.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererCombo.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererCombo.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererCombo.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererCombo.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererCombo.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererCombo.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererCombo.SignalSignatures[K]>): void;
     }
 
 
@@ -23054,15 +23796,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererPixbuf.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererPixbuf.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererPixbuf.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererPixbuf.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererPixbuf.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererPixbuf.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererPixbuf.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererPixbuf.SignalSignatures[K]>): void;
     }
 
 
@@ -23214,15 +23953,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererProgress.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererProgress.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererProgress.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererProgress.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererProgress.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererProgress.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererProgress.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererProgress.SignalSignatures[K]>): void;
 
         /**
          * The orientation of the orientable.
@@ -23392,15 +24128,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererSpin.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererSpin.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererSpin.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererSpin.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererSpin.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererSpin.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererSpin.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererSpin.SignalSignatures[K]>): void;
     }
 
 
@@ -23499,15 +24232,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererSpinner.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererSpinner.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererSpinner.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererSpinner.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererSpinner.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererSpinner.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererSpinner.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererSpinner.SignalSignatures[K]>): void;
     }
 
 
@@ -24168,15 +24898,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererText.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererText.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererText.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererText.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererText.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererText.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererText.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererText.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -24302,15 +25029,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellRendererToggle.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererToggle.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellRendererToggle.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellRendererToggle.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellRendererToggle.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererToggle.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellRendererToggle.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellRendererToggle.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -24590,15 +25314,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CellView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellView.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CellView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CellView.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CellView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellView.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CellView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CellView.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -24719,6 +25440,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -24869,6 +25603,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -25460,15 +26207,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CenterBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CenterBox.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CenterBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CenterBox.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CenterBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CenterBox.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CenterBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CenterBox.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -25597,6 +26341,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -25747,6 +26504,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -25989,15 +26759,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CenterLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CenterLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CenterLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CenterLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CenterLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CenterLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CenterLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CenterLayout.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -26329,15 +27096,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CheckButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CheckButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CheckButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CheckButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CheckButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CheckButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CheckButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CheckButton.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -26517,6 +27281,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -26665,6 +27442,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -26958,15 +27748,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ClosureExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ClosureExpression.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ClosureExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ClosureExpression.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ClosureExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ClosureExpression.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ClosureExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ClosureExpression.SignalSignatures[K]>): void;
     }
 
 
@@ -27135,15 +27922,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColorButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColorButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColorButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColorButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -27252,6 +28036,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -27402,6 +28199,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -27802,15 +28612,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColorChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorChooserDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColorChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorChooserDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColorChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorChooserDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColorChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorChooserDialog.SignalSignatures[K]>): void;
 
         /**
          * The currently selected color, as a {@link Gdk.RGBA} struct.
@@ -28084,15 +28891,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColorChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorChooserWidget.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColorChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorChooserWidget.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColorChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorChooserWidget.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColorChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorChooserWidget.SignalSignatures[K]>): void;
 
         /**
          * The accessible role of the given {@link Gtk.Accessible} implementation.
@@ -28172,6 +28976,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -28322,6 +29139,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -28668,15 +29498,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColorDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColorDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColorDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColorDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -28900,15 +29727,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColorDialogButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorDialogButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColorDialogButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColorDialogButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColorDialogButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorDialogButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColorDialogButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColorDialogButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -28980,6 +29804,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -29130,6 +29967,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -29597,15 +30447,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColumnView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnView.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColumnView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnView.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColumnView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnView.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColumnView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnView.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -29917,6 +30764,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -30065,6 +30925,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -30397,15 +31270,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColumnViewCell.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewCell.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColumnViewCell.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewCell.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColumnViewCell.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewCell.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColumnViewCell.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewCell.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -30647,15 +31517,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColumnViewColumn.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewColumn.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColumnViewColumn.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewColumn.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColumnViewColumn.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewColumn.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColumnViewColumn.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewColumn.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -30944,15 +31811,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColumnViewRow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewRow.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColumnViewRow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewRow.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColumnViewRow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewRow.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColumnViewRow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewRow.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -31203,15 +32067,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ColumnViewSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewSorter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ColumnViewSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ColumnViewSorter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ColumnViewSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewSorter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ColumnViewSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ColumnViewSorter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -31680,15 +32541,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ComboBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ComboBox.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ComboBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ComboBox.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ComboBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ComboBox.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ComboBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ComboBox.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -31998,6 +32856,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -32146,6 +33017,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -32696,15 +33580,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ComboBoxText.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ComboBoxText.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ComboBoxText.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ComboBoxText.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ComboBoxText.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ComboBoxText.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ComboBoxText.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ComboBoxText.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -33097,15 +33978,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ConstantExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstantExpression.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ConstantExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstantExpression.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ConstantExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstantExpression.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ConstantExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstantExpression.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -33270,15 +34148,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Constraint.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Constraint.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Constraint.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Constraint.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Constraint.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Constraint.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Constraint.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Constraint.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -33529,15 +34404,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ConstraintGuide.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstraintGuide.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ConstraintGuide.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstraintGuide.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ConstraintGuide.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstraintGuide.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ConstraintGuide.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstraintGuide.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -33810,15 +34682,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ConstraintLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstraintLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ConstraintLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstraintLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ConstraintLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstraintLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ConstraintLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstraintLayout.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -34120,15 +34989,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ConstraintLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstraintLayoutChild.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ConstraintLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ConstraintLayoutChild.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ConstraintLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstraintLayoutChild.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ConstraintLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ConstraintLayoutChild.SignalSignatures[K]>): void;
     }
 
 
@@ -34161,6 +35027,7 @@ export interface Builder {
             "parsing-error": (section: CssSection, error: GLib.Error) => void;
             "notify::prefers-color-scheme": (pspec: GObject.ParamSpec) => void;
             "notify::prefers-contrast": (pspec: GObject.ParamSpec) => void;
+            "notify::prefers-reduced-motion": (pspec: GObject.ParamSpec) => void;
         }
 
         // Constructor properties interface
@@ -34169,6 +35036,8 @@ export interface Builder {
             prefersColorScheme: InterfaceColorScheme;
             prefers_contrast: InterfaceContrast;
             prefersContrast: InterfaceContrast;
+            prefers_reduced_motion: ReducedMotion;
+            prefersReducedMotion: ReducedMotion;
         }
     }
 
@@ -34222,7 +35091,7 @@ export interface Builder {
          * }
          * ```
          * 
-         * Changing this setting will cause a re-render of the style sheet.
+         * Changing this setting will reload the style sheet.
          * @since 4.20
          * @default Gtk.InterfaceColorScheme.DEFAULT
          */
@@ -34244,7 +35113,7 @@ export interface Builder {
          * }
          * ```
          * 
-         * Changing this setting will cause a re-render of the style sheet.
+         * Changing this setting will reload the style sheet.
          * @since 4.20
          * @default Gtk.InterfaceColorScheme.DEFAULT
          */
@@ -34269,7 +35138,7 @@ export interface Builder {
          * }
          * ```
          * 
-         * Changing this setting will cause a re-render of the style sheet.
+         * Changing this setting will reload the style sheet.
          * @since 4.20
          * @default Gtk.InterfaceContrast.NO_PREFERENCE
          */
@@ -34294,12 +35163,60 @@ export interface Builder {
          * }
          * ```
          * 
-         * Changing this setting will cause a re-render of the style sheet.
+         * Changing this setting will reload the style sheet.
          * @since 4.20
          * @default Gtk.InterfaceContrast.NO_PREFERENCE
          */
         get prefersContrast(): InterfaceContrast;
         set prefersContrast(val: InterfaceContrast);
+
+        /**
+         * Define the type of reduced motion to use for the user interface.
+         * 
+         * When set to {@link Gtk.ReducedMotion.REDUCE} the UI is rendered in
+         * with reduced motion animations.
+         * 
+         * When set to {@link Gtk.ReducedMotion.NO_PREFERENCE} (the default),
+         * the user interface will be rendered in default mode.
+         * 
+         * This setting is be available for media queries in CSS:
+         * 
+         * ```css
+         * `media` (prefers-reduced-motion: reduce) {
+         *   // some style with reduced motion
+         * }
+         * ```
+         * 
+         * Changing this setting will reload the style sheet.
+         * @since 4.22
+         * @default Gtk.ReducedMotion.NO_PREFERENCE
+         */
+        get prefers_reduced_motion(): ReducedMotion;
+        set prefers_reduced_motion(val: ReducedMotion);
+
+        /**
+         * Define the type of reduced motion to use for the user interface.
+         * 
+         * When set to {@link Gtk.ReducedMotion.REDUCE} the UI is rendered in
+         * with reduced motion animations.
+         * 
+         * When set to {@link Gtk.ReducedMotion.NO_PREFERENCE} (the default),
+         * the user interface will be rendered in default mode.
+         * 
+         * This setting is be available for media queries in CSS:
+         * 
+         * ```css
+         * `media` (prefers-reduced-motion: reduce) {
+         *   // some style with reduced motion
+         * }
+         * ```
+         * 
+         * Changing this setting will reload the style sheet.
+         * @since 4.22
+         * @default Gtk.ReducedMotion.NO_PREFERENCE
+         */
+        get prefersReducedMotion(): ReducedMotion;
+        set prefersReducedMotion(val: ReducedMotion);
 
         /**
          * Compile-time signal type information.
@@ -34320,15 +35237,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CssProvider.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CssProvider.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CssProvider.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CssProvider.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CssProvider.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CssProvider.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CssProvider.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CssProvider.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -34444,15 +35358,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CustomFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CustomFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CustomFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CustomFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CustomFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CustomFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CustomFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CustomFilter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -34510,15 +35421,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CustomLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CustomLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CustomLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CustomLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CustomLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CustomLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CustomLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CustomLayout.SignalSignatures[K]>): void;
     }
 
 
@@ -34556,15 +35464,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof CustomSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CustomSorter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof CustomSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CustomSorter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof CustomSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CustomSorter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof CustomSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CustomSorter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -34882,15 +35787,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Dialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Dialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Dialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Dialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Dialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Dialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Dialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Dialog.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -35239,15 +36141,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DirectoryList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DirectoryList.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DirectoryList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DirectoryList.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DirectoryList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DirectoryList.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DirectoryList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DirectoryList.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -35550,15 +36449,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DragIcon.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DragIcon.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DragIcon.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DragIcon.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DragIcon.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DragIcon.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DragIcon.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DragIcon.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -35637,6 +36533,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -35787,6 +36696,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -36185,15 +37107,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DragSource.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DragSource.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DragSource.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DragSource.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DragSource.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DragSource.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DragSource.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DragSource.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -36467,15 +37386,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DrawingArea.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DrawingArea.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DrawingArea.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DrawingArea.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DrawingArea.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DrawingArea.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DrawingArea.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DrawingArea.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -36578,6 +37494,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -36728,6 +37657,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -37027,15 +37969,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DropControllerMotion.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropControllerMotion.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DropControllerMotion.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropControllerMotion.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DropControllerMotion.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropControllerMotion.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DropControllerMotion.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropControllerMotion.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -37343,15 +38282,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DropDown.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropDown.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DropDown.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropDown.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DropDown.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropDown.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DropDown.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropDown.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -37524,6 +38460,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -37672,6 +38621,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -38080,15 +39042,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DropTarget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropTarget.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DropTarget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropTarget.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DropTarget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropTarget.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DropTarget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropTarget.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -38327,15 +39286,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof DropTargetAsync.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropTargetAsync.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DropTargetAsync.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DropTargetAsync.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DropTargetAsync.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropTargetAsync.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DropTargetAsync.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DropTargetAsync.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -38509,15 +39465,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EditableLabel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EditableLabel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EditableLabel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EditableLabel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EditableLabel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EditableLabel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EditableLabel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EditableLabel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -38684,6 +39637,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -38832,6 +39798,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -39472,15 +40451,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EmojiChooser.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EmojiChooser.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EmojiChooser.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EmojiChooser.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EmojiChooser.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EmojiChooser.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EmojiChooser.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EmojiChooser.SignalSignatures[K]>): void;
 
         /**
          * Returns the renderer that is used for this {@link Gtk.Native}.
@@ -40540,15 +41516,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Entry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Entry.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Entry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Entry.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Entry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Entry.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Entry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Entry.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -41280,6 +42253,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -41428,6 +42414,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -42079,15 +43078,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EntryBuffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EntryBuffer.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EntryBuffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EntryBuffer.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EntryBuffer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EntryBuffer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EntryBuffer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EntryBuffer.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -42558,15 +43554,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EntryCompletion.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EntryCompletion.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EntryCompletion.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EntryCompletion.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EntryCompletion.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EntryCompletion.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EntryCompletion.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EntryCompletion.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -43159,15 +44152,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EventController.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventController.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EventController.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventController.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EventController.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventController.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EventController.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventController.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -43407,15 +44397,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EventControllerFocus.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerFocus.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EventControllerFocus.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerFocus.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EventControllerFocus.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerFocus.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EventControllerFocus.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerFocus.SignalSignatures[K]>): void;
     }
 
 
@@ -43486,15 +44473,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EventControllerKey.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerKey.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EventControllerKey.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerKey.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EventControllerKey.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerKey.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EventControllerKey.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerKey.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -43579,15 +44563,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EventControllerLegacy.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerLegacy.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EventControllerLegacy.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerLegacy.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EventControllerLegacy.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerLegacy.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EventControllerLegacy.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerLegacy.SignalSignatures[K]>): void;
     }
 
 
@@ -43717,15 +44698,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EventControllerMotion.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerMotion.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EventControllerMotion.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerMotion.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EventControllerMotion.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerMotion.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EventControllerMotion.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerMotion.SignalSignatures[K]>): void;
     }
 
 
@@ -43848,15 +44826,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EventControllerScroll.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerScroll.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EventControllerScroll.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventControllerScroll.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EventControllerScroll.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerScroll.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EventControllerScroll.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventControllerScroll.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -43923,15 +44898,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof EveryFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EveryFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EveryFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EveryFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EveryFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EveryFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EveryFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EveryFilter.SignalSignatures[K]>): void;
 
         /**
          * Gets the type of the items in `list`.
@@ -44408,15 +45380,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Expander.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Expander.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Expander.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Expander.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Expander.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Expander.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Expander.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Expander.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -44556,6 +45525,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -44706,6 +45688,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -44981,12 +45976,14 @@ export interface Builder {
      * {@link Gtk.BuilderListItemFactory} for an example of this technique.
      * 
      * To create a constant expression, use the `<constant>` element. If the type attribute
-     * is specified, the element content is interpreted as a value of that type. Otherwise,
+     * is specified, the element content is interpreted as a value of that type, and the
+     * initial attribute can be specified to get the initial value for that type. Otherwise,
      * it is assumed to be an object. For instance:
      * 
      * ```xml
      *   <constant>string_filter</constant>
      *   <constant type='gchararray'>Hello, world</constant>
+     *   <constant type='gchararray' initial='true' /> <!-- NULL -->
      * ```
      * 
      * String (`type='gchararray'`) constants can be marked for translation with the
@@ -45019,6 +46016,19 @@ export interface Builder {
      *   </closure>
      * ```
      * 
+     * If an expression can fail, a `<try>` element can be used to provide fallbacks.
+     * The expressions are tried from top to bottom until one of them succeeds.
+     * If none of the expressions succeed, the expression fails as normal:
+     * 
+     * ```xml
+     *   <try>
+     *     <lookup type='GtkWindow' name='title'>
+     *       <lookup type='GtkLabel' name='root'></lookup>
+     *     </lookup>
+     *     <constant type='gchararray'>Hello World</constant>
+     *   </try>
+     * ```
+     * 
      * To create a property binding, use the `<binding>` element in place of where a
      * `<property>` tag would ordinarily be used. The `name` and `object` attributes are
      * supported. The `name` attribute is required, and pertains to the applicable property
@@ -45045,15 +46055,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Expression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Expression.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Expression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Expression.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Expression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Expression.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Expression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Expression.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -45064,8 +46071,7 @@ export interface Builder {
          * the object's property stays synchronized with `self`.
          * 
          * If `self`'s evaluation fails, `target`'s `property` is not updated.
-         * You can ensure that this doesn't happen by using a fallback
-         * expression.
+         * Use a {@link Gtk.TryExpression} to provide a fallback for this case.
          * 
          * Note that this function takes ownership of `self`. If you want
          * to keep it around, you should {@link Gtk.Expression.ref} it beforehand.
@@ -45418,15 +46424,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FileChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileChooserDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FileChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileChooserDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FileChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileChooserDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FileChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileChooserDialog.SignalSignatures[K]>): void;
 
         /**
          * The type of operation that the file chooser is performing.
@@ -46052,15 +47055,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FileChooserNative.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileChooserNative.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FileChooserNative.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileChooserNative.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FileChooserNative.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileChooserNative.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FileChooserNative.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileChooserNative.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -46831,15 +47831,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FileChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileChooserWidget.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FileChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileChooserWidget.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FileChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileChooserWidget.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FileChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileChooserWidget.SignalSignatures[K]>): void;
 
         /**
          * The accessible role of the given {@link Gtk.Accessible} implementation.
@@ -46967,6 +47964,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -47117,6 +48127,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -47773,15 +48796,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FileDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FileDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FileDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FileDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -48540,15 +49560,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FileFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FileFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FileFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FileFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileFilter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -48556,6 +49573,18 @@ export interface Builder {
          * @param mime_type name of a MIME type
          */
         add_mime_type(mime_type: string): void;
+
+        /**
+         * Adds a rule allowing a given array of mime types.
+         * It can for example be used with
+         * [Gly.Loader.get_mime_types](https://gnome.pages.gitlab.gnome.org/glycin/libglycin/type_func.Loader.get_mime_types.html).
+         * 
+         * This is equivalent to calling {@link Gtk.FileFilter.add_mime_type}
+         * for all the supported mime types.
+         * @param mime_types a `null`-terminated array of mime types
+         * @since 4.22
+         */
+        add_mime_types(mime_types: string[]): void;
 
         /**
          * Adds a rule allowing a shell style glob pattern.
@@ -48816,15 +49845,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FileLauncher.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileLauncher.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FileLauncher.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FileLauncher.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FileLauncher.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileLauncher.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FileLauncher.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FileLauncher.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -49025,15 +50051,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Filter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Filter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Filter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Filter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Filter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Filter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Filter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Filter.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -49233,15 +50256,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FilterListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FilterListModel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FilterListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FilterListModel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FilterListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FilterListModel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FilterListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FilterListModel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -49610,15 +50630,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Fixed.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Fixed.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Fixed.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Fixed.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Fixed.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Fixed.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Fixed.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Fixed.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -49707,6 +50724,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -49857,6 +50887,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -50074,15 +51117,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FixedLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FixedLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FixedLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FixedLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FixedLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FixedLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FixedLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FixedLayout.SignalSignatures[K]>): void;
     }
 
 
@@ -50131,15 +51171,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FixedLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FixedLayoutChild.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FixedLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FixedLayoutChild.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FixedLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FixedLayoutChild.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FixedLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FixedLayoutChild.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -50240,15 +51277,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FlattenListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FlattenListModel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FlattenListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FlattenListModel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FlattenListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FlattenListModel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FlattenListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FlattenListModel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -50786,15 +51820,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FlowBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FlowBox.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FlowBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FlowBox.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FlowBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FlowBox.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FlowBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FlowBox.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -51149,6 +52180,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -51297,6 +52341,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -51562,15 +52619,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FlowBoxChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FlowBoxChild.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FlowBoxChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FlowBoxChild.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FlowBoxChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FlowBoxChild.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FlowBoxChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FlowBoxChild.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -51662,6 +52716,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -51812,6 +52879,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -52144,15 +53224,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FontButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FontButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FontButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FontButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -52350,6 +53427,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -52498,6 +53588,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -53054,15 +54157,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FontChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontChooserDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FontChooserDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontChooserDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FontChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontChooserDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FontChooserDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontChooserDialog.SignalSignatures[K]>): void;
 
         /**
          * The font description as a string, e.g. "Sans Italic 12".
@@ -53561,15 +54661,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FontChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontChooserWidget.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FontChooserWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontChooserWidget.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FontChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontChooserWidget.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FontChooserWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontChooserWidget.SignalSignatures[K]>): void;
 
         /**
          * The accessible role of the given {@link Gtk.Accessible} implementation.
@@ -53706,6 +54803,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -53856,6 +54966,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -54393,15 +55516,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FontDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FontDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FontDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FontDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -54937,15 +56057,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof FontDialogButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontDialogButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FontDialogButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FontDialogButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FontDialogButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontDialogButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FontDialogButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FontDialogButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -55101,6 +56218,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -55249,6 +56379,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -55568,15 +56711,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Frame.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Frame.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Frame.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Frame.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Frame.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Frame.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Frame.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Frame.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -55678,6 +56818,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -55828,6 +56981,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -56352,15 +57518,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GLArea.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GLArea.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GLArea.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GLArea.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GLArea.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GLArea.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GLArea.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GLArea.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -56594,6 +57757,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -56742,6 +57918,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -57102,15 +58291,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Gesture.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Gesture.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Gesture.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Gesture.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Gesture.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Gesture.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Gesture.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Gesture.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -57440,15 +58626,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureClick.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureClick.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureClick.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureClick.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureClick.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureClick.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureClick.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureClick.SignalSignatures[K]>): void;
     }
 
 
@@ -57521,15 +58704,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureDrag.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureDrag.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureDrag.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureDrag.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureDrag.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureDrag.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureDrag.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureDrag.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -57644,15 +58824,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureLongPress.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureLongPress.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureLongPress.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureLongPress.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureLongPress.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureLongPress.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureLongPress.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureLongPress.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -57748,15 +58925,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GesturePan.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GesturePan.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GesturePan.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GesturePan.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GesturePan.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GesturePan.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GesturePan.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GesturePan.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -57822,15 +58996,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureRotate.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureRotate.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureRotate.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureRotate.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureRotate.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureRotate.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureRotate.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureRotate.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -57934,15 +59105,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureSingle.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureSingle.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureSingle.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureSingle.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureSingle.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureSingle.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureSingle.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureSingle.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -58106,15 +59274,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureStylus.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureStylus.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureStylus.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureStylus.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureStylus.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureStylus.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureStylus.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureStylus.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -58254,15 +59419,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureSwipe.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureSwipe.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureSwipe.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureSwipe.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureSwipe.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureSwipe.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureSwipe.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureSwipe.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -58327,15 +59489,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GestureZoom.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureZoom.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GestureZoom.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GestureZoom.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GestureZoom.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureZoom.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GestureZoom.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GestureZoom.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -58497,15 +59656,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GraphicsOffload.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GraphicsOffload.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GraphicsOffload.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GraphicsOffload.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GraphicsOffload.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GraphicsOffload.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GraphicsOffload.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GraphicsOffload.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -58601,6 +59757,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -58751,6 +59920,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -59149,15 +60331,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Grid.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Grid.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Grid.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Grid.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Grid.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Grid.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Grid.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Grid.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -59398,6 +60577,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -59546,6 +60738,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -59848,15 +61053,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GridLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GridLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GridLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GridLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GridLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GridLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GridLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GridLayout.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -60034,15 +61236,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GridLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GridLayoutChild.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GridLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GridLayoutChild.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GridLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GridLayoutChild.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GridLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GridLayoutChild.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -60335,15 +61534,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof GridView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GridView.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GridView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GridView.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GridView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GridView.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GridView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GridView.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -60851,15 +62047,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof HeaderBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, HeaderBar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof HeaderBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, HeaderBar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof HeaderBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<HeaderBar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof HeaderBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<HeaderBar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -61006,6 +62199,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -61156,6 +62362,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -61334,6 +62553,13 @@ export interface Builder {
              */
             "delete-surrounding": (offset: number, n_chars: number) => boolean | void;
             /**
+             * Emitted when the filtered keys do not compose to a single valid character.
+             * @signal
+             * @since 4.22
+             * @run-last
+             */
+            "invalid-composition": (str: string) => boolean | void;
+            /**
              * The ::preedit-changed signal is emitted whenever the preedit sequence
              * currently being entered has changed.
              * 
@@ -61469,15 +62695,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof IMContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IMContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof IMContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IMContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof IMContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IMContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof IMContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IMContext.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -61603,6 +62826,14 @@ export interface Builder {
          * @virtual
          */
         vfunc_get_surrounding_with_selection(): [boolean, string, number, number];
+
+        /**
+         * Default handler of the
+         *   `Gtk.IMContext::invalid-composition` signal. Since: 4.22
+         * @param str 
+         * @virtual
+         */
+        vfunc_invalid_composition(str: string): boolean;
 
         /**
          * Default handler of the `Gtk.IMContext::preedit-changed`
@@ -61976,15 +63207,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof IMContextSimple.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IMContextSimple.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof IMContextSimple.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IMContextSimple.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof IMContextSimple.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IMContextSimple.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof IMContextSimple.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IMContextSimple.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -62039,15 +63267,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof IMMulticontext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IMMulticontext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof IMMulticontext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IMMulticontext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof IMMulticontext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IMMulticontext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof IMMulticontext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IMMulticontext.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -62173,15 +63398,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof IconPaintable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IconPaintable.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof IconPaintable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IconPaintable.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof IconPaintable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IconPaintable.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof IconPaintable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IconPaintable.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -62307,7 +63529,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-contents`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.CONTENTS} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_CONTENTS} flag,
          * it must not call this function.
          */
         invalidate_contents(): void;
@@ -62321,7 +63543,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-size`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.SIZE} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_SIZE} flag,
          * it must not call this function.
          */
         invalidate_size(): void;
@@ -62427,7 +63649,7 @@ export interface Builder {
         /**
          * Snapshots the paintable with the given colors.
          * 
-         * If less than 4 colors are provided, GTK will pad the array with default
+         * If less than 5 colors are provided, GTK will pad the array with default
          * colors.
          * @param snapshot a {@link Gdk.Snapshot} to snapshot to
          * @param width width to snapshot in
@@ -62438,9 +63660,23 @@ export interface Builder {
         snapshot_symbolic(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[]): void;
 
         /**
+         * Snapshots the paintable with the given colors and weight.
+         * 
+         * If less than 5 colors are provided, GTK will pad the array with default
+         * colors.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @param colors a pointer to an array of colors
+         * @param weight The font weight to use (from 1 to 1000, with default 400)
+         * @since 4.22
+         */
+        snapshot_with_weight(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[], weight: number): void;
+
+        /**
          * Snapshots the paintable with the given colors.
          * 
-         * If less than 4 colors are provided, GTK will pad the array with default
+         * If less than 5 colors are provided, GTK will pad the array with default
          * colors.
          * @param snapshot a {@link Gdk.Snapshot} to snapshot to
          * @param width width to snapshot in
@@ -62450,6 +63686,21 @@ export interface Builder {
          * @virtual
          */
         vfunc_snapshot_symbolic(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[]): void;
+
+        /**
+         * Snapshots the paintable with the given colors and weight.
+         * 
+         * If less than 5 colors are provided, GTK will pad the array with default
+         * colors.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @param colors a pointer to an array of colors
+         * @param weight The font weight to use (from 1 to 1000, with default 400)
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_snapshot_with_weight(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[], weight: number): void;
     }
 
 
@@ -62635,15 +63886,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof IconTheme.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IconTheme.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof IconTheme.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IconTheme.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof IconTheme.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IconTheme.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof IconTheme.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IconTheme.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -63351,15 +64599,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof IconView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IconView.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof IconView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, IconView.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof IconView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IconView.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof IconView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<IconView.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -64020,6 +65265,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -64168,6 +65426,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -64863,15 +66134,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Image.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Image.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Image.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Image.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Image.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Image.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Image.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Image.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -65045,6 +66313,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -65193,6 +66474,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -65564,15 +66858,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof InfoBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, InfoBar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof InfoBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, InfoBar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof InfoBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<InfoBar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof InfoBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<InfoBar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -65748,6 +67039,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -65896,6 +67200,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -66384,15 +67701,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Inscription.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Inscription.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Inscription.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Inscription.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Inscription.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Inscription.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Inscription.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Inscription.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -66609,6 +67923,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -66757,6 +68084,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -66952,6 +68292,23 @@ export interface Builder {
         vfunc_get_selection(): [boolean, AccessibleTextRange[] | null];
 
         /**
+         * Sets the caret position.
+         * @param offset the text offset in characters
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_caret_position(offset: number): boolean;
+
+        /**
+         * Sets the caret position.
+         * @param i the selection to set
+         * @param range the range to set the selection to
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_selection(i: number, range: AccessibleTextRange): boolean;
+
+        /**
          * Gets the ID of the `buildable` object.
          * 
          * {@link Gtk.Builder} sets the name based on the ID attribute
@@ -67106,15 +68463,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof KeyvalTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, KeyvalTrigger.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof KeyvalTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, KeyvalTrigger.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof KeyvalTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<KeyvalTrigger.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof KeyvalTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<KeyvalTrigger.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -67254,7 +68608,7 @@ export interface Builder {
         }
 
         // Constructor properties interface
-        interface ConstructorProps extends Widget.ConstructorProps, Accessible.ConstructorProps, AccessibleText.ConstructorProps, Buildable.ConstructorProps, ConstraintTarget.ConstructorProps {
+        interface ConstructorProps extends Widget.ConstructorProps, Accessible.ConstructorProps, AccessibleHypertext.ConstructorProps, AccessibleText.ConstructorProps, Buildable.ConstructorProps, ConstraintTarget.ConstructorProps {
             attributes: Pango.AttrList | null;
             ellipsize: Pango.EllipsizeMode;
             extra_menu: Gio.MenuModel | null;
@@ -67507,7 +68861,7 @@ export interface Builder {
      * {@link Gtk.Label.get_current_uri} function.
      * @gir-type Class
      */
-    class Label extends Widget implements Accessible, AccessibleText, Buildable, ConstraintTarget {
+    class Label extends Widget implements Accessible, AccessibleHypertext, AccessibleText, Buildable, ConstraintTarget {
         static $gtype: GObject.GType<Label>;
 
         // Properties
@@ -67848,15 +69202,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Label.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Label.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Label.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Label.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Label.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Label.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Label.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Label.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -68385,6 +69736,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -68535,6 +69899,19 @@ export interface Builder {
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -68586,6 +69963,29 @@ export interface Builder {
          * @virtual
          */
         vfunc_get_platform_state(state: AccessiblePlatformState): boolean;
+
+        /**
+         * Retrieve the n-th link in the accessible object.
+         * 
+         * `index` must be smaller than the number of links.
+         * @param index the index of the link
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_link(index: number): AccessibleHyperlink;
+
+        /**
+         * @param offset 
+         * @virtual
+         */
+        vfunc_get_link_at(offset: number): number;
+
+        /**
+         * Retrieve the number of links in the accessible object.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_n_links(): number;
 
         /**
          * Updates the position of the caret.
@@ -68726,6 +70126,23 @@ export interface Builder {
          * @virtual
          */
         vfunc_get_selection(): [boolean, AccessibleTextRange[] | null];
+
+        /**
+         * Sets the caret position.
+         * @param offset the text offset in characters
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_caret_position(offset: number): boolean;
+
+        /**
+         * Sets the caret position.
+         * @param i the selection to set
+         * @param range the range to set the selection to
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_selection(i: number, range: AccessibleTextRange): boolean;
 
         /**
          * Gets the ID of the `buildable` object.
@@ -68899,15 +70316,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof LayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LayoutChild.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof LayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LayoutChild.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof LayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LayoutChild.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof LayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LayoutChild.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -69003,15 +70417,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof LayoutManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LayoutManager.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof LayoutManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LayoutManager.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof LayoutManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LayoutManager.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof LayoutManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LayoutManager.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -69981,15 +71392,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof LevelBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LevelBar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof LevelBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LevelBar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof LevelBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LevelBar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof LevelBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LevelBar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -70132,6 +71540,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -70282,6 +71703,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -70621,15 +72055,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof LinkButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LinkButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof LinkButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LinkButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof LinkButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LinkButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof LinkButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LinkButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -70943,15 +72374,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListBase.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListBase.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListBase.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListBase.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListBase.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListBase.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListBase.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListBase.SignalSignatures[K]>): void;
 
         /**
          * The accessible role of the given {@link Gtk.Accessible} implementation.
@@ -71038,6 +72466,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -71188,6 +72629,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -71739,15 +73193,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListBox.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListBox.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListBox.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListBox.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListBox.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListBox.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -72112,6 +73563,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -72260,6 +73724,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -72530,15 +74007,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListBoxRow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListBoxRow.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListBoxRow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListBoxRow.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListBoxRow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListBoxRow.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListBoxRow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListBoxRow.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -72707,6 +74181,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -72855,6 +74342,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -73224,15 +74724,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListHeader.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListHeader.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListHeader.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListHeader.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListHeader.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListHeader.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListHeader.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListHeader.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -73444,15 +74941,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListItem.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListItem.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListItem.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListItem.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListItem.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListItem.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListItem.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListItem.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -73679,15 +75173,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListItemFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListItemFactory.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListItemFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListItemFactory.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListItemFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListItemFactory.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListItemFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListItemFactory.SignalSignatures[K]>): void;
     }
 
 
@@ -73868,15 +75359,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListStore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListStore.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListStore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListStore.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListStore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListStore.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListStore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListStore.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -75238,15 +76726,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ListView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListView.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ListView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ListView.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ListView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListView.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ListView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ListView.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -75748,15 +77233,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof LockButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LockButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof LockButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, LockButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof LockButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LockButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof LockButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<LockButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -76049,15 +77531,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MapListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MapListModel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MapListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MapListModel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MapListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MapListModel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MapListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MapListModel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -76345,15 +77824,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MediaControls.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MediaControls.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MediaControls.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MediaControls.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MediaControls.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MediaControls.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MediaControls.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MediaControls.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -76403,6 +77879,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -76553,6 +78042,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -76799,15 +78301,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MediaFile.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MediaFile.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MediaFile.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MediaFile.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MediaFile.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MediaFile.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MediaFile.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MediaFile.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -76981,7 +78480,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-contents`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.CONTENTS} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_CONTENTS} flag,
          * it must not call this function.
          */
         invalidate_contents(): void;
@@ -76995,7 +78494,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-size`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.SIZE} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_SIZE} flag,
          * it must not call this function.
          */
         invalidate_size(): void;
@@ -77285,15 +78784,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MediaStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MediaStream.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MediaStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MediaStream.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MediaStream.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MediaStream.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MediaStream.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MediaStream.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -77762,7 +79258,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-contents`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.CONTENTS} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_CONTENTS} flag,
          * it must not call this function.
          */
         invalidate_contents(): void;
@@ -77776,7 +79272,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-size`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.SIZE} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_SIZE} flag,
          * it must not call this function.
          */
         invalidate_size(): void;
@@ -78199,15 +79695,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MenuButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MenuButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MenuButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MenuButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MenuButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MenuButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MenuButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MenuButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -78497,6 +79990,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -78645,6 +80151,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -79071,15 +80590,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MessageDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MessageDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MessageDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MessageDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MessageDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MessageDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MessageDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MessageDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -79137,15 +80653,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MnemonicAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MnemonicAction.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MnemonicAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MnemonicAction.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MnemonicAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MnemonicAction.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MnemonicAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MnemonicAction.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -79207,15 +80720,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MnemonicTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MnemonicTrigger.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MnemonicTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MnemonicTrigger.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MnemonicTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MnemonicTrigger.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MnemonicTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MnemonicTrigger.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -79320,15 +80830,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MountOperation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MountOperation.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MountOperation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MountOperation.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MountOperation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MountOperation.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MountOperation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MountOperation.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -79438,15 +80945,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MultiFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultiFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MultiFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultiFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MultiFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MultiFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MultiFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MultiFilter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -79756,15 +81260,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MultiSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultiSelection.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MultiSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultiSelection.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MultiSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MultiSelection.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MultiSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MultiSelection.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -80245,15 +81746,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof MultiSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultiSorter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MultiSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultiSorter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MultiSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MultiSorter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MultiSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MultiSorter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -80543,15 +82041,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof NamedAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NamedAction.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NamedAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NamedAction.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NamedAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NamedAction.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NamedAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NamedAction.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -80666,15 +82161,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof NativeDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NativeDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NativeDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NativeDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NativeDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NativeDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NativeDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NativeDialog.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -80834,15 +82326,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof NeverTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NeverTrigger.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NeverTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NeverTrigger.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NeverTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NeverTrigger.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NeverTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NeverTrigger.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -80942,15 +82431,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof NoSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NoSelection.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NoSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NoSelection.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NoSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NoSelection.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NoSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NoSelection.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -81751,15 +83237,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Notebook.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Notebook.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Notebook.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Notebook.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Notebook.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Notebook.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Notebook.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Notebook.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -82191,6 +83674,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -82339,6 +83835,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -82647,15 +84156,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof NotebookPage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NotebookPage.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NotebookPage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NotebookPage.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NotebookPage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NotebookPage.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NotebookPage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NotebookPage.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -82698,15 +84204,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof NothingAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NothingAction.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NothingAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NothingAction.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NothingAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NothingAction.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NothingAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NothingAction.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -82784,15 +84287,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof NumericSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NumericSorter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NumericSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NumericSorter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NumericSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NumericSorter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NumericSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NumericSorter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -82847,15 +84347,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ObjectExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ObjectExpression.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ObjectExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ObjectExpression.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ObjectExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ObjectExpression.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ObjectExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ObjectExpression.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -82999,15 +84496,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Overlay.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Overlay.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Overlay.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Overlay.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Overlay.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Overlay.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Overlay.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Overlay.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -83109,6 +84603,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -83259,6 +84766,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -83453,15 +84973,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof OverlayLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, OverlayLayout.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof OverlayLayout.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, OverlayLayout.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof OverlayLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<OverlayLayout.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof OverlayLayout.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<OverlayLayout.SignalSignatures[K]>): void;
     }
 
 
@@ -83529,15 +85046,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof OverlayLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, OverlayLayoutChild.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof OverlayLayoutChild.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, OverlayLayoutChild.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof OverlayLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<OverlayLayoutChild.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof OverlayLayoutChild.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<OverlayLayoutChild.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -83682,15 +85196,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PadController.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PadController.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PadController.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PadController.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PadController.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PadController.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PadController.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PadController.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -83803,15 +85314,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PageSetup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PageSetup.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PageSetup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PageSetup.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PageSetup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PageSetup.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PageSetup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PageSetup.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -84112,15 +85620,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PageSetupUnixDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PageSetupUnixDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PageSetupUnixDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PageSetupUnixDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PageSetupUnixDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PageSetupUnixDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PageSetupUnixDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PageSetupUnixDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -84589,15 +86094,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Paned.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Paned.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Paned.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Paned.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Paned.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Paned.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Paned.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Paned.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -84743,6 +86245,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -84893,6 +86408,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -85264,15 +86792,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PasswordEntry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PasswordEntry.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PasswordEntry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PasswordEntry.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PasswordEntry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PasswordEntry.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PasswordEntry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PasswordEntry.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -85446,6 +86971,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -85594,6 +87132,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -86150,15 +87701,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PasswordEntryBuffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PasswordEntryBuffer.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PasswordEntryBuffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PasswordEntryBuffer.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PasswordEntryBuffer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PasswordEntryBuffer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PasswordEntryBuffer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PasswordEntryBuffer.SignalSignatures[K]>): void;
     }
 
 
@@ -86169,6 +87717,7 @@ export interface Builder {
             "notify::can-shrink": (pspec: GObject.ParamSpec) => void;
             "notify::content-fit": (pspec: GObject.ParamSpec) => void;
             "notify::file": (pspec: GObject.ParamSpec) => void;
+            "notify::isolate-contents": (pspec: GObject.ParamSpec) => void;
             "notify::keep-aspect-ratio": (pspec: GObject.ParamSpec) => void;
             "notify::paintable": (pspec: GObject.ParamSpec) => void;
             "notify::can-focus": (pspec: GObject.ParamSpec) => void;
@@ -86218,6 +87767,8 @@ export interface Builder {
             content_fit: ContentFit;
             contentFit: ContentFit;
             file: Gio.File | null;
+            isolate_contents: boolean;
+            isolateContents: boolean;
             keep_aspect_ratio: boolean;
             keepAspectRatio: boolean;
             paintable: Gdk.Paintable | null;
@@ -86331,6 +87882,22 @@ export interface Builder {
         set file(val: Gio.File | null);
 
         /**
+         * If the rendering of the contents is isolated from the rest of the widget tree.
+         * @since 4.22
+         * @default true
+         */
+        get isolate_contents(): boolean;
+        set isolate_contents(val: boolean);
+
+        /**
+         * If the rendering of the contents is isolated from the rest of the widget tree.
+         * @since 4.22
+         * @default true
+         */
+        get isolateContents(): boolean;
+        set isolateContents(val: boolean);
+
+        /**
          * Whether the GtkPicture will render its contents trying to preserve the aspect
          * ratio.
          * @deprecated since 4.8: Use {@link Gtk.Picture.content_fit} instead.
@@ -86383,15 +87950,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Picture.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Picture.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Picture.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Picture.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Picture.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Picture.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Picture.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Picture.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -86427,6 +87991,13 @@ export interface Builder {
         get_file(): Gio.File | null;
 
         /**
+         * Returns whether the contents are isolated.
+         * @returns True if contents are isolated
+         * @since 4.22
+         */
+        get_isolate_contents(): boolean;
+
+        /**
          * Returns whether the {@link Gtk.Picture} preserves its contents aspect ratio.
          * @returns `true` if the self tries to keep the contents' aspect ratio
          * @deprecated since 4.8: Use {@link Gtk.Picture.get_content_fit} instead. This will   now return `FALSE` only if {@link Gtk.Picture.content_fit} is   `GTK_CONTENT_FIT_FILL`. Returns `TRUE` otherwise.
@@ -86452,7 +88023,7 @@ export interface Builder {
         set_alternative_text(alternative_text: string | null): void;
 
         /**
-         * If set to `true`, the `self` can be made smaller than its contents.
+         * If set to `true`, then `self` can be made smaller than its contents.
          * 
          * The contents will then be scaled down when rendering.
          * 
@@ -86502,6 +88073,22 @@ export interface Builder {
          * @param filename the filename to play
          */
         set_filename(filename: string | null): void;
+
+        /**
+         * If set to true, then the contents will be rendered individually.
+         * 
+         * If set to false they will be able to erase or otherwise mix with
+         * the background.
+         * 
+         * GTK supports finer grained isolation, in rare cases where you need
+         * this, you can use {@link Gtk.Snapshot.push_isolation} yourself to
+         * achieve this.
+         * 
+         * By default contents are isolated.
+         * @param isolate_contents if contents are rendered separately
+         * @since 4.22
+         */
+        set_isolate_contents(isolate_contents: boolean): void;
 
         /**
          * If set to `true`, the `self` will render its contents according to
@@ -86582,6 +88169,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -86732,6 +88332,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -87182,15 +88795,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Popover.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Popover.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Popover.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Popover.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Popover.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Popover.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Popover.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Popover.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -87405,6 +89015,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -87553,6 +89176,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -87753,6 +89389,622 @@ export interface Builder {
          * @virtual
          */
         vfunc_remove_controller(controller: ShortcutController): void;
+    }
+
+
+    namespace PopoverBin {
+        // Signal signatures
+        interface SignalSignatures extends Widget.SignalSignatures {
+            "notify::child": (pspec: GObject.ParamSpec) => void;
+            "notify::handle-input": (pspec: GObject.ParamSpec) => void;
+            "notify::menu-model": (pspec: GObject.ParamSpec) => void;
+            "notify::popover": (pspec: GObject.ParamSpec) => void;
+            "notify::can-focus": (pspec: GObject.ParamSpec) => void;
+            "notify::can-target": (pspec: GObject.ParamSpec) => void;
+            "notify::css-classes": (pspec: GObject.ParamSpec) => void;
+            "notify::css-name": (pspec: GObject.ParamSpec) => void;
+            "notify::cursor": (pspec: GObject.ParamSpec) => void;
+            "notify::focus-on-click": (pspec: GObject.ParamSpec) => void;
+            "notify::focusable": (pspec: GObject.ParamSpec) => void;
+            "notify::halign": (pspec: GObject.ParamSpec) => void;
+            "notify::has-default": (pspec: GObject.ParamSpec) => void;
+            "notify::has-focus": (pspec: GObject.ParamSpec) => void;
+            "notify::has-tooltip": (pspec: GObject.ParamSpec) => void;
+            "notify::height-request": (pspec: GObject.ParamSpec) => void;
+            "notify::hexpand": (pspec: GObject.ParamSpec) => void;
+            "notify::hexpand-set": (pspec: GObject.ParamSpec) => void;
+            "notify::layout-manager": (pspec: GObject.ParamSpec) => void;
+            "notify::limit-events": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-bottom": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-end": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-start": (pspec: GObject.ParamSpec) => void;
+            "notify::margin-top": (pspec: GObject.ParamSpec) => void;
+            "notify::name": (pspec: GObject.ParamSpec) => void;
+            "notify::opacity": (pspec: GObject.ParamSpec) => void;
+            "notify::overflow": (pspec: GObject.ParamSpec) => void;
+            "notify::parent": (pspec: GObject.ParamSpec) => void;
+            "notify::receives-default": (pspec: GObject.ParamSpec) => void;
+            "notify::root": (pspec: GObject.ParamSpec) => void;
+            "notify::scale-factor": (pspec: GObject.ParamSpec) => void;
+            "notify::sensitive": (pspec: GObject.ParamSpec) => void;
+            "notify::tooltip-markup": (pspec: GObject.ParamSpec) => void;
+            "notify::tooltip-text": (pspec: GObject.ParamSpec) => void;
+            "notify::valign": (pspec: GObject.ParamSpec) => void;
+            "notify::vexpand": (pspec: GObject.ParamSpec) => void;
+            "notify::vexpand-set": (pspec: GObject.ParamSpec) => void;
+            "notify::visible": (pspec: GObject.ParamSpec) => void;
+            "notify::width-request": (pspec: GObject.ParamSpec) => void;
+            "notify::accessible-role": (pspec: GObject.ParamSpec) => void;
+        }
+
+        // Constructor properties interface
+        interface ConstructorProps extends Widget.ConstructorProps, Accessible.ConstructorProps, Buildable.ConstructorProps, ConstraintTarget.ConstructorProps {
+            child: Widget | null;
+            handle_input: boolean;
+            handleInput: boolean;
+            menu_model: Gio.MenuModel | null;
+            menuModel: Gio.MenuModel | null;
+            popover: Popover | null;
+        }
+    }
+
+    /**
+     * A single child container with a popover.
+     * 
+     * You should use {@link Gtk.PopoverBin} whenever you need to present a {@link Gtk.Popover}
+     * to the user.
+     * 
+     * ## Actions
+     * 
+     * {@link Gtk.PopoverBin} defines the `menu.popup` action, which can be activated
+     * to present the popover to the user.
+     * 
+     * ## CSS nodes
+     * 
+     * {@link Gtk.PopoverBin} has a single CSS node with the name `popoverbin`.
+     * @gir-type Class
+     * @since 4.22
+     */
+    class PopoverBin extends Widget implements Accessible, Buildable, ConstraintTarget {
+        static $gtype: GObject.GType<PopoverBin>;
+
+        // Properties
+        /**
+         * The child widget of the popover bin.
+         * @since 4.22
+         */
+        get child(): Widget | null;
+        set child(val: Widget | null);
+
+        /**
+         * Whether the popover bin will handle input
+         * to trigger the popup.
+         * @since 4.22
+         * @default false
+         */
+        get handle_input(): boolean;
+        set handle_input(val: boolean);
+
+        /**
+         * Whether the popover bin will handle input
+         * to trigger the popup.
+         * @since 4.22
+         * @default false
+         */
+        get handleInput(): boolean;
+        set handleInput(val: boolean);
+
+        /**
+         * The {@link Gio.MenuModel} from which the popup will be created.
+         * 
+         * See {@link Gtk.PopoverBin.set_menu_model} for the interaction
+         * with the {@link Gtk.PopoverBin.popover} property.
+         * @since 4.22
+         */
+        get menu_model(): Gio.MenuModel | null;
+        set menu_model(val: Gio.MenuModel | null);
+
+        /**
+         * The {@link Gio.MenuModel} from which the popup will be created.
+         * 
+         * See {@link Gtk.PopoverBin.set_menu_model} for the interaction
+         * with the {@link Gtk.PopoverBin.popover} property.
+         * @since 4.22
+         */
+        get menuModel(): Gio.MenuModel | null;
+        set menuModel(val: Gio.MenuModel | null);
+
+        /**
+         * The {@link Gtk.Popover} that will be popped up when calling
+         * {@link Gtk.PopoverBin.popup}.
+         * @since 4.22
+         */
+        get popover(): Popover | null;
+        set popover(val: Popover | null);
+
+        /**
+         * Compile-time signal type information.
+         *
+         * This instance property is generated only for TypeScript type checking.
+         * It is not defined at runtime and should not be accessed in JS code.
+         * @internal
+         */
+        $signals: PopoverBin.SignalSignatures;
+
+        // Constructors
+        constructor(properties?: Partial<PopoverBin.ConstructorProps>, ...args: any[]);
+
+        _init(...args: any[]): void;
+
+        static ["new"](): PopoverBin;
+
+        // Signals
+        /** @signal */
+        connect<K extends keyof PopoverBin.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PopoverBin.SignalSignatures[K]>): number;
+
+        /** @signal */
+        connect_after<K extends keyof PopoverBin.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PopoverBin.SignalSignatures[K]>): number;
+
+        /** @signal */
+        emit<K extends keyof PopoverBin.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PopoverBin.SignalSignatures[K]>): void;
+
+        // Methods
+        /**
+         * Retrieves the child widget of the popover bin.
+         * @returns the child widget
+         * @since 4.22
+         */
+        get_child(): Widget | null;
+
+        get_handle_input(): boolean;
+
+        /**
+         * Retrieves the menu model set using {@link Gtk.PopoverBin.set_menu_model}.
+         * @returns the menu model for the popover
+         * @since 4.22
+         */
+        get_menu_model(): Gio.MenuModel | null;
+
+        /**
+         * Retrieves the {@link Gtk.Popover} set using {@link Gtk.PopoverBin.set_popover}.
+         * @returns a popover widget
+         * @since 4.22
+         */
+        get_popover(): Popover | null;
+
+        /**
+         * Hides the popover from the user.
+         * 
+         * See: {@link Gtk.PopoverBin.popup}
+         * @since 4.22
+         */
+        popdown(): void;
+
+        /**
+         * Presents the popover to the user.
+         * 
+         * Use {@link Gtk.PopoverBin.set_popover} or
+         * {@link Gtk.PopoverBin.set_menu_model} to define the popover.
+         * 
+         * See: {@link Gtk.PopoverBin.popdown}
+         * @since 4.22
+         */
+        popup(): void;
+
+        /**
+         * Sets the child of the popover bin.
+         * @param child the child of the popover bin
+         * @since 4.22
+         */
+        set_child(child: Widget | null): void;
+
+        /**
+         * Enables or disables input handling.
+         * 
+         * If enabled, the popover bin will pop up the
+         * popover on right-click or long press, as expected
+         * for a context menu.
+         * @param handle_input whether to handle input
+         * @since 4.22
+         */
+        set_handle_input(handle_input: boolean): void;
+
+        /**
+         * Sets the menu model used to create the popover that will be
+         * presented when calling {@link Gtk.PopoverBin.popup}.
+         * 
+         * If `model` is `NULL`, the popover will be unset.
+         * 
+         * A {@link Gtk.Popover} will be created from the menu model with
+         * {@link Gtk.PopoverMenu.new_from_model}. Actions will be connected
+         * as documented for this function.
+         * 
+         * If {@link Gtk.PopoverBin.popover} is already set, it will be
+         * dissociated from the popover bin, and the property is set to `NULL`.
+         * 
+         * See: {@link Gtk.PopoverBin.set_popover}
+         * @param model a menu model
+         * @since 4.22
+         */
+        set_menu_model(model: Gio.MenuModel | null): void;
+
+        /**
+         * Sets the {@link Gtk.Popover} that will be presented when calling
+         * {@link Gtk.PopoverBin.popup}.
+         * 
+         * If `popover` is `NULL`, the popover will be unset.
+         * 
+         * If {@link Gtk.PopoverBin.menu_model} is set before calling
+         * this function, then the menu model property will be unset.
+         * 
+         * See: {@link Gtk.PopoverBin.set_menu_model}
+         * @param popover a {@link Gtk.Popover}
+         * @since 4.22
+         */
+        set_popover(popover: Popover | null): void;
+
+        /**
+         * The accessible role of the given {@link Gtk.Accessible} implementation.
+         * 
+         * The accessible role cannot be changed once set.
+         * @default Gtk.AccessibleRole.NONE
+          * @category Inherited from Gtk.Accessible
+         */
+        get accessible_role(): AccessibleRole;
+        set accessible_role(val: AccessibleRole);
+
+        /**
+         * The accessible role of the given {@link Gtk.Accessible} implementation.
+         * 
+         * The accessible role cannot be changed once set.
+         * @default Gtk.AccessibleRole.NONE
+          * @category Inherited from Gtk.Accessible
+         */
+        get accessibleRole(): AccessibleRole;
+        set accessibleRole(val: AccessibleRole);
+
+        /**
+         * Requests the user's screen reader to announce the given message.
+         * 
+         * This kind of notification is useful for messages that
+         * either have only a visual representation or that are not
+         * exposed visually at all, e.g. a notification about a
+         * successful operation.
+         * 
+         * Also, by using this API, you can ensure that the message
+         * does not interrupts the user's current screen reader output.
+         * @param message the string to announce
+         * @param priority the priority of the announcement
+         * @since 4.14
+         */
+        announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
+         * Retrieves the accessible parent for an accessible object.
+         * 
+         * This function returns `NULL` for top level widgets.
+         * @returns the accessible parent
+         * @since 4.10
+         */
+        get_accessible_parent(): Accessible | null;
+
+        /**
+         * Retrieves the accessible role of an accessible object.
+         * @returns the accessible role
+         */
+        get_accessible_role(): AccessibleRole;
+
+        /**
+         * Retrieves the implementation for the given accessible object.
+         * @returns the accessible implementation object
+         * @since 4.10
+         */
+        get_at_context(): ATContext;
+
+        /**
+         * Queries the coordinates and dimensions of this accessible
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get the bounds from an ignored
+         * child widget.
+         * @returns true if the bounds are valid, and false otherwise
+         * @since 4.10
+         */
+        get_bounds(): [boolean, number, number, number, number];
+
+        /**
+         * Retrieves the first accessible child of an accessible object.
+         * @returns the first accessible child
+         * @since 4.10
+         */
+        get_first_accessible_child(): Accessible | null;
+
+        /**
+         * Retrieves the next accessible sibling of an accessible object
+         * @returns the next accessible sibling
+         * @since 4.10
+         */
+        get_next_accessible_sibling(): Accessible | null;
+
+        /**
+         * Queries a platform state, such as focus.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get platform state from an ignored
+         * child widget, as is the case for {@link Gtk.Text} wrappers.
+         * @param state platform state to query
+         * @returns the value of state for the accessible
+         * @since 4.10
+         */
+        get_platform_state(state: AccessiblePlatformState): boolean;
+
+        /**
+         * Resets the accessible property to its default value.
+         * @param property the accessible property
+         */
+        reset_property(property: AccessibleProperty): void;
+
+        /**
+         * Resets the accessible relation to its default value.
+         * @param relation the accessible relation
+         */
+        reset_relation(relation: AccessibleRelation): void;
+
+        /**
+         * Resets the accessible state to its default value.
+         * @param state the accessible state
+         */
+        reset_state(state: AccessibleState): void;
+
+        /**
+         * Sets the parent and sibling of an accessible object.
+         * 
+         * This function is meant to be used by accessible implementations that are
+         * not part of the widget hierarchy, and but act as a logical bridge between
+         * widgets. For instance, if a widget creates an object that holds metadata
+         * for each child, and you want that object to implement the {@link Gtk.Accessible}
+         * interface, you will use this function to ensure that the parent of each
+         * child widget is the metadata object, and the parent of each metadata
+         * object is the container widget.
+         * @param parent the parent accessible object
+         * @param next_sibling the sibling accessible object
+         * @since 4.10
+         */
+        set_accessible_parent(parent: Accessible | null, next_sibling: Accessible | null): void;
+
+        /**
+         * Updates the next accessible sibling.
+         * 
+         * That might be useful when a new child of a custom accessible
+         * is created, and it needs to be linked to a previous child.
+         * @param new_sibling the new next accessible sibling to set
+         * @since 4.10
+         */
+        update_next_accessible_sibling(new_sibling: Accessible | null): void;
+
+        /**
+         * Informs ATs that the platform state has changed.
+         * 
+         * This function should be used by {@link Gtk.Accessible} implementations that
+         * have a platform state but are not widgets. Widgets handle platform
+         * states automatically.
+         * @param state the platform state to update
+         * @since 4.18
+         */
+        update_platform_state(state: AccessiblePlatformState): void;
+
+        /**
+         * Updates an array of accessible properties.
+         * 
+         * This function should be called by {@link Gtk.Widget} types whenever an accessible
+         * property change must be communicated to assistive technologies.
+         * 
+         * This function is meant to be used by language bindings.
+         * @param properties an array of accessible properties
+         * @param values an array of `GValues`, one for each property
+         */
+        update_property(properties: AccessibleProperty[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Updates an array of accessible relations.
+         * 
+         * This function should be called by {@link Gtk.Widget} types whenever an accessible
+         * relation change must be communicated to assistive technologies.
+         * 
+         * This function is meant to be used by language bindings.
+         * @param relations an array of accessible relations
+         * @param values an array of `GValues`, one for each relation
+         */
+        update_relation(relations: AccessibleRelation[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Updates an array of accessible states.
+         * 
+         * This function should be called by {@link Gtk.Widget} types whenever an accessible
+         * state change must be communicated to assistive technologies.
+         * 
+         * This function is meant to be used by language bindings.
+         * @param states an array of accessible states
+         * @param values an array of `GValues`, one for each state
+         */
+        update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
+
+        /**
+         * Retrieves the accessible parent for an accessible object.
+         * 
+         * This function returns `NULL` for top level widgets.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_accessible_parent(): Accessible | null;
+
+        /**
+         * Retrieves the implementation for the given accessible object.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_at_context(): ATContext | null;
+
+        /**
+         * Queries the coordinates and dimensions of this accessible
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get the bounds from an ignored
+         * child widget.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_bounds(): [boolean, number, number, number, number];
+
+        /**
+         * Retrieves the first accessible child of an accessible object.
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_first_accessible_child(): Accessible | null;
+
+        /**
+         * Retrieves the next accessible sibling of an accessible object
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_next_accessible_sibling(): Accessible | null;
+
+        /**
+         * Queries a platform state, such as focus.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations, e.g. to get platform state from an ignored
+         * child widget, as is the case for {@link Gtk.Text} wrappers.
+         * @param state platform state to query
+         * @since 4.10
+         * @virtual
+         */
+        vfunc_get_platform_state(state: AccessiblePlatformState): boolean;
+
+        /**
+         * Gets the ID of the `buildable` object.
+         * 
+         * {@link Gtk.Builder} sets the name based on the ID attribute
+         * of the `<object>` tag used to construct the `buildable`.
+         * @returns the ID of the buildable object
+         */
+        get_buildable_id(): string | null;
+
+        /**
+         * Adds a child to `buildable`. `type` is an optional string
+         * describing how the child should be added.
+         * @param builder a {@link Gtk.Builder}
+         * @param child child to add
+         * @param type kind of child or `null`
+         * @virtual
+         */
+        vfunc_add_child(builder: Builder, child: GObject.Object, type: string | null): void;
+
+        /**
+         * Similar to `gtk_buildable_parser_finished()` but is
+         * called once for each custom tag handled by the `buildable`.
+         * @param builder a {@link Gtk.Builder}
+         * @param child child object or `null` for non-child tags
+         * @param tagname the name of the tag
+         * @param data user data created in custom_tag_start
+         * @virtual
+         */
+        vfunc_custom_finished(builder: Builder, child: GObject.Object | null, tagname: string, data: null): void;
+
+        /**
+         * Called at the end of each custom element handled by
+         * the buildable.
+         * @param builder {@link Gtk.Builder} used to construct this object
+         * @param child child object or `null` for non-child tags
+         * @param tagname name of tag
+         * @param data user data that will be passed in to parser functions
+         * @virtual
+         */
+        vfunc_custom_tag_end(builder: Builder, child: GObject.Object | null, tagname: string, data: null): void;
+
+        /**
+         * Called for each unknown element under `<child>`.
+         * @param builder a {@link Gtk.Builder} used to construct this object
+         * @param child child object or `null` for non-child tags
+         * @param tagname name of tag
+         * @virtual
+         */
+        vfunc_custom_tag_start(builder: Builder, child: GObject.Object | null, tagname: string): [boolean, BuildableParser, never];
+
+        /**
+         * The getter corresponding to `set_id`. Implement this
+         *   if you implement `set_id`.
+         * @virtual
+         */
+        vfunc_get_id(): string;
+
+        /**
+         * Retrieves the internal child called `childname` of the `buildable` object.
+         * @param builder a {@link Gtk.Builder}
+         * @param childname name of child
+         * @virtual
+         */
+        vfunc_get_internal_child<T = GObject.Object>(builder: Builder, childname: string): T;
+
+        /**
+         * Called when a builder finishes the parsing
+         *  of a UI definition. It is normally not necessary to implement this,
+         *  unless you need to perform special cleanup actions. {@link Gtk.Window} sets
+         *  the {@link Gtk.Widget.visible} property here.
+         * @param builder 
+         * @virtual
+         */
+        vfunc_parser_finished(builder: Builder): void;
+
+        /**
+         * Sets a property of a buildable object.
+         *  It is normally not necessary to implement this, `g_object_set_property()`
+         *  is used by default. {@link Gtk.Window} implements this to delay showing itself
+         *  (i.e. setting the {@link Gtk.Widget.visible} property) until the whole
+         *  interface is created.
+         * @param builder 
+         * @param name 
+         * @param value 
+         * @virtual
+         */
+        vfunc_set_buildable_property(builder: Builder, name: string, value: unknown): void;
+
+        /**
+         * Stores the id attribute given in the {@link Gtk.Builder} UI definition.
+         *   {@link Gtk.Widget} stores the name as object data. Implement this method if your
+         *   object has some notion of “ID” and it makes sense to map the XML id
+         *   attribute to it.
+         * @param id 
+         * @virtual
+         */
+        vfunc_set_id(id: string): void;
     }
 
 
@@ -88001,15 +90253,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PopoverMenu.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PopoverMenu.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PopoverMenu.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PopoverMenu.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PopoverMenu.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PopoverMenu.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PopoverMenu.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PopoverMenu.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -88237,15 +90486,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PopoverMenuBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PopoverMenuBar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PopoverMenuBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PopoverMenuBar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PopoverMenuBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PopoverMenuBar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PopoverMenuBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PopoverMenuBar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -88315,6 +90561,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -88465,6 +90724,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -88719,15 +90991,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PrintContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PrintContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PrintContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PrintContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintContext.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -88937,15 +91206,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PrintDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PrintDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PrintDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PrintDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -89335,15 +91601,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PrintJob.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintJob.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PrintJob.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintJob.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PrintJob.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintJob.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PrintJob.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintJob.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -90300,15 +92563,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PrintOperation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintOperation.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PrintOperation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintOperation.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PrintOperation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintOperation.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PrintOperation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintOperation.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -90867,15 +93127,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PrintSettings.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintSettings.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PrintSettings.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintSettings.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PrintSettings.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintSettings.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PrintSettings.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintSettings.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -91679,15 +93936,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PrintUnixDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintUnixDialog.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PrintUnixDialog.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PrintUnixDialog.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PrintUnixDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintUnixDialog.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PrintUnixDialog.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PrintUnixDialog.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -92018,15 +94272,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Printer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Printer.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Printer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Printer.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Printer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Printer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Printer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Printer.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -92400,15 +94651,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ProgressBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ProgressBar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ProgressBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ProgressBar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ProgressBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ProgressBar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ProgressBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ProgressBar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -92578,6 +94826,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -92726,6 +94987,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -92925,15 +95199,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof PropertyExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PropertyExpression.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PropertyExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PropertyExpression.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PropertyExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PropertyExpression.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PropertyExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PropertyExpression.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -93171,15 +95442,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Range.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Range.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Range.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Range.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Range.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Range.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Range.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Range.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -93463,6 +95731,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -93611,6 +95892,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -93909,15 +96203,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof RecentManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RecentManager.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof RecentManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RecentManager.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof RecentManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<RecentManager.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof RecentManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<RecentManager.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -94197,15 +96488,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Revealer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Revealer.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Revealer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Revealer.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Revealer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Revealer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Revealer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Revealer.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -94313,6 +96601,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -94463,6 +96764,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -94849,15 +97163,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Scale.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Scale.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Scale.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Scale.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Scale.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Scale.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Scale.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Scale.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -95220,15 +97531,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ScaleButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ScaleButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ScaleButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ScaleButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ScaleButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ScaleButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ScaleButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ScaleButton.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -95364,6 +97672,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -95514,6 +97835,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -95817,15 +98151,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Scrollbar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Scrollbar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Scrollbar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Scrollbar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Scrollbar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Scrollbar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Scrollbar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Scrollbar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -95883,6 +98214,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -96033,6 +98377,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -96694,15 +99051,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ScrolledWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ScrolledWindow.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ScrolledWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ScrolledWindow.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ScrolledWindow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ScrolledWindow.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ScrolledWindow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ScrolledWindow.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -96994,6 +99348,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -97142,6 +99509,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -97478,15 +99858,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SearchBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SearchBar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SearchBar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SearchBar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SearchBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SearchBar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SearchBar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SearchBar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -97598,6 +99975,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -97748,6 +100138,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -97976,6 +100379,7 @@ export interface Builder {
             "notify::activates-default": (pspec: GObject.ParamSpec) => void;
             "notify::input-hints": (pspec: GObject.ParamSpec) => void;
             "notify::input-purpose": (pspec: GObject.ParamSpec) => void;
+            "notify::key-capture-widget": (pspec: GObject.ParamSpec) => void;
             "notify::placeholder-text": (pspec: GObject.ParamSpec) => void;
             "notify::search-delay": (pspec: GObject.ParamSpec) => void;
             "notify::can-focus": (pspec: GObject.ParamSpec) => void;
@@ -98032,6 +100436,8 @@ export interface Builder {
             inputHints: InputHints;
             input_purpose: InputPurpose;
             inputPurpose: InputPurpose;
+            key_capture_widget: Widget | null;
+            keyCaptureWidget: Widget | null;
             placeholder_text: string | null;
             placeholderText: string | null;
             search_delay: number;
@@ -98152,6 +100558,24 @@ export interface Builder {
         set inputPurpose(val: InputPurpose);
 
         /**
+         * The widget that the entry will use to capture key events.
+         * 
+         * Key events are consumed by the search entry to start or continue a search.
+         * @since 4.22
+         */
+        get key_capture_widget(): Widget | null;
+        set key_capture_widget(val: Widget | null);
+
+        /**
+         * The widget that the entry will use to capture key events.
+         * 
+         * Key events are consumed by the search entry to start or continue a search.
+         * @since 4.22
+         */
+        get keyCaptureWidget(): Widget | null;
+        set keyCaptureWidget(val: Widget | null);
+
+        /**
          * The text that will be displayed in the {@link Gtk.SearchEntry}
          * when it is empty and unfocused.
          * @default null
@@ -98204,15 +100628,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SearchEntry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SearchEntry.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SearchEntry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SearchEntry.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SearchEntry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SearchEntry.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SearchEntry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SearchEntry.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -98443,6 +100864,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -98591,6 +101025,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -99186,15 +101633,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SelectionFilterModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SelectionFilterModel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SelectionFilterModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SelectionFilterModel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SelectionFilterModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SelectionFilterModel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SelectionFilterModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SelectionFilterModel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -99417,15 +101861,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Separator.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Separator.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Separator.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Separator.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Separator.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Separator.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Separator.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Separator.SignalSignatures[K]>): void;
 
         /**
          * The accessible role of the given {@link Gtk.Accessible} implementation.
@@ -99470,6 +101911,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -99620,6 +102074,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -99819,6 +102286,7 @@ export interface Builder {
             "notify::gtk-im-module": (pspec: GObject.ParamSpec) => void;
             "notify::gtk-interface-color-scheme": (pspec: GObject.ParamSpec) => void;
             "notify::gtk-interface-contrast": (pspec: GObject.ParamSpec) => void;
+            "notify::gtk-interface-reduced-motion": (pspec: GObject.ParamSpec) => void;
             "notify::gtk-keynav-use-caret": (pspec: GObject.ParamSpec) => void;
             "notify::gtk-label-select-on-focus": (pspec: GObject.ParamSpec) => void;
             "notify::gtk-long-press-time": (pspec: GObject.ParamSpec) => void;
@@ -99907,6 +102375,8 @@ export interface Builder {
             gtkInterfaceColorScheme: InterfaceColorScheme;
             gtk_interface_contrast: InterfaceContrast;
             gtkInterfaceContrast: InterfaceContrast;
+            gtk_interface_reduced_motion: ReducedMotion;
+            gtkInterfaceReducedMotion: ReducedMotion;
             gtk_keynav_use_caret: boolean;
             gtkKeynavUseCaret: boolean;
             gtk_label_select_on_focus: boolean;
@@ -99961,13 +102431,15 @@ export interface Builder {
     /**
      * Provides a mechanism to share global settings between applications.
      * 
+     * GTK relies on the platform-specific API for getting desktop-wide
+     * settings.
+     * 
+     * On Wayland, the settings are obtained via a settings portal that
+     * is part of the Linux desktop APIs for application.
+     * 
      * On the X window system, this sharing is realized by an
      * [XSettings](http://www.freedesktop.org/wiki/Specifications/xsettings-spec)
-     * manager that is usually part of the desktop environment, along with
-     * utilities that let the user change these settings.
-     * 
-     * On Wayland, the settings are obtained either via a settings portal,
-     * or by reading desktop settings from {@link Gio.Settings}.
+     * manager.
      * 
      * On macOS, the settings are obtained from `NSUserDefaults`.
      * 
@@ -100647,6 +103119,32 @@ export interface Builder {
         set gtkInterfaceContrast(val: InterfaceContrast);
 
         /**
+         * Whether animations should be reduced to essential motions.
+         * 
+         * This setting communicates the system-wide preference.
+         * The motion level that is actually used when applying CSS
+         * styles can be set with the {@link Gtk.CssProvider.prefers_reduced_motion}
+         * property.
+         * @since 4.22
+         * @default Gtk.ReducedMotion.NO_PREFERENCE
+         */
+        get gtk_interface_reduced_motion(): ReducedMotion;
+        set gtk_interface_reduced_motion(val: ReducedMotion);
+
+        /**
+         * Whether animations should be reduced to essential motions.
+         * 
+         * This setting communicates the system-wide preference.
+         * The motion level that is actually used when applying CSS
+         * styles can be set with the {@link Gtk.CssProvider.prefers_reduced_motion}
+         * property.
+         * @since 4.22
+         * @default Gtk.ReducedMotion.NO_PREFERENCE
+         */
+        get gtkInterfaceReducedMotion(): ReducedMotion;
+        set gtkInterfaceReducedMotion(val: ReducedMotion);
+
+        /**
          * Whether GTK should make sure that text can be navigated with
          * a caret, even if it is not editable.
          * 
@@ -101163,15 +103661,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Settings.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Settings.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Settings.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Settings.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Settings.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Settings.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Settings.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Settings.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -101276,15 +103771,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Shortcut.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Shortcut.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Shortcut.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Shortcut.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Shortcut.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Shortcut.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Shortcut.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Shortcut.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -101384,15 +103876,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutAction.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutAction.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutAction.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutAction.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -101584,15 +104073,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutController.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutController.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutController.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutController.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutController.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutController.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutController.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutController.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -101978,15 +104464,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutLabel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutLabel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutLabel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutLabel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutLabel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutLabel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutLabel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutLabel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -102052,6 +104535,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -102202,6 +104698,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -102400,15 +104909,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutTrigger.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutTrigger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutTrigger.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutTrigger.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutTrigger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutTrigger.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -102679,15 +105185,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutsGroup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsGroup.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutsGroup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsGroup.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutsGroup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsGroup.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutsGroup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsGroup.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -102940,15 +105443,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutsSection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsSection.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutsSection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsSection.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutsSection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsSection.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutsSection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsSection.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -103278,15 +105778,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutsShortcut.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsShortcut.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutsShortcut.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsShortcut.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutsShortcut.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsShortcut.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutsShortcut.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsShortcut.SignalSignatures[K]>): void;
 
         /**
          * The accessible role of the given {@link Gtk.Accessible} implementation.
@@ -103323,6 +105820,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -103473,6 +105983,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -103870,15 +106393,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ShortcutsWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsWindow.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ShortcutsWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ShortcutsWindow.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ShortcutsWindow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsWindow.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ShortcutsWindow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ShortcutsWindow.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -104033,15 +106553,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SignalAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SignalAction.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SignalAction.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SignalAction.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SignalAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SignalAction.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SignalAction.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SignalAction.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -104179,15 +106696,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SignalListItemFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SignalListItemFactory.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SignalListItemFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SignalListItemFactory.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SignalListItemFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SignalListItemFactory.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SignalListItemFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SignalListItemFactory.SignalSignatures[K]>): void;
     }
 
 
@@ -104327,15 +106841,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SingleSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SingleSelection.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SingleSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SingleSelection.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SingleSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SingleSelection.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SingleSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SingleSelection.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -104954,15 +107465,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SizeGroup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SizeGroup.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SizeGroup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SizeGroup.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SizeGroup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SizeGroup.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SizeGroup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SizeGroup.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -105216,15 +107724,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SliceListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SliceListModel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SliceListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SliceListModel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SliceListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SliceListModel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SliceListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SliceListModel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -105451,6 +107956,11 @@ export interface Builder {
      * The typical way to obtain a {@link Gtk.Snapshot} object is as an argument to
      * the {@link Gtk.Widget.snapshot} vfunc. If you need to create your own
      * {@link Gtk.Snapshot}, use {@link Gtk.Snapshot.new}.
+     * 
+     * Note that {@link Gtk.Snapshot} applies some optimizations, so the node
+     * it produces may not match the API calls 1:1. For example, it will
+     * omit clip nodes if the child node is entirely contained within the
+     * clip rectangle.
      * @gir-type Class
      */
     class Snapshot extends Gdk.Snapshot {
@@ -105475,15 +107985,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Snapshot.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Snapshot.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Snapshot.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Snapshot.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Snapshot.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Snapshot.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Snapshot.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Snapshot.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -105591,6 +108098,15 @@ export interface Builder {
          * @param blur_radius how much blur to apply to the shadow
          */
         append_outset_shadow(outline: Gsk.RoundedRect, color: Gdk.RGBA, dx: number, dy: number, spread: number, blur_radius: number): void;
+
+        /**
+         * Creates a new render node that pastes the contents
+         * copied by a previous call to {@link Gtk.Snapshot.push_copy}
+         * @param bounds the bounds for the new node
+         * @param nth the index of the copy, with 0 being the latest  copy, 1 being the copy before that, and so on.
+         * @since 4.22
+         */
+        append_paste(bounds: Graphene.Rect, nth: bigint | number): void;
 
         /**
          * Appends a radial gradient node with the given stops to `snapshot`.
@@ -105754,6 +108270,28 @@ export interface Builder {
         push_component_transfer(red: Gsk.ComponentTransfer, green: Gsk.ComponentTransfer, blue: Gsk.ComponentTransfer, alpha: Gsk.ComponentTransfer): void;
 
         /**
+         * Until the first call to {@link Gtk.Snapshot.pop}, the
+         * mask image for the mask operation will be recorded.
+         * 
+         * After that call, the child image will be recorded until
+         * the second call to {@link Gtk.Snapshot.pop}.
+         * 
+         * Calling this function requires 2 subsequent calls to `gtk_snapshot_pop()`.
+         * @param op The Porter/Duff compositing operator to use
+         * @since 4.22
+         */
+        push_composite(op: Gsk.PorterDuff): void;
+
+        /**
+         * Stores the current rendering state for later pasting via
+         * {@link Gtk.Snapshot.append_paste}.
+         * 
+         * Pasting is possible until the matching call to {@link Gtk.Snapshot.pop}.
+         * @since 4.22
+         */
+        push_copy(): void;
+
+        /**
          * Snapshots a cross-fade operation between two images with the
          * given `progress`.
          * 
@@ -105823,6 +108361,22 @@ export interface Builder {
          * @deprecated since 4.16: GTK's new Vulkan-focused rendering   does not support this feature. Use {@link Gtk.GLArea} for   OpenGL rendering.
          */
         push_gl_shader(shader: Gsk.GLShader, bounds: Graphene.Rect, take_args: GLib.Bytes | Uint8Array): void;
+
+        /**
+         * Isolates the following drawing operations from previous ones.
+         * 
+         * You can express "everything but these flags" in a forward compatible
+         * way by using bit math:
+         * `GSK_ISOLATION_ALL & ~(GSK_ISOLATION_BACKGROUND | GSK_ISOLATION_COPY_PASTE)`
+         * will isolate everything but background and copy/paste.
+         * 
+         * For what isolation features exist, see {@link Gsk.Isolation}.
+         * 
+         * Content is isolated until the next call to {@link Gtk.Snapshot.pop}.
+         * @param features features that are isolated
+         * @since 4.22
+         */
+        push_isolation(features: Gsk.Isolation): void;
 
         /**
          * Until the first call to {@link Gtk.Snapshot.pop}, the
@@ -106215,15 +108769,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SortListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SortListModel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SortListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SortListModel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SortListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SortListModel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SortListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SortListModel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -106543,15 +109094,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Sorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Sorter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Sorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Sorter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Sorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Sorter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Sorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Sorter.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -107040,15 +109588,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof SpinButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SpinButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SpinButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SpinButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SpinButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SpinButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SpinButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SpinButton.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -107410,6 +109955,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -107558,6 +110116,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -108255,15 +110826,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Spinner.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Spinner.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Spinner.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Spinner.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Spinner.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Spinner.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Spinner.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Spinner.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -108323,6 +110891,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -108473,6 +111054,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -108876,15 +111470,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Stack.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Stack.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Stack.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Stack.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Stack.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Stack.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Stack.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Stack.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -109133,6 +111724,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -109281,6 +111885,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -109565,15 +112182,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StackPage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StackPage.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StackPage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StackPage.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StackPage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StackPage.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StackPage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StackPage.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -109692,6 +112306,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -109842,6 +112469,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -109998,15 +112638,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StackSidebar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StackSidebar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StackSidebar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StackSidebar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StackSidebar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StackSidebar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StackSidebar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StackSidebar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -110059,6 +112696,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -110209,6 +112859,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -110479,15 +113142,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StackSwitcher.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StackSwitcher.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StackSwitcher.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StackSwitcher.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StackSwitcher.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StackSwitcher.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StackSwitcher.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StackSwitcher.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -110545,6 +113205,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -110695,6 +113368,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -110985,15 +113671,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Statusbar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Statusbar.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Statusbar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Statusbar.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Statusbar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Statusbar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Statusbar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Statusbar.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -111080,6 +113763,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -111230,6 +113926,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -111484,15 +114193,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StringFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StringFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StringFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StringFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringFilter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -111657,15 +114363,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StringList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringList.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StringList.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringList.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StringList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringList.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StringList.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringList.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -112002,15 +114705,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StringObject.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringObject.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StringObject.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringObject.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StringObject.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringObject.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StringObject.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringObject.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -112106,15 +114806,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StringSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringSorter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StringSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StringSorter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StringSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringSorter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StringSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StringSorter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -112242,15 +114939,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof StyleContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StyleContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StyleContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StyleContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StyleContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StyleContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StyleContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StyleContext.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -112473,6 +115167,699 @@ export interface Builder {
     }
 
 
+    namespace Svg {
+        // Signal signatures
+        interface SignalSignatures extends GObject.Object.SignalSignatures, Gdk.Paintable.SignalSignatures, SymbolicPaintable.SignalSignatures {
+            /**
+             * Signals that an error occurred.
+             * 
+             * Errors can occur both during parsing and during rendering.
+             * 
+             * The expected error values are in the {@link Gtk.SvgError} enumeration,
+             * context information about the location of parsing errors can
+             * be obtained with the various `gtk_svg_error` functions.
+             * 
+             * Parsing errors are never fatal, so the parsing will resume after
+             * the error. Errors may however cause parts of the given data or
+             * even all of it to not be parsed at all. So it is a useful idea
+             * to check that the parsing succeeds by connecting to this signal.
+             * 
+             * ::: note
+             *     This signal is emitted in the middle of parsing or rendering,
+             *     and if you handle it, you must be careful. Logging the errors
+             *     you receive is fine, but modifying the widget hierarchy or
+             *     changing the paintable state definitively isn't.
+             * 
+             *     If in doubt, defer to an idle.
+             * @signal
+             * @since 4.22
+             * @run-last
+             */
+            error: (error: GLib.Error) => void;
+            "notify::features": (pspec: GObject.ParamSpec) => void;
+            "notify::playing": (pspec: GObject.ParamSpec) => void;
+            "notify::resource": (pspec: GObject.ParamSpec) => void;
+            "notify::state": (pspec: GObject.ParamSpec) => void;
+            "notify::weight": (pspec: GObject.ParamSpec) => void;
+        }
+
+        // Constructor properties interface
+        interface ConstructorProps extends GObject.Object.ConstructorProps, Gdk.Paintable.ConstructorProps, SymbolicPaintable.ConstructorProps {
+            features: SvgFeatures;
+            playing: boolean;
+            resource: string;
+            state: number;
+            weight: number;
+        }
+    }
+
+    /**
+     * A paintable implementation that renders SVG, with animations.
+     * 
+     * {@link Gtk.Svg} objects are created by parsing a subset of SVG,
+     * including SVG animations.
+     * 
+     * {@link Gtk.Svg} fills or strokes paths with symbolic or fixed colors.
+     * It can have multiple states, and paths can be included in a subset
+     * of the states. States can have animations, and the transition
+     * between different states can also be animated.
+     * 
+     * To show a static SVG image, it is enough to load the
+     * the SVG and use it like any other paintable.
+     * 
+     * To play an SVG animation, use {@link Gtk.Svg.set_frame_clock}
+     * to connect the paintable to a frame clock, and call
+     * {@link Gtk.Svg.play} after loading the SVG. The animation can
+     * be paused using {@link Gtk.Svg.pause}.
+     * 
+     * To set the current state, use {@link Gtk.Svg.set_state}.
+     * 
+     * 
+     * ## Error handling
+     * 
+     * Loading an SVG into {@link Gtk.Svg} will always produce a (possibly empty)
+     * paintable. GTK will drop things that it can't handle and try to make
+     * sense of the rest.
+     * 
+     * To track errors during parsing or rendering, connect to the
+     * `Gtk.Svg::error` signal.
+     * 
+     * For parsing errors in the `GTK_SVG_ERROR` domain, the functions
+     * {@link Gtk.SvgError.get_start}, {@link Gtk.SvgError.get_end},
+     * {@link Gtk.SvgError.get_element} and {@link Gtk.SvgError.get_attribute}
+     * can be used to obtain information about where the error occurred.
+     * 
+     * 
+     * ## The supported subset of SVG
+     * 
+     * The paintable supports much of SVG 2, with some exceptions.
+     * 
+     * Among the graphical elements, `<textPath>` and `<foreignObject>`
+     * are not supported.
+     * 
+     * Among the structural elements, `<a>` and `<view>` are not supported.
+     * 
+     * In the `<filter>` element, the following primitives are not
+     * supported: feConvolveMatrix, feDiffuseLighting,
+     * feMorphology, feSpecularLighting and feTurbulence.
+     * 
+     * Support for the `mask` attribute is limited to just a url
+     * referring to the `<mask>` element by ID.
+     * 
+     * In animation elements, the parsing of `begin` and `end` attributes
+     * is limited, and the `min` and `max` attributes are not supported.
+     * 
+     * Lastly, there is only minimal CSS support (the style attribute,
+     * but not `<style>`), and no interactivity.
+     * 
+     * 
+     * ## SVG Extensions
+     * 
+     * The paintable supports a number of [custom attributes](https://docs.gtk.org/gtk4/icon-format.html)
+     * that offer a convenient way to define states, transitions and animations.
+     * For example,
+     * 
+     *     <circle cx='5' cy='5' r='5'
+     *             gpa:states='0 1'
+     *             gpa:animation-type='automatic'
+     *             gpa:animation-direction='segment'
+     *             gpa:animation-duration='600ms'/>
+     * 
+     * defines the circle to be shown in states 0 and 1, and animates a segment
+     * of the circle.
+     * 
+     * <image src="https://docs.gtk.org/gtk4/svg-renderer1.svg">
+     * 
+     * Note that the generated animations are implemented using standard
+     * SVG attributes (`visibility`, `stroke-dasharray, `stroke-dashoffset`,
+     * `pathLength` and `filter`). Setting these attributes in your SVG
+     * is therefore going to interfere with generated animations.
+     * 
+     * To connect general SVG animations to the states of the paintable,
+     * use the custom `gpa:states(...)` condition in the `begin` and `end`
+     * attributes of SVG animation elements. For example,
+     * 
+     *     <animate href='path1'
+     *              attributeName='fill'
+     *              begin='gpa:states(0).begin'
+     *              dur='300ms'
+     *              fill='freeze'
+     *              from='black'
+     *              to='magenta'/>
+     * 
+     * will make the fill color of path1 transition from black to
+     * magenta when the renderer enters state 0.
+     * 
+     * <image src="https://docs.gtk.org/gtk4/svg-renderer2.svg">
+     * 
+     * The `gpa:states(...)` condition triggers for upcoming state changes
+     * as well, to support fade-out transitions. For example,
+     * 
+     *     <animate href='path1'
+     *              attributeName='opacity'
+     *              begin='gpa:states(0).end -300ms'
+     *              dur='300ms'
+     *              fill='freeze'
+     *              from='1'
+     *              to='0'/>
+     * 
+     * will start a fade-out of path1 300ms before state 0 ends.
+     * 
+     * A variant of the `gpa:states(...)` condition allows specifying
+     * both before and after states:
+     * 
+     *     <animate href='path1'
+     *              attributeName='opacity'
+     *              begin='gpa:states(0, 1 2)'
+     *              dur='300ms'
+     *              fill='freeze'
+     *              from='1'
+     *              to='0'/>
+     * 
+     * will start the animation when the state changes from 0 to 1 or
+     * from 0 to 2, but not when it changes from 0 to 3.
+     * 
+     * In addition to the `gpa:fill` and `gpa:stroke` attributes, symbolic
+     * colors can also be specified as a custom paint server reference,
+     * like this: `url(#gpa:warning)`. This works in `fill` and `stroke`
+     * attributes, but also when specifying colors in SVG animation
+     * attributes like `to` or `values`.
+     * 
+     * Note that the SVG syntax allows for a fallback RGB color to be
+     * specified after the url, for compatibility with other SVG consumers:
+     * 
+     *     fill='url(#gpa:warning) orange'
+     * 
+     * In contrast to SVG 1.1 and 2.0, we allow the `transform` attribute
+     * to be animated with `<animate>`.
+     * @gir-type Class
+     * @since 4.22
+     */
+    class Svg extends GObject.Object implements Gdk.Paintable, SymbolicPaintable {
+        static $gtype: GObject.GType<Svg>;
+
+        // Properties
+        /**
+         * Enabled features for this paintable.
+         * 
+         * Note that features have to be set before
+         * loading SVG data to take effect.
+         * @since 4.22
+         * @default Gtk.SvgFeatures.ANIMATIONS | Gtk.SvgFeatures.SYSTEM_RESOURCES | Gtk.SvgFeatures.EXTERNAL_RESOURCES | Gtk.SvgFeatures.EXTENSIONS
+         */
+        get features(): SvgFeatures;
+        set features(val: SvgFeatures);
+
+        /**
+         * Whether the paintable is currently animating its content.
+         * 
+         * To set this property, use the {@link Gtk.Svg.play} and
+         * {@link Gtk.Svg.pause} functions.
+         * @since 4.22
+         * @default false
+         */
+        get playing(): boolean;
+        set playing(val: boolean);
+
+        /**
+         * Resource to load SVG data from.
+         * 
+         * This property is meant to create a paintable
+         * from a resource in ui files.
+         * @since 4.22
+         * @default null
+         */
+        get resource(): string;
+        set resource(val: string);
+
+        /**
+         * The current state of the renderer.
+         * 
+         * This can be a number between 0 and 63.
+         * @since 4.22
+         * @default 0
+         */
+        get state(): number;
+        set state(val: number);
+
+        /**
+         * If not set to -1, this value overrides the weight used
+         * when rendering the paintable.
+         * @since 4.22
+         * @default -1
+         */
+        get weight(): number;
+        set weight(val: number);
+
+        /**
+         * Compile-time signal type information.
+         *
+         * This instance property is generated only for TypeScript type checking.
+         * It is not defined at runtime and should not be accessed in JS code.
+         * @internal
+         */
+        $signals: Svg.SignalSignatures;
+
+        // Constructors
+        constructor(properties?: Partial<Svg.ConstructorProps>, ...args: any[]);
+
+        _init(...args: any[]): void;
+
+        static ["new"](): Svg;
+
+        static new_from_bytes(bytes: GLib.Bytes | Uint8Array): Svg;
+
+        static new_from_resource(path: string): Svg;
+
+        // Signals
+        /** @signal */
+        connect<K extends keyof Svg.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Svg.SignalSignatures[K]>): number;
+
+        /** @signal */
+        connect_after<K extends keyof Svg.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Svg.SignalSignatures[K]>): number;
+
+        /** @signal */
+        emit<K extends keyof Svg.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Svg.SignalSignatures[K]>): void;
+
+        // Methods
+        /**
+         * Returns the currently enabled features.
+         * @returns the enabled features
+         * @since 4.22
+         */
+        get_features(): SvgFeatures;
+
+        /**
+         * Gets the current state of the paintable.
+         * @returns the state
+         * @since 4.22
+         */
+        get_state(): number;
+
+        /**
+         * Returns a `NULL`-terminated array of
+         * state names, if available.
+         * 
+         * Note that the returned array and the strings
+         * contained in it will only be valid until the
+         * {@link Gtk.Svg} is cleared or reloaded, so if you
+         * want to keep it around, you should make a copy.
+         * @returns the state names
+         * @since 4.22
+         */
+        get_state_names(): [string[] | null, number];
+
+        /**
+         * Gets the value of the weight property.
+         * @returns the weight
+         * @since 4.22
+         */
+        get_weight(): number;
+
+        /**
+         * Loads SVG content into an existing SVG paintable.
+         * 
+         * To track errors while loading SVG content,
+         * connect to the `Gtk.Svg::error` signal.
+         * 
+         * This clears any previously loaded content.
+         * @param bytes the data to load
+         * @since 4.22
+         */
+        load_from_bytes(bytes: GLib.Bytes | Uint8Array): void;
+
+        /**
+         * Loads SVG content into an existing SVG paintable.
+         * 
+         * To track errors while loading SVG content,
+         * connect to the `Gtk.Svg::error` signal.
+         * 
+         * This clears any previously loaded content.
+         * @param path the resource path
+         * @since 4.22
+         */
+        load_from_resource(path: string): void;
+
+        /**
+         * Stop any playing animations and state transitions.
+         * 
+         * Animations can be paused and started repeatedly.
+         * @since 4.22
+         */
+        pause(): void;
+
+        /**
+         * Start playing animations and state transitions.
+         * 
+         * Animations can be paused and started repeatedly.
+         * @since 4.22
+         */
+        play(): void;
+
+        /**
+         * Serializes the content of the renderer as SVG.
+         * 
+         * The SVG will be similar to the orignally loaded one,
+         * but is not guaranteed to be 100% identical.
+         * 
+         * This function serializes the DOM, i.e. the results
+         * of parsing the SVG. It does not reflect the effect
+         * of applying animations.
+         * @returns the serialized contents
+         * @since 4.22
+         */
+        serialize(): GLib.Bytes;
+
+        /**
+         * Enables or disables features of the SVG paintable.
+         * 
+         * By default, all features are enabled.
+         * 
+         * Note that this call only has an effect before the
+         * SVG is loaded.
+         * @param features features to enable
+         * @since 4.22
+         */
+        set_features(features: SvgFeatures): void;
+
+        /**
+         * Sets a frame clock.
+         * 
+         * Without a frame clock, GtkSvg will not advance animations.
+         * @param clock the frame clock
+         * @since 4.22
+         */
+        set_frame_clock(clock: Gdk.FrameClock): void;
+
+        /**
+         * Sets the state of the paintable.
+         * 
+         * If the paintable is currently playing, the state change
+         * will apply transitions that are defined in the SVG. If
+         * the paintable is not playing, the state change will take
+         * effect instantaneously.
+         * @param state the state to set, as a value between 0 and 63
+         * @since 4.22
+         */
+        set_state(state: number): void;
+
+        /**
+         * Sets the weight that is used when rendering.
+         * 
+         * The weight affects the effective linewidth when stroking
+         * paths.
+         * 
+         * The default value of -1 means to use the font weight
+         * from CSS.
+         * @param weight the font weight, as a value between -1 and 1000
+         * @since 4.22
+         */
+        set_weight(weight: number): void;
+
+        /**
+         * Serializes the paintable, and saves the result to a file.
+         * @param filename the file to save to
+         * @returns true, unless an error occurred
+         * @since 4.22
+         * @throws GLib.Error
+         */
+        write_to_file(filename: string): boolean;
+
+        /**
+         * Compute a concrete size for the {@link Gdk.Paintable}.
+         * 
+         * Applies the sizing algorithm outlined in the
+         * [CSS Image spec](https://drafts.csswg.org/css-images-3/#default-sizing)
+         * to the given `paintable`. See that link for more details.
+         * 
+         * It is not necessary to call this function when both `specified_width`
+         * and `specified_height` are known, but it is useful to call this
+         * function in GtkWidget:measure implementations to compute the
+         * other dimension when only one dimension is given.
+         * @param specified_width the width `paintable` could be drawn into or   0.0 if unknown
+         * @param specified_height the height `paintable` could be drawn into or   0.0 if unknown
+         * @param default_width the width `paintable` would be drawn into if   no other constraints were given
+         * @param default_height the height `paintable` would be drawn into if   no other constraints were given
+         */
+        compute_concrete_size(specified_width: number, specified_height: number, default_width: number, default_height: number): [number, number];
+
+        /**
+         * Gets an immutable paintable for the current contents displayed by `paintable`.
+         * 
+         * This is useful when you want to retain the current state of an animation,
+         * for example to take a screenshot of a running animation.
+         * 
+         * If the `paintable` is already immutable, it will return itself.
+         * @returns An immutable paintable for the current   contents of `paintable`
+         */
+        get_current_image(): Gdk.Paintable;
+
+        /**
+         * Get flags for the paintable.
+         * 
+         * This is oftentimes useful for optimizations.
+         * 
+         * See {@link Gdk.PaintableFlags} for the flags and what they mean.
+         * @returns The {@link Gdk.PaintableFlags} for this paintable
+         */
+        get_flags(): Gdk.PaintableFlags;
+
+        /**
+         * Gets the preferred aspect ratio the `paintable` would like to be displayed at.
+         * 
+         * The aspect ratio is the width divided by the height, so a value of 0.5
+         * means that the `paintable` prefers to be displayed twice as high as it
+         * is wide. Consumers of this interface can use this to preserve aspect
+         * ratio when displaying the paintable.
+         * 
+         * This is a purely informational value and does not in any way limit the
+         * values that may be passed to {@link Gdk.Paintable.snapshot}.
+         * 
+         * Usually when a `paintable` returns nonzero values from
+         * {@link Gdk.Paintable.get_intrinsic_width} and
+         * {@link Gdk.Paintable.get_intrinsic_height} the aspect ratio
+         * should conform to those values, though that is not required.
+         * 
+         * If the `paintable` does not have a preferred aspect ratio,
+         * it returns 0. Negative values are never returned.
+         * @returns the intrinsic aspect ratio of `paintable` or 0 if none.
+         */
+        get_intrinsic_aspect_ratio(): number;
+
+        /**
+         * Gets the preferred height the `paintable` would like to be displayed at.
+         * 
+         * Consumers of this interface can use this to reserve enough space to draw
+         * the paintable.
+         * 
+         * This is a purely informational value and does not in any way limit the
+         * values that may be passed to {@link Gdk.Paintable.snapshot}.
+         * 
+         * If the `paintable` does not have a preferred height, it returns 0.
+         * Negative values are never returned.
+         * @returns the intrinsic height of `paintable` or 0 if none.
+         */
+        get_intrinsic_height(): number;
+
+        /**
+         * Gets the preferred width the `paintable` would like to be displayed at.
+         * 
+         * Consumers of this interface can use this to reserve enough space to draw
+         * the paintable.
+         * 
+         * This is a purely informational value and does not in any way limit the
+         * values that may be passed to {@link Gdk.Paintable.snapshot}.
+         * 
+         * If the `paintable` does not have a preferred width, it returns 0.
+         * Negative values are never returned.
+         * @returns the intrinsic width of `paintable` or 0 if none.
+         */
+        get_intrinsic_width(): number;
+
+        /**
+         * Called by implementations of {@link Gdk.Paintable} to invalidate their contents.
+         * 
+         * Unless the contents are invalidated, implementations must guarantee that
+         * multiple calls of {@link Gdk.Paintable.snapshot} produce the same output.
+         * 
+         * This function will emit the `Gdk.Paintable::invalidate-contents`
+         * signal.
+         * 
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_CONTENTS} flag,
+         * it must not call this function.
+         */
+        invalidate_contents(): void;
+
+        /**
+         * Called by implementations of {@link Gdk.Paintable} to invalidate their size.
+         * 
+         * As long as the size is not invalidated, `paintable` must return the same
+         * values for its intrinsic width, height and aspect ratio.
+         * 
+         * This function will emit the `Gdk.Paintable::invalidate-size`
+         * signal.
+         * 
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_SIZE} flag,
+         * it must not call this function.
+         */
+        invalidate_size(): void;
+
+        /**
+         * Snapshots the given paintable with the given `width` and `height`.
+         * 
+         * The paintable is drawn at the current (0,0) offset of the `snapshot`.
+         * If `width` and `height` are not larger than zero, this function will
+         * do nothing.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         */
+        snapshot(snapshot: Gdk.Snapshot, width: number, height: number): void;
+
+        /**
+         * Gets an immutable paintable for the current contents displayed by `paintable`.
+         * 
+         * This is useful when you want to retain the current state of an animation,
+         * for example to take a screenshot of a running animation.
+         * 
+         * If the `paintable` is already immutable, it will return itself.
+         * @virtual
+         */
+        vfunc_get_current_image(): Gdk.Paintable;
+
+        /**
+         * Get flags for the paintable.
+         * 
+         * This is oftentimes useful for optimizations.
+         * 
+         * See {@link Gdk.PaintableFlags} for the flags and what they mean.
+         * @virtual
+         */
+        vfunc_get_flags(): Gdk.PaintableFlags;
+
+        /**
+         * Gets the preferred aspect ratio the `paintable` would like to be displayed at.
+         * 
+         * The aspect ratio is the width divided by the height, so a value of 0.5
+         * means that the `paintable` prefers to be displayed twice as high as it
+         * is wide. Consumers of this interface can use this to preserve aspect
+         * ratio when displaying the paintable.
+         * 
+         * This is a purely informational value and does not in any way limit the
+         * values that may be passed to {@link Gdk.Paintable.snapshot}.
+         * 
+         * Usually when a `paintable` returns nonzero values from
+         * {@link Gdk.Paintable.get_intrinsic_width} and
+         * {@link Gdk.Paintable.get_intrinsic_height} the aspect ratio
+         * should conform to those values, though that is not required.
+         * 
+         * If the `paintable` does not have a preferred aspect ratio,
+         * it returns 0. Negative values are never returned.
+         * @virtual
+         */
+        vfunc_get_intrinsic_aspect_ratio(): number;
+
+        /**
+         * Gets the preferred height the `paintable` would like to be displayed at.
+         * 
+         * Consumers of this interface can use this to reserve enough space to draw
+         * the paintable.
+         * 
+         * This is a purely informational value and does not in any way limit the
+         * values that may be passed to {@link Gdk.Paintable.snapshot}.
+         * 
+         * If the `paintable` does not have a preferred height, it returns 0.
+         * Negative values are never returned.
+         * @virtual
+         */
+        vfunc_get_intrinsic_height(): number;
+
+        /**
+         * Gets the preferred width the `paintable` would like to be displayed at.
+         * 
+         * Consumers of this interface can use this to reserve enough space to draw
+         * the paintable.
+         * 
+         * This is a purely informational value and does not in any way limit the
+         * values that may be passed to {@link Gdk.Paintable.snapshot}.
+         * 
+         * If the `paintable` does not have a preferred width, it returns 0.
+         * Negative values are never returned.
+         * @virtual
+         */
+        vfunc_get_intrinsic_width(): number;
+
+        /**
+         * Snapshots the given paintable with the given `width` and `height`.
+         * 
+         * The paintable is drawn at the current (0,0) offset of the `snapshot`.
+         * If `width` and `height` are not larger than zero, this function will
+         * do nothing.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @virtual
+         */
+        vfunc_snapshot(snapshot: Gdk.Snapshot, width: number, height: number): void;
+
+        /**
+         * Snapshots the paintable with the given colors.
+         * 
+         * If less than 5 colors are provided, GTK will pad the array with default
+         * colors.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @param colors a pointer to an array of colors
+         * @since 4.6
+         */
+        snapshot_symbolic(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[]): void;
+
+        /**
+         * Snapshots the paintable with the given colors and weight.
+         * 
+         * If less than 5 colors are provided, GTK will pad the array with default
+         * colors.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @param colors a pointer to an array of colors
+         * @param weight The font weight to use (from 1 to 1000, with default 400)
+         * @since 4.22
+         */
+        snapshot_with_weight(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[], weight: number): void;
+
+        /**
+         * Snapshots the paintable with the given colors.
+         * 
+         * If less than 5 colors are provided, GTK will pad the array with default
+         * colors.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @param colors a pointer to an array of colors
+         * @since 4.6
+         * @virtual
+         */
+        vfunc_snapshot_symbolic(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[]): void;
+
+        /**
+         * Snapshots the paintable with the given colors and weight.
+         * 
+         * If less than 5 colors are provided, GTK will pad the array with default
+         * colors.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @param colors a pointer to an array of colors
+         * @param weight The font weight to use (from 1 to 1000, with default 400)
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_snapshot_with_weight(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[], weight: number): void;
+    }
+
+
     namespace Switch {
         // Signal signatures
         interface SignalSignatures extends Widget.SignalSignatures {
@@ -112640,15 +116027,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Switch.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Switch.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Switch.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Switch.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Switch.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Switch.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Switch.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Switch.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -112745,6 +116129,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -112895,6 +116292,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -113817,15 +117227,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Text.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Text.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Text.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Text.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Text.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Text.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Text.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Text.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -114261,6 +117668,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -114409,6 +117829,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -114602,6 +118035,23 @@ export interface Builder {
          * @virtual
          */
         vfunc_get_selection(): [boolean, AccessibleTextRange[] | null];
+
+        /**
+         * Sets the caret position.
+         * @param offset the text offset in characters
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_caret_position(offset: number): boolean;
+
+        /**
+         * Sets the caret position.
+         * @param i the selection to set
+         * @param range the range to set the selection to
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_selection(i: number, range: AccessibleTextRange): boolean;
 
         /**
          * Gets the ID of the `buildable` object.
@@ -115407,15 +118857,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TextBuffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextBuffer.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TextBuffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextBuffer.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TextBuffer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextBuffer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TextBuffer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextBuffer.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -116463,15 +119910,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TextChildAnchor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextChildAnchor.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TextChildAnchor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextChildAnchor.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TextChildAnchor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextChildAnchor.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TextChildAnchor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextChildAnchor.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -116600,15 +120044,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TextMark.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextMark.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TextMark.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextMark.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TextMark.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextMark.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TextMark.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextMark.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -118086,15 +121527,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TextTag.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextTag.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TextTag.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextTag.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TextTag.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextTag.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TextTag.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextTag.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -118210,15 +121648,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TextTagTable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextTagTable.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TextTagTable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextTagTable.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TextTagTable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextTagTable.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TextTagTable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextTagTable.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -118652,8 +122087,8 @@ export interface Builder {
             cursor_visible: boolean;
             cursorVisible: boolean;
             editable: boolean;
-            extra_menu: Gio.MenuModel;
-            extraMenu: Gio.MenuModel;
+            extra_menu: Gio.MenuModel | null;
+            extraMenu: Gio.MenuModel | null;
             im_module: string;
             imModule: string;
             indent: number;
@@ -118835,14 +122270,14 @@ export interface Builder {
         /**
          * A menu model whose contents will be appended to the context menu.
          */
-        get extra_menu(): Gio.MenuModel;
-        set extra_menu(val: Gio.MenuModel);
+        get extra_menu(): Gio.MenuModel | null;
+        set extra_menu(val: Gio.MenuModel | null);
 
         /**
          * A menu model whose contents will be appended to the context menu.
          */
-        get extraMenu(): Gio.MenuModel;
-        set extraMenu(val: Gio.MenuModel);
+        get extraMenu(): Gio.MenuModel | null;
+        set extraMenu(val: Gio.MenuModel | null);
 
         /**
          * Which IM (input method) module should be used for this text_view.
@@ -119100,15 +122535,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TextView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextView.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TextView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TextView.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TextView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextView.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TextView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TextView.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -119368,7 +122800,7 @@ export interface Builder {
          * or `null` if none has been set.
          * @returns the menu model
          */
-        get_extra_menu(): Gio.MenuModel;
+        get_extra_menu(): Gio.MenuModel | null;
 
         /**
          * Gets a {@link Gtk.Widget} that has previously been set as gutter.
@@ -120043,6 +123475,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -120191,6 +123636,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -120384,6 +123842,23 @@ export interface Builder {
          * @virtual
          */
         vfunc_get_selection(): [boolean, AccessibleTextRange[] | null];
+
+        /**
+         * Sets the caret position.
+         * @param offset the text offset in characters
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_caret_position(offset: number): boolean;
+
+        /**
+         * Sets the caret position.
+         * @param i the selection to set
+         * @param range the range to set the selection to
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_set_selection(i: number, range: AccessibleTextRange): boolean;
 
         /**
          * Gets the ID of the `buildable` object.
@@ -120743,15 +124218,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof ToggleButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ToggleButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ToggleButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ToggleButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ToggleButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ToggleButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ToggleButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ToggleButton.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -121013,15 +124485,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Tooltip.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Tooltip.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Tooltip.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Tooltip.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Tooltip.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Tooltip.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Tooltip.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Tooltip.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -121337,15 +124806,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeExpander.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeExpander.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeExpander.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeExpander.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeExpander.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeExpander.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeExpander.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeExpander.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -121461,6 +124927,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -121611,6 +125090,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -121868,15 +125360,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeListModel.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeListModel.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeListModel.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeListModel.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeListModel.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeListModel.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -122157,15 +125646,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeListRow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeListRow.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeListRow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeListRow.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeListRow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeListRow.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeListRow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeListRow.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -122318,15 +125804,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeListRowSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeListRowSorter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeListRowSorter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeListRowSorter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeListRowSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeListRowSorter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeListRowSorter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeListRowSorter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -122478,15 +125961,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeModelFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeModelFilter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeModelFilter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeModelFilter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeModelFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeModelFilter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeModelFilter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeModelFilter.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -123385,15 +126865,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeModelSort.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeModelSort.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeModelSort.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeModelSort.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeModelSort.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeModelSort.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeModelSort.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeModelSort.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -124289,15 +127766,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeSelection.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeSelection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeSelection.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeSelection.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeSelection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeSelection.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -124522,15 +127996,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeStore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeStore.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeStore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeStore.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeStore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeStore.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeStore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeStore.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -126214,15 +129685,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeView.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeView.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeView.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeView.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeView.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeView.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -127311,6 +130779,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -127459,6 +130940,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -127956,15 +131450,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof TreeViewColumn.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeViewColumn.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TreeViewColumn.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TreeViewColumn.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TreeViewColumn.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeViewColumn.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TreeViewColumn.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TreeViewColumn.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -128637,6 +132128,38 @@ export interface Builder {
     }
 
 
+    namespace TryExpression {
+        // Signal signatures
+        interface SignalSignatures extends Expression.SignalSignatures {}
+    }
+
+    /**
+     * A {@link Gtk.Expression} that tries to evaluate each of its expressions until it succeeds.
+     * 
+     * If all expressions fail to evaluate, the {@link Gtk.TryExpression}'s evaluation fails as well.
+     * @gir-type Class
+     * @since 4.22
+     */
+    class TryExpression extends Expression {
+        static $gtype: GObject.GType<TryExpression>;
+
+        // Constructors
+        _init(...args: any[]): void;
+
+        static ["new"](expressions: Expression[]): TryExpression;
+
+        // Signals
+        /** @signal */
+        connect<K extends keyof TryExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TryExpression.SignalSignatures[K]>): number;
+
+        /** @signal */
+        connect_after<K extends keyof TryExpression.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, TryExpression.SignalSignatures[K]>): number;
+
+        /** @signal */
+        emit<K extends keyof TryExpression.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<TryExpression.SignalSignatures[K]>): void;
+    }
+
+
     namespace UriLauncher {
         // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
@@ -128695,15 +132218,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof UriLauncher.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, UriLauncher.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof UriLauncher.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, UriLauncher.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof UriLauncher.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<UriLauncher.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof UriLauncher.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<UriLauncher.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -128933,15 +132453,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Video.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Video.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Video.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Video.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Video.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Video.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Video.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Video.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -129070,6 +132587,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -129220,6 +132750,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -129501,15 +133044,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Viewport.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Viewport.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Viewport.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Viewport.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Viewport.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Viewport.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Viewport.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Viewport.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -129634,6 +133174,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -129784,6 +133337,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -130124,15 +133690,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof VolumeButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, VolumeButton.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof VolumeButton.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, VolumeButton.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof VolumeButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<VolumeButton.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof VolumeButton.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<VolumeButton.SignalSignatures[K]>): void;
 
         /**
          * The orientation of the orientable.
@@ -131363,15 +134926,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Widget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Widget.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Widget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Widget.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Widget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Widget.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Widget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Widget.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -132682,7 +136242,7 @@ export interface Builder {
          * This function is only meant to be called for code which is private
          * to the `widget_type` which declared the child and is meant for language
          * bindings which cannot easily make use of the GObject structure offsets.
-         * @param widget_type The {@link GObject.GType} to get a template child for
+         * @param widget_type The type of the widget class that defines the child in the template
          * @param name ID of the child defined in the template XML
          * @returns the object built in the template XML with   the id `name`
          */
@@ -133793,6 +137353,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -133941,6 +137514,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -134158,15 +137744,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof WidgetPaintable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WidgetPaintable.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof WidgetPaintable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WidgetPaintable.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof WidgetPaintable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WidgetPaintable.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof WidgetPaintable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WidgetPaintable.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -134281,7 +137864,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-contents`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.CONTENTS} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_CONTENTS} flag,
          * it must not call this function.
          */
         invalidate_contents(): void;
@@ -134295,7 +137878,7 @@ export interface Builder {
          * This function will emit the `Gdk.Paintable::invalidate-size`
          * signal.
          * 
-         * If a `paintable` reports the {@link Gdk.PaintableFlags.SIZE} flag,
+         * If a `paintable` reports the {@link Gdk.PaintableFlags.STATIC_SIZE} flag,
          * it must not call this function.
          */
         invalidate_size(): void;
@@ -134980,15 +138563,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof Window.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Window.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Window.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Window.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Window.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Window.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Window.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Window.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -135764,6 +139344,19 @@ export interface Builder {
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
 
         /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
+
+        /**
          * Retrieves the accessible parent for an accessible object.
          * 
          * This function returns `NULL` for top level widgets.
@@ -135912,6 +139505,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -136322,15 +139928,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof WindowControls.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WindowControls.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof WindowControls.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WindowControls.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof WindowControls.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WindowControls.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof WindowControls.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WindowControls.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -136434,6 +140037,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -136584,6 +140200,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -136787,15 +140416,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof WindowGroup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WindowGroup.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof WindowGroup.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WindowGroup.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof WindowGroup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WindowGroup.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof WindowGroup.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WindowGroup.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -136914,15 +140540,12 @@ export interface Builder {
         // Signals
         /** @signal */
         connect<K extends keyof WindowHandle.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WindowHandle.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof WindowHandle.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WindowHandle.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof WindowHandle.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WindowHandle.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof WindowHandle.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WindowHandle.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -136972,6 +140595,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -137122,6 +140758,19 @@ export interface Builder {
          * @param values an array of `GValues`, one for each state
          */
         update_state(states: AccessibleState[], values: (GObject.Value | any)[]): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @since 4.22
+         * @virtual
+         */
+        vfunc_get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -137280,6 +140929,16 @@ export interface Builder {
      * @gir-type Alias
      */
     type ATContextClass = typeof ATContext;
+
+    /**
+     * @gir-type Alias
+     */
+    type AccessibleHyperlinkClass = typeof AccessibleHyperlink;
+
+    /**
+     * @gir-type Alias
+     */
+    type AccessibleHypertextInterface = typeof AccessibleHypertext;
 
     /**
      * @gir-type Alias
@@ -138977,6 +142636,11 @@ export interface Builder {
     /**
      * @gir-type Alias
      */
+    type PopoverBinClass = typeof PopoverBin;
+
+    /**
+     * @gir-type Alias
+     */
     type PopoverClass = typeof Popover;
 
     /**
@@ -139584,6 +143248,31 @@ export interface Builder {
      * @gir-type Alias
      */
     type StyleContextClass = typeof StyleContext;
+
+    /**
+     * @gir-type Alias
+     */
+    type SvgClass = typeof Svg;
+
+    /**
+     * Provides information about a location in an SVG document.
+     * 
+     * The information should be considered approximate; it is
+     * meant to provide feedback for errors in an editor.
+     * @gir-type Struct
+     * @since 4.22
+     */
+    class SvgLocation {
+        static $gtype: GObject.GType<SvgLocation>;
+
+        // Fields
+        bytes: number;
+
+        lines: number;
+
+        line_chars: number;
+    }
+
 
     /**
      * @gir-type Alias
@@ -141100,6 +144789,19 @@ export interface Builder {
 
             // Virtual methods
             /**
+             * Retrieves the accessible identifier for the accessible object.
+             * 
+             * This functionality can be overridden by {@link Gtk.Accessible}
+             * implementations.
+             * 
+             * It is left to the accessible implementation to define the scope
+             * and uniqueness of the identifier.
+             * @since 4.22
+             * @virtual
+             */
+            vfunc_get_accessible_id(): string | null;
+
+            /**
              * Retrieves the accessible parent for an accessible object.
              * 
              * This function returns `NULL` for top level widgets.
@@ -141235,6 +144937,19 @@ export interface Builder {
          * @since 4.14
          */
         announce(message: string, priority: AccessibleAnnouncementPriority): void;
+
+        /**
+         * Retrieves the accessible identifier for the accessible object.
+         * 
+         * This functionality can be overridden by {@link Gtk.Accessible}
+         * implementations.
+         * 
+         * It is left to the accessible implementation to define the scope
+         * and uniqueness of the identifier.
+         * @returns the accessible identifier
+         * @since 4.22
+         */
+        get_accessible_id(): string | null;
 
         /**
          * Retrieves the accessible parent for an accessible object.
@@ -141390,6 +145105,64 @@ export interface Builder {
 
     export const Accessible: AccessibleNamespace & {
         new (): Accessible; // This allows `obj instanceof Accessible`
+    };
+
+    namespace AccessibleHypertext {
+        /**
+         * Interface for implementing AccessibleHypertext.
+         * Contains only the virtual methods that need to be implemented.
+         */
+        interface Interface extends Accessible.Interface {
+
+            // Virtual methods
+            /**
+             * Retrieve the n-th link in the accessible object.
+             * 
+             * `index` must be smaller than the number of links.
+             * @param index the index of the link
+             * @since 4.22
+             * @virtual
+             */
+            vfunc_get_link(index: number): AccessibleHyperlink;
+
+            /**
+             * @param offset 
+             * @virtual
+             */
+            vfunc_get_link_at(offset: number): number;
+
+            /**
+             * Retrieve the number of links in the accessible object.
+             * @since 4.22
+             * @virtual
+             */
+            vfunc_get_n_links(): number;
+        }
+
+
+        // Constructor properties interface
+        interface ConstructorProps extends Accessible.ConstructorProps {}
+    }
+
+    export interface AccessibleHypertextNamespace {
+        $gtype: GObject.GType<AccessibleHypertext>;
+        prototype: AccessibleHypertext;
+    }
+    /**
+     * An interface for accessible objects containing links.
+     * 
+     * The {@link Gtk.AccessibleHypertext} interfaces is meant to be implemented by accessible
+     * objects that contain links. Those links don't necessarily have to be part
+     * of text, they can be associated with images and other things.
+     * @gir-type Interface
+     * @since 4.22
+     */
+    interface AccessibleHypertext extends Accessible, AccessibleHypertext.Interface {
+    }
+
+
+    export const AccessibleHypertext: AccessibleHypertextNamespace & {
+        new (): AccessibleHypertext; // This allows `obj instanceof AccessibleHypertext`
     };
 
     namespace AccessibleRange {
@@ -141568,6 +145341,23 @@ export interface Builder {
              * @virtual
              */
             vfunc_get_selection(): [boolean, AccessibleTextRange[] | null];
+
+            /**
+             * Sets the caret position.
+             * @param offset the text offset in characters
+             * @since 4.22
+             * @virtual
+             */
+            vfunc_set_caret_position(offset: number): boolean;
+
+            /**
+             * Sets the caret position.
+             * @param i the selection to set
+             * @param range the range to set the selection to
+             * @since 4.22
+             * @virtual
+             */
+            vfunc_set_selection(i: number, range: AccessibleTextRange): boolean;
         }
 
 
@@ -145479,7 +149269,7 @@ export interface Builder {
             /**
              * Snapshots the paintable with the given colors.
              * 
-             * If less than 4 colors are provided, GTK will pad the array with default
+             * If less than 5 colors are provided, GTK will pad the array with default
              * colors.
              * @param snapshot a {@link Gdk.Snapshot} to snapshot to
              * @param width width to snapshot in
@@ -145489,6 +149279,21 @@ export interface Builder {
              * @virtual
              */
             vfunc_snapshot_symbolic(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[]): void;
+
+            /**
+             * Snapshots the paintable with the given colors and weight.
+             * 
+             * If less than 5 colors are provided, GTK will pad the array with default
+             * colors.
+             * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+             * @param width width to snapshot in
+             * @param height height to snapshot in
+             * @param colors a pointer to an array of colors
+             * @param weight The font weight to use (from 1 to 1000, with default 400)
+             * @since 4.22
+             * @virtual
+             */
+            vfunc_snapshot_with_weight(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[], weight: number): void;
         }
 
 
@@ -145505,12 +149310,13 @@ export interface Builder {
      * 
      * {@link Gdk.Paintable}s implementing the interface will have the
      * {@link Gtk.SymbolicPaintable.snapshot_symbolic} function called and
-     * have the colors for drawing symbolic icons passed. At least 4 colors are guaranteed
-     * to be passed every time.
+     * have the colors for drawing symbolic icons passed. At least 5 colors
+     * are guaranteed to be passed every time. These 5 colors are the
+     * foreground color, and the colors to use for errors, warnings
+     * and success information in that order, followed by the system
+     * accent color.
      * 
-     * These 4 colors are the foreground color, and the colors to use for errors, warnings
-     * and success information in that order.
-     * 
+     * The system accent color has been added in GTK 4.22.
      * More colors may be added in the future.
      * @gir-type Interface
      * @since 4.6
@@ -145521,7 +149327,7 @@ export interface Builder {
         /**
          * Snapshots the paintable with the given colors.
          * 
-         * If less than 4 colors are provided, GTK will pad the array with default
+         * If less than 5 colors are provided, GTK will pad the array with default
          * colors.
          * @param snapshot a {@link Gdk.Snapshot} to snapshot to
          * @param width width to snapshot in
@@ -145530,6 +149336,20 @@ export interface Builder {
          * @since 4.6
          */
         snapshot_symbolic(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[]): void;
+
+        /**
+         * Snapshots the paintable with the given colors and weight.
+         * 
+         * If less than 5 colors are provided, GTK will pad the array with default
+         * colors.
+         * @param snapshot a {@link Gdk.Snapshot} to snapshot to
+         * @param width width to snapshot in
+         * @param height height to snapshot in
+         * @param colors a pointer to an array of colors
+         * @param weight The font weight to use (from 1 to 1000, with default 400)
+         * @since 4.22
+         */
+        snapshot_with_weight(snapshot: Gdk.Snapshot, width: number, height: number, colors: Gdk.RGBA[], weight: number): void;
     }
 
 

@@ -49,6 +49,7 @@ in
                 mpris
                 powerprofiles
                 wireplumber
+                wl
             ];
         };
     };

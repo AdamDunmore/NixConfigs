@@ -204,15 +204,12 @@ export namespace AstalBluetooth {
         // Signals
         /** @signal */
         connect<K extends keyof Adapter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Adapter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Adapter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Adapter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Adapter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Adapter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Adapter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Adapter.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -404,15 +401,12 @@ export namespace AstalBluetooth {
         // Signals
         /** @signal */
         connect<K extends keyof Bluetooth.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Bluetooth.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Bluetooth.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Bluetooth.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Bluetooth.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Bluetooth.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Bluetooth.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Bluetooth.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -625,15 +619,12 @@ export namespace AstalBluetooth {
         // Signals
         /** @signal */
         connect<K extends keyof Device.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Device.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Device.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Device.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Device.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Device.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Device.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Device.SignalSignatures[K]>): void;
 
         // Methods
         /**

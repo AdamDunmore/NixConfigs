@@ -348,15 +348,12 @@ export namespace AstalNetwork {
         // Signals
         /** @signal */
         connect<K extends keyof AccessPoint.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AccessPoint.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof AccessPoint.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AccessPoint.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof AccessPoint.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AccessPoint.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof AccessPoint.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AccessPoint.SignalSignatures[K]>): void;
 
         // Methods
         get_connections(): NM.RemoteConnection[];
@@ -490,15 +487,12 @@ export namespace AstalNetwork {
         // Signals
         /** @signal */
         connect<K extends keyof Network.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Network.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Network.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Network.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Network.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Network.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Network.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Network.SignalSignatures[K]>): void;
 
         // Static methods
         static get_default(): Network;
@@ -658,15 +652,12 @@ export namespace AstalNetwork {
         // Signals
         /** @signal */
         connect<K extends keyof Wifi.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Wifi.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Wifi.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Wifi.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Wifi.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Wifi.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Wifi.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Wifi.SignalSignatures[K]>): void;
 
         // Methods
         scan(): void;
@@ -795,15 +786,12 @@ export namespace AstalNetwork {
         // Signals
         /** @signal */
         connect<K extends keyof Wired.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Wired.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Wired.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Wired.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Wired.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Wired.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Wired.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Wired.SignalSignatures[K]>): void;
 
         // Methods
         get_device(): NM.DeviceEthernet;

@@ -282,15 +282,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11AppLaunchContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11AppLaunchContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11AppLaunchContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11AppLaunchContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11AppLaunchContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11AppLaunchContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11AppLaunchContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11AppLaunchContext.SignalSignatures[K]>): void;
     }
 
 
@@ -328,15 +325,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11Cursor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Cursor.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11Cursor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Cursor.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11Cursor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Cursor.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11Cursor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Cursor.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -400,15 +394,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11DeviceCore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceCore.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11DeviceCore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceCore.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11DeviceCore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceCore.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11DeviceCore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceCore.SignalSignatures[K]>): void;
     }
 
 
@@ -445,15 +436,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11DeviceManagerCore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceManagerCore.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11DeviceManagerCore.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceManagerCore.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11DeviceManagerCore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceManagerCore.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11DeviceManagerCore.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceManagerCore.SignalSignatures[K]>): void;
     }
 
 
@@ -516,15 +504,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11DeviceManagerXI2.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceManagerXI2.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11DeviceManagerXI2.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceManagerXI2.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11DeviceManagerXI2.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceManagerXI2.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11DeviceManagerXI2.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceManagerXI2.SignalSignatures[K]>): void;
     }
 
 
@@ -592,15 +577,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11DeviceXI2.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceXI2.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11DeviceXI2.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DeviceXI2.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11DeviceXI2.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceXI2.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11DeviceXI2.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DeviceXI2.SignalSignatures[K]>): void;
     }
 
 
@@ -635,15 +617,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11Display.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Display.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11Display.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Display.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11Display.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Display.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11Display.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Display.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -852,15 +831,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11DisplayManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DisplayManager.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11DisplayManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DisplayManager.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11DisplayManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DisplayManager.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11DisplayManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DisplayManager.SignalSignatures[K]>): void;
     }
 
 
@@ -895,15 +871,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11DragContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DragContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11DragContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11DragContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11DragContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DragContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11DragContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11DragContext.SignalSignatures[K]>): void;
     }
 
 
@@ -942,15 +915,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11GLContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11GLContext.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11GLContext.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11GLContext.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11GLContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11GLContext.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11GLContext.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11GLContext.SignalSignatures[K]>): void;
     }
 
 
@@ -985,15 +955,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11Keymap.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Keymap.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11Keymap.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Keymap.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11Keymap.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Keymap.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11Keymap.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Keymap.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -1063,15 +1030,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11Monitor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Monitor.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11Monitor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Monitor.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11Monitor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Monitor.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11Monitor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Monitor.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -1120,22 +1084,19 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11Screen.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Screen.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11Screen.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Screen.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11Screen.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Screen.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11Screen.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Screen.SignalSignatures[K]>): void;
 
         // Methods
         /**
          * Returns the current workspace for `screen` when running under a
          * window manager that supports multiple workspaces, as described
          * in the
-         * [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
+         * [Extended Window Manager Hints](https://specifications.freedesktop.org/wm/latest/) specification.
          * @returns the current workspace, or 0 if workspaces are not supported
          * @since 3.10
          */
@@ -1155,7 +1116,7 @@ export namespace GdkX11 {
          * Returns the number of workspaces for `screen` when running under a
          * window manager that supports multiple workspaces, as described
          * in the
-         * [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
+         * [Extended Window Manager Hints](https://specifications.freedesktop.org/wm/latest/) specification.
          * @returns the number of workspaces, or 0 if workspaces are not supported
          * @since 3.10
          */
@@ -1193,7 +1154,7 @@ export namespace GdkX11 {
         /**
          * This function is specific to the X11 backend of GDK, and indicates
          * whether the window manager supports a certain hint from the
-         * [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
+         * [Extended Window Manager Hints](https://specifications.freedesktop.org/wm/latest/) specification.
          * 
          * When using this function, keep in mind that the window manager
          * can change over time; so you shouldn’t use this function in
@@ -1242,15 +1203,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11Visual.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Visual.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11Visual.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Visual.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11Visual.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Visual.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11Visual.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Visual.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -1296,15 +1254,12 @@ export namespace GdkX11 {
         // Signals
         /** @signal */
         connect<K extends keyof X11Window.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Window.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof X11Window.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, X11Window.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof X11Window.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Window.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof X11Window.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<X11Window.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -1332,7 +1287,7 @@ export namespace GdkX11 {
         /**
          * Moves the window to the correct workspace when running under a
          * window manager that supports multiple workspaces, as described
-         * in the [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
+         * in the [Extended Window Manager Hints](https://specifications.freedesktop.org/wm/latest/) specification.
          * Will not do anything if the window is already on all workspaces.
          * @since 2.8
          */
@@ -1341,7 +1296,7 @@ export namespace GdkX11 {
         /**
          * Moves the window to the given workspace when running unde a
          * window manager that supports multiple workspaces, as described
-         * in the [Extended Window Manager Hints](http://www.freedesktop.org/Standards/wm-spec) specification.
+         * in the [Extended Window Manager Hints](https://specifications.freedesktop.org/wm/latest/) specification.
          * @param desktop the number of the workspace to move the window to
          * @since 3.10
          */

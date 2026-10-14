@@ -39,7 +39,10 @@ export interface SignalDefinition {
     flags?: SignalFlags
     accumulator: number
     return_type?: GTypeInput
-    param_types?: GTypeInput[]
+    // `readonly` matches `SignalDefinitionType` below, and for the same reason: GJS reads the array
+    // length and its elements to build the C `GType` array (`JS::GetArrayLength` / `JS_GetElement`)
+    // and never writes to it.
+    param_types?: readonly GTypeInput[]
 }
 
 export interface MetaInfo<Props, Interfaces, Sigs> {
@@ -50,9 +53,16 @@ export interface MetaInfo<Props, Interfaces, Sigs> {
     Implements?: Interfaces
     CssName?: string
     Template?: Uint8Array | GLib.Bytes | string
-    Children?: string[]
-    InternalChildren?: string[]
-    Requires?: Object[]
+    // `Children`, `InternalChildren`, `Requires` and `Implements` are `readonly` because GJS only
+    // ever READS them: `registerClass` stores the array on the class and later iterates it --
+    // `for (let child of children)`, `internalChildren.forEach(...)`, `requires.filter(...)` and
+    // `[...gobjectInterfaces].reverse()`, a copy. Nothing pushes, splices or sorts in place.
+    // A mutable type made a consumer's own `const` data reject its own value: a typed export from a
+    // `.blp` template, or any `as const` list, is a `readonly` tuple and produced TS4104 against a
+    // field the caller may not write to anyway.
+    Children?: readonly string[]
+    InternalChildren?: readonly string[]
+    Requires?: readonly Object[]
 }
 
 export type Property<K extends ParamSpec> = K extends ParamSpec<infer T> ? T : any
@@ -73,7 +83,11 @@ type SnakeToUnderscore<T> = { [P in keyof T as P extends string ? SnakeToUndersc
 // Advanced utility types for class registration
 type UnionToIntersection<T> = (T extends any ? (x: T) => any : never) extends (x: infer R) => any ? R : never
 
-type IFaces<Interfaces extends { $gtype: GType<any> }[]> = {
+// `readonly` on every `Interfaces` constraint below, for the same reason as `MetaInfo.Implements`:
+// a caller passing `Implements: [Gio.ListModel] as const` infers a `readonly` tuple, which a
+// mutable-array constraint rejects (TS4104) even though GJS never writes to the array. The
+// constraints stay satisfied by an ordinary mutable array, so existing consumers are unaffected.
+type IFaces<Interfaces extends readonly { $gtype: GType<any> }[]> = {
     [key in keyof Interfaces]: Interfaces[key] extends { $gtype: GType<infer I> } ? I : never
 }
 
@@ -91,7 +105,7 @@ export type Properties<
 export type RegisteredPrototype<
     P extends {},
     Props extends { [key: string]: ParamSpec },
-    Interfaces extends any[],
+    Interfaces extends readonly any[],
 > = Properties<P, SnakeToUnderscore<Props>> & UnionToIntersection<Interfaces[number]> & P
 
 type Ctor = new (...a: any[]) => object
@@ -100,7 +114,7 @@ type Init = { _init(...args: any[]): void }
 export type RegisteredClass<
     T extends Ctor,
     Props extends { [key: string]: ParamSpec },
-    Interfaces extends { $gtype: GType<any> }[],
+    Interfaces extends readonly { $gtype: GType<any> }[],
 > = T extends { prototype: infer P extends {} }
     ? {
           $gtype: GType<RegisteredClass<T, Props, IFaces<Interfaces>>>
@@ -319,6 +333,29 @@ export type SignalCallback<Emitter, Fn> = Fn extends (...args: infer P) => infer
     ? (source: Emitter, ...args: P) => R
     : never
 
+/**
+ * Typed signal methods for subclasses with custom or implemented-interface signals.
+ * Include the parent's SignalSignatures in Signals, then use each member with
+ * a `declare` field to refine the inherited method without replacing it at runtime.
+ * The constraint checks each signal without requiring a string index signature.
+ *
+ * @example
+ * declare connect: GObject.SignalMethods<this, MySignals>["connect"]
+ * declare connect_after: GObject.SignalMethods<this, MySignals>["connect_after"]
+ * declare emit: GObject.SignalMethods<this, MySignals>["emit"]
+ */
+export interface SignalMethods<
+    Emitter,
+    Signals extends Record<keyof Signals, (...args: never[]) => unknown>,
+> {
+    /** Connect a callback, with the emitter prepended to the signal arguments. */
+    connect<K extends keyof Signals>(signal: K, callback: SignalCallback<Emitter, Signals[K]>): number
+    /** Connect a callback to run after the signal's default handler. */
+    connect_after<K extends keyof Signals>(signal: K, callback: SignalCallback<Emitter, Signals[K]>): number
+    /** Emit a signal with its declared arguments, without the emitter. */
+    emit<K extends keyof Signals>(signal: K, ...args: GjsParameters<Signals[K]>): void
+}
+
 // TODO: What about the generated class Closure
 export type TClosure<R = any, P = any> = (...args: P[]) => R
 
@@ -341,7 +378,7 @@ export function registerClass<P extends {}, T extends new (...args: any[]) => P>
 export function registerClass<
     T extends Ctor,
     Props extends { [key: string]: ParamSpec },
-    Interfaces extends { $gtype: GType }[],
+    Interfaces extends readonly { $gtype: GType }[],
     Sigs extends {
         [key: string]: {
             param_types?: readonly GTypeInput[]
@@ -2036,15 +2073,18 @@ export function registerClass<
      * Ensures that the indicated `type` has been registered with the
      * type system, and its _class_init() method has been run.
      * 
-     * In theory, simply calling the type's _get_type() method (or using
-     * the corresponding macro) is supposed take care of this. However,
-     * _get_type() methods are often marked `G_GNUC_CONST` for performance
-     * reasons, even though this is technically incorrect (since
-     * `G_GNUC_CONST` requires that the function not have side effects,
-     * which _get_type() methods do on the first call). As a result, if
-     * you write a bare call to a _get_type() macro, it may get optimized
-     * out by the compiler. Using `g_type_ensure()` guarantees that the
-     * type's _get_type() method is called.
+     * Typically, calling the type’s `_get_type()` method (or using the
+     * corresponding macro) will take care of this. In situations where a
+     * type is looked up dynamically, however, you may need to explicitly call
+     * `g_type_ensure()` to ensure expected types are registered before the
+     * first lookup. This can happen when using custom widgets from a GTK
+     * `.ui` file, for example.
+     * 
+     * Historically, `_get_type()` methods have sometimes been marked as
+     * [`G_GNUC_CONST`](https://docs.gtk.org/gobject/macros.html#compiler). This is incorrect, as the
+     * first call to a `_get_type()` method has side-effects. These
+     * annotations should be removed, as they can cause code to be optimized
+     * out in unexpected ways by the compiler.
      * @param type a {@link GObject.GType}
      * @since 2.34
      */
@@ -3256,7 +3296,7 @@ export function registerClass<
          * The name of the property of {@link GObject.Binding.source} that should be used
          * as the source of the binding.
          * 
-         * This should be in [canonical form][canonical-parameter-names] to get the
+         * This should be in [canonical form][class@GObject.ParamSpec#parameter-names] to get the
          * best performance.
          * @since 2.26
          * @construct-only
@@ -3268,7 +3308,7 @@ export function registerClass<
          * The name of the property of {@link GObject.Binding.source} that should be used
          * as the source of the binding.
          * 
-         * This should be in [canonical form][canonical-parameter-names] to get the
+         * This should be in [canonical form][class@GObject.ParamSpec#parameter-names] to get the
          * best performance.
          * @since 2.26
          * @construct-only
@@ -3287,7 +3327,7 @@ export function registerClass<
          * The name of the property of {@link GObject.Binding.target} that should be used
          * as the target of the binding.
          * 
-         * This should be in [canonical form][canonical-parameter-names] to get the
+         * This should be in [canonical form][class@GObject.ParamSpec#parameter-names] to get the
          * best performance.
          * @since 2.26
          * @construct-only
@@ -3299,7 +3339,7 @@ export function registerClass<
          * The name of the property of {@link GObject.Binding.target} that should be used
          * as the target of the binding.
          * 
-         * This should be in [canonical form][canonical-parameter-names] to get the
+         * This should be in [canonical form][class@GObject.ParamSpec#parameter-names] to get the
          * best performance.
          * @since 2.26
          * @construct-only
@@ -3324,15 +3364,12 @@ export function registerClass<
         // Signals
         /** @signal */
         connect<K extends keyof Binding.SignalSignatures>(signal: K, callback: SignalCallback<this, Binding.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Binding.SignalSignatures>(signal: K, callback: SignalCallback<this, Binding.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Binding.SignalSignatures>(signal: K, ...args: GjsParameters<Binding.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Binding.SignalSignatures>(signal: K, ...args: GjsParameters<Binding.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -3483,15 +3520,12 @@ export function registerClass<
         // Signals
         /** @signal */
         connect<K extends keyof BindingGroup.SignalSignatures>(signal: K, callback: SignalCallback<this, BindingGroup.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof BindingGroup.SignalSignatures>(signal: K, callback: SignalCallback<this, BindingGroup.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof BindingGroup.SignalSignatures>(signal: K, ...args: GjsParameters<BindingGroup.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof BindingGroup.SignalSignatures>(signal: K, ...args: GjsParameters<BindingGroup.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -3585,15 +3619,12 @@ export function registerClass<
         // Signals
         /** @signal */
         connect<K extends keyof InitiallyUnowned.SignalSignatures>(signal: K, callback: SignalCallback<this, InitiallyUnowned.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof InitiallyUnowned.SignalSignatures>(signal: K, callback: SignalCallback<this, InitiallyUnowned.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof InitiallyUnowned.SignalSignatures>(signal: K, ...args: GjsParameters<InitiallyUnowned.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof InitiallyUnowned.SignalSignatures>(signal: K, ...args: GjsParameters<InitiallyUnowned.SignalSignatures[K]>): void;
     }
 
 
@@ -3648,7 +3679,7 @@ export function registerClass<
      * methods for all object types in GTK, Pango and other libraries
      * based on GObject. The {@link GObject.Object} class provides methods for object
      * construction and destruction, property access methods, and signal
-     * support. Signals are described in detail [here][gobject-Signals].
+     * support. Signals are described in detail [here](https://docs.gtk.org/gobject/signals.html).
      * 
      * For a tutorial on implementing a new {@link GObject.Object} class, see [How to define and
      * implement a new GObject](https://docs.gtk.org/gobject/tutorial.html#how-to-define-and-implement-a-new-gobject).
@@ -3688,15 +3719,12 @@ export function registerClass<
         // Signals
         /** @signal */
         connect<K extends keyof Object.SignalSignatures>(signal: K, callback: SignalCallback<this, Object.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Object.SignalSignatures>(signal: K, callback: SignalCallback<this, Object.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Object.SignalSignatures>(signal: K, ...args: GjsParameters<Object.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Object.SignalSignatures>(signal: K, ...args: GjsParameters<Object.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -3924,7 +3952,7 @@ export function registerClass<
 
         /**
          * This function is intended for {@link GObject.Object} implementations to re-enforce
-         * a [floating][floating-ref] object reference. Doing this is seldom
+         * a [floating](https://docs.gtk.org/gobject/floating-refs.html) object reference. Doing this is seldom
          * required: all `GInitiallyUnowneds` are created with a floating reference
          * which usually just needs to be sunken by calling `g_object_ref_sink()`.
          * @since 2.10
@@ -3987,7 +4015,7 @@ export function registerClass<
         getv(names: string[], values: (Value | any)[]): void;
 
         /**
-         * Checks whether `object` has a [floating][floating-ref] reference.
+         * Checks whether `object` has a [floating](https://docs.gtk.org/gobject/floating-refs.html) reference.
          * @returns `true` if `object` has a floating reference
          * @since 2.10
          */
@@ -4068,7 +4096,7 @@ export function registerClass<
 
         /**
          * Increase the reference count of `object`, and possibly remove the
-         * [floating][floating-ref] reference, if `object` has a floating reference.
+         * [floating](https://docs.gtk.org/gobject/floating-refs.html) reference, if `object` has a floating reference.
          * 
          * In other words, if the object is floating, then this call "assumes
          * ownership" of the floating reference, converting it to a normal
@@ -4263,15 +4291,12 @@ export function registerClass<
         // Signals
         /** @signal */
         connect<K extends keyof ParamSpec.SignalSignatures>(signal: K, callback: SignalCallback<this, ParamSpec.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ParamSpec.SignalSignatures>(signal: K, callback: SignalCallback<this, ParamSpec.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ParamSpec.SignalSignatures>(signal: K, ...args: GjsParameters<ParamSpec.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ParamSpec.SignalSignatures>(signal: K, ...args: GjsParameters<ParamSpec.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -4739,15 +4764,12 @@ export function registerClass<
         // Signals
         /** @signal */
         connect<K extends keyof SignalGroup.SignalSignatures>(signal: K, callback: SignalCallback<this, SignalGroup.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof SignalGroup.SignalSignatures>(signal: K, callback: SignalCallback<this, SignalGroup.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof SignalGroup.SignalSignatures>(signal: K, ...args: GjsParameters<SignalGroup.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof SignalGroup.SignalSignatures>(signal: K, ...args: GjsParameters<SignalGroup.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -4899,15 +4921,12 @@ export function registerClass<
         // Signals
         /** @signal */
         connect<K extends keyof TypeModule.SignalSignatures>(signal: K, callback: SignalCallback<this, TypeModule.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof TypeModule.SignalSignatures>(signal: K, callback: SignalCallback<this, TypeModule.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof TypeModule.SignalSignatures>(signal: K, ...args: GjsParameters<TypeModule.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof TypeModule.SignalSignatures>(signal: K, ...args: GjsParameters<TypeModule.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -5380,7 +5399,7 @@ export function registerClass<
 
         n_values: number;
 
-        values: EnumValue;
+        values: EnumValue[];
     }
 
 
@@ -5422,7 +5441,7 @@ export function registerClass<
 
         n_values: number;
 
-        values: FlagsValue;
+        values: FlagsValue[];
     }
 
 
@@ -6226,7 +6245,7 @@ export function registerClass<
 
         /**
          * Initializes `value` to store values of the given `type`, and sets its value
-         * to the default for `type`.
+         * to the initial value for `type`.
          * 
          * This must be called before any other methods on a {@link GObject.Value}, so
          * the value knows what type it’s meant to store.
@@ -6270,7 +6289,7 @@ export function registerClass<
         peek_pointer(): null;
 
         /**
-         * Clears the current value in `value` and resets it to the default value
+         * Clears the current value in `value` and resets it to the initial value
          * (as if the value had just been initialized using
          * {@link GObject.Value.init}).
          * @returns the {@link GObject.Value} structure that has been passed in

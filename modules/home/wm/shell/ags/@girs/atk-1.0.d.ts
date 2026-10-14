@@ -259,32 +259,36 @@ export namespace Atk {
          */
         NODE_PARENT_OF = 16,
         /**
-         * Reciprocal of {@link Atk.RelationType.DETAILS_FOR}. Indicates that this object
-         * has a detailed or extended description, the contents of which can be found in the target
-         * object(s). This relation type is most appropriate for information that is sufficiently
-         * lengthy as to make navigation to the container of that information desirable. For less
-         * verbose information suitable for announcement only, see {@link Atk.RelationType.DESCRIBED_BY}. If
-         * the detailed information describes an error condition, {@link Atk.RelationType.ERROR_FOR} should be
-         * used instead. `Since`: ATK-2.26.
+         * Reciprocal of {@link Atk.RelationType.DETAILS_FOR}. Indicates that this object has a
+         * detailed or extended description, the contents of which can be found in the
+         * target object(s). This relation type is most appropriate for information
+         * that is sufficiently lengthy as to make navigation to the container of that
+         * information desirable. For less verbose information suitable for
+         * announcement only, see {@link Atk.RelationType.DESCRIBED_BY}. If the detailed
+         * information describes an error condition, {@link Atk.RelationType.ERROR_FOR} should be
+         * used instead.
          */
         DETAILS = 17,
         /**
-         * Reciprocal of {@link Atk.RelationType.DETAILS}. Indicates that this object
-         * provides a detailed or extended description about the target object(s). See also
-         * {@link Atk.RelationType.DESCRIPTION_FOR} and {@link Atk.RelationType.ERROR_FOR}. `Since`: ATK-2.26.
+         * Reciprocal of {@link Atk.RelationType.DETAILS}. Indicates that this object provides a
+         * detailed or extended description about the target object(s). See also
+         * {@link Atk.RelationType.DESCRIPTION_FOR} and {@link Atk.RelationType.ERROR_FOR}.
+         * @since 2.26
          */
         DETAILS_FOR = 18,
         /**
-         * Reciprocal of {@link Atk.RelationType.ERROR_FOR}. Indicates that this object
-         * has one or more errors, the nature of which is described in the contents of the target
-         * object(s). Objects that have this relation type should also contain {@link Atk.StateType.INVALID_ENTRY}
-         * in their {@link Atk.StateSet}. `Since`: ATK-2.26.
+         * Reciprocal of {@link Atk.RelationType.ERROR_FOR}. Indicates that this object has one or
+         * more errors, the nature of which is described in the contents of the target
+         * object(s). Objects that have this relation type should also contain
+         * {@link Atk.StateType.INVALID_ENTRY} in their {@link Atk.StateSet}.
+         * @since 2.26
          */
         ERROR_MESSAGE = 19,
         /**
          * Reciprocal of {@link Atk.RelationType.ERROR_MESSAGE}. Indicates that this object
-         * contains an error message describing an invalid condition in the target object(s). `Since`:
-         * ATK_2.26.
+         * contains an error message describing an invalid condition in the target
+         * object(s).
+         * @since 2.26
          */
         ERROR_FOR = 20,
         /**
@@ -547,7 +551,8 @@ export namespace Atk {
          */
         TEAR_OFF_MENU_ITEM = 58,
         /**
-         * An object that represents an accessible terminal.  (Since: 0.6)
+         * An object that represents an accessible terminal.
+         * @since 0.6
          */
         TERMINAL = 59,
         /**
@@ -577,7 +582,9 @@ export namespace Atk {
          */
         TREE = 64,
         /**
-         * An object capable of expanding and collapsing rows as well as showing multiple columns of data.   (Since: 0.7)
+         * An object capable of expanding and collapsing rows as well as showing
+         * multiple columns of data.
+         * @since 0.7
          */
         TREE_TABLE = 65,
         /**
@@ -593,238 +600,306 @@ export namespace Atk {
          */
         WINDOW = 68,
         /**
-         * An object that serves as a document header. (Since: 1.1.1)
+         * An object that serves as a document header.
+         * @since 1.1.1
          */
         HEADER = 69,
         /**
-         * An object that serves as a document footer.  (Since: 1.1.1)
+         * An object that serves as a document footer.
+         * @since 1.1.1
          */
         FOOTER = 70,
         /**
-         * An object which is contains a paragraph of text content.   (Since: 1.1.1)
+         * An object which contains a paragraph of text content.
+         * @since 1.1.1
          */
         PARAGRAPH = 71,
         /**
-         * An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER_FOR relation to such).   (Since: 1.1.1)
+         * An object which describes margins and tab stops, etc. for text objects
+         * which it controls (should have CONTROLLER_FOR relation to such).
+         * @since 1.1.1
          */
         RULER = 72,
         /**
-         * The object is an application object, which may contain `ATK_ROLE_FRAME` objects or other types of accessibles.  The root accessible of any application's ATK hierarchy should have ATK_ROLE_APPLICATION.   (Since: 1.1.4)
+         * The object is an application object, which may contain `ATK_ROLE_FRAME`
+         * objects or other types of accessibles.  The root accessible of any
+         * application's ATK hierarchy should have ATK_ROLE_APPLICATION.
+         * @since 1.1.4
          */
         APPLICATION = 73,
         /**
-         * The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry.   (Since: 1.3)
+         * The object is a dialog or list containing items for insertion into an entry
+         * widget, for instance a list of words for completion of a text entry.
+         * @since 1.3
          */
         AUTOCOMPLETE = 74,
         /**
-         * The object is an editable text object in a toolbar.  (Since: 1.5)
+         * The object is an editable text object in a toolbar.
+         * @since 1.5
          */
         EDIT_BAR = 75,
         /**
-         * The object is an embedded container within a document or panel.  This role is a grouping "hint" indicating that the contained objects share a context.  (Since: 1.7.2)
+         * The object is an embedded container within a document or panel.  This role
+         * is a grouping "hint" indicating that the contained objects share a context.
+         * @since 1.7.2
          */
         EMBEDDED = 76,
         /**
-         * The object is a component whose textual content may be entered or modified by the user, provided `ATK_STATE_EDITABLE` is present.   (Since: 1.11)
+         * The object is a component whose textual content may be entered or modified
+         * by the user, provided `ATK_STATE_EDITABLE` is present.
+         * @since 1.11
          */
         ENTRY = 77,
         /**
-         * The object is a graphical depiction of quantitative data. It may contain multiple subelements whose attributes and/or description may be queried to obtain both the quantitative data and information about how the data is being presented. The LABELLED_BY relation is particularly important in interpreting objects of this type, as is the accessible-description property.  (Since: 1.11)
+         * The object is a graphical depiction of quantitative data. It may contain
+         * multiple subelements whose attributes and/or description may be queried to
+         * obtain both the quantitative data and information about how the data is
+         * being presented. The LABELLED_BY relation is particularly important in
+         * interpreting objects of this type, as is the accessible-description
+         * property.
+         * @since 1.11
          */
         CHART = 78,
         /**
-         * The object contains descriptive information, usually textual, about another user interface element such as a table, chart, or image.  (Since: 1.11)
+         * The object contains descriptive information, usually textual, about another
+         * user interface element such as a table, chart, or image.
+         * @since 1.11
          */
         CAPTION = 79,
         /**
-         * The object is a visual frame or container which contains a view of document content. Document frames may occur within another Document instance, in which case the second document may be said to be embedded in the containing instance. HTML frames are often ROLE_DOCUMENT_FRAME. Either this object, or a singleton descendant, should implement the Document interface.  (Since: 1.11)
+         * The object is a visual frame or container which contains a view of document
+         * content. Document frames may occur within another Document instance, in
+         * which case the second document may be said to be embedded in the containing
+         * instance. HTML frames are often ROLE_DOCUMENT_FRAME. Either this object, or
+         * a singleton descendant, should implement the Document interface.
+         * @since 1.11
          */
         DOCUMENT_FRAME = 80,
         /**
-         * The object serves as a heading for content which follows it in a document. The 'heading level' of the heading, if availabe, may be obtained by querying the object's attributes.
+         * The object serves as a heading for content which follows it in a document. The 'heading level' of the heading, if available, may be obtained by querying the object's attributes.
          */
         HEADING = 81,
         /**
-         * The object is a containing instance which encapsulates a page of information. `ATK_ROLE_PAGE` is used in documents and content which support a paginated navigation model.  (Since: 1.11)
+         * The object is a containing instance which encapsulates a page of
+         * information. `ATK_ROLE_PAGE` is used in documents and content which support a
+         * paginated navigation model.
+         * @since 1.11
          */
         PAGE = 82,
         /**
-         * The object is a containing instance of document content which constitutes a particular 'logical' section of the document. The type of content within a section, and the nature of the section division itself, may be obtained by querying the object's attributes. Sections may be nested. (Since: 1.11)
+         * The object is a containing instance of document content which constitutes a
+         * particular 'logical' section of the document. The type of content within a
+         * section, and the nature of the section division itself, may be obtained by
+         * querying the object's attributes. Sections may be nested.
+         * @since 1.11
          */
         SECTION = 83,
         /**
-         * The object is redundant with another object in the hierarchy, and is exposed for purely technical reasons.  Objects of this role should normally be ignored by clients. (Since: 1.11)
+         * The object is redundant with another object in the hierarchy, and is
+         * exposed for purely technical reasons.  Objects of this role should normally
+         * be ignored by clients.
+         * @since 1.11
          */
         REDUNDANT_OBJECT = 84,
         /**
-         * The object is a container for form controls, for instance as part of a
-         * web form or user-input form within a document.  This role is primarily a tag/convenience for
-         * clients when navigating complex documents, it is not expected that ordinary GUI containers will
-         * always have ATK_ROLE_FORM. (Since: 1.12.0)
+         * The object is a container for form controls, for instance as part of a web
+         * form or user-input form within a document.  This role is primarily a
+         * tag/convenience for clients when navigating complex documents, it is not
+         * expected that ordinary GUI containers will always have ATK_ROLE_FORM.
+         * @since 1.12.0
          */
         FORM = 85,
         /**
-         * The object is a hypertext anchor, i.e. a "link" in a
-         * hypertext document.  Such objects are distinct from 'inline'
-         * content which may also use the Hypertext/Hyperlink interfaces
-         * to indicate the range/location within a text object where
-         * an inline or embedded object lies.  (Since: 1.12.1)
+         * The object is a hypertext anchor, i.e. a "link" in a hypertext document.
+         * Such objects are distinct from 'inline' content which may also use the
+         * Hypertext/Hyperlink interfaces to indicate the range/location within a text
+         * object where an inline or embedded object lies.
+         * @since 1.12.1
          */
         LINK = 86,
         /**
-         * The object is a window or similar viewport
-         * which is used to allow composition or input of a 'complex character',
-         * in other words it is an "input method window." (Since: 1.12.1)
+         * The object is a window or similar viewport which is used to allow
+         * composition or input of a 'complex character', in other words it is an
+         * "input method window."
+         * @since 1.12.1
          */
         INPUT_METHOD_WINDOW = 87,
         /**
-         * A row in a table.  (Since: 2.1.0)
+         * A row in a table.
+         * @since 2.1.0
          */
         TABLE_ROW = 88,
         /**
-         * An object that represents an element of a tree.  (Since: 2.1.0)
+         * An object that represents an element of a tree.
+         * @since 2.1.0
          */
         TREE_ITEM = 89,
         /**
-         * A document frame which contains a spreadsheet.  (Since: 2.1.0)
+         * A document frame which contains a spreadsheet.
+         * @since 2.1.0
          */
         DOCUMENT_SPREADSHEET = 90,
         /**
-         * A document frame which contains a presentation or slide content.  (Since: 2.1.0)
+         * A document frame which contains a presentation or slide content.
+         * @since 2.1.0
          */
         DOCUMENT_PRESENTATION = 91,
         /**
-         * A document frame which contains textual content, such as found in a word processing application.  (Since: 2.1.0)
+         * A document frame which contains textual content, such as found in a word
+         * processing application.
+         * @since 2.1.0
          */
         DOCUMENT_TEXT = 92,
         /**
-         * A document frame which contains HTML or other markup suitable for display in a web browser.  (Since: 2.1.0)
+         * A document frame which contains HTML or other markup suitable for display
+         * in a web browser.
+         * @since 2.1.0
          */
         DOCUMENT_WEB = 93,
         /**
-         * A document frame which contains email content to be displayed or composed either in plain text or HTML.  (Since: 2.1.0)
+         * A document frame which contains email content to be displayed or composed
+         * either in plain text or HTML.
+         * @since 2.1.0
          */
         DOCUMENT_EMAIL = 94,
         /**
-         * An object found within a document and designed to present a comment, note, or other annotation. In some cases, this object might not be visible until activated.  (Since: 2.1.0)
+         * An object found within a document and designed to present a comment, note,
+         * or other annotation. In some cases, this object might not be visible until
+         * activated.
+         * @since 2.1.0
          */
         COMMENT = 95,
         /**
-         * A non-collapsible list of choices the user can select from. (Since: 2.1.0)
+         * A non-collapsible list of choices the user can select from.
+         * @since 2.1.0
          */
         LIST_BOX = 96,
         /**
-         * A group of related widgets. This group typically has a label. (Since: 2.1.0)
+         * A group of related widgets. This group typically has a label.
+         * @since 2.1.0
          */
         GROUPING = 97,
         /**
-         * An image map object. Usually a graphic with multiple hotspots, where each hotspot can be activated resulting in the loading of another document or section of a document. (Since: 2.1.0)
+         * An image map object. Usually a graphic with multiple hotspots, where
+         * each hotspot can be activated resulting in the loading of another
+         * document or section of a document.
+         * @since 2.1.0
          */
         IMAGE_MAP = 98,
         /**
-         * A transitory object designed to present a message to the user, typically at the desktop level rather than inside a particular application.  (Since: 2.1.0)
+         * A transitory object designed to present a message to the user, typically
+         * at the desktop level rather than inside a particular application.
+         * @since 2.1.0
          */
         NOTIFICATION = 99,
         /**
-         * An object designed to present a message to the user within an existing window. (Since: 2.1.0)
+         * An object designed to present a message to the user within an existing
+         * window.
+         * @since 2.1.0
          */
         INFO_BAR = 100,
         /**
-         * A bar that serves as a level indicator to, for instance, show the strength of a password or the state of a battery.  (Since: 2.7.3)
+         * A bar that serves as a level indicator to, for instance, show the strength of a
+         * password or the state of a battery.
+         * @since 2.7.3
          */
         LEVEL_BAR = 101,
         /**
-         * A bar that serves as the title of a window or a
-         * dialog. (Since: 2.12)
+         * A bar that serves as the title of a window or a dialog.
+         * @since 2.12
          */
         TITLE_BAR = 102,
         /**
-         * An object which contains a text section
-         * that is quoted from another source. (Since: 2.12)
+         * An object which contains a text section that is quoted from another source.
+         * @since 2.12
          */
         BLOCK_QUOTE = 103,
         /**
-         * An object which represents an audio element. (Since: 2.12)
+         * An object which represents an audio element.
+         * @since 2.12
          */
         AUDIO = 104,
         /**
-         * An object which represents a video element. (Since: 2.12)
+         * An object which represents a video element.
+         * @since 2.12
          */
         VIDEO = 105,
         /**
-         * A definition of a term or concept. (Since: 2.12)
+         * A definition of a term or concept.
+         * @since 2.12
          */
         DEFINITION = 106,
         /**
-         * A section of a page that consists of a
-         * composition that forms an independent part of a document, page, or
-         * site. Examples: A blog entry, a news story, a forum post. (Since: 2.12)
+         * A section of a page that consists of a composition that forms an independent
+         * part of a document, page, or site. Examples: A blog entry, a news story,
+         * a forum post.
+         * @since 2.12
          */
         ARTICLE = 107,
         /**
-         * A region of a web page intended as a
-         * navigational landmark. This is designed to allow Assistive
-         * Technologies to provide quick navigation among key regions within a
-         * document. (Since: 2.12)
+         * A region of a web page intended as a * navigational landmark. This is
+         * designed to allow Assistive Technologies to provide quick navigation
+         * among key regions within a * document.
+         * @since 2.12
          */
         LANDMARK = 108,
         /**
-         * A text widget or container holding log content, such
-         * as chat history and error logs. In this role there is a
-         * relationship between the arrival of new items in the log and the
-         * reading order. The log contains a meaningful sequence and new
-         * information is added only to the end of the log, not at arbitrary
-         * points. (Since: 2.12)
+         * A text widget or container holding log content, such as chat history
+         * and error logs. In this role there is a relationship between the arrival
+         * of new items in the log and the reading order. The log contains a
+         * meaningful sequence and new information is added only to the end of
+         * the log, not at arbitrary points.
+         * @since 2.12
          */
         LOG = 109,
         /**
-         * A container where non-essential information
-         * changes frequently. Common usages of marquee include stock tickers
-         * and ad banners. The primary difference between a marquee and a log
-         * is that logs usually have a meaningful order or sequence of
-         * important content changes. (Since: 2.12)
+         * A container where non-essential information changes frequently. Common
+         * usages of marquee include stock tickers * and ad banners. The primary
+         * difference between a marquee and a log is that logs usually have a
+         * meaningful order or sequence of important content changes.
+         * @since 2.12
          */
         MARQUEE = 110,
         /**
-         * A text widget or container that holds a mathematical
-         * expression. (Since: 2.12)
+         * A text widget or container that holds a mathematical expression.
+         * @since 2.12
          */
         MATH = 111,
         /**
-         * A widget whose purpose is to display a rating,
-         * such as the number of stars associated with a song in a media
-         * player. Objects of this role should also implement
-         * AtkValue. (Since: 2.12)
+         * A widget whose purpose is to display a rating, such as the number of
+         * stars associated with a song in a media player. Objects of this role should
+         * also implement AtkValue.
+         * @since 2.12
          */
         RATING = 112,
         /**
-         * An object containing a numerical counter which
-         * indicates an amount of elapsed time from a start point, or the time
-         * remaining until an end point. (Since: 2.12)
+         * An object containing a numerical counter which indicates an amount of
+         * elapsed time from a start point, or the time remaining until an end point.
+         * @since 2.12
          */
         TIMER = 113,
         /**
-         * An object that represents a list of
-         * term-value groups. A term-value group represents a individual
-         * description and consist of one or more names
+         * An object that represents a list of term-value groups. A term-value group
+         * represents an individual description and consist of one or more names
          * (ATK_ROLE_DESCRIPTION_TERM) followed by one or more values
          * (ATK_ROLE_DESCRIPTION_VALUE). For each list, there should not be
-         * more than one group with the same term name. (Since: 2.12)
+         * more than one group with the same term name.
+         * @since 2.12
          */
         DESCRIPTION_LIST = 114,
         /**
-         * An object that represents a term or phrase
-         * with a corresponding definition. (Since: 2.12)
+         * An object that represents a term or phrase with a corresponding definition.
+         * @since 2.12
          */
         DESCRIPTION_TERM = 115,
         /**
-         * An object that represents the
-         * description, definition or value of a term. (Since: 2.12)
+         * An object that represents the description, definition or value of a term.
+         * @since 2.12
          */
         DESCRIPTION_VALUE = 116,
         /**
-         * A generic non-container object whose purpose is to display a
-         * brief amount of information to the user and whose role is known by the
+         * A generic non-container object whose purpose is to display a brief
+         * amount of information to the user and whose role is known by the
          * implementor but lacks semantic value for the user. Examples in which
          * {@link Atk.Role.STATIC} is appropriate include the message displayed in a message box
          * and an image used as an alternative means to display text. {@link Atk.Role.STATIC}
@@ -835,71 +910,76 @@ export namespace Atk {
          * inappropriate, it may indicate that a different role should be used. For
          * labels which describe another widget, see {@link Atk.Role.LABEL}. For text views, see
          * {@link Atk.Role.TEXT}. For generic containers, see {@link Atk.Role.PANEL}. For objects whose
-         * role is not known by the implementor, see {@link Atk.Role.UNKNOWN}. (Since: 2.16)
+         * role is not known by the implementor, see {@link Atk.Role.UNKNOWN}.
+         * @since 2.16
          */
         STATIC = 117,
         /**
          * An object that represents a mathematical fraction.
-         * (Since: 2.16)
+         * @since 2.16
          */
         MATH_FRACTION = 118,
         /**
-         * An object that represents a mathematical expression
-         * displayed with a radical. (Since: 2.16)
+         * An object that represents a mathematical expression displayed with a
+         * radical.
+         * @since 2.16
          */
         MATH_ROOT = 119,
         /**
-         * An object that contains text that is displayed as a
-         * subscript. (Since: 2.16)
+         * An object that contains text that is displayed as a subscript.
+         * @since 2.16
          */
         SUBSCRIPT = 120,
         /**
-         * An object that contains text that is displayed as a
-         * superscript. (Since: 2.16)
+         * An object that contains text that is displayed as a superscript.
+         * @since 2.16
          */
         SUPERSCRIPT = 121,
         /**
-         * An object that contains the text of a footnote. (Since: 2.26)
+         * An object that contains the text of a footnote.
+         * @since 2.26
          */
         FOOTNOTE = 122,
         /**
-         * Content previously deleted or proposed to be
-         * deleted, e.g. in revision history or a content view providing suggestions
-         * from reviewers. (Since: 2.34)
+         * Content previously deleted or proposed to be deleted, e.g. in revision
+         * history or a content view providing suggestions from reviewers.
+         * @since 2.34
          */
         CONTENT_DELETION = 123,
         /**
-         * Content previously inserted or proposed to be
-         * inserted, e.g. in revision history or a content view providing suggestions
-         * from reviewers. (Since: 2.34)
+         * Content previously inserted or proposed to be inserted, e.g. in revision
+         * history or a content view providing suggestions from reviewers.
+         * @since 2.34
          */
         CONTENT_INSERTION = 124,
         /**
-         * A run of content that is marked or highlighted, such as for
-         * reference purposes, or to call it out as having a special purpose. If the
-         * marked content has an associated section in the document elaborating on the
+         * A run of content that is marked or highlighted, such as for reference
+         *  purposes, or to call it out as having a special purpose. If the marked
+         * content has an associated section in the document elaborating on the
          * reason for the mark, then {@link Atk.RelationType.DETAILS} should be used on the mark
          * to point to that associated section. In addition, the reciprocal relation
          * {@link Atk.RelationType.DETAILS_FOR} should be used on the associated content section
-         * to point back to the mark. (Since: 2.36)
+         * to point back to the mark.
+         * @since 2.36
          */
         MARK = 125,
         /**
-         * A container for content that is called out as a proposed
-         * change from the current version of the document, such as by a reviewer of the
+         * A container for content that is called out as a proposed change from
+         * the current version of the document, such as by a reviewer of the
          * content. This role should include either {@link Atk.Role.CONTENT_DELETION} and/or
          * {@link Atk.Role.CONTENT_INSERTION} children, in any order, to indicate what the
-         * actual change is. (Since: 2.36)
+         * actual change is.
+         * @since 2.36
          */
         SUGGESTION = 126,
         /**
          * A specialized push button to open a menu.
-         * (Since: 2.46)
+         * @since 2.46
          */
         PUSH_BUTTON_MENU = 127,
         /**
          * A switch that can be toggled on/off.
-         * (Since: 2.56)
+         * @since 2.56
          */
         SWITCH = 128,
         /**
@@ -1185,36 +1265,39 @@ export namespace Atk {
          */
         VISITED = 38,
         /**
-         * Indicates this object has the potential to be
-         *  checked, such as a checkbox or toggle-able table cell. `Since`:
-         *  ATK-2.12
+         * Indicates this object has the potential to be  checked, such as a checkbox
+         * or toggle-able table cell.
+         * @since 2.12
          */
         CHECKABLE = 39,
         /**
-         * Indicates that the object has a popup context
-         * menu or sub-level menu which may or may not be showing. This means
-         * that activation renders conditional content.  Note that ordinary
-         * tooltips are not considered popups in this context. `Since`: ATK-2.12
+         * Indicates that the object has a popup context menu or sub-level menu which
+         * may or may not be showing. This means that activation renders conditional
+         * content.  Note that ordinary tooltips are not considered popups in this
+         * context.
+         * @since 2.12
          */
         HAS_POPUP = 40,
         /**
-         * Indicates this object has a tooltip. `Since`: ATK-2.16
+         * Indicates this object has a tooltip.
+         * @since 2.16
          */
         HAS_TOOLTIP = 41,
         /**
-         * Indicates that a widget which is ENABLED and SENSITIVE
-         * has a value which can be read, but not modified, by the user. Note that this
-         * state should only be applied to widget types whose value is normally directly
-         * user modifiable, such as check boxes, radio buttons, spin buttons, text input
-         * fields, and combo boxes, as a means to convey that the expected interaction
-         * with that widget is not possible. When the expected interaction with a
-         * widget does not include modification by the user, as is the case with
-         * labels and containers, ATK_STATE_READ_ONLY should not be applied. See also
-         * ATK_STATE_EDITABLE. `Since`: ATK-2-16
+         * Indicates that a widget which is ENABLED and SENSITIVE has a value which
+         * can be read, but not modified, by the user. Note that this state should only
+         * be applied to widget types whose value is normally directly user modifiable,
+         * such as check boxes, radio buttons, spin buttons, text input fields, and
+         * combo boxes, as a means to convey that the expected interaction with that
+         * widget is not possible. When the expected interaction with a widget does not
+         * include modification by the user, as is the case with labels and containers,
+         * ATK_STATE_READ_ONLY should not be applied. See also ATK_STATE_EDITABLE.
+         * @since 2.16
          */
         READ_ONLY = 42,
         /**
-         * Indicates this object is collapsed. `Since`: ATK-2.38
+         * Indicates this object is collapsed.
+         * @since 2.38
          */
         COLLAPSED = 43,
         /**
@@ -1253,11 +1336,11 @@ export namespace Atk {
          */
         INDENT = 3,
         /**
-         * Either "true" or "false" indicating whether text is visible or not
+         * Either "true" or "false" indicating whether text is visible or not.
          */
         INVISIBLE = 4,
         /**
-         * Either "true" or "false" indicating whether text is editable or not
+         * Either "true" or "false" indicating whether text is editable or not.
          */
         EDITABLE = 5,
         /**
@@ -1353,9 +1436,18 @@ export namespace Atk {
          */
         TEXT_POSITION = 28,
         /**
+         * A run of content that is marked or highlighted, such as for reference
+         * purposes, or to call it out as having a special purpose that is clear from
+         * context. This is similar to ATK_ROLE_MARK, but this is used where it may
+         * apply to a partial span of text in an object, rather than to an entire
+         * object. Values are "true" or "false".
+         * @since 2.60
+         */
+        MARK = 29,
+        /**
          * not a valid text attribute, used for finding end of enumeration
          */
-        LAST_DEFINED = 29,
+        LAST_DEFINED = 30,
     }
 
 
@@ -1525,7 +1617,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
-     * @default 25813
+     * @default 26016
      */
     const BINARY_AGE: number;
 
@@ -1552,7 +1644,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
-     * @default 3
+     * @default 6
      */
     const MICRO_VERSION: number;
 
@@ -1561,7 +1653,7 @@ export namespace Atk {
      * application compile time, rather than from the library linked
      * against at application run time.
      * @since 2.7.4
-     * @default 58
+     * @default 60
      */
     const MINOR_VERSION: number;
 
@@ -1970,15 +2062,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof GObjectAccessible.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GObjectAccessible.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof GObjectAccessible.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, GObjectAccessible.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof GObjectAccessible.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GObjectAccessible.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof GObjectAccessible.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<GObjectAccessible.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -2108,15 +2197,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Hyperlink.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Hyperlink.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Hyperlink.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Hyperlink.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Hyperlink.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Hyperlink.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Hyperlink.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Hyperlink.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -2458,15 +2544,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Misc.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Misc.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Misc.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Misc.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Misc.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Misc.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Misc.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Misc.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -2589,15 +2672,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof NoOpObject.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NoOpObject.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NoOpObject.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NoOpObject.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NoOpObject.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NoOpObject.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NoOpObject.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NoOpObject.SignalSignatures[K]>): void;
 
         /**
          * Perform the specified action on the object.
@@ -4983,15 +5063,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof NoOpObjectFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NoOpObjectFactory.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof NoOpObjectFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, NoOpObjectFactory.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof NoOpObjectFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NoOpObjectFactory.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof NoOpObjectFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<NoOpObjectFactory.SignalSignatures[K]>): void;
     }
 
 
@@ -6210,15 +6287,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Object.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Object.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Object.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Object.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Object.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Object.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Object.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Object.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -6664,15 +6738,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof ObjectFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ObjectFactory.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof ObjectFactory.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ObjectFactory.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof ObjectFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ObjectFactory.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof ObjectFactory.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ObjectFactory.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -6765,15 +6836,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Plug.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Plug.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Plug.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Plug.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Plug.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Plug.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Plug.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Plug.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -7150,15 +7218,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Registry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Registry.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Registry.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Registry.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Registry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Registry.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Registry.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Registry.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -7255,15 +7320,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Relation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Relation.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Relation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Relation.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Relation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Relation.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Relation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Relation.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -7342,15 +7404,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof RelationSet.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RelationSet.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof RelationSet.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RelationSet.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof RelationSet.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<RelationSet.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof RelationSet.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<RelationSet.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -7499,15 +7558,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Socket.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Socket.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Socket.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Socket.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Socket.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Socket.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Socket.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Socket.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -7887,15 +7943,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof StateSet.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StateSet.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StateSet.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StateSet.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StateSet.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StateSet.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StateSet.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StateSet.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -8023,15 +8076,12 @@ export namespace Atk {
         // Signals
         /** @signal */
         connect<K extends keyof Util.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Util.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Util.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Util.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Util.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Util.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Util.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Util.SignalSignatures[K]>): void;
     }
 
 

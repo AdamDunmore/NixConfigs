@@ -496,6 +496,10 @@ export namespace Atspi {
          */
         META3 = 6,
         /**
+         * Alias for META3.
+         */
+        SUPER = 6,
+        /**
          * A symbolic meta key name that is mapped by AT-SPI
          * to the appropriate META value, for the convenience of the client.
          */
@@ -514,12 +518,12 @@ export namespace Atspi {
      * {@link Atspi.RelationType} specifies a relationship between objects
      * (possibly one-to-many
      * or many-to-one) outside of the normal parent/child hierarchical
-     * relationship. It allows better semantic       identification of how objects
+     * relationship. It allows better semantic identification of how objects
      * are associated with one another.       For instance the
      * `ATSPI_RELATION_LABELLED_BY`
-     * relationship may be used to identify labelling information       that should
+     * relationship may be used to identify labelling information that should
      * accompany the accessible name property when presenting an object's content or
-     * identity       to the end user.  Similarly,
+     * identity to the end user.  Similarly,
      * `ATSPI_RELATION_CONTROLLER_FOR` can be used
      * to further specify the context in which a valuator is useful, and/or the
      * other UI components which are directly effected by user interactions with
@@ -649,35 +653,37 @@ export namespace Atspi {
          */
         DESCRIBED_BY = 18,
         /**
-         * Reciprocal of {@link Atspi.RelationType.DETAILS_FOR}. Indicates
-         * that this object has a detailed or extended description, the contents of
-         * which can be found in the target object(s). This relation type is most
-         * appropriate for information that is sufficiently lengthy as to make
-         * navigation to the container of that information desirable. For less verbose
-         * information suitable for announcement only, see {@link Atspi.RelationType.DESCRIBED_BY}.
-         * If the detailed information describes an error condition,
-         * {@link Atspi.RelationType.ERROR_FOR} should be used instead. `Since`: 2.26.
+         * Reciprocal of {@link Atspi.RelationType.DETAILS_FOR}. Indicates that this object has a
+         * detailed or extended description, the contents of which can be found in the
+         * target object(s). This relation type is most appropriate for information
+         * that is sufficiently lengthy as to make navigation to the container of that
+         * information desirable. For less verbose information suitable for
+         * announcement only, see {@link Atspi.RelationType.DESCRIBED_BY}. If the detailed
+         * information describes an error condition, {@link Atspi.RelationType.ERROR_FOR} should
+         * be used instead.
+         * @since 2.26
          */
         DETAILS = 19,
         /**
-         * Reciprocal of {@link Atspi.RelationType.DETAILS}. Indicates
-         * that this object provides a detailed or extended description about the target
-         * object(s). See also {@link Atspi.RelationType.DESCRIPTION_FOR} and
-         * {@link Atspi.RelationType.ERROR_FOR}. `Since`: 2.26.
+         * Reciprocal of {@link Atspi.RelationType.DETAILS}. Indicates that this object provides a
+         * detailed or extended description about the target object(s). See also
+         * {@link Atspi.RelationType.DESCRIPTION_FOR} and {@link Atspi.RelationType.ERROR_FOR}.
+         * @since 2.26
          */
         DETAILS_FOR = 20,
         /**
-         * Reciprocal of {@link Atspi.RelationType.ERROR_FOR}.
-         * Indicates that this object has one or more errors, the nature of which is
-         * described in the contents of the target object(s). Objects that have this
-         * relation type should also contain {@link Atspi.StateType.INVALID_ENTRY} in their
-         * {@link Atspi.StateSet}. `Since`: 2.26.
+         * Reciprocal of {@link Atspi.RelationType.ERROR_FOR}. Indicates that this object has one
+         * or more errors, the nature of which is described in the contents of the
+         * target object(s). Objects that have this relation type should also contain
+         * {@link Atspi.StateType.INVALID_ENTRY} in their {@link Atspi.StateSet}.
+         * @since 2.26
          */
         ERROR_MESSAGE = 21,
         /**
-         * Reciprocal of {@link Atspi.RelationType.ERROR_MESSAGE}.
-         * Indicates that this object contains an error message describing an invalid
-         * condition in the target object(s). `Since`: 2.26.
+         * Reciprocal of {@link Atspi.RelationType.ERROR_MESSAGE}. Indicates that this object
+         * contains an error message describing an invalid condition in the target
+         * object(s).
+         * @since 2.26
          */
         ERROR_FOR = 22,
         /**
@@ -736,7 +742,7 @@ export namespace Atspi {
         CANVAS = 6,
         /**
          * A choice that can be checked or unchecked and
-         * provides a separate       indicator for the current state.
+         * provides a separate indicator for the current state.
          */
         CHECK_BOX = 7,
         /**
@@ -837,8 +843,10 @@ export namespace Atspi {
          */
         INTERNAL_FRAME = 28,
         /**
-         * An object used to present an icon or short string in an
-         * interface.
+         * For text views, see `ATSPI_ROLE_TEXT`. For generic containers, see
+         * `ATSPI_ROLE_PANEL`. For objects whose role is not known by the implementor,
+         * see `ATSPI_ROLE_UNKNOWN`.
+         * @since 2.16
          */
         LABEL = 29,
         /**
@@ -942,7 +950,7 @@ export namespace Atspi {
          * a large amount of information. `ATSPI_ROLE_SCROLL_PANE` objects are usually
          * accompanied by `ATSPI_ROLE_SCROLL_BAR` controllers, on which the
          * `ATSPI_RELATION_CONTROLLER_FOR` and `ATSPI_RELATION_CONTROLLED_BY`
-         * reciprocal relations are set. See  `atspi_get_relation_set`.
+         * reciprocal relations are set. See `atspi_get_relation_set`.
          */
         SCROLL_PANE = 49,
         /**
@@ -1114,7 +1122,7 @@ export namespace Atspi {
         /**
          * The object is a graphical depiction of quantitative data.
          * It may contain multiple subelements whose attributes and/or description
-         * may be queried to obtain both the  quantitative data and information about
+         * may be queried to obtain both the quantitative data and information about
          * how the data is being presented. The `ATSPI_LABELLED_BY` relation is
          * particularly important in interpreting objects of this type, as is the
          * accessible description property. See `ATSPI_ROLE_CAPTION`.
@@ -1129,7 +1137,7 @@ export namespace Atspi {
         /**
          * The object is a visual frame or container which
          * contains a view of document content. {@link Atspi.Document} frames may occur within
-         * another {@link Atspi.Document} instance, in which case the second  document may be
+         * another {@link Atspi.Document} instance, in which case the second document may be
          * said to be embedded in the containing instance.  HTML frames are often
          * ATSPI_ROLE_DOCUMENT_FRAME:  Either this object, or a singleton descendant,
          * should implement the {@link Atspi.Document} interface.
@@ -1138,7 +1146,7 @@ export namespace Atspi {
         /**
          * The object serves as a heading for content which
          * follows it in a document. The 'heading level' of the heading, if
-         * availabe,  may be obtained by       querying the object's attributes.
+         * available,  may be obtained by querying the object's attributes.
          */
         HEADING = 83,
         /**
@@ -1258,81 +1266,83 @@ export namespace Atspi {
          */
         INFO_BAR = 102,
         /**
-         * A bar that serves as a level indicator to, for
-         * instance, show the strength of a password or the state of a battery. `Since`: 2.8
+         * A bar that serves as a level indicator to, for instance, show the strength
+         * of a password or the state of a battery.
+         * @since 2.8
          */
         LEVEL_BAR = 103,
         /**
-         * A bar that serves as the title of a window or a
-         *  dialog. `Since`: 2.12
+         * A bar that serves as the title of a window or a dialog.
+         * @since 2.12
          */
         TITLE_BAR = 104,
         /**
-         * An object which contains a text section
-         *  that is quoted from another source.  `Since`: 2.12
+         * An object which contains a text section that is quoted from another source.
+         * @since 2.12
          */
         BLOCK_QUOTE = 105,
         /**
-         * An object which represents an audio
-         *  element. `Since`: 2.12
+         * An object which represents an audio element.
+         * @since 2.12
          */
         AUDIO = 106,
         /**
-         * An object which represents a video
-         *  element. `Since`: 2.12
+         * An object which represents a video element.
+         * @since 2.12
          */
         VIDEO = 107,
         /**
-         * A definition of a term or concept. `Since`: 2.12
+         * A definition of a term or concept.
+         * @since 2.12
          */
         DEFINITION = 108,
         /**
-         * A section of a page that consists of a
-         *  composition that forms an independent part of a document, page, or
-         *  site. Examples: A blog entry, a news story, a forum post. `Since`:
-         *  2.12
+         * A section of a page that consists of a composition that forms an
+         * independent part of a document, page, or site. Examples: A blog entry, a
+         * news story, a forum post.
+         * @since 2.12
          */
         ARTICLE = 109,
         /**
-         * A region of a web page intended as a
-         *  navigational landmark. This is designed to allow Assistive
-         *  Technologies to provide quick navigation among key regions within a
-         *  document. `Since`: 2.12
+         * A region of a web page intended as a navigational landmark. This is
+         * designed to allow Assistive Technologies to provide quick navigation among
+         * key regions within a document.
+         * @since 2.12
          */
         LANDMARK = 110,
         /**
-         * A text widget or container holding log content, such
-         *  as chat history and error logs. In this role there is a
-         *  relationship between the arrival of new items in the log and the
-         *  reading order. The log contains a meaningful sequence and new
-         *  information is added only to the end of the log, not at arbitrary
-         *  points. `Since`: 2.12
+         * A text widget or container holding log content, such as chat history and
+         * error logs. In this role there is a relationship between the arrival of new
+         * items in the log and the reading order. The log contains a meaningful
+         * sequence and new information is added only to the end of the log, not at
+         * arbitrary points.
+         * @since 2.12
          */
         LOG = 111,
         /**
-         * A container where non-essential information
-         *  changes frequently. Common usages of marquee include stock tickers
-         *  and ad banners. The primary difference between a marquee and a log
-         *  is that logs usually have a meaningful order or sequence of
-         *  important content changes. `Since`: 2.12
+         * A container where non-essential information changes frequently. Common
+         * usages of marquee include stock tickers and ad banners. The primary
+         * difference between a marquee and a log is that logs usually have a
+         * meaningful order or sequence of important content changes.
+         * @since 2.12
          */
         MARQUEE = 112,
         /**
-         * A text widget or container that holds a mathematical
-         *  expression. `Since`: 2.12
+         * A text widget or container that holds a mathematical expression.
+         * @since 2.12
          */
         MATH = 113,
         /**
-         * A widget whose purpose is to display a rating,
-         *  such as the number of stars associated with a song in a media
-         *  player. Objects of this role should also implement
-         *  AtspiValue. `Since`: 2.12
+         * A widget whose purpose is to display a rating,  such as the number of stars
+         * associated with a song in a media player. Objects of this role should also
+         * implement AtspiValue.
+         * @since 2.12
          */
         RATING = 114,
         /**
-         * An object containing a numerical counter which
-         *  indicates an amount of elapsed time from a start point, or the time
-         *  remaining until an end point. `Since`: 2.12
+         * An object containing a numerical counter which indicates an amount of
+         * elapsed time from a start point, or the time remaining until an end point.
+         * @since 2.12
          */
         TIMER = 115,
         /**
@@ -1346,88 +1356,93 @@ export namespace Atspi {
          *  object which has an accessible relation pointing to another object. The
          *  displayed information, as a general rule, should be exposed through the
          *  accessible name of the object. For labels which describe another widget, see
-         *  `ATSPI_ROLE_LABEL`. For text views, see `ATSPI_ROLE_TEXT`. For generic
-         *  containers, see `ATSPI_ROLE_PANEL`. For objects whose role is not known by the
-         *  implementor, see `ATSPI_ROLE_UNKNOWN`. `Since`: 2.16.
          */
         STATIC = 116,
         /**
-         * An object that represents a mathematical fraction. `Since`: 2.16.
+         * An object that represents a mathematical fraction.
+         * @since 2.16
          */
         MATH_FRACTION = 117,
         /**
-         * An object that represents a mathematical expression
-         *  displayed with a radical. `Since`: 2.16.
+         * An object that represents a mathematical expression displayed with a
+         * radical.
+         * @since 2.16
          */
         MATH_ROOT = 118,
         /**
-         * An object that contains text that is displayed as a
-         *  subscript. `Since`: 2.16.
+         * An object that contains text that is displayed as a subscript.
+         * @since 2.16
          */
         SUBSCRIPT = 119,
         /**
-         * An object that contains text that is displayed as a
-         *  superscript. `Since`: 2.16.
+         * An object that contains text that is displayed as a superscript.
+         * @since 2.16
          */
         SUPERSCRIPT = 120,
         /**
-         * An object that represents a list of term-value
-         *  groups. A term-value group represents an individual description and consist
-         *  of one or more names (`ATSPI_ROLE_DESCRIPTION_TERM`) followed by one or more
-         *  values (`ATSPI_ROLE_DESCRIPTION_VALUE`). For each list, there should not be
-         *  more than one group with the same term name. `Since`: 2.26.
+         * An object that represents a list of term-value groups. A term-value group
+         * represents an individual description and consist of one or more names
+         * (`ATSPI_ROLE_DESCRIPTION_TERM`) followed by one or more values
+         * (`ATSPI_ROLE_DESCRIPTION_VALUE`). For each list, there should not be more
+         * than one group with the same term name.
+         * @since 2.26
          */
         DESCRIPTION_LIST = 121,
         /**
-         * An object that represents a term or phrase
-         *  with a corresponding definition. `Since`: 2.26.
+         * An object that represents a term or phrase with a corresponding definition.
+         * @since 2.26
          */
         DESCRIPTION_TERM = 122,
         /**
-         * An object that represents the description,
-         *  definition, or value of a term. `Since`: 2.26.
+         * An object that represents the description,  definition, or value of a term.
+         * @since 2.26
          */
         DESCRIPTION_VALUE = 123,
         /**
-         * An object that contains the text of a footnote. `Since`: 2.26.
+         * An object that contains the text of a footnote.
+         * @since 2.26
          */
         FOOTNOTE = 124,
         /**
-         * Content previously deleted or proposed to be
-         * deleted, e.g. in revision history or a content view providing suggestions
-         * from reviewers. `Since`: 2.34.
+         * Content previously deleted or proposed to be deleted, e.g. in revision
+         * history or a content view providing suggestions from reviewers.
+         * @since 2.34
          */
         CONTENT_DELETION = 125,
         /**
-         * Content previously inserted or proposed to be
-         * inserted, e.g. in revision history or a content view providing suggestions
-         * from reviewers. `Since`: 2.34.
+         * Content previously inserted or proposed to be inserted, e.g. in revision
+         * history or a content view providing suggestions from reviewers.
+         * @since 2.34
          */
         CONTENT_INSERTION = 126,
         /**
-         * A run of content that is marked or highlighted, such as for
-         * reference purposes, or to call it out as having a special purpose. If the
-         * marked content has an associated section in the document elaborating on the
-         * reason for the mark, then {@link Atspi.RelationType.DETAILS} should be used on the mark
-         * to point to that associated section. In addition, the reciprocal relation
+         * A run of content that is marked or highlighted, such as for reference
+         * purposes, or to call it out as having a special purpose. If the marked
+         * content has an associated section in the document elaborating on the reason
+         * for the mark, then {@link Atspi.RelationType.DETAILS} should be used on the mark to
+         * point to that associated section. In addition, the reciprocal relation
          * {@link Atspi.RelationType.DETAILS_FOR} should be used on the associated content section
-         * to point back to the mark. `Since`: 2.36.
+         * to point back to the mark.
+         * @since 2.36
          */
         MARK = 127,
         /**
-         * A container for content that is called out as a proposed
-         * change from the current version of the document, such as by a reviewer of the
-         * content. An object with this role should include children with {@link Atspi.Role.CONTENT_DELETION} and/or
-         * {@link Atspi.Role.CONTENT_INSERTION}, in any order, to indicate what the
-         * actual change is. `Since`: 2.36
+         * A container for content that is called out as a proposed change from the
+         * current version of the document, such as by a reviewer of the content. An
+         * object with this role should include children with
+         * {@link Atspi.Role.CONTENT_DELETION} and/or {@link Atspi.Role.CONTENT_INSERTION}, in any
+         * order, to indicate what the actual change is.
+         * @since 2.36
          */
         SUGGESTION = 128,
         /**
-         * A specialized push button to open a menu. `Since` 2.46
+         * A specialized push button to open a menu.
+         * @since 2.46
          */
         PUSH_BUTTON_MENU = 129,
         /**
-         * A switch that can be toggled on/off. `Since` 2.56
+         * A switch that can be toggled on/off.
+         * @since 2.56
          */
         SWITCH = 130,
         /**
@@ -1498,7 +1513,7 @@ export namespace Atspi {
 
     /**
      * Enumeration used by various interfaces indicating every possible state
-     * an `AtspiAccesible` object can assume.
+     * an {@link Atspi.Accessible} object can assume.
      * @gir-type Enum
      */
     enum StateType {
@@ -1524,7 +1539,7 @@ export namespace Atspi {
         ARMED = 2,
         /**
          * Indicates the current object is busy, i.e. onscreen
-         * representation is in the process of changing, or       the object is
+         * representation is in the process of changing, or the object is
          * temporarily unavailable for interaction due to activity already in progress.
          */
         BUSY = 3,
@@ -1538,7 +1553,7 @@ export namespace Atspi {
         COLLAPSED = 5,
         /**
          * Indicates that this object no longer has a valid
-         * backing widget        (for instance, if its peer object has been destroyed).
+         * backing widget (for instance, if its peer object has been destroyed).
          */
         DEFUNCT = 6,
         /**
@@ -1623,7 +1638,7 @@ export namespace Atspi {
         /**
          * Indicates this object is the child of an object
          * that allows its children to be selected and that this child is one of
-         * those children       that can be selected.
+         * those children that can be selected.
          */
         SELECTABLE = 22,
         /**
@@ -1776,23 +1791,23 @@ export namespace Atspi {
          */
         VISITED = 40,
         /**
-         * Indicates this object has the potential to
-         *  be checked, such as a checkbox or toggle-able table cell. `Since`:
-         *  2.12
+         * Indicates this object has the potential to be checked, such as a checkbox
+         * or toggle-able table cell.
+         * @since 2.12
          */
         CHECKABLE = 41,
         /**
-         * Indicates that the object has a popup
-         * context menu or sub-level menu which may or may not be
-         * showing. This means that activation renders conditional content.
-         * Note that ordinary tooltips are not considered popups in this
-         * context. `Since`: 2.12
+         * Indicates that the object has a popup context menu or sub-level menu
+         * which may or may not be showing. This means that activation renders
+         * conditional content. Note that ordinary tooltips are not considered
+         * popups in this context.
+         * @since 2.12
          */
         HAS_POPUP = 42,
         /**
-         * Indicates that an object which is ENABLED and
-         * SENSITIVE has a value which can be read, but not modified, by the
-         * user. `Since`: 2.16
+         * Indicates that an object which is ENABLED and SENSITIVE has a value
+         * which can be read, but not modified, by the user.
+         * @since 2.16
          */
         READ_ONLY = 43,
         /**
@@ -1956,10 +1971,52 @@ export namespace Atspi {
 
 
     /**
+     * The version of the Application D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const ACCESSIBLE_VERSION: number;
+
+    /**
+     * The version of the Action D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const ACTION_VERSION: number;
+
+    /**
+     * The version of the Application D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const APPLICATION_VERSION: number;
+
+    /**
+     * The version of the Cache D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const CACHE_VERSION: number;
+
+    /**
+     * The version of the Collection D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const COLLECTION_VERSION: number;
+
+    /**
      * One higher than the highest valid value of {@link Atspi.ComponentLayer}.
      * @default 9
      */
     const COMPONENTLAYER_COUNT: number;
+
+    /**
+     * The version of the Component D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const COMPONENT_VERSION: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.CoordType}.
@@ -2058,6 +2115,11 @@ export namespace Atspi {
     const DBUS_INTERFACE_KEYBOARD_MONITOR: string;
 
     /**
+     * @default org.freedesktop.a11y.PointerLocator
+     */
+    const DBUS_INTERFACE_POINTER_LOCATOR: string;
+
+    /**
      * @default org.a11y.atspi.Registry
      */
     const DBUS_INTERFACE_REGISTRY: string;
@@ -2143,10 +2205,66 @@ export namespace Atspi {
     const DEVICE_A11Y_MANAGER_VIRTUAL_MOD_START: number;
 
     /**
+     * The version of the DeviceEventController D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const DEVICE_EVENT_CONTROLLER_VERSION: number;
+
+    /**
+     * The version of the DeviceEventListener D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const DEVICE_EVENT_LISTENER_VERSION: number;
+
+    /**
+     * The version of the Document D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const DOCUMENT_VERSION: number;
+
+    /**
+     * The version of the EditableText D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const EDITABLE_TEXT_VERSION: number;
+
+    /**
      * One higher than the highest valid value of {@link Atspi.EventType}.
      * @default 4
      */
     const EVENTTYPE_COUNT: number;
+
+    /**
+     * The version of the Event D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const EVENT_VERSION: number;
+
+    /**
+     * The version of the Hyperlink D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const HYPERLINK_VERSION: number;
+
+    /**
+     * The version of the Hypertext D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const HYPERTEXT_VERSION: number;
+
+    /**
+     * The version of the Image D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const IMAGE_VERSION: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.KeyEventType}.
@@ -2183,6 +2301,13 @@ export namespace Atspi {
     const MODIFIERTYPE_COUNT: number;
 
     /**
+     * The version of the Registry D-Bus interface.
+     * @since 2.59
+     * @default 2
+     */
+    const REGISTRY_VERSION: number;
+
+    /**
      * One higher than the highest valid value of {@link Atspi.RelationType}.
      * @default 24
      */
@@ -2201,6 +2326,20 @@ export namespace Atspi {
     const SCROLLTYPE_COUNT: number;
 
     /**
+     * The version of the Selection D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const SELECTION_VERSION: number;
+
+    /**
+     * The version of the Socket D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const SOCKET_VERSION: number;
+
+    /**
      * One higher than the highest valid value of {@link Atspi.CollectionSortOrder}.
      * @default 8
      */
@@ -2208,9 +2347,23 @@ export namespace Atspi {
 
     /**
      * One higher than the highest valid value of {@link Atspi.StateType}.
-     * @default 42
+     * @default 45
      */
     const STATETYPE_COUNT: number;
+
+    /**
+     * The version of the TableCell D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const TABLE_CELL_VERSION: number;
+
+    /**
+     * The version of the Table D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const TABLE_VERSION: number;
 
     /**
      * One higher than the highest valid value of {@link Atspi.TextBoundaryType}.
@@ -2225,11 +2378,25 @@ export namespace Atspi {
     const TEXT_CLIP_TYPE_COUNT: number;
 
     /**
+     * The version of the Text D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const TEXT_VERSION: number;
+
+    /**
      * One higher than the highest valid value of
      * #AtspiCollection_TreeTraversalType.
      * @default 4
      */
     const TREETRAVERSALTYPE_COUNT: number;
+
+    /**
+     * The version of the Value D-Bus interface.
+     * @since 2.59
+     * @default 1
+     */
+    const VALUE_VERSION: number;
 
     /**
      * Removes a device event listener from the registry's listener queue,
@@ -2506,6 +2673,50 @@ export namespace Atspi {
     /**
      * @gir-type Flags
      */
+    export namespace DeviceCapability {
+        export const $gtype: GObject.GType<DeviceCapability>;
+    }
+
+    /**
+     * Enumeration used to query and enable device capabilities.
+     * @gir-type Flags
+     * @since 2.60
+     */
+    enum DeviceCapability {
+        /**
+         * The capability to monitor keystrokes.
+         */
+        KEYBOARD_MONITOR = 1,
+        /**
+         * The capability to synthesize keystrokes.
+         */
+        KEYBOARD_SYNTH = 2,
+        /**
+         * The capability to set key grabs.
+         */
+        KEYBOARD_GRAB = 4,
+        /**
+         * The capability to monitor the location of the pointer.
+         */
+        POINTER_MONITOR = 8,
+        /**
+         * The capability to synthesize pointer motion.
+         */
+        POINTER_SYNTH = 16,
+        /**
+         * The capability to monitor touch presses.
+         */
+        TOUCH_MONITOR = 32,
+        /**
+         * The capability to synthesize touch events.
+         */
+        TOUCH_SYNTH = 64,
+    }
+
+
+    /**
+     * @gir-type Flags
+     */
     export namespace KeyListenerSyncType {
         export const $gtype: GObject.GType<KeyListenerSyncType>;
     }
@@ -2627,15 +2838,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof Accessible.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Accessible.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Accessible.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Accessible.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Accessible.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Accessible.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Accessible.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Accessible.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -3613,11 +3821,11 @@ export namespace Atspi {
 
         /**
          * Removes a child from the selected children list of an {@link Atspi.Selection}.
-         *          Note that `child_index` is the index in the selected-children list,
-         *          not the index in the parent container.  `selectedChildIndex` in this
-         *          method, and `child_index` in `atspi_selection_select_child`
-         *          are asymmetric.
-         * @param selected_child_index a `gint` indicating which of the selected children              of the {@link Atspi.Accessible} is to be selected.
+         *          Note that `selected_child_index` is the index in the
+         *          selected-children list, not the index in the parent container.
+         *          `selected_child_index` in this method and `child_index` in
+         *          `atspi_selection_select_child` are asymmetric.
+         * @param selected_child_index a `gint` indicating which of the selected children              of the {@link Atspi.Accessible} is to be deselected.
          * @returns `TRUE` if the child was successfully deselected, `FALSE` otherwise.
          * @throws GLib.Error
          */
@@ -4315,6 +4523,8 @@ export namespace Atspi {
 
         time_added: null;
 
+        pid: never;
+
         // Constructors
         constructor(properties?: Partial<Application.ConstructorProps>, ...args: any[]);
 
@@ -4323,21 +4533,34 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof Application.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Application.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Application.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Application.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Application.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Application.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Application.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Application.SignalSignatures[K]>): void;
     }
 
 
     namespace Device {
         // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
+            /**
+             * @signal
+             * @run-last
+             */
+            "key-pressed": (object: number, p0: number, p1: ModifierType, p2: string) => void;
+            /**
+             * @signal
+             * @run-last
+             */
+            "key-released": (object: number, p0: number, p1: ModifierType, p2: string) => void;
+            /**
+             * Signals that the pointer has moved.
+             * @signal
+             * @run-last
+             */
+            "pointer-moved": (accessible: Accessible, x: number, y: number) => void;
             "notify::app-id": (pspec: GObject.ParamSpec) => void;
         }
 
@@ -4356,18 +4579,12 @@ export namespace Atspi {
 
         // Properties
         /**
-         * The application ID of the application that created this device.
-         * The ID might be used for access control purposes
-         * by some device backends.
          * @construct-only
          * @default null
          */
         get app_id(): string;
 
         /**
-         * The application ID of the application that created this device.
-         * The ID might be used for access control purposes
-         * by some device backends.
          * @construct-only
          * @default null
          */
@@ -4394,15 +4611,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof Device.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Device.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Device.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Device.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Device.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Device.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Device.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Device.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -4426,6 +4640,13 @@ export namespace Atspi {
          * @virtual
          */
         vfunc_generate_mouse_event(obj: Accessible, x: number, y: number, name: string): void;
+
+        /**
+         * Returns the capabilities currently enabled for this device.
+         * @since 2.60
+         * @virtual
+         */
+        vfunc_get_capabilities(): DeviceCapability;
 
         /**
          * Gets the modifier for a given keysym, if one exists. Does not create a new
@@ -4500,6 +4721,13 @@ export namespace Atspi {
         vfunc_remove_key_grab(id: number): void;
 
         /**
+         * @param capabilities A bitmask specifying the capabilities that should be enabled. This replaces the existing set of enabled capabilities, so, if it excludes some capabilities that are currently enabled, then those capabilities may be disabled.
+         * @since 2.60
+         * @virtual
+         */
+        vfunc_set_capabilities(capabilities: DeviceCapability): DeviceCapability;
+
+        /**
          * Removes a keyboard grab added via a call to atspi_device_add_keyboard.
          * @virtual
          */
@@ -4532,6 +4760,7 @@ export namespace Atspi {
          * Add a callback that will receive a notification whenever a key is
          * pressed or released.
          * @param callback the   function to call when the given key is pressed.
+         * @deprecated since 2.60: Connect to the key-pressed and key-released signals instead of using this function.
          */
         add_key_watcher(callback: KeyCallback): void;
 
@@ -4558,6 +4787,12 @@ export namespace Atspi {
          * @since 2.55
          */
         get_app_id(): string;
+
+        /**
+         * Returns the capabilities currently enabled for this device.
+         * @since 2.60
+         */
+        get_capabilities(): DeviceCapability;
 
         /**
          * @param id 
@@ -4652,6 +4887,13 @@ export namespace Atspi {
         set_app_id(app_id: string): void;
 
         /**
+         * @param capabilities A bitmask specifying the capabilities that should be enabled. This replaces the existing set of enabled capabilities, so, if it excludes some capabilities that are currently enabled, then those capabilities may be disabled.
+         * @returns The new set of capabilities that are enabled. This may differ from the value passed in if the device does not support all of the requested capabilities.
+         * @since 2.60
+         */
+        set_capabilities(capabilities: DeviceCapability): DeviceCapability;
+
+        /**
          * Removes a keyboard grab added via a call to atspi_device_add_keyboard.
          */
         ungrab_keyboard(): void;
@@ -4708,15 +4950,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof DeviceA11yManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceA11yManager.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DeviceA11yManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceA11yManager.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DeviceA11yManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceA11yManager.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DeviceA11yManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceA11yManager.SignalSignatures[K]>): void;
     }
 
 
@@ -4757,15 +4996,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof DeviceLegacy.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceLegacy.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DeviceLegacy.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceLegacy.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DeviceLegacy.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceLegacy.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DeviceLegacy.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceLegacy.SignalSignatures[K]>): void;
     }
 
 
@@ -4807,15 +5043,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof DeviceListener.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceListener.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DeviceListener.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceListener.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DeviceListener.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceListener.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DeviceListener.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceListener.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -4877,15 +5110,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof DeviceX11.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceX11.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DeviceX11.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DeviceX11.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DeviceX11.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceX11.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DeviceX11.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DeviceX11.SignalSignatures[K]>): void;
     }
 
 
@@ -4936,15 +5166,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof EventListener.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventListener.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof EventListener.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, EventListener.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof EventListener.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventListener.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof EventListener.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<EventListener.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -5140,15 +5367,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof Hyperlink.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Hyperlink.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Hyperlink.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Hyperlink.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Hyperlink.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Hyperlink.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Hyperlink.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Hyperlink.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -5263,15 +5487,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof MatchRule.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MatchRule.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MatchRule.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MatchRule.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MatchRule.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MatchRule.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MatchRule.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MatchRule.SignalSignatures[K]>): void;
     }
 
 
@@ -5311,15 +5532,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof Object.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Object.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Object.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Object.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Object.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Object.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Object.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Object.SignalSignatures[K]>): void;
     }
 
 
@@ -5365,15 +5583,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof Relation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Relation.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Relation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Relation.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Relation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Relation.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Relation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Relation.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -5439,15 +5654,12 @@ export namespace Atspi {
         // Signals
         /** @signal */
         connect<K extends keyof StateSet.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StateSet.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof StateSet.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, StateSet.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof StateSet.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StateSet.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof StateSet.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<StateSet.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -6540,11 +6752,11 @@ export namespace Atspi {
 
         /**
          * Removes a child from the selected children list of an {@link Atspi.Selection}.
-         *          Note that `child_index` is the index in the selected-children list,
-         *          not the index in the parent container.  `selectedChildIndex` in this
-         *          method, and `child_index` in `atspi_selection_select_child`
-         *          are asymmetric.
-         * @param selected_child_index a `gint` indicating which of the selected children              of the {@link Atspi.Accessible} is to be selected.
+         *          Note that `selected_child_index` is the index in the
+         *          selected-children list, not the index in the parent container.
+         *          `selected_child_index` in this method and `child_index` in
+         *          `atspi_selection_select_child` are asymmetric.
+         * @param selected_child_index a `gint` indicating which of the selected children              of the {@link Atspi.Accessible} is to be deselected.
          * @returns `TRUE` if the child was successfully deselected, `FALSE` otherwise.
          * @throws GLib.Error
          */

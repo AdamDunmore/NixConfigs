@@ -500,15 +500,12 @@ export namespace GioUnix {
         // Signals
         /** @signal */
         connect<K extends keyof DesktopAppInfo.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DesktopAppInfo.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof DesktopAppInfo.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, DesktopAppInfo.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof DesktopAppInfo.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DesktopAppInfo.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof DesktopAppInfo.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<DesktopAppInfo.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -617,7 +614,7 @@ export namespace GioUnix {
          * @returns The value of the   [`Keywords` key](https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s06.html#key-keywords)
          * @since 2.32
          */
-        get_keywords(): string[];
+        get_keywords(): string[] | null;
 
         /**
          * Looks up a localized string value in the keyfile backing `info`
@@ -687,7 +684,7 @@ export namespace GioUnix {
          * @returns a `NULL`-terminated string array or `NULL` if the specified   key cannot be found. The array should be freed with {@link GLib.strfreev}.
          * @since 2.60
          */
-        get_string_list(key: string): string[];
+        get_string_list(key: string): string[] | null;
 
         /**
          * Returns whether `key` exists in the `Desktop Entry` group
@@ -898,7 +895,7 @@ export namespace GioUnix {
          * @returns a list of content types.
          * @since 2.34
          */
-        get_supported_types(): string[];
+        get_supported_types(): string[] | null;
 
         /**
          * Launches the application. Passes `files` to the launched application
@@ -1178,7 +1175,7 @@ export namespace GioUnix {
          * @since 2.34
          * @virtual
          */
-        vfunc_get_supported_types(): string[];
+        vfunc_get_supported_types(): string[] | null;
 
         /**
          * Launches the application. Passes `files` to the launched application
@@ -1377,15 +1374,12 @@ export namespace GioUnix {
         // Signals
         /** @signal */
         connect<K extends keyof FDMessage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FDMessage.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof FDMessage.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, FDMessage.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof FDMessage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FDMessage.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof FDMessage.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<FDMessage.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -1512,15 +1506,12 @@ export namespace GioUnix {
         // Signals
         /** @signal */
         connect<K extends keyof InputStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, InputStream.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof InputStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, InputStream.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof InputStream.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<InputStream.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof InputStream.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<InputStream.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -1745,15 +1736,12 @@ export namespace GioUnix {
         // Signals
         /** @signal */
         connect<K extends keyof MountMonitor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MountMonitor.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof MountMonitor.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MountMonitor.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof MountMonitor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MountMonitor.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof MountMonitor.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MountMonitor.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -1861,15 +1849,12 @@ export namespace GioUnix {
         // Signals
         /** @signal */
         connect<K extends keyof OutputStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, OutputStream.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof OutputStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, OutputStream.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof OutputStream.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<OutputStream.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof OutputStream.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<OutputStream.SignalSignatures[K]>): void;
 
         // Methods
         /**

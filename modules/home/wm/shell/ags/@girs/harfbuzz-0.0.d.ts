@@ -3537,6 +3537,16 @@ export namespace HarfBuzz {
     const OT_MAX_TAGS_PER_SCRIPT: number;
 
     /**
+     * The serial number of the current internal buffer format.
+     * 
+     * The serial number will increase when internal {@link HarfBuzz.glyph_info_t} and
+     * {@link HarfBuzz.glyph_position_t} members change their format.
+     * @since 13.2.0
+     * @default 1
+     */
+    const OT_SHAPE_BUFFER_FORMAT_SERIAL: number;
+
+    /**
      * Do not use.
      * @since 1.4.2
      * @deprecated since 2.2.0
@@ -3566,22 +3576,22 @@ export namespace HarfBuzz {
     const UNICODE_MAX_DECOMPOSITION_LEN: number;
 
     /**
-     * @default 12
+     * @default 13
      */
     const VERSION_MAJOR: number;
 
     /**
-     * @default 0
+     * @default 1
      */
     const VERSION_MICRO: number;
 
     /**
-     * @default 3
+     * @default 2
      */
     const VERSION_MINOR: number;
 
     /**
-     * @default 12.3.0
+     * @default 13.2.1
      */
     const VERSION_STRING: string;
 
@@ -3859,6 +3869,16 @@ export namespace HarfBuzz {
      * @since 1.5.0
      */
     function buffer_append(buffer: buffer_t, source: buffer_t, start: number, end: number): void;
+
+    /**
+     * Called by a message callback after modifying buffer glyph indices,
+     * to update internal caches.
+     * 
+     * If not called from inside a message callback, does nothing.
+     * @param buffer An {@link HarfBuzz.buffer_t}
+     * @since 13.0.0
+     */
+    function buffer_changed(buffer: buffer_t): void;
 
     /**
      * Similar to `hb_buffer_reset()`, but does not clear the Unicode functions and
@@ -4198,9 +4218,11 @@ export namespace HarfBuzz {
      * A human-readable, plain text format.
      * The serialized glyphs will look something like:
      * 
+     * 
      * ```
      * [uni0651=0@518,0+0|uni0628=0+1897]
      * ```
+     * 
      * 
      * - The serialized glyphs are delimited with `[` and `]`.
      * - Glyphs are separated with `|`
@@ -4216,10 +4238,12 @@ export namespace HarfBuzz {
      * A machine-readable, structured format.
      * The serialized glyphs will look something like:
      * 
+     * 
      * ```
      * [{"g":"uni0651","cl":0,"dx":518,"dy":0,"ax":0,"ay":0},
-     * {"g":"uni0628","cl":0,"dx":0,"dy":0,"ax":1897,"ay":0}]
+     *  {"g":"uni0628","cl":0,"dx":0,"dy":0,"ax":1897,"ay":0}]
      * ```
+     * 
      * 
      * Each glyph is a JSON object, with the following properties:
      * - `g`: the glyph name or glyph index if
@@ -4260,9 +4284,11 @@ export namespace HarfBuzz {
      * A human-readable, plain text format.
      * The serialized codepoints will look something like:
      * 
+     * 
      * ```
      *  <U+0651=0|U+0628=1>
      * ```
+     * 
      * 
      * - Glyphs are separated with `|`
      * - Unicode codepoints are expressed as zero-padded four (or more)
@@ -4280,9 +4306,11 @@ export namespace HarfBuzz {
      * 
      * For example:
      * 
+     * 
      * ```
      * [{u:1617,cl:0},{u:1576,cl:1}]
      * ```
+     * 
      * @param buffer an {@link HarfBuzz.buffer_t} buffer.
      * @param start the first item in `buffer` to serialize.
      * @param end the last item in `buffer` to serialize.
@@ -6588,6 +6616,23 @@ export namespace HarfBuzz {
     function map_values(map: map_t, values: set_t): void;
 
     /**
+     * Gets the number of SVG documents in the face `SVG` table.
+     * @param face {@link HarfBuzz.face_t} to work upon.
+     * @returns number of SVG documents in the face.
+     * @since 12.1.0
+     */
+    function ot_color_get_svg_document_count(face: face_t): number;
+
+    /**
+     * Gets the glyph range covered by an `SVG`-table document index.
+     * @param face {@link HarfBuzz.face_t} to work upon.
+     * @param svg_document_index SVG document index.
+     * @returns `true` if `svg_document_index` is valid, `false` otherwise.
+     * @since 13.0.0
+     */
+    function ot_color_get_svg_document_glyph_range(face: face_t, svg_document_index: number): [bool_t, codepoint_t | null, codepoint_t | null];
+
+    /**
      * Fetches a list of all color layers for the specified glyph index in the specified
      * face. The list returned will begin at the offset provided.
      * @param face {@link HarfBuzz.face_t} to work upon
@@ -6597,6 +6642,15 @@ export namespace HarfBuzz {
      * @since 2.1.0
      */
     function ot_color_glyph_get_layers(face: face_t, glyph: codepoint_t, start_offset: number): [number, ot_color_layer_t[] | null];
+
+    /**
+     * Gets the `SVG`-table document index associated with a glyph.
+     * @param face {@link HarfBuzz.face_t} to work upon.
+     * @param glyph glyph ID to query.
+     * @returns `true` if `glyph` maps to an SVG document, `false` otherwise.
+     * @since 12.1.0
+     */
+    function ot_color_glyph_get_svg_document_index(face: face_t, glyph: codepoint_t): [bool_t, number];
 
     /**
      * Tests where a face includes COLRv1 paint
@@ -7588,6 +7642,14 @@ export namespace HarfBuzz {
     function ot_name_list_names(face: face_t): ot_name_entry_t[];
 
     /**
+     * Returns the serial number of the current internal buffer format.
+     * See #HB_OT_SHAPE_BUFFER_FORMAT_SERIAL for more information.
+     * @returns The current buffer-format serial number.
+     * @since 13.2.0
+     */
+    function ot_shape_get_buffer_format_serial(): number;
+
+    /**
      * Computes the transitive closure of glyphs needed for a specified
      * input buffer under the given font and feature list. The closure is
      * computed as a set, not as a list.
@@ -7812,11 +7874,11 @@ export namespace HarfBuzz {
     function paint_color_glyph(funcs: paint_funcs_t, paint_data: null, glyph: codepoint_t, font: font_t): bool_t;
 
     /**
-     * Gets the custom palette color for `color_index`.
-     * @param funcs paint functions
-     * @param paint_data associated data passed by the caller
-     * @param color_index color index
-     * @returns `true` if found, `false` otherwise
+     * Gets the custom palette override color for `color_index`.
+     * @param funcs paint functions.
+     * @param paint_data associated data passed by the caller.
+     * @param color_index color index to fetch.
+     * @returns `true` if a custom color is provided, `false` otherwise.
      * @since 7.0.0
      */
     function paint_custom_palette_color(funcs: paint_funcs_t, paint_data: null, color_index: number): [bool_t, color_t];
@@ -7877,10 +7939,10 @@ export namespace HarfBuzz {
     function paint_funcs_set_color_glyph_func(funcs: paint_funcs_t, func: paint_color_glyph_func_t, destroy: destroy_func_t | null): void;
 
     /**
-     * Sets the custom-palette-color callback on the paint functions struct.
-     * @param funcs A paint functions struct
-     * @param func The custom-palette-color callback
-     * @param destroy Function to call when `user_data` is no longer needed
+     * Sets the custom-palette-color callback on `funcs`.
+     * @param funcs a paint functions struct.
+     * @param func custom-palette-color callback.
+     * @param destroy function to call when `user_data` is no longer needed.
      * @since 7.0.0
      */
     function paint_funcs_set_custom_palette_color_func(funcs: paint_funcs_t, func: paint_custom_palette_color_func_t, destroy: destroy_func_t | null): void;
@@ -9413,7 +9475,12 @@ export namespace HarfBuzz {
         GLYPH_FLAGS = 16,
         /**
          * do not serialize glyph advances,
-         *  glyph offsets will reflect absolute glyph positions. Since: 1.8.0
+         *  glyph offsets will reflect absolute glyph positions. Since: 1.8.0.
+         *  Note: when this flag is used with a partial range of the buffer (i.e.
+         *  `start` is not 0), calculating the absolute positions has a cost
+         *  proportional to `start`. If the buffer is serialized in many small
+         *  chunks, this can lead to quadratic behavior. It is recommended to
+         *  use a larger `buf_size` to minimize this cost.
          */
         NO_ADVANCES = 32,
         /**

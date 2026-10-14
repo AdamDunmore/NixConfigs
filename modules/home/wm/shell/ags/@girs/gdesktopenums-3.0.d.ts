@@ -273,6 +273,15 @@ export namespace GDesktopEnums {
     /**
      * @gir-type Enum
      */
+    enum ReducedMotion {
+        NO_PREFERENCE = 0,
+        REDUCE = 1,
+    }
+
+
+    /**
+     * @gir-type Enum
+     */
     enum ScreensaverMode {
         BLANK_ONLY = 0,
         RANDOM = 1,
@@ -291,6 +300,15 @@ export namespace GDesktopEnums {
         FORWARD = 4,
         SWITCH_MONITOR = 5,
         KEYBINDING = 6,
+    }
+
+
+    /**
+     * @gir-type Enum
+     */
+    enum StylusEraserButtonMode {
+        DEFAULT = 0,
+        BUTTON = 1,
     }
 
 
@@ -384,6 +402,21 @@ export namespace GDesktopEnums {
     enum VisualBellType {
         FULLSCREEN_FLASH = 0,
         FRAME_FLASH = 1,
+    }
+
+
+    /**
+     * @gir-type Enum
+     */
+    enum Weekday {
+        DEFAULT = 0,
+        MONDAY = 1,
+        TUESDAY = 2,
+        WEDNESDAY = 3,
+        THURSDAY = 4,
+        FRIDAY = 5,
+        SATURDAY = 6,
+        SUNDAY = 7,
     }
 
 

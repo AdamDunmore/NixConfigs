@@ -242,7 +242,7 @@ export namespace GdkPixbuf {
     /**
      * Micro version of gdk-pixbuf library, that is the "2" in
      * "0.8.2" for example.
-     * @default 5
+     * @default 8
      */
     const PIXBUF_MICRO: number;
 
@@ -258,7 +258,7 @@ export namespace GdkPixbuf {
      * 
      * This is the version being compiled against; contrast with
      * `gdk_pixbuf_version`.
-     * @default 2.44.5
+     * @default 2.44.8
      */
     const PIXBUF_VERSION: string;
 
@@ -699,15 +699,12 @@ export namespace GdkPixbuf {
         // Signals
         /** @signal */
         connect<K extends keyof Pixbuf.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Pixbuf.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Pixbuf.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Pixbuf.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Pixbuf.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Pixbuf.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Pixbuf.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Pixbuf.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -1533,15 +1530,12 @@ export namespace GdkPixbuf {
         // Signals
         /** @signal */
         connect<K extends keyof PixbufAnimation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufAnimation.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PixbufAnimation.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufAnimation.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PixbufAnimation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufAnimation.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PixbufAnimation.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufAnimation.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -1761,15 +1755,12 @@ export namespace GdkPixbuf {
         // Signals
         /** @signal */
         connect<K extends keyof PixbufAnimationIter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufAnimationIter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PixbufAnimationIter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufAnimationIter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PixbufAnimationIter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufAnimationIter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PixbufAnimationIter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufAnimationIter.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -2056,15 +2047,12 @@ export namespace GdkPixbuf {
         // Signals
         /** @signal */
         connect<K extends keyof PixbufLoader.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufLoader.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PixbufLoader.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufLoader.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PixbufLoader.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufLoader.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PixbufLoader.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufLoader.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -2223,15 +2211,12 @@ export namespace GdkPixbuf {
         // Signals
         /** @signal */
         connect<K extends keyof PixbufNonAnim.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufNonAnim.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PixbufNonAnim.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufNonAnim.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PixbufNonAnim.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufNonAnim.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PixbufNonAnim.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufNonAnim.SignalSignatures[K]>): void;
     }
 
 
@@ -2283,15 +2268,12 @@ export namespace GdkPixbuf {
         // Signals
         /** @signal */
         connect<K extends keyof PixbufSimpleAnim.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufSimpleAnim.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PixbufSimpleAnim.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufSimpleAnim.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PixbufSimpleAnim.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufSimpleAnim.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PixbufSimpleAnim.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufSimpleAnim.SignalSignatures[K]>): void;
 
         // Methods
         /**
@@ -2353,15 +2335,12 @@ export namespace GdkPixbuf {
         // Signals
         /** @signal */
         connect<K extends keyof PixbufSimpleAnimIter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufSimpleAnimIter.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof PixbufSimpleAnimIter.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, PixbufSimpleAnimIter.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof PixbufSimpleAnimIter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufSimpleAnimIter.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof PixbufSimpleAnimIter.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<PixbufSimpleAnimIter.SignalSignatures[K]>): void;
     }
 
 

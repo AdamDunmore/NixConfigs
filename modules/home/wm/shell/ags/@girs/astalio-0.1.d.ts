@@ -294,15 +294,12 @@ export namespace AstalIO {
         // Signals
         /** @signal */
         connect<K extends keyof Daemon.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Daemon.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Daemon.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Daemon.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Daemon.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Daemon.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Daemon.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Daemon.SignalSignatures[K]>): void;
 
         // Virtual methods
         /**
@@ -451,15 +448,12 @@ export namespace AstalIO {
         // Signals
         /** @signal */
         connect<K extends keyof Process.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Process.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Process.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Process.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Process.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Process.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Process.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Process.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -611,15 +605,12 @@ export namespace AstalIO {
         // Signals
         /** @signal */
         connect<K extends keyof Time.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Time.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Time.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Time.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Time.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Time.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Time.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Time.SignalSignatures[K]>): void;
 
         // Static methods
         /**
@@ -697,15 +688,12 @@ export namespace AstalIO {
         // Signals
         /** @signal */
         connect<K extends keyof VariableBase.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, VariableBase.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof VariableBase.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, VariableBase.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof VariableBase.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<VariableBase.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof VariableBase.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<VariableBase.SignalSignatures[K]>): void;
 
         // Methods
         emit_changed(): void;
@@ -764,15 +752,12 @@ export namespace AstalIO {
         // Signals
         /** @signal */
         connect<K extends keyof Variable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Variable.SignalSignatures[K]>): number;
-        connect(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
         connect_after<K extends keyof Variable.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Variable.SignalSignatures[K]>): number;
-        connect_after(signal: string, callback: (...args: any[]) => any): number;
 
         /** @signal */
-        emit<K extends keyof Variable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Variable.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
-        emit(signal: string, ...args: any[]): void;
+        emit<K extends keyof Variable.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Variable.SignalSignatures[K]>): void;
 
         // Methods
         /**
