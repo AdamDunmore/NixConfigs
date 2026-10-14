@@ -6,7 +6,7 @@ in
     options.settings.modules.home.terminal.editors.nvim = {
         enable = mkOption {
             type = lib.types.bool;
-            default = config.settings.modules.home.terminal.enable;
+            default = config.settings.modules.home.terminal.editors.enable;
             example = false;
             description = "Enables the nvim module";
         };
