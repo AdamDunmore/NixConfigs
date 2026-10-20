@@ -62,7 +62,9 @@ in
             gnome-settings-daemon
         ]);
 
-        settings.modules.home.wm.module = {
+        settings.modules.home.wm.module = let
+            SCREENSHOT_CMD = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\"";
+        in {
             modifier = "SUPER";
             keybinds = [
                 { mod = true; key = "Return"; dispatch = "spawn"; arg = "${cfg.defaults.terminal}/bin/${cfg.defaults.terminal.meta.mainProgram}"; }
@@ -71,7 +73,7 @@ in
                 { mod = true; sub_mod = "SHIFT"; key = "C"; dispatch = "reload"; }
                 { mod = true; key = "L"; dispatch = "spawn"; arg = "${cfg.defaults.locker}/bin/${cfg.defaults.locker.meta.mainProgram}"; }
                 { mod = true; key = "N"; dispatch = "spawn"; arg = "togglenight"; }
-                { mod = true; key = "C"; dispatch = "spawn_shell"; arg = "GRIM_DEFAULT_DIR=~/Pictures/Screenshots ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\""; }
+                { mod = true; key = "C"; dispatch = "spawn_shell"; arg = SCREENSHOT_CMD; }
                 { mod = true; key = "B"; dispatch = "spawn_shell"; arg = "btwofi"; }
                 { mod = true; key = "T"; dispatch = "spawn_shell"; arg = "translate"; }
                 { mod = true; sub_mod = "SHIFT"; key = "T"; dispatch = "spawn_shell"; arg = "read_screen -s"; }
@@ -122,6 +124,12 @@ in
                 { mod = false; key = "XF86MonBrightnessDown"; dispatch = "spawn"; arg = "brightnessctl set 5%-"; }
                 { mod = false; sub_mod = "SHIFT"; key = "XF86MonBrightnessUp"; dispatch = "spawn"; arg = "brightnessctl set 1%+"; }
                 { mod = false; sub_mod = "SHIFT"; key = "XF86MonBrightnessDown"; dispatch = "spawn"; arg = "brightnessctl set 1%-"; }
+                { mod = false; key = "XF86AudioNext"; dispatch = "spawn"; arg = "rmpc next"; }
+                { mod = false; key = "XF86AudioPlay"; dispatch = "spawn"; arg = "rmpc togglepause"; }
+                { mod = false; key = "XF86AudioPrev"; dispatch = "spawn"; arg = "rmpc prev"; }
+                { mod = false; key = "Print"; dispatch = "spawn"; arg = SCREENSHOT_CMD; }
+
+
             ];
 
             modes = [
