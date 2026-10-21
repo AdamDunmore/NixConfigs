@@ -43,7 +43,6 @@ in
 
                 apps
                 brightness
-                cava
                 bluetooth 
                 network
                 mpris
