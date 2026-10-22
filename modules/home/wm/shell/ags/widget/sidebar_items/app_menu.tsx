@@ -7,6 +7,7 @@ import Apps from "gi://AstalApps"
 import { execAsync } from "ags/process";
 
 import { SendNotification, NotificationAction } from "../../utils/notifications.ts";
+import GL from "gi://GL?version=1.0";
 
 abstract class MenuEntry {
     name: string
@@ -116,11 +117,11 @@ export default function AppMenu({ app_visible, close, show_app } : { app_visible
         executableMultiplier: 2,
     })
 
-    const commands = [ // TODO move to something nix configurable
+    const commands = [ 
         { name: "⏻ shutdown", command: "showdown now" },
         { name: "󰜉 reboot", command: "reboot" },
         { name: "󰤄 sleep", command: "systemctl suspend" },
-        { name: " lock", command: "hyprlock" }, // TODO change to system default
+        { name: " lock", command: GLib.getenv("LOCKER") },
         { name: "󰍃 logout", command: `pkill -f ${GLib.getenv("XDG_CURRENT_DESKTOP")}` },
     ];
 

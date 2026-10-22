@@ -27,6 +27,17 @@ in
     ];
 
     config = mkIf cfg.enable { 
+        home.file = let
+            cfg_defaults = config.settings.modules.home.wm.defaults;
+            cfg_locker = cfg_defaults.locker;
+            cfg_terminial = cfg_defaults.terminal;
+            cfg_wm = cfg_defaults.wm;
+        in {
+            ".bin/locker".source = "${cfg_locker}/bin/${cfg_locker.meta.mainProgram}";
+            ".bin/terminal".source = "${cfg_terminial}/bin/${cfg_terminial.meta.mainProgram}";
+            ".bin/wm".source = "${cfg_wm}/bin/${cfg_wm.meta.mainProgram}";
+        };
+
         systemd.user.services.check_wm = mkIf cfg.systemd {
             Service = {
                 ExecStart = "${pkgs.bash}/bin/bash check_wm";
