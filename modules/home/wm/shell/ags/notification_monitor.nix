@@ -48,7 +48,6 @@ def handle_message(message):
     ):
         return
         
-    # TODO fix bug where sometimes notifications are duplicated (it happens on rebuild? (if so not really a big deal))
     home = os.getenv("HOME")
     file_path = home + "/.local/share/ags_config/notifications.csv"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)

@@ -98,8 +98,7 @@ in
                 };
             };
 
-            # Moves pkgs to stable 
-            # boot.kernelPackages = pkgs-stable.linuxPackages_latest; # TODO readd on kernel pkg update
+            # Moves pkgs to latest
             boot.kernelPackages = pkgs.linuxPackages_latest;
             
             # Default ssh settings
