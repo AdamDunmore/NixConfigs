@@ -4,6 +4,7 @@ let
 in
 {
     imports = [
+        ./beets.nix
         ./kodi.nix
         ./rip.nix
         ./rmpc.nix
