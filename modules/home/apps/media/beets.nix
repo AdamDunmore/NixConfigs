@@ -9,11 +9,11 @@ in
             enable = true;
             package = (pkgs.python314Packages.beets.override { pluginOverrides = { 
                 # beets-xtractor.enable = true; # TODO Add as external plugin
+                # beets-lyrics.enable = true; # TODO Fix timeout issue
                 beets-autobpm.enable = true;
                 beets-musicbrainz.enable = true;
                 beets-embedart.enable = true;
                 beets-ftintitle.enable = true;
-                beets-lyrics.enable = true;
                 beets-mbsync.enable = true;
                 beets-mpdupdate.enable = true;
             }; });
@@ -21,11 +21,11 @@ in
             settings = {
                 plugins = [
                     # "xtractor" # TODO package
+                    # "lyrics"
                     "autobpm"
                     "musicbrainz"
                     "embedart"
                     "ftintitle"
-                    "lyrics"
                     "mbsync"
                     "mpdupdate"
                 ];
