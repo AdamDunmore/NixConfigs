@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-    inherit (lib) mkOption;
+    inherit (lib) mkOption mkEnableOption;
 in
 {
     options.settings.modules.home.apps.media.beets = {
@@ -10,5 +10,6 @@ in
             example = false;
             description = "Enables beets module";
         };
+        systemd = mkEnableOption "Enables a service to auto import and auto update your music collection";
     };
 }
