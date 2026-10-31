@@ -1,7 +1,8 @@
-{ inputs, pkgs, config, lib, ... }:
+{ inputs, pkgs, config, lib, system, ... }:
 let
     cfg = config.settings.modules.home.wm.shell.ags;
     notification_monitor = import ./notification_monitor.nix { inherit pkgs; };
+    astal_pkgs = inputs.astal.packages.${system};
     inherit (lib) mkIf;
 in
 {
@@ -35,12 +36,12 @@ in
         programs.ags = {
             enable = true;
             configDir = ./.;
-            extraPackages = with pkgs.astal; [
-                io
-                gjs
-                astal4
+            extraPackages = with astal_pkgs; [
+                pkgs.gjs
                 pkgs.networkmanager
 
+                astal4
+                io
                 apps
                 brightness
                 bluetooth 

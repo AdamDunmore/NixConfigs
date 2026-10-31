@@ -19,7 +19,6 @@ in
         };
 
         # Custom boot screen
-        boot.initrd.systemd.enable = true;
         boot.kernelParams = [ "quiet" "splash" "loglevel=3" ];
         boot.plymouth = {
           enable = true;
