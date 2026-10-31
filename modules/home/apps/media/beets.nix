@@ -18,6 +18,8 @@ in
                     beet embedart
 
                     beet mbsync
+
+                    beet lyrics
                 '';
                 KillMode = "process";
             };
@@ -48,7 +50,7 @@ in
                 #   ];
                 # };
 
-                # beets-lyrics.enable = true; # TODO Fix timeout issue
+                beets-lyrics.enable = true;
                 beets-autobpm.enable = true;
                 beets-musicbrainz.enable = true;
                 beets-embedart.enable = true;
@@ -60,8 +62,8 @@ in
 
             settings = {
                 plugins = [
-                    "xtractor" # TODO package
-                    # "lyrics"
+                    # "xtractor" # TODO package
+                    "lyrics"
                     "autobpm"
                     "musicbrainz"
                     "embedart"
@@ -81,6 +83,12 @@ in
                     source = "track";
                     count = 5;
                     auto = true;
+                };
+                lyrics = {
+                    sources = [
+                        "lrclib"
+                        "lrcmux"
+                    ];
                 };
                 directory = "/home/${user}/Music";
                 ignore = [
