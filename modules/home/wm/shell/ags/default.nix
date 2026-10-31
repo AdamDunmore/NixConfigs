@@ -15,6 +15,7 @@ in
             lm_sensors
             gcalcli
             notification_monitor
+            mpc
         ];
 
         systemd.user.services.mpdris2 = {
