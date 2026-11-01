@@ -19,12 +19,17 @@ pkgs.stdenvNoCC.mkDerivation rec {
     mpv
     stdenv.cc.cc.lib
     libGL
+    libxxf86vm
+    fontconfig
+    freetype
+    alsa-lib
     libx11
     libxext
     libxrender
     libxtst
     libxi
     libxrandr
+    libxcursor
     wayland
   ];
 
@@ -40,6 +45,7 @@ pkgs.stdenvNoCC.mkDerivation rec {
       --replace-fail "/usr/lib/cove" "$out/lib/cove"
 
     wrapProgram $out/bin/cove \
+      --set _JAVA_AWT_WM_NONREPARENTING 1 \
       --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath [ pkgs.mpv ]}"
 
     runHook postInstall
