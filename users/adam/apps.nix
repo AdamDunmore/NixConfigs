@@ -35,6 +35,7 @@ in
 
         custom-pkgs.amethyst
         custom-pkgs.brave-origin
+        custom-pkgs.cove
         custom-pkgs.jackify
         custom-pkgs.wfinfo-ng
 

@@ -3,6 +3,7 @@
     amethyst = import ./amethyst.nix { inherit pkgs; };
     beets-xtractor = import ./beets-xtractor.nix { inherit pkgs; };
     brave-origin = import ./brave-origin.nix { inherit pkgs; };
+    cove = import ./cove.nix { inherit pkgs; };
     jackify = import ./jackify.nix { inherit pkgs; };
     wfinfo-ng = import ./wfinfo-ng.nix { inherit pkgs; };
 }
