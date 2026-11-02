@@ -43,17 +43,10 @@ pkgs.writeTextFile {
             song_table_format: [
                 (
                     prop: (
-                        kind: Property(Artist),
-                        default: (kind: Text("Unknown")),
-                    ),
-                    width: "20%",
-                ),
-                (
-                    prop: (
                         kind: Property(Title),
                         default: (kind: Text("Unknown")),
                     ),
-                    width: "50%",
+                    width: "40%",
                 ),
                 (
                     prop: (
@@ -64,14 +57,21 @@ pkgs.writeTextFile {
                             style: (fg: "${colours.fg_selected}"),
                         ),
                     ),
-                    width: "15%",
+                    width: "30%",
+                ),
+                (
+                    prop: (
+                        kind: Property(Artist),
+                        default: (kind: Text("Unknown")),
+                    ),
+                    width: "20%",
                 ),
                 (
                     prop: (
                         kind: Property(Duration),
                         default: (kind: Text("-")),
                     ),
-                    width: "15%",
+                    width: "10%",
                     alignment: Right,
                 ),
             ],
@@ -82,15 +82,61 @@ pkgs.writeTextFile {
                 direction: Vertical,
                 panes: [
                     (
-                        pane: Pane(Header),
-                        size: "2",
-                    ),
-                    (
                         pane: Pane(Tabs),
                         size: "3",
                     ),
                     (
-                        pane: Pane(TabContent),
+                        pane: Split(
+                            direction: Horizontal,
+                            panes: [
+                                (
+                                    pane: Split(
+                                        direction: Vertical,                
+                                        panes: [
+                                            (size: "50%", pane: Pane(AlbumArt)), 
+                                            (size: "1", pane: Pane(Property(
+                                                align: Center,
+                                                content: [
+                                                    (kind: Property(Song(Title)))
+                                                ],
+                                            ))),
+                                            (size: "1", pane: Pane(Property(
+                                                align: Center,
+                                                content: [
+                                                    (kind: Property(Song(Album)))
+                                                ],
+                                            ))),
+                                            (size: "1", pane: Pane(Property(
+                                                align: Center,
+                                                content: [
+                                                    (kind: Property(Song(Artist)))
+                                                ],
+                                            ))),
+                                            (size: "1", pane: Pane(Property(
+                                                align: Center,
+                                                content: [
+                                                    (kind: Property(Status(Elapsed))),
+                                                    (kind: Text("/")),
+                                                    (kind: Property(Status(Duration))),
+                                                ],
+                                            ))),
+                                            (size: "1", pane: Pane(Property(
+                                                align: Center,
+                                                content: [
+                                                    (kind: Text("Bit Rate: ")),
+                                                    (kind: Property(Song(Bits())))
+                                                ],
+                                            ))),
+                                        ],
+                                    ),
+                                    size: "30%",
+                                ),
+                                (
+                                    pane: Pane(TabContent),
+                                    size: "70%",
+                                ),
+                            ],
+                        ),
                         size: "100%",
                     ),
                     (
@@ -192,10 +238,6 @@ pkgs.writeTextFile {
                     default: (kind: Property(Filename)),
                 ),
             ],
-
-            lyrics: (
-                timestamp: false,
-            ),
         )
     '';
 }

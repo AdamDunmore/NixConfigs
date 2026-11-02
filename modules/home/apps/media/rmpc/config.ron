@@ -93,15 +93,12 @@
         (
             name: "Queue",
             pane: Split(
-                direction: Horizontal,
-                panes: [(size: "40%", pane: Pane(AlbumArt)), (size: "60%", pane: Pane(Queue))],
+                direction: Vertical,
+                panes: [
+                    (size: "1", pane: Pane(QueueHeader())), 
+                    (size: "100%", pane: Pane(Queue)), 
+                ],
             ),
-
-        ),
-
-        (
-            name: "Playlists",
-            pane: Pane(Playlists),
         ),
 
         (
