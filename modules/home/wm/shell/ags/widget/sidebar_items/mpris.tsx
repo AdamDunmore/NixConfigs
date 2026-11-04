@@ -1,4 +1,4 @@
-import { createComputed, createState, For } from "ags";
+import { Accessor, createComputed, createState, For } from "ags";
 import Gtk from "gi://Gtk";
 import { execAsync } from "ags/process";
 import Mpris from "gi://AstalMpris";
@@ -169,27 +169,31 @@ export default function MprisItem(){
                         <For
                             each={queue}
                         >
-                            { (t: Track) => (
-                                <button onClicked={() => execAsync(`rmpc play ${t.position}`)}>
-                                    <box vexpand hexpand orientation={Gtk.Orientation.VERTICAL}>
-                                        <label halign={Gtk.Align.START} label={t.title} wrap wrapMode={Pango.WrapMode.CHAR} maxWidthChars={10} />
-                                        <box>
-                                            <label halign={Gtk.Align.START} label={t.artist} wrap wrapMode={Pango.WrapMode.CHAR} maxWidthChars={10} 
-                                                css={`
-                                                    font-size: 12px;
-                                                    opacity: 0.8;
-                                                `}
-                                            />
-                                            <label halign={Gtk.Align.START} label={`${Math.floor(t.duration / 60).toString()}:${(t.duration % 60).toString().padStart(2, "0")}`} wrap wrapMode={Pango.WrapMode.CHAR} maxWidthChars={10}
-                                                css={`
-                                                    font-size: 12px;
-                                                    opacity: 0.8;
-                                                `}
-                                            />
-                                        </box>
-                                    </box>
-                                </button>
-                            )}
+                            { (t: Track) => { 
+                                    const isPlaying = (v: Track) => { return v.title == title() };
+                                    if (parseInt(t.position) - 1 > queue().findIndex(isPlaying)) { return (
+                                        <button onClicked={() => execAsync(`rmpc play ${t.position}`)}>
+                                            <box vexpand hexpand orientation={Gtk.Orientation.VERTICAL}>
+                                                <label halign={Gtk.Align.START} label={t.title} wrap wrapMode={Pango.WrapMode.CHAR} maxWidthChars={10} />
+                                                <box>
+                                                    <label halign={Gtk.Align.START} label={t.artist} wrap wrapMode={Pango.WrapMode.CHAR} maxWidthChars={10} 
+                                                        css={`
+                                                            font-size: 12px;
+                                                            opacity: 0.8;
+                                                        `}
+                                                    />
+                                                    <label halign={Gtk.Align.START} label={`${Math.floor(t.duration / 60).toString()}:${(t.duration % 60).toString().padStart(2, "0")}`} wrap wrapMode={Pango.WrapMode.CHAR} maxWidthChars={10}
+                                                        css={`
+                                                            font-size: 12px;
+                                                            opacity: 0.8;
+                                                        `}
+                                                    />
+                                                </box>
+                                            </box>
+                                        </button>
+                                    )}
+                                else { return ( <box visible={false} /> ); }
+                            }}
                         </For>
                     </box>
                 </scrolledwindow>
