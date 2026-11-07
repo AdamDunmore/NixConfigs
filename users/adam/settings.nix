@@ -12,6 +12,7 @@
                     services.ai.enable = false;
                 };
                 home = {
+                    apps.misc.drive.enable = false; # TODO fix rclone
                     apps.misc.discord.flavour = "concord";
                     terminal.shell.zellij.enable = true;
                     terminal.shell.git.ssh = true;
