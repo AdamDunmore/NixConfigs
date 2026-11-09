@@ -6,6 +6,8 @@ let
 in
 {
     config = mkIf cfg.enable {
+
+
         wayland.windowManager.mango-ext = {
             enable = true;
             systemd.enable = true;

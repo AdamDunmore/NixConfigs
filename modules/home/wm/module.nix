@@ -45,9 +45,13 @@ in
     
                 exec = cfg.startup_always;
                 exec-once = cfg.startup ++ [
+                    # Fix for systemd
                     "systemctl --user reset-failed"
                     "systemctl --user start mango-ext-session.target"
-                ]; # Fix for systemd
+                    
+                    # Fix for portals
+                    "XDG_CURRENT_DESKTOP=mango-ext:mango dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP"
+                ];
     
                 xkb_rules_layout=cfg.input.keyboard.layout;
                 mouse_accel_profile= if cfg.input.mouse.accel then 2 else 1;
