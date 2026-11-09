@@ -44,7 +44,10 @@ in
                 }) cfg.modes );
     
                 exec = cfg.startup_always;
-                exec-once = cfg.startup;
+                exec-once = cfg.startup ++ [
+                    "systemctl --user reset-failed"
+                    "systemctl --user start mango-ext-session.target"
+                ]; # Fix for systemd
     
                 xkb_rules_layout=cfg.input.keyboard.layout;
                 mouse_accel_profile= if cfg.input.mouse.accel then 2 else 1;
