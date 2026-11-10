@@ -83,7 +83,11 @@ pkgs.writeTextFile {
                 panes: [
                     (
                         pane: Pane(Tabs),
-                        size: "3",
+                        size: "1",
+                    ),
+                    (
+                        pane: Pane(Header),
+                        size: "2",
                     ),
                     (
                         pane: Split(
@@ -94,37 +98,59 @@ pkgs.writeTextFile {
                                         direction: Vertical,                
                                         panes: [
                                             (size: "50%", pane: Pane(AlbumArt)), 
-                                            (size: "1", pane: Pane(Property(
+                                            (size: "5", borders: "ALL", pane: Split(
+                                                direction: Vertical,
+                                                panes: [
+                                                    (size: "100%", pane: Pane(Property(
+                                                        align: Center,
+                                                        content: [
+                                                            (kind: Property(Song(Title))),
+                                                        ],
+                                                    ))),
+                                                    (size: "100%", pane: Pane(Property(
+                                                        align: Center,
+                                                        content: [
+                                                            (kind: Property(Song(Album))),
+                                                        ],
+                                                    ))),
+                                                    (size: "100%", pane: Pane(Property(
+                                                        align: Center,
+                                                        content: [
+                                                            (kind: Property(Song(Artist))),
+                                                        ],
+                                                    ))),
+                                                ]
+                                            )),
+                                            (size: "3", borders: "ALL", pane: Pane(Property(
                                                 align: Center,
                                                 content: [
-                                                    (kind: Property(Song(Title)))
-                                                ],
-                                            ))),
-                                            (size: "1", pane: Pane(Property(
-                                                align: Center,
-                                                content: [
-                                                    (kind: Property(Song(Album)))
-                                                ],
-                                            ))),
-                                            (size: "1", pane: Pane(Property(
-                                                align: Center,
-                                                content: [
-                                                    (kind: Property(Song(Artist)))
-                                                ],
-                                            ))),
-                                            (size: "1", pane: Pane(Property(
-                                                align: Center,
-                                                content: [
+                                                    (
+                                                        kind: Property(
+                                                            Status(
+                                                                StateV2(
+                                                                    playing_label: "",
+                                                                    paused_label: "",
+                                                                    stopped_label: "",
+                                                                )
+                                                            )
+                                                        ),
+                                                        style: (modifiers: "Bold"),
+                                                    ),
+                                                    (kind: Text(" ")),
                                                     (kind: Property(Status(Elapsed))),
                                                     (kind: Text("/")),
                                                     (kind: Property(Status(Duration))),
                                                 ],
                                             ))),
-                                            (size: "1", pane: Pane(Property(
+                                            (size: "3", borders: "ALL", pane: Pane(Property(
                                                 align: Center,
                                                 content: [
-                                                    (kind: Text("Bit Rate: ")),
-                                                    (kind: Property(Song(Bits())))
+                                                    (kind: Property(Status(RepeatV2(on_label: "", off_label: "󰲸")))),
+                                                    (kind: Text("  ")),
+                                                    (kind: Property(Song(Bits()))),
+                                                    (kind: Text("kHz")),
+                                                    (kind: Text("  ")),
+                                                    (kind: Property(Status(RandomV2(on_label: "", off_label: "")))),
                                                 ],
                                             ))),
                                         ],
@@ -150,73 +176,13 @@ pkgs.writeTextFile {
                 rows: [
                     (
                         left: [
-                            (kind: Text(" ")),
-                            (
-                                kind: Property(
-                                    Status(
-                                        StateV2(
-                                            playing_label: "",
-                                            paused_label: "",
-                                            stopped_label: "",
-                                        )
-                                    )
-                                ),
-                                style: (modifiers: "Bold"),
-                            ),
-                            (kind: Text(" ")),
-                            (kind: Property(Status(Elapsed))),
-                            (kind: Text(" / ")),
-                            (kind: Property(Status(Duration))),
                         ],
 
                         center: [
-                            (
-                                kind: Property(Song(Title)),
-                                style: (modifiers: "Bold"),
-                                default: (
-                                    kind: Text("No Song"),
-                                    style: (modifiers: "Bold"),
-                                ),
-                            ),
                         ],
 
                         right: [
                             (kind: Property(Widget(Volume))),
-                        ],
-                    ),
-
-                    (
-                        left: [],
-
-                        center: [
-                            (
-                                kind: Property(Song(Artist)),
-                                default: (kind: Text("Unknown")),
-                            ),
-                            (kind: Text(" - ")),
-                            (
-                                kind: Property(Song(Album)),
-                                default: (kind: Text("Unknown Album")),
-                            ),
-                        ],
-
-                        right: [
-                            (
-                                kind: Property(
-                                    Widget(
-                                        States(
-                                            active_style: (
-                                                fg: "${colours.fg_selected}",
-                                                modifiers: "Bold",
-                                            ),
-                                            separator_style: (
-                                                fg: "${colours.fg_selected}",
-                                            ),
-                                        )
-                                    )
-                                ),
-                                style: (fg: "${colours.border}"),
-                            ),
                         ],
                     ),
                 ],
