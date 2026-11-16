@@ -5,7 +5,7 @@ let
     inherit (lib) mkIf;
 in
 {
-    config = mkIf (cfg.default == "ly") { 
+    config = mkIf (cfg.default == "ly" && cfg.enable) { 
         services.displayManager.ly = {
             enable = true;
             package = pkgs.ly;

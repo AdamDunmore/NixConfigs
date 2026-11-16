@@ -50,7 +50,7 @@ in
                 login.enableGnomeKeyring = true;
                 hyprlock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.hyprlock) true;
                 swaylock.enableGnomeKeyring = mkIf (wm_cfg.locker == pkgs.swaylock) true;            
-                sddm.enableGnomeKeyring = mkIf (dm_cfg.default == "sddm") true;
+                sddm.enableGnomeKeyring = mkIf (dm_cfg.default == "sddm" && dm_cfg.enable) true;
             };
 
             # Man pages
@@ -125,7 +125,7 @@ in
             programs.niri.enable = true;
         })
 
-        ( mkIf true {
+        ( mkIf true { # TODO add option
             programs.localsend.enable = true;
         })
     ];

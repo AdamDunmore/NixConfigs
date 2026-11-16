@@ -5,7 +5,7 @@ let
     inherit (lib) mkIf;
 in
 {
-    config = mkIf (cfg.default == "greetd") {
+    config = mkIf (cfg.default == "greetd" && cfg.enable) {
         services.greetd = {
             enable = true;
                 settings = {

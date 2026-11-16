@@ -9,6 +9,11 @@ in
     config = {
         settings = {
             modules.enable = mkForce false;
+            modules = {
+                nixos.base.enable = true;
+                home.apps.user_apps = [];
+                home.terminal.shell.enable = true;
+            };
         };
     };
 }

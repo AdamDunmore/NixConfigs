@@ -1,11 +1,11 @@
 { inputs, pkgs, ... }:
 let
-    go-markdown-server = import ../../../../pkgs/go-markdown-server.nix { inherit pkgs; };
+    # go-markdown-server = import ../../../../pkgs/go-markdown-server.nix { inherit pkgs; };
 in
 {
     imports = [ 
         ../../home.nix 
-        inputs.webserver.homeManagerModules.default
+        # inputs.webserver.homeManagerModules.default
     ];
     config = {
         # services.webserver = {

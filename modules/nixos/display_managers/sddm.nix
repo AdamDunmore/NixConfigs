@@ -5,7 +5,7 @@ let
     inherit (lib) mkIf;
 in
 {
-    config = mkIf (cfg.default == "sddm") {
+    config = mkIf (cfg.default == "sddm" && cfg.enable) {
         services.displayManager.sddm = {
             enable = true;
             wayland.enable = false; # TODO fix for no mouse in SDDM ( I think its something to do with the cursor theme
