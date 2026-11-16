@@ -20,6 +20,13 @@ in
                 sopsFile = ./secrets.yaml;
             };
 
+            server_ssh_key = {
+                path = "/home/adam/.ssh/id_ed25519_nixos";
+                owner = "adam";
+                mode = "0600";
+                sopsFile = ./secrets.yaml; 
+            };
+
             ts_key = {
                 sopsFile = ./secrets.yaml;
                 key = "ts_key";
