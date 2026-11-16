@@ -1,5 +1,10 @@
 { user, ... }:
 {
+    # TODO
+    # - Markdown webserver
+    # - Music webserver
+    # - Gonic or equivelant
+
     networking.hostName = "server";
     boot.loader.grub.efiSupport = true;
 
@@ -23,6 +28,4 @@
         settings.options.listenAddresses = [ "tcp://100.66.5.15:22000" ];
         guiAddress = "100.66.5.15:8384";
     };
-
-
 }

@@ -17,6 +17,10 @@ in
                 };
                 home = {
                     apps = {
+                        media.beets = {
+                            enable = true;
+                            systemd = true;
+                        };
                         user_apps = [];
                         scripts.enable = true;
                     };
