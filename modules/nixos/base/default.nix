@@ -34,13 +34,6 @@ in
                 options cfg80211 ieee80211_regdom="GB"
             '';
 
-            # Uses correct ssh key when connecting to server
-            programs.ssh.extraConfig = ''
-                Host server
-                    IdentityFile ~/.ssh/id_ed25519_nixos
-                    IdentitiesOnly yes
-            '';
-
             # Downloading Nerd Font
             fonts.packages = [ config.settings.values.font.pkg ];
 
