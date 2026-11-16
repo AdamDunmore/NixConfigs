@@ -297,11 +297,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793408613,
-        "narHash": "sha256-Zl2LJDpRAruPZngvMf/BpkNygw7a5iKoQyILTJ9q9ps=",
+        "lastModified": 1794832857,
+        "narHash": "sha256-mMkNaBRjRIo3c2T4/CpqG/NVMihQTJ3wgJpn5hX7MLc=",
         "owner": "AdamDunmore",
         "repo": "NvimConfigs",
-        "rev": "fa670b5be6f33366b71e203bc182c63c8b813a0e",
+        "rev": "2bd9bf6adb352da28bcd6172376f03cd29c0fcfa",
         "type": "github"
       },
       "original": {
