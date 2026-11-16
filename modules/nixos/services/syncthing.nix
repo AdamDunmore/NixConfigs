@@ -19,7 +19,7 @@ in
                     "desktop" = { id = "DIZXZOG-IIRYVVX-F2IYNJH-HD6TZNG-VCKQULR-PVNGL7Z-7HMA4KN-ZF66RAU"; };
                     "laptop" = { id = "KIPS7XQ-OJUQDR7-QYSLXWJ-YMOM7NZ-H7PNGSK-V323JHN-EUEO7U2-MP43WQZ"; };
                     "phone" = { id = "5ZJWJJU-UNRIIOM-FAOAEI3-SFDYZRS-KL64MUW-PUVDXYX-POIUTLP-B3VH3AG"; };
-                    "server" = { id = "LKRBLKJ-PV5UKXZ-SGNUGIQ-X4MRDDJ-OEHAA25-4T3KSTM-2MUB5FJ-R6OSZAG"; };
+                    "server" = { id = "OGB3NG5-5GWXCKF-BQ6PS76-XQYXJQK-32KJYU4-GLKHYNH-ICDYNM4-KJELMQH"; };
                     "thor" = { id = "ZU3IMAE-WYAKQOF-JQNATOI-EDEYAWR-O4X7SGU-3DC47BX-5FSRJUM-OEWEOQJ"; };
                 };
 
