@@ -57,6 +57,8 @@ in
             };
         };
 
+        systemd.user.services.xdg-desktop-wlr.environment.PATH = lib.makeBinPath [ pkgs.fuzzel ];
+
         home.packages = forEachPkg ++ (with pkgs; [
             wl-clipboard
             grim
