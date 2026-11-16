@@ -35,7 +35,7 @@ in
             '';
 
             # Uses correct ssh key when connecting to server
-            programs.openssh.extraConfig = ''
+            programs.ssh.extraConfig = ''
                 Host server
                     IdentityFile ~/.ssh/id_ed25519_nixos
                     IdentitiesOnly yes
