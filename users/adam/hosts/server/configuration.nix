@@ -1,4 +1,4 @@
-{ user, ... }:
+{ lib, user, ... }:
 {
     # TODO
     # - Markdown webserver
@@ -27,5 +27,29 @@
     services.syncthing = {
         settings.options.listenAddresses = [ "tcp://100.66.5.15:22000" ];
         guiAddress = "100.66.5.15:8384";
+    };
+
+    # Gonic Setup
+    systemd.services.gonic.serviceConfig = {
+        ProtectHome = lib.mkForce "tmpfs";
+        BindReadOnlyPaths = [ "/home/adam/Music" ];
+        StateDirectory = "gonic";
+        StateDirectoryMode = "0755";
+    };
+
+    systemd.tmpfiles.rules = [
+        "d /var/lib/gonic/podcasts 0755 adam users -"
+        "d /var/lib/gonic/playlists 0755 adam users -"
+    ];
+
+    services.gonic = {
+        enable = true;
+        settings = {
+            music-path = "/home/${user}/Music";            
+            podcast-path = "/var/lib/gonic/podcasts";            
+            playlists-path = "/var/lib/gonic/playlists"; 
+            listen-addr = "100.66.5.15:4747";
+            scan-interval = 1440;
+        };
     };
 }
