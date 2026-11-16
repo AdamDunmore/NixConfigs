@@ -11,6 +11,7 @@ in
             modules.enable = mkForce false;
             modules = {
                 nixos.base.enable = true;
+                nixos.services.tailscale.enable = true;
                 home.apps.user_apps = [];
                 home.terminal.shell.enable = true;
             };
