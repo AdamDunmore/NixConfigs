@@ -8,18 +8,18 @@ in
     config = mkIf cfg.enable {
         systemd.user.services.beets_check = mkIf cfg.systemd {
             Service = {
-                ExecStart = ''
-                    beet import -s /home/${user}/Music/Misc" && 
-                    beet import -s /home/${user}/Music/Albums &&
-                    beet update
+                ExecStart = pkgs.writeShellScript "beets-check" ''
+                    set -e
 
-                    beet autobpm
+                    ${pkgs.beets}/bin/beet import -s "/home/${user}/Music/Misc" -q
+                    ${pkgs.beets}/bin/beet import -s "/home/${user}/Music/Albums" -q
+                    ${pkgs.beets}/bin/beet update -q
+                    ${pkgs.beets}/bin/beet autobpm -q
+                    ${pkgs.beets}/bin/beet embedart -q
+                    ${pkgs.beets}/bin/beet mbsync -q
+                    ${pkgs.beets}/bin/beet lyrics -q
 
-                    beet embedart
-
-                    beet mbsync
-
-                    beet lyrics
+                    ${pkgs.beets}/bin/beet write
                 '';
                 KillMode = "process";
             };
