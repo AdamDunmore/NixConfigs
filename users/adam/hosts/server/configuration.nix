@@ -1,9 +1,9 @@
-{ lib, user, ... }:
+{ lib, user, inputs, ... }:
 {
+    imports = [ inputs.webserver.nixosModules.default ];
     # TODO
     # - Markdown webserver
     # - Music webserver
-    # - Gonic or equivelant
 
     networking.hostName = "server";
     boot.loader.grub.efiSupport = true;
@@ -52,4 +52,15 @@
             scan-interval = 1440;
         };
     };
+
+    # Webserver setup
+    services.webserver = {
+        enable = true;
+        environmentVariables = {
+            WEBSERVER_IP = "100.66.5.15";
+            WEBSERVER_PORT = "1913";
+        };
+        passwordFile = "/home/adam/p.txt"; # TODO move file to sops
+    };
+
 }
