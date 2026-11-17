@@ -33,7 +33,7 @@ in
                 dcat = "${pkgs.openssl}/bin/openssl enc -d -aes-256-cbc -salt -pbkdf2 -in";
                 cds = "echo \"Disk usage of current dir: $(du . -sh)\"";        
 
-                connect-to-server = "ssh -v -i ~/.ssh/id_ed25519_nixos -o IdentitiesOnly=yes adam@100.66.5.15";
+                connect-to-server = "ssh -i ~/.ssh/id_ed25519_nixos -o IdentitiesOnly=yes adam@100.66.5.15";
 
                 # emacs = mkIf cfg_editors.emacs "emacs -nw --init-directory ~/.config/emacs";
             };
