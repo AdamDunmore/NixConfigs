@@ -10,12 +10,9 @@ in
             Service = {
                 ExecStart = pkgs.writeShellScript "beets-check" ''
                     set -e
-
-                    ${pkgs.beets}/bin/beet import -s "/home/${user}/Music/Misc" -q
-                    ${pkgs.beets}/bin/beet import -s "/home/${user}/Music/Albums" -q
                     ${pkgs.beets}/bin/beet update
                     ${pkgs.beets}/bin/beet autobpm -q
-                    ${pkgs.beets}/bin/beet embedart
+                    ${pkgs.beets}/bin/beet embedart -y
                     ${pkgs.beets}/bin/beet mbsync
                     ${pkgs.beets}/bin/beet lyrics
 
