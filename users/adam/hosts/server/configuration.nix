@@ -52,7 +52,7 @@
         };
     };
 
-    # TODO fix passwordFile not applying
+    # Webserver setup
     services.webserver = {
         enable = true;
         environmentVariables = {
