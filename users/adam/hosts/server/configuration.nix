@@ -1,6 +1,6 @@
 { lib, user, inputs, ... }:
 {
-    imports = [ inputs.webserver.nixosModules.default ];
+    # imports = [ inputs.webserver.nixosModules.default ];
     # TODO
     # - Markdown webserver
     # - Music webserver
