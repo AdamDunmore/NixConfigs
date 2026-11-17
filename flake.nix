@@ -105,8 +105,7 @@
         # });
 
         # nh os switch . --hostname <host>
-        nixosConfigurations = forEachDeriv (name: deriv:
-            inputs.nixpkgs.lib.nixosSystem {
+        nixosConfigurations = forEachDeriv (name: deriv: inputs.nixpkgs.lib.nixosSystem {
             system = deriv.system;
             modules = [
                 { nixpkgs.pkgs = import ./utils/pkgs.nix { nixpkgs = inputs.nixpkgs; system = deriv.system; }; }

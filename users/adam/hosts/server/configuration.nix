@@ -1,6 +1,6 @@
 { lib, user, inputs, ... }:
 {
-    # imports = [ inputs.webserver.nixosModules.default ];
+    imports = [ inputs.webserver.nixosModules.default ];
     # TODO
     # - Markdown webserver
     # - Music webserver
@@ -54,13 +54,13 @@
     };
 
     # Webserver setup TODO fix
-    # services.webserver = {
-    #     enable = true;
-    #     environmentVariables = {
-    #         WEBSERVER_IP = "100.66.5.15";
-    #         WEBSERVER_PORT = "1913";
-    #     };
-    #     passwordFile = "/home/adam/p.txt"; # TODO move file to sops
-    # };
+    services.webserver = {
+        enable = true;
+        environmentVariables = {
+            WEBSERVER_IP = "100.66.5.15";
+            WEBSERVER_PORT = "1913";
+        };
+        passwordFile = "/home/adam/p.txt"; # TODO move file to sops
+    };
 
 }
