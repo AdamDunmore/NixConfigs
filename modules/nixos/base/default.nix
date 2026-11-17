@@ -5,7 +5,7 @@ let
 in
 {
     imports =  [
-        inputs.mango.nixosModules.mango-ext
+        inputs.mango.nixosModules.mango
 
         ./audio.nix
         ./bluetooth.nix
@@ -118,7 +118,7 @@ in
         })
         
         ( mkIf config.settings.modules.home.wm.mango.enable {
-            programs.mango-ext.enable = true;
+            programs.mango.enable = true;
         })
 
         ( mkIf config.settings.modules.home.wm.niri.enable {

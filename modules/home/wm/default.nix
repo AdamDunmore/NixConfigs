@@ -23,7 +23,7 @@ in
         ./lockers/hyprlock.nix
         ./lockers/swaylock.nix
 
-        inputs.mango.hmModules.mango-ext
+        inputs.mango.hmModules.mango
     ];
 
     config = mkIf cfg.enable { 

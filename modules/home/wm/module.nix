@@ -5,7 +5,7 @@ let
 in
 {
     config = mkIf cfg.enable {
-        wayland.windowManager.mango-ext = let
+        wayland.windowManager.mango = let
             hexToMango = c: builtins.replaceStrings ["#"] ["0x"] c;
             bindsToActions = binds : map (b: 
                 "${if b.mod then mod else "NONE"}" + 
@@ -36,21 +36,21 @@ in
             settings = {
                 bind = bindsToActions cfg.keybinds;
     
-                keymode = builtins.listToAttrs (map (m: {
+                key_mode = builtins.listToAttrs (map (m: {
                     name = m.name;
                     value = {
                         bind = bindsToActions m.keybinds;
                     };
                 }) cfg.modes );
-    
+
                 exec = cfg.startup_always;
-                exec-once = cfg.startup ++ [
+                exec_once = cfg.startup ++ [
                     # Fix for systemd
                     "systemctl --user reset-failed"
-                    "systemctl --user start mango-ext-session.target"
+                    "systemctl --user start mango-session.target"
                     
                     # Fix for portals
-                    "XDG_CURRENT_DESKTOP=mango-ext:mango dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP"
+                    "XDG_CURRENT_DESKTOP=mango:mango dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP"
                 ];
     
                 xkb_rules_layout=cfg.input.keyboard.layout;
@@ -60,17 +60,17 @@ in
     
                 border_radius = cfg.window.border_radius;
                 unfocused_opacity = cfg.window.dim.inactive;
-                borderpx = cfg.window.border;
-                smartgaps = if cfg.gaps.smartGaps then 1 else 0;
+                border_px = cfg.window.border;
+                smart_gaps = if cfg.gaps.smartGaps then 1 else 0;
                 no_border_when_single = if cfg.gaps.smartBorders then 1 else 0;
     
-                gappih = cfg.gaps.inner;
-                gappiv = cfg.gaps.inner;
-                gappoh = cfg.gaps.outer;
-                gappov = cfg.gaps.outer;
+                gap_inner_horizontal = cfg.gaps.inner;
+                gap_inner_vertical = cfg.gaps.inner;
+                gap_outer_horizontal = cfg.gaps.outer;
+                gap_outer_vertical = cfg.gaps.outer;
     
-                bordercolor = hexToMango cfg.colours.focused.border; 
-                focuscolor = hexToMango cfg.colours.focused.indicator;
+                border_color = hexToMango cfg.colours.focused.border; 
+                focus_color = hexToMango cfg.colours.focused.indicator;
             };
         };
         wayland.windowManager.sway = let 

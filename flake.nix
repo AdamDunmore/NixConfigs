@@ -31,7 +31,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         mango = {
-            url = "github:ernestoCruz05/mango-ext";
+            url = "github:mangowm/mango";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         moonlight = {
