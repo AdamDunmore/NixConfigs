@@ -5,6 +5,7 @@ let
     inherit (lib) mkIf;
 in
 {
+    # TODO change to mango instead of ext (depreciated)
     config = mkIf cfg.enable {
 
 
