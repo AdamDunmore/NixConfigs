@@ -3,7 +3,6 @@
     imports = [ inputs.webserver.nixosModules.default ];
     # TODO
     # - Markdown webserver
-    # - Music webserver
 
     networking.hostName = "server";
     boot.loader.grub.efiSupport = true;
@@ -53,7 +52,7 @@
         };
     };
 
-    # Webserver setup TODO fix
+    # TODO fix passwordFile not applying
     services.webserver = {
         enable = true;
         environmentVariables = {
