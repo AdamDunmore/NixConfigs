@@ -1,11 +1,20 @@
-{ lib, user, inputs, ... }:
+{ lib, user, inputs, pkgs, ... }:
+let
+    docsDir = "/home/${user}/Notes";
+    port = 4040;
+in
 {
     imports = [ inputs.webserver.nixosModules.default ];
-    # TODO
-    # - Markdown webserver
 
     networking.hostName = "server";
     boot.loader.grub.efiSupport = true;
+
+    # Tmp Files
+    systemd.tmpfiles.rules = [
+        "d /var/lib/gonic/podcasts 0755 adam users -"
+        "d /var/lib/gonic/playlists 0755 adam users -"
+        "d ${docsDir} 0755 ${user} users -"
+    ];
 
     # SSH Setup
     users.users.${user}.openssh.authorizedKeys.keys = [
@@ -36,11 +45,6 @@
         StateDirectoryMode = "0755";
     };
 
-    systemd.tmpfiles.rules = [
-        "d /var/lib/gonic/podcasts 0755 adam users -"
-        "d /var/lib/gonic/playlists 0755 adam users -"
-    ];
-
     services.gonic = {
         enable = true;
         settings = {
@@ -62,4 +66,28 @@
         passwordFile = "/home/adam/p.txt"; # TODO move file to sops
     };
 
+    # Vivify Setup
+    systemd.services.vivify = {
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        environment = {
+            VIV_PORT = toString port;
+            VIV_TIMEOUT = "0";
+        };
+        serviceConfig = {
+            ExecStart = "${pkgs.vivify}/bin/vivify-server";
+            User = user;
+            Restart = "on-failure";
+
+            NoNewPrivileges = true;
+            PrivateTmp = true;
+            PrivateDevices = true;
+            ProtectProc = "invisible";
+            ProcSubset = "pid";
+            TemporaryFileSystem = [ "/:ro" ];
+            BindReadOnlyPaths = [ "/nix/store" docsDir ];
+        };
+    };
+
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 4040 ];
 }
