@@ -11,8 +11,8 @@ in
 
     # Tmp Files
     systemd.tmpfiles.rules = [
-        "d /var/lib/gonic/podcasts 0755 adam users -"
-        "d /var/lib/gonic/playlists 0755 adam users -"
+        "d /var/lib/gonic/podcasts 0755 ${user} users -"
+        "d /var/lib/gonic/playlists 0755 ${user} users -"
         "d ${docsDir} 0755 ${user} users -"
     ];
 

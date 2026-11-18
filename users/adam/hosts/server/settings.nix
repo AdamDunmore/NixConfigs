@@ -17,11 +17,12 @@ in
                 };
                 home = {
                     apps = {
+                        enable = true;
                         media.beets = {
                             enable = true;
                             systemd = true;
                         };
-                        user_apps = [];
+                        user_apps = lib.mkForce [];
                         scripts.enable = true;
                     };
                     terminal.shell.enable = true;
