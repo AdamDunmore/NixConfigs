@@ -43,7 +43,6 @@ in
                 typescript
                 dotnet-sdk_9
                 zig
-                zulu8
                 libgccjit
                 cargo
                 nodejs_22
