@@ -18,6 +18,7 @@ in
                 home = {
                     apps = {
                         enable = true;
+                        media.rip.enable = true;
                         media.beets = {
                             enable = true;
                             systemd = true;

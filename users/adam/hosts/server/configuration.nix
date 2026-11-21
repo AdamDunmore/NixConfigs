@@ -59,6 +59,7 @@ in
     # Webserver setup
     services.webserver = {
         enable = true;
+        user = user;
         environmentVariables = {
             WEBSERVER_IP = "100.66.5.15";
             WEBSERVER_PORT = "1913";
