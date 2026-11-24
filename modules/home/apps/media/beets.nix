@@ -15,6 +15,7 @@ in
                     ${pkgs.beets}/bin/beet embedart -y
                     ${pkgs.beets}/bin/beet mbsync
                     ${pkgs.beets}/bin/beet lyrics
+                    ${pkgs.beets}/bin/beet fetchart
 
                     ${pkgs.beets}/bin/beet write
                 '';
