@@ -55,6 +55,7 @@ in
                 beets-mbsync.enable = true;
                 beets-mpdupdate.enable = true;
                 beets-lastgenre.enable = true;
+                beets-fetchart.enable = true;
             }; });
 
             settings = {
@@ -68,6 +69,7 @@ in
                     "mbsync"
                     "mpdupdate"
                     "lastgenre"
+                    "fetchart"
                 ];
                 # xtractor = {
                 #     essentia_extractor = "${pkgs.essentia-extractor}/bin/streaming_extractor_music";
@@ -76,6 +78,9 @@ in
                 #     auto = false;
                 #     write = true;
                 # };
+                embedart = {
+                    remove_art_file = true;
+                };
                 lastgenre = {
                     source = "track";
                     count = 5;
@@ -94,9 +99,8 @@ in
                 import = {
                     write = true;
                     copy = true;
-                    # move = true;
+                    move = true;
                     from_scratch = true;
-                    # quiet = true;
                     default_action = "apply";
                     bell = true;
                 };
