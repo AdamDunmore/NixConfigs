@@ -35,7 +35,7 @@ in
                     };
                 };
             };
-            mutableExtensionsDir = false;
+            mutableExtensionsDir = true; # TODO package boardlab and esp-exception-decoder
         };
     };
 }

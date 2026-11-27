@@ -129,7 +129,7 @@
 
                             ./modules/home
                         ];
-                        backupFileExtension = "bakp";
+                        backupFileExtension = "bkp";
                         useGlobalPkgs = true;
                         useUserPackages = true;
                         extraSpecialArgs = {
