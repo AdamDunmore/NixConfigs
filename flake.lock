@@ -714,11 +714,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1795226152,
-        "narHash": "sha256-qxsUg+Zk58DmRqxxx+rNmlFCtE/XBQ9+mN3aAt9nYBw=",
+        "lastModified": 1795786715,
+        "narHash": "sha256-E2y3oQpV5Gp4Uzw6A0afwTIbVNu4lf0uZPWtZAUompc=",
         "owner": "AdamDunmore",
         "repo": "WebServer",
-        "rev": "4c0b3afdc624c2d96a13e92023891b1f292b496c",
+        "rev": "536e248f04e0551e3585301a287eab3a464c307e",
         "type": "github"
       },
       "original": {
